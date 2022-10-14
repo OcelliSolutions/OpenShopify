@@ -44,7 +44,7 @@ public class CommentFixture : SharedFixture, IAsyncLifetime
     private async Task CreateArticle()
     {
         var request = CreateArticleRequest();
-        var response = await Service.Article.CreateArticleAsync(Blog.Id, request);
+        var response = await Service.Article.CreateArticleForBlogAsync(Blog.Id, request);
         Article = response.Result.Article;
     }
 }
@@ -73,11 +73,11 @@ public class CommentTests : IClassFixture<CommentFixture>
 
     [SkippableFact]
     [TestPriority(30)]
-    public async Task UpdateCommentAsync_CanUpdate()
+    public async Task UpdateCommentOfArticleAsync_CanUpdate()
     {
         Skip.If(!Fixture.CreatedComments.Any(), "Must be run with create test");
         var originalComment = Fixture.CreatedComments.First();
-        var request = new UpdateCommentRequest
+        var request = new UpdateCommentOfArticleRequest()
         {
             Comment = new UpdateComment
             {
@@ -85,7 +85,7 @@ public class CommentTests : IClassFixture<CommentFixture>
                 Body = "You can even update through a web service."
             }
         };
-        var response = await Fixture.Service.Comment.UpdateCommentAsync(request.Comment.Id, request, CancellationToken.None);
+        var response = await Fixture.Service.Comment.UpdateCommentOfArticleAsync(request.Comment.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedComments.Remove(originalComment);
@@ -98,9 +98,9 @@ public class CommentTests : IClassFixture<CommentFixture>
 
     [SkippableFact]
     [TestPriority(10)]
-    public async Task CreateCommentAsync_CanCreate()
+    public async Task CreateCommentOfArticleAsync_CanCreate()
     {
-        var request = new CreateCommentRequest
+        var request = new CreateCommentForArticleRequest
         {
             Comment = new CreateComment
             {
@@ -112,7 +112,7 @@ public class CommentTests : IClassFixture<CommentFixture>
                 ArticleId = Fixture.Article.Id
             }
         };
-        var response = await Fixture.Service.Comment.CreateCommentAsync(request, CancellationToken.None);
+        var response = await Fixture.Service.Comment.CreateCommentForArticleAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedComments.Add(response.Result.Comment);
@@ -120,14 +120,14 @@ public class CommentTests : IClassFixture<CommentFixture>
 
     [SkippableFact]
     [TestPriority(10)]
-    public async Task CreateCommentAsync_IsUnprocessableEntityError()
+    public async Task CreateCommentOfArticleAsync_IsUnprocessableEntityError()
     {
-        var request = new CreateCommentRequest
+        var request = new CreateCommentForArticleRequest
         {
             Comment = new CreateComment()
         };
         await Assert.ThrowsAsync<ApiException>(async () =>
-            await Fixture.Service.Comment.CreateCommentAsync(request, CancellationToken.None));
+            await Fixture.Service.Comment.CreateCommentForArticleAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -160,7 +160,7 @@ public class CommentTests : IClassFixture<CommentFixture>
 
     [SkippableFact]
     [TestPriority(20)]
-    public async Task GetCommentAsync_TestCreated_AdditionalPropertiesAreEmpty()
+    public async Task GetCommentOfArticleAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
         Skip.If(!Fixture.CreatedComments.Any(), "Must be run with create test");
         var comment = Fixture.CreatedComments.First();

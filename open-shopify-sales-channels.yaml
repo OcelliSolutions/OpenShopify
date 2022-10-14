@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Sales Channels
   description: Sales Channels
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -162,6 +162,7 @@ paths:
       tags:
         - Checkout
       summary: Retrieves a list of shipping rates
+      description: 'Retrieves a list of available shipping rates for the specified checkout. Implementers need to poll this endpoint until rates become available. Each shipping rate contains the checkout''s new subtotal price, total tax, and total price in the event that this shipping rate is selected. This can be used to update the UI without performing further API requests.</p> To apply a shipping rate, update the checkout''s shipping line with the handle of the selected rate.'
       operationId: ListShippingRates
       parameters:
         - name: token
@@ -194,6 +195,7 @@ paths:
       tags:
         - CollectionListing
       summary: Retrieve collection listings that are published to your app
+      description: 'Retrieve collection listings that are published to your app. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListCollectionListings
       parameters:
         - name: limit
@@ -231,7 +233,8 @@ paths:
     get:
       tags:
         - CollectionListing
-      summary: Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>
+      summary: Retrieve `product_ids` that are published to a `collection_id`
+      description: 'Retrieve `product_ids` that are published to a `collection_id`. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: GetProductIdsThatArePublishedToCollectionId
       parameters:
         - name: collection_listing_id
@@ -362,6 +365,7 @@ paths:
       tags:
         - MobilePlatformApplication
       summary: List all of the mobile platform applications associated with the app
+      description: List the mobile platform applications
       operationId: ListMobilePlatformApplicationsAssociatedWithApp
       responses:
         '200':
@@ -508,6 +512,7 @@ paths:
       tags:
         - Payment
       summary: Creates a new payment
+      description: Creates a payment on a checkout using the session ID returned by the card vault
       operationId: CreatePayment
       parameters:
         - name: token
@@ -576,6 +581,7 @@ paths:
       tags:
         - Payment
       summary: Retrieves a single payment
+      description: Retrieves the payment information for an existing payment
       operationId: GetPayment
       parameters:
         - name: payment_id
@@ -638,6 +644,7 @@ paths:
       tags:
         - ProductListing
       summary: Retrieve product listings that are published to your app
+      description: 'Retrieve product listings that are published to your app. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListProductListings
       parameters:
         - name: collection_id
@@ -697,7 +704,8 @@ paths:
     get:
       tags:
         - ProductListing
-      summary: Retrieve <code>product_ids</code> that are published to your app
+      summary: Retrieve `product_ids` that are published to your app
+      description: 'Retrieve `product_ids` that are published to your app. Maximum 1,000 results per page.'
       operationId: GetProductIds
       parameters:
         - name: limit
@@ -844,6 +852,7 @@ paths:
       tags:
         - ProductResourceFeedback
       summary: Create a new Product ResourceFeedback
+      description: Create product feedback.
       operationId: CreateProductResourceFeedback
       parameters:
         - name: product_id
@@ -881,6 +890,7 @@ paths:
       tags:
         - ProductResourceFeedback
       summary: Receive a list of all Product ResourceFeedbacks
+      description: Retrieve all product feedback from your app associated with the product.
       operationId: ListProductResourceFeedbacks
       parameters:
         - name: product_id
@@ -914,6 +924,7 @@ paths:
       tags:
         - ResourceFeedback
       summary: Create a new ResourceFeedback
+      description: Creates shop resource feedback.
       operationId: CreateResourceFeedback
       requestBody:
         content:
@@ -944,6 +955,7 @@ paths:
       tags:
         - ResourceFeedback
       summary: Receive a list of all ResourceFeedbacks
+      description: "Returns a list (zero or one) of resource feedback objects. <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nNote that ids are not returned as part of this request. Records are immutable except when POST replaces them.\r\n </div>"
       operationId: ListResourceFeedbacks
       responses:
         '200':
@@ -1087,7 +1099,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutGiftCard'
-          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user.  Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
+          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user. \r\n\r\n Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
           nullable: true
         line_items:
           type: array
@@ -1528,7 +1540,7 @@ components:
           nullable: true
         sort_order:
           type: string
-          description: "The order in which products in the collection appear. Valid values are:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). </strong>"
+          description: "The order in which products in the collection appear. Valid values are:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). \r\n\r\n</strong>"
           nullable: true
         id:
           type: integer
@@ -1612,7 +1624,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutGiftCard'
-          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user.  Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
+          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user. \r\n\r\n Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
           nullable: true
         line_items:
           type: array
@@ -1869,7 +1881,7 @@ components:
           nullable: true
         sort_order:
           type: string
-          description: "The order in which products in the collection appear. Valid values are:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). </strong>"
+          description: "The order in which products in the collection appear. Valid values are:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). \r\n\r\n</strong>"
           nullable: true
       additionalProperties: false
     CreateCollectionListingRequest:
@@ -1927,7 +1939,7 @@ components:
           nullable: true
         next_action:
           type: string
-          description: 'Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to [*Payments Apps overview*](/apps/payments).'
+          description: 'Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to [*Payments apps overview*](/apps/payments).'
           nullable: true
         transaction:
           type: string
@@ -2033,11 +2045,11 @@ components:
           type: array
           items:
             type: string
-          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n            \r\nRequired only when state is `requires_action`. Disallowed when state is `success`. \r\n            \r\n**Content restrictions for product feedback:** four messages up to 100 characters long."
+          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n\r\n Required only when state is `requires_action`. Disallowed when state is `success`. \r\n\r\n **Content restrictions for product feedback:** four messages up to 100 characters long."
           nullable: true
         feedback_generated_at:
           type: string
-          description: " The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC DateTime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
+          description: "The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC DateTime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
           format: date-time
           nullable: true
         resource_updated_at:
@@ -2071,11 +2083,11 @@ components:
           type: array
           items:
             type: string
-          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n            \r\nRequired only when state is `requires_action`. Disallowed when state is `success`. \r\n            \r\n**Content restrictions for Shop feedback:** one message up to 100 characters long."
+          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n\r\n Required only when state is `requires_action`. Disallowed when state is `success`. \r\n\r\n **Content restrictions for Shop feedback:** one message up to 100 characters long."
           nullable: true
         feedback_generated_at:
           type: string
-          description: " The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC datetime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
+          description: "The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC datetime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
           format: date-time
           nullable: true
       additionalProperties: false
@@ -2484,11 +2496,11 @@ components:
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-20 characters.
+          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
           nullable: true
         owner_id:
           type: integer
@@ -2632,7 +2644,7 @@ components:
           nullable: true
         next_action:
           type: string
-          description: 'Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to [*Payments Apps overview*](/apps/payments).'
+          description: 'Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to [*Payments apps overview*](/apps/payments).'
           nullable: true
         transaction:
           type: string
@@ -3034,11 +3046,11 @@ components:
           type: array
           items:
             type: string
-          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n            \r\nRequired only when state is `requires_action`. Disallowed when state is `success`. \r\n            \r\n**Content restrictions for product feedback:** four messages up to 100 characters long."
+          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n\r\n Required only when state is `requires_action`. Disallowed when state is `success`. \r\n\r\n **Content restrictions for product feedback:** four messages up to 100 characters long."
           nullable: true
         feedback_generated_at:
           type: string
-          description: " The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC DateTime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
+          description: "The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC DateTime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
           format: date-time
           nullable: true
         resource_updated_at:
@@ -3090,7 +3102,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.'
+          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.'
           nullable: true
         grams:
           type: number
@@ -3113,7 +3125,7 @@ components:
           nullable: true
         inventory_policy:
           type: string
-          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock.  Default value: `deny`."
+          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock. \r\n\r\n Default value: `deny`."
           nullable: true
         inventory_quantity:
           type: number
@@ -3139,7 +3151,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PresentmentPrice'
-          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.Requires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
+          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.\r\n\r\nRequires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
           nullable: true
         position:
           type: integer
@@ -3239,11 +3251,11 @@ components:
           type: array
           items:
             type: string
-          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n            \r\nRequired only when state is `requires_action`. Disallowed when state is `success`. \r\n            \r\n**Content restrictions for Shop feedback:** one message up to 100 characters long."
+          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n\r\n Required only when state is `requires_action`. Disallowed when state is `success`. \r\n\r\n **Content restrictions for Shop feedback:** one message up to 100 characters long."
           nullable: true
         feedback_generated_at:
           type: string
-          description: " The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC datetime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
+          description: "The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC datetime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
           format: date-time
           nullable: true
         created_at:
@@ -3482,7 +3494,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutGiftCard'
-          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user.  Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
+          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user. \r\n\r\n Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
           nullable: true
         line_items:
           type: array

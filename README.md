@@ -3,7 +3,7 @@
 ![Nuget](https://img.shields.io/nuget/v/Ocelli.OpenShopify)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/OcelliSolutions/OpenShopify/Deploy%20to%20Github%20Packages)
 
-**Open:Shopify** is an OpenAPI implementation of the `2022-07` version of the Shopify Management API. The difference between this and other projects that attempt to expand on the documentation from Shopify is that Open:Shopify scrapes the documentation and generates most of the OpenAPI documentation automatically. Once scraped, any undocumented features/properties are injected and integration tests are executed to ensure that all enums and properties are correctly formatted and accounted for.
+**Open:Shopify** is an OpenAPI implementation of the `2022-10` version of the Shopify Management API. The difference between this and other projects that attempt to expand on the documentation from Shopify is that Open:Shopify scrapes the documentation and generates most of the OpenAPI documentation automatically. Once scraped, any undocumented features/properties are injected and integration tests are executed to ensure that all enums and properties are correctly formatted and accounted for.
 
 ## Usage
 

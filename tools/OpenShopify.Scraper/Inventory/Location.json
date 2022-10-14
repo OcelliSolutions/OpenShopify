@@ -5,7 +5,8 @@
     "description": "        <p>A location represents a geographical location where your stores, pop-up stores, headquarters,\n        and warehouses exist. You can use the Location resource to track sales, manage inventory,\n        and configure the tax rates to apply at checkout. For a better understanding of the relationship\n        between locations, inventory levels and inventory items, refer to the\n        <a href=\"/api/admin-rest/latest/resources/inventorylevel\">\n        InventoryLevel</a> resource reference documentation</p>\n",
     "x-owner": "https://vault.shopify.io/teams/126",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -41,8 +42,8 @@
                         "province": "Ontario",
                         "country": "CA",
                         "phone": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "created_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "country_code": "CA",
                         "country_name": "Canada",
                         "province_code": "ON",
@@ -62,8 +63,8 @@
                         "province": null,
                         "country": "DE",
                         "phone": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "created_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "country_code": "DE",
                         "country_name": "Germany",
                         "province_code": null,
@@ -83,8 +84,8 @@
                         "province": null,
                         "country": "US",
                         "phone": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "created_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "country_code": "US",
                         "country_name": "United States",
                         "province_code": null,
@@ -104,8 +105,8 @@
                         "province": null,
                         "country": "DE",
                         "phone": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "created_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "country_code": "DE",
                         "country_name": "Germany",
                         "province_code": null,
@@ -125,8 +126,8 @@
                         "province": null,
                         "country": "US",
                         "phone": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "created_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "country_code": "US",
                         "country_name": "United States",
                         "province_code": null,
@@ -148,7 +149,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/locations.json",
+          "request_path": "/admin/api/2022-10/locations.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/locations.json",
@@ -158,29 +159,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"locations\":[{\"id\":655441491,\"name\":\"50 Rideau Street\",\"address1\":\"50 Rideau Street\",\"address2\":null,\"city\":\"Ottawa\",\"zip\":\"K1N 9J7\",\"province\":\"Ontario\",\"country\":\"CA\",\"phone\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"country_code\":\"CA\",\"country_name\":\"Canada\",\"province_code\":\"ON\",\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/655441491\",\"localized_country_name\":\"Canada\",\"localized_province_name\":\"Ontario\"},{\"id\":24826418,\"name\":\"Apple Api Shipwire\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"DE\",\"phone\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"country_code\":\"DE\",\"country_name\":\"Germany\",\"province_code\":null,\"legacy\":true,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/24826418\",\"localized_country_name\":\"Germany\",\"localized_province_name\":null},{\"id\":844681632,\"name\":\"Apple Cupertino\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/844681632\",\"localized_country_name\":\"United States\",\"localized_province_name\":null},{\"id\":611870435,\"name\":\"Apple Shipwire\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"DE\",\"phone\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"country_code\":\"DE\",\"country_name\":\"Germany\",\"province_code\":null,\"legacy\":true,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/611870435\",\"localized_country_name\":\"Germany\",\"localized_province_name\":null},{\"id\":487838322,\"name\":\"Fifth Avenue AppleStore\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/487838322\",\"localized_country_name\":\"United States\",\"localized_province_name\":null}]}"
+            "body": "{\"locations\":[{\"id\":655441491,\"name\":\"50 Rideau Street\",\"address1\":\"50 Rideau Street\",\"address2\":null,\"city\":\"Ottawa\",\"zip\":\"K1N 9J7\",\"province\":\"Ontario\",\"country\":\"CA\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"CA\",\"country_name\":\"Canada\",\"province_code\":\"ON\",\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/655441491\",\"localized_country_name\":\"Canada\",\"localized_province_name\":\"Ontario\"},{\"id\":24826418,\"name\":\"Apple Api Shipwire\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"DE\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"DE\",\"country_name\":\"Germany\",\"province_code\":null,\"legacy\":true,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/24826418\",\"localized_country_name\":\"Germany\",\"localized_province_name\":null},{\"id\":844681632,\"name\":\"Apple Cupertino\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/844681632\",\"localized_country_name\":\"United States\",\"localized_province_name\":null},{\"id\":611870435,\"name\":\"Apple Shipwire\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"DE\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"DE\",\"country_name\":\"Germany\",\"province_code\":null,\"legacy\":true,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/611870435\",\"localized_country_name\":\"Germany\",\"localized_province_name\":null},{\"id\":487838322,\"name\":\"Fifth Avenue AppleStore\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/487838322\",\"localized_country_name\":\"United States\",\"localized_province_name\":null}]}"
           },
           "name": "Retrieve a list of all locations",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/locations.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/locations.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Location.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Location.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.all({\n  session: test_session,\n});"
+              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/locations.json",
       "action": "get"
     },
@@ -224,8 +232,8 @@
                       "province": null,
                       "country": "US",
                       "phone": null,
-                      "created_at": "2022-04-05T11:05:24-06:00",
-                      "updated_at": "2022-04-05T11:05:24-06:00",
+                      "created_at": "2022-10-03T10:44:45-06:00",
+                      "updated_at": "2022-10-03T10:44:45-06:00",
                       "country_code": "US",
                       "country_name": "United States",
                       "province_code": null,
@@ -244,7 +252,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/locations/487838322.json",
+          "request_path": "/admin/api/2022-10/locations/487838322.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/locations/487838322.json",
@@ -254,29 +262,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"location\":{\"id\":487838322,\"name\":\"Fifth Avenue AppleStore\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/487838322\"}}"
+            "body": "{\"location\":{\"id\":487838322,\"name\":\"Fifth Avenue AppleStore\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/487838322\"}}"
           },
           "name": "Retrieve a single location",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/locations/487838322.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/locations/487838322.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Location.find(\n  session: test_session,\n  id: 487838322,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Location.find(\n  session: test_session,\n  id: 487838322,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.find({\n  session: test_session,\n  id: 487838322,\n});"
+              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.find({\n  session: test_session,\n  id: 487838322,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::find(\n    $this->test_session, // Session\n    487838322, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::find(\n    $this->test_session, // Session\n    487838322, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/locations/{location_id}.json",
       "action": "get"
     },
@@ -314,7 +329,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/locations/count.json",
+          "request_path": "/admin/api/2022-10/locations/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/locations/count.json",
@@ -330,23 +345,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/locations/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/locations/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Location.count(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Location.count(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.count({\n  session: test_session,\n});"
+              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.count({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/locations/count.json",
       "action": "get"
     },
@@ -385,28 +407,28 @@
                         "inventory_item_id": 49148385,
                         "location_id": 487838322,
                         "available": 18,
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=49148385"
                       },
                       {
                         "inventory_item_id": 808950810,
                         "location_id": 487838322,
                         "available": 9,
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810"
                       },
                       {
                         "inventory_item_id": 457924702,
                         "location_id": 487838322,
                         "available": 36,
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=457924702"
                       },
                       {
                         "inventory_item_id": 39072856,
                         "location_id": 487838322,
                         "available": 27,
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856"
                       }
                     ]
@@ -421,7 +443,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/locations/487838322/inventory_levels.json",
+          "request_path": "/admin/api/2022-10/locations/487838322/inventory_levels.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/locations/487838322/inventory_levels.json",
@@ -431,29 +453,30 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"inventory_levels\":[{\"inventory_item_id\":49148385,\"location_id\":487838322,\"available\":18,\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=49148385\"},{\"inventory_item_id\":808950810,\"location_id\":487838322,\"available\":9,\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810\"},{\"inventory_item_id\":457924702,\"location_id\":487838322,\"available\":36,\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=457924702\"},{\"inventory_item_id\":39072856,\"location_id\":487838322,\"available\":27,\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856\"}]}"
+            "body": "{\"inventory_levels\":[{\"inventory_item_id\":49148385,\"location_id\":487838322,\"available\":18,\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=49148385\"},{\"inventory_item_id\":808950810,\"location_id\":487838322,\"available\":9,\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810\"},{\"inventory_item_id\":457924702,\"location_id\":487838322,\"available\":36,\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=457924702\"},{\"inventory_item_id\":39072856,\"location_id\":487838322,\"available\":27,\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856\"}]}"
           },
           "name": "Retrieve a list of all inventory for a location by its ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/locations/487838322/inventory_levels.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/locations/487838322/inventory_levels.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Location.inventory_levels(\n  session: test_session,\n  id: 487838322,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Location.inventory_levels(\n  session: test_session,\n  id: 487838322,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.inventory_levels({\n  session: test_session,\n  id: 487838322,\n});"
+              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.inventory_levels({\n  session: test_session,\n  id: 487838322,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::inventory_levels(\n    $this->test_session, // Session\n    487838322, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::inventory_levels(\n    $this->test_session, // Session\n    487838322, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": null,
       "url": "/admin/api/{api_version}/locations/{location_id}/inventory_levels.json",
       "action": "get"
     }

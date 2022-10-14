@@ -15,14 +15,13 @@ public class OrderRiskController : OrderRiskControllerBase
     [HttpPost]
     [Route("orders/{order_id:long}/risks.json")]
     [ProducesResponseType(typeof(OrderRiskItem), StatusCodes.Status201Created)]
-    public override Task CreateOrderRisk([Required] CreateOrderRiskRequest forOrderRequest, [Required] long order_id) =>
-        throw new NotImplementedException();
+    public override Task CreateOrderRiskForOrder(CreateOrderRiskForOrderRequest request, long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
     [HttpGet]
     [Route("orders/{order_id:long}/risks.json")]
     [ProducesResponseType(typeof(OrderRiskList), StatusCodes.Status200OK)]
-    public override Task ListOrderRisks([Required] long order_id) => throw new NotImplementedException();
+    public override Task ListOrderRisksForOrder(long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
     [HttpGet]
@@ -42,6 +41,5 @@ public class OrderRiskController : OrderRiskControllerBase
     [HttpDelete]
     [Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
     [ProducesResponseType(typeof(OrderRiskItem), StatusCodes.Status200OK)]
-    public override Task DeleteOrderRisk([Required] long order_id, [Required] long risk_id) =>
-        throw new NotImplementedException();
+    public override Task DeleteOrderRiskForOrder(long order_id, long risk_id) => throw new NotImplementedException();
 }

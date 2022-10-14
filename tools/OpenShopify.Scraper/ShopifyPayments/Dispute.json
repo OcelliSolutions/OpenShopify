@@ -5,7 +5,8 @@
     "description": "Disputes occur when a buyer questions the legitimacy of a charge with their financial institution.\n",
     "x-owner": "https://vault.shopify.io/teams/663",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -60,7 +61,7 @@
           "content": {
             "application/json": {
               "examples": {
-                "Retrieve all disputes ordered newest to oldest": {
+                "Retrieve all disputes initiated on 2013-05-03": {
                   "value": {
                     "disputes": [
                       {
@@ -86,7 +87,7 @@
                         "reason": "credit_not_processed",
                         "network_reason_code": "4827",
                         "status": "needs_response",
-                        "evidence_due_by": "2022-04-17T18:00:00-06:00",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
                         "evidence_sent_on": null,
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -114,7 +115,7 @@
                         "reason": "fraudulent",
                         "network_reason_code": "4827",
                         "status": "needs_response",
-                        "evidence_due_by": "2022-04-17T18:00:00-06:00",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
                         "evidence_sent_on": null,
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -128,7 +129,7 @@
                         "reason": "fraudulent",
                         "network_reason_code": "4827",
                         "status": "needs_response",
-                        "evidence_due_by": "2022-04-17T18:00:00-06:00",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
                         "evidence_sent_on": null,
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -142,8 +143,8 @@
                         "reason": "fraudulent",
                         "network_reason_code": "4827",
                         "status": "under_review",
-                        "evidence_due_by": "2022-04-17T18:00:00-06:00",
-                        "evidence_sent_on": "2022-04-04T18:00:00-06:00",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_sent_on": "2022-10-02T18:00:00-06:00",
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
                       },
@@ -156,7 +157,111 @@
                         "reason": "subscription_canceled",
                         "network_reason_code": "4827",
                         "status": "needs_response",
-                        "evidence_due_by": "2022-04-17T18:00:00-06:00",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_sent_on": null,
+                        "finalized_on": null,
+                        "initiated_at": "2013-05-03T18:00:00-06:00"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve all disputes ordered newest to oldest": {
+                  "value": {
+                    "disputes": [
+                      {
+                        "id": 1052608616,
+                        "order_id": null,
+                        "type": "chargeback",
+                        "amount": "100.00",
+                        "currency": "USD",
+                        "reason": "fraudulent",
+                        "network_reason_code": "4827",
+                        "status": "won",
+                        "evidence_due_by": "2013-07-03T17:00:00-06:00",
+                        "evidence_sent_on": "2013-07-04T05:00:00-06:00",
+                        "finalized_on": null,
+                        "initiated_at": "2013-05-03T18:00:00-06:00"
+                      },
+                      {
+                        "id": 815713555,
+                        "order_id": 625362839,
+                        "type": "chargeback",
+                        "amount": "11.50",
+                        "currency": "USD",
+                        "reason": "credit_not_processed",
+                        "network_reason_code": "4827",
+                        "status": "needs_response",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_sent_on": null,
+                        "finalized_on": null,
+                        "initiated_at": "2013-05-03T18:00:00-06:00"
+                      },
+                      {
+                        "id": 782360659,
+                        "order_id": 625362839,
+                        "type": "chargeback",
+                        "amount": "11.50",
+                        "currency": "USD",
+                        "reason": "fraudulent",
+                        "network_reason_code": "4827",
+                        "status": "won",
+                        "evidence_due_by": "2013-07-03T17:00:00-06:00",
+                        "evidence_sent_on": "2013-07-04T05:00:00-06:00",
+                        "finalized_on": null,
+                        "initiated_at": "2013-05-03T18:00:00-06:00"
+                      },
+                      {
+                        "id": 670893524,
+                        "order_id": 625362839,
+                        "type": "inquiry",
+                        "amount": "11.50",
+                        "currency": "USD",
+                        "reason": "fraudulent",
+                        "network_reason_code": "4827",
+                        "status": "needs_response",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_sent_on": null,
+                        "finalized_on": null,
+                        "initiated_at": "2013-05-03T18:00:00-06:00"
+                      },
+                      {
+                        "id": 598735659,
+                        "order_id": 625362839,
+                        "type": "chargeback",
+                        "amount": "11.50",
+                        "currency": "USD",
+                        "reason": "fraudulent",
+                        "network_reason_code": "4827",
+                        "status": "needs_response",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_sent_on": null,
+                        "finalized_on": null,
+                        "initiated_at": "2013-05-03T18:00:00-06:00"
+                      },
+                      {
+                        "id": 85190714,
+                        "order_id": 625362839,
+                        "type": "chargeback",
+                        "amount": "11.50",
+                        "currency": "USD",
+                        "reason": "fraudulent",
+                        "network_reason_code": "4827",
+                        "status": "under_review",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_sent_on": "2022-10-02T18:00:00-06:00",
+                        "finalized_on": null,
+                        "initiated_at": "2013-05-03T18:00:00-06:00"
+                      },
+                      {
+                        "id": 35982383,
+                        "order_id": 625362839,
+                        "type": "chargeback",
+                        "amount": "11.50",
+                        "currency": "USD",
+                        "reason": "subscription_canceled",
+                        "network_reason_code": "4827",
+                        "status": "needs_response",
+                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
                         "evidence_sent_on": null,
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -197,11 +302,6 @@
                       }
                     ]
                   }
-                },
-                "Retrieve all disputes initiated on 2013-05-03": {
-                  "value": {
-                    "disputes": []
-                  }
                 }
               }
             }
@@ -211,8 +311,8 @@
       "x-examples": [
         {
           "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/shopify_payments/disputes.json",
+          "request_query": "initiated_at=2013-05-03",
+          "request_path": "/admin/api/2022-10/shopify_payments/disputes.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/shopify_payments/disputes.json",
@@ -222,32 +322,67 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"disputes\":[{\"id\":1052608616,\"order_id\":null,\"type\":\"chargeback\",\"amount\":\"100.00\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":815713555,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"credit_not_processed\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-04-17T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":782360659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":670893524,\"order_id\":625362839,\"type\":\"inquiry\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-04-17T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-04-17T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":85190714,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"under_review\",\"evidence_due_by\":\"2022-04-17T20:00:00-04:00\",\"evidence_sent_on\":\"2022-04-04T20:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":35982383,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"subscription_canceled\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-04-17T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}]}"
+            "body": "{\"disputes\":[{\"id\":1052608616,\"order_id\":null,\"type\":\"chargeback\",\"amount\":\"100.00\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":815713555,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"credit_not_processed\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":782360659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":670893524,\"order_id\":625362839,\"type\":\"inquiry\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":85190714,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"under_review\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":\"2022-10-02T20:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":35982383,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"subscription_canceled\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}]}"
+          },
+          "name": "Retrieve all disputes initiated on 2013-05-03",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/disputes.json?initiated_at=2013-05-03\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Dispute.all(\n  session: test_session,\n  initiated_at: \"2013-05-03\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n  initiated_at: \"2013-05-03\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"initiated_at\" => \"2013-05-03\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/shopify_payments/disputes.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/shopify_payments/disputes.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"disputes\":[{\"id\":1052608616,\"order_id\":null,\"type\":\"chargeback\",\"amount\":\"100.00\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":815713555,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"credit_not_processed\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":782360659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":670893524,\"order_id\":625362839,\"type\":\"inquiry\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":85190714,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"under_review\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":\"2022-10-02T20:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":35982383,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"subscription_canceled\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}]}"
           },
           "name": "Retrieve all disputes ordered newest to oldest",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/disputes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/disputes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Dispute.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Dispute.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n});"
+              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "status=won",
-          "request_path": "/admin/api/2022-07/shopify_payments/disputes.json",
+          "request_path": "/admin/api/2022-10/shopify_payments/disputes.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/shopify_payments/disputes.json",
@@ -263,59 +398,36 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/disputes.json?status=won\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/disputes.json?status=won\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Dispute.all(\n  session: test_session,\n  status: \"won\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Dispute.all(\n  session: test_session,\n  status: \"won\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n  status: \"won\",\n});"
+              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n  status: \"won\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"won\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "initiated_at=2013-05-03",
-          "request_path": "/admin/api/2022-07/shopify_payments/disputes.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-10/shopify_payments/disputes.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"disputes\":[]}"
-          },
-          "name": "Retrieve all disputes initiated on 2013-05-03",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/disputes.json?initiated_at=2013-05-03\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Dispute.all(\n  session: test_session,\n  initiated_at: \"2013-05-03\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n  initiated_at: \"2013-05-03\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"initiated_at\" => \"2013-05-03\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"won\"], // Params\n);"
             }
           ]
         }
       ],
-      "url": "/admin/api/{api_version}/shopify_payments/disputes.json",
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "requires_any_scope": true,
+            "scope": "shopify_payments_payouts"
+          },
+          {
+            "requires_any_scope": true,
+            "scope": "shopify_payments"
+          }
+        ]
+      },
+      "url": "/admin/api/{api_version}/shopify_payments/disputes.json?initiated_at=2013-05-03",
       "action": "get"
     },
     {
@@ -357,7 +469,7 @@
                       "reason": "fraudulent",
                       "network_reason_code": "4827",
                       "status": "needs_response",
-                      "evidence_due_by": "2022-04-17T18:00:00-06:00",
+                      "evidence_due_by": "2022-10-15T18:00:00-06:00",
                       "evidence_sent_on": null,
                       "finalized_on": null,
                       "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -373,7 +485,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/shopify_payments/disputes/598735659.json",
+          "request_path": "/admin/api/2022-10/shopify_payments/disputes/598735659.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shopify_payments/disputes/598735659.json",
@@ -383,29 +495,41 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"dispute\":{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-04-17T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}}"
+            "body": "{\"dispute\":{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}}"
           },
           "name": "Retrieves a single dispute by ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/disputes/598735659.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/disputes/598735659.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Dispute.find(\n  session: test_session,\n  id: 598735659,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Dispute.find(\n  session: test_session,\n  id: 598735659,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.find({\n  session: test_session,\n  id: 598735659,\n});"
+              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.find({\n  session: test_session,\n  id: 598735659,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::find(\n    $this->test_session, // Session\n    598735659, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::find(\n    $this->test_session, // Session\n    598735659, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "requires_any_scope": true,
+            "scope": "shopify_payments_payouts"
+          },
+          {
+            "requires_any_scope": true,
+            "scope": "shopify_payments"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/shopify_payments/disputes/{dispute_id}.json",
       "action": "get"
     }

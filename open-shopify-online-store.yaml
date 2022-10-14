@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Online Store
   description: Online Store
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -24,7 +24,8 @@ paths:
       tags:
         - Article
       summary: Retrieves a list of all articles from a blog
-      operationId: ListArticles
+      description: 'Retrieves a list of all articles from a blog. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
+      operationId: ListArticlesFromBlog
       parameters:
         - name: blog_id
           in: path
@@ -134,7 +135,7 @@ paths:
       tags:
         - Article
       summary: Creates an article for a blog
-      operationId: CreateArticle
+      operationId: CreateArticleForBlog
       parameters:
         - name: blog_id
           in: path
@@ -146,11 +147,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateArticleRequest'
+              $ref: '#/components/schemas/CreateArticleForBlogRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateArticleRequest'
-        required: true
+              $ref: '#/components/schemas/CreateArticleForBlogRequest'
       responses:
         '201':
           description: Created
@@ -172,7 +172,7 @@ paths:
       tags:
         - Article
       summary: Retrieves a count of all articles from a blog
-      operationId: CountArticles
+      operationId: CountArticlesFromBlog
       parameters:
         - name: blog_id
           in: path
@@ -242,6 +242,7 @@ paths:
       tags:
         - Article
       summary: Receive a single Article
+      description: Retrieves a single article
       operationId: GetArticle
       parameters:
         - name: article_id
@@ -468,11 +469,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TagList'
+  '/articles/{article_id}.json':
+    put:
+      tags:
+        - Article
+      summary: Remove the image from an article
+      operationId: DeleteImageFromArticle
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleItem'
   '/themes/{theme_id}/assets.json':
     get:
       tags:
         - Asset
       summary: Retrieves a list of assets for a theme
+      description: "Retrieves a list of assets for a theme.\r\n\r\n**Note:** Retrieving a list of assets returns only metadata about each asset. To retrieve an asset's content, you need to retrieve the asset individually."
       operationId: ListAssetsForTheme
       parameters:
         - name: theme_id
@@ -510,6 +541,7 @@ paths:
       tags:
         - Asset
       summary: Creates or updates an asset for a theme
+      description: "Creates or updates an asset for a theme.\r\n\r\nIn the PUT request, you can include the `src` or `source_key` property to create the asset from an existing file."
       operationId: CreateOrUpdatesAssetForTheme
       parameters:
         - name: theme_id
@@ -576,6 +608,7 @@ paths:
       tags:
         - Blog
       summary: Retrieve a list of all blogs
+      description: 'Retrieve a list of all blogs. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListBlogs
       parameters:
         - name: fields
@@ -660,6 +693,7 @@ paths:
       tags:
         - Blog
       summary: Receive a count of all Blogs
+      description: Get a count of all blogs
       operationId: CountBlogs
       responses:
         '200':
@@ -682,6 +716,7 @@ paths:
       tags:
         - Blog
       summary: Receive a single Blog
+      description: Get a single blog by its ID
       operationId: GetBlog
       parameters:
         - name: blog_id
@@ -715,6 +750,7 @@ paths:
       tags:
         - Blog
       summary: Modify an existing Blog
+      description: Update a blog
       operationId: UpdateBlog
       parameters:
         - name: blog_id
@@ -752,6 +788,7 @@ paths:
       tags:
         - Blog
       summary: Remove an existing Blog
+      description: Delete a blog
       operationId: DeleteBlog
       parameters:
         - name: blog_id
@@ -777,6 +814,7 @@ paths:
       tags:
         - Comment
       summary: Retrieves a list of comments
+      description: 'Retrieves a list of comments. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListComments
       parameters:
         - name: created_at_max
@@ -871,16 +909,15 @@ paths:
       tags:
         - Comment
       summary: Creates a comment for an article
-      operationId: CreateComment
+      operationId: CreateCommentForArticle
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateCommentRequest'
+              $ref: '#/components/schemas/CreateCommentForArticleRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateCommentRequest'
-        required: true
+              $ref: '#/components/schemas/CreateCommentForArticleRequest'
       responses:
         '201':
           description: Created
@@ -1004,7 +1041,7 @@ paths:
       tags:
         - Comment
       summary: Updates a comment of an article
-      operationId: UpdateComment
+      operationId: UpdateCommentOfArticle
       parameters:
         - name: comment_id
           in: path
@@ -1016,11 +1053,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCommentRequest'
+              $ref: '#/components/schemas/UpdateCommentOfArticleRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdateCommentRequest'
-        required: true
+              $ref: '#/components/schemas/UpdateCommentOfArticleRequest'
       responses:
         '200':
           description: Success
@@ -1183,6 +1219,7 @@ paths:
       tags:
         - Page
       summary: Retrieves a list of pages
+      description: 'Retrieve a list of all pages. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).'
       operationId: ListPages
       parameters:
         - name: created_at_max
@@ -1481,6 +1518,7 @@ paths:
       tags:
         - Redirect
       summary: Retrieves a list of URL redirects
+      description: 'Retrieves a list of URL redirects. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListUrlRedirects
       parameters:
         - name: fields
@@ -1539,6 +1577,7 @@ paths:
       tags:
         - Redirect
       summary: Creates a redirect
+      description: 'Creates a redirect. When you provide a full URL as the value of the `path` property, it will be saved as an absolute path without the domain. For example, `"path": "http://www.johns-apparel.com/springwear"` will be saved as `"path": "springwear"`.'
       operationId: CreateRedirect
       requestBody:
         content:
@@ -1636,6 +1675,7 @@ paths:
       tags:
         - Redirect
       summary: Updates an existing redirect
+      description: 'Updates an existing [redirect](https://shopify.dev/api/admin-rest/latest/resources/redirect)'
       operationId: UpdateRedirect
       parameters:
         - name: redirect_id
@@ -1698,6 +1738,7 @@ paths:
       tags:
         - ScriptTag
       summary: Retrieves a list of all script tags
+      description: 'Retrieves a list of all script tags. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListScriptTags
       parameters:
         - name: created_at_max
@@ -1964,6 +2005,7 @@ paths:
       tags:
         - Theme
       summary: Creates a theme
+      description: "Creates a theme by providing the public URL of a ZIP file that contains the theme. \r\n\r\nA new theme is always unpublished by default. To publish a theme when you create it, include `\"role\": \"main\"` in the POST request. The theme will be published only after all of its files have been extracted and stored by Shopify, which might take a couple of minutes."
       operationId: CreateTheme
       requestBody:
         content:
@@ -2028,6 +2070,7 @@ paths:
       tags:
         - Theme
       summary: Modify an existing Theme
+      description: Updates an existing theme.
       operationId: UpdateTheme
       parameters:
         - name: theme_id
@@ -2065,6 +2108,7 @@ paths:
       tags:
         - Theme
       summary: Remove an existing Theme
+      description: 'Deletes a theme. A theme can''t be deleted while it''s uploading, updating, or if the theme is the last published theme.'
       operationId: DeleteTheme
       parameters:
         - name: theme_id
@@ -2113,7 +2157,7 @@ components:
           $ref: '#/components/schemas/ArticleImage'
         metafields:
           type: string
-          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
           nullable: true
         published:
           type: boolean
@@ -2300,7 +2344,7 @@ components:
           nullable: true
         metafields:
           type: string
-          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
           nullable: true
         tags:
           type: string
@@ -2463,7 +2507,7 @@ components:
           $ref: '#/components/schemas/ArticleImage'
         metafields:
           type: string
-          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
           nullable: true
         published:
           type: boolean
@@ -2496,7 +2540,7 @@ components:
           format: int64
           nullable: true
       additionalProperties: false
-    CreateArticleRequest:
+    CreateArticleForBlogRequest:
       required:
         - article
       type: object
@@ -2568,7 +2612,7 @@ components:
           nullable: true
         metafields:
           type: string
-          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
           nullable: true
         tags:
           type: string
@@ -2642,7 +2686,7 @@ components:
           description: The user agent string provided by the software used to create the comment (usually a browser).
           nullable: true
       additionalProperties: false
-    CreateCommentRequest:
+    CreateCommentForArticleRequest:
       required:
         - comment
       type: object
@@ -2675,7 +2719,7 @@ components:
           nullable: true
         metafield:
           type: string
-          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
+          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
           nullable: true
         published_at:
           type: string
@@ -2747,7 +2791,7 @@ components:
           $ref: '#/components/schemas/ScriptTagDisplayScope'
         cache:
           type: boolean
-          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
+          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is. \r\n\r\n Default value: `false`."
           nullable: true
       additionalProperties: false
     CreateScriptTagRequest:
@@ -2803,11 +2847,11 @@ components:
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-20 characters.
+          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
           nullable: true
         owner_id:
           type: integer
@@ -2880,7 +2924,7 @@ components:
           nullable: true
         metafield:
           type: string
-          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
+          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
           nullable: true
         published_at:
           type: string
@@ -3011,7 +3055,7 @@ components:
           $ref: '#/components/schemas/ScriptTagDisplayScope'
         cache:
           type: boolean
-          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
+          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is. \r\n\r\n Default value: `false`."
           nullable: true
         id:
           type: integer
@@ -3165,7 +3209,7 @@ components:
           $ref: '#/components/schemas/ArticleImage'
         metafields:
           type: string
-          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
           nullable: true
         published:
           type: boolean
@@ -3234,7 +3278,7 @@ components:
           nullable: true
         metafields:
           type: string
-          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
           nullable: true
         tags:
           type: string
@@ -3318,7 +3362,7 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    UpdateCommentRequest:
+    UpdateCommentOfArticleRequest:
       required:
         - comment
       type: object
@@ -3345,7 +3389,7 @@ components:
           nullable: true
         metafield:
           type: string
-          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
+          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield. \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
           nullable: true
         published_at:
           type: string
@@ -3429,7 +3473,7 @@ components:
           $ref: '#/components/schemas/ScriptTagDisplayScope'
         cache:
           type: boolean
-          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
+          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is. \r\n\r\n Default value: `false`."
           nullable: true
         id:
           type: integer

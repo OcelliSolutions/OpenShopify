@@ -5,7 +5,8 @@
     "description": "    <p>You can use the StorefrontAccessToken resource to generate storefront access tokens. Storefront access tokens are\n    used to delegate unauthenticated access scopes to clients that need to access the unautheticated Storefront API. A sales channel\n    can generate a storefront access token and then pass it to a consuming client, such as JavaScript or a mobile application.</p>\n\n    <div class=\"note\">\n      <h4>Note</h4>\n      <p>Storefront access tokens are allocated on a per shop basis, and an application can have a maximum of 100 active Storefront access tokens per shop.</p>\n    </div>\n\n    <p>A storefront access token inherits all of the <a\n    href=\"/docs/storefront-api/access-scopes\">unauthenticated access\n    scopes</a> from the app that creates it. If the app has not been granted any unauthenticated access scopes, then\n    creating the storefront access token will fail.</p>\n\n",
     "x-owner": "https://vault.shopify.io/teams/2628",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -31,9 +32,9 @@
                 "Create a new storefront access token": {
                   "value": {
                     "storefront_access_token": {
-                      "access_token": "acb63aef87d74a49eb3f4b994a5e342b",
+                      "access_token": "45ca0032e77093b648d94244e45fab27",
                       "access_scope": "unauthenticated_read_product_listings",
-                      "created_at": "2022-04-05T10:56:06-06:00",
+                      "created_at": "2022-10-03T11:03:45-06:00",
                       "id": 1003303990,
                       "admin_graphql_api_id": "gid://shopify/StorefrontAccessToken/1003303990",
                       "title": "Test"
@@ -79,7 +80,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/storefront_access_tokens.json",
+          "request_path": "/admin/api/2022-10/storefront_access_tokens.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/storefront_access_tokens.json",
@@ -89,32 +90,32 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"storefront_access_token\":{\"access_token\":\"acb63aef87d74a49eb3f4b994a5e342b\",\"access_scope\":\"unauthenticated_read_product_listings\",\"created_at\":\"2022-04-05T12:56:06-04:00\",\"id\":1003303990,\"admin_graphql_api_id\":\"gid://shopify/StorefrontAccessToken/1003303990\",\"title\":\"Test\"}}"
+            "body": "{\"storefront_access_token\":{\"access_token\":\"45ca0032e77093b648d94244e45fab27\",\"access_scope\":\"unauthenticated_read_product_listings\",\"created_at\":\"2022-10-03T13:03:45-04:00\",\"id\":1003303990,\"admin_graphql_api_id\":\"gid://shopify/StorefrontAccessToken/1003303990\",\"title\":\"Test\"}}"
           },
           "name": "Create a new storefront access token",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"storefront_access_token\":{\"title\":\"Test\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/storefront_access_tokens.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"storefront_access_token\":{\"title\":\"Test\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/storefront_access_tokens.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nstorefront_access_token = ShopifyAPI::StorefrontAccessToken.new(session: test_session)\nstorefront_access_token.title = \"Test\"\nstorefront_access_token.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nstorefront_access_token = ShopifyAPI::StorefrontAccessToken.new(session: test_session)\nstorefront_access_token.title = \"Test\"\nstorefront_access_token.save!"
             },
             {
               "language": "node",
-              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst storefront_access_token = new StorefrontAccessToken({session: test_session});\nstorefront_access_token.title = \"Test\";\nawait storefront_access_token.save({\n  update: true,\n});"
+              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst storefront_access_token = new StorefrontAccessToken({session: test_session});\nstorefront_access_token.title = \"Test\";\nawait storefront_access_token.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$storefront_access_token = new StorefrontAccessToken($this->test_session);\n$storefront_access_token->title = \"Test\";\n$storefront_access_token->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$storefront_access_token = new StorefrontAccessToken($this->test_session);\n$storefront_access_token->title = \"Test\";\n$storefront_access_token->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "403",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/storefront_access_tokens.json",
+          "request_path": "/admin/api/2022-10/storefront_access_tokens.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/storefront_access_tokens.json",
@@ -130,26 +131,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"storefront_access_token\":{\"title\":\"Test\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/storefront_access_tokens.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"storefront_access_token\":{\"title\":\"Test\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/storefront_access_tokens.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nstorefront_access_token = ShopifyAPI::StorefrontAccessToken.new(session: test_session)\nstorefront_access_token.title = \"Test\"\nstorefront_access_token.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nstorefront_access_token = ShopifyAPI::StorefrontAccessToken.new(session: test_session)\nstorefront_access_token.title = \"Test\"\nstorefront_access_token.save!"
             },
             {
               "language": "node",
-              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst storefront_access_token = new StorefrontAccessToken({session: test_session});\nstorefront_access_token.title = \"Test\";\nawait storefront_access_token.save({\n  update: true,\n});"
+              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst storefront_access_token = new StorefrontAccessToken({session: test_session});\nstorefront_access_token.title = \"Test\";\nawait storefront_access_token.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$storefront_access_token = new StorefrontAccessToken($this->test_session);\n$storefront_access_token->title = \"Test\";\n$storefront_access_token->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$storefront_access_token = new StorefrontAccessToken($this->test_session);\n$storefront_access_token->title = \"Test\";\n$storefront_access_token->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "400",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/storefront_access_tokens.json",
+          "request_path": "/admin/api/2022-10/storefront_access_tokens.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/storefront_access_tokens.json",
@@ -165,23 +166,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"storefront_access_token\":{\"title\":\"Token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/storefront_access_tokens.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"storefront_access_token\":{\"title\":\"Token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/storefront_access_tokens.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nstorefront_access_token = ShopifyAPI::StorefrontAccessToken.new(session: test_session)\nstorefront_access_token.title = \"Token\"\nstorefront_access_token.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nstorefront_access_token = ShopifyAPI::StorefrontAccessToken.new(session: test_session)\nstorefront_access_token.title = \"Token\"\nstorefront_access_token.save!"
             },
             {
               "language": "node",
-              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst storefront_access_token = new StorefrontAccessToken({session: test_session});\nstorefront_access_token.title = \"Token\";\nawait storefront_access_token.save({\n  update: true,\n});"
+              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst storefront_access_token = new StorefrontAccessToken({session: test_session});\nstorefront_access_token.title = \"Token\";\nawait storefront_access_token.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$storefront_access_token = new StorefrontAccessToken($this->test_session);\n$storefront_access_token->title = \"Token\";\n$storefront_access_token->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$storefront_access_token = new StorefrontAccessToken($this->test_session);\n$storefront_access_token->title = \"Token\";\n$storefront_access_token->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/storefront_access_tokens.json",
       "action": "post"
     },
@@ -211,7 +219,7 @@
                       {
                         "access_token": "378d95641257a4ab3feff967ee234f4d",
                         "access_scope": "unauthenticated_read_product_listings",
-                        "created_at": "2022-04-05T10:51:55-06:00",
+                        "created_at": "2022-10-03T10:44:45-06:00",
                         "id": 755357713,
                         "admin_graphql_api_id": "gid://shopify/StorefrontAccessToken/755357713",
                         "title": "API Client Extension"
@@ -228,7 +236,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/storefront_access_tokens.json",
+          "request_path": "/admin/api/2022-10/storefront_access_tokens.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/storefront_access_tokens.json",
@@ -238,29 +246,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"storefront_access_tokens\":[{\"access_token\":\"378d95641257a4ab3feff967ee234f4d\",\"access_scope\":\"unauthenticated_read_product_listings\",\"created_at\":\"2022-04-05T12:51:55-04:00\",\"id\":755357713,\"admin_graphql_api_id\":\"gid://shopify/StorefrontAccessToken/755357713\",\"title\":\"API Client Extension\"}]}"
+            "body": "{\"storefront_access_tokens\":[{\"access_token\":\"378d95641257a4ab3feff967ee234f4d\",\"access_scope\":\"unauthenticated_read_product_listings\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"id\":755357713,\"admin_graphql_api_id\":\"gid://shopify/StorefrontAccessToken/755357713\",\"title\":\"API Client Extension\"}]}"
           },
           "name": "Retrieve a list of storefront access tokens that have been issued",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/storefront_access_tokens.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/storefront_access_tokens.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::StorefrontAccessToken.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::StorefrontAccessToken.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait StorefrontAccessToken.all({\n  session: test_session,\n});"
+              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait StorefrontAccessToken.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nStorefrontAccessToken::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nStorefrontAccessToken::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/storefront_access_tokens.json",
       "action": "get"
     },
@@ -304,7 +319,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/storefront_access_tokens/755357713.json",
+          "request_path": "/admin/api/2022-10/storefront_access_tokens/755357713.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/storefront_access_tokens/755357713.json",
@@ -320,23 +335,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/storefront_access_tokens/755357713.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/storefront_access_tokens/755357713.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::StorefrontAccessToken.delete(\n  session: test_session,\n  id: 755357713,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::StorefrontAccessToken.delete(\n  session: test_session,\n  id: 755357713,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait StorefrontAccessToken.delete({\n  session: test_session,\n  id: 755357713,\n});"
+              "example_code": "import {StorefrontAccessToken} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait StorefrontAccessToken.delete({\n  session: test_session,\n  id: 755357713,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nStorefrontAccessToken::delete(\n    $this->test_session, // Session\n    755357713, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\StorefrontAccessToken;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nStorefrontAccessToken::delete(\n    $this->test_session, // Session\n    755357713, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/storefront_access_tokens/{storefront_access_token_id}.json",
       "action": "delete"
     }

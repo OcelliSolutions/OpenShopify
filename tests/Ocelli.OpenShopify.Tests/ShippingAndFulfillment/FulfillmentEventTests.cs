@@ -123,7 +123,7 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
     public async Task CreateFulfillmentEventAsync_IsUnprocessableEntityError()
     {
         var order = await Fixture.CreateOrder(Fixture.ProductVariant);
-        Fixture.CreatedOrders.Add(order);
+        Fixture.CreatedArticles.Add(order);
         var fulfillment = await Fixture.CreateFulfillment(order, Fixture.FulfillmentService);
         Fixture.CreatedFulfillments.Add(fulfillment);
         var request = new CreateFulfillmentEventRequest
@@ -177,7 +177,7 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
     public async Task GetFulfillmentEventAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
         var order = await Fixture.CreateOrder(Fixture.ProductVariant);
-        Fixture.CreatedOrders.Add(order);
+        Fixture.CreatedArticles.Add(order);
         var fulfillment = await Fixture.CreateFulfillment(order, Fixture.FulfillmentService);
         Fixture.CreatedFulfillments.Add(fulfillment);
 

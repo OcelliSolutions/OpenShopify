@@ -5,7 +5,8 @@
     "description": "        <p>The ApplicationCharge resource facilitates one-time charges. This type of charge is recommended for apps that\n        aren’t billed on a recurring basis. You can create an application charge by sending a request with the name the charge should\n        appear under, the price your app is charging, and a return URL where Shopify redirects the merchant\n        after the charge is accepted. After you've created the charge, redirect the merchant to the confirmation URL returned by Shopify.\n        If the charge is declined, then Shopify redirects the merchant and provides a notification message that the app charge was declined.\n        For step-by-step guidance that walks through this flow using examples, see our <a href=\"/apps/billing/rest/implement-billing-model\">implementation guide</a>.</p>\n\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>For testing purposes you can include <code>\"test\": true</code> when creating the charge. This prevents the credit card from being charged.\n          Test shops and demo shops can't be charged.</p>\n        </div>\n",
     "x-owner": "https://vault.shopify.io/teams/1750",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -23,51 +24,6 @@
         }
       ],
       "responses": {
-        "201": {
-          "description": "Creates an application charge",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Create an application charge": {
-                  "value": {
-                    "application_charge": {
-                      "id": 1017262349,
-                      "name": "Super Duper Expensive action",
-                      "api_client_id": 755357713,
-                      "price": "100.00",
-                      "status": "pending",
-                      "return_url": "http://super-duper.shopifyapps.com/",
-                      "test": null,
-                      "created_at": "2022-04-05T11:06:28-06:00",
-                      "updated_at": "2022-04-05T11:06:28-06:00",
-                      "charge_type": null,
-                      "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1017262349",
-                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1017262349/ApplicationCharge/confirm_application_charge?signature=BAh7BzoHaWRpBA0xojw6EmF1dG9fYWN0aXZhdGVU--1b6672b89ec9e9ef1b9d6505e962c8ab10de61a1"
-                    }
-                  }
-                },
-                "Create a test charge that will not cause a credit card to be charged": {
-                  "value": {
-                    "application_charge": {
-                      "id": 1017262350,
-                      "name": "Super Duper Expensive action",
-                      "api_client_id": 755357713,
-                      "price": "100.00",
-                      "status": "pending",
-                      "return_url": "http://super-duper.shopifyapps.com/",
-                      "test": true,
-                      "created_at": "2022-04-05T11:06:29-06:00",
-                      "updated_at": "2022-04-05T11:06:29-06:00",
-                      "charge_type": null,
-                      "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1017262350",
-                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1017262350/ApplicationCharge/confirm_application_charge?signature=BAh7BzoHaWRpBA4xojw6EmF1dG9fYWN0aXZhdGVU--9ef9ca3bed39ed6b400f61af1b63e47db7ecaa29"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "422": {
           "description": "Creates an application charge",
           "content": {
@@ -97,83 +53,58 @@
               }
             }
           }
+        },
+        "201": {
+          "description": "Creates an application charge",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a test charge that will not cause a credit card to be charged": {
+                  "value": {
+                    "application_charge": {
+                      "id": 1017262347,
+                      "name": "Super Duper Expensive action",
+                      "api_client_id": 755357713,
+                      "price": "100.00",
+                      "status": "pending",
+                      "return_url": "http://super-duper.shopifyapps.com/",
+                      "test": true,
+                      "created_at": "2022-10-03T10:20:20-06:00",
+                      "updated_at": "2022-10-03T10:20:20-06:00",
+                      "charge_type": null,
+                      "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1017262347",
+                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1017262347/ApplicationCharge/confirm_application_charge?signature=BAh7BzoHaWRpBAsxojw6EmF1dG9fYWN0aXZhdGVU--997306f5eeeafb34d59f4272303af853c6aa28da"
+                    }
+                  }
+                },
+                "Create an application charge": {
+                  "value": {
+                    "application_charge": {
+                      "id": 1017262350,
+                      "name": "Super Duper Expensive action",
+                      "api_client_id": 755357713,
+                      "price": "100.00",
+                      "status": "pending",
+                      "return_url": "http://super-duper.shopifyapps.com/",
+                      "test": null,
+                      "created_at": "2022-10-03T10:20:27-06:00",
+                      "updated_at": "2022-10-03T10:20:27-06:00",
+                      "charge_type": null,
+                      "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1017262350",
+                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1017262350/ApplicationCharge/confirm_application_charge?signature=BAh7BzoHaWRpBA4xojw6EmF1dG9fYWN0aXZhdGVU--ac057c7548ab2cf6b733606771fc47a03238e4ed"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "x-examples": [
         {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/application_charges.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/application_charges.json",
-            "headers": {},
-            "body": "{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"application_charge\":{\"id\":1017262349,\"name\":\"Super Duper Expensive action\",\"api_client_id\":755357713,\"price\":\"100.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"test\":null,\"created_at\":\"2022-04-05T13:06:28-04:00\",\"updated_at\":\"2022-04-05T13:06:28-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1017262349\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1017262349/ApplicationCharge/confirm_application_charge?signature=BAh7BzoHaWRpBA0xojw6EmF1dG9fYWN0aXZhdGVU--1b6672b89ec9e9ef1b9d6505e962c8ab10de61a1\"}}"
-          },
-          "name": "Create an application charge",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 100.0\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 100.0;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait application_charge.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 100.0;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/application_charges.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/application_charges.json",
-            "headers": {},
-            "body": "{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"application_charge\":{\"id\":1017262350,\"name\":\"Super Duper Expensive action\",\"api_client_id\":755357713,\"price\":\"100.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"test\":true,\"created_at\":\"2022-04-05T13:06:29-04:00\",\"updated_at\":\"2022-04-05T13:06:29-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1017262350\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1017262350/ApplicationCharge/confirm_application_charge?signature=BAh7BzoHaWRpBA4xojw6EmF1dG9fYWN0aXZhdGVU--9ef9ca3bed39ed6b400f61af1b63e47db7ecaa29\"}}"
-          },
-          "name": "Create a test charge that will not cause a credit card to be charged",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 100.0\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.test = true\napplication_charge.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 100.0;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\napplication_charge.test = true;\nawait application_charge.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 100.0;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->test = true;\n$application_charge->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/application_charges.json",
+          "request_path": "/admin/api/2022-10/application_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_charges.json",
@@ -189,26 +120,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_charge\":{\"name\":\"\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_charge\":{\"name\":\"\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"\"\napplication_charge.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"\"\napplication_charge.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"\";\nawait application_charge.save({\n  update: true,\n});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"\";\nawait application_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"\";\n$application_charge->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"\";\n$application_charge->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/application_charges.json",
+          "request_path": "/admin/api/2022-10/application_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_charges.json",
@@ -224,218 +155,102 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":0.4,\"return_url\":\"http://super-duper.shopifyapps.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":0.4,\"return_url\":\"http://super-duper.shopifyapps.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 0.4\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 0.4\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 0.4;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait application_charge.save({\n  update: true,\n});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 0.4;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait application_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 0.4;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 0.4;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/application_charges.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/application_charges.json",
+            "headers": {},
+            "body": "{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"application_charge\":{\"id\":1017262347,\"name\":\"Super Duper Expensive action\",\"api_client_id\":755357713,\"price\":\"100.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"test\":true,\"created_at\":\"2022-10-03T12:20:20-04:00\",\"updated_at\":\"2022-10-03T12:20:20-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1017262347\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1017262347/ApplicationCharge/confirm_application_charge?signature=BAh7BzoHaWRpBAsxojw6EmF1dG9fYWN0aXZhdGVU--997306f5eeeafb34d59f4272303af853c6aa28da\"}}"
+          },
+          "name": "Create a test charge that will not cause a credit card to be charged",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 100.0\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.test = true\napplication_charge.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 100.0;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\napplication_charge.test = true;\nawait application_charge.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 100.0;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->test = true;\n$application_charge->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/application_charges.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/application_charges.json",
+            "headers": {},
+            "body": "{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"application_charge\":{\"id\":1017262350,\"name\":\"Super Duper Expensive action\",\"api_client_id\":755357713,\"price\":\"100.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"test\":null,\"created_at\":\"2022-10-03T12:20:27-04:00\",\"updated_at\":\"2022-10-03T12:20:27-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1017262350\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1017262350/ApplicationCharge/confirm_application_charge?signature=BAh7BzoHaWRpBA4xojw6EmF1dG9fYWN0aXZhdGVU--ac057c7548ab2cf6b733606771fc47a03238e4ed\"}}"
+          },
+          "name": "Create an application charge",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 100.0\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 100.0;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait application_charge.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 100.0;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/application_charges.json",
       "action": "post"
-    },
-    {
-      "description": "Retrieves a list of application charges",
-      "summary": "Retrieves a list of application charges",
-      "operationId": "Retrievesalistofapplicationcharges",
-      "parameters": [
-        {
-          "name": "api_version",
-          "in": "path",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        },
-        {
-          "name": "fields",
-          "description": "A comma-separated list of fields to include in the response.",
-          "in": "query",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "since_id",
-          "description": "Restrict results to after the specified ID.",
-          "in": "query",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Retrieves a list of application charges",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Retrieve all application charges": {
-                  "value": {
-                    "application_charges": [
-                      {
-                        "id": 1017262346,
-                        "name": "Create me a logo",
-                        "api_client_id": 755357713,
-                        "price": "123.00",
-                        "status": "accepted",
-                        "return_url": "http://google.com",
-                        "test": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
-                        "charge_type": "brokered_service",
-                        "decorated_return_url": "http://google.com?charge_id=1017262346"
-                      },
-                      {
-                        "id": 556467234,
-                        "name": "Green theme",
-                        "api_client_id": 755357713,
-                        "price": "120.00",
-                        "status": "accepted",
-                        "return_url": "http://google.com",
-                        "test": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
-                        "charge_type": "theme",
-                        "decorated_return_url": "http://google.com?charge_id=556467234"
-                      },
-                      {
-                        "id": 675931192,
-                        "name": "iPod Cleaning",
-                        "api_client_id": 755357713,
-                        "price": "5.00",
-                        "status": "accepted",
-                        "return_url": "http://google.com",
-                        "test": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
-                        "charge_type": null,
-                        "decorated_return_url": "http://google.com?charge_id=675931192"
-                      }
-                    ]
-                  }
-                },
-                "Retrieve all application charges since a specified ID": {
-                  "value": {
-                    "application_charges": [
-                      {
-                        "id": 675931192,
-                        "name": "iPod Cleaning",
-                        "api_client_id": 755357713,
-                        "price": "5.00",
-                        "status": "accepted",
-                        "return_url": "http://google.com",
-                        "test": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
-                        "charge_type": null,
-                        "decorated_return_url": "http://google.com?charge_id=675931192"
-                      },
-                      {
-                        "id": 1017262346,
-                        "name": "Create me a logo",
-                        "api_client_id": 755357713,
-                        "price": "123.00",
-                        "status": "accepted",
-                        "return_url": "http://google.com",
-                        "test": null,
-                        "created_at": "2022-04-05T11:05:24-06:00",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
-                        "charge_type": "brokered_service",
-                        "decorated_return_url": "http://google.com?charge_id=1017262346"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "x-examples": [
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/application_charges.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/unstable/application_charges.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"application_charges\":[{\"id\":1017262346,\"name\":\"Create me a logo\",\"api_client_id\":755357713,\"price\":\"123.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"charge_type\":\"brokered_service\",\"decorated_return_url\":\"http://google.com?charge_id=1017262346\"},{\"id\":556467234,\"name\":\"Green theme\",\"api_client_id\":755357713,\"price\":\"120.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"charge_type\":\"theme\",\"decorated_return_url\":\"http://google.com?charge_id=556467234\"},{\"id\":675931192,\"name\":\"iPod Cleaning\",\"api_client_id\":755357713,\"price\":\"5.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://google.com?charge_id=675931192\"}]}"
-          },
-          "name": "Retrieve all application charges",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ApplicationCharge.all(\n  session: test_session,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.all({\n  session: test_session,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "since_id=556467234",
-          "request_path": "/admin/api/2022-07/application_charges.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/unstable/application_charges.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"application_charges\":[{\"id\":675931192,\"name\":\"iPod Cleaning\",\"api_client_id\":755357713,\"price\":\"5.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://google.com?charge_id=675931192\"},{\"id\":1017262346,\"name\":\"Create me a logo\",\"api_client_id\":755357713,\"price\":\"123.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"charge_type\":\"brokered_service\",\"decorated_return_url\":\"http://google.com?charge_id=1017262346\"}]}"
-          },
-          "name": "Retrieve all application charges since a specified ID",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json?since_id=556467234\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ApplicationCharge.all(\n  session: test_session,\n  since_id: \"556467234\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.all({\n  session: test_session,\n  since_id: \"556467234\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"556467234\"], // Params\n);"
-            }
-          ]
-        }
-      ],
-      "url": "/admin/api/{api_version}/application_charges.json",
-      "action": "get"
     },
     {
       "description": "Retrieves an application charge",
@@ -483,8 +298,8 @@
                       "status": "accepted",
                       "return_url": "http://google.com",
                       "test": null,
-                      "created_at": "2022-04-05T11:05:24-06:00",
-                      "updated_at": "2022-04-05T11:05:24-06:00",
+                      "created_at": "2022-10-03T10:15:55-06:00",
+                      "updated_at": "2022-10-03T10:15:55-06:00",
                       "charge_type": null,
                       "decorated_return_url": "http://google.com?charge_id=675931192"
                     }
@@ -499,7 +314,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/application_charges/675931192.json",
+          "request_path": "/admin/api/2022-10/application_charges/675931192.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/application_charges/675931192.json",
@@ -509,30 +324,237 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"application_charge\":{\"id\":675931192,\"name\":\"iPod Cleaning\",\"api_client_id\":755357713,\"price\":\"5.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://google.com?charge_id=675931192\"}}"
+            "body": "{\"application_charge\":{\"id\":675931192,\"name\":\"iPod Cleaning\",\"api_client_id\":755357713,\"price\":\"5.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://google.com?charge_id=675931192\"}}"
           },
           "name": "Retrieve an application charge",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges/675931192.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/application_charges/675931192.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ApplicationCharge.find(\n  session: test_session,\n  id: 675931192,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::ApplicationCharge.find(\n  session: test_session,\n  id: 675931192,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.find({\n  session: test_session,\n  id: 675931192,\n});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.find({\n  session: test_session,\n  id: 675931192,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::find(\n    $this->test_session, // Session\n    675931192, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::find(\n    $this->test_session, // Session\n    675931192, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/application_charges/{application_charge_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a list of application charges",
+      "summary": "Retrieves a list of application charges",
+      "operationId": "Retrievesalistofapplicationcharges",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "A comma-separated list of fields to include in the response.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Restrict results to after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of application charges",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all application charges since a specified ID": {
+                  "value": {
+                    "application_charges": [
+                      {
+                        "id": 675931192,
+                        "name": "iPod Cleaning",
+                        "api_client_id": 755357713,
+                        "price": "5.00",
+                        "status": "accepted",
+                        "return_url": "http://google.com",
+                        "test": null,
+                        "created_at": "2022-10-03T10:15:55-06:00",
+                        "updated_at": "2022-10-03T10:15:55-06:00",
+                        "charge_type": null,
+                        "decorated_return_url": "http://google.com?charge_id=675931192"
+                      },
+                      {
+                        "id": 1017262346,
+                        "name": "Create me a logo",
+                        "api_client_id": 755357713,
+                        "price": "123.00",
+                        "status": "accepted",
+                        "return_url": "http://google.com",
+                        "test": null,
+                        "created_at": "2022-10-03T10:15:55-06:00",
+                        "updated_at": "2022-10-03T10:15:55-06:00",
+                        "charge_type": "brokered_service",
+                        "decorated_return_url": "http://google.com?charge_id=1017262346"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve all application charges": {
+                  "value": {
+                    "application_charges": [
+                      {
+                        "id": 1017262346,
+                        "name": "Create me a logo",
+                        "api_client_id": 755357713,
+                        "price": "123.00",
+                        "status": "accepted",
+                        "return_url": "http://google.com",
+                        "test": null,
+                        "created_at": "2022-10-03T10:15:55-06:00",
+                        "updated_at": "2022-10-03T10:15:55-06:00",
+                        "charge_type": "brokered_service",
+                        "decorated_return_url": "http://google.com?charge_id=1017262346"
+                      },
+                      {
+                        "id": 556467234,
+                        "name": "Green theme",
+                        "api_client_id": 755357713,
+                        "price": "120.00",
+                        "status": "accepted",
+                        "return_url": "http://google.com",
+                        "test": null,
+                        "created_at": "2022-10-03T10:15:55-06:00",
+                        "updated_at": "2022-10-03T10:15:55-06:00",
+                        "charge_type": "theme",
+                        "decorated_return_url": "http://google.com?charge_id=556467234"
+                      },
+                      {
+                        "id": 675931192,
+                        "name": "iPod Cleaning",
+                        "api_client_id": 755357713,
+                        "price": "5.00",
+                        "status": "accepted",
+                        "return_url": "http://google.com",
+                        "test": null,
+                        "created_at": "2022-10-03T10:15:55-06:00",
+                        "updated_at": "2022-10-03T10:15:55-06:00",
+                        "charge_type": null,
+                        "decorated_return_url": "http://google.com?charge_id=675931192"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "since_id=556467234",
+          "request_path": "/admin/api/2022-10/application_charges.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/application_charges.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"application_charges\":[{\"id\":675931192,\"name\":\"iPod Cleaning\",\"api_client_id\":755357713,\"price\":\"5.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://google.com?charge_id=675931192\"},{\"id\":1017262346,\"name\":\"Create me a logo\",\"api_client_id\":755357713,\"price\":\"123.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"charge_type\":\"brokered_service\",\"decorated_return_url\":\"http://google.com?charge_id=1017262346\"}]}"
+          },
+          "name": "Retrieve all application charges since a specified ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/application_charges.json?since_id=556467234\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::ApplicationCharge.all(\n  session: test_session,\n  since_id: \"556467234\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.all({\n  session: test_session,\n  since_id: \"556467234\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"556467234\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/application_charges.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/application_charges.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"application_charges\":[{\"id\":1017262346,\"name\":\"Create me a logo\",\"api_client_id\":755357713,\"price\":\"123.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"charge_type\":\"brokered_service\",\"decorated_return_url\":\"http://google.com?charge_id=1017262346\"},{\"id\":556467234,\"name\":\"Green theme\",\"api_client_id\":755357713,\"price\":\"120.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"charge_type\":\"theme\",\"decorated_return_url\":\"http://google.com?charge_id=556467234\"},{\"id\":675931192,\"name\":\"iPod Cleaning\",\"api_client_id\":755357713,\"price\":\"5.00\",\"status\":\"accepted\",\"return_url\":\"http://google.com\",\"test\":null,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"charge_type\":null,\"decorated_return_url\":\"http://google.com?charge_id=675931192\"}]}"
+          },
+          "name": "Retrieve all application charges",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::ApplicationCharge.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
+      "url": "/admin/api/{api_version}/application_charges.json?since_id=556467234",
       "action": "get"
     }
   ],

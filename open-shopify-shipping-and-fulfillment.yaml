@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Shipping & Fulfillment
   description: Shipping & Fulfillment
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -61,6 +61,7 @@ paths:
       tags:
         - CancellationRequest
       summary: Sends a cancellation request
+      description: Sends a cancellation request to the fulfillment service of a fulfillment order.
       operationId: SendCancellationRequest
       parameters:
         - name: fulfillment_order_id
@@ -99,6 +100,7 @@ paths:
       tags:
         - CancellationRequest
       summary: Accepts a cancellation request
+      description: Accepts a cancellation request sent to a fulfillment service for a fulfillment order.
       operationId: AcceptCancellationRequest
       parameters:
         - name: fulfillment_order_id
@@ -137,6 +139,7 @@ paths:
       tags:
         - CancellationRequest
       summary: Rejects a cancellation request
+      description: Rejects a cancellation request sent to a fulfillment service for a fulfillment order.
       operationId: RejectCancellationRequest
       parameters:
         - name: fulfillment_order_id
@@ -231,6 +234,7 @@ paths:
       tags:
         - CarrierService
       summary: Modify an existing CarrierService
+      description: Updates a carrier service. Only the app that creates a carrier service can update it.
       operationId: UpdateCarrierService
       parameters:
         - name: carrier_service_id
@@ -321,6 +325,7 @@ paths:
       tags:
         - Fulfillment
       summary: Retrieves fulfillments associated with an order
+      description: 'Retrieves fulfillments associated with an order. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: GetFulfillmentsAssociatedWithOrder
       parameters:
         - name: order_id
@@ -478,6 +483,7 @@ paths:
       tags:
         - Fulfillment
       summary: Receive a single Fulfillment
+      description: Retrieve a specific fulfillment
       operationId: GetFulfillment
       parameters:
         - name: fulfillment_id
@@ -518,6 +524,7 @@ paths:
       tags:
         - Fulfillment
       summary: Creates a fulfillment for one or many fulfillment orders
+      description: Creates a fulfillment for one or many fulfillment orders. The fulfillment orders are associated with the same order and are assigned to the same location.
       operationId: CreateFulfillmentForOneOrManyFulfillmentOrders
       requestBody:
         content:
@@ -836,6 +843,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Cancel a fulfillment order
+      description: Marks a fulfillment order as cancelled.
       operationId: CancelFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -865,6 +873,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Marks a fulfillment order as incomplete
+      description: 'Marks an in progress fulfillment order as incomplete, indicating the fulfillment service is unable to ship any remaining items and intends to close the fulfillment order.'
       operationId: MarkFulfillmentOrderAsIncomplete
       parameters:
         - name: fulfillment_order_id
@@ -903,6 +912,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Moves a fulfillment order to a new location
+      description: Moves a fulfillment order from one merchant managed location to another merchant managed location.
       operationId: MoveFulfillmentOrderToNewLocation
       parameters:
         - name: fulfillment_order_id
@@ -941,6 +951,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Marks the fulfillment order as open
+      description: Marks a scheduled fulfillment order as ready for fulfillment. This endpoint allows merchants to work on a scheduled fulfillment order before its expected `fulfill_at` datetime.
       operationId: MarkFulfillmentOrderAsOpen
       parameters:
         - name: fulfillment_order_id
@@ -970,6 +981,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Reschedules the fulfill_at time of a scheduled fulfillment order
+      description: Updates the `fulfill_at` time of a scheduled fulfillment order. This endpoint is used to manage the time a scheduled fulfillment order will be marked as ready for fulfillment.
       operationId: RescheduleFulfillAtTimeOfScheduledFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -1007,7 +1019,8 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Applies a fulfillment hold on a fulfillment order with status <code>OPEN</code>
+      summary: Applies a fulfillment hold on a fulfillment order with status `OPEN`
+      description: Halts all fulfillment work on a fulfillment order with status `OPEN` and changes the status of the fulfillment order to `ON_HOLD`.
       operationId: ApplyFulfillmentHoldOnFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -1046,6 +1059,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Sets deadline for fulfillment orders
+      description: Sets the latest date and time by which the fulfillment orders need to be fulfilled.
       operationId: SetDeadlineForFulfillmentOrders
       requestBody:
         content:
@@ -1072,6 +1086,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Releases the fulfillment hold on a fulfillment order
+      description: Release the fulfillment hold on a fulfillment order and changes the status of the fulfillment order to `OPEN` or `SCHEDULED`
       operationId: ReleaseFulfillmentHoldOnFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -1101,6 +1116,7 @@ paths:
       tags:
         - FulfillmentRequest
       summary: Sends a fulfillment request
+      description: Sends a fulfillment request to the fulfillment service of a fulfillment order.
       operationId: SendFulfillmentRequest
       parameters:
         - name: fulfillment_order_id
@@ -1139,6 +1155,7 @@ paths:
       tags:
         - FulfillmentRequest
       summary: Accepts a fulfillment request
+      description: Accepts a fulfillment request sent to a fulfillment service for a fulfillment order.
       operationId: AcceptFulfillmentRequest
       parameters:
         - name: fulfillment_order_id
@@ -1177,6 +1194,7 @@ paths:
       tags:
         - FulfillmentRequest
       summary: Rejects a fulfillment request
+      description: Rejects a fulfillment request sent to a fulfillment service for a fulfillment order.
       operationId: RejectFulfillmentRequest
       parameters:
         - name: fulfillment_order_id
@@ -1366,6 +1384,7 @@ paths:
       tags:
         - LocationsForMove
       summary: Retrieves a list of locations that a fulfillment order can potentially move to.
+      description: Retrieves a list of locations that a fulfillment order can potentially move to. The resulting list is sorted alphabetically in ascending order by location name.
       operationId: ListLocationsThatFulfillmentOrderCanPotentiallyMoveTo
       parameters:
         - name: fulfillment_order_id
@@ -1785,8 +1804,6 @@ components:
           type: string
           description: "The callback URL the fulfillment service has registered for requests.  \r\n If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  \r\nThe `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
-        format:
-          $ref: '#/components/schemas/FulfillmentServiceFormat'
         fulfillment_orders_opt_in:
           type: boolean
           description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
@@ -1825,6 +1842,8 @@ components:
           type: boolean
           description: States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
           nullable: true
+        format:
+          $ref: '#/components/schemas/FulfillmentServiceFormat'
         include_pending_stock:
           type: boolean
           description: This property is undocumented by Shopify.
@@ -1933,7 +1952,7 @@ components:
           $ref: '#/components/schemas/FulfillmentStatus'
         tracking_company:
           type: string
-          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
+          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress** \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress \r\n\r\n <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
           nullable: true
         tracking_numbers:
           type: array
@@ -2513,8 +2532,6 @@ components:
           type: string
           description: "The callback URL the fulfillment service has registered for requests.  \r\n If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  \r\nThe `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
-        format:
-          $ref: '#/components/schemas/FulfillmentServiceFormat'
         fulfillment_orders_opt_in:
           type: boolean
           description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
@@ -2553,6 +2570,8 @@ components:
           type: boolean
           description: States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
           nullable: true
+        format:
+          $ref: '#/components/schemas/FulfillmentServiceFormat'
         include_pending_stock:
           type: boolean
           description: This property is undocumented by Shopify.
@@ -3223,8 +3242,6 @@ components:
           type: string
           description: "The callback URL the fulfillment service has registered for requests.  \r\n If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  \r\nThe `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
-        format:
-          $ref: '#/components/schemas/FulfillmentServiceFormat'
         fulfillment_orders_opt_in:
           type: boolean
           description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
@@ -3263,6 +3280,8 @@ components:
           type: boolean
           description: States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
           nullable: true
+        format:
+          $ref: '#/components/schemas/FulfillmentServiceFormat'
         include_pending_stock:
           type: boolean
           description: This property is undocumented by Shopify.

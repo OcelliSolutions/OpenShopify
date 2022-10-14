@@ -5,7 +5,8 @@
     "description": "        <p>The ResourceFeedback resource lets your app report the status of shops and their resources. For example, if\n        your app is a marketplace channel, then you can use resource feedback to alert merchants that they need to connect their marketplace account by signing in.</p>\n\n        <p>Resource feedback notifications are displayed to the merchant on the home screen of their Shopify admin, and in the product details view for any products that are published to your app.</p>\n\n        <p>This resource should be used only in cases where you're describing steps that a merchant is required to complete. If your app offers optional or promotional set-up steps, or if it makes recommendations, then don't use resource feedback to let merchants know about them.</p>\n\n        <h2>Sending feedback on a shop</h2>\n\n        <p>You can send resource feedback on a shop to let the merchant know what steps they need to take to make sure that your app is set up correctly. Feedback can have one of two states: <code>requires_action</code> or <code>success</code>. You need to send a <code>requires_action</code> feedback request for each step that the merchant is required to complete.</p>\n\n        <p>If there are multiple set-up steps that require merchant action, then send feedback with a state of <code>requires_action</code> as merchants complete prior steps. And to remove the feedback message from the Shopify admin, send a <code>success</code> feedback request.</p>\n\n        <div class=\"note\">\n          <h4>Important</h4>\n          <p>Sending feedback replaces previously sent feedback for the Shop. Unlike REST-style APIs, you don't need to make a PATCH or PUT request to update any previously sent feedback. Send a new POST request to push the latest state of a shop or its resources to Shopify.</p>\n        </div>\n\n        <h2>Formatting the resource feedback message field</h2>\n\n        <p>If the feedback state is <code>requires_action</code>, then you can send a string message that communicates the action to be taken by the merchant.</p>\n        <p>The string must be a single message up to 100 characters long and must end with a period.\n        You need to adhere to the message formatting rules or your requests will fail:</p>\n\n        <li><code>[Explanation of the problem]. [Suggested action].</code></li>\n        <br>\n        <p><strong>Examples:</strong></p>\n        <li><code>[Your app name]</code> is not connected. Connect your account to use this sales channel. <code>[Learn more]</code></li>\n        <li><code>[Your app name]</code> is not configured. Agree to the terms and conditions to use this app. <code>[Learn more]</code></li>\n        <br>\n        <p>Both <code>Your app name</code> and <code>Learn more</code> (a button which directs merchants to your app) are automatically populated in the Shopify admin.</p>\n\n        <h2>Setting feedback permissions</h2>\n        <p>Add the <code>write_resource_feedbacks</code> permission to your <a href=\"/docs/admin-api/access-scopes\">requested scopes</a>.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/2386",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -68,15 +69,15 @@
                 "Create a shop feedback record indicating a problem specific to your app": {
                   "value": {
                     "resource_feedback": {
-                      "created_at": "2022-04-05T11:19:45-06:00",
-                      "updated_at": "2022-04-05T11:19:45-06:00",
+                      "created_at": "2022-10-03T10:45:53-06:00",
+                      "updated_at": "2022-10-03T10:45:53-06:00",
                       "resource_id": 548380009,
                       "resource_type": "Shop",
                       "resource_updated_at": null,
                       "messages": [
                         "is not connected. Connect your account to use this sales channel."
                       ],
-                      "feedback_generated_at": "2022-04-05T11:19:44-06:00",
+                      "feedback_generated_at": "2022-10-03T10:45:51-06:00",
                       "state": "requires_action"
                     }
                   }
@@ -84,32 +85,14 @@
                 "Create a shop feedback record indicating the Shop is usable by your app": {
                   "value": {
                     "resource_feedback": {
-                      "created_at": "2022-04-05T11:19:46-06:00",
-                      "updated_at": "2022-04-05T11:19:46-06:00",
+                      "created_at": "2022-10-03T10:45:55-06:00",
+                      "updated_at": "2022-10-03T10:45:55-06:00",
                       "resource_id": 548380009,
                       "resource_type": "Shop",
                       "resource_updated_at": null,
                       "messages": [],
-                      "feedback_generated_at": "2022-04-05T11:19:45-06:00",
+                      "feedback_generated_at": "2022-10-03T10:45:53-06:00",
                       "state": "success"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "409": {
-          "description": "Create a new ResourceFeedback",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Sending outdated feedback (previous feedback\n        payload has a greater resource_updated_at value) returns an error": {
-                  "value": {
-                    "errors": {
-                      "messages": [
-                        "Feedback request not delivered. Feedback request is older than a previously delivered feedback request."
-                      ]
                     }
                   }
                 }
@@ -134,123 +117,106 @@
               }
             }
           }
+        },
+        "409": {
+          "description": "Create a new ResourceFeedback",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Sending outdated feedback (previous feedback\n        payload has a greater resource_updated_at value) returns an error": {
+                  "value": {
+                    "errors": {
+                      "messages": [
+                        "Feedback request not delivered. Feedback request is older than a previously delivered feedback request."
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "x-examples": [
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/resource_feedback.json",
+          "request_path": "/admin/api/2022-10/resource_feedback.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/resource_feedback.json",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"requires_action\",\"messages\":[\"is not connected. Connect your account to use this sales channel.\"],\"feedback_generated_at\":\"2022-04-05T17:19:44.396169Z\"}}"
+            "body": "{\"resource_feedback\":{\"state\":\"requires_action\",\"messages\":[\"is not connected. Connect your account to use this sales channel.\"],\"feedback_generated_at\":\"2022-10-03T16:45:51.594730Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 202 Accepted",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"created_at\":\"2022-04-05T13:19:45-04:00\",\"updated_at\":\"2022-04-05T13:19:45-04:00\",\"resource_id\":548380009,\"resource_type\":\"Shop\",\"resource_updated_at\":null,\"messages\":[\"is not connected. Connect your account to use this sales channel.\"],\"feedback_generated_at\":\"2022-04-05T13:19:44-04:00\",\"state\":\"requires_action\"}}"
+            "body": "{\"resource_feedback\":{\"created_at\":\"2022-10-03T12:45:53-04:00\",\"updated_at\":\"2022-10-03T12:45:53-04:00\",\"resource_id\":548380009,\"resource_type\":\"Shop\",\"resource_updated_at\":null,\"messages\":[\"is not connected. Connect your account to use this sales channel.\"],\"feedback_generated_at\":\"2022-10-03T12:45:51-04:00\",\"state\":\"requires_action\"}}"
           },
           "name": "Create a shop feedback record indicating a problem specific to your app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"requires_action\",\"messages\":[\"is not connected. Connect your account to use this sales channel.\"],\"feedback_generated_at\":\"2022-04-05T17:19:44.396169Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"requires_action\",\"messages\":[\"is not connected. Connect your account to use this sales channel.\"],\"feedback_generated_at\":\"2022-10-03T16:45:51.594730Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nresource_feedback = ShopifyAPI::ResourceFeedback.new(session: test_session)\nresource_feedback.state = \"requires_action\"\nresource_feedback.messages = [\n  \"is not connected. Connect your account to use this sales channel.\"\n]\nresource_feedback.feedback_generated_at = \"2022-04-05T17:19:44.396169Z\"\nresource_feedback.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nresource_feedback = ShopifyAPI::ResourceFeedback.new(session: test_session)\nresource_feedback.state = \"requires_action\"\nresource_feedback.messages = [\n  \"is not connected. Connect your account to use this sales channel.\"\n]\nresource_feedback.feedback_generated_at = \"2022-10-03T16:45:51.594730Z\"\nresource_feedback.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst resource_feedback = new ResourceFeedback({session: test_session});\nresource_feedback.state = \"requires_action\";\nresource_feedback.messages = [\n  \"is not connected. Connect your account to use this sales channel.\"\n];\nresource_feedback.feedback_generated_at = \"2022-04-05T17:19:44.396169Z\";\nawait resource_feedback.save({\n  update: true,\n});"
+              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst resource_feedback = new ResourceFeedback({session: test_session});\nresource_feedback.state = \"requires_action\";\nresource_feedback.messages = [\n  \"is not connected. Connect your account to use this sales channel.\"\n];\nresource_feedback.feedback_generated_at = \"2022-10-03T16:45:51.594730Z\";\nawait resource_feedback.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$resource_feedback = new ResourceFeedback($this->test_session);\n$resource_feedback->state = \"requires_action\";\n$resource_feedback->messages = [\n    \"is not connected. Connect your account to use this sales channel.\"\n];\n$resource_feedback->feedback_generated_at = \"2022-04-05T17:19:44.396169Z\";\n$resource_feedback->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$resource_feedback = new ResourceFeedback($this->test_session);\n$resource_feedback->state = \"requires_action\";\n$resource_feedback->messages = [\n    \"is not connected. Connect your account to use this sales channel.\"\n];\n$resource_feedback->feedback_generated_at = \"2022-10-03T16:45:51.594730Z\";\n$resource_feedback->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/resource_feedback.json",
+          "request_path": "/admin/api/2022-10/resource_feedback.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/resource_feedback.json",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"success\",\"feedback_generated_at\":\"2022-04-05T17:19:45.499753Z\"}}"
+            "body": "{\"resource_feedback\":{\"state\":\"success\",\"feedback_generated_at\":\"2022-10-03T16:45:53.872041Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 202 Accepted",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"created_at\":\"2022-04-05T13:19:46-04:00\",\"updated_at\":\"2022-04-05T13:19:46-04:00\",\"resource_id\":548380009,\"resource_type\":\"Shop\",\"resource_updated_at\":null,\"messages\":[],\"feedback_generated_at\":\"2022-04-05T13:19:45-04:00\",\"state\":\"success\"}}"
+            "body": "{\"resource_feedback\":{\"created_at\":\"2022-10-03T12:45:55-04:00\",\"updated_at\":\"2022-10-03T12:45:55-04:00\",\"resource_id\":548380009,\"resource_type\":\"Shop\",\"resource_updated_at\":null,\"messages\":[],\"feedback_generated_at\":\"2022-10-03T12:45:53-04:00\",\"state\":\"success\"}}"
           },
           "name": "Create a shop feedback record indicating the Shop is usable by your app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"feedback_generated_at\":\"2022-04-05T17:19:45.499753Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"feedback_generated_at\":\"2022-10-03T16:45:53.872041Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nresource_feedback = ShopifyAPI::ResourceFeedback.new(session: test_session)\nresource_feedback.state = \"success\"\nresource_feedback.feedback_generated_at = \"2022-04-05T17:19:45.499753Z\"\nresource_feedback.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nresource_feedback = ShopifyAPI::ResourceFeedback.new(session: test_session)\nresource_feedback.state = \"success\"\nresource_feedback.feedback_generated_at = \"2022-10-03T16:45:53.872041Z\"\nresource_feedback.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst resource_feedback = new ResourceFeedback({session: test_session});\nresource_feedback.state = \"success\";\nresource_feedback.feedback_generated_at = \"2022-04-05T17:19:45.499753Z\";\nawait resource_feedback.save({\n  update: true,\n});"
+              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst resource_feedback = new ResourceFeedback({session: test_session});\nresource_feedback.state = \"success\";\nresource_feedback.feedback_generated_at = \"2022-10-03T16:45:53.872041Z\";\nawait resource_feedback.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$resource_feedback = new ResourceFeedback($this->test_session);\n$resource_feedback->state = \"success\";\n$resource_feedback->feedback_generated_at = \"2022-04-05T17:19:45.499753Z\";\n$resource_feedback->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "409",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/resource_feedback.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/resource_feedback.json",
-            "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"success\",\"feedback_generated_at\":\"2022-04-05T17:19:46.544514Z\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 409 Conflict",
-            "headers": {},
-            "body": "{\"errors\":{\"messages\":[\"Feedback request not delivered. Feedback request is older than a previously delivered feedback request.\"]}}"
-          },
-          "name": "Sending outdated feedback (previous feedback\n        payload has a greater resource_updated_at value) returns an error",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"feedback_generated_at\":\"2022-04-05T17:19:46.544514Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nresource_feedback = ShopifyAPI::ResourceFeedback.new(session: test_session)\nresource_feedback.state = \"success\"\nresource_feedback.feedback_generated_at = \"2022-04-05T17:19:46.544514Z\"\nresource_feedback.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst resource_feedback = new ResourceFeedback({session: test_session});\nresource_feedback.state = \"success\";\nresource_feedback.feedback_generated_at = \"2022-04-05T17:19:46.544514Z\";\nawait resource_feedback.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$resource_feedback = new ResourceFeedback($this->test_session);\n$resource_feedback->state = \"success\";\n$resource_feedback->feedback_generated_at = \"2022-04-05T17:19:46.544514Z\";\n$resource_feedback->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$resource_feedback = new ResourceFeedback($this->test_session);\n$resource_feedback->state = \"success\";\n$resource_feedback->feedback_generated_at = \"2022-10-03T16:45:53.872041Z\";\n$resource_feedback->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/resource_feedback.json",
+          "request_path": "/admin/api/2022-10/resource_feedback.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/resource_feedback.json",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"foobar\",\"feedback_generated_at\":\"2022-04-05T17:19:47.561766Z\"}}"
+            "body": "{\"resource_feedback\":{\"state\":\"foobar\",\"feedback_generated_at\":\"2022-10-03T16:45:55.858967Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 422 Unprocessable Entity",
@@ -261,23 +227,65 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"foobar\",\"feedback_generated_at\":\"2022-04-05T17:19:47.561766Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"foobar\",\"feedback_generated_at\":\"2022-10-03T16:45:55.858967Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nresource_feedback = ShopifyAPI::ResourceFeedback.new(session: test_session)\nresource_feedback.state = \"foobar\"\nresource_feedback.feedback_generated_at = \"2022-04-05T17:19:47.561766Z\"\nresource_feedback.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nresource_feedback = ShopifyAPI::ResourceFeedback.new(session: test_session)\nresource_feedback.state = \"foobar\"\nresource_feedback.feedback_generated_at = \"2022-10-03T16:45:55.858967Z\"\nresource_feedback.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst resource_feedback = new ResourceFeedback({session: test_session});\nresource_feedback.state = \"foobar\";\nresource_feedback.feedback_generated_at = \"2022-04-05T17:19:47.561766Z\";\nawait resource_feedback.save({\n  update: true,\n});"
+              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst resource_feedback = new ResourceFeedback({session: test_session});\nresource_feedback.state = \"foobar\";\nresource_feedback.feedback_generated_at = \"2022-10-03T16:45:55.858967Z\";\nawait resource_feedback.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$resource_feedback = new ResourceFeedback($this->test_session);\n$resource_feedback->state = \"foobar\";\n$resource_feedback->feedback_generated_at = \"2022-04-05T17:19:47.561766Z\";\n$resource_feedback->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$resource_feedback = new ResourceFeedback($this->test_session);\n$resource_feedback->state = \"foobar\";\n$resource_feedback->feedback_generated_at = \"2022-10-03T16:45:55.858967Z\";\n$resource_feedback->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "409",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/resource_feedback.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/resource_feedback.json",
+            "headers": {},
+            "body": "{\"resource_feedback\":{\"state\":\"success\",\"feedback_generated_at\":\"2022-10-03T16:45:59.873931Z\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 409 Conflict",
+            "headers": {},
+            "body": "{\"errors\":{\"messages\":[\"Feedback request not delivered. Feedback request is older than a previously delivered feedback request.\"]}}"
+          },
+          "name": "Sending outdated feedback (previous feedback\n        payload has a greater resource_updated_at value) returns an error",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"feedback_generated_at\":\"2022-10-03T16:45:59.873931Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nresource_feedback = ShopifyAPI::ResourceFeedback.new(session: test_session)\nresource_feedback.state = \"success\"\nresource_feedback.feedback_generated_at = \"2022-10-03T16:45:59.873931Z\"\nresource_feedback.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst resource_feedback = new ResourceFeedback({session: test_session});\nresource_feedback.state = \"success\";\nresource_feedback.feedback_generated_at = \"2022-10-03T16:45:59.873931Z\";\nawait resource_feedback.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$resource_feedback = new ResourceFeedback($this->test_session);\n$resource_feedback->state = \"success\";\n$resource_feedback->feedback_generated_at = \"2022-10-03T16:45:59.873931Z\";\n$resource_feedback->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "resource_feedbacks"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/resource_feedback.json",
       "action": "post"
     },
@@ -305,15 +313,15 @@
                   "value": {
                     "resource_feedback": [
                       {
-                        "created_at": "2022-04-05T11:19:48-06:00",
-                        "updated_at": "2022-04-05T11:19:48-06:00",
+                        "created_at": "2022-10-03T10:45:57-06:00",
+                        "updated_at": "2022-10-03T10:45:57-06:00",
                         "resource_id": 548380009,
                         "resource_type": "Shop",
                         "resource_updated_at": null,
                         "messages": [
                           "is not connected. Connect your account to use this sales channel."
                         ],
-                        "feedback_generated_at": "2022-04-05T10:19:48-06:00",
+                        "feedback_generated_at": "2022-10-03T09:45:57-06:00",
                         "state": "requires_action"
                       }
                     ]
@@ -328,7 +336,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/resource_feedback.json",
+          "request_path": "/admin/api/2022-10/resource_feedback.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/resource_feedback.json",
@@ -338,29 +346,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"resource_feedback\":[{\"created_at\":\"2022-04-05T13:19:48-04:00\",\"updated_at\":\"2022-04-05T13:19:48-04:00\",\"resource_id\":548380009,\"resource_type\":\"Shop\",\"resource_updated_at\":null,\"messages\":[\"is not connected. Connect your account to use this sales channel.\"],\"feedback_generated_at\":\"2022-04-05T12:19:48-04:00\",\"state\":\"requires_action\"}]}"
+            "body": "{\"resource_feedback\":[{\"created_at\":\"2022-10-03T12:45:57-04:00\",\"updated_at\":\"2022-10-03T12:45:57-04:00\",\"resource_id\":548380009,\"resource_type\":\"Shop\",\"resource_updated_at\":null,\"messages\":[\"is not connected. Connect your account to use this sales channel.\"],\"feedback_generated_at\":\"2022-10-03T11:45:57-04:00\",\"state\":\"requires_action\"}]}"
           },
           "name": "Get a list of resource feedback records for a specific shop",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ResourceFeedback.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::ResourceFeedback.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ResourceFeedback.all({\n  session: test_session,\n});"
+              "example_code": "import {ResourceFeedback} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ResourceFeedback.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nResourceFeedback::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nResourceFeedback::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "resource_feedbacks"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/resource_feedback.json",
       "action": "get"
     }
@@ -375,14 +390,14 @@
           "description": "          DateTime when the resource feedback record was stored by Shopify.\n          <strong>Type:</strong> ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.\n",
           "type": "string",
           "readOnly": true,
-          "example": "2022-04-05 16:51:54 UTC",
+          "example": "2022-10-03 16:15:54 UTC",
           "name": "created_at"
         },
         {
           "description": "          DateTime when the resource feedback record was last updated by Shopify.\n          <strong>Type:</strong> ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.\n",
           "type": "string",
           "readOnly": true,
-          "example": "2022-04-05 16:51:54 UTC",
+          "example": "2022-10-03 16:15:54 UTC",
           "name": "updated_at"
         },
         {
@@ -416,7 +431,7 @@
         {
           "description": "          <p>\n            The time at which the payload is constructed. Used to help determine whether incoming feedback is\n            outdated compared to feedback already received, and if it should be ignored upon arrival.\n            <strong>Type:</strong> ISO 8601 UTC datetime as string\n            with year, month [or week], day, hour, minute, second, millisecond, and time zone.\n          </p>\n\n          <div class=\"note\">\n            <h4>Note</h4>\n            <p>If you queue a Feedback API payload for delivery at a later time, do not update this value\n            when the API call is actually made; ensure that the current time is set when building the payload.</p>\n          </div>\n",
           "type": "string",
-          "example": "2022-04-05T16:51:54.004553Z",
+          "example": "2022-10-03T16:15:54.055164Z",
           "name": "feedback_generated_at"
         }
       ],

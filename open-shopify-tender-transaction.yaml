@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Tender Transaction
   description: Tender Transaction
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -24,6 +24,7 @@ paths:
       tags:
         - TenderTransaction
       summary: Retrieves a list of tender transactions
+      description: 'Retrieves a list of tender transactions. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListTenderTransactions
       parameters:
         - name: limit

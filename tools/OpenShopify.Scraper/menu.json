@@ -4,20 +4,24 @@
     "cg_ownership",
     "cg_slack_notifications",
     "liquid_api_next",
+    "liquid_data_tab",
     "liquid_example_rendering",
-    "privacy_references"
+    "liquid_rendered_output",
+    "october_experience",
+    "privacy_references",
+    "search_experience"
   ],
   "enable_theme_mode": true,
   "api": {
     "selectable_versions": [
       "unstable",
+      "2023-01",
       "2022-10",
       "2022-07",
       "2022-04",
-      "2022-01",
-      "2021-10"
+      "2022-01"
     ],
-    "current_stable_version": "2022-07",
+    "current_stable_version": "2022-10",
     "rest_sidenav": [
       {
         "key": "access",
@@ -422,6 +426,12 @@
         ]
       }
     ],
-    "landing_page": "admin_rest"
+    "landing_page": "admin_rest",
+    "landing_page_id": "admin",
+    "landing_page_data": {
+      "title": "REST Admin API reference",
+      "description": "The Admin API lets you build apps and integrations that extend and enhance the Shopify admin. Learn how to get started with REST endpoints.",
+      "resource_unsupported": "Resource is not supported in version %{version}"
+    }
   }
 }

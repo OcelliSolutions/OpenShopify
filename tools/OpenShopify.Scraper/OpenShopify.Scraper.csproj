@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Html2Markdown" Version="5.0.2.561" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
+    <PackageReference Include="Html2Markdown" Version="5.1.0.703" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
     <PackageReference Include="InheritDoc" Version="2.5.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="13.16.1" />
-    <PackageReference Include="NSwag.Core.Yaml" Version="13.16.1" />
+    <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="13.17.0" />
+    <PackageReference Include="NSwag.Core.Yaml" Version="13.17.0" />
     <PackageReference Include="PluralizeService.Core" Version="1.2.21147.2" />
   </ItemGroup>
 

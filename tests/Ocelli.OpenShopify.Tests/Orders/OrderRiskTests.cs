@@ -38,7 +38,7 @@ public class OrderRiskFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var orderRisk in CreatedOrderRisks)
         {
-            _ = await Service.OrderRisk.DeleteOrderRiskAsync(Order.Id, orderRisk.Id, CancellationToken.None);
+            _ = await Service.OrderRisk.DeleteOrderRiskForOrderAsync(Order.Id, orderRisk.Id, CancellationToken.None);
         }
         CreatedOrderRisks.Clear();
     }
@@ -102,7 +102,7 @@ public class OrderRiskTests : IClassFixture<OrderRiskFixture>
     public async Task CreateOrderRiskAsync_CanCreate()
     {
         var request = Fixture.CreateOrderRiskRequest();
-        var response = await Fixture.Service.OrderRisk.CreateOrderRiskAsync(Fixture.Order.Id, request, CancellationToken.None);
+        var response = await Fixture.Service.OrderRisk.CreateOrderRiskForOrderAsync(Fixture.Order.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedOrderRisks.Add(response.Result.Risk);
@@ -116,7 +116,7 @@ public class OrderRiskTests : IClassFixture<OrderRiskFixture>
     [TestPriority(20)]
     public async Task ListOrderRisksAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.OrderRisk.ListOrderRisksAsync(Fixture.Order.Id, CancellationToken.None);
+        var response = await Fixture.Service.OrderRisk.ListOrderRisksForOrderAsync(Fixture.Order.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var orderRisk in response.Result.Risks)
         {
@@ -182,9 +182,9 @@ internal class OrderRiskMockClient : OrderRiskClient, IMockTests
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListOrderRisksAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListOrderRisksForOrderAsync(0, CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListOrderRisksAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListOrderRisksForOrderAsync(0, CancellationToken.None));
     }
 }

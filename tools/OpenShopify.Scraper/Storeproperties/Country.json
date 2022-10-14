@@ -5,7 +5,8 @@
     "description": "        <p>The Country resource represents the tax rates applied to orders from the different countries where a shop sells its products.</p>\n        {{ '/api/reference/country.png' | image }}\n        <p>Merchants select the countries where they sell their products when they set up their shipping zones and rates on the <strong>Shipping</strong> page of the Shopify admin. After adding a country to a shipping zone, store owners can then verify and adjust tax rates for each country on the <strong>Taxes</strong> page.</p>\n        <p>The Country resource lets you access the countries and tax rates set up by the merchant. The countries list includes a default entry called <strong>Rest of World</strong>, which represents all non-specified countries.</p>\n        <p>You can use the Country resource to modify the sales tax rate for a country or sub-region to account for surtaxes or exemptions that apply to the store.</p>\n        <p>For more information on managing tax rates for sub-regions of a country, such as states or provinces, see the <a href=\"/docs/admin-api/rest/reference/store-properties/province\">Province</a> resource.</p>\n        <div class=\"note-caution note\">\n          <h4>Caution</h4>\n          <p>As of version 2020-10, you can no longer create or update custom tax values for the Country resource.</p>\n        </div>\n",
     "x-owner": "https://vault.shopify.io/teams/2310",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -44,6 +45,261 @@
           "content": {
             "application/json": {
               "examples": {
+                "Retrieve all countries after the specified ID": {
+                  "value": {
+                    "countries": [
+                      {
+                        "id": 817138619,
+                        "name": "United States",
+                        "code": "US",
+                        "tax_name": "Federal Tax",
+                        "tax": 0.0,
+                        "provinces": [
+                          {
+                            "id": 952629862,
+                            "country_id": 817138619,
+                            "name": "California",
+                            "code": "CA",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": 1039932365,
+                            "tax": 0.05,
+                            "tax_percentage": 5.0
+                          },
+                          {
+                            "id": 222234158,
+                            "country_id": 817138619,
+                            "name": "Kentucky",
+                            "code": "KY",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": 1039932365,
+                            "tax": 0.06,
+                            "tax_percentage": 6.0
+                          },
+                          {
+                            "id": 9350860,
+                            "country_id": 817138619,
+                            "name": "Massachusetts",
+                            "code": "MA",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.065,
+                            "tax_percentage": 6.5
+                          },
+                          {
+                            "id": 696485510,
+                            "country_id": 817138619,
+                            "name": "Minnesota",
+                            "code": "MN",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.065,
+                            "tax_percentage": 6.5
+                          },
+                          {
+                            "id": 753050225,
+                            "country_id": 817138619,
+                            "name": "New Jersey",
+                            "code": "NJ",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.06,
+                            "tax_percentage": 6.0
+                          },
+                          {
+                            "id": 1013111685,
+                            "country_id": 817138619,
+                            "name": "New York",
+                            "code": "NY",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.04,
+                            "tax_percentage": 4.0
+                          },
+                          {
+                            "id": 915134533,
+                            "country_id": 817138619,
+                            "name": "Pennsylvania",
+                            "code": "PA",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.05,
+                            "tax_percentage": 5.0
+                          },
+                          {
+                            "id": 591478044,
+                            "country_id": 817138619,
+                            "name": "Rhode Island",
+                            "code": "RI",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.07,
+                            "tax_percentage": 7.0
+                          }
+                        ]
+                      },
+                      {
+                        "id": 879921427,
+                        "name": "Canada",
+                        "code": "CA",
+                        "tax_name": "GST",
+                        "tax": 0.05,
+                        "provinces": [
+                          {
+                            "id": 205434194,
+                            "country_id": 879921427,
+                            "name": "Alberta",
+                            "code": "AB",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.08,
+                            "tax_percentage": 8.0
+                          },
+                          {
+                            "id": 170405627,
+                            "country_id": 879921427,
+                            "name": "British Columbia",
+                            "code": "BC",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.07,
+                            "tax_percentage": 7.0
+                          },
+                          {
+                            "id": 342345110,
+                            "country_id": 879921427,
+                            "name": "Manitoba",
+                            "code": "MB",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.07,
+                            "tax_percentage": 7.0
+                          },
+                          {
+                            "id": 92264567,
+                            "country_id": 879921427,
+                            "name": "New Brunswick",
+                            "code": "NB",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.15,
+                            "tax_percentage": 15.0
+                          },
+                          {
+                            "id": 243284171,
+                            "country_id": 879921427,
+                            "name": "Newfoundland",
+                            "code": "NL",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.15,
+                            "tax_percentage": 15.0
+                          },
+                          {
+                            "id": 439598329,
+                            "country_id": 879921427,
+                            "name": "Northwest Territories",
+                            "code": "NT",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.0,
+                            "tax_percentage": 0.0
+                          },
+                          {
+                            "id": 448070559,
+                            "country_id": 879921427,
+                            "name": "Nova Scotia",
+                            "code": "NS",
+                            "tax_name": null,
+                            "tax_type": "harmonized",
+                            "shipping_zone_id": null,
+                            "tax": 0.15,
+                            "tax_percentage": 15.0
+                          },
+                          {
+                            "id": 670206421,
+                            "country_id": 879921427,
+                            "name": "Nunavut",
+                            "code": "NU",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.0,
+                            "tax_percentage": 0.0
+                          },
+                          {
+                            "id": 702530425,
+                            "country_id": 879921427,
+                            "name": "Ontario",
+                            "code": "ON",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.08,
+                            "tax_percentage": 8.0
+                          },
+                          {
+                            "id": 570891722,
+                            "country_id": 879921427,
+                            "name": "Prince Edward Island",
+                            "code": "PE",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.1,
+                            "tax_percentage": 10.0
+                          },
+                          {
+                            "id": 224293623,
+                            "country_id": 879921427,
+                            "name": "Quebec",
+                            "code": "QC",
+                            "tax_name": "HST",
+                            "tax_type": "compounded",
+                            "shipping_zone_id": null,
+                            "tax": 0.09,
+                            "tax_percentage": 9.0
+                          },
+                          {
+                            "id": 473391800,
+                            "country_id": 879921427,
+                            "name": "Saskatchewan",
+                            "code": "SK",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.09,
+                            "tax_percentage": 9.0
+                          },
+                          {
+                            "id": 1005264686,
+                            "country_id": 879921427,
+                            "name": "Yukon",
+                            "code": "YT",
+                            "tax_name": null,
+                            "tax_type": null,
+                            "shipping_zone_id": null,
+                            "tax": 0.0,
+                            "tax_percentage": 0.0
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
                 "Retrieve all countries": {
                   "value": {
                     "countries": [
@@ -306,261 +562,6 @@
                       }
                     ]
                   }
-                },
-                "Retrieve all countries after the specified ID": {
-                  "value": {
-                    "countries": [
-                      {
-                        "id": 817138619,
-                        "name": "United States",
-                        "code": "US",
-                        "tax_name": "Federal Tax",
-                        "tax": 0.0,
-                        "provinces": [
-                          {
-                            "id": 952629862,
-                            "country_id": 817138619,
-                            "name": "California",
-                            "code": "CA",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": 1039932365,
-                            "tax": 0.05,
-                            "tax_percentage": 5.0
-                          },
-                          {
-                            "id": 222234158,
-                            "country_id": 817138619,
-                            "name": "Kentucky",
-                            "code": "KY",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": 1039932365,
-                            "tax": 0.06,
-                            "tax_percentage": 6.0
-                          },
-                          {
-                            "id": 9350860,
-                            "country_id": 817138619,
-                            "name": "Massachusetts",
-                            "code": "MA",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.065,
-                            "tax_percentage": 6.5
-                          },
-                          {
-                            "id": 696485510,
-                            "country_id": 817138619,
-                            "name": "Minnesota",
-                            "code": "MN",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.065,
-                            "tax_percentage": 6.5
-                          },
-                          {
-                            "id": 753050225,
-                            "country_id": 817138619,
-                            "name": "New Jersey",
-                            "code": "NJ",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.06,
-                            "tax_percentage": 6.0
-                          },
-                          {
-                            "id": 1013111685,
-                            "country_id": 817138619,
-                            "name": "New York",
-                            "code": "NY",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.04,
-                            "tax_percentage": 4.0
-                          },
-                          {
-                            "id": 915134533,
-                            "country_id": 817138619,
-                            "name": "Pennsylvania",
-                            "code": "PA",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.05,
-                            "tax_percentage": 5.0
-                          },
-                          {
-                            "id": 591478044,
-                            "country_id": 817138619,
-                            "name": "Rhode Island",
-                            "code": "RI",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.07,
-                            "tax_percentage": 7.0
-                          }
-                        ]
-                      },
-                      {
-                        "id": 879921427,
-                        "name": "Canada",
-                        "code": "CA",
-                        "tax_name": "GST",
-                        "tax": 0.05,
-                        "provinces": [
-                          {
-                            "id": 205434194,
-                            "country_id": 879921427,
-                            "name": "Alberta",
-                            "code": "AB",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.08,
-                            "tax_percentage": 8.0
-                          },
-                          {
-                            "id": 170405627,
-                            "country_id": 879921427,
-                            "name": "British Columbia",
-                            "code": "BC",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.07,
-                            "tax_percentage": 7.0
-                          },
-                          {
-                            "id": 342345110,
-                            "country_id": 879921427,
-                            "name": "Manitoba",
-                            "code": "MB",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.07,
-                            "tax_percentage": 7.0
-                          },
-                          {
-                            "id": 92264567,
-                            "country_id": 879921427,
-                            "name": "New Brunswick",
-                            "code": "NB",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.15,
-                            "tax_percentage": 15.0
-                          },
-                          {
-                            "id": 243284171,
-                            "country_id": 879921427,
-                            "name": "Newfoundland",
-                            "code": "NL",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.15,
-                            "tax_percentage": 15.0
-                          },
-                          {
-                            "id": 439598329,
-                            "country_id": 879921427,
-                            "name": "Northwest Territories",
-                            "code": "NT",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.0,
-                            "tax_percentage": 0.0
-                          },
-                          {
-                            "id": 448070559,
-                            "country_id": 879921427,
-                            "name": "Nova Scotia",
-                            "code": "NS",
-                            "tax_name": null,
-                            "tax_type": "harmonized",
-                            "shipping_zone_id": null,
-                            "tax": 0.15,
-                            "tax_percentage": 15.0
-                          },
-                          {
-                            "id": 670206421,
-                            "country_id": 879921427,
-                            "name": "Nunavut",
-                            "code": "NU",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.0,
-                            "tax_percentage": 0.0
-                          },
-                          {
-                            "id": 702530425,
-                            "country_id": 879921427,
-                            "name": "Ontario",
-                            "code": "ON",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.08,
-                            "tax_percentage": 8.0
-                          },
-                          {
-                            "id": 570891722,
-                            "country_id": 879921427,
-                            "name": "Prince Edward Island",
-                            "code": "PE",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.1,
-                            "tax_percentage": 10.0
-                          },
-                          {
-                            "id": 224293623,
-                            "country_id": 879921427,
-                            "name": "Quebec",
-                            "code": "QC",
-                            "tax_name": "HST",
-                            "tax_type": "compounded",
-                            "shipping_zone_id": null,
-                            "tax": 0.09,
-                            "tax_percentage": 9.0
-                          },
-                          {
-                            "id": 473391800,
-                            "country_id": 879921427,
-                            "name": "Saskatchewan",
-                            "code": "SK",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.09,
-                            "tax_percentage": 9.0
-                          },
-                          {
-                            "id": 1005264686,
-                            "country_id": 879921427,
-                            "name": "Yukon",
-                            "code": "YT",
-                            "tax_name": null,
-                            "tax_type": null,
-                            "shipping_zone_id": null,
-                            "tax": 0.0,
-                            "tax_percentage": 0.0
-                          }
-                        ]
-                      }
-                    ]
-                  }
                 }
               }
             }
@@ -570,43 +571,8 @@
       "x-examples": [
         {
           "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/countries.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/unstable/countries.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"countries\":[{\"id\":879921427,\"name\":\"Canada\",\"code\":\"CA\",\"tax_name\":\"GST\",\"tax\":0.05,\"provinces\":[{\"id\":205434194,\"country_id\":879921427,\"name\":\"Alberta\",\"code\":\"AB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.08,\"tax_percentage\":8.0},{\"id\":170405627,\"country_id\":879921427,\"name\":\"British Columbia\",\"code\":\"BC\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.07,\"tax_percentage\":7.0},{\"id\":342345110,\"country_id\":879921427,\"name\":\"Manitoba\",\"code\":\"MB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.07,\"tax_percentage\":7.0},{\"id\":92264567,\"country_id\":879921427,\"name\":\"New Brunswick\",\"code\":\"NB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":243284171,\"country_id\":879921427,\"name\":\"Newfoundland\",\"code\":\"NL\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":439598329,\"country_id\":879921427,\"name\":\"Northwest Territories\",\"code\":\"NT\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0},{\"id\":448070559,\"country_id\":879921427,\"name\":\"Nova Scotia\",\"code\":\"NS\",\"tax_name\":null,\"tax_type\":\"harmonized\",\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":670206421,\"country_id\":879921427,\"name\":\"Nunavut\",\"code\":\"NU\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0},{\"id\":702530425,\"country_id\":879921427,\"name\":\"Ontario\",\"code\":\"ON\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.08,\"tax_percentage\":8.0},{\"id\":570891722,\"country_id\":879921427,\"name\":\"Prince Edward Island\",\"code\":\"PE\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.1,\"tax_percentage\":10.0},{\"id\":224293623,\"country_id\":879921427,\"name\":\"Quebec\",\"code\":\"QC\",\"tax_name\":\"HST\",\"tax_type\":\"compounded\",\"shipping_zone_id\":null,\"tax\":0.09,\"tax_percentage\":9.0},{\"id\":473391800,\"country_id\":879921427,\"name\":\"Saskatchewan\",\"code\":\"SK\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.09,\"tax_percentage\":9.0},{\"id\":1005264686,\"country_id\":879921427,\"name\":\"Yukon\",\"code\":\"YT\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0}]},{\"id\":359115488,\"name\":\"Colombia\",\"code\":\"CO\",\"tax_name\":\"VAT\",\"tax\":0.15,\"provinces\":[]},{\"id\":817138619,\"name\":\"United States\",\"code\":\"US\",\"tax_name\":\"Federal Tax\",\"tax\":0.0,\"provinces\":[{\"id\":952629862,\"country_id\":817138619,\"name\":\"California\",\"code\":\"CA\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":1039932365,\"tax\":0.05,\"tax_percentage\":5.0},{\"id\":222234158,\"country_id\":817138619,\"name\":\"Kentucky\",\"code\":\"KY\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":1039932365,\"tax\":0.06,\"tax_percentage\":6.0},{\"id\":9350860,\"country_id\":817138619,\"name\":\"Massachusetts\",\"code\":\"MA\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.065,\"tax_percentage\":6.5},{\"id\":696485510,\"country_id\":817138619,\"name\":\"Minnesota\",\"code\":\"MN\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.065,\"tax_percentage\":6.5},{\"id\":753050225,\"country_id\":817138619,\"name\":\"New Jersey\",\"code\":\"NJ\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.06,\"tax_percentage\":6.0},{\"id\":1013111685,\"country_id\":817138619,\"name\":\"New York\",\"code\":\"NY\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.04,\"tax_percentage\":4.0},{\"id\":915134533,\"country_id\":817138619,\"name\":\"Pennsylvania\",\"code\":\"PA\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.05,\"tax_percentage\":5.0},{\"id\":591478044,\"country_id\":817138619,\"name\":\"Rhode Island\",\"code\":\"RI\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.07,\"tax_percentage\":7.0}]}]}"
-          },
-          "name": "Retrieve all countries",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Country.all(\n  session: test_session,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.all({\n  session: test_session,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
           "request_query": "since_id=359115488",
-          "request_path": "/admin/api/2022-07/countries.json",
+          "request_path": "/admin/api/2022-10/countries.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/countries.json",
@@ -622,149 +588,67 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/countries.json?since_id=359115488\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/countries.json?since_id=359115488\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Country.all(\n  session: test_session,\n  since_id: \"359115488\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Country.all(\n  session: test_session,\n  since_id: \"359115488\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.all({\n  session: test_session,\n  since_id: \"359115488\",\n});"
+              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.all({\n  session: test_session,\n  since_id: \"359115488\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"359115488\"], // Params\n);"
-            }
-          ]
-        }
-      ],
-      "url": "/admin/api/{api_version}/countries.json",
-      "action": "get"
-    },
-    {
-      "description": "<aside class=\"note caution\">\n  <h4>Caution</h4>\n  <p>As of version 2020-10, the tax field is deprecated.</p>\n</aside>\nCreates a country.",
-      "summary": "Creates a country",
-      "operationId": "Createsacountry",
-      "parameters": [
-        {
-          "name": "api_version",
-          "in": "path",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        }
-      ],
-      "responses": {
-        "201": {
-          "description": "Creates a country",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Create a country using Shopify's tax rate for it": {
-                  "value": {
-                    "country": {
-                      "id": 1070231511,
-                      "name": "France",
-                      "code": "FR",
-                      "tax_name": "TVA",
-                      "tax": 0.2,
-                      "provinces": []
-                    }
-                  }
-                },
-                "Create a country using a custom tax rate ": {
-                  "value": {
-                    "country": {
-                      "id": 1070231512,
-                      "name": "France",
-                      "code": "FR",
-                      "tax_name": "TVA",
-                      "tax": 0.2,
-                      "provinces": []
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "x-examples": [
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/countries.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/countries.json",
-            "headers": {},
-            "body": "{\"country\":{\"code\":\"FR\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"country\":{\"id\":1070231511,\"name\":\"France\",\"code\":\"FR\",\"tax_name\":\"TVA\",\"tax\":0.2,\"provinces\":[]}}"
-          },
-          "name": "Create a country using Shopify's tax rate for it",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"country\":{\"code\":\"FR\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncountry = ShopifyAPI::Country.new(session: test_session)\ncountry.code = \"FR\"\ncountry.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst country = new Country({session: test_session});\ncountry.code = \"FR\";\nawait country.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->code = \"FR\";\n$country->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"359115488\"], // Params\n);"
             }
           ]
         },
         {
-          "status": "201",
+          "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/countries.json",
-          "request_method": "POST",
+          "request_path": "/admin/api/2022-10/countries.json",
+          "request_method": "GET",
           "request": {
-            "action": "POST /admin/api/unstable/countries.json",
+            "action": "GET /admin/api/unstable/countries.json",
             "headers": {},
-            "body": "{\"country\":{\"code\":\"FR\",\"tax\":0.2}}"
+            "body": ""
           },
           "response": {
-            "action": "HTTP/1.1 201 Created",
+            "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"country\":{\"id\":1070231512,\"name\":\"France\",\"code\":\"FR\",\"tax_name\":\"TVA\",\"tax\":0.2,\"provinces\":[]}}"
+            "body": "{\"countries\":[{\"id\":879921427,\"name\":\"Canada\",\"code\":\"CA\",\"tax_name\":\"GST\",\"tax\":0.05,\"provinces\":[{\"id\":205434194,\"country_id\":879921427,\"name\":\"Alberta\",\"code\":\"AB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.08,\"tax_percentage\":8.0},{\"id\":170405627,\"country_id\":879921427,\"name\":\"British Columbia\",\"code\":\"BC\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.07,\"tax_percentage\":7.0},{\"id\":342345110,\"country_id\":879921427,\"name\":\"Manitoba\",\"code\":\"MB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.07,\"tax_percentage\":7.0},{\"id\":92264567,\"country_id\":879921427,\"name\":\"New Brunswick\",\"code\":\"NB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":243284171,\"country_id\":879921427,\"name\":\"Newfoundland\",\"code\":\"NL\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":439598329,\"country_id\":879921427,\"name\":\"Northwest Territories\",\"code\":\"NT\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0},{\"id\":448070559,\"country_id\":879921427,\"name\":\"Nova Scotia\",\"code\":\"NS\",\"tax_name\":null,\"tax_type\":\"harmonized\",\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":670206421,\"country_id\":879921427,\"name\":\"Nunavut\",\"code\":\"NU\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0},{\"id\":702530425,\"country_id\":879921427,\"name\":\"Ontario\",\"code\":\"ON\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.08,\"tax_percentage\":8.0},{\"id\":570891722,\"country_id\":879921427,\"name\":\"Prince Edward Island\",\"code\":\"PE\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.1,\"tax_percentage\":10.0},{\"id\":224293623,\"country_id\":879921427,\"name\":\"Quebec\",\"code\":\"QC\",\"tax_name\":\"HST\",\"tax_type\":\"compounded\",\"shipping_zone_id\":null,\"tax\":0.09,\"tax_percentage\":9.0},{\"id\":473391800,\"country_id\":879921427,\"name\":\"Saskatchewan\",\"code\":\"SK\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.09,\"tax_percentage\":9.0},{\"id\":1005264686,\"country_id\":879921427,\"name\":\"Yukon\",\"code\":\"YT\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0}]},{\"id\":359115488,\"name\":\"Colombia\",\"code\":\"CO\",\"tax_name\":\"VAT\",\"tax\":0.15,\"provinces\":[]},{\"id\":817138619,\"name\":\"United States\",\"code\":\"US\",\"tax_name\":\"Federal Tax\",\"tax\":0.0,\"provinces\":[{\"id\":952629862,\"country_id\":817138619,\"name\":\"California\",\"code\":\"CA\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":1039932365,\"tax\":0.05,\"tax_percentage\":5.0},{\"id\":222234158,\"country_id\":817138619,\"name\":\"Kentucky\",\"code\":\"KY\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":1039932365,\"tax\":0.06,\"tax_percentage\":6.0},{\"id\":9350860,\"country_id\":817138619,\"name\":\"Massachusetts\",\"code\":\"MA\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.065,\"tax_percentage\":6.5},{\"id\":696485510,\"country_id\":817138619,\"name\":\"Minnesota\",\"code\":\"MN\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.065,\"tax_percentage\":6.5},{\"id\":753050225,\"country_id\":817138619,\"name\":\"New Jersey\",\"code\":\"NJ\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.06,\"tax_percentage\":6.0},{\"id\":1013111685,\"country_id\":817138619,\"name\":\"New York\",\"code\":\"NY\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.04,\"tax_percentage\":4.0},{\"id\":915134533,\"country_id\":817138619,\"name\":\"Pennsylvania\",\"code\":\"PA\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.05,\"tax_percentage\":5.0},{\"id\":591478044,\"country_id\":817138619,\"name\":\"Rhode Island\",\"code\":\"RI\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.07,\"tax_percentage\":7.0}]}]}"
           },
-          "name": "Create a country using a custom tax rate ",
+          "name": "Retrieve all countries",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"country\":{\"code\":\"FR\",\"tax\":0.2}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncountry = ShopifyAPI::Country.new(session: test_session)\ncountry.code = \"FR\"\ncountry.tax = 0.2\ncountry.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Country.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst country = new Country({session: test_session});\ncountry.code = \"FR\";\ncountry.tax = 0.2;\nawait country.save({\n  update: true,\n});"
+              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->code = \"FR\";\n$country->tax = 0.2;\n$country->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
-      "url": "/admin/api/{api_version}/countries.json",
-      "action": "post"
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
+      "url": "/admin/api/{api_version}/countries.json?since_id=359115488",
+      "action": "get"
     },
     {
       "description": "Retrieves a count of countries.",
@@ -800,7 +684,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/countries/count.json",
+          "request_path": "/admin/api/2022-10/countries/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/countries/count.json",
@@ -816,23 +700,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/countries/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/countries/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Country.count(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Country.count(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.count({\n  session: test_session,\n});"
+              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.count({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/countries/count.json",
       "action": "get"
     },
@@ -1037,7 +928,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/countries/879921427.json",
+          "request_path": "/admin/api/2022-10/countries/879921427.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/countries/879921427.json",
@@ -1053,23 +944,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Country.find(\n  session: test_session,\n  id: 879921427,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Country.find(\n  session: test_session,\n  id: 879921427,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.find({\n  session: test_session,\n  id: 879921427,\n});"
+              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.find({\n  session: test_session,\n  id: 879921427,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::find(\n    $this->test_session, // Session\n    879921427, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::find(\n    $this->test_session, // Session\n    879921427, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/countries/{country_id}.json",
       "action": "get"
     },
@@ -1266,7 +1164,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/countries/879921427.json",
+          "request_path": "/admin/api/2022-10/countries/879921427.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/countries/879921427.json",
@@ -1282,23 +1180,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"country\":{\"id\":879921427,\"tax\":0.05}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"country\":{\"id\":879921427,\"tax\":0.05}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncountry = ShopifyAPI::Country.new(session: test_session)\ncountry.id = 879921427\ncountry.tax = 0.05\ncountry.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncountry = ShopifyAPI::Country.new(session: test_session)\ncountry.id = 879921427\ncountry.tax = 0.05\ncountry.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst country = new Country({session: test_session});\ncountry.id = 879921427;\ncountry.tax = 0.05;\nawait country.save({\n  update: true,\n});"
+              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst country = new Country({session: test_session});\ncountry.id = 879921427;\ncountry.tax = 0.05;\nawait country.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->id = 879921427;\n$country->tax = 0.05;\n$country->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->id = 879921427;\n$country->tax = 0.05;\n$country->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "shipping"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/countries/{country_id}.json",
       "action": "put"
     },
@@ -1342,7 +1247,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/countries/879921427.json",
+          "request_path": "/admin/api/2022-10/countries/879921427.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/countries/879921427.json",
@@ -1358,25 +1263,163 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Country.delete(\n  session: test_session,\n  id: 879921427,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Country.delete(\n  session: test_session,\n  id: 879921427,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.delete({\n  session: test_session,\n  id: 879921427,\n});"
+              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Country.delete({\n  session: test_session,\n  id: 879921427,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::delete(\n    $this->test_session, // Session\n    879921427, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::delete(\n    $this->test_session, // Session\n    879921427, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "shipping"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/countries/{country_id}.json",
       "action": "delete"
+    },
+    {
+      "description": "<aside class=\"note caution\">\n  <h4>Caution</h4>\n  <p>As of version 2020-10, the tax field is deprecated.</p>\n</aside>\nCreates a country.",
+      "summary": "Creates a country",
+      "operationId": "Createsacountry",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a country",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a country using Shopify's tax rate for it": {
+                  "value": {
+                    "country": {
+                      "id": 1070231510,
+                      "name": "France",
+                      "code": "FR",
+                      "tax_name": "TVA",
+                      "tax": 0.2,
+                      "provinces": []
+                    }
+                  }
+                },
+                "Create a country using a custom tax rate ": {
+                  "value": {
+                    "country": {
+                      "id": 1070231511,
+                      "name": "France",
+                      "code": "FR",
+                      "tax_name": "TVA",
+                      "tax": 0.2,
+                      "provinces": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/countries.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/countries.json",
+            "headers": {},
+            "body": "{\"country\":{\"code\":\"FR\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"country\":{\"id\":1070231510,\"name\":\"France\",\"code\":\"FR\",\"tax_name\":\"TVA\",\"tax\":0.2,\"provinces\":[]}}"
+          },
+          "name": "Create a country using Shopify's tax rate for it",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"country\":{\"code\":\"FR\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncountry = ShopifyAPI::Country.new(session: test_session)\ncountry.code = \"FR\"\ncountry.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst country = new Country({session: test_session});\ncountry.code = \"FR\";\nawait country.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->code = \"FR\";\n$country->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/countries.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/countries.json",
+            "headers": {},
+            "body": "{\"country\":{\"code\":\"FR\",\"tax\":0.2}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"country\":{\"id\":1070231511,\"name\":\"France\",\"code\":\"FR\",\"tax_name\":\"TVA\",\"tax\":0.2,\"provinces\":[]}}"
+          },
+          "name": "Create a country using a custom tax rate ",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"country\":{\"code\":\"FR\",\"tax\":0.2}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncountry = ShopifyAPI::Country.new(session: test_session)\ncountry.code = \"FR\"\ncountry.tax = 0.2\ncountry.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Country} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst country = new Country({session: test_session});\ncountry.code = \"FR\";\ncountry.tax = 0.2;\nawait country.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->code = \"FR\";\n$country->tax = 0.2;\n$country->save(\n    true, // Update Object\n);"
+            }
+          ]
+        }
+      ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "shipping"
+          }
+        ]
+      },
+      "url": "/admin/api/{api_version}/countries.json",
+      "action": "post"
     }
   ],
   "components": [

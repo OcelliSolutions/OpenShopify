@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Discounts
   description: Discounts
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -24,6 +24,7 @@ paths:
       tags:
         - DiscountCode
       summary: Creates a discount code
+      description: "Creates a discount code.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code will belong to. This is required because each discount code must belong to a price rule."
       operationId: CreateDiscountCode
       parameters:
         - name: price_rule_id
@@ -61,6 +62,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a list of discount codes
+      description: "Retrieve a list of discount codes. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount codes belongs to."
       operationId: ListDiscountCodes
       parameters:
         - name: price_rule_id
@@ -94,6 +96,7 @@ paths:
       tags:
         - DiscountCode
       summary: Updates an existing discount code
+      description: "Updates an existing discount code.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.\r\n\r\nThe `discount_code_id` path parameter is the ID of the discount code to update for the associated price rule."
       operationId: UpdateDiscountCode
       parameters:
         - name: discount_code_id
@@ -137,6 +140,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a single discount code
+      description: "Retrieves a single discount code.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.\r\n\r\nThe `discount_code_id` path parameter is the ID of the discount code to retrieve for the associated price rule."
       operationId: GetDiscountCode
       parameters:
         - name: discount_code_id
@@ -171,6 +175,7 @@ paths:
       tags:
         - DiscountCode
       summary: Deletes a discount code
+      description: "Deletes a discount code.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.\r\n\r\nThe `discount_code_id` path parameter is the ID of the discount code to delete for the associated price rule."
       operationId: DeleteDiscountCode
       parameters:
         - name: discount_code_id
@@ -202,6 +207,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves the location of a discount code
+      description: "Retrieves the location of a discount code.\r\n\r\nThe discount code's location is returned in the location header, not in the DiscountCode object itself. Depending on your HTTP client, the location of the discount code might follow the location header automatically."
       operationId: GetLocationOfDiscountCode
       parameters:
         - name: code
@@ -271,6 +277,7 @@ paths:
       tags:
         - DiscountCode
       summary: Creates a discount code creation job
+      description: "Creates a discount code creation job.\r\n\r\nThe batch endpoint can be used to asynchronously create up to 100 discount codes in a single request. It enqueues and returns a `discount_code_creation` object that can be monitored for completion. You can enqueue a single creation job per a shop and you can't enqueue more until the job completes.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code will belong to. This is required because each discount code must belong to a price rule.\r\n\r\nResponse fields that are specific to the batch endpoint include: * `status`: The state of the discount code creation job. Possible values are: * `queued`: The job is acknowledged, but not started. * `running`: The job is in process. * `completed`: The job has finished. * `codes_count`: The number of discount codes to create. * `imported_count`: The number of discount codes created successfully. * `failed_count`: The number of discount codes that were not created successfully. Unsuccessful attempts will retry up to three times. * `logs`: A report that specifies when no discount codes were created because the provided data was invalid. Example responses: * \"Price rule target selection can't be blank\" * \"Price rule allocation method can't be blank\""
       operationId: CreateDiscountCodeCreationJob
       parameters:
         - name: price_rule_id
@@ -309,6 +316,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a discount code creation job
+      description: "Retrieves a discount code creation job\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code creation job was ran for. This is required because each discount code creation job is associated to a price rule.\r\n\r\nThe `batch_id` path parameter is the ID of the discount code creation job for the associated price rule."
       operationId: GetDiscountCodeCreationJob
       parameters:
         - name: batch_id
@@ -344,6 +352,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a list of discount codes for a discount code creation job
+      description: "Retrieves a list of discount codes for a discount code creation job.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code creation job was ran for. This is required because each discount code creation job is associated to a price rule.\r\n\r\nThe `batch_id` path parameter is the ID of the discount code creation job for the associated price rule.\r\n\r\nDiscount codes that have been successfully created include a populated `id` field. Discount codes that encountered errors during the creation process include a populated `errors` field."
       operationId: ListDiscountCodesForDiscountCodeCreationJob
       parameters:
         - name: batch_id
@@ -413,6 +422,7 @@ paths:
       tags:
         - PriceRule
       summary: Retrieves a list of price rules
+      description: 'Retrieves a list of price rules. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListPriceRules
       parameters:
         - name: created_at_max
@@ -576,6 +586,7 @@ paths:
       tags:
         - PriceRule
       summary: Remove an existing PriceRule
+      description: Deletes a price rule
       operationId: DeletePriceRule
       parameters:
         - name: price_rule_id
@@ -666,7 +677,7 @@ components:
       properties:
         allocation_method:
           type: string
-          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.  \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
+          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
           nullable: true
         customer_selection:
           type: string
@@ -760,21 +771,21 @@ components:
           items:
             type: integer
             format: int64
-          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The `prerequisite_product_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.\r\n </div>"
+          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The `prerequisite_product_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.\r\n </div>"
           nullable: true
         prerequisite_variant_ids:
           type: array
           items:
             type: integer
             format: int64
-          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.\r\n </div>"
+          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.\r\n </div>"
           nullable: true
         prerequisite_collection_ids:
           type: array
           items:
             type: integer
             format: int64
-          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  Cannot be used in combination with `prerequisite_product_ids` or `prerequisite_variant_ids`."
+          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n Cannot be used in combination with `prerequisite_product_ids` or `prerequisite_variant_ids`."
           nullable: true
         value:
           type: number
@@ -783,7 +794,7 @@ components:
           nullable: true
         value_type:
           type: string
-          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied.  \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
+          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
           nullable: true
         prerequisite_to_entitlement_quantity_ratio:
           $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'
@@ -993,7 +1004,7 @@ components:
       properties:
         allocation_method:
           type: string
-          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.  \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
+          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
           nullable: true
         customer_selection:
           type: string
@@ -1087,21 +1098,21 @@ components:
           items:
             type: integer
             format: int64
-          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The `prerequisite_product_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.\r\n </div>"
+          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The `prerequisite_product_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.\r\n </div>"
           nullable: true
         prerequisite_variant_ids:
           type: array
           items:
             type: integer
             format: int64
-          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.\r\n </div>"
+          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.\r\n </div>"
           nullable: true
         prerequisite_collection_ids:
           type: array
           items:
             type: integer
             format: int64
-          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  Cannot be used in combination with `prerequisite_product_ids` or `prerequisite_variant_ids`."
+          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n Cannot be used in combination with `prerequisite_product_ids` or `prerequisite_variant_ids`."
           nullable: true
         value:
           type: number
@@ -1110,7 +1121,7 @@ components:
           nullable: true
         value_type:
           type: string
-          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied.  \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
+          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
           nullable: true
         prerequisite_to_entitlement_quantity_ratio:
           $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'
@@ -1198,7 +1209,7 @@ components:
       properties:
         allocation_method:
           type: string
-          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.  \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
+          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
           nullable: true
         customer_selection:
           type: string
@@ -1292,21 +1303,21 @@ components:
           items:
             type: integer
             format: int64
-          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The `prerequisite_product_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.\r\n </div>"
+          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The `prerequisite_product_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.\r\n </div>"
           nullable: true
         prerequisite_variant_ids:
           type: array
           items:
             type: integer
             format: int64
-          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.\r\n </div>"
+          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.\r\n </div>"
           nullable: true
         prerequisite_collection_ids:
           type: array
           items:
             type: integer
             format: int64
-          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined.  Cannot be used in combination with `prerequisite_product_ids` or `prerequisite_variant_ids`."
+          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n\r\n*   `target_type` set to `line_item`, \r\n*   `target_selection` set to `entitled`, \r\n*   `allocation_method` set to `each` and \r\n*   `prerequisite_to_entitlement_quantity_ratio` defined. \r\n\r\n Cannot be used in combination with `prerequisite_product_ids` or `prerequisite_variant_ids`."
           nullable: true
         value:
           type: number
@@ -1315,7 +1326,7 @@ components:
           nullable: true
         value_type:
           type: string
-          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied.  \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
+          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
           nullable: true
         prerequisite_to_entitlement_quantity_ratio:
           $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'

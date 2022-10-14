@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Marketing Event
   description: Marketing Event
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -24,6 +24,7 @@ paths:
       tags:
         - MarketingEvent
       summary: Retrieves a list of all marketing events
+      description: 'Retrieves a list of all marketing events. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).'
       operationId: ListMarketingEvents
       parameters:
         - name: limit
@@ -67,6 +68,7 @@ paths:
       tags:
         - MarketingEvent
       summary: Creates a marketing event
+      description: "Marketing events can be created to track ad campaigns that target a specific time of year. For example, a marketing event can be created to track a Facebook ad campaign for Christmas 2022. When creating the marketing event, the body of the request includes the UTM parameters that must be included in the links provided in the marketing event. Each marketing event also includes the `event_type` and `marketing_channel` properties that help Shopify to rank your app and surface it within Shopify admin.\r\n\r\nAfter a marketing event is created in Shopify, you can start to drive traffic to Shopify. Make sure that the links for the marketing event contain the same UTM parameters that were defined in the marketing event. For example, marketing activities for the Christmas 2022 ad campaign would use the following URL convention:\r\n\r\n`https://storename.com/product?utm_source=facebook&utm_medium=cpc&utm_campaign=Christmas2022-12142018`"
       operationId: CreateMarketingEvent
       requestBody:
         content:
@@ -210,6 +212,7 @@ paths:
       tags:
         - MarketingEvent
       summary: Creates marketing engagements on a marketing event
+      description: "Engagements on marketing events represent customer activity taken on the marketing event before customers reach the shop’s website. Not all types of marketing events will necessarily have engagement, and most types of marketing events will only use a subset of the possible engagement types.\r\n\r\nEngagements are aggregated on a daily basis. However, the data can be sent more often than once a day if the information is available. If you create an engagement with the same value for `occurred_on` as an existing engagement, then the new engagement will overwrite the previous one."
       operationId: CreateMarketingEngagementsOnMarketingEvent
       parameters:
         - name: marketing_event_id

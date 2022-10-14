@@ -102,5 +102,5 @@ public class CustomerController : CustomerControllerBase
     [HttpDelete]
     [Route("customers/{customer_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public Task DeleteCustomer([Required] long customer_id) => throw new NotImplementedException();
+    public override Task DeleteCustomer([Required] long customer_id) => throw new NotImplementedException();
 }

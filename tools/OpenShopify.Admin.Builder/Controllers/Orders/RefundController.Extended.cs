@@ -15,8 +15,9 @@ public class RefundController : RefundControllerBase
     [HttpGet]
     [Route("orders/{order_id:long}/refunds.json")]
     [ProducesResponseType(typeof(RefundList), StatusCodes.Status200OK)]
-    public override Task ListRefunds([Required] long order_id, string? fields = null, bool? in_shop_currency = null,
-        int? limit = null, string? page_info = null) => throw new NotImplementedException();
+    public override Task ListRefundsForOrder(long order_id, string? fields = null, bool? in_shop_currency = null, int? limit = null,
+        string? page_info = null) =>
+        throw new NotImplementedException();
 
     /// <inheritdoc />
     [HttpPost]

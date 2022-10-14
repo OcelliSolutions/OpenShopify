@@ -5,7 +5,8 @@
     "description": "        <div class=\"note note-plus\">\n          <h4>Shopify Plus</h4>\n          <p>The User resource is available for <a href=\"/concepts/apps#private-apps\">private apps</a> and <a href=\"/concepts/apps#custom-apps\">custom apps</a> installed on <strong><a href=\"https://help.shopify.com/en/manual/intro-to-shopify/pricing-plans/shopify-plus\">Shopify Plus</a></strong> stores. Contact Shopify Plus Support to enable this API resource for your store.</p>\n        </div>\n        <p>The User resource lets you retrieve information about staff on a Shopify shop, including\n        <a href=\"https://help.shopify.com/en/manual/your-account/staff-accounts/staff-permissions\">staff permissions</a>.</p>\n        <p>Permissions determine the level of access that staff have to a merchant's store. From the Shopify admin, merchants can give each staff\n        individual permissions that control access to a part of Shopify. The API only lets you retrieve information about staff.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/1772",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -67,6 +68,14 @@
                           "billing_application_charges",
                           "channels",
                           "content",
+                          "content_entries_delete",
+                          "content_entries_edit",
+                          "content_entries_view",
+                          "content_models_delete",
+                          "content_models_edit",
+                          "content_models_view",
+                          "custom_pixels_management",
+                          "custom_pixels_view",
                           "customers",
                           "dashboard",
                           "domains",
@@ -86,6 +95,7 @@
                           "pay_orders_by_vaulted_card",
                           "preferences",
                           "products",
+                          "refund_orders",
                           "reports",
                           "translations",
                           "themes",
@@ -106,7 +116,10 @@
                           "billing_settings",
                           "billing_subscriptions",
                           "capital",
+                          "shopify_credit",
                           "customer_private_data",
+                          "erase_customer_data",
+                          "request_customer_data",
                           "domains_management",
                           "enable_private_apps",
                           "experiments_management",
@@ -161,7 +174,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/users.json",
+          "request_path": "/admin/api/2022-10/users.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/users.json",
@@ -171,29 +184,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"users\":[{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"customer_private_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false},{\"id\":930143300,\"first_name\":\"John\",\"email\":\"j.limited@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Limited\",\"account_owner\":false,\"receive_announcements\":1,\"bio\":null,\"permissions\":[],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/930143300\",\"tfa_enabled?\":false}]}"
+            "body": "{\"users\":[{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false},{\"id\":930143300,\"first_name\":\"John\",\"email\":\"j.limited@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Limited\",\"account_owner\":false,\"receive_announcements\":1,\"bio\":null,\"permissions\":[],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/930143300\",\"tfa_enabled?\":false}]}"
           },
           "name": "Retrieve a list of all users",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/users.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/users.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::User.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::User.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.all({\n  session: test_session,\n});"
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "users"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/users.json",
       "action": "get"
     },
@@ -245,6 +265,14 @@
                         "billing_application_charges",
                         "channels",
                         "content",
+                        "content_entries_delete",
+                        "content_entries_edit",
+                        "content_entries_view",
+                        "content_models_delete",
+                        "content_models_edit",
+                        "content_models_view",
+                        "custom_pixels_management",
+                        "custom_pixels_view",
                         "customers",
                         "dashboard",
                         "domains",
@@ -264,6 +292,7 @@
                         "pay_orders_by_vaulted_card",
                         "preferences",
                         "products",
+                        "refund_orders",
                         "reports",
                         "translations",
                         "themes",
@@ -284,7 +313,10 @@
                         "billing_settings",
                         "billing_subscriptions",
                         "capital",
+                        "shopify_credit",
                         "customer_private_data",
+                        "erase_customer_data",
+                        "request_customer_data",
                         "domains_management",
                         "enable_private_apps",
                         "experiments_management",
@@ -320,7 +352,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/users/548380009.json",
+          "request_path": "/admin/api/2022-10/users/548380009.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/users/548380009.json",
@@ -330,29 +362,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"customer_private_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
+            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
           },
           "name": "Retrieve a single user",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/users/548380009.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/users/548380009.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::User.find(\n  session: test_session,\n  id: 548380009,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::User.find(\n  session: test_session,\n  id: 548380009,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.find({\n  session: test_session,\n  id: 548380009,\n});"
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.find({\n  session: test_session,\n  id: 548380009,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::find(\n    $this->test_session, // Session\n    548380009, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::find(\n    $this->test_session, // Session\n    548380009, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "users"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/users/{user_id}.json",
       "action": "get"
     },
@@ -396,6 +435,14 @@
                         "billing_application_charges",
                         "channels",
                         "content",
+                        "content_entries_delete",
+                        "content_entries_edit",
+                        "content_entries_view",
+                        "content_models_delete",
+                        "content_models_edit",
+                        "content_models_view",
+                        "custom_pixels_management",
+                        "custom_pixels_view",
                         "customers",
                         "dashboard",
                         "domains",
@@ -415,6 +462,7 @@
                         "pay_orders_by_vaulted_card",
                         "preferences",
                         "products",
+                        "refund_orders",
                         "reports",
                         "translations",
                         "themes",
@@ -435,7 +483,10 @@
                         "billing_settings",
                         "billing_subscriptions",
                         "capital",
+                        "shopify_credit",
                         "customer_private_data",
+                        "erase_customer_data",
+                        "request_customer_data",
                         "domains_management",
                         "enable_private_apps",
                         "experiments_management",
@@ -471,7 +522,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/users/current.json",
+          "request_path": "/admin/api/2022-10/users/current.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/users/current.json",
@@ -481,29 +532,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"customer_private_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
+            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
           },
           "name": "Retrieve the the currently logged-in user",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/users/current.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/users/current.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::User.current(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::User.current(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.current({\n  session: test_session,\n});"
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.current({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::current(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::current(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "users"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/users/current.json",
       "action": "get"
     }

@@ -5,7 +5,8 @@
     "description": "<div class=\"note\">\n  <h4>Note</h4>\n  <p>The Reports Publishing API and the Reports resource are available to Shopify Advanced and <strong>\n  <a href=\n  \"https://www.shopify.com/plus?utm_source=shopify&amp;utm_medium=docs&amp;utm_campaign=api_reference_reports\">\n  Shopify Plus</a></strong> merchants only.</p>\n</div>\n\n<p>You can use the Report resource to publish reports to the <strong>Reports</strong> page in the Shopify admin.\nFor example, a shirt fulfillment app could publish a report that compares the sales of shirts by marketing\ncampaign. The reports are based on queries written in <a href=\"/api/admin/rest/reference/analytics/shopify-ql\">ShopifyQL</a>.</p>\n\n<p>Reports are scoped to the app that created them. When an app creates a report, other apps can't view, modify, or\ndelete that report. Also, apps can't access reports that were created from the Shopify admin.</p>\n\n<h2>Setting reports publishing permissions</h2>\n<p>To give reports publishing permissions to your app, add the <code>write_reports</code> permission to your\n<a href='/docs/admin-api/access-scopes' target=\"_blank\">OAuth\nrequested scopes</a>.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/1956",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -85,7 +86,27 @@
                         "id": 752357116,
                         "name": "Custom App Report 2",
                         "shopify_ql": "SHOW total_sales BY order_id FROM sales ORDER BY total_sales",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "category": "custom_app_reports"
+                      },
+                      {
+                        "id": 517154478,
+                        "name": "Wholesale Sales Report",
+                        "shopify_ql": "SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today",
+                        "updated_at": "2017-04-10T14:33:22-06:00",
+                        "category": "custom_app_reports"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve a list reports last updated after 2005-07-31 15:57:11 in the EDT timezone": {
+                  "value": {
+                    "reports": [
+                      {
+                        "id": 752357116,
+                        "name": "Custom App Report 2",
+                        "shopify_ql": "SHOW total_sales BY order_id FROM sales ORDER BY total_sales",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "category": "custom_app_reports"
                       },
                       {
@@ -111,21 +132,21 @@
                     ]
                   }
                 },
-                "Retrieve a list reports last updated after 2005-07-31 15:57:11 in the EDT timezone": {
+                "Retrieve a list all reports after the specified ID": {
                   "value": {
                     "reports": [
-                      {
-                        "id": 752357116,
-                        "name": "Custom App Report 2",
-                        "shopify_ql": "SHOW total_sales BY order_id FROM sales ORDER BY total_sales",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
-                        "category": "custom_app_reports"
-                      },
                       {
                         "id": 517154478,
                         "name": "Wholesale Sales Report",
                         "shopify_ql": "SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today",
                         "updated_at": "2017-04-10T14:33:22-06:00",
+                        "category": "custom_app_reports"
+                      },
+                      {
+                        "id": 752357116,
+                        "name": "Custom App Report 2",
+                        "shopify_ql": "SHOW total_sales BY order_id FROM sales ORDER BY total_sales",
+                        "updated_at": "2022-10-03T10:44:45-06:00",
                         "category": "custom_app_reports"
                       }
                     ]
@@ -144,26 +165,6 @@
                       }
                     ]
                   }
-                },
-                "Retrieve a list all reports after the specified ID": {
-                  "value": {
-                    "reports": [
-                      {
-                        "id": 517154478,
-                        "name": "Wholesale Sales Report",
-                        "shopify_ql": "SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today",
-                        "updated_at": "2017-04-10T14:33:22-06:00",
-                        "category": "custom_app_reports"
-                      },
-                      {
-                        "id": 752357116,
-                        "name": "Custom App Report 2",
-                        "shopify_ql": "SHOW total_sales BY order_id FROM sales ORDER BY total_sales",
-                        "updated_at": "2022-04-05T11:05:24-06:00",
-                        "category": "custom_app_reports"
-                      }
-                    ]
-                  }
                 }
               }
             }
@@ -174,7 +175,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/reports.json",
+          "request_path": "/admin/api/2022-10/reports.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/reports.json",
@@ -184,32 +185,67 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"reports\":[{\"id\":752357116,\"name\":\"Custom App Report 2\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales ORDER BY total_sales\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"category\":\"custom_app_reports\"},{\"id\":517154478,\"name\":\"Wholesale Sales Report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today\",\"updated_at\":\"2017-04-10T16:33:22-04:00\",\"category\":\"custom_app_reports\"}]}"
+            "body": "{\"reports\":[{\"id\":752357116,\"name\":\"Custom App Report 2\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales ORDER BY total_sales\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"category\":\"custom_app_reports\"},{\"id\":517154478,\"name\":\"Wholesale Sales Report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today\",\"updated_at\":\"2017-04-10T16:33:22-04:00\",\"category\":\"custom_app_reports\"}]}"
           },
           "name": "Retrieve a list of all reports",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/reports.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/reports.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "updated_at_min=2005-07-31+15%3A57%3A11+EDT+-04%3A00",
+          "request_path": "/admin/api/2022-10/reports.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/reports.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"reports\":[{\"id\":752357116,\"name\":\"Custom App Report 2\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales ORDER BY total_sales\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"category\":\"custom_app_reports\"},{\"id\":517154478,\"name\":\"Wholesale Sales Report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today\",\"updated_at\":\"2017-04-10T16:33:22-04:00\",\"category\":\"custom_app_reports\"}]}"
+          },
+          "name": "Retrieve a list reports last updated after 2005-07-31 15:57:11 in the EDT timezone",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/reports.json?updated_at_min=2005-07-31+15%3A57%3A11+EDT+-04%3A00\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n  updated_at_min: \"2005-07-31 15:57:11 EDT -04:00\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n  updated_at_min: \"2005-07-31 15:57:11 EDT -04:00\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"updated_at_min\" => \"2005-07-31 15:57:11 EDT -04:00\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "ids=517154478",
-          "request_path": "/admin/api/2022-07/reports.json",
+          "request_path": "/admin/api/2022-10/reports.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/reports.json",
@@ -225,26 +261,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/reports.json?ids=517154478\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/reports.json?ids=517154478\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n  ids: \"517154478\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n  ids: \"517154478\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n  ids: \"517154478\",\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n  ids: \"517154478\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"ids\" => \"517154478\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"ids\" => \"517154478\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
-          "request_query": "updated_at_min=2005-07-31+15%3A57%3A11+EDT+-04%3A00",
-          "request_path": "/admin/api/2022-07/reports.json",
+          "request_query": "since_id=123",
+          "request_path": "/admin/api/2022-10/reports.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/reports.json",
@@ -254,32 +290,32 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"reports\":[{\"id\":752357116,\"name\":\"Custom App Report 2\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales ORDER BY total_sales\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"category\":\"custom_app_reports\"},{\"id\":517154478,\"name\":\"Wholesale Sales Report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today\",\"updated_at\":\"2017-04-10T16:33:22-04:00\",\"category\":\"custom_app_reports\"}]}"
+            "body": "{\"reports\":[{\"id\":517154478,\"name\":\"Wholesale Sales Report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today\",\"updated_at\":\"2017-04-10T16:33:22-04:00\",\"category\":\"custom_app_reports\"},{\"id\":752357116,\"name\":\"Custom App Report 2\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales ORDER BY total_sales\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"category\":\"custom_app_reports\"}]}"
           },
-          "name": "Retrieve a list reports last updated after 2005-07-31 15:57:11 in the EDT timezone",
+          "name": "Retrieve a list all reports after the specified ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/reports.json?updated_at_min=2005-07-31+15%3A57%3A11+EDT+-04%3A00\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/reports.json?since_id=123\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n  updated_at_min: \"2005-07-31 15:57:11 EDT -04:00\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n  since_id: \"123\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n  updated_at_min: \"2005-07-31 15:57:11 EDT -04:00\",\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n  since_id: \"123\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"updated_at_min\" => \"2005-07-31 15:57:11 EDT -04:00\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"123\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "fields=id%2Cshopify_ql",
-          "request_path": "/admin/api/2022-07/reports.json",
+          "request_path": "/admin/api/2022-10/reports.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/reports.json",
@@ -295,58 +331,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/reports.json?fields=id%2Cshopify_ql\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/reports.json?fields=id%2Cshopify_ql\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n  fields: \"id,shopify_ql\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n  fields: \"id,shopify_ql\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n  fields: \"id,shopify_ql\",\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n  fields: \"id,shopify_ql\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"fields\" => \"id,shopify_ql\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "since_id=123",
-          "request_path": "/admin/api/2022-07/reports.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-10/reports.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"reports\":[{\"id\":517154478,\"name\":\"Wholesale Sales Report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales WHERE api_client_id == 123 SINCE -1m UNTIL today\",\"updated_at\":\"2017-04-10T16:33:22-04:00\",\"category\":\"custom_app_reports\"},{\"id\":752357116,\"name\":\"Custom App Report 2\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales ORDER BY total_sales\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"category\":\"custom_app_reports\"}]}"
-          },
-          "name": "Retrieve a list all reports after the specified ID",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/reports.json?since_id=123\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Report.all(\n  session: test_session,\n  since_id: \"123\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.all({\n  session: test_session,\n  since_id: \"123\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"123\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"fields\" => \"id,shopify_ql\"], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "reports"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/reports.json",
       "action": "get"
     },
@@ -392,7 +400,7 @@
                       "id": 1016888664,
                       "name": "A new app report",
                       "shopify_ql": "SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales",
-                      "updated_at": "2022-04-05T11:05:35-06:00",
+                      "updated_at": "2022-10-03T10:53:33-06:00",
                       "category": "custom_app_reports"
                     }
                   }
@@ -406,7 +414,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/reports.json",
+          "request_path": "/admin/api/2022-10/reports.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/reports.json",
@@ -416,29 +424,36 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"report\":{\"id\":1016888664,\"name\":\"A new app report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\",\"updated_at\":\"2022-04-05T13:05:35-04:00\",\"category\":\"custom_app_reports\"}}"
+            "body": "{\"report\":{\"id\":1016888664,\"name\":\"A new app report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\",\"updated_at\":\"2022-10-03T12:53:33-04:00\",\"category\":\"custom_app_reports\"}}"
           },
           "name": "Create a new report",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"report\":{\"name\":\"A new app report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/reports.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"report\":{\"name\":\"A new app report\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/reports.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nreport = ShopifyAPI::Report.new(session: test_session)\nreport.name = \"A new app report\"\nreport.shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\"\nreport.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nreport = ShopifyAPI::Report.new(session: test_session)\nreport.name = \"A new app report\"\nreport.shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\"\nreport.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst report = new Report({session: test_session});\nreport.name = \"A new app report\";\nreport.shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\";\nawait report.save({\n  update: true,\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst report = new Report({session: test_session});\nreport.name = \"A new app report\";\nreport.shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\";\nawait report.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$report = new Report($this->test_session);\n$report->name = \"A new app report\";\n$report->shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\";\n$report->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$report = new Report($this->test_session);\n$report->name = \"A new app report\";\n$report->shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales\";\n$report->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "reports"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/reports.json",
       "action": "post"
     },
@@ -506,7 +521,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/reports/517154478.json",
+          "request_path": "/admin/api/2022-10/reports/517154478.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/reports/517154478.json",
@@ -522,26 +537,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/reports/517154478.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/reports/517154478.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Report.find(\n  session: test_session,\n  id: 517154478,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Report.find(\n  session: test_session,\n  id: 517154478,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.find({\n  session: test_session,\n  id: 517154478,\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.find({\n  session: test_session,\n  id: 517154478,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::find(\n    $this->test_session, // Session\n    517154478, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::find(\n    $this->test_session, // Session\n    517154478, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "fields=id%2Cshopify_ql",
-          "request_path": "/admin/api/2022-07/reports/517154478.json",
+          "request_path": "/admin/api/2022-10/reports/517154478.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/reports/517154478.json",
@@ -557,23 +572,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/reports/517154478.json?fields=id%2Cshopify_ql\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/reports/517154478.json?fields=id%2Cshopify_ql\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Report.find(\n  session: test_session,\n  id: 517154478,\n  fields: \"id,shopify_ql\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Report.find(\n  session: test_session,\n  id: 517154478,\n  fields: \"id,shopify_ql\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.find({\n  session: test_session,\n  id: 517154478,\n  fields: \"id,shopify_ql\",\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.find({\n  session: test_session,\n  id: 517154478,\n  fields: \"id,shopify_ql\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::find(\n    $this->test_session, // Session\n    517154478, // Id\n    [], // Url Ids\n    [\"fields\" => \"id,shopify_ql\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::find(\n    $this->test_session, // Session\n    517154478, // Id\n    [], // Url Ids\n    [\"fields\" => \"id,shopify_ql\"], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "reports"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/reports/{report_id}.json",
       "action": "get"
     },
@@ -611,7 +633,7 @@
                       "name": "Changed Report Name",
                       "shopify_ql": "SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales",
                       "id": 517154478,
-                      "updated_at": "2022-04-05T11:05:37-06:00",
+                      "updated_at": "2022-10-03T10:53:27-06:00",
                       "category": "custom_app_reports"
                     }
                   }
@@ -625,7 +647,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/reports/517154478.json",
+          "request_path": "/admin/api/2022-10/reports/517154478.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/reports/517154478.json",
@@ -635,29 +657,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"report\":{\"name\":\"Changed Report Name\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\",\"id\":517154478,\"updated_at\":\"2022-04-05T13:05:37-04:00\",\"category\":\"custom_app_reports\"}}"
+            "body": "{\"report\":{\"name\":\"Changed Report Name\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\",\"id\":517154478,\"updated_at\":\"2022-10-03T12:53:27-04:00\",\"category\":\"custom_app_reports\"}}"
           },
           "name": "Update an existing report",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"report\":{\"id\":517154478,\"name\":\"Changed Report Name\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/reports/517154478.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"report\":{\"id\":517154478,\"name\":\"Changed Report Name\",\"shopify_ql\":\"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/reports/517154478.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nreport = ShopifyAPI::Report.new(session: test_session)\nreport.id = 517154478\nreport.name = \"Changed Report Name\"\nreport.shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\"\nreport.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nreport = ShopifyAPI::Report.new(session: test_session)\nreport.id = 517154478\nreport.name = \"Changed Report Name\"\nreport.shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\"\nreport.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst report = new Report({session: test_session});\nreport.id = 517154478;\nreport.name = \"Changed Report Name\";\nreport.shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\";\nawait report.save({\n  update: true,\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst report = new Report({session: test_session});\nreport.id = 517154478;\nreport.name = \"Changed Report Name\";\nreport.shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\";\nawait report.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$report = new Report($this->test_session);\n$report->id = 517154478;\n$report->name = \"Changed Report Name\";\n$report->shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\";\n$report->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$report = new Report($this->test_session);\n$report->id = 517154478;\n$report->name = \"Changed Report Name\";\n$report->shopify_ql = \"SHOW total_sales BY order_id FROM sales SINCE -12m UNTIL today ORDER BY total_sales\";\n$report->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "reports"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/reports/{report_id}.json",
       "action": "put"
     },
@@ -701,7 +730,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/reports/517154478.json",
+          "request_path": "/admin/api/2022-10/reports/517154478.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/reports/517154478.json",
@@ -717,23 +746,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/reports/517154478.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/reports/517154478.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Report.delete(\n  session: test_session,\n  id: 517154478,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Report.delete(\n  session: test_session,\n  id: 517154478,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.delete({\n  session: test_session,\n  id: 517154478,\n});"
+              "example_code": "import {Report} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Report.delete({\n  session: test_session,\n  id: 517154478,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::delete(\n    $this->test_session, // Session\n    517154478, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Report;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nReport::delete(\n    $this->test_session, // Session\n    517154478, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "reports"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/reports/{report_id}.json",
       "action": "delete"
     }

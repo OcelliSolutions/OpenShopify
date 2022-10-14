@@ -78,10 +78,10 @@ internal class ArticleMockClient : ArticleClient, IMockTests
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListArticlesAsync(0, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListArticlesFromBlogAsync(0, cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListArticlesAsync(0, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListArticlesFromBlogAsync(0, cancellationToken: CancellationToken.None));
     }
 }
 

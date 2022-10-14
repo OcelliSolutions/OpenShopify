@@ -33,4 +33,16 @@ public class EventController : EventControllerBase
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task CountEvents(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null) =>
         throw new NotImplementedException();
+
+    [ProducesResponseType(typeof(EventList), StatusCodes.Status200OK)]
+    public override Task GetEventAfterSpecificIDUsingSinceId(long order_id, DateTimeOffset? created_at_max = null,
+        DateTimeOffset? created_at_min = null, string? fields = null, string? filter = null, int? limit = null,
+        string? page_info = null, long? since_id = null, string? verb = null) =>
+        throw new NotImplementedException();
+
+    [ProducesResponseType(typeof(EventList), StatusCodes.Status200OK)]
+    public override Task ListEventsFromSpecificProduct(long product_id, DateTimeOffset? created_at_max = null,
+        DateTimeOffset? created_at_min = null, string? fields = null, string? filter = null, int? limit = null,
+        string? page_info = null, long? since_id = null, string? verb = null) =>
+        throw new NotImplementedException();
 }

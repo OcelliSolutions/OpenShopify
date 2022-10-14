@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Orders
   description: Orders
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,52 +23,43 @@ paths:
     get:
       tags:
         - AbandonedCheckouts
-      summary: Retrieves a list of abandoned checkouts
       operationId: ListAbandonedCheckouts
       parameters:
         - name: created_at_max
           in: query
-          description: 'Show checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: limit
           in: query
-          description: The maximum number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: status
           in: query
-          description: Show only checkouts with a given status.
           schema:
             $ref: '#/components/schemas/AbandonedCheckoutStatusRequest'
         - name: updated_at_max
           in: query
-          description: 'Show checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -92,11 +83,71 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AbandonedCheckoutList'
+  /count.json:
+    get:
+      tags:
+        - AbandonedCheckouts
+      summary: Retrieves a count of checkouts
+      description: Retrieves a count of checkouts from the past 90 days
+      operationId: CountCheckouts
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: status
+          in: query
+          description: Count checkouts with a given status.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbandonedCheckoutList'
   /draft_orders.json:
     post:
       tags:
         - DraftOrder
       summary: Create a new DraftOrder
+      description: "Creates a draft order.\r\n\r\nUsing the `DraftOrder` resource you can create orders in draft state using product variant line items, or custom line items. To create a product variant draft order, provide the `variant_id`, `quantity` and `discount` properties. To create a custom line item, provide the `title`, `price`, `taxable`, and `quantity` properties.\r\n <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you are using this endpoint with a Partner development store or a trial store, then you can only create five draft orders per minute.\r\n </aside> \r\n\r\n### Polling\r\n\r\n When you create and update draft orders some calculations are done asynchronously, such as calculating shipping and taxes. There might be times when a draft order is created but these calculations haven't completed. In these cases, you need to poll the draft order until the calculations are finished. When a draft order requires polling, a `202 accepted` response code is returned along with `location` and `retry-after` response headers. The `location` header refers to the URL to be polled, and `retry-after` denotes the interval (in seconds) at which polling requests should be sent. When the draft order is ready, a `200 OK` response code will be returned. \r\n\r\n### About custom shipping lines\r\n\r\n You can use the DraftOrder resource to send orders with custom shipping lines. A custom shipping line includes a `title` and `price` with `handle` set to `Nil`. A shipping line with a carrier provided shipping rate (currently set via the Shopify admin) includes the shipping rate handle. \r\n\r\n### Applying discounts\r\n\r\nA draft order and its line items can have one discount each. Calculations for discounts are based on the setting of the `value_type` property, which can be set to either `fixed_amount` or `percentage`. For example, you can apply a fixed amount discount to a draft order to reduce the price by the specified `value` property. When you use a percentage discount, the discount `amount` property is the price multiplied by the `value` property. For line item discounts, the `value` property is applied per individual unit of the item, based on the line item's quantity.\r\n\r\n**Calculating line item discount amounts**\r\n\r\nFor `fixed_amount` discounts, the total `amount` corresponds to the line item quantity times the value of the discount. For percentage discounts, the total `amount` corresponds to the following:\r\n\r\n`amount = floor(price * quantity * value) / 100`, where `floor()` is the usual round down function.\r\n\r\nFor non-fractional currencies, this formula needs to use `round()` instead of `floor()`, and the division by 100 takes place inside the rounding, resulting in a non-fractional value. Otherwise, an error is returned.\r\n\r\n`amount = round(price * quantity * value / 100)`\r\n **Line item examples** \r\n\r\n*Fixed amount discount*\r\n\r\nFor a $19.99 line item with quantity of 2 and with $5 dollars off, discount amount corresponds to $10 ($5 * 2):\r\n\r\n`applied_discount: { \"value_type\": \"fixed_amount\", \"value\": 5, \"amount\": 10 }`\r\n\r\n*Percentage discount*\r\n\r\nFor a $19.99 line item with quantity of 2 and with 15% off, discount amount corresponds to $5.99 (floor ($19.99 * 2 * 15) / 100):\r\n\r\n`applied_discount: { \"value_type\": \"percentage\", \"value\": 15, \"amount\": 5.99 }`\r\n\r\n### Loading and removing customers\r\n\r\nYou can load a customer to a draft order by sending the `customer_id` as part of the draft order resource. We recommend removing a customer from a draft order by making a POST request with the `Customer` resource set to `null`, without specifying an email, shipping address, or billing address. A customer can also be removed by setting `customer`, `email`, `shipping_address`, and `billing_address` to `null`."
       operationId: CreateDraftOrder
       requestBody:
         content:
@@ -127,6 +178,7 @@ paths:
       tags:
         - DraftOrder
       summary: Retrieves a list of draft orders
+      description: 'Retrieves a list of draft orders. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListDraftOrders
       parameters:
         - name: fields
@@ -202,6 +254,7 @@ paths:
       tags:
         - DraftOrder
       summary: Modify an existing DraftOrder
+      description: Updates a draft order
       operationId: UpdateDraftOrder
       parameters:
         - name: draft_order_id
@@ -239,6 +292,7 @@ paths:
       tags:
         - DraftOrder
       summary: Receive a single DraftOrder
+      description: Retrieves a specific draft order
       operationId: GetDraftOrder
       parameters:
         - name: draft_order_id
@@ -272,6 +326,7 @@ paths:
       tags:
         - DraftOrder
       summary: Remove an existing DraftOrder
+      description: Deletes a draft order
       operationId: DeleteDraftOrder
       parameters:
         - name: draft_order_id
@@ -297,6 +352,7 @@ paths:
       tags:
         - DraftOrder
       summary: Receive a count of all DraftOrders
+      description: Retrieves a count of draft orders
       operationId: CountDraftOrders
       parameters:
         - name: since_id
@@ -343,6 +399,7 @@ paths:
       tags:
         - DraftOrder
       summary: Send an invoice
+      description: "Sends an invoice for the draft order.\r\n\r\nYou can include the following parameters in the body of the request:\r\n\r\n*   **draft_order_invoice**: The resource to send in the body of the request. \r\n\r\n    *   **to**: The email address that will populate the **to** field of the email. \r\n    *   **from**: The email address that will populate the **from** field of the email. \r\n    *   **bcc**: The list of email addresses to include in the **bcc** field of the email. Emails must be associated with staff accounts on the shop. \r\n    *   **subject**: The email subject. \r\n    *   **custom_message**: The custom message displayed in the email."
       operationId: SendInvoice
       parameters:
         - name: draft_order_id
@@ -381,6 +438,7 @@ paths:
       tags:
         - DraftOrder
       summary: Complete a draft order
+      description: "Completes a draft order. \r\n\r\nUsing the DraftOrder resource, you can create a draft order and transition it to an order.\r\n\r\nThe following flows are supported:\r\n\r\n*   Create a draft order that calculates taxes and totals but accept payment from the customer outside of Shopify. \r\n*   Create a draft order and send an invoice to the customer."
       operationId: CompleteDraftOrder
       parameters:
         - name: draft_order_id
@@ -419,6 +477,7 @@ paths:
       tags:
         - Order
       summary: Retrieve a list of orders
+      description: "Retrieves a list of orders that meet the specified criteria. **Usage notes:**  \r\n This endpoint implements pagination by using links that are provided in the response header. To learn more, see [Make paginated requests to the REST Admin API](/api/usage/pagination-rest)."
       operationId: ListOrders
       parameters:
         - name: attribution_app_id
@@ -534,6 +593,7 @@ paths:
       tags:
         - Order
       summary: Create an order
+      description: "Creates an order.\r\n\r\nBy default, product inventory is not claimed when creating an order.\r\n\r\nThere are additional optional parameters that can be specified in the body of the request when creating an order:\r\n\r\n*   **inventory_behaviour**: The behaviour to use when updating inventory. (default: `bypass`) \r\n\r\n    *   **bypass**: Do not claim inventory. \r\n    *   **decrement_ignoring_policy**: Ignore the product's inventory policy and claim inventory. \r\n    *   **decrement_obeying_policy**: Follow the product's inventory policy and claim inventory, if possible. \r\n\r\n*   **send_receipt**: Whether to send an order confirmation to the customer. (default: `false`) \r\n\r\n <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you're working on a private app and order confirmations are still being sent to the customer when `send_receipt` is set to `false`, then you need to disable the Storefront API from the private app's page in the Shopify admin.\r\n </aside> \r\n\r\n*   **send_fulfillment_receipt**: Whether to send a shipping confirmation to the customer. (default: `false`) \r\n\r\n <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you are including **shipping_address** or **billing_address**, make sure to pass both **first_name** and **last_name**. Otherwise both these addresses will be ignored.\r\n\r\n**Usage notes:**  \r\n If you're using this endpoint with a trial or Partner development store, then you can create no more than 5 new orders per minute.\r\n </aside>"
       operationId: CreateOrder
       requestBody:
         content:
@@ -565,6 +625,7 @@ paths:
       tags:
         - Order
       summary: Retrieve a specific order
+      description: Retrieve an order by specifying the ID. All fields of an order are returned unless specific fields are named.
       operationId: GetOrder
       parameters:
         - name: order_id
@@ -598,6 +659,7 @@ paths:
       tags:
         - Order
       summary: Retrieve a list of orders
+      description: "Retrieves a list of orders that meet the specified criteria. **Usage notes:**  \r\n This endpoint implements pagination by using links that are provided in the response header. To learn more, see [Make paginated requests to the REST Admin API](/api/usage/pagination-rest)."
       operationId: UpdateOrder
       parameters:
         - name: order_id
@@ -635,6 +697,7 @@ paths:
       tags:
         - Order
       summary: Delete an order
+      description: Deletes an order. Orders that interact with an online gateway can't be deleted.
       operationId: DeleteOrder
       parameters:
         - name: order_id
@@ -660,6 +723,7 @@ paths:
       tags:
         - Order
       summary: Retrieve an order count
+      description: Retrieve the total number of orders that meet the specified criteria.
       operationId: CountOrders
       parameters:
         - name: created_at_max
@@ -722,6 +786,7 @@ paths:
       tags:
         - Order
       summary: Close an order
+      description: Closes an order. A closed order is one that has no more work to be done. All items have been fulfilled or refunded.
       operationId: CloseOrder
       parameters:
         - name: order_id
@@ -751,6 +816,7 @@ paths:
       tags:
         - Order
       summary: Re-open a closed order
+      description: Re-opens a closed order
       operationId: ReOpenClosedOrder
       parameters:
         - name: order_id
@@ -780,6 +846,7 @@ paths:
       tags:
         - Order
       summary: Cancel an order
+      description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\nFor multi-currency orders, the `currency` property is required whenever the `amount` property is provided. For more information, refer to the [*Transaction resource*](/api/admin-rest/latest/resources/transaction).\r\n</aside>Cancels an order. Orders that are paid and have fulfillments can't be canceled."
       operationId: CancelOrder
       parameters:
         - name: order_id
@@ -818,7 +885,7 @@ paths:
       tags:
         - OrderRisk
       summary: Creates an order risk for an order
-      operationId: CreateOrderRisk
+      operationId: CreateOrderRiskForOrder
       parameters:
         - name: order_id
           in: path
@@ -830,11 +897,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateOrderRiskRequest'
+              $ref: '#/components/schemas/CreateOrderRiskForOrderRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateOrderRiskRequest'
-        required: true
+              $ref: '#/components/schemas/CreateOrderRiskForOrderRequest'
       responses:
         '201':
           description: Created
@@ -855,7 +921,8 @@ paths:
       tags:
         - OrderRisk
       summary: Retrieves a list of all order risks for an order
-      operationId: ListOrderRisks
+      description: 'Retrieves a list of all order risks for an order. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
+      operationId: ListOrderRisksForOrder
       parameters:
         - name: order_id
           in: path
@@ -922,6 +989,7 @@ paths:
       tags:
         - OrderRisk
       summary: Updates an order risk
+      description: "Updates an order risk\r\n\r\n <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nYou cannot modify an order risk that was created by another application.\r\n </aside>"
       operationId: UpdateOrderRisk
       parameters:
         - name: order_id
@@ -965,7 +1033,8 @@ paths:
       tags:
         - OrderRisk
       summary: Deletes an order risk for an order
-      operationId: DeleteOrderRisk
+      description: "Deletes an order risk for an order\r\n\r\n <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nYou cannot delete an order risk that was created by another application.\r\n </aside>"
+      operationId: DeleteOrderRiskForOrder
       parameters:
         - name: order_id
           in: path
@@ -1000,7 +1069,8 @@ paths:
       tags:
         - Refund
       summary: Retrieves a list of refunds for an order
-      operationId: ListRefunds
+      description: 'Retrieves a list of refunds for an order. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, see [ *Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
+      operationId: ListRefundsForOrder
       parameters:
         - name: order_id
           in: path
@@ -1053,6 +1123,7 @@ paths:
       tags:
         - Refund
       summary: Creates a refund
+      description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\nFor multi-currency orders, the `currency` property is required whenever the `amount` property is provided. \r\n </aside> \r\n\r\nCreates a refund. Use the `calculate` endpoint to produce the transactions to submit.\r\n\r\n <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nWhen you use this endpoint with a Partner development store or a trial store, you can create only five refunds per minute.\r\n </aside>"
       operationId: CreateRefund
       parameters:
         - name: order_id
@@ -1136,6 +1207,7 @@ paths:
       tags:
         - Refund
       summary: Calculates a refund
+      description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\nFor multi-currency orders, the `currency` property is required whenever the `amount` property is provided.\r\n </aside> \r\n\r\nCalculates refund transactions based on line items and shipping. When you want to create a refund, you should first use the `calculate` endpoint to generate accurate refund transactions. Specify the line items that are being refunded, their quantity and restock instructions, and whether you intend to refund shipping costs. If the restock instructions can't be met—for example, because you try to return more items than have been fulfilled—then the endpoint returns modified restock instructions. You can then use the response in the body of the request to create the actual refund.\r\n\r\nThe response includes a `transactions` object with `\"kind\": \"suggested_refund\"`, which must to be changed to `\"kind\" : \"refund\"` for the refund to be accepted."
       operationId: CalculateRefund
       parameters:
         - name: order_id
@@ -1174,6 +1246,7 @@ paths:
       tags:
         - Transaction
       summary: Retrieves a list of transactions
+      description: "Retrieves a list of transactions.\r\n\r\nTransactions attached to multi-currency orders are in the presentment currency by default. To retrieve transactions in the shop currency, include the URL parameter `in_shop_currency=true`."
       operationId: ListTransactions
       parameters:
         - name: order_id
@@ -1222,7 +1295,8 @@ paths:
       tags:
         - Transaction
       summary: Creates a transaction for an order
-      operationId: CreateTransaction
+      description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\nFor multi-currency orders, the `currency` property is required when creating refund and capture transactions. The value should be the presentment currency from the order. For more information, refer to the [*Transaction resource*](/api/admin-rest/latest/resources/transaction).\r\n</aside> \r\n\r\nCreates a transaction for an order."
+      operationId: CreateTransactionForOrder
       parameters:
         - name: order_id
           in: path
@@ -1234,10 +1308,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateTransactionRequest'
+              $ref: '#/components/schemas/CreateTransactionForOrderRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateTransactionRequest'
+              $ref: '#/components/schemas/CreateTransactionForOrderRequest'
         required: true
       responses:
         '201':
@@ -1289,6 +1363,7 @@ paths:
       tags:
         - Transaction
       summary: Retrieves a specific transaction
+      description: "Retrieves a specific transaction.\r\n\r\nTransactions attached to multi-currency orders are in the presentment currency by default. To retrieve transactions in the shop currency, include the URL parameter `in_shop_currency=true`.\r\n\r\n`extended_authorization_attributes` are available on this endpoint only to stores on the [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan that use Shopify Payments. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization)."
       operationId: GetTransaction
       parameters:
         - name: order_id
@@ -1469,7 +1544,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundLineItem'
-          description: "A list of refunded line items. Each entry has the following properties: \r\n\r\n*   **id**: The unique identifier of the line item in the refund. \r\n*   **line_item**: A line item being refunded. \r\n*   **line_item_id**: The ID of the related line item in the order. \r\n*   **quantity**: The refunded quantity of the associated line item. \r\n*   **restock_type**: How this refund line item affects inventory levels. Valid values: \r\n\r\n    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. \r\n    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. \r\n    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. \r\n    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds.   \r\n*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. \r\n*   **subtotal**: The subtotal of the refund line item. \r\n*   **total_tax**: The total tax on the refund line item. \r\n*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. \r\n*   **total_tax_set**: The total tax of the line item in shop and presentment currencies."
+          description: "A list of refunded line items. Each entry has the following properties: \r\n\r\n*   **id**: The unique identifier of the line item in the refund. \r\n*   **line_item**: A line item being refunded. \r\n*   **line_item_id**: The ID of the related line item in the order. \r\n*   **quantity**: The refunded quantity of the associated line item. \r\n*   **restock_type**: How this refund line item affects inventory levels. Valid values: \r\n\r\n    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. \r\n    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. \r\n    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. \r\n    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds. \r\n\r\n*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. \r\n*   **subtotal**: The subtotal of the refund line item. \r\n*   **total_tax**: The total tax on the refund line item. \r\n*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. \r\n*   **total_tax_set**: The total tax of the line item in shop and presentment currencies."
           nullable: true
         shipping:
           $ref: '#/components/schemas/Shipping'
@@ -1524,7 +1599,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutGiftCard'
-          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user.  Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
+          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user. \r\n\r\n Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
           nullable: true
         line_items:
           type: array
@@ -2007,7 +2082,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DraftLineItem'
-          description: "The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: \r\n\r\n*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. \r\n*   **id**: The ID of the line item. \r\n*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. \r\n*   **product_id**: The ID of the product corresponding to the line item’s product variant. \r\n*   **name**: The name of the product. \r\n*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. \r\n*   **vendor**: The vendor. \r\n*   **quantity**: The number of products that were purchased. \r\n*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. \r\n*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. \r\n*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. \r\n*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. \r\n*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. \r\n\r\n    *   **price**: The amount of tax to be charged. \r\n    *   **rate**: The rate of tax to be applied. \r\n    *   **title**: The name of the tax.  \r\n*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. \r\n*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. \r\n*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` \r\n*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. \r\n*   **taxable**: Whether the product is taxable. Applicable only to custom line items."
+          description: "The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: \r\n\r\n*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. \r\n*   **id**: The ID of the line item. \r\n*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. \r\n*   **product_id**: The ID of the product corresponding to the line item’s product variant. \r\n*   **name**: The name of the product. \r\n*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. \r\n*   **vendor**: The vendor. \r\n*   **quantity**: The number of products that were purchased. \r\n*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. \r\n*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. \r\n*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. \r\n*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. \r\n*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. \r\n\r\n    *   **price**: The amount of tax to be charged. \r\n    *   **rate**: The rate of tax to be applied. \r\n    *   **title**: The name of the tax. \r\n\r\n*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. \r\n*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. \r\n*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` \r\n*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. \r\n*   **taxable**: Whether the product is taxable. Applicable only to custom line items."
           nullable: true
         payment_terms:
           type: string
@@ -2168,7 +2243,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DiscountApplication'
-          description: "An ordered list of stacked discount applications.\r\n\r\nThe `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.\r\n\r\n*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: \r\n\r\n    *   `across`: The value is spread across all entitled lines. \r\n    *   `each`: The value is applied onto every entitled line. \r\n    *   `one`: The value is applied onto a single line. <div class=\"note-caution note\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.\r\n </div>   \r\n*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  \r\n*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  \r\n*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: \r\n\r\n    *   `all`: The discount is allocated onto all lines, \r\n    *   `entitled`: The discount is allocated only onto lines it is entitled for. \r\n    *   `explicit`: The discount is allocated onto explicitly selected lines.   \r\n*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: \r\n\r\n    *   `line_item`: The discount applies to line items. \r\n    *   `shipping_line`: The discount applies to shipping lines.   \r\n*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. \r\n*   **type**: The discount application type. Valid values: \r\n\r\n    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. \r\n    *   `discount_code`: The discount was applied by a discount code. \r\n    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). \r\n    *   `script`: The discount was applied by a Shopify Script.   \r\n*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  \r\n*   **value_type**: The type of the value. Valid values: \r\n\r\n    *   `fixed_amount`: A fixed amount discount value in the currency of the order. \r\n    *   `percentage`: A percentage discount value."
+          description: "An ordered list of stacked discount applications.\r\n\r\nThe `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.\r\n\r\n*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: \r\n\r\n    *   `across`: The value is spread across all entitled lines. \r\n    *   `each`: The value is applied onto every entitled line. \r\n    *   `one`: The value is applied onto a single line. <div class=\"note-caution note\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.\r\n </div> \r\n\r\n*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  \r\n*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  \r\n*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: \r\n\r\n    *   `all`: The discount is allocated onto all lines, \r\n    *   `entitled`: The discount is allocated only onto lines it is entitled for. \r\n    *   `explicit`: The discount is allocated onto explicitly selected lines. \r\n\r\n*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: \r\n\r\n    *   `line_item`: The discount applies to line items. \r\n    *   `shipping_line`: The discount applies to shipping lines. \r\n\r\n*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. \r\n*   **type**: The discount application type. Valid values: \r\n\r\n    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. \r\n    *   `discount_code`: The discount was applied by a discount code. \r\n    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). \r\n    *   `script`: The discount was applied by a Shopify Script. \r\n\r\n*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  \r\n*   **value_type**: The type of the value. Valid values: \r\n\r\n    *   `fixed_amount`: A fixed amount discount value in the currency of the order. \r\n    *   `percentage`: A percentage discount value."
           nullable: true
         discount_codes:
           type: array
@@ -2207,11 +2282,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-          description: "A list of line item objects, each containing information about an item in the order. Each object has the following properties: \r\n\r\n*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: \r\n\r\n`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`\r\n\r\n*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The ID of the line item. \r\n*   **price**: The price of the item before discounts have been applied in the shop currency. \r\n*   **price_set**: The price of the line item in shop and presentment currencies. \r\n*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. \r\n*   **quantity**: The number of items that were purchased. \r\n*   **requires_shipping**: Whether the item requires shipping. \r\n*   **sku**: The item's SKU (stock keeping unit). \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The ID of the product variant. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier. \r\n*   **name**: The name of the product variant. \r\n*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. \r\n*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  \r\n*   **taxable**: Whether the item was taxable. \r\n*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. \r\n\r\n    *   `title`: The name of the tax. \r\n    *   `price`: The amount added to the order for this tax in the shop currency. \r\n    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. \r\n    *   `rate`: The tax rate applied to the order to calculate the tax price. \r\n    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.   \r\n*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. \r\n*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. \r\n*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. \r\n\r\n    *   `amount`: The discount amount allocated to the line in the shop currency. \r\n    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. \r\n    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies.   \r\n*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n\r\n    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. \r\n    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. \r\n    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. \r\n    *   `name`: The name of the item's supplier. \r\n    *   `address1`: The street address of the item's supplier. \r\n    *   `address2`: The suite number of the item's supplier. \r\n    *   `city`: The city of the item's supplier. \r\n    *   `zip`: The zip of the item's supplier.   \r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
+          description: "A list of line item objects, each containing information about an item in the order. Each object has the following properties: \r\n\r\n*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: \r\n\r\n`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`\r\n\r\n*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location](https://shopify.dev/api/admin-rest/latest/resources/fulfillmentorder#resource-object) instead. \r\n*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The ID of the line item. \r\n*   **price**: The price of the item before discounts have been applied in the shop currency. \r\n*   **price_set**: The price of the line item in shop and presentment currencies. \r\n*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. \r\n*   **quantity**: The number of items that were purchased. \r\n*   **requires_shipping**: Whether the item requires shipping. \r\n*   **sku**: The item's SKU (stock keeping unit). \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The ID of the product variant. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier. \r\n*   **name**: The name of the product variant. \r\n*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. \r\n*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  \r\n*   **taxable**: Whether the item was taxable. \r\n*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. \r\n\r\n    *   `title`: The name of the tax. \r\n    *   `price`: The amount added to the order for this tax in the shop currency. \r\n    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. \r\n    *   `rate`: The tax rate applied to the order to calculate the tax price. \r\n    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. \r\n\r\n*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. \r\n*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. \r\n*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. \r\n\r\n    *   `amount`: The discount amount allocated to the line in the shop currency. \r\n    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. \r\n    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies. \r\n\r\n*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n\r\n    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. \r\n    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. \r\n    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. \r\n    *   `name`: The name of the item's supplier. \r\n    *   `address1`: The street address of the item's supplier. \r\n    *   `address2`: The suite number of the item's supplier. \r\n    *   `city`: The city of the item's supplier. \r\n    *   `zip`: The zip of the item's supplier. \r\n\r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
           nullable: true
         location_id:
           type: integer
           description: 'The ID of the physical location where the order was processed. To determine the locations where the line items are assigned for fulfillment please use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource.'
+          format: int64
+          nullable: true
+        merchant_of_record_app_id:
+          type: integer
+          description: The application acting as Merchant of Record for the order.
           format: int64
           nullable: true
         name:
@@ -2315,7 +2395,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxLine'
-          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
+          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. \r\n\r\n When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
           nullable: true
         taxes_included:
           type: boolean
@@ -2459,7 +2539,7 @@ components:
           description: The source of the order risk.
           nullable: true
       additionalProperties: false
-    CreateOrderRiskRequest:
+    CreateOrderRiskForOrderRequest:
       required:
         - risk
       type: object
@@ -2501,7 +2581,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundLineItem'
-          description: "A list of refunded line items. Each entry has the following properties: \r\n\r\n*   **id**: The unique identifier of the line item in the refund. \r\n*   **line_item**: A line item being refunded. \r\n*   **line_item_id**: The ID of the related line item in the order. \r\n*   **quantity**: The refunded quantity of the associated line item. \r\n*   **restock_type**: How this refund line item affects inventory levels. Valid values: \r\n\r\n    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. \r\n    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. \r\n    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. \r\n    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds.   \r\n*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. \r\n*   **subtotal**: The subtotal of the refund line item. \r\n*   **total_tax**: The total tax on the refund line item. \r\n*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. \r\n*   **total_tax_set**: The total tax of the line item in shop and presentment currencies."
+          description: "A list of refunded line items. Each entry has the following properties: \r\n\r\n*   **id**: The unique identifier of the line item in the refund. \r\n*   **line_item**: A line item being refunded. \r\n*   **line_item_id**: The ID of the related line item in the order. \r\n*   **quantity**: The refunded quantity of the associated line item. \r\n*   **restock_type**: How this refund line item affects inventory levels. Valid values: \r\n\r\n    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. \r\n    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. \r\n    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. \r\n    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds. \r\n\r\n*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. \r\n*   **subtotal**: The subtotal of the refund line item. \r\n*   **total_tax**: The total tax on the refund line item. \r\n*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. \r\n*   **total_tax_set**: The total tax of the line item in shop and presentment currencies."
           nullable: true
         restock:
           type: string
@@ -2637,7 +2717,7 @@ components:
           format: decimal
           nullable: true
       additionalProperties: false
-    CreateTransactionRequest:
+    CreateTransactionForOrderRequest:
       required:
         - transaction
       type: object
@@ -3201,7 +3281,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DraftLineItem'
-          description: "The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: \r\n\r\n*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. \r\n*   **id**: The ID of the line item. \r\n*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. \r\n*   **product_id**: The ID of the product corresponding to the line item’s product variant. \r\n*   **name**: The name of the product. \r\n*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. \r\n*   **vendor**: The vendor. \r\n*   **quantity**: The number of products that were purchased. \r\n*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. \r\n*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. \r\n*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. \r\n*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. \r\n*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. \r\n\r\n    *   **price**: The amount of tax to be charged. \r\n    *   **rate**: The rate of tax to be applied. \r\n    *   **title**: The name of the tax.  \r\n*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. \r\n*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. \r\n*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` \r\n*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. \r\n*   **taxable**: Whether the product is taxable. Applicable only to custom line items."
+          description: "The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: \r\n\r\n*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. \r\n*   **id**: The ID of the line item. \r\n*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. \r\n*   **product_id**: The ID of the product corresponding to the line item’s product variant. \r\n*   **name**: The name of the product. \r\n*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. \r\n*   **vendor**: The vendor. \r\n*   **quantity**: The number of products that were purchased. \r\n*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. \r\n*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. \r\n*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. \r\n*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. \r\n*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. \r\n\r\n    *   **price**: The amount of tax to be charged. \r\n    *   **rate**: The rate of tax to be applied. \r\n    *   **title**: The name of the tax. \r\n\r\n*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. \r\n*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. \r\n*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` \r\n*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. \r\n*   **taxable**: Whether the product is taxable. Applicable only to custom line items."
           nullable: true
         payment_terms:
           type: string
@@ -3466,7 +3546,7 @@ components:
           $ref: '#/components/schemas/FulfillmentStatus'
         tracking_company:
           type: string
-          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
+          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress** \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress \r\n\r\n <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
           nullable: true
         tracking_numbers:
           type: array
@@ -3754,11 +3834,11 @@ components:
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-20 characters.
+          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
           nullable: true
         owner_id:
           type: integer
@@ -3907,7 +3987,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DiscountApplication'
-          description: "An ordered list of stacked discount applications.\r\n\r\nThe `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.\r\n\r\n*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: \r\n\r\n    *   `across`: The value is spread across all entitled lines. \r\n    *   `each`: The value is applied onto every entitled line. \r\n    *   `one`: The value is applied onto a single line. <div class=\"note-caution note\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.\r\n </div>   \r\n*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  \r\n*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  \r\n*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: \r\n\r\n    *   `all`: The discount is allocated onto all lines, \r\n    *   `entitled`: The discount is allocated only onto lines it is entitled for. \r\n    *   `explicit`: The discount is allocated onto explicitly selected lines.   \r\n*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: \r\n\r\n    *   `line_item`: The discount applies to line items. \r\n    *   `shipping_line`: The discount applies to shipping lines.   \r\n*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. \r\n*   **type**: The discount application type. Valid values: \r\n\r\n    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. \r\n    *   `discount_code`: The discount was applied by a discount code. \r\n    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). \r\n    *   `script`: The discount was applied by a Shopify Script.   \r\n*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  \r\n*   **value_type**: The type of the value. Valid values: \r\n\r\n    *   `fixed_amount`: A fixed amount discount value in the currency of the order. \r\n    *   `percentage`: A percentage discount value."
+          description: "An ordered list of stacked discount applications.\r\n\r\nThe `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.\r\n\r\n*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: \r\n\r\n    *   `across`: The value is spread across all entitled lines. \r\n    *   `each`: The value is applied onto every entitled line. \r\n    *   `one`: The value is applied onto a single line. <div class=\"note-caution note\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.\r\n </div> \r\n\r\n*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  \r\n*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  \r\n*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: \r\n\r\n    *   `all`: The discount is allocated onto all lines, \r\n    *   `entitled`: The discount is allocated only onto lines it is entitled for. \r\n    *   `explicit`: The discount is allocated onto explicitly selected lines. \r\n\r\n*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: \r\n\r\n    *   `line_item`: The discount applies to line items. \r\n    *   `shipping_line`: The discount applies to shipping lines. \r\n\r\n*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. \r\n*   **type**: The discount application type. Valid values: \r\n\r\n    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. \r\n    *   `discount_code`: The discount was applied by a discount code. \r\n    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). \r\n    *   `script`: The discount was applied by a Shopify Script. \r\n\r\n*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  \r\n*   **value_type**: The type of the value. Valid values: \r\n\r\n    *   `fixed_amount`: A fixed amount discount value in the currency of the order. \r\n    *   `percentage`: A percentage discount value."
           nullable: true
         discount_codes:
           type: array
@@ -3946,11 +4026,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-          description: "A list of line item objects, each containing information about an item in the order. Each object has the following properties: \r\n\r\n*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: \r\n\r\n`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`\r\n\r\n*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The ID of the line item. \r\n*   **price**: The price of the item before discounts have been applied in the shop currency. \r\n*   **price_set**: The price of the line item in shop and presentment currencies. \r\n*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. \r\n*   **quantity**: The number of items that were purchased. \r\n*   **requires_shipping**: Whether the item requires shipping. \r\n*   **sku**: The item's SKU (stock keeping unit). \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The ID of the product variant. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier. \r\n*   **name**: The name of the product variant. \r\n*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. \r\n*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  \r\n*   **taxable**: Whether the item was taxable. \r\n*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. \r\n\r\n    *   `title`: The name of the tax. \r\n    *   `price`: The amount added to the order for this tax in the shop currency. \r\n    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. \r\n    *   `rate`: The tax rate applied to the order to calculate the tax price. \r\n    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.   \r\n*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. \r\n*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. \r\n*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. \r\n\r\n    *   `amount`: The discount amount allocated to the line in the shop currency. \r\n    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. \r\n    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies.   \r\n*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n\r\n    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. \r\n    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. \r\n    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. \r\n    *   `name`: The name of the item's supplier. \r\n    *   `address1`: The street address of the item's supplier. \r\n    *   `address2`: The suite number of the item's supplier. \r\n    *   `city`: The city of the item's supplier. \r\n    *   `zip`: The zip of the item's supplier.   \r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
+          description: "A list of line item objects, each containing information about an item in the order. Each object has the following properties: \r\n\r\n*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: \r\n\r\n`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`\r\n\r\n*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location](https://shopify.dev/api/admin-rest/latest/resources/fulfillmentorder#resource-object) instead. \r\n*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The ID of the line item. \r\n*   **price**: The price of the item before discounts have been applied in the shop currency. \r\n*   **price_set**: The price of the line item in shop and presentment currencies. \r\n*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. \r\n*   **quantity**: The number of items that were purchased. \r\n*   **requires_shipping**: Whether the item requires shipping. \r\n*   **sku**: The item's SKU (stock keeping unit). \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The ID of the product variant. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier. \r\n*   **name**: The name of the product variant. \r\n*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. \r\n*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  \r\n*   **taxable**: Whether the item was taxable. \r\n*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. \r\n\r\n    *   `title`: The name of the tax. \r\n    *   `price`: The amount added to the order for this tax in the shop currency. \r\n    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. \r\n    *   `rate`: The tax rate applied to the order to calculate the tax price. \r\n    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. \r\n\r\n*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. \r\n*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. \r\n*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. \r\n\r\n    *   `amount`: The discount amount allocated to the line in the shop currency. \r\n    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. \r\n    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies. \r\n\r\n*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n\r\n    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. \r\n    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. \r\n    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. \r\n    *   `name`: The name of the item's supplier. \r\n    *   `address1`: The street address of the item's supplier. \r\n    *   `address2`: The suite number of the item's supplier. \r\n    *   `city`: The city of the item's supplier. \r\n    *   `zip`: The zip of the item's supplier. \r\n\r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
           nullable: true
         location_id:
           type: integer
           description: 'The ID of the physical location where the order was processed. To determine the locations where the line items are assigned for fulfillment please use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource.'
+          format: int64
+          nullable: true
+        merchant_of_record_app_id:
+          type: integer
+          description: The application acting as Merchant of Record for the order.
           format: int64
           nullable: true
         name:
@@ -4054,7 +4139,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxLine'
-          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
+          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. \r\n\r\n When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
           nullable: true
         taxes_included:
           type: boolean
@@ -4389,7 +4474,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundLineItem'
-          description: "A list of refunded line items. Each entry has the following properties: \r\n\r\n*   **id**: The unique identifier of the line item in the refund. \r\n*   **line_item**: A line item being refunded. \r\n*   **line_item_id**: The ID of the related line item in the order. \r\n*   **quantity**: The refunded quantity of the associated line item. \r\n*   **restock_type**: How this refund line item affects inventory levels. Valid values: \r\n\r\n    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. \r\n    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. \r\n    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. \r\n    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds.   \r\n*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. \r\n*   **subtotal**: The subtotal of the refund line item. \r\n*   **total_tax**: The total tax on the refund line item. \r\n*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. \r\n*   **total_tax_set**: The total tax of the line item in shop and presentment currencies."
+          description: "A list of refunded line items. Each entry has the following properties: \r\n\r\n*   **id**: The unique identifier of the line item in the refund. \r\n*   **line_item**: A line item being refunded. \r\n*   **line_item_id**: The ID of the related line item in the order. \r\n*   **quantity**: The refunded quantity of the associated line item. \r\n*   **restock_type**: How this refund line item affects inventory levels. Valid values: \r\n\r\n    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. \r\n    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. \r\n    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. \r\n    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds. \r\n\r\n*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. \r\n*   **subtotal**: The subtotal of the refund line item. \r\n*   **total_tax**: The total tax on the refund line item. \r\n*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. \r\n*   **total_tax_set**: The total tax of the line item in shop and presentment currencies."
           nullable: true
         restock:
           type: string
@@ -4986,7 +5071,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DraftLineItem'
-          description: "The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: \r\n\r\n*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. \r\n*   **id**: The ID of the line item. \r\n*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. \r\n*   **product_id**: The ID of the product corresponding to the line item’s product variant. \r\n*   **name**: The name of the product. \r\n*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. \r\n*   **vendor**: The vendor. \r\n*   **quantity**: The number of products that were purchased. \r\n*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. \r\n*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. \r\n*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. \r\n*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. \r\n*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. \r\n\r\n    *   **price**: The amount of tax to be charged. \r\n    *   **rate**: The rate of tax to be applied. \r\n    *   **title**: The name of the tax.  \r\n*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. \r\n*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. \r\n*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` \r\n*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. \r\n*   **taxable**: Whether the product is taxable. Applicable only to custom line items."
+          description: "The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: \r\n\r\n*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. \r\n*   **id**: The ID of the line item. \r\n*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. \r\n*   **product_id**: The ID of the product corresponding to the line item’s product variant. \r\n*   **name**: The name of the product. \r\n*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. \r\n*   **vendor**: The vendor. \r\n*   **quantity**: The number of products that were purchased. \r\n*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. \r\n*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. \r\n*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. \r\n*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. \r\n*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. \r\n\r\n    *   **price**: The amount of tax to be charged. \r\n    *   **rate**: The rate of tax to be applied. \r\n    *   **title**: The name of the tax. \r\n\r\n*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. \r\n*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. \r\n*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` \r\n*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. \r\n*   **taxable**: Whether the product is taxable. Applicable only to custom line items."
           nullable: true
         payment_terms:
           type: string
@@ -5155,7 +5240,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DiscountApplication'
-          description: "An ordered list of stacked discount applications.\r\n\r\nThe `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.\r\n\r\n*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: \r\n\r\n    *   `across`: The value is spread across all entitled lines. \r\n    *   `each`: The value is applied onto every entitled line. \r\n    *   `one`: The value is applied onto a single line. <div class=\"note-caution note\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.\r\n </div>   \r\n*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  \r\n*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  \r\n*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: \r\n\r\n    *   `all`: The discount is allocated onto all lines, \r\n    *   `entitled`: The discount is allocated only onto lines it is entitled for. \r\n    *   `explicit`: The discount is allocated onto explicitly selected lines.   \r\n*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: \r\n\r\n    *   `line_item`: The discount applies to line items. \r\n    *   `shipping_line`: The discount applies to shipping lines.   \r\n*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. \r\n*   **type**: The discount application type. Valid values: \r\n\r\n    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. \r\n    *   `discount_code`: The discount was applied by a discount code. \r\n    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). \r\n    *   `script`: The discount was applied by a Shopify Script.   \r\n*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  \r\n*   **value_type**: The type of the value. Valid values: \r\n\r\n    *   `fixed_amount`: A fixed amount discount value in the currency of the order. \r\n    *   `percentage`: A percentage discount value."
+          description: "An ordered list of stacked discount applications.\r\n\r\nThe `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.\r\n\r\n*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: \r\n\r\n    *   `across`: The value is spread across all entitled lines. \r\n    *   `each`: The value is applied onto every entitled line. \r\n    *   `one`: The value is applied onto a single line. <div class=\"note-caution note\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.\r\n </div> \r\n\r\n*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  \r\n*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  \r\n*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: \r\n\r\n    *   `all`: The discount is allocated onto all lines, \r\n    *   `entitled`: The discount is allocated only onto lines it is entitled for. \r\n    *   `explicit`: The discount is allocated onto explicitly selected lines. \r\n\r\n*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: \r\n\r\n    *   `line_item`: The discount applies to line items. \r\n    *   `shipping_line`: The discount applies to shipping lines. \r\n\r\n*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. \r\n*   **type**: The discount application type. Valid values: \r\n\r\n    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. \r\n    *   `discount_code`: The discount was applied by a discount code. \r\n    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). \r\n    *   `script`: The discount was applied by a Shopify Script. \r\n\r\n*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  \r\n*   **value_type**: The type of the value. Valid values: \r\n\r\n    *   `fixed_amount`: A fixed amount discount value in the currency of the order. \r\n    *   `percentage`: A percentage discount value."
           nullable: true
         discount_codes:
           type: array
@@ -5194,11 +5279,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-          description: "A list of line item objects, each containing information about an item in the order. Each object has the following properties: \r\n\r\n*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: \r\n\r\n`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`\r\n\r\n*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The ID of the line item. \r\n*   **price**: The price of the item before discounts have been applied in the shop currency. \r\n*   **price_set**: The price of the line item in shop and presentment currencies. \r\n*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. \r\n*   **quantity**: The number of items that were purchased. \r\n*   **requires_shipping**: Whether the item requires shipping. \r\n*   **sku**: The item's SKU (stock keeping unit). \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The ID of the product variant. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier. \r\n*   **name**: The name of the product variant. \r\n*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. \r\n*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  \r\n*   **taxable**: Whether the item was taxable. \r\n*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. \r\n\r\n    *   `title`: The name of the tax. \r\n    *   `price`: The amount added to the order for this tax in the shop currency. \r\n    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. \r\n    *   `rate`: The tax rate applied to the order to calculate the tax price. \r\n    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.   \r\n*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. \r\n*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. \r\n*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. \r\n\r\n    *   `amount`: The discount amount allocated to the line in the shop currency. \r\n    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. \r\n    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies.   \r\n*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n\r\n    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. \r\n    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. \r\n    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. \r\n    *   `name`: The name of the item's supplier. \r\n    *   `address1`: The street address of the item's supplier. \r\n    *   `address2`: The suite number of the item's supplier. \r\n    *   `city`: The city of the item's supplier. \r\n    *   `zip`: The zip of the item's supplier.   \r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
+          description: "A list of line item objects, each containing information about an item in the order. Each object has the following properties: \r\n\r\n*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: \r\n\r\n`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`\r\n\r\n*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location](https://shopify.dev/api/admin-rest/latest/resources/fulfillmentorder#resource-object) instead. \r\n*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The ID of the line item. \r\n*   **price**: The price of the item before discounts have been applied in the shop currency. \r\n*   **price_set**: The price of the line item in shop and presentment currencies. \r\n*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. \r\n*   **quantity**: The number of items that were purchased. \r\n*   **requires_shipping**: Whether the item requires shipping. \r\n*   **sku**: The item's SKU (stock keeping unit). \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The ID of the product variant. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier. \r\n*   **name**: The name of the product variant. \r\n*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. \r\n*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  \r\n*   **taxable**: Whether the item was taxable. \r\n*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. \r\n\r\n    *   `title`: The name of the tax. \r\n    *   `price`: The amount added to the order for this tax in the shop currency. \r\n    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. \r\n    *   `rate`: The tax rate applied to the order to calculate the tax price. \r\n    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. \r\n\r\n*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. \r\n*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. \r\n*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. \r\n*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. \r\n\r\n    *   `amount`: The discount amount allocated to the line in the shop currency. \r\n    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. \r\n    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies. \r\n\r\n*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' \"FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. \r\n\r\n    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. \r\n    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. \r\n    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. \r\n    *   `name`: The name of the item's supplier. \r\n    *   `address1`: The street address of the item's supplier. \r\n    *   `address2`: The suite number of the item's supplier. \r\n    *   `city`: The city of the item's supplier. \r\n    *   `zip`: The zip of the item's supplier. \r\n\r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
           nullable: true
         location_id:
           type: integer
           description: 'The ID of the physical location where the order was processed. To determine the locations where the line items are assigned for fulfillment please use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource.'
+          format: int64
+          nullable: true
+        merchant_of_record_app_id:
+          type: integer
+          description: The application acting as Merchant of Record for the order.
           format: int64
           nullable: true
         name:
@@ -5302,7 +5392,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxLine'
-          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
+          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. \r\n\r\n When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
           nullable: true
         taxes_included:
           type: boolean

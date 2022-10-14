@@ -3,9 +3,10 @@
   "info": {
     "title": "Transaction",
     "description": "        <p>Transactions are created for every order that results in an exchange of money.</p>\n        {{ '/api/reference/transaction.png' | image }}\n        <p>There are five types of transactions:</p>\n        <ul>\n         <li><strong>Authorization</strong>: An amount reserved against the cardholder's funding source. Money does not change hands until the authorization is captured.</li>\n         <li><strong>Sale</strong>: An authorization and capture performed together in a single step.</li>\n         <li><strong>Capture</strong>: A transfer of the money that was reserved during the authorization stage.</li>\n         <li><strong>Void</strong>: A cancellation of a pending authorization or capture.</li>\n         <li><strong>Refund</strong>: A partial or full return of captured funds to the cardholder. A refund can happen only after a capture is processed.</li>\n        </ul>\n        <p>Refund transactions must be created by using the <a href=\"/docs/admin-api/rest/reference/orders/refund\">Refund resource</a>.</p>\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>An order can have more than one authorization transaction associated with it. This might happen when an order is edited or when a post-purchase upsell is added to the order. To be notified when an order is edited subscribe to the OrderEdit webhook.</p>\n          <p>If your app captures payments, you should make a <code>GET</code> request to the <code>/admin/api/{version}/orders/{order_id}/transactions.json</code> endpoint to retrieve the\n           authorization transactions associated with an order. Then, to complete the full order payment capture, you should use the <code>authorization</code> or <code>parent_id</code>\n           properties in separate capture <code>POST</code> requests to the same endpoint for each authorization transaction.</p>\n        </div>\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>An order can have no more than 100 transactions associated with it.</p>\n        </div>\n",
-    "x-owner": "https://vault.shopify.io/teams/255",
+    "x-owner": "https://vault.shopify.io/teams/2048",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -85,6 +86,7 @@
                         "currency_exchange_adjustment": null,
                         "amount": "209.00",
                         "currency": "USD",
+                        "payment_id": "c901414060.3",
                         "admin_graphql_api_id": "gid://shopify/OrderTransaction/179259969"
                       },
                       {
@@ -122,6 +124,7 @@
                         "currency_exchange_adjustment": null,
                         "amount": "598.94",
                         "currency": "USD",
+                        "payment_id": "c901414060.1",
                         "admin_graphql_api_id": "gid://shopify/OrderTransaction/389404469"
                       },
                       {
@@ -145,6 +148,7 @@
                         "currency_exchange_adjustment": null,
                         "amount": "250.94",
                         "currency": "USD",
+                        "payment_id": "c901414060.2",
                         "admin_graphql_api_id": "gid://shopify/OrderTransaction/801038806"
                       }
                     ]
@@ -154,19 +158,19 @@
                   "value": {
                     "transactions": [
                       {
-                        "id": 1068278469,
+                        "id": 1068278468,
                         "order_id": 450789469,
                         "kind": "capture",
                         "gateway": "bogus",
                         "status": "success",
                         "message": "Bogus Gateway: Forced success",
-                        "created_at": "2022-04-05T11:06:17-06:00",
+                        "created_at": "2022-10-03T10:51:21-06:00",
                         "test": true,
                         "authorization": null,
                         "location_id": null,
                         "user_id": null,
                         "parent_id": 389404469,
-                        "processed_at": "2022-04-05T11:06:17-06:00",
+                        "processed_at": "2022-10-03T10:51:21-06:00",
                         "device_id": null,
                         "error_code": null,
                         "source_name": "755357713",
@@ -185,7 +189,8 @@
                         "currency_exchange_adjustment": null,
                         "amount": "10.00",
                         "currency": "USD",
-                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278469"
+                        "payment_id": "c901414060.1",
+                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278468"
                       }
                     ]
                   }
@@ -199,7 +204,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-10/orders/450789469/transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/transactions.json",
@@ -209,32 +214,32 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"209.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"},{\"id\":389404469,\"order_id\":450789469,\"kind\":\"authorization\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-01T11:57:11-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":null,\"processed_at\":\"2005-08-01T11:57:11-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/389404469\"},{\"id\":801038806,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T10:22:51-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"250.94\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/801038806\"}]}"
+            "body": "{\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"209.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.3\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"},{\"id\":389404469,\"order_id\":450789469,\"kind\":\"authorization\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-01T11:57:11-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":null,\"processed_at\":\"2005-08-01T11:57:11-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/389404469\"},{\"id\":801038806,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T10:22:51-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"250.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.2\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/801038806\"}]}"
           },
           "name": "Retrieve an order's transactions",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Transaction.all(\n  session: test_session,\n  order_id: 450789469,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Transaction.all(\n  session: test_session,\n  order_id: 450789469,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=801038806",
-          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-10/orders/450789469/transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/transactions.json",
@@ -244,29 +249,41 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"transactions\":[{\"id\":1068278469,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:17-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:17-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278469\"}]}"
+            "body": "{\"transactions\":[{\"id\":1068278468,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:21-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:21-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278468\"}]}"
           },
           "name": "Retrieve an order's transactions after a specified ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json?since_id=801038806\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/transactions.json?since_id=801038806\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Transaction.all(\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Transaction.all(\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [\"since_id\" => \"801038806\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [\"since_id\" => \"801038806\"], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "requires_any_scope": true,
+            "scope": "orders"
+          },
+          {
+            "requires_any_scope": true,
+            "scope": "marketplace_orders"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/orders/{order_id}/transactions.json",
       "action": "get"
     },
@@ -309,19 +326,19 @@
                 "Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID": {
                   "value": {
                     "transaction": {
-                      "id": 1068278470,
+                      "id": 1068278465,
                       "order_id": 450789469,
                       "kind": "capture",
                       "gateway": "bogus",
                       "status": "success",
                       "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-04-05T11:06:22-06:00",
+                      "created_at": "2022-10-03T10:51:12-06:00",
                       "test": true,
                       "authorization": null,
                       "location_id": null,
                       "user_id": null,
                       "parent_id": 389404469,
-                      "processed_at": "2022-04-05T11:06:22-06:00",
+                      "processed_at": "2022-10-03T10:51:12-06:00",
                       "device_id": null,
                       "error_code": null,
                       "source_name": "755357713",
@@ -340,102 +357,27 @@
                       "currency_exchange_adjustment": null,
                       "amount": "10.00",
                       "currency": "USD",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278470"
-                    }
-                  }
-                },
-                "Void a transaction": {
-                  "value": {
-                    "transaction": {
-                      "id": 1068278471,
-                      "order_id": 450789469,
-                      "kind": "void",
-                      "gateway": "bogus",
-                      "status": "success",
-                      "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-04-05T11:06:23-06:00",
-                      "test": true,
-                      "authorization": null,
-                      "location_id": null,
-                      "user_id": null,
-                      "parent_id": 389404469,
-                      "processed_at": "2022-04-05T11:06:23-06:00",
-                      "device_id": null,
-                      "error_code": null,
-                      "source_name": "755357713",
-                      "payment_details": {
-                        "credit_card_bin": null,
-                        "avs_result_code": null,
-                        "cvv_result_code": null,
-                        "credit_card_number": "•••• •••• •••• 4242",
-                        "credit_card_company": "Visa",
-                        "credit_card_name": null,
-                        "credit_card_wallet": null,
-                        "credit_card_expiration_month": null,
-                        "credit_card_expiration_year": null
-                      },
-                      "receipt": {},
-                      "currency_exchange_adjustment": null,
-                      "amount": "0.00",
-                      "currency": "USD",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278471"
-                    }
-                  }
-                },
-                "Create a test transaction": {
-                  "value": {
-                    "transaction": {
-                      "id": 1068278472,
-                      "order_id": 450789469,
-                      "kind": "capture",
-                      "gateway": "bogus",
-                      "status": "success",
-                      "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-04-05T11:06:25-06:00",
-                      "test": true,
-                      "authorization": null,
-                      "location_id": null,
-                      "user_id": null,
-                      "parent_id": 389404469,
-                      "processed_at": "2022-04-05T11:06:25-06:00",
-                      "device_id": null,
-                      "error_code": null,
-                      "source_name": "755357713",
-                      "payment_details": {
-                        "credit_card_bin": null,
-                        "avs_result_code": null,
-                        "cvv_result_code": null,
-                        "credit_card_number": "•••• •••• •••• 4242",
-                        "credit_card_company": "Visa",
-                        "credit_card_name": null,
-                        "credit_card_wallet": null,
-                        "credit_card_expiration_month": null,
-                        "credit_card_expiration_year": null
-                      },
-                      "receipt": {},
-                      "currency_exchange_adjustment": null,
-                      "amount": "10.00",
-                      "currency": "USD",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278472"
+                      "payment_id": "c901414060.1",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278465"
                     }
                   }
                 },
                 "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code": {
                   "value": {
                     "transaction": {
-                      "id": 1068278473,
+                      "id": 1068278466,
                       "order_id": 450789469,
                       "kind": "capture",
                       "gateway": "bogus",
                       "status": "success",
                       "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-04-05T11:06:27-06:00",
+                      "created_at": "2022-10-03T10:51:16-06:00",
                       "test": true,
                       "authorization": null,
                       "location_id": null,
                       "user_id": null,
                       "parent_id": 389404469,
-                      "processed_at": "2022-04-05T11:06:27-06:00",
+                      "processed_at": "2022-10-03T10:51:16-06:00",
                       "device_id": null,
                       "error_code": null,
                       "source_name": "755357713",
@@ -454,7 +396,86 @@
                       "currency_exchange_adjustment": null,
                       "amount": "598.94",
                       "currency": "USD",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278473"
+                      "payment_id": "c901414060.1",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278466"
+                    }
+                  }
+                },
+                "Create a test transaction": {
+                  "value": {
+                    "transaction": {
+                      "id": 1068278467,
+                      "order_id": 450789469,
+                      "kind": "capture",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": "Bogus Gateway: Forced success",
+                      "created_at": "2022-10-03T10:51:19-06:00",
+                      "test": true,
+                      "authorization": null,
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": 389404469,
+                      "processed_at": "2022-10-03T10:51:19-06:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "755357713",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa",
+                        "credit_card_name": null,
+                        "credit_card_wallet": null,
+                        "credit_card_expiration_month": null,
+                        "credit_card_expiration_year": null
+                      },
+                      "receipt": {},
+                      "currency_exchange_adjustment": null,
+                      "amount": "10.00",
+                      "currency": "USD",
+                      "payment_id": "c901414060.1",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278467"
+                    }
+                  }
+                },
+                "Void a transaction": {
+                  "value": {
+                    "transaction": {
+                      "id": 1068278469,
+                      "order_id": 450789469,
+                      "kind": "void",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": "Bogus Gateway: Forced success",
+                      "created_at": "2022-10-03T10:51:33-06:00",
+                      "test": true,
+                      "authorization": null,
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": 389404469,
+                      "processed_at": "2022-10-03T10:51:33-06:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "755357713",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa",
+                        "credit_card_name": null,
+                        "credit_card_wallet": null,
+                        "credit_card_expiration_month": null,
+                        "credit_card_expiration_year": null
+                      },
+                      "receipt": {},
+                      "currency_exchange_adjustment": null,
+                      "amount": "0.00",
+                      "currency": "USD",
+                      "payment_id": "c901414060.1",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278469"
                     }
                   }
                 }
@@ -467,7 +488,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-10/orders/450789469/transactions.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
@@ -477,102 +498,32 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278470,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:22-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:22-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278470\"}}"
+            "body": "{\"transaction\":{\"id\":1068278465,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:12-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278465\"}}"
           },
           "name": "Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
-            "headers": {},
-            "body": "{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"void\",\"parent_id\":389404469}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278471,\"order_id\":450789469,\"kind\":\"void\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:23-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:23-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"0.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278471\"}}"
-          },
-          "name": "Void a transaction",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"void\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"void\"\ntransaction.parent_id = 389404469\ntransaction.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"void\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"void\";\n$transaction->parent_id = 389404469;\n$transaction->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
-            "headers": {},
-            "body": "{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469,\"test\":true}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278472,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:25-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:25-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278472\"}}"
-          },
-          "name": "Create a test transaction",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.test = true\ntransaction.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\ntransaction.test = true;\nawait transaction.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->test = true;\n$transaction->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-10/orders/450789469/transactions.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
@@ -582,29 +533,111 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278473,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:27-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:27-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278473\"}}"
+            "body": "{\"transaction\":{\"id\":1068278466,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:16-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:16-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278466\"}}"
           },
           "name": "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"transaction\":{\"kind\":\"capture\",\"authorization\":\"authorization-key\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"transaction\":{\"kind\":\"capture\",\"authorization\":\"authorization-key\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.kind = \"capture\"\ntransaction.authorization = \"authorization-key\"\ntransaction.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.kind = \"capture\"\ntransaction.authorization = \"authorization-key\"\ntransaction.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.kind = \"capture\";\ntransaction.authorization = \"authorization-key\";\nawait transaction.save({\n  update: true,\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.kind = \"capture\";\ntransaction.authorization = \"authorization-key\";\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->kind = \"capture\";\n$transaction->authorization = \"authorization-key\";\n$transaction->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->kind = \"capture\";\n$transaction->authorization = \"authorization-key\";\n$transaction->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/orders/450789469/transactions.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
+            "headers": {},
+            "body": "{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469,\"test\":true}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"transaction\":{\"id\":1068278467,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:19-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:19-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278467\"}}"
+          },
+          "name": "Create a test transaction",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.test = true\ntransaction.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\ntransaction.test = true;\nawait transaction.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->test = true;\n$transaction->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/orders/450789469/transactions.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
+            "headers": {},
+            "body": "{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"void\",\"parent_id\":389404469}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"transaction\":{\"id\":1068278469,\"order_id\":450789469,\"kind\":\"void\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:33-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:33-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"0.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278469\"}}"
+          },
+          "name": "Void a transaction",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"void\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"void\"\ntransaction.parent_id = 389404469\ntransaction.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"void\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"void\";\n$transaction->parent_id = 389404469;\n$transaction->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "requires_any_scope": true,
+            "scope": "orders"
+          },
+          {
+            "requires_any_scope": true,
+            "scope": "marketplace_orders"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/orders/{order_id}/transactions.json",
       "action": "post"
     },
@@ -650,7 +683,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/orders/450789469/transactions/count.json",
+          "request_path": "/admin/api/2022-10/orders/450789469/transactions/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/transactions/count.json",
@@ -666,23 +699,35 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/transactions/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Transaction.count(\n  session: test_session,\n  order_id: 450789469,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Transaction.count(\n  session: test_session,\n  order_id: 450789469,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.count({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.count({\n  session: test_session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::count(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::count(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "requires_any_scope": true,
+            "scope": "orders"
+          },
+          {
+            "requires_any_scope": true,
+            "scope": "marketplace_orders"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/orders/{order_id}/transactions/count.json",
       "action": "get"
     },
@@ -787,7 +832,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/orders/450789469/transactions/389404469.json",
+          "request_path": "/admin/api/2022-10/orders/450789469/transactions/389404469.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2021-01/orders/450789469/transactions/389404469.json",
@@ -803,23 +848,35 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions/389404469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/transactions/389404469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Transaction.find(\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Transaction.find(\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::find(\n    $this->test_session, // Session\n    389404469, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::find(\n    $this->test_session, // Session\n    389404469, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "requires_any_scope": true,
+            "scope": "orders"
+          },
+          {
+            "requires_any_scope": true,
+            "scope": "marketplace_orders"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/orders/{order_id}/transactions/{transaction_id}.json",
       "action": "get"
     }

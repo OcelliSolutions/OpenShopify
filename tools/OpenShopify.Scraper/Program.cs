@@ -1,6 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Data;
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NJsonSchema;
 using NJsonSchema.CodeGeneration;
 using NJsonSchema.CodeGeneration.CSharp;
@@ -9,6 +11,7 @@ using NSwag.CodeGeneration.CSharp;
 using NSwag.CodeGeneration.CSharp.Models;
 using NSwag.CodeGeneration.OperationNameGenerators;
 using PluralizeService.Core;
+using SchemaType = NJsonSchema.SchemaType;
 
 dynamic GetMainMenu(string url)
 {
@@ -131,6 +134,120 @@ void CreateFoldersIfMissing(string path)
     }
 }
 
+dynamic AddHiddenEndpoints(dynamic openApi)
+{
+    //var finalPaths = new List<dynamic?>();
+    var originalPaths = openApi.paths.ToObject<List<dynamic?>>();
+    foreach (var path in originalPaths)
+    {
+        foreach (var example in path["x-examples"])
+        {
+            if (example == null)
+                continue;
+            var examplePath = GetBasePath(example.request_path);
+
+            try
+            {
+                examplePath = Regex.Replace(examplePath, "[0-9]{4}-[0-9]{2}", "{api_version}");
+
+                if (examplePath.Contains("/admin/api/{api_version}"))
+                {
+                    examplePath = examplePath.Replace("/admin/api/{api_version}", string.Empty);
+                }
+
+                if (examplePath.Contains("/admin/oauth"))
+                {
+                    examplePath = examplePath.Replace("/admin", string.Empty);
+                }
+
+                var pathAndParameters = new Dictionary<string, string>()
+                {
+                    { "addresses", "{address_id}" },
+                    {"customer_saved_searches", "{customer_saved_search_id}"},
+                    { "searches", "{search_id}" }
+                };
+
+                foreach (var pathAndParameter in pathAndParameters)
+                {
+                    var pattern = $@"{pathAndParameter.Key}\/[0-9]+([.\/])";
+                    if (Regex.IsMatch(examplePath, pattern))
+                        examplePath = Regex.Replace(examplePath, pattern, $@"{pathAndParameter.Key}/{pathAndParameter.Value}$1");
+                }
+
+                const string countriesPattern = @"([a-zA-Z_]+)ies\/([0-9]+)([.\/])";
+                const string blogsPattern = @"([a-zA-Z_]+)s\/([0-9]+)([.\/])";
+                const string batchPattern = @"([a-zA-Z_]+)\/([0-9]+)([.\/])";
+                
+                if (Regex.IsMatch(examplePath, countriesPattern))
+                    examplePath = Regex.Replace(examplePath, countriesPattern, "$1ies/{$1y_id}$3");
+                if (Regex.IsMatch(examplePath, blogsPattern))
+                    examplePath = Regex.Replace(examplePath, blogsPattern, "$1s/{$1_id}$3");
+                if (Regex.IsMatch(examplePath, batchPattern))
+                    examplePath = Regex.Replace(examplePath, batchPattern, "$1/{$1_id}$3");
+
+                if (Regex.IsMatch(examplePath, "[0-9]+"))
+                    throw new InvalidExpressionException($@"Invalid example cleanup: {examplePath}");
+
+                var newPath = path;
+
+                if (example.name == "Create a metafield for a blog")
+                    Console.WriteLine("Create a metafield for a blog");
+                newPath.summary = example.name;
+                newPath.url = examplePath;
+                newPath.sample_path = example.request_path;
+                newPath.operation_id = CreateOperationId((string)example.name, examplePath);
+                newPath["x-examples"] = null;
+                //newPath.parameters = new JArray();
+
+                var keepParameters = new JArray();
+                foreach (var parameter in newPath.parameters)
+                {
+                    if (!parameter.name.ToString().EndsWith("_id"))
+                        keepParameters.Add(parameter);
+                    if (parameter.name.ToString().EndsWith("since_id"))
+                        keepParameters.Add(parameter);
+                }
+
+                newPath.parameters = keepParameters;
+                var matches = Regex.Matches((string)examplePath, @"{([a-zA-Z_]+)}");
+                foreach (var match in matches)
+                {
+                    var matchClean = match.ToString()?.Replace("{", "").Replace("}", "");
+                    var parameterFound = false;
+                    foreach (var parameter in newPath.parameters)
+                    {
+                        if (parameter.name.ToString() != matchClean)
+                            continue;
+
+                        parameterFound = true;
+                        break;
+                    }
+                    if(parameterFound) continue;
+
+                    dynamic schema = new JObject();
+                    schema.type = "string";
+                    dynamic newParameter = new JObject();
+                    newParameter.name = matchClean;
+                    newParameter.@in = "path";
+                    newParameter.required = true;
+                    newParameter.schema = schema;
+                    newPath.parameters.Insert(0, newParameter);
+                }
+                openApi.paths.Add(newPath);
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($@"{ex.Message} | {path.url}/{path.action}");
+                Console.ResetColor();
+            }
+        }
+    }
+
+    //openApi.paths = finalPaths;
+    return openApi;
+}
+
 OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
 {
     if (openApi == null) return new OpenApiDocument();
@@ -149,6 +266,8 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
     // Servers are added later depending on the paths given
     var hasDefaultRoute = false;
     var hasOAuthRoute = false;
+    openApi = AddHiddenEndpoints(openApi);
+
     foreach (var path in openApi.paths)
     {
         // Get the path. Multiple operations (GET, POST, PUT, and DELETE) can share a path.
@@ -173,13 +292,20 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
             clean.Paths.Add(pathKey, new OpenApiPathItem());
 
         // Create the endpoint (GET, POST, PUT, and DELETE)
+        var summaryDescriptionAreDifferent = path.description == path.summary;
+
         var endpoint = new OpenApiOperation
         {
-            Description = HtmlToMarkdown((string)path.description),
-            Summary = path.summary,
-            OperationId = CreateOperationId((string)path.summary, pathKey)
+            Description = CleanEquals(path.description, path.summary) ? null : HtmlToMarkdown((string)path.description),
+            Summary = HtmlToMarkdown((string)path.summary),
+            OperationId = (string?)path.operation_id ?? CreateOperationId((string)path.summary, pathKey),
+            ExternalDocumentation = new OpenApiExternalDocumentation()
+            {
+                Url = $"https://shopify.dev/api/admin-rest/{openApi.info.version}/resources/{openApi.info.title}",
+                ExtensionData = new Dictionary<string, object>() { { "sample_path", path.sample_path }}
+            }
         };
-
+        
         // add the input parameters
         var hasLimit = false;
         var hasPageInfo = false;
@@ -338,7 +464,7 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
 
         try
         {
-            clean.Paths[pathKey].Add((string)path.action, endpoint);
+            clean.Paths[pathKey].TryAdd((string)path.action, endpoint);
         }
         catch (Exception ex)
         {
@@ -386,8 +512,13 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
             };
             cleanComponent.Properties.Add((string)property.name, cleanProperty);
         }
-        if(!hasId)
+
+        if (!hasId)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($@"  * No ID: {cleanComponent.Id}Orig");
+            Console.ResetColor();
+        }
 
         clean.Components.Schemas.Add($@"{cleanComponent.Id}Orig", cleanComponent);
     }
@@ -538,6 +669,21 @@ JsonSchema GetSchema(string propertyName)
     return schema;
 }
 
+bool CleanEquals(string? value1, string? value2)
+{
+    var cleanValue1 = Regex.Replace(value1 ?? string.Empty, "[^a-zA-Z0-9]", string.Empty);
+    var cleanValue2 = Regex.Replace(value2 ?? string.Empty, "[^a-zA-Z0-9]", string.Empty);
+    return cleanValue1.ToLower().Equals(cleanValue2.ToLower());
+}
+
+string GetBasePath(string path)
+{
+    if (path.IndexOf('?') > 0)
+        path = path.Substring(0, path.IndexOf('?'));
+
+    return path;
+}
+
 //There is a ton of HTML in the spec. Get rid of it.
 string? RemoveHtmlFromString(string? html)
 {
@@ -592,6 +738,7 @@ string CreateOperationId(string summary, string path)
         .Replace("GetAllOf", "List")
         .Replace("GetAll", "List")
         .Replace("ListAllOf", "List")
+        .Replace("GetMetafields", "ListMetafields")
         .Replace("GetDetailsForSingle", "Get")
         .Replace("GetSingle", "Get")
         .Replace("GetSpecific", "Get")
@@ -599,13 +746,13 @@ string CreateOperationId(string summary, string path)
         .Replace("GetOrderCount", "CountOrders")
         .Replace("GetCountOf", "Count")
         .Replace("DeleteExisting", "Delete")
-        .Replace("ForArticle", "")
-        .Replace("OfArticle", "")
-        .Replace("FromBlog", "")
-        .Replace("ForBlog", "")
-        .Replace("OfBlog", "")
-        .Replace("ForOrder", "")
-        .Replace("OfOrder", "")
+        //.Replace("ForArticle", "")
+        //.Replace("OfArticle", "")
+        //.Replace("FromBlog", "")
+        //.Replace("ForBlog", "")
+        //.Replace("OfBlog", "")
+        //.Replace("ForOrder", "")
+        //.Replace("OfOrder", "")
         .Replace("ForCountry", "")
         .Replace("ThatArePublishedToYourApp", "")
         .Replace("ThatIsPublishedToYourApp", "")

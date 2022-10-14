@@ -5,7 +5,8 @@
     "description": "        <p>\n          The FulfillmentRequest resource represents a fulfillment request made by the merchant to a <a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice\">fulfillment service</a>\n          for a <a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder\">fulfillment order</a>.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/457",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -55,7 +56,7 @@
                 "Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items": {
                   "value": {
                     "original_fulfillment_order": {
-                      "id": 1046000785,
+                      "id": 1046000798,
                       "shop_id": 548380009,
                       "order_id": 450789469,
                       "assigned_location_id": 24826418,
@@ -63,7 +64,7 @@
                       "status": "closed",
                       "supported_actions": [],
                       "destination": {
-                        "id": 1046000785,
+                        "id": 1046000795,
                         "address1": "Chestnut Street 92",
                         "address2": "",
                         "city": "Louisville",
@@ -89,9 +90,9 @@
                       },
                       "line_items": [
                         {
-                          "id": 1058737502,
+                          "id": 1058737501,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000785,
+                          "fulfillment_order_id": 1046000798,
                           "quantity": 1,
                           "line_item_id": 466157049,
                           "inventory_item_id": 39072856,
@@ -99,9 +100,9 @@
                           "variant_id": 39072856
                         },
                         {
-                          "id": 1058737503,
+                          "id": 1058737502,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000785,
+                          "fulfillment_order_id": 1046000798,
                           "quantity": 1,
                           "line_item_id": 518995019,
                           "inventory_item_id": 49148385,
@@ -109,9 +110,9 @@
                           "variant_id": 49148385
                         },
                         {
-                          "id": 1058737504,
+                          "id": 1058737503,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000785,
+                          "fulfillment_order_id": 1046000798,
                           "quantity": 1,
                           "line_item_id": 703073504,
                           "inventory_item_id": 457924702,
@@ -123,7 +124,7 @@
                       "fulfillment_service_handle": "shipwire-app"
                     },
                     "submitted_fulfillment_order": {
-                      "id": 1046000786,
+                      "id": 1046000799,
                       "shop_id": 548380009,
                       "order_id": 450789469,
                       "assigned_location_id": 24826418,
@@ -133,7 +134,7 @@
                         "cancel_fulfillment_order"
                       ],
                       "destination": {
-                        "id": 1046000786,
+                        "id": 1046000796,
                         "address1": "Chestnut Street 92",
                         "address2": "",
                         "city": "Louisville",
@@ -159,9 +160,9 @@
                       },
                       "line_items": [
                         {
-                          "id": 1058737505,
+                          "id": 1058737504,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000786,
+                          "fulfillment_order_id": 1046000799,
                           "quantity": 1,
                           "line_item_id": 466157049,
                           "inventory_item_id": 39072856,
@@ -169,9 +170,9 @@
                           "variant_id": 39072856
                         },
                         {
-                          "id": 1058737506,
+                          "id": 1058737505,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000786,
+                          "fulfillment_order_id": 1046000799,
                           "quantity": 1,
                           "line_item_id": 518995019,
                           "inventory_item_id": 49148385,
@@ -185,14 +186,14 @@
                           "request_options": {
                             "notify_customer": false
                           },
-                          "sent_at": "2022-06-30T09:16:46-06:00",
+                          "sent_at": "2022-10-03T11:19:53-06:00",
                           "kind": "fulfillment_request"
                         }
                       ],
                       "fulfillment_service_handle": "shipwire-app"
                     },
                     "unsubmitted_fulfillment_order": {
-                      "id": 1046000787,
+                      "id": 1046000800,
                       "shop_id": 548380009,
                       "order_id": 450789469,
                       "assigned_location_id": 24826418,
@@ -203,7 +204,7 @@
                         "create_fulfillment"
                       ],
                       "destination": {
-                        "id": 1046000787,
+                        "id": 1046000797,
                         "address1": "Chestnut Street 92",
                         "address2": "",
                         "city": "Louisville",
@@ -229,9 +230,9 @@
                       },
                       "line_items": [
                         {
-                          "id": 1058737507,
+                          "id": 1058737506,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000787,
+                          "fulfillment_order_id": 1046000800,
                           "quantity": 1,
                           "line_item_id": 703073504,
                           "inventory_item_id": 457924702,
@@ -247,7 +248,7 @@
                 "Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank": {
                   "value": {
                     "original_fulfillment_order": {
-                      "id": 1046000788,
+                      "id": 1046000803,
                       "shop_id": 548380009,
                       "order_id": 450789469,
                       "assigned_location_id": 24826418,
@@ -257,7 +258,7 @@
                         "cancel_fulfillment_order"
                       ],
                       "destination": {
-                        "id": 1046000788,
+                        "id": 1046000800,
                         "address1": "Chestnut Street 92",
                         "address2": "",
                         "city": "Louisville",
@@ -283,9 +284,9 @@
                       },
                       "line_items": [
                         {
-                          "id": 1058737508,
+                          "id": 1058737513,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000788,
+                          "fulfillment_order_id": 1046000803,
                           "quantity": 1,
                           "line_item_id": 466157049,
                           "inventory_item_id": 39072856,
@@ -293,9 +294,9 @@
                           "variant_id": 39072856
                         },
                         {
-                          "id": 1058737509,
+                          "id": 1058737514,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000788,
+                          "fulfillment_order_id": 1046000803,
                           "quantity": 1,
                           "line_item_id": 518995019,
                           "inventory_item_id": 49148385,
@@ -303,9 +304,9 @@
                           "variant_id": 49148385
                         },
                         {
-                          "id": 1058737510,
+                          "id": 1058737515,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000788,
+                          "fulfillment_order_id": 1046000803,
                           "quantity": 1,
                           "line_item_id": 703073504,
                           "inventory_item_id": 457924702,
@@ -319,14 +320,14 @@
                           "request_options": {
                             "notify_customer": false
                           },
-                          "sent_at": "2022-06-30T09:16:48-06:00",
+                          "sent_at": "2022-10-03T11:20:20-06:00",
                           "kind": "fulfillment_request"
                         }
                       ],
                       "fulfillment_service_handle": "shipwire-app"
                     },
                     "submitted_fulfillment_order": {
-                      "id": 1046000788,
+                      "id": 1046000803,
                       "shop_id": 548380009,
                       "order_id": 450789469,
                       "assigned_location_id": 24826418,
@@ -336,7 +337,7 @@
                         "cancel_fulfillment_order"
                       ],
                       "destination": {
-                        "id": 1046000788,
+                        "id": 1046000800,
                         "address1": "Chestnut Street 92",
                         "address2": "",
                         "city": "Louisville",
@@ -362,9 +363,9 @@
                       },
                       "line_items": [
                         {
-                          "id": 1058737508,
+                          "id": 1058737513,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000788,
+                          "fulfillment_order_id": 1046000803,
                           "quantity": 1,
                           "line_item_id": 466157049,
                           "inventory_item_id": 39072856,
@@ -372,9 +373,9 @@
                           "variant_id": 39072856
                         },
                         {
-                          "id": 1058737509,
+                          "id": 1058737514,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000788,
+                          "fulfillment_order_id": 1046000803,
                           "quantity": 1,
                           "line_item_id": 518995019,
                           "inventory_item_id": 49148385,
@@ -382,9 +383,9 @@
                           "variant_id": 49148385
                         },
                         {
-                          "id": 1058737510,
+                          "id": 1058737515,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000788,
+                          "fulfillment_order_id": 1046000803,
                           "quantity": 1,
                           "line_item_id": 703073504,
                           "inventory_item_id": 457924702,
@@ -398,7 +399,7 @@
                           "request_options": {
                             "notify_customer": false
                           },
-                          "sent_at": "2022-06-30T09:16:48-06:00",
+                          "sent_at": "2022-10-03T11:20:20-06:00",
                           "kind": "fulfillment_request"
                         }
                       ],
@@ -416,74 +417,81 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/fulfillment_orders/1046000785/fulfillment_request.json",
+          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000798/fulfillment_request.json",
           "request_method": "POST",
           "request": {
-            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000785/fulfillment_request.json",
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000798/fulfillment_request.json",
             "headers": {},
-            "body": "{\"fulfillment_request\":{\"message\":\"Fulfill this ASAP please.\",\"fulfillment_order_line_items\":[{\"id\":1058737502,\"quantity\":1},{\"id\":1058737503,\"quantity\":1}]}}"
+            "body": "{\"fulfillment_request\":{\"message\":\"Fulfill this ASAP please.\",\"fulfillment_order_line_items\":[{\"id\":1058737501,\"quantity\":1},{\"id\":1058737502,\"quantity\":1}]}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"original_fulfillment_order\":{\"id\":1046000785,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"unsubmitted\",\"status\":\"closed\",\"supported_actions\":[],\"destination\":{\"id\":1046000785,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737502,\"shop_id\":548380009,\"fulfillment_order_id\":1046000785,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737503,\"shop_id\":548380009,\"fulfillment_order_id\":1046000785,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737504,\"shop_id\":548380009,\"fulfillment_order_id\":1046000785,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"},\"submitted_fulfillment_order\":{\"id\":1046000786,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000786,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737505,\"shop_id\":548380009,\"fulfillment_order_id\":1046000786,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737506,\"shop_id\":548380009,\"fulfillment_order_id\":1046000786,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[{\"message\":\"Fulfill this ASAP please.\",\"request_options\":{\"notify_customer\":false},\"sent_at\":\"2022-06-30T11:16:46-04:00\",\"kind\":\"fulfillment_request\"}],\"fulfillment_service_handle\":\"shipwire-app\"},\"unsubmitted_fulfillment_order\":{\"id\":1046000787,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"unsubmitted\",\"status\":\"open\",\"supported_actions\":[\"request_fulfillment\",\"create_fulfillment\"],\"destination\":{\"id\":1046000787,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737507,\"shop_id\":548380009,\"fulfillment_order_id\":1046000787,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
+            "body": "{\"original_fulfillment_order\":{\"id\":1046000798,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"unsubmitted\",\"status\":\"closed\",\"supported_actions\":[],\"destination\":{\"id\":1046000795,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737501,\"shop_id\":548380009,\"fulfillment_order_id\":1046000798,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737502,\"shop_id\":548380009,\"fulfillment_order_id\":1046000798,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737503,\"shop_id\":548380009,\"fulfillment_order_id\":1046000798,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"},\"submitted_fulfillment_order\":{\"id\":1046000799,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000796,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737504,\"shop_id\":548380009,\"fulfillment_order_id\":1046000799,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737505,\"shop_id\":548380009,\"fulfillment_order_id\":1046000799,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[{\"message\":\"Fulfill this ASAP please.\",\"request_options\":{\"notify_customer\":false},\"sent_at\":\"2022-10-03T13:19:53-04:00\",\"kind\":\"fulfillment_request\"}],\"fulfillment_service_handle\":\"shipwire-app\"},\"unsubmitted_fulfillment_order\":{\"id\":1046000800,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"unsubmitted\",\"status\":\"open\",\"supported_actions\":[\"request_fulfillment\",\"create_fulfillment\"],\"destination\":{\"id\":1046000797,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737506,\"shop_id\":548380009,\"fulfillment_order_id\":1046000800,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
           },
           "name": "Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"fulfillment_request\":{\"message\":\"Fulfill this ASAP please.\",\"fulfillment_order_line_items\":[{\"id\":1058737502,\"quantity\":1},{\"id\":1058737503,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/fulfillment_orders/1046000785/fulfillment_request.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"fulfillment_request\":{\"message\":\"Fulfill this ASAP please.\",\"fulfillment_order_line_items\":[{\"id\":1058737501,\"quantity\":1},{\"id\":1058737502,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000798/fulfillment_request.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_request = ShopifyAPI::FulfillmentRequest.new(session: test_session)\nfulfillment_request.fulfillment_order_id = 1046000785\nfulfillment_request.message = \"Fulfill this ASAP please.\"\nfulfillment_request.fulfillment_order_line_items = [\n  {\n    \"id\" => 1058737502,\n    \"quantity\" => 1\n  },\n  {\n    \"id\" => 1058737503,\n    \"quantity\" => 1\n  }\n]\nfulfillment_request.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment_request = ShopifyAPI::FulfillmentRequest.new(session: test_session)\nfulfillment_request.fulfillment_order_id = 1046000798\nfulfillment_request.message = \"Fulfill this ASAP please.\"\nfulfillment_request.fulfillment_order_line_items = [\n  {\n    \"id\" => 1058737501,\n    \"quantity\" => 1\n  },\n  {\n    \"id\" => 1058737502,\n    \"quantity\" => 1\n  }\n]\nfulfillment_request.save!"
             },
             {
               "language": "node",
-              "example_code": "import {FulfillmentRequest} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_request = new FulfillmentRequest({session: test_session});\nfulfillment_request.fulfillment_order_id = 1046000785;\nfulfillment_request.message = \"Fulfill this ASAP please.\";\nfulfillment_request.fulfillment_order_line_items = [\n  {\n    \"id\": 1058737502,\n    \"quantity\": 1\n  },\n  {\n    \"id\": 1058737503,\n    \"quantity\": 1\n  }\n];\nawait fulfillment_request.save({\n  update: true,\n});"
+              "example_code": "import {FulfillmentRequest} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_request = new FulfillmentRequest({session: test_session});\nfulfillment_request.fulfillment_order_id = 1046000798;\nfulfillment_request.message = \"Fulfill this ASAP please.\";\nfulfillment_request.fulfillment_order_line_items = [\n  {\n    \"id\": 1058737501,\n    \"quantity\": 1\n  },\n  {\n    \"id\": 1058737502,\n    \"quantity\": 1\n  }\n];\nawait fulfillment_request.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\FulfillmentRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_request = new FulfillmentRequest($this->test_session);\n$fulfillment_request->fulfillment_order_id = 1046000785;\n$fulfillment_request->message = \"Fulfill this ASAP please.\";\n$fulfillment_request->fulfillment_order_line_items = [\n    [\n        \"id\" => 1058737502,\n        \"quantity\" => 1\n    ],\n    [\n        \"id\" => 1058737503,\n        \"quantity\" => 1\n    ]\n];\n$fulfillment_request->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\FulfillmentRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_request = new FulfillmentRequest($this->test_session);\n$fulfillment_request->fulfillment_order_id = 1046000798;\n$fulfillment_request->message = \"Fulfill this ASAP please.\";\n$fulfillment_request->fulfillment_order_line_items = [\n    [\n        \"id\" => 1058737501,\n        \"quantity\" => 1\n    ],\n    [\n        \"id\" => 1058737502,\n        \"quantity\" => 1\n    ]\n];\n$fulfillment_request->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/fulfillment_orders/1046000788/fulfillment_request.json",
+          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000803/fulfillment_request.json",
           "request_method": "POST",
           "request": {
-            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000788/fulfillment_request.json",
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000803/fulfillment_request.json",
             "headers": {},
             "body": "{\"fulfillment_request\":{\"message\":\"Fulfill this ASAP please.\"}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"original_fulfillment_order\":{\"id\":1046000788,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000788,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737508,\"shop_id\":548380009,\"fulfillment_order_id\":1046000788,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737509,\"shop_id\":548380009,\"fulfillment_order_id\":1046000788,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737510,\"shop_id\":548380009,\"fulfillment_order_id\":1046000788,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[{\"message\":\"Fulfill this ASAP please.\",\"request_options\":{\"notify_customer\":false},\"sent_at\":\"2022-06-30T11:16:48-04:00\",\"kind\":\"fulfillment_request\"}],\"fulfillment_service_handle\":\"shipwire-app\"},\"submitted_fulfillment_order\":{\"id\":1046000788,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000788,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737508,\"shop_id\":548380009,\"fulfillment_order_id\":1046000788,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737509,\"shop_id\":548380009,\"fulfillment_order_id\":1046000788,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737510,\"shop_id\":548380009,\"fulfillment_order_id\":1046000788,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[{\"message\":\"Fulfill this ASAP please.\",\"request_options\":{\"notify_customer\":false},\"sent_at\":\"2022-06-30T11:16:48-04:00\",\"kind\":\"fulfillment_request\"}],\"fulfillment_service_handle\":\"shipwire-app\"},\"unsubmitted_fulfillment_order\":null}"
+            "body": "{\"original_fulfillment_order\":{\"id\":1046000803,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000800,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737513,\"shop_id\":548380009,\"fulfillment_order_id\":1046000803,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737514,\"shop_id\":548380009,\"fulfillment_order_id\":1046000803,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737515,\"shop_id\":548380009,\"fulfillment_order_id\":1046000803,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[{\"message\":\"Fulfill this ASAP please.\",\"request_options\":{\"notify_customer\":false},\"sent_at\":\"2022-10-03T13:20:20-04:00\",\"kind\":\"fulfillment_request\"}],\"fulfillment_service_handle\":\"shipwire-app\"},\"submitted_fulfillment_order\":{\"id\":1046000803,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000800,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737513,\"shop_id\":548380009,\"fulfillment_order_id\":1046000803,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737514,\"shop_id\":548380009,\"fulfillment_order_id\":1046000803,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737515,\"shop_id\":548380009,\"fulfillment_order_id\":1046000803,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[{\"message\":\"Fulfill this ASAP please.\",\"request_options\":{\"notify_customer\":false},\"sent_at\":\"2022-10-03T13:20:20-04:00\",\"kind\":\"fulfillment_request\"}],\"fulfillment_service_handle\":\"shipwire-app\"},\"unsubmitted_fulfillment_order\":null}"
           },
           "name": "Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"fulfillment_request\":{\"message\":\"Fulfill this ASAP please.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/fulfillment_orders/1046000788/fulfillment_request.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"fulfillment_request\":{\"message\":\"Fulfill this ASAP please.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000803/fulfillment_request.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_request = ShopifyAPI::FulfillmentRequest.new(session: test_session)\nfulfillment_request.fulfillment_order_id = 1046000788\nfulfillment_request.message = \"Fulfill this ASAP please.\"\nfulfillment_request.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment_request = ShopifyAPI::FulfillmentRequest.new(session: test_session)\nfulfillment_request.fulfillment_order_id = 1046000803\nfulfillment_request.message = \"Fulfill this ASAP please.\"\nfulfillment_request.save!"
             },
             {
               "language": "node",
-              "example_code": "import {FulfillmentRequest} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_request = new FulfillmentRequest({session: test_session});\nfulfillment_request.fulfillment_order_id = 1046000788;\nfulfillment_request.message = \"Fulfill this ASAP please.\";\nawait fulfillment_request.save({\n  update: true,\n});"
+              "example_code": "import {FulfillmentRequest} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_request = new FulfillmentRequest({session: test_session});\nfulfillment_request.fulfillment_order_id = 1046000803;\nfulfillment_request.message = \"Fulfill this ASAP please.\";\nawait fulfillment_request.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\FulfillmentRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_request = new FulfillmentRequest($this->test_session);\n$fulfillment_request->fulfillment_order_id = 1046000788;\n$fulfillment_request->message = \"Fulfill this ASAP please.\";\n$fulfillment_request->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\FulfillmentRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_request = new FulfillmentRequest($this->test_session);\n$fulfillment_request->fulfillment_order_id = 1046000803;\n$fulfillment_request->message = \"Fulfill this ASAP please.\";\n$fulfillment_request->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "third_party_fulfillment_orders"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json",
       "action": "post"
     },
@@ -526,7 +534,7 @@
                 "Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order": {
                   "value": {
                     "fulfillment_order": {
-                      "id": 1046000783,
+                      "id": 1046000801,
                       "shop_id": 548380009,
                       "order_id": 450789469,
                       "assigned_location_id": 24826418,
@@ -537,7 +545,7 @@
                         "create_fulfillment"
                       ],
                       "destination": {
-                        "id": 1046000783,
+                        "id": 1046000798,
                         "address1": "Chestnut Street 92",
                         "address2": "",
                         "city": "Louisville",
@@ -563,9 +571,9 @@
                       },
                       "line_items": [
                         {
-                          "id": 1058737496,
+                          "id": 1058737507,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000783,
+                          "fulfillment_order_id": 1046000801,
                           "quantity": 1,
                           "line_item_id": 466157049,
                           "inventory_item_id": 39072856,
@@ -573,9 +581,9 @@
                           "variant_id": 39072856
                         },
                         {
-                          "id": 1058737497,
+                          "id": 1058737508,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000783,
+                          "fulfillment_order_id": 1046000801,
                           "quantity": 1,
                           "line_item_id": 518995019,
                           "inventory_item_id": 49148385,
@@ -583,9 +591,9 @@
                           "variant_id": 49148385
                         },
                         {
-                          "id": 1058737498,
+                          "id": 1058737509,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000783,
+                          "fulfillment_order_id": 1046000801,
                           "quantity": 1,
                           "line_item_id": 703073504,
                           "inventory_item_id": 457924702,
@@ -607,39 +615,46 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/fulfillment_orders/1046000783/fulfillment_request/accept.json",
+          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000801/fulfillment_request/accept.json",
           "request_method": "POST",
           "request": {
-            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000783/fulfillment_request/accept.json",
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000801/fulfillment_request/accept.json",
             "headers": {},
             "body": "{\"fulfillment_request\":{\"message\":\"We will start processing your fulfillment on the next business day.\"}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment_order\":{\"id\":1046000783,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"accepted\",\"status\":\"in_progress\",\"supported_actions\":[\"request_cancellation\",\"create_fulfillment\"],\"destination\":{\"id\":1046000783,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737496,\"shop_id\":548380009,\"fulfillment_order_id\":1046000783,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737497,\"shop_id\":548380009,\"fulfillment_order_id\":1046000783,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737498,\"shop_id\":548380009,\"fulfillment_order_id\":1046000783,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
+            "body": "{\"fulfillment_order\":{\"id\":1046000801,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"accepted\",\"status\":\"in_progress\",\"supported_actions\":[\"request_cancellation\",\"create_fulfillment\"],\"destination\":{\"id\":1046000798,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737507,\"shop_id\":548380009,\"fulfillment_order_id\":1046000801,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737508,\"shop_id\":548380009,\"fulfillment_order_id\":1046000801,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737509,\"shop_id\":548380009,\"fulfillment_order_id\":1046000801,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
           },
           "name": "Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"fulfillment_request\":{\"message\":\"We will start processing your fulfillment on the next business day.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/fulfillment_orders/1046000783/fulfillment_request/accept.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"fulfillment_request\":{\"message\":\"We will start processing your fulfillment on the next business day.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000801/fulfillment_request/accept.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_request = ShopifyAPI::FulfillmentRequest.new(session: test_session)\nfulfillment_request.fulfillment_order_id = 1046000783\nfulfillment_request.accept(\n  session: test_session,\n  body: {\"fulfillment_request\" => {\"message\" => \"We will start processing your fulfillment on the next business day.\"}},\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment_request = ShopifyAPI::FulfillmentRequest.new(session: test_session)\nfulfillment_request.fulfillment_order_id = 1046000801\nfulfillment_request.accept(\n  session: test_session,\n  body: {\"fulfillment_request\" => {\"message\" => \"We will start processing your fulfillment on the next business day.\"}},\n)"
             },
             {
               "language": "node",
-              "example_code": "import {FulfillmentRequest} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_request = new FulfillmentRequest({session: test_session});\nfulfillment_request.fulfillment_order_id = 1046000783;\nawait fulfillment_request.accept({\n  body: {\"fulfillment_request\": {\"message\": \"We will start processing your fulfillment on the next business day.\"}},\n});"
+              "example_code": "import {FulfillmentRequest} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_request = new FulfillmentRequest({session: test_session});\nfulfillment_request.fulfillment_order_id = 1046000801;\nawait fulfillment_request.accept({\n  body: {\"fulfillment_request\": {\"message\": \"We will start processing your fulfillment on the next business day.\"}},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\FulfillmentRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_request = new FulfillmentRequest($this->test_session);\n$fulfillment_request->fulfillment_order_id = 1046000783;\n$fulfillment_request->accept(\n    [], // Params\n    [\"fulfillment_request\" => [\"message\" => \"We will start processing your fulfillment on the next business day.\"]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\FulfillmentRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_request = new FulfillmentRequest($this->test_session);\n$fulfillment_request->fulfillment_order_id = 1046000801;\n$fulfillment_request->accept(\n    [], // Params\n    [\"fulfillment_request\" => [\"message\" => \"We will start processing your fulfillment on the next business day.\"]], // Body\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "assigned_fulfillment_orders"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json",
       "action": "post"
     },
@@ -727,7 +742,7 @@
                 "Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order": {
                   "value": {
                     "fulfillment_order": {
-                      "id": 1046000784,
+                      "id": 1046000802,
                       "shop_id": 548380009,
                       "order_id": 450789469,
                       "assigned_location_id": 24826418,
@@ -738,7 +753,7 @@
                         "create_fulfillment"
                       ],
                       "destination": {
-                        "id": 1046000784,
+                        "id": 1046000799,
                         "address1": "Chestnut Street 92",
                         "address2": "",
                         "city": "Louisville",
@@ -764,9 +779,9 @@
                       },
                       "line_items": [
                         {
-                          "id": 1058737499,
+                          "id": 1058737510,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000784,
+                          "fulfillment_order_id": 1046000802,
                           "quantity": 1,
                           "line_item_id": 466157049,
                           "inventory_item_id": 39072856,
@@ -774,9 +789,9 @@
                           "variant_id": 39072856
                         },
                         {
-                          "id": 1058737500,
+                          "id": 1058737511,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000784,
+                          "fulfillment_order_id": 1046000802,
                           "quantity": 1,
                           "line_item_id": 518995019,
                           "inventory_item_id": 49148385,
@@ -784,9 +799,9 @@
                           "variant_id": 49148385
                         },
                         {
-                          "id": 1058737501,
+                          "id": 1058737512,
                           "shop_id": 548380009,
-                          "fulfillment_order_id": 1046000784,
+                          "fulfillment_order_id": 1046000802,
                           "quantity": 1,
                           "line_item_id": 703073504,
                           "inventory_item_id": 457924702,
@@ -808,39 +823,46 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/fulfillment_orders/1046000784/fulfillment_request/reject.json",
+          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000802/fulfillment_request/reject.json",
           "request_method": "POST",
           "request": {
-            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000784/fulfillment_request/reject.json",
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000802/fulfillment_request/reject.json",
             "headers": {},
-            "body": "{\"fulfillment_request\":{\"message\":\"Not enough inventory on hand to complete the work.\",\"reason\":\"inventory_out_of_stock\",\"line_items\":[{\"fulfillment_order_line_item_id\":1058737499,\"message\":\"Not enough inventory.\"}]}}"
+            "body": "{\"fulfillment_request\":{\"message\":\"Not enough inventory on hand to complete the work.\",\"reason\":\"inventory_out_of_stock\",\"line_items\":[{\"fulfillment_order_line_item_id\":1058737510,\"message\":\"Not enough inventory.\"}]}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment_order\":{\"id\":1046000784,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"rejected\",\"status\":\"open\",\"supported_actions\":[\"request_fulfillment\",\"create_fulfillment\"],\"destination\":{\"id\":1046000784,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737499,\"shop_id\":548380009,\"fulfillment_order_id\":1046000784,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737500,\"shop_id\":548380009,\"fulfillment_order_id\":1046000784,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737501,\"shop_id\":548380009,\"fulfillment_order_id\":1046000784,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
+            "body": "{\"fulfillment_order\":{\"id\":1046000802,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"rejected\",\"status\":\"open\",\"supported_actions\":[\"request_fulfillment\",\"create_fulfillment\"],\"destination\":{\"id\":1046000799,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737510,\"shop_id\":548380009,\"fulfillment_order_id\":1046000802,\"quantity\":1,\"line_item_id\":466157049,\"inventory_item_id\":39072856,\"fulfillable_quantity\":1,\"variant_id\":39072856},{\"id\":1058737511,\"shop_id\":548380009,\"fulfillment_order_id\":1046000802,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385},{\"id\":1058737512,\"shop_id\":548380009,\"fulfillment_order_id\":1046000802,\"quantity\":1,\"line_item_id\":703073504,\"inventory_item_id\":457924702,\"fulfillable_quantity\":1,\"variant_id\":457924702}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
           },
           "name": "Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"fulfillment_request\":{\"message\":\"Not enough inventory on hand to complete the work.\",\"reason\":\"inventory_out_of_stock\",\"line_items\":[{\"fulfillment_order_line_item_id\":1058737499,\"message\":\"Not enough inventory.\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/fulfillment_orders/1046000784/fulfillment_request/reject.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"fulfillment_request\":{\"message\":\"Not enough inventory on hand to complete the work.\",\"reason\":\"inventory_out_of_stock\",\"line_items\":[{\"fulfillment_order_line_item_id\":1058737510,\"message\":\"Not enough inventory.\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000802/fulfillment_request/reject.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_request = ShopifyAPI::FulfillmentRequest.new(session: test_session)\nfulfillment_request.fulfillment_order_id = 1046000784\nfulfillment_request.reject(\n  session: test_session,\n  body: {\"fulfillment_request\" => {\"message\" => \"Not enough inventory on hand to complete the work.\", \"reason\" => \"inventory_out_of_stock\", \"line_items\" => [{\"fulfillment_order_line_item_id\" => 1058737499, \"message\" => \"Not enough inventory.\"}]}},\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment_request = ShopifyAPI::FulfillmentRequest.new(session: test_session)\nfulfillment_request.fulfillment_order_id = 1046000802\nfulfillment_request.reject(\n  session: test_session,\n  body: {\"fulfillment_request\" => {\"message\" => \"Not enough inventory on hand to complete the work.\", \"reason\" => \"inventory_out_of_stock\", \"line_items\" => [{\"fulfillment_order_line_item_id\" => 1058737510, \"message\" => \"Not enough inventory.\"}]}},\n)"
             },
             {
               "language": "node",
-              "example_code": "import {FulfillmentRequest} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_request = new FulfillmentRequest({session: test_session});\nfulfillment_request.fulfillment_order_id = 1046000784;\nawait fulfillment_request.reject({\n  body: {\"fulfillment_request\": {\"message\": \"Not enough inventory on hand to complete the work.\", \"reason\": \"inventory_out_of_stock\", \"line_items\": [{\"fulfillment_order_line_item_id\": 1058737499, \"message\": \"Not enough inventory.\"}]}},\n});"
+              "example_code": "import {FulfillmentRequest} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_request = new FulfillmentRequest({session: test_session});\nfulfillment_request.fulfillment_order_id = 1046000802;\nawait fulfillment_request.reject({\n  body: {\"fulfillment_request\": {\"message\": \"Not enough inventory on hand to complete the work.\", \"reason\": \"inventory_out_of_stock\", \"line_items\": [{\"fulfillment_order_line_item_id\": 1058737510, \"message\": \"Not enough inventory.\"}]}},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\FulfillmentRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_request = new FulfillmentRequest($this->test_session);\n$fulfillment_request->fulfillment_order_id = 1046000784;\n$fulfillment_request->reject(\n    [], // Params\n    [\"fulfillment_request\" => [\"message\" => \"Not enough inventory on hand to complete the work.\", \"reason\" => \"inventory_out_of_stock\", \"line_items\" => [[\"fulfillment_order_line_item_id\" => 1058737499, \"message\" => \"Not enough inventory.\"]]]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\FulfillmentRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_request = new FulfillmentRequest($this->test_session);\n$fulfillment_request->fulfillment_order_id = 1046000802;\n$fulfillment_request->reject(\n    [], // Params\n    [\"fulfillment_request\" => [\"message\" => \"Not enough inventory on hand to complete the work.\", \"reason\" => \"inventory_out_of_stock\", \"line_items\" => [[\"fulfillment_order_line_item_id\" => 1058737510, \"message\" => \"Not enough inventory.\"]]]], // Body\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "assigned_fulfillment_orders"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json",
       "action": "post"
     }

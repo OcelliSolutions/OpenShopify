@@ -49,11 +49,13 @@ public class GiftCardController : GiftCardControllerBase
     [Route("gift_cards/{gift_card_id:long}/disable.json")]
     [ProducesResponseType(typeof(GiftCardItem), StatusCodes.Status200OK)]
     public override Task DisableGiftCard([Required] long gift_card_id) => throw new NotImplementedException();
-
+    
     /// <inheritdoc />
     [HttpGet]
     [Route("gift_cards/search.json")]
     [ProducesResponseType(typeof(GiftCardList), StatusCodes.Status200OK)]
-    public override Task SearchForGiftCards(string? fields = null, int? limit = null, string? page_info = null,
-        string? order = null, string? query = null) => throw new NotImplementedException();
+    public override Task SearchForGiftCards(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        string? fields = null, int? limit = null, string? page_info = null, string? order = null, string? query = null,
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null) =>
+        throw new NotImplementedException();
 }

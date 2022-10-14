@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Inventory
   description: Inventory
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -24,6 +24,7 @@ paths:
       tags:
         - InventoryItem
       summary: Retrieves a list of inventory items
+      description: 'Retrieves a list of inventory items. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).'
       operationId: ListInventoryItems
       parameters:
         - name: ids
@@ -139,6 +140,7 @@ paths:
       tags:
         - InventoryLevel
       summary: Retrieves a list of inventory levels
+      description: "Retrieves a list of inventory levels.\r\n\r\nYou must include `inventory_item_ids`, `location_ids`, or both as filter parameters.\r\n\r\n**Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest)."
       operationId: ListInventoryLevels
       parameters:
         - name: inventory_item_ids
@@ -197,6 +199,7 @@ paths:
       tags:
         - InventoryLevel
       summary: Deletes an inventory level from a location
+      description: 'Deletes an inventory level of an inventory item at a location. Deleting an inventory level for an inventory item removes that item from the specified location. Every inventory item must have at least one inventory level. To move inventory to another location, first connect the inventory item to another location, and then delete the previous inventory level.'
       operationId: DeleteInventoryLevelFromLocation
       parameters:
         - name: inventory_item_id
@@ -230,6 +233,7 @@ paths:
       tags:
         - InventoryLevel
       summary: Adjusts the inventory level of an inventory item at a location
+      description: Adjusts the inventory level of an inventory item at a single location
       operationId: AdjustInventoryLevelOfInventoryItemAtLocation
       requestBody:
         content:
@@ -261,6 +265,7 @@ paths:
       tags:
         - InventoryLevel
       summary: Connects an inventory item to a location
+      description: "Connects an inventory item to a location by creating an inventory level at that location.\r\n\r\nWhen connecting inventory items to locations, it's important to understand the rules around [fulfillment service locations](#inventory-levels-and-fulfillment-service-locations)."
       operationId: ConnectInventoryItemToLocation
       requestBody:
         content:
@@ -292,6 +297,7 @@ paths:
       tags:
         - InventoryLevel
       summary: Sets the inventory level for an inventory item at a location
+      description: 'Sets the inventory level for an inventory item at a location. If the specified location is not connected, it will be automatically connected first. When connecting inventory items to locations, it''s important to understand the rules around [fulfillment service locations](#inventory-levels-and-fulfillment-service-locations).'
       operationId: SetInventoryLevelForInventoryItemAtLocation
       requestBody:
         content:
@@ -400,6 +406,7 @@ paths:
       tags:
         - Location
       summary: Retrieve a list of inventory levels for a location
+      description: 'Retrieve a list of inventory levels for a location. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).'
       operationId: ListInventoryLevelsForLocation
       parameters:
         - name: location_id

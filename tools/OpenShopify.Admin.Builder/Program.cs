@@ -78,7 +78,7 @@ builder.Services.AddSwaggerGen(c =>
         Variables = new Dictionary<string, OpenApiServerVariable>(new List<KeyValuePair<string, OpenApiServerVariable>>()
         {
             new("store_name", new OpenApiServerVariable(){Default = "{{store_name}}", Description = "The sub-domain of the storefront."}),
-            new("api_version", new OpenApiServerVariable(){Default = "2022-07", Description = "The api version."})
+            new("api_version", new OpenApiServerVariable(){Default = "2022-10", Description = "The api version."})
         })
     });
     c.AddServer(new OpenApiServer

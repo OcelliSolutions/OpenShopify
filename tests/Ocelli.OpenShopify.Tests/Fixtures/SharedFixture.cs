@@ -78,7 +78,7 @@ public class SharedFixture
             Scheme = "https://",
             Host = MyShopifyUrl,
             Port = 443,
-            Path = $"admin/api/2022-07/"
+            Path = $"admin/api/2022-10/"
         }.ToString();
 
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
@@ -434,7 +434,7 @@ public class SharedFixture
         };
 
 
-    public CreateTransactionRequest CreateTransactionRequest(Order order, [CallerMemberName] string callerName = "") =>
+    public CreateTransactionForOrderRequest CreateTransactionRequest(Order order, [CallerMemberName] string callerName = "") =>
         new()
         {
             Transaction = new()
@@ -448,7 +448,7 @@ public class SharedFixture
         };
 
 
-    public CreateArticleRequest CreateArticleRequest([CallerMemberName] string callerName = "") =>
+    public CreateArticleForBlogRequest CreateArticleRequest([CallerMemberName] string callerName = "") =>
         new()
         {
             Article = new CreateArticle
@@ -635,9 +635,9 @@ public class SharedFixture
         }
     };
 
-    public CreateOrderRiskRequest CreateOrderRiskRequest([CallerMemberName] string callerName = "") => new()
+    public CreateOrderRiskForOrderRequest CreateOrderRiskRequest([CallerMemberName] string callerName = "") => new()
     {
-        Risk = new CreateOrderRisk
+        Risk = new()
         {
             Message = "This fulfillmentOrder came from an anonymous proxy",
             Recommendation = RiskRecommendation.Cancel,

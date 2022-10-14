@@ -5,7 +5,8 @@
     "description": "The account's current balance. This amount is comprised of any\n<a href=\"/docs/admin-api/rest/reference/shopify_payments/transaction\">Transaction</a> not yet included in a\n<a href=\"/docs/admin-api/rest/reference/shopify_payments/payout\">Payout</a>.\n",
     "x-owner": "https://vault.shopify.io/teams/663",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -32,8 +33,8 @@
                   "value": {
                     "balance": [
                       {
-                        "currency": "USD",
-                        "amount": "53.99"
+                        "amount": "53.99",
+                        "currency": "USD"
                       }
                     ]
                   }
@@ -47,7 +48,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/shopify_payments/balance.json",
+          "request_path": "/admin/api/2022-10/shopify_payments/balance.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shopify_payments/balance.json",
@@ -57,29 +58,41 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"balance\":[{\"currency\":\"USD\",\"amount\":\"53.99\"}]}"
+            "body": "{\"balance\":[{\"amount\":\"53.99\",\"currency\":\"USD\"}]}"
           },
           "name": "Retrieves the account's current balance.",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/balance.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/balance.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Balance.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Balance.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Balance} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Balance.all({\n  session: test_session,\n});"
+              "example_code": "import {Balance} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Balance.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Balance;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nBalance::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Balance;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nBalance::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "requires_any_scope": true,
+            "scope": "shopify_payments_payouts"
+          },
+          {
+            "requires_any_scope": true,
+            "scope": "shopify_payments_accounts"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/shopify_payments/balance.json",
       "action": "get"
     }

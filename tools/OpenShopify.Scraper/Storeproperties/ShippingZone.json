@@ -5,7 +5,8 @@
     "description": "You can use the ShippingZone resource to view shipping zones  and their countries, provinces, and shipping rates. A shipping zone belongs to a delivery profile, which provides shops with the ability to  create shipping rates per product variant and per location. For example, the merchant might want to use a  shipping rate that applies only to fragile products. When querying the ShippingZone resource, each shipping zone  is returned with its corresponding profile ID, location group ID, and countries. Its possible for the  same country to exist in multiple shipping zones, if the shipping zones with overlapping countries have  different delivery profiles.",
     "x-owner": "https://vault.shopify.io/teams/2644",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -23,7 +24,7 @@
         },
         {
           "name": "fields",
-          "description": "A comma-separated list of field names to include in the response.",
+          "description": "Show only specific fields by providing a comma-separated list of field names.",
           "in": "query",
           "schema": {
             "type": "string"
@@ -165,7 +166,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/shipping_zones.json",
+          "request_path": "/admin/api/2022-10/shipping_zones.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shipping_zones.json",
@@ -181,23 +182,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shipping_zones.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shipping_zones.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ShippingZone.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::ShippingZone.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {ShippingZone} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ShippingZone.all({\n  session: test_session,\n});"
+              "example_code": "import {ShippingZone} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ShippingZone.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\ShippingZone;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShippingZone::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ShippingZone;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShippingZone::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/shipping_zones.json",
       "action": "get"
     }

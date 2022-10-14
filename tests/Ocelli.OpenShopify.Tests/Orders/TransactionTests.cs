@@ -59,7 +59,7 @@ public class TransactionTests : IClassFixture<TransactionFixture>
     [TestPriority(10)]
     public async Task CreateTransactionAsync_CanCreate()
     {
-        var request = new CreateTransactionRequest
+        var request = new CreateTransactionForOrderRequest()
         {
             Transaction = new CreateTransaction
             {
@@ -69,7 +69,7 @@ public class TransactionTests : IClassFixture<TransactionFixture>
                 ParentId = Fixture.Order.Id
             }
         };
-        var response = await Fixture.Service.Transaction.CreateTransactionAsync(Fixture.Order.Id, request);
+        var response = await Fixture.Service.Transaction.CreateTransactionForOrderAsync(Fixture.Order.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedTransactions.Add(response.Result.Transaction);
@@ -79,12 +79,12 @@ public class TransactionTests : IClassFixture<TransactionFixture>
     [TestPriority(10)]
     public async Task CreateTransactionAsync_IsUnprocessableEntityError()
     {
-        var request = new CreateTransactionRequest
+        var request = new CreateTransactionForOrderRequest()
         {
             Transaction = new CreateTransaction()
         };
         await Assert.ThrowsAsync<ApiException>(async () =>
-            await Fixture.Service.Transaction.CreateTransactionAsync(Fixture.Order.Id, request));
+            await Fixture.Service.Transaction.CreateTransactionForOrderAsync(Fixture.Order.Id, request));
     }
 
     #endregion Create

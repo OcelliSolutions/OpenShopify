@@ -5,7 +5,8 @@
     "description": "        <p>A customer saved search is a search query that represents a group of customers defined by the shop owner.</p>\n        {{ '/api/reference/customer-saved-search.png' | image }}\n        <p>In the Shopify admin, the shop owner searches for customers by entering a query and applying one or more filters. When the search results are returned, the shop owner can save the search and give it a name. After the customer saved search is created, the shop owner can select it at a later date to see a list of customers that match the query.</p>\n\n        <h2>Customer saved search queries</h2>\n        <p>Use the following table to construct customer search queries:</p>\n        <table>\n          <tbody>\n            <tr>\n              <th>API value</th>\n              <th>Admin UI value</th>\n              <th>Description</th>\n            </tr>\n            <tr>\n              <td><code>accepts_marketing</code></td>\n              <td>Accepts marketing</td>\n              <td>Filters customers by whether they accept email marketing. Valid values:\n                <ul>\n                  <li><strong>0</strong>: Return customers who don't accept email marketing.</li>\n                  <li><strong>1</strong>: Return customers who do accept email marketing.</li>\n                </ul>\n              </td>\n            </tr>\n            <tr>\n              <td><code>country</code></td>\n              <td>Located in</td>\n              <td>Retrieves customers from a specified country. Valid values are the full name of any country in quotation marks. Example values:\n                <ul>\n                 <li><strong>\\\"United States\\\"</strong>: Return only customers from the United States. The double quotes have been escaped.</li>\n                  <li><strong>'Canada'</strong>: Return only customers from Canada.</li>\n                </ul>\n              </td>\n            </tr>\n            <tr>\n            <td><code>customer_date</code></td>\n            <td>Date created</td>\n            <td>Retrieve customers who were created within a set period of time. Valid values:\n              <ul>\n                <li><strong>past_week</strong>: Return customers who were created in the last week.</li>\n                <li><strong>past_month</strong>: Return customers who were created in the last month.</li>\n                <li><strong>last_3_months</strong>: Return customers who were created in the last 3 months.</li>\n                <li><strong>past_quarter</strong>: Return customers who were created in the last quarter.</li>\n                <li><strong>past_year</strong>: Return customers who were created in the last year.</li>\n                <li><strong>yyyy-m-d</strong>: Return customers who were created on a set date.</li>\n                <li><strong>&gt;yyyy-m-d</strong>: Return customers who were created after a set date.</li>\n                <li><strong>&lt;yyyy-m-d</strong>: Return customers who were created before a set date.</li>\n              </ul>\n            </td>\n            </tr>\n            <tr>\n              <td><code>last_abandoned_order_date</code></td>\n              <td>Abandoned an order</td>\n              <td>Retrieve customers who abandoned a cart within a set period of time. Valid values:\n                <ul>\n                  <li><strong>last_week</strong>: Return customers who abandoned a cart in the last week.</li>\n                  <li><strong>last_month</strong>: Return customers who abandoned a cart in the last month.</li>\n                </ul>\n               </td>\n            </tr>\n            <tr>\n              <td><code>order_date</code></td>\n              <td>Placed an order</td>\n              <td>Retrieve customers who placed an order within a set period of time. Valid values:\n                <ul>\n                  <li><strong>last_week</strong>: Return customers who placed an order in the last week.</li>\n                  <li><strong>last_month</strong>: Return customers who placed an order in the last month.</li>\n                  <li><strong>last_3_months</strong>: Return customers who placed an order in the last 3 months.</li>\n                  <li><strong>last_year</strong>: Return customers who placed an order in the last year.</li>\n                  <li><strong>&gt;yyyy-m-d</strong>: Return customers who placed an order after the specified date.</li>\n                  <li><strong>&lt;yyyy-m-d</strong>: Return customers who placed an order before the specified date.</li>\n                </ul>\n              </td>\n            </tr>\n            <tr>\n              <td><code>orders_count</code></td>\n              <td>Orders placed</td>\n              <td>Filter customres by the number of orders they've placed with the store. Valid values:\n                <ul>\n                  <li><strong>&gt;number_of_orders</strong>: Return customers who have placed fewer than the specified number of orders.</li>\n                  <li><strong>&lt;number_of_orders</strong>: Return customers who have placed more than the specified number of orders.</li>\n                  <li><strong>number_of_orders</strong>: Return customers who have placed the specified number of orders.</li>\n                </ul>\n              </td>\n            </tr>\n            <tr>\n              <td><code>state</code></td>\n              <td>Account status</td>\n              <td>Filter customers by their customer account status. Valid values:\n                <ul>\n                  <li><strong>declined</strong>: Return customers who have been invited to create an account but declined.</li>\n                  <li><strong>disabled</strong>: Return customers whose account is disabled.</li>\n                  <li><strong>enabled</strong>: Return customers who have a customer account.</li>\n                  <li><strong>invited</strong>: Return customers who have been invited to create an account.</li>\n                </ul>\n              </td>\n            </tr>\n            <tr>\n              <td><code>tag</code></td>\n              <td>Tagged with</td>\n              <td>Filter customers by tag. Valid values are any existing customer tag, contained in quotation marks. Example values:\n                <ul>\n                  <li><strong>\\\"Big spender\\\"</strong>: Return customers who have the tag <strong>Big spender</strong>. The double quotation marks have been escaped.</li>\n                  <li><strong>'Favorite'</strong>: Return customers who have the tag <strong>Favorite</strong>.</li>\n                </ul>\n              </td>\n            </tr>\n            <tr>\n              <td><code>total_spent</code></td>\n              <td>Money spent</td>\n              <td>Filter customers by the total amount that they have spent across all of their orders. Valid values:\n                <ul>\n                  <li><strong>&gt;money_amount</strong>: Return customers who have spent less than the specified amount of money.</li>\n                  <li><strong>&lt;money_amount</strong>: Return customers who have spent more than the specified amount of money.</li>\n                  <li><strong>money_amount</strong>: Return customers who have spent the specified amount of money.</li>\n                </ul>\n              </td>\n            </tr>\n          </tbody>\n        </table>\n",
     "x-owner": "https://vault.shopify.io/teams/680",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -60,22 +61,22 @@
                       {
                         "id": 789629109,
                         "name": "Accepts Marketing",
-                        "created_at": "2022-06-24T23:51:59-06:00",
-                        "updated_at": "2022-06-24T23:51:59-06:00",
+                        "created_at": "2022-09-26T10:15:55-06:00",
+                        "updated_at": "2022-09-26T10:15:55-06:00",
                         "query": "accepts_marketing:1"
                       },
                       {
                         "id": 20610973,
                         "name": "Canadian Snowboarders",
-                        "created_at": "2022-06-24T23:51:59-06:00",
-                        "updated_at": "2022-06-24T23:51:59-06:00",
+                        "created_at": "2022-09-26T10:15:55-06:00",
+                        "updated_at": "2022-09-26T10:15:55-06:00",
                         "query": "country:Canada"
                       },
                       {
                         "id": 669439218,
                         "name": "Premier Customers",
-                        "created_at": "2022-06-24T23:51:59-06:00",
-                        "updated_at": "2022-06-24T23:51:59-06:00",
+                        "created_at": "2022-09-26T10:15:55-06:00",
+                        "updated_at": "2022-09-26T10:15:55-06:00",
                         "query": "John Smith orders_count:>10 total_spent:>100.00"
                       }
                     ]
@@ -87,15 +88,15 @@
                       {
                         "id": 669439218,
                         "name": "Premier Customers",
-                        "created_at": "2022-06-24T23:51:59-06:00",
-                        "updated_at": "2022-06-24T23:51:59-06:00",
+                        "created_at": "2022-09-26T10:15:55-06:00",
+                        "updated_at": "2022-09-26T10:15:55-06:00",
                         "query": "John Smith orders_count:>10 total_spent:>100.00"
                       },
                       {
                         "id": 789629109,
                         "name": "Accepts Marketing",
-                        "created_at": "2022-06-24T23:51:59-06:00",
-                        "updated_at": "2022-06-24T23:51:59-06:00",
+                        "created_at": "2022-09-26T10:15:55-06:00",
+                        "updated_at": "2022-09-26T10:15:55-06:00",
                         "query": "accepts_marketing:1"
                       }
                     ]
@@ -110,7 +111,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-07/customer_saved_searches.json",
@@ -120,32 +121,32 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_saved_searches\":[{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-06-25T01:51:59-04:00\",\"updated_at\":\"2022-06-25T01:51:59-04:00\",\"query\":\"accepts_marketing:1\"},{\"id\":20610973,\"name\":\"Canadian Snowboarders\",\"created_at\":\"2022-06-25T01:51:59-04:00\",\"updated_at\":\"2022-06-25T01:51:59-04:00\",\"query\":\"country:Canada\"},{\"id\":669439218,\"name\":\"Premier Customers\",\"created_at\":\"2022-06-25T01:51:59-04:00\",\"updated_at\":\"2022-06-25T01:51:59-04:00\",\"query\":\"John Smith orders_count:>10 total_spent:>100.00\"}]}"
+            "body": "{\"customer_saved_searches\":[{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-09-26T12:15:55-04:00\",\"updated_at\":\"2022-09-26T12:15:55-04:00\",\"query\":\"accepts_marketing:1\"},{\"id\":20610973,\"name\":\"Canadian Snowboarders\",\"created_at\":\"2022-09-26T12:15:55-04:00\",\"updated_at\":\"2022-09-26T12:15:55-04:00\",\"query\":\"country:Canada\"},{\"id\":669439218,\"name\":\"Premier Customers\",\"created_at\":\"2022-09-26T12:15:55-04:00\",\"updated_at\":\"2022-09-26T12:15:55-04:00\",\"query\":\"John Smith orders_count:>10 total_spent:>100.00\"}]}"
           },
           "name": "Retrieve all customer saved searches for a shop",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CustomerSavedSearch.all(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerSavedSearch.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.all({\n  session: test_session,\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=20610973",
-          "request_path": "/admin/api/2022-07/customer_saved_searches.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-07/customer_saved_searches.json",
@@ -155,29 +156,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_saved_searches\":[{\"id\":669439218,\"name\":\"Premier Customers\",\"created_at\":\"2022-06-25T01:51:59-04:00\",\"updated_at\":\"2022-06-25T01:51:59-04:00\",\"query\":\"John Smith orders_count:>10 total_spent:>100.00\"},{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-06-25T01:51:59-04:00\",\"updated_at\":\"2022-06-25T01:51:59-04:00\",\"query\":\"accepts_marketing:1\"}]}"
+            "body": "{\"customer_saved_searches\":[{\"id\":669439218,\"name\":\"Premier Customers\",\"created_at\":\"2022-09-26T12:15:55-04:00\",\"updated_at\":\"2022-09-26T12:15:55-04:00\",\"query\":\"John Smith orders_count:>10 total_spent:>100.00\"},{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-09-26T12:15:55-04:00\",\"updated_at\":\"2022-09-26T12:15:55-04:00\",\"query\":\"accepts_marketing:1\"}]}"
           },
           "name": "Retrieve all customer saved searches for a shop after a specified ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches.json?since_id=20610973\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches.json?since_id=20610973\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CustomerSavedSearch.all(\n  session: test_session,\n  since_id: \"20610973\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerSavedSearch.all(\n  session: test_session,\n  since_id: \"20610973\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.all({\n  session: test_session,\n  since_id: \"20610973\",\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.all({\n  session: test_session,\n  since_id: \"20610973\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"20610973\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"20610973\"], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "customers"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/customer_saved_searches.json",
       "action": "get"
     },
@@ -196,37 +204,6 @@
         }
       ],
       "responses": {
-        "201": {
-          "description": "Creates a customer saved search",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Create a customer saved search": {
-                  "value": {
-                    "customer_saved_search": {
-                      "id": 1068136102,
-                      "name": "Spent more than $50",
-                      "created_at": "2022-07-02T00:07:37-06:00",
-                      "updated_at": "2022-07-02T00:07:37-06:00",
-                      "query": "total_spent:>50"
-                    }
-                  }
-                },
-                "Create a customer saved search with multiple terms": {
-                  "value": {
-                    "customer_saved_search": {
-                      "id": 1068136103,
-                      "name": "Spent more than $50 and after 2013",
-                      "created_at": "2022-07-02T00:07:38-06:00",
-                      "updated_at": "2022-07-02T00:07:38-06:00",
-                      "query": "total_spent:>50 order_date:>=2013-01-01"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "422": {
           "description": "Creates a customer saved search",
           "content": {
@@ -247,83 +224,44 @@
               }
             }
           }
+        },
+        "201": {
+          "description": "Creates a customer saved search",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a customer saved search with multiple terms": {
+                  "value": {
+                    "customer_saved_search": {
+                      "id": 1068136102,
+                      "name": "Spent more than $50 and after 2013",
+                      "created_at": "2022-10-03T10:24:36-06:00",
+                      "updated_at": "2022-10-03T10:24:36-06:00",
+                      "query": "total_spent:>50 order_date:>=2013-01-01"
+                    }
+                  }
+                },
+                "Create a customer saved search": {
+                  "value": {
+                    "customer_saved_search": {
+                      "id": 1068136103,
+                      "name": "Spent more than $50",
+                      "created_at": "2022-10-03T10:24:37-06:00",
+                      "updated_at": "2022-10-03T10:24:37-06:00",
+                      "query": "total_spent:>50"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "x-examples": [
         {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/customer_saved_searches.json",
-            "headers": {},
-            "body": "{\"customer_saved_search\":{\"name\":\"Spent more than $50\",\"query\":\"total_spent:>50\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"customer_saved_search\":{\"id\":1068136102,\"name\":\"Spent more than $50\",\"created_at\":\"2022-07-02T02:07:37-04:00\",\"updated_at\":\"2022-07-02T02:07:37-04:00\",\"query\":\"total_spent:>50\"}}"
-          },
-          "name": "Create a customer saved search",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"customer_saved_search\":{\"name\":\"Spent more than $50\",\"query\":\"total_spent:>50\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncustomer_saved_search = ShopifyAPI::CustomerSavedSearch.new(session: test_session)\ncustomer_saved_search.name = \"Spent more than $50\"\ncustomer_saved_search.query = \"total_spent:>50\"\ncustomer_saved_search.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.name = \"Spent more than $50\";\ncustomer_saved_search.query = \"total_spent:>50\";\nawait customer_saved_search.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_saved_search = new CustomerSavedSearch($this->test_session);\n$customer_saved_search->name = \"Spent more than \\$50\";\n$customer_saved_search->query = \"total_spent:>50\";\n$customer_saved_search->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/customer_saved_searches.json",
-            "headers": {},
-            "body": "{\"customer_saved_search\":{\"name\":\"Spent more than $50 and after 2013\",\"query\":\"total_spent:>50 order_date:>=2013-01-01\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"customer_saved_search\":{\"id\":1068136103,\"name\":\"Spent more than $50 and after 2013\",\"created_at\":\"2022-07-02T02:07:38-04:00\",\"updated_at\":\"2022-07-02T02:07:38-04:00\",\"query\":\"total_spent:>50 order_date:>=2013-01-01\"}}"
-          },
-          "name": "Create a customer saved search with multiple terms",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"customer_saved_search\":{\"name\":\"Spent more than $50 and after 2013\",\"query\":\"total_spent:>50 order_date:>=2013-01-01\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncustomer_saved_search = ShopifyAPI::CustomerSavedSearch.new(session: test_session)\ncustomer_saved_search.name = \"Spent more than $50 and after 2013\"\ncustomer_saved_search.query = \"total_spent:>50 order_date:>=2013-01-01\"\ncustomer_saved_search.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.name = \"Spent more than $50 and after 2013\";\ncustomer_saved_search.query = \"total_spent:>50 order_date:>=2013-01-01\";\nawait customer_saved_search.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_saved_search = new CustomerSavedSearch($this->test_session);\n$customer_saved_search->name = \"Spent more than \\$50 and after 2013\";\n$customer_saved_search->query = \"total_spent:>50 order_date:>=2013-01-01\";\n$customer_saved_search->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/customer_saved_searches.json",
@@ -339,23 +277,100 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"customer_saved_search\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"customer_saved_search\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncustomer_saved_search = ShopifyAPI::CustomerSavedSearch.new(session: test_session)\ncustomer_saved_search.body = \"foobar\"\ncustomer_saved_search.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_saved_search = ShopifyAPI::CustomerSavedSearch.new(session: test_session)\ncustomer_saved_search.body = \"foobar\"\ncustomer_saved_search.save!"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.body = \"foobar\";\nawait customer_saved_search.save({\n  update: true,\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.body = \"foobar\";\nawait customer_saved_search.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_saved_search = new CustomerSavedSearch($this->test_session);\n$customer_saved_search->body = \"foobar\";\n$customer_saved_search->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_saved_search = new CustomerSavedSearch($this->test_session);\n$customer_saved_search->body = \"foobar\";\n$customer_saved_search->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/customer_saved_searches.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/customer_saved_searches.json",
+            "headers": {},
+            "body": "{\"customer_saved_search\":{\"name\":\"Spent more than $50 and after 2013\",\"query\":\"total_spent:>50 order_date:>=2013-01-01\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"customer_saved_search\":{\"id\":1068136102,\"name\":\"Spent more than $50 and after 2013\",\"created_at\":\"2022-10-03T12:24:36-04:00\",\"updated_at\":\"2022-10-03T12:24:36-04:00\",\"query\":\"total_spent:>50 order_date:>=2013-01-01\"}}"
+          },
+          "name": "Create a customer saved search with multiple terms",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"customer_saved_search\":{\"name\":\"Spent more than $50 and after 2013\",\"query\":\"total_spent:>50 order_date:>=2013-01-01\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_saved_search = ShopifyAPI::CustomerSavedSearch.new(session: test_session)\ncustomer_saved_search.name = \"Spent more than $50 and after 2013\"\ncustomer_saved_search.query = \"total_spent:>50 order_date:>=2013-01-01\"\ncustomer_saved_search.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.name = \"Spent more than $50 and after 2013\";\ncustomer_saved_search.query = \"total_spent:>50 order_date:>=2013-01-01\";\nawait customer_saved_search.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_saved_search = new CustomerSavedSearch($this->test_session);\n$customer_saved_search->name = \"Spent more than \\$50 and after 2013\";\n$customer_saved_search->query = \"total_spent:>50 order_date:>=2013-01-01\";\n$customer_saved_search->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/customer_saved_searches.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/customer_saved_searches.json",
+            "headers": {},
+            "body": "{\"customer_saved_search\":{\"name\":\"Spent more than $50\",\"query\":\"total_spent:>50\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"customer_saved_search\":{\"id\":1068136103,\"name\":\"Spent more than $50\",\"created_at\":\"2022-10-03T12:24:37-04:00\",\"updated_at\":\"2022-10-03T12:24:37-04:00\",\"query\":\"total_spent:>50\"}}"
+          },
+          "name": "Create a customer saved search",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"customer_saved_search\":{\"name\":\"Spent more than $50\",\"query\":\"total_spent:>50\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_saved_search = ShopifyAPI::CustomerSavedSearch.new(session: test_session)\ncustomer_saved_search.name = \"Spent more than $50\"\ncustomer_saved_search.query = \"total_spent:>50\"\ncustomer_saved_search.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.name = \"Spent more than $50\";\ncustomer_saved_search.query = \"total_spent:>50\";\nawait customer_saved_search.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_saved_search = new CustomerSavedSearch($this->test_session);\n$customer_saved_search->name = \"Spent more than \\$50\";\n$customer_saved_search->query = \"total_spent:>50\";\n$customer_saved_search->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "customers"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/customer_saved_searches.json",
       "action": "post"
     },
@@ -406,7 +421,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches/count.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/customer_saved_searches/count.json",
@@ -422,26 +437,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CustomerSavedSearch.count(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerSavedSearch.count(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.count({\n  session: test_session,\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.count({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=20610973",
-          "request_path": "/admin/api/2022-07/customer_saved_searches/count.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/customer_saved_searches/count.json",
@@ -457,23 +472,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches/count.json?since_id=20610973\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches/count.json?since_id=20610973\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CustomerSavedSearch.count(\n  session: test_session,\n  since_id: \"20610973\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerSavedSearch.count(\n  session: test_session,\n  since_id: \"20610973\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.count({\n  session: test_session,\n  since_id: \"20610973\",\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.count({\n  session: test_session,\n  since_id: \"20610973\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"20610973\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"20610973\"], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "customers"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/customer_saved_searches/count.json",
       "action": "get"
     },
@@ -518,8 +540,8 @@
                     "customer_saved_search": {
                       "id": 789629109,
                       "name": "Accepts Marketing",
-                      "created_at": "2022-06-24T23:51:59-06:00",
-                      "updated_at": "2022-06-24T23:51:59-06:00",
+                      "created_at": "2022-09-26T10:15:55-06:00",
+                      "updated_at": "2022-09-26T10:15:55-06:00",
                       "query": "accepts_marketing:1"
                     }
                   }
@@ -533,7 +555,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches/789629109.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches/789629109.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/customer_saved_searches/789629109.json",
@@ -543,29 +565,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_saved_search\":{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-06-25T01:51:59-04:00\",\"updated_at\":\"2022-06-25T01:51:59-04:00\",\"query\":\"accepts_marketing:1\"}}"
+            "body": "{\"customer_saved_search\":{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-09-26T12:15:55-04:00\",\"updated_at\":\"2022-09-26T12:15:55-04:00\",\"query\":\"accepts_marketing:1\"}}"
           },
           "name": "Get one customer saved search by ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches/789629109.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches/789629109.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CustomerSavedSearch.find(\n  session: test_session,\n  id: 789629109,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerSavedSearch.find(\n  session: test_session,\n  id: 789629109,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.find({\n  session: test_session,\n  id: 789629109,\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.find({\n  session: test_session,\n  id: 789629109,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::find(\n    $this->test_session, // Session\n    789629109, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::find(\n    $this->test_session, // Session\n    789629109, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "customers"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
       "action": "get"
     },
@@ -602,8 +631,8 @@
                     "customer_saved_search": {
                       "name": "This Name Has Been Changed",
                       "id": 789629109,
-                      "created_at": "2022-06-24T23:51:59-06:00",
-                      "updated_at": "2022-07-02T00:07:40-06:00",
+                      "created_at": "2022-09-26T10:15:55-06:00",
+                      "updated_at": "2022-10-03T10:24:35-06:00",
                       "query": "accepts_marketing:1"
                     }
                   }
@@ -617,7 +646,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches/789629109.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches/789629109.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/customer_saved_searches/789629109.json",
@@ -627,29 +656,36 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_saved_search\":{\"name\":\"This Name Has Been Changed\",\"id\":789629109,\"created_at\":\"2022-06-25T01:51:59-04:00\",\"updated_at\":\"2022-07-02T02:07:40-04:00\",\"query\":\"accepts_marketing:1\"}}"
+            "body": "{\"customer_saved_search\":{\"name\":\"This Name Has Been Changed\",\"id\":789629109,\"created_at\":\"2022-09-26T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:24:35-04:00\",\"query\":\"accepts_marketing:1\"}}"
           },
           "name": "Update an existing customer saved search",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"customer_saved_search\":{\"id\":789629109,\"name\":\"This Name Has Been Changed\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches/789629109.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"customer_saved_search\":{\"id\":789629109,\"name\":\"This Name Has Been Changed\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches/789629109.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncustomer_saved_search = ShopifyAPI::CustomerSavedSearch.new(session: test_session)\ncustomer_saved_search.id = 789629109\ncustomer_saved_search.name = \"This Name Has Been Changed\"\ncustomer_saved_search.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_saved_search = ShopifyAPI::CustomerSavedSearch.new(session: test_session)\ncustomer_saved_search.id = 789629109\ncustomer_saved_search.name = \"This Name Has Been Changed\"\ncustomer_saved_search.save!"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.id = 789629109;\ncustomer_saved_search.name = \"This Name Has Been Changed\";\nawait customer_saved_search.save({\n  update: true,\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.id = 789629109;\ncustomer_saved_search.name = \"This Name Has Been Changed\";\nawait customer_saved_search.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_saved_search = new CustomerSavedSearch($this->test_session);\n$customer_saved_search->id = 789629109;\n$customer_saved_search->name = \"This Name Has Been Changed\";\n$customer_saved_search->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_saved_search = new CustomerSavedSearch($this->test_session);\n$customer_saved_search->id = 789629109;\n$customer_saved_search->name = \"This Name Has Been Changed\";\n$customer_saved_search->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "customers"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
       "action": "put"
     },
@@ -693,7 +729,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches/789629109.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches/789629109.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/customer_saved_searches/789629109.json",
@@ -709,23 +745,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches/789629109.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches/789629109.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CustomerSavedSearch.delete(\n  session: test_session,\n  id: 789629109,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerSavedSearch.delete(\n  session: test_session,\n  id: 789629109,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.delete({\n  session: test_session,\n  id: 789629109,\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.delete({\n  session: test_session,\n  id: 789629109,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::delete(\n    $this->test_session, // Session\n    789629109, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::delete(\n    $this->test_session, // Session\n    789629109, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "customers"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
       "action": "delete"
     },
@@ -791,8 +834,8 @@
                         "id": 207119551,
                         "email": "bob.norman@mail.example.com",
                         "accepts_marketing": true,
-                        "created_at": "2022-07-01T23:51:59-06:00",
-                        "updated_at": "2022-07-02T00:07:49-06:00",
+                        "created_at": "2022-10-03T10:15:55-06:00",
+                        "updated_at": "2022-10-03T10:24:40-06:00",
                         "first_name": "Bob",
                         "last_name": "Norman",
                         "orders_count": 1,
@@ -803,10 +846,10 @@
                         "verified_email": true,
                         "multipass_identifier": null,
                         "tax_exempt": false,
-                        "phone": "+16136120707",
                         "tags": "",
                         "last_order_name": "#1001",
                         "currency": "USD",
+                        "phone": "+16136120707",
                         "addresses": [
                           {
                             "id": 207119551,
@@ -828,13 +871,13 @@
                             "default": true
                           }
                         ],
-                        "accepts_marketing_updated_at": "2022-07-02T00:07:49-06:00",
+                        "accepts_marketing_updated_at": "2022-10-03T10:24:40-06:00",
                         "marketing_opt_in_level": "single_opt_in",
                         "tax_exemptions": [],
                         "sms_marketing_consent": {
                           "state": "not_subscribed",
                           "opt_in_level": "single_opt_in",
-                          "consent_updated_at": "2022-07-01T23:51:59-06:00",
+                          "consent_updated_at": "2022-10-03T10:15:55-06:00",
                           "consent_collected_from": "OTHER"
                         },
                         "admin_graphql_api_id": "gid://shopify/Customer/207119551",
@@ -870,7 +913,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/customer_saved_searches/789629109/customers.json",
+          "request_path": "/admin/api/2022-10/customer_saved_searches/789629109/customers.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/customer_saved_searches/789629109/customers.json",
@@ -880,29 +923,30 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customers\":[{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":true,\"created_at\":\"2022-07-02T01:51:59-04:00\",\"updated_at\":\"2022-07-02T02:07:49-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"phone\":\"+16136120707\",\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"addresses\":[{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}],\"accepts_marketing_updated_at\":\"2022-07-02T02:07:49-04:00\",\"marketing_opt_in_level\":\"single_opt_in\",\"tax_exemptions\":[],\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-07-02T01:51:59-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}]}"
+            "body": "{\"customers\":[{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":true,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:24:40-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"addresses\":[{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}],\"accepts_marketing_updated_at\":\"2022-10-03T12:24:40-04:00\",\"marketing_opt_in_level\":\"single_opt_in\",\"tax_exemptions\":[],\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-03T12:15:55-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}]}"
           },
           "name": "Retrieve customers who match the query for the specified customer saved search",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/customer_saved_searches/789629109/customers.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customer_saved_searches/789629109/customers.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CustomerSavedSearch.customers(\n  session: test_session,\n  id: 789629109,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerSavedSearch.customers(\n  session: test_session,\n  id: 789629109,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.customers({\n  session: test_session,\n  id: 789629109,\n});"
+              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.customers({\n  session: test_session,\n  id: 789629109,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::customers(\n    $this->test_session, // Session\n    789629109, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerSavedSearch;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerSavedSearch::customers(\n    $this->test_session, // Session\n    789629109, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": null,
       "url": "/admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}/customers.json",
       "action": "get"
     }

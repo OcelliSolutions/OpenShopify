@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Metafield
   description: Metafield
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -19,13 +19,88 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
 paths:
-  /metafields.json:
+  '/articles/{article_id}/metafields/count.json':
     get:
       tags:
         - Metafield
-      summary: Retrieve a list of metafields from the resource's endpoint
-      operationId: ListMetafieldsFromResourcesEndpoint
+      summary: Retrieve a count of metafields attached to an Article
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToArticle
       parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/articles/{article_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for an article
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForArticle
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForArticleRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForArticleRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to an Article
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToArticle
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
         - name: created_at_max
           in: query
           description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
@@ -106,18 +181,1264 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetafieldList'
-    post:
+  '/articles/{article_id}/metafields/{metafield_id}.json':
+    delete:
       tags:
         - Metafield
-      summary: Create a metafield
-      operationId: CreateMetafield
+      summary: Delete a metafield by its ID for an Article
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForArticle
       parameters:
-        - name: order_id
-          in: query
+        - name: article_id
+          in: path
           required: true
           schema:
             type: integer
             format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to an Article
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToArticle
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for an Article
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForArticle
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForArticleRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForArticleRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  '/blogs/{blog_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to a Blog
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/blogs/{blog_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for a blog
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForBlogRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForBlogRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a list of metafields from the resource's endpoint
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/blogs/{blog_id}/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Delete a metafield by its ID for a Blog
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to a Blog
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToBlog
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for a Blog
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForBlogRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForBlogRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  '/collections/{collection_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to a Collection
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToCollection
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/collections/{collection_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for a collection
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForCollection
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForCollectionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForCollectionRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to a Collection
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToCollection
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/collections/{collection_id}/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Delete a metafield by its ID for a Collection
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForCollection
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to a Collection
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToCollection
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: collection_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for a Collection
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForCollection
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForCollectionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForCollectionRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  '/customers/{customer_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to a Customer
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/customers/{customer_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for a customer
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForCustomerRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForCustomerRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to an Article
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/customers/{customer_id}/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Delete a metafield by its ID for a Customer
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to a Customer
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToCustomer
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for a Customer
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForCustomerRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForCustomerRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  '/draft_orders/{draft_order_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to a Draft Order
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/draft_orders/{draft_order_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for a draft order
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForDraftOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForDraftOrderRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to a Draft Order
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/draft_orders/{draft_order_id}/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Delete a metafield by its ID for a Draft Order
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to a Draft Order
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToDraftOrder
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for a Draft Order
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForDraftOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForDraftOrderRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  /metafields/count.json:
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to the Shop resource
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToShopResource
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  /metafields.json:
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafield
       requestBody:
         content:
           application/json:
@@ -142,12 +1463,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetafieldItem'
-  /metafields/count.json:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of a resource's metafields.
-      operationId: CountResourcesMetafields
+      summary: Retrieve a list of metafields by using query parameters
+      description: Retrieves a list of metafields that belong to a resource by using query parameters.
+      operationId: ListMetafieldsByUsingQueryParameters
+      parameters:
+        - name: 'metafield[owner_id]'
+          in: query
+          description: Filter by the resource ID on which the metafield is attached to.
+          schema:
+            type: string
+        - name: 'metafield[owner_resource]'
+          in: query
+          description: Filter by the resource name on which the metafield is attached to.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Delete a metafield by its ID for the Shop resource
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForShopResource
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: Success
@@ -160,16 +1526,12 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CountItem'
-  '/metafields/{metafield_id}.json':
     get:
       tags:
         - Metafield
-      summary: Retrieve a specific metafield
-      operationId: GetMetafield
+      summary: Retrieve a single metafield by its ID attached to the Shop resource
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToShopResource
       parameters:
         - name: metafield_id
           in: path
@@ -235,12 +1597,182 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetafieldItem'
+  '/orders/{order_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to an Order
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/orders/{order_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for an order
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForOrderRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to an Order
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/orders/{order_id}/metafields/{metafield_id}.json':
     delete:
       tags:
         - Metafield
-      summary: Deletes a metafield by its ID
-      operationId: DeleteMetafield
+      summary: Delete a metafield by its ID for an Order
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForOrder
       parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
         - name: metafield_id
           in: path
           required: true
@@ -259,6 +1791,1199 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to an Order
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToOrder
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for an Order
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForOrderRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  '/pages/{page_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      operationId: CountMetafieldsAttachedToPage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/pages/{page_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for a page
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForPage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForPageRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForPageRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to a Page
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToPage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/pages/{page_id}/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Delete a metafield by its ID for a Page
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForPage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to a Page
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToPage
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for a Page
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForPage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForPageRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForPageRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  '/products/{product_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to a Product
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToProduct
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/products/{product_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for a product
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForProduct
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForProductRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForProductRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to a Product
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToProduct
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/products/{product_id}/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Delete a metafield by its ID for a Product
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForProduct
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to a Product
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToProduct
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for a Product
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForProduct
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForProductRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForProductRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  '/product_images/{product_image_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to a Product Image
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToProductImage
+      parameters:
+        - name: product_image_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/product_images/{product_image_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for a product image
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForProductImage
+      parameters:
+        - name: product_image_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForProductImageRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForProductImageRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to a Product Image
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToProductImage
+      parameters:
+        - name: product_image_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/product_images/{product_image_id}/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Deletes a metafield by its ID
+      operationId: DeleteMetafieldForProductImage
+      parameters:
+        - name: product_image_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a single metafield by its ID attached to a Product Image
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToProductImage
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: product_image_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for a Product Image
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForProductImage
+      parameters:
+        - name: product_image_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForProductImageRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForProductImageRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+  '/variants/{variant_id}/metafields/count.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of metafields attached to a Product Variant
+      description: Get a count of all metafields that belong to a particular resource.
+      operationId: CountMetafieldsAttachedToProductVariant
+      parameters:
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountItem'
+  '/variants/{variant_id}/metafields.json':
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield for a product variant
+      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
+      operationId: CreateMetafieldForProductVariant
+      parameters:
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForProductVariantRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateMetafieldForProductVariantRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve metafields attached to a Product Variant
+      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
+      operationId: ListMetafieldsAttachedToProductVariant
+      parameters:
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
+          schema:
+            $ref: '#/components/schemas/MetafieldType'
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
+  '/variants/{variant_id}/metafields/{metafield_id}.json':
+    delete:
+      tags:
+        - Metafield
+      summary: Delete a metafield by its ID for a Product Variant
+      description: Deletes a metafield by its ID.
+      operationId: DeleteMetafieldForProductVariant
+      parameters:
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a specific metafield
+      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
+      operationId: GetMetafieldAttachedToProductVariant
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
+    put:
+      tags:
+        - Metafield
+      summary: Update a metafield for a Product Variant
+      description: Updates a metafield.
+      operationId: UpdateMetafieldForProductVariant
+      parameters:
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForProductVariantRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetafieldForProductVariantRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
 components:
   schemas:
     CountItem:
@@ -277,11 +3002,11 @@ components:
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-20 characters.
+          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
           nullable: true
         owner_id:
           type: integer
@@ -297,6 +3022,86 @@ components:
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
+      additionalProperties: false
+    CreateMetafieldForArticleRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForBlogRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForCollectionRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForCustomerRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForDraftOrderRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForOrderRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForPageRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForProductImageRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForProductRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: false
+    CreateMetafieldForProductVariantRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
       additionalProperties: false
     CreateMetafieldRequest:
       required:
@@ -317,11 +3122,11 @@ components:
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-20 characters.
+          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
           nullable: true
         owner_id:
           type: integer
@@ -404,11 +3209,11 @@ components:
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-20 characters.
+          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
           nullable: true
         owner_id:
           type: integer
@@ -430,6 +3235,86 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: false
+    UpdateMetafieldForArticleRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForBlogRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForCollectionRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForCustomerRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForDraftOrderRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForOrderRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForPageRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForProductImageRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForProductRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
+      additionalProperties: false
+    UpdateMetafieldForProductVariantRequest:
+      required:
+        - metafield
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
       additionalProperties: false
     UpdateMetafieldRequest:
       required:

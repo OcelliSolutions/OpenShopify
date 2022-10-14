@@ -26,8 +26,8 @@ public class CommentController : CommentControllerBase
     [HttpPost]
     [Route("comments.json")]
     [ProducesResponseType(typeof(CommentItem), StatusCodes.Status201Created)]
-    public override Task CreateComment([Required] CreateCommentRequest request) => throw new NotImplementedException();
-
+    public override Task CreateCommentForArticle(CreateCommentForArticleRequest request) => throw new NotImplementedException();
+    
     /// <inheritdoc />
     [HttpGet]
     [Route("comments/count.json")]
@@ -49,9 +49,8 @@ public class CommentController : CommentControllerBase
     [HttpPut]
     [Route("comments/{comment_id:long}.json")]
     [ProducesResponseType(typeof(CommentItem), StatusCodes.Status200OK)]
-    public override Task UpdateComment([Required] UpdateCommentRequest ofArticleRequest, [Required] long comment_id) =>
-        throw new NotImplementedException();
-
+    public override Task UpdateCommentOfArticle(UpdateCommentOfArticleRequest request, long comment_id) => throw new NotImplementedException();
+    
     /// <inheritdoc cref="CommentControllerBase.MarkCommentAsSpam" />
     [HttpPost]
     [Route("comments/{comment_id:long}/spam.json")]

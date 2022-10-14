@@ -1,5 +1,3 @@
 ﻿namespace OpenShopify.Admin.Builder.Models;
 
-public class CreateOrderRiskForOrderRequest
-{
-}
+public record CreateOrderRiskForOrderRequest : CreateOrderRiskRequest;

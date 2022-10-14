@@ -189,7 +189,7 @@ public class RefundTests : IClassFixture<RefundFixture>
     [TestPriority(20)]
     public async Task ListRefundsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Refund.ListRefundsAsync(Fixture.Order.Id);
+        var response = await Fixture.Service.Refund.ListRefundsForOrderAsync(Fixture.Order.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var refund in response.Result.Refunds)
         {
@@ -244,9 +244,9 @@ internal class RefundMockClient : RefundClient, IMockTests
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListRefundsAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListRefundsForOrderAsync(0));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListRefundsAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListRefundsForOrderAsync(0));
     }
 }

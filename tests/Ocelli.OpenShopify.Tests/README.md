@@ -13,7 +13,7 @@ To run the webhook validation tests, a webhook must be registered and executed m
   * be sure to replace the __access_token__ and __endpoint__
 
 ```bash
-curl --location --request POST 'https://super-neat.myshopify.com/admin/api/2022-07/webhooks.json' \
+curl --location --request POST 'https://super-neat.myshopify.com/admin/api/2022-10/webhooks.json' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'X-Shopify-Access-Token: <access_token>' \

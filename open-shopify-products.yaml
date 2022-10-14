@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Products
   description: Products
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-07'
+        default: '2022-10'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -53,6 +53,7 @@ paths:
       tags:
         - Collect
       summary: Retrieves a list of collects
+      description: 'Retrieves a list of collects. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListCollects
       parameters:
         - name: fields
@@ -216,6 +217,7 @@ paths:
       tags:
         - Collection
       summary: Retrieve a list of products belonging to a collection
+      description: 'Retrieve a list of products belonging to a collection. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).. The products returned are sorted by the collection''s sort order.'
       operationId: ListProductsBelongingToCollection
       parameters:
         - name: collection_id
@@ -260,6 +262,7 @@ paths:
       tags:
         - CustomCollection
       summary: Retrieves a list of custom collections
+      description: 'Retrieves a list of custom collections. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListCustomCollections
       parameters:
         - name: fields
@@ -687,6 +690,7 @@ paths:
       tags:
         - Product
       summary: Create a new product
+      description: Create a new product
       operationId: CreateProduct
       requestBody:
         content:
@@ -831,6 +835,7 @@ paths:
       tags:
         - Product
       summary: Updates a product
+      description: Update a product
       operationId: UpdateProduct
       parameters:
         - name: product_id
@@ -868,6 +873,7 @@ paths:
       tags:
         - Product
       summary: Delete a product
+      description: Deletes a product.
       operationId: DeleteProduct
       parameters:
         - name: product_id
@@ -893,6 +899,7 @@ paths:
       tags:
         - ProductImage
       summary: Receive a list of all Product Images
+      description: Get all product images
       operationId: ListProductImages
       parameters:
         - name: product_id
@@ -974,6 +981,7 @@ paths:
       tags:
         - ProductImage
       summary: Receive a count of all Product Images
+      description: Get a count of all product images
       operationId: CountProductImages
       parameters:
         - name: product_id
@@ -1009,6 +1017,7 @@ paths:
       tags:
         - ProductImage
       summary: Receive a single Product Image
+      description: Get a single product image by id
       operationId: GetProductImage
       parameters:
         - name: image_id
@@ -1122,6 +1131,7 @@ paths:
       tags:
         - ProductVariant
       summary: Retrieves a list of product variants
+      description: 'Retrieves a list of product variants. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListProductVariants
       parameters:
         - name: product_id
@@ -1181,6 +1191,7 @@ paths:
       tags:
         - ProductVariant
       summary: Create a new Product Variant
+      description: Creates a new product variant
       operationId: CreateProductVariant
       parameters:
         - name: product_id
@@ -1219,6 +1230,7 @@ paths:
       tags:
         - ProductVariant
       summary: Receive a count of all Product Variants
+      description: Retrieves a count of product variants
       operationId: CountProductVariants
       parameters:
         - name: product_id
@@ -1248,6 +1260,7 @@ paths:
       tags:
         - ProductVariant
       summary: Receive a single Product Variant
+      description: Retrieves a single product variant by ID
       operationId: GetProductVariant
       parameters:
         - name: variant_id
@@ -1281,6 +1294,7 @@ paths:
       tags:
         - ProductVariant
       summary: Modify an existing Product Variant
+      description: Updates an existing product variant
       operationId: UpdateProductVariant
       parameters:
         - name: variant_id
@@ -1350,6 +1364,7 @@ paths:
       tags:
         - SmartCollection
       summary: Retrieves a list of smart collections
+      description: 'Retrieves a list of smart collections. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListSmartCollections
       parameters:
         - name: fields
@@ -1453,6 +1468,7 @@ paths:
       tags:
         - SmartCollection
       summary: Creates a smart collection
+      description: Creates a new smart collection using the specified rules.
       operationId: CreateSmartCollection
       requestBody:
         content:
@@ -1758,7 +1774,7 @@ components:
           nullable: true
         sort_order:
           type: string
-          description: "The order in which products in the collection appear. Valid values:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: In the order set manually by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). </strong>"
+          description: "The order in which products in the collection appear. Valid values:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: In the order set manually by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). \r\n\r\n</strong>"
           nullable: true
         template_suffix:
           type: string
@@ -1885,7 +1901,7 @@ components:
           nullable: true
         sort_order:
           type: string
-          description: "The order in which products in the custom collection appear. Valid values:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). </strong>"
+          description: "The order in which products in the custom collection appear. Valid values:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). \r\n\r\n</strong>"
           nullable: true
         template_suffix:
           type: string
@@ -2071,7 +2087,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.'
+          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.'
           nullable: true
         grams:
           type: number
@@ -2094,7 +2110,7 @@ components:
           nullable: true
         inventory_policy:
           type: string
-          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock.  Default value: `deny`."
+          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock. \r\n\r\n Default value: `deny`."
           nullable: true
         inventory_quantity:
           type: number
@@ -2120,7 +2136,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PresentmentPrice'
-          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.Requires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
+          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.\r\n\r\nRequires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
           nullable: true
         position:
           type: integer
@@ -2218,7 +2234,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SmartCollectionRules'
-          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price.  \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition.  \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value.   \r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
+          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price. \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition. \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. \r\n\r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
           nullable: true
         disjunctive:
           type: boolean
@@ -2283,7 +2299,7 @@ components:
           nullable: true
         sort_order:
           type: string
-          description: "The order in which products in the custom collection appear. Valid values:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). </strong>"
+          description: "The order in which products in the custom collection appear. Valid values:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). \r\n\r\n</strong>"
           nullable: true
         template_suffix:
           type: string
@@ -2387,11 +2403,11 @@ components:
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-20 characters.
+          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
           nullable: true
         owner_id:
           type: integer
@@ -2708,7 +2724,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.'
+          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.'
           nullable: true
         grams:
           type: number
@@ -2731,7 +2747,7 @@ components:
           nullable: true
         inventory_policy:
           type: string
-          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock.  Default value: `deny`."
+          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock. \r\n\r\n Default value: `deny`."
           nullable: true
         inventory_quantity:
           type: number
@@ -2757,7 +2773,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PresentmentPrice'
-          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.Requires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
+          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.\r\n\r\nRequires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
           nullable: true
         position:
           type: integer
@@ -2908,7 +2924,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SmartCollectionRules'
-          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price.  \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition.  \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value.   \r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
+          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price. \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition. \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. \r\n\r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
           nullable: true
         disjunctive:
           type: boolean
@@ -3062,7 +3078,7 @@ components:
           nullable: true
         sort_order:
           type: string
-          description: "The order in which products in the custom collection appear. Valid values:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). </strong>"
+          description: "The order in which products in the custom collection appear. Valid values:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). \r\n\r\n</strong>"
           nullable: true
         template_suffix:
           type: string
@@ -3275,7 +3291,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.'
+          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.'
           nullable: true
         grams:
           type: number
@@ -3298,7 +3314,7 @@ components:
           nullable: true
         inventory_policy:
           type: string
-          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock.  Default value: `deny`."
+          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock. \r\n\r\n Default value: `deny`."
           nullable: true
         inventory_quantity:
           type: number
@@ -3324,7 +3340,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PresentmentPrice'
-          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.Requires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
+          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.\r\n\r\nRequires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
           nullable: true
         position:
           type: integer
@@ -3430,7 +3446,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SmartCollectionRules'
-          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price.  \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition.  \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value.   \r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
+          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price. \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition. \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. \r\n\r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
           nullable: true
         disjunctive:
           type: boolean

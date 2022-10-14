@@ -22,9 +22,8 @@ public class TransactionController : TransactionControllerBase
     [HttpPost]
     [Route("orders/{order_id:long}/transactions.json")]
     [ProducesResponseType(typeof(TransactionItem), StatusCodes.Status201Created)]
-    public override Task CreateTransaction([Required] CreateTransactionRequest forOrderRequest,
-        [Required] long order_id) => throw new NotImplementedException();
-
+    public override Task CreateTransactionForOrder([Required] CreateTransactionForOrderRequest request, long order_id) => throw new NotImplementedException();
+    
     /// <inheritdoc />
     [HttpGet]
     [Route("orders/{order_id:long}/transactions/count.json")]

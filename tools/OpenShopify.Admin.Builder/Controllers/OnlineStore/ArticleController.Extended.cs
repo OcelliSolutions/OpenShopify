@@ -15,12 +15,10 @@ public class ArticleController : ArticleControllerBase
     [HttpGet]
     [Route("blogs/{blog_id:long}/articles.json")]
     [ProducesResponseType(typeof(ArticleList), StatusCodes.Status200OK)]
-    public override Task ListArticles([Required] long blog_id, string? author = null,
-        DateTimeOffset? created_at_max = null,
+    public override Task ListArticlesFromBlog(long blog_id, string? author = null, DateTimeOffset? created_at_max = null,
         DateTimeOffset? created_at_min = null, string? fields = null, string? handle = null, int? limit = null,
-        string? page_info = null, DateTimeOffset? published_at_max = null,
-        DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null,
-        string? tag = null, DateTimeOffset? updated_at_max = null,
+        string? page_info = null, DateTimeOffset? published_at_max = null, DateTimeOffset? published_at_min = null,
+        string? published_status = null, long? since_id = null, string? tag = null, DateTimeOffset? updated_at_max = null,
         DateTimeOffset? updated_at_min = null) =>
         throw new NotImplementedException();
 
@@ -28,14 +26,13 @@ public class ArticleController : ArticleControllerBase
     [HttpPost]
     [Route("blogs/{blog_id:long}/articles.json")]
     [ProducesResponseType(typeof(ArticleItem), StatusCodes.Status201Created)]
-    public override Task CreateArticle([Required] CreateArticleRequest forBlogRequest, [Required] long blog_id) =>
-        throw new NotImplementedException();
+    public override Task CreateArticleForBlog(CreateArticleForBlogRequest request, long blog_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
     [HttpGet]
     [Route("blogs/{blog_id:long}/articles/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountArticles(long? blog_id = null, DateTimeOffset? created_at_max = null,
+    public override Task CountArticlesFromBlog(long? blog_id = null, DateTimeOffset? created_at_max = null,
         DateTimeOffset? created_at_min = null, DateTimeOffset? published_at_max = null,
         DateTimeOffset? published_at_min = null, string? published_status = null, DateTimeOffset? updated_at_max = null,
         DateTimeOffset? updated_at_min = null) =>
@@ -81,4 +78,10 @@ public class ArticleController : ArticleControllerBase
     [ProducesResponseType(typeof(TagList), StatusCodes.Status200OK)]
     public override Task ListArticleTagsFromSpecificBlog([Required] long blog_id, int? limit = null,
         string? page_info = null, string? popular = null) => throw new NotImplementedException();
+
+    /// <inheritdoc />
+    [HttpPut]
+    [Route("articles/{article_id:long}.json")]
+    [ProducesResponseType(typeof(ArticleItem), StatusCodes.Status200OK)]
+    public override Task DeleteImageFromArticle(long article_id) => throw new NotImplementedException();
 }

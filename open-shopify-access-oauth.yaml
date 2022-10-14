@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Access (OAuth)
   description: OAuth
-  version: '2022-07'
+  version: '2022-10'
 servers:
   - url: 'https://{store_name}.myshopify.com'
     variables:
@@ -15,6 +15,7 @@ paths:
       tags:
         - AccessScope
       summary: Get a list of access scopes
+      description: Retrieves a list of access scopes associated with the access token.
       operationId: ListAccessScopes
       responses:
         '200':

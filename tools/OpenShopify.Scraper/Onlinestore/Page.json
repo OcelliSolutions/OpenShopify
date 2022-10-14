@@ -5,7 +5,8 @@
     "description": "        <p>In addition to an online storefront, Shopify stores come with a tool for creating basic HTML web pages. Store owners can create any number of pages to hold static content, such as an <strong>About us</strong> page, a <strong>Contact us</strong> page, or a page with customer testimonials.</p>\n        <p>These web pages are represented by the Page resource, and their HTML content is contained in the value of the <code>body_html</code> property. The Page resource lets you retrieve, create, update, and delete web pages for a store.</p>\n        <p>Pages are meant to be used for long-term, static content that rarely changes. For creating content on a regular basis, use the <a href=\"/docs/admin-api/rest/reference/online-store/blog\">Blog</a> resource instead.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/469",
     "x-description-list": null,
-    "version": "2022-07"
+    "version": "2022-10",
+    "show-privacy-note": true
   },
   "paths": [
     {
@@ -141,6 +142,38 @@
           "content": {
             "application/json": {
               "examples": {
+                "Retrieve a list of all pages after the specified ID": {
+                  "value": {
+                    "pages": [
+                      {
+                        "id": 131092082,
+                        "title": "Terms of Services",
+                        "shop_id": 548380009,
+                        "handle": "tos",
+                        "body_html": "<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>",
+                        "author": "Dennis",
+                        "created_at": "2008-07-15T18:00:00-06:00",
+                        "updated_at": "2008-07-16T18:00:00-06:00",
+                        "published_at": "2008-07-15T18:00:00-06:00",
+                        "template_suffix": null,
+                        "admin_graphql_api_id": "gid://shopify/OnlineStorePage/131092082"
+                      },
+                      {
+                        "id": 169524623,
+                        "title": "Store hours",
+                        "shop_id": 548380009,
+                        "handle": "store-hours",
+                        "body_html": "<p>We never close.</p>",
+                        "author": "Jobs",
+                        "created_at": "2013-12-31T17:00:00-07:00",
+                        "updated_at": "2013-12-31T17:00:00-07:00",
+                        "published_at": "2014-02-01T17:00:00-07:00",
+                        "template_suffix": null,
+                        "admin_graphql_api_id": "gid://shopify/OnlineStorePage/169524623"
+                      }
+                    ]
+                  }
+                },
                 "Get all pages for a shop": {
                   "value": {
                     "pages": [
@@ -198,38 +231,6 @@
                       }
                     ]
                   }
-                },
-                "Retrieve a list of all pages after the specified ID": {
-                  "value": {
-                    "pages": [
-                      {
-                        "id": 131092082,
-                        "title": "Terms of Services",
-                        "shop_id": 548380009,
-                        "handle": "tos",
-                        "body_html": "<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>",
-                        "author": "Dennis",
-                        "created_at": "2008-07-15T18:00:00-06:00",
-                        "updated_at": "2008-07-16T18:00:00-06:00",
-                        "published_at": "2008-07-15T18:00:00-06:00",
-                        "template_suffix": null,
-                        "admin_graphql_api_id": "gid://shopify/OnlineStorePage/131092082"
-                      },
-                      {
-                        "id": 169524623,
-                        "title": "Store hours",
-                        "shop_id": 548380009,
-                        "handle": "store-hours",
-                        "body_html": "<p>We never close.</p>",
-                        "author": "Jobs",
-                        "created_at": "2013-12-31T17:00:00-07:00",
-                        "updated_at": "2013-12-31T17:00:00-07:00",
-                        "published_at": "2014-02-01T17:00:00-07:00",
-                        "template_suffix": null,
-                        "admin_graphql_api_id": "gid://shopify/OnlineStorePage/169524623"
-                      }
-                    ]
-                  }
                 }
               }
             }
@@ -239,43 +240,8 @@
       "x-examples": [
         {
           "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/pages.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-10/pages.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"pages\":[{\"id\":108828309,\"title\":\"Sample Page\",\"shop_id\":548380009,\"handle\":\"sample\",\"body_html\":\"<p>this is a <strong>sample</strong> page.</p>\",\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2008-07-16T20:00:00-04:00\",\"published_at\":null,\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/108828309\"},{\"id\":169524623,\"title\":\"Store hours\",\"shop_id\":548380009,\"handle\":\"store-hours\",\"body_html\":\"<p>We never close.</p>\",\"author\":\"Jobs\",\"created_at\":\"2013-12-31T19:00:00-05:00\",\"updated_at\":\"2013-12-31T19:00:00-05:00\",\"published_at\":\"2014-02-01T19:00:00-05:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/169524623\"},{\"id\":322471,\"title\":\"Support\",\"shop_id\":548380009,\"handle\":\"support\",\"body_html\":\"<p>Come in store for support.</p>\",\"author\":\"Dennis\",\"created_at\":\"2009-07-15T20:00:00-04:00\",\"updated_at\":\"2009-07-16T20:00:00-04:00\",\"published_at\":null,\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/322471\"},{\"id\":131092082,\"title\":\"Terms of Services\",\"shop_id\":548380009,\"handle\":\"tos\",\"body_html\":\"<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>\",\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2008-07-16T20:00:00-04:00\",\"published_at\":\"2008-07-15T20:00:00-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}]}"
-          },
-          "name": "Get all pages for a shop",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Page.all(\n  session: test_session,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.all({\n  session: test_session,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
           "request_query": "since_id=108828309",
-          "request_path": "/admin/api/2022-07/pages.json",
+          "request_path": "/admin/api/2022-10/pages.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/pages.json",
@@ -291,264 +257,67 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/pages.json?since_id=108828309\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/pages.json?since_id=108828309\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Page.all(\n  session: test_session,\n  since_id: \"108828309\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Page.all(\n  session: test_session,\n  since_id: \"108828309\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.all({\n  session: test_session,\n  since_id: \"108828309\",\n});"
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.all({\n  session: test_session,\n  since_id: \"108828309\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"108828309\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"108828309\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/pages.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/pages.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"pages\":[{\"id\":108828309,\"title\":\"Sample Page\",\"shop_id\":548380009,\"handle\":\"sample\",\"body_html\":\"<p>this is a <strong>sample</strong> page.</p>\",\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2008-07-16T20:00:00-04:00\",\"published_at\":null,\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/108828309\"},{\"id\":169524623,\"title\":\"Store hours\",\"shop_id\":548380009,\"handle\":\"store-hours\",\"body_html\":\"<p>We never close.</p>\",\"author\":\"Jobs\",\"created_at\":\"2013-12-31T19:00:00-05:00\",\"updated_at\":\"2013-12-31T19:00:00-05:00\",\"published_at\":\"2014-02-01T19:00:00-05:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/169524623\"},{\"id\":322471,\"title\":\"Support\",\"shop_id\":548380009,\"handle\":\"support\",\"body_html\":\"<p>Come in store for support.</p>\",\"author\":\"Dennis\",\"created_at\":\"2009-07-15T20:00:00-04:00\",\"updated_at\":\"2009-07-16T20:00:00-04:00\",\"published_at\":null,\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/322471\"},{\"id\":131092082,\"title\":\"Terms of Services\",\"shop_id\":548380009,\"handle\":\"tos\",\"body_html\":\"<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>\",\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2008-07-16T20:00:00-04:00\",\"published_at\":\"2008-07-15T20:00:00-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}]}"
+          },
+          "name": "Get all pages for a shop",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Page.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
-      "url": "/admin/api/{api_version}/pages.json",
-      "action": "get"
-    },
-    {
-      "description": "Creates a page",
-      "summary": "Creates a page",
-      "operationId": "Createsapage",
-      "parameters": [
-        {
-          "name": "api_version",
-          "in": "path",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        }
-      ],
-      "responses": {
-        "201": {
-          "description": "Creates a page",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Create a page with HTML markup": {
-                  "value": {
-                    "page": {
-                      "id": 1025371371,
-                      "title": "Warranty information",
-                      "shop_id": 548380009,
-                      "handle": "warranty-information",
-                      "body_html": "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
-                      "author": "Shopify API",
-                      "created_at": "2022-04-05T11:25:18-06:00",
-                      "updated_at": "2022-04-05T11:25:18-06:00",
-                      "published_at": "2022-04-05T11:25:18-06:00",
-                      "template_suffix": null,
-                      "admin_graphql_api_id": "gid://shopify/OnlineStorePage/1025371371"
-                    }
-                  }
-                },
-                "Create an unpublished page": {
-                  "value": {
-                    "page": {
-                      "id": 1025371372,
-                      "title": "Warranty information",
-                      "shop_id": 548380009,
-                      "handle": "warranty-information",
-                      "body_html": "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
-                      "author": "Shopify API",
-                      "created_at": "2022-04-05T11:25:20-06:00",
-                      "updated_at": "2022-04-05T11:25:20-06:00",
-                      "published_at": null,
-                      "template_suffix": null,
-                      "admin_graphql_api_id": "gid://shopify/OnlineStorePage/1025371372"
-                    }
-                  }
-                },
-                "Create a page with a metafield": {
-                  "value": {
-                    "page": {
-                      "id": 1025371373,
-                      "title": "Warranty information",
-                      "shop_id": 548380009,
-                      "handle": "warranty-information",
-                      "body_html": "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
-                      "author": "Shopify API",
-                      "created_at": "2022-04-05T11:25:22-06:00",
-                      "updated_at": "2022-04-05T11:25:22-06:00",
-                      "published_at": "2022-04-05T11:25:22-06:00",
-                      "template_suffix": null,
-                      "admin_graphql_api_id": "gid://shopify/OnlineStorePage/1025371373"
-                    }
-                  }
-                }
-              }
-            }
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "content"
           }
-        },
-        "422": {
-          "description": "Creates a page",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Creating a page without a title fails and returns an error": {
-                  "value": {
-                    "errors": {
-                      "title": [
-                        "can't be blank"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+        ]
       },
-      "x-examples": [
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/pages.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/2021-07/pages.json",
-            "headers": {},
-            "body": "{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"page\":{\"id\":1025371371,\"title\":\"Warranty information\",\"shop_id\":548380009,\"handle\":\"warranty-information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"author\":\"Shopify API\",\"created_at\":\"2022-04-05T13:25:18-04:00\",\"updated_at\":\"2022-04-05T13:25:18-04:00\",\"published_at\":\"2022-04-05T13:25:18-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/1025371371\"}}"
-          },
-          "name": "Create a page with HTML markup",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.title = \"Warranty information\"\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"\npage.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.title = \"Warranty information\";\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\nawait page.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->title = \"Warranty information\";\n$page->body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\n$page->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/pages.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/2021-07/pages.json",
-            "headers": {},
-            "body": "{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"published\":false}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"page\":{\"id\":1025371372,\"title\":\"Warranty information\",\"shop_id\":548380009,\"handle\":\"warranty-information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"author\":\"Shopify API\",\"created_at\":\"2022-04-05T13:25:20-04:00\",\"updated_at\":\"2022-04-05T13:25:20-04:00\",\"published_at\":null,\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/1025371372\"}}"
-          },
-          "name": "Create an unpublished page",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"published\":false}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.title = \"Warranty information\"\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"\npage.published = false\npage.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.title = \"Warranty information\";\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\npage.published = false;\nawait page.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->title = \"Warranty information\";\n$page->body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\n$page->published = false;\n$page->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "422",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/pages.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/2021-07/pages.json",
-            "headers": {},
-            "body": "{\"page\":{\"body\":\"foobar\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 422 Unprocessable Entity",
-            "headers": {},
-            "body": "{\"errors\":{\"title\":[\"can't be blank\"]}}"
-          },
-          "name": "Creating a page without a title fails and returns an error",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.body = \"foobar\"\npage.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.body = \"foobar\";\nawait page.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->body = \"foobar\";\n$page->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/pages.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/2021-07/pages.json",
-            "headers": {},
-            "body": "{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"metafields\":[{\"key\":\"new\",\"value\":\"new value\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"page\":{\"id\":1025371373,\"title\":\"Warranty information\",\"shop_id\":548380009,\"handle\":\"warranty-information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"author\":\"Shopify API\",\"created_at\":\"2022-04-05T13:25:22-04:00\",\"updated_at\":\"2022-04-05T13:25:22-04:00\",\"published_at\":\"2022-04-05T13:25:22-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/1025371373\"}}"
-          },
-          "name": "Create a page with a metafield",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"metafields\":[{\"key\":\"new\",\"value\":\"new value\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.title = \"Warranty information\"\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"\npage.metafields = [\n  {\n    \"key\" => \"new\",\n    \"value\" => \"new value\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\npage.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.title = \"Warranty information\";\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\npage.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"new value\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait page.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->title = \"Warranty information\";\n$page->body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\n$page->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"new value\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$page->save(\n    true, // Update Object\n);"
-            }
-          ]
-        }
-      ],
-      "url": "/admin/api/{api_version}/pages.json",
-      "action": "post"
+      "url": "/admin/api/{api_version}/pages.json?since_id=108828309",
+      "action": "get"
     },
     {
       "description": "Retrieves a page count.",
@@ -663,7 +432,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/pages/count.json",
+          "request_path": "/admin/api/2022-10/pages/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/pages/count.json",
@@ -679,23 +448,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/pages/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/pages/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Page.count(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Page.count(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.count({\n  session: test_session,\n});"
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.count({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "content"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/pages/count.json",
       "action": "get"
     },
@@ -761,7 +537,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/pages/131092082.json",
+          "request_path": "/admin/api/2022-10/pages/131092082.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/pages/131092082.json",
@@ -777,23 +553,30 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Page.find(\n  session: test_session,\n  id: 131092082,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Page.find(\n  session: test_session,\n  id: 131092082,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.find({\n  session: test_session,\n  id: 131092082,\n});"
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.find({\n  session: test_session,\n  id: 131092082,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::find(\n    $this->test_session, // Session\n    131092082, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::find(\n    $this->test_session, // Session\n    131092082, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "content"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/pages/{page_id}.json",
       "action": "get"
     },
@@ -825,23 +608,6 @@
           "content": {
             "application/json": {
               "examples": {
-                "Update the body HTML of an existing page": {
-                  "value": {
-                    "page": {
-                      "shop_id": 548380009,
-                      "body_html": "<p>Returns accepted if we receive the items 14 days after purchase.</p>",
-                      "title": "Terms of Services",
-                      "handle": "tos",
-                      "id": 131092082,
-                      "author": "Dennis",
-                      "created_at": "2008-07-15T18:00:00-06:00",
-                      "updated_at": "2022-04-05T11:25:29-06:00",
-                      "published_at": "2008-07-15T18:00:00-06:00",
-                      "template_suffix": null,
-                      "admin_graphql_api_id": "gid://shopify/OnlineStorePage/131092082"
-                    }
-                  }
-                },
                 "Update an existing page completely": {
                   "value": {
                     "page": {
@@ -852,25 +618,42 @@
                       "title": "New warranty",
                       "id": 131092082,
                       "created_at": "2008-07-15T18:00:00-06:00",
-                      "updated_at": "2022-04-05T11:25:30-06:00",
+                      "updated_at": "2022-10-03T10:54:00-06:00",
                       "published_at": "2008-07-15T18:00:00-06:00",
                       "template_suffix": null,
                       "admin_graphql_api_id": "gid://shopify/OnlineStorePage/131092082"
                     }
                   }
                 },
-                "Show a hidden page": {
+                "Update the body HTML of an existing page": {
                   "value": {
                     "page": {
                       "shop_id": 548380009,
-                      "published_at": "2022-04-05T11:25:31-06:00",
+                      "body_html": "<p>Returns accepted if we receive the items 14 days after purchase.</p>",
+                      "title": "Terms of Services",
+                      "handle": "tos",
+                      "id": 131092082,
+                      "author": "Dennis",
+                      "created_at": "2008-07-15T18:00:00-06:00",
+                      "updated_at": "2022-10-03T10:54:05-06:00",
+                      "published_at": "2008-07-15T18:00:00-06:00",
+                      "template_suffix": null,
+                      "admin_graphql_api_id": "gid://shopify/OnlineStorePage/131092082"
+                    }
+                  }
+                },
+                "Add a metafield to a page": {
+                  "value": {
+                    "page": {
+                      "shop_id": 548380009,
                       "title": "Terms of Services",
                       "handle": "tos",
                       "body_html": "<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>",
                       "id": 131092082,
                       "author": "Dennis",
                       "created_at": "2008-07-15T18:00:00-06:00",
-                      "updated_at": "2022-04-05T11:25:31-06:00",
+                      "updated_at": "2022-10-03T10:54:06-06:00",
+                      "published_at": "2008-07-15T18:00:00-06:00",
                       "template_suffix": null,
                       "admin_graphql_api_id": "gid://shopify/OnlineStorePage/131092082"
                     }
@@ -887,24 +670,24 @@
                       "id": 131092082,
                       "author": "Dennis",
                       "created_at": "2008-07-15T18:00:00-06:00",
-                      "updated_at": "2022-04-05T11:25:32-06:00",
+                      "updated_at": "2022-10-03T10:54:11-06:00",
                       "template_suffix": null,
                       "admin_graphql_api_id": "gid://shopify/OnlineStorePage/131092082"
                     }
                   }
                 },
-                "Add a metafield to a page": {
+                "Show a hidden page": {
                   "value": {
                     "page": {
                       "shop_id": 548380009,
+                      "published_at": "2022-10-03T10:54:12-06:00",
                       "title": "Terms of Services",
                       "handle": "tos",
                       "body_html": "<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>",
                       "id": 131092082,
                       "author": "Dennis",
                       "created_at": "2008-07-15T18:00:00-06:00",
-                      "updated_at": "2022-04-05T11:25:34-06:00",
-                      "published_at": "2008-07-15T18:00:00-06:00",
+                      "updated_at": "2022-10-03T10:54:12-06:00",
                       "template_suffix": null,
                       "admin_graphql_api_id": "gid://shopify/OnlineStorePage/131092082"
                     }
@@ -919,42 +702,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/pages/131092082.json",
-          "request_method": "PUT",
-          "request": {
-            "action": "PUT /admin/api/2021-07/pages/131092082.json",
-            "headers": {},
-            "body": "{\"page\":{\"id\":131092082,\"body_html\":\"<p>Returns accepted if we receive the items 14 days after purchase.</p>\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"page\":{\"shop_id\":548380009,\"body_html\":\"<p>Returns accepted if we receive the items 14 days after purchase.</p>\",\"title\":\"Terms of Services\",\"handle\":\"tos\",\"id\":131092082,\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-04-05T13:25:29-04:00\",\"published_at\":\"2008-07-15T20:00:00-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
-          },
-          "name": "Update the body HTML of an existing page",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"body_html\":\"<p>Returns accepted if we receive the items 14 days after purchase.</p>\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.body_html = \"<p>Returns accepted if we receive the items 14 days after purchase.</p>\"\npage.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.body_html = \"<p>Returns accepted if we receive the items 14 days after purchase.</p>\";\nawait page.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->body_html = \"<p>Returns accepted if we receive the items 14 days after purchase.</p>\";\n$page->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/pages/131092082.json",
+          "request_path": "/admin/api/2022-10/pages/131092082.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/pages/131092082.json",
@@ -964,102 +712,67 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"page\":{\"shop_id\":548380009,\"author\":\"Christopher Gorski\",\"body_html\":\"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\",\"handle\":\"new-warranty\",\"title\":\"New warranty\",\"id\":131092082,\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-04-05T13:25:30-04:00\",\"published_at\":\"2008-07-15T20:00:00-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
+            "body": "{\"page\":{\"shop_id\":548380009,\"author\":\"Christopher Gorski\",\"body_html\":\"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\",\"handle\":\"new-warranty\",\"title\":\"New warranty\",\"id\":131092082,\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-10-03T12:54:00-04:00\",\"published_at\":\"2008-07-15T20:00:00-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
           },
           "name": "Update an existing page completely",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"body_html\":\"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\",\"author\":\"Christopher Gorski\",\"title\":\"New warranty\",\"handle\":\"new-warranty\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"body_html\":\"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\",\"author\":\"Christopher Gorski\",\"title\":\"New warranty\",\"handle\":\"new-warranty\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.body_html = \"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\"\npage.author = \"Christopher Gorski\"\npage.title = \"New warranty\"\npage.handle = \"new-warranty\"\npage.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.body_html = \"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\"\npage.author = \"Christopher Gorski\"\npage.title = \"New warranty\"\npage.handle = \"new-warranty\"\npage.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.body_html = \"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\";\npage.author = \"Christopher Gorski\";\npage.title = \"New warranty\";\npage.handle = \"new-warranty\";\nawait page.save({\n  update: true,\n});"
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.body_html = \"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\";\npage.author = \"Christopher Gorski\";\npage.title = \"New warranty\";\npage.handle = \"new-warranty\";\nawait page.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->body_html = \"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\";\n$page->author = \"Christopher Gorski\";\n$page->title = \"New warranty\";\n$page->handle = \"new-warranty\";\n$page->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->body_html = \"<p>Returns accepted if we receive the items <strong>14 days</strong> after purchase.</p>\";\n$page->author = \"Christopher Gorski\";\n$page->title = \"New warranty\";\n$page->handle = \"new-warranty\";\n$page->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/pages/131092082.json",
+          "request_path": "/admin/api/2022-10/pages/131092082.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/pages/131092082.json",
             "headers": {},
-            "body": "{\"page\":{\"id\":131092082,\"published\":true}}"
+            "body": "{\"page\":{\"id\":131092082,\"body_html\":\"<p>Returns accepted if we receive the items 14 days after purchase.</p>\"}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"page\":{\"shop_id\":548380009,\"published_at\":\"2022-04-05T13:25:31-04:00\",\"title\":\"Terms of Services\",\"handle\":\"tos\",\"body_html\":\"<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>\",\"id\":131092082,\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-04-05T13:25:31-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
+            "body": "{\"page\":{\"shop_id\":548380009,\"body_html\":\"<p>Returns accepted if we receive the items 14 days after purchase.</p>\",\"title\":\"Terms of Services\",\"handle\":\"tos\",\"id\":131092082,\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-10-03T12:54:05-04:00\",\"published_at\":\"2008-07-15T20:00:00-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
           },
-          "name": "Show a hidden page",
+          "name": "Update the body HTML of an existing page",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"published\":true}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"body_html\":\"<p>Returns accepted if we receive the items 14 days after purchase.</p>\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.published = true\npage.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.body_html = \"<p>Returns accepted if we receive the items 14 days after purchase.</p>\"\npage.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.published = true;\nawait page.save({\n  update: true,\n});"
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.body_html = \"<p>Returns accepted if we receive the items 14 days after purchase.</p>\";\nawait page.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->published = true;\n$page->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->body_html = \"<p>Returns accepted if we receive the items 14 days after purchase.</p>\";\n$page->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/pages/131092082.json",
-          "request_method": "PUT",
-          "request": {
-            "action": "PUT /admin/api/2021-07/pages/131092082.json",
-            "headers": {},
-            "body": "{\"page\":{\"id\":131092082,\"published\":false}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"page\":{\"shop_id\":548380009,\"published_at\":null,\"title\":\"Terms of Services\",\"handle\":\"tos\",\"body_html\":\"<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>\",\"id\":131092082,\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-04-05T13:25:32-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
-          },
-          "name": "Hide a published page",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"published\":false}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.published = false\npage.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.published = false;\nawait page.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->published = false;\n$page->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-07/pages/131092082.json",
+          "request_path": "/admin/api/2022-10/pages/131092082.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/pages/131092082.json",
@@ -1069,29 +782,106 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"page\":{\"shop_id\":548380009,\"title\":\"Terms of Services\",\"handle\":\"tos\",\"body_html\":\"<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>\",\"id\":131092082,\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-04-05T13:25:34-04:00\",\"published_at\":\"2008-07-15T20:00:00-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
+            "body": "{\"page\":{\"shop_id\":548380009,\"title\":\"Terms of Services\",\"handle\":\"tos\",\"body_html\":\"<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>\",\"id\":131092082,\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-10-03T12:54:06-04:00\",\"published_at\":\"2008-07-15T20:00:00-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
           },
           "name": "Add a metafield to a page",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"metafields\":[{\"key\":\"new\",\"value\":\"new value\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"metafields\":[{\"key\":\"new\",\"value\":\"new value\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.metafields = [\n  {\n    \"key\" => \"new\",\n    \"value\" => \"new value\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\npage.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.metafields = [\n  {\n    \"key\" => \"new\",\n    \"value\" => \"new value\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\npage.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"new value\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait page.save({\n  update: true,\n});"
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"new value\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait page.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"new value\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$page->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"new value\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$page->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/pages/131092082.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/2021-07/pages/131092082.json",
+            "headers": {},
+            "body": "{\"page\":{\"id\":131092082,\"published\":false}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"page\":{\"shop_id\":548380009,\"published_at\":null,\"title\":\"Terms of Services\",\"handle\":\"tos\",\"body_html\":\"<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>\",\"id\":131092082,\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-10-03T12:54:11-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
+          },
+          "name": "Hide a published page",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"published\":false}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.published = false\npage.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.published = false;\nawait page.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->published = false;\n$page->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/pages/131092082.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/2021-07/pages/131092082.json",
+            "headers": {},
+            "body": "{\"page\":{\"id\":131092082,\"published\":true}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"page\":{\"shop_id\":548380009,\"published_at\":\"2022-10-03T12:54:12-04:00\",\"title\":\"Terms of Services\",\"handle\":\"tos\",\"body_html\":\"<p>We make <strong>perfect</strong> stuff, we don't need a warranty.</p>\",\"id\":131092082,\"author\":\"Dennis\",\"created_at\":\"2008-07-15T20:00:00-04:00\",\"updated_at\":\"2022-10-03T12:54:12-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/131092082\"}}"
+          },
+          "name": "Show a hidden page",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"page\":{\"id\":131092082,\"published\":true}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.id = 131092082\npage.published = true\npage.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.id = 131092082;\npage.published = true;\nawait page.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->id = 131092082;\n$page->published = true;\n$page->save(\n    true, // Update Object\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "content"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/pages/{page_id}.json",
       "action": "put"
     },
@@ -1135,7 +925,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-07/pages/131092082.json",
+          "request_path": "/admin/api/2022-10/pages/131092082.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/pages/131092082.json",
@@ -1151,25 +941,278 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/pages/131092082.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Page.delete(\n  session: test_session,\n  id: 131092082,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Page.delete(\n  session: test_session,\n  id: 131092082,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.delete({\n  session: test_session,\n  id: 131092082,\n});"
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Page.delete({\n  session: test_session,\n  id: 131092082,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_07\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::delete(\n    $this->test_session, // Session\n    131092082, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPage::delete(\n    $this->test_session, // Session\n    131092082, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
       ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "content"
+          }
+        ]
+      },
       "url": "/admin/api/{api_version}/pages/{page_id}.json",
       "action": "delete"
+    },
+    {
+      "description": "Creates a page",
+      "summary": "Creates a page",
+      "operationId": "Createsapage",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a page",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create an unpublished page": {
+                  "value": {
+                    "page": {
+                      "id": 1025371368,
+                      "title": "Warranty information",
+                      "shop_id": 548380009,
+                      "handle": "warranty-information",
+                      "body_html": "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
+                      "author": "Shopify API",
+                      "created_at": "2022-10-03T10:53:50-06:00",
+                      "updated_at": "2022-10-03T10:53:50-06:00",
+                      "published_at": null,
+                      "template_suffix": null,
+                      "admin_graphql_api_id": "gid://shopify/OnlineStorePage/1025371368"
+                    }
+                  }
+                },
+                "Create a page with a metafield": {
+                  "value": {
+                    "page": {
+                      "id": 1025371371,
+                      "title": "Warranty information",
+                      "shop_id": 548380009,
+                      "handle": "warranty-information",
+                      "body_html": "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
+                      "author": "Shopify API",
+                      "created_at": "2022-10-03T10:54:10-06:00",
+                      "updated_at": "2022-10-03T10:54:10-06:00",
+                      "published_at": "2022-10-03T10:54:10-06:00",
+                      "template_suffix": null,
+                      "admin_graphql_api_id": "gid://shopify/OnlineStorePage/1025371371"
+                    }
+                  }
+                },
+                "Create a page with HTML markup": {
+                  "value": {
+                    "page": {
+                      "id": 1025371374,
+                      "title": "Warranty information",
+                      "shop_id": 548380009,
+                      "handle": "warranty-information",
+                      "body_html": "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
+                      "author": "Shopify API",
+                      "created_at": "2022-10-03T10:54:22-06:00",
+                      "updated_at": "2022-10-03T10:54:22-06:00",
+                      "published_at": "2022-10-03T10:54:22-06:00",
+                      "template_suffix": null,
+                      "admin_graphql_api_id": "gid://shopify/OnlineStorePage/1025371374"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "422": {
+          "description": "Creates a page",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Creating a page without a title fails and returns an error": {
+                  "value": {
+                    "errors": {
+                      "title": [
+                        "can't be blank"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/pages.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-07/pages.json",
+            "headers": {},
+            "body": "{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"published\":false}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"page\":{\"id\":1025371368,\"title\":\"Warranty information\",\"shop_id\":548380009,\"handle\":\"warranty-information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"author\":\"Shopify API\",\"created_at\":\"2022-10-03T12:53:50-04:00\",\"updated_at\":\"2022-10-03T12:53:50-04:00\",\"published_at\":null,\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/1025371368\"}}"
+          },
+          "name": "Create an unpublished page",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"published\":false}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.title = \"Warranty information\"\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"\npage.published = false\npage.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.title = \"Warranty information\";\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\npage.published = false;\nawait page.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->title = \"Warranty information\";\n$page->body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\n$page->published = false;\n$page->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/pages.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-07/pages.json",
+            "headers": {},
+            "body": "{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"metafields\":[{\"key\":\"new\",\"value\":\"new value\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"page\":{\"id\":1025371371,\"title\":\"Warranty information\",\"shop_id\":548380009,\"handle\":\"warranty-information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"author\":\"Shopify API\",\"created_at\":\"2022-10-03T12:54:10-04:00\",\"updated_at\":\"2022-10-03T12:54:10-04:00\",\"published_at\":\"2022-10-03T12:54:10-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/1025371371\"}}"
+          },
+          "name": "Create a page with a metafield",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"metafields\":[{\"key\":\"new\",\"value\":\"new value\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.title = \"Warranty information\"\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"\npage.metafields = [\n  {\n    \"key\" => \"new\",\n    \"value\" => \"new value\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\npage.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.title = \"Warranty information\";\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\npage.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"new value\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait page.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->title = \"Warranty information\";\n$page->body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\n$page->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"new value\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$page->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/pages.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-07/pages.json",
+            "headers": {},
+            "body": "{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"page\":{\"id\":1025371374,\"title\":\"Warranty information\",\"shop_id\":548380009,\"handle\":\"warranty-information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\",\"author\":\"Shopify API\",\"created_at\":\"2022-10-03T12:54:22-04:00\",\"updated_at\":\"2022-10-03T12:54:22-04:00\",\"published_at\":\"2022-10-03T12:54:22-04:00\",\"template_suffix\":null,\"admin_graphql_api_id\":\"gid://shopify/OnlineStorePage/1025371374\"}}"
+          },
+          "name": "Create a page with HTML markup",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"page\":{\"title\":\"Warranty information\",\"body_html\":\"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.title = \"Warranty information\"\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\"\npage.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.title = \"Warranty information\";\npage.body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\nawait page.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->title = \"Warranty information\";\n$page->body_html = \"<h2>Warranty</h2>\\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>\";\n$page->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/pages.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-07/pages.json",
+            "headers": {},
+            "body": "{\"page\":{\"body\":\"foobar\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"title\":[\"can't be blank\"]}}"
+          },
+          "name": "Creating a page without a title fails and returns an error",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"page\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/pages.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\npage = ShopifyAPI::Page.new(session: test_session)\npage.body = \"foobar\"\npage.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Page} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst page = new Page({session: test_session});\npage.body = \"foobar\";\nawait page.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Page;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$page = new Page($this->test_session);\n$page->body = \"foobar\";\n$page->save(\n    true, // Update Object\n);"
+            }
+          ]
+        }
+      ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "content"
+          }
+        ]
+      },
+      "url": "/admin/api/{api_version}/pages.json",
+      "action": "post"
     }
   ],
   "components": [

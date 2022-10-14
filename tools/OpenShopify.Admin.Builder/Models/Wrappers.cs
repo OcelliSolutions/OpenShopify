@@ -1244,7 +1244,7 @@ public partial record CommentList
     [JsonPropertyName("comments"), Required]
     public IEnumerable<Comment> Comments { get; set; } = null!;
 }
-public partial record CreateCommentRequest
+public partial record CreateCommentForArticleRequest
 {
     [JsonPropertyName("comment"), Required]
     public CreateComment Comment { get; set; } = null!;
@@ -1252,7 +1252,7 @@ public partial record CreateCommentRequest
 
 /// <inheritdoc cref="CommentBase"/>
 public partial record CreateComment : CommentBase {}
-public partial record UpdateCommentRequest
+public partial record UpdateCommentOfArticleRequest
 {
     [JsonPropertyName("comment"), Required]
     public UpdateComment Comment { get; set; } = null!;
@@ -1873,7 +1873,7 @@ public partial record TransactionList
     [JsonPropertyName("transactions"), Required]
     public IEnumerable<Transaction> Transactions { get; set; } = null!;
 }
-public partial record CreateTransactionRequest
+public partial record CreateTransactionForOrderRequest
 {
     [JsonPropertyName("transaction"), Required]
     public CreateTransaction Transaction { get; set; } = null!;

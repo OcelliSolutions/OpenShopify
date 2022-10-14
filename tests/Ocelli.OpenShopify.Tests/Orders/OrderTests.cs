@@ -166,7 +166,7 @@ public class OrderTests : IClassFixture<OrderFixture>
             _additionalPropertiesHelper.CheckAdditionalProperties(order, Fixture.MyShopifyUrl);
         }
         Assert.True(initialList.Result.Orders.Count > 0);
-        //Assert.Equal(initialList.Result.CreatedOrders.Count, response.Result.CreatedOrders.Count);
+        //Assert.Equal(initialList.Result.CreatedArticles.Count, response.Result.CreatedArticles.Count);
         Skip.If(!response.Result.Orders.Any(), "No results returned. Unable to test");
     }
 
