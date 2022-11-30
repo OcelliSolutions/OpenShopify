@@ -102,7 +102,7 @@ public class FulfillmentOrderTests : IClassFixture<FulfillmentOrderFixture>
     {
         var acceptedResponse = await CreateOrderWithAcceptedFulfillment();
         //Assert.Equal(FulfillmentOrderStatus.Open, acceptedResponse.Status);
-        var request = new ApplyFulfillmentHoldOnFulfillmentOrderRequest()
+        var request = new ApplyFulfillmentHoldOnOpenFulfillmentOrderRequest()
         {
             FulfillmentHold = new()
             {
@@ -111,7 +111,7 @@ public class FulfillmentOrderTests : IClassFixture<FulfillmentOrderFixture>
             }
         };
         
-        var response = await Fixture.Service.FulfillmentOrder.ApplyFulfillmentHoldOnFulfillmentOrderAsync(acceptedResponse.Id, request);
+        var response = await Fixture.Service.FulfillmentOrder.ApplyFulfillmentHoldOnOpenFulfillmentOrderAsync(acceptedResponse.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
     }

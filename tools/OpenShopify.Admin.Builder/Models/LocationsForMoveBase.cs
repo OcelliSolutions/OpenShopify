@@ -24,12 +24,3 @@ public partial record LocationsForMoveBase
     [JsonPropertyName("message")]
     public string? Message { get; set; }
 }
-
-public record MoveLocation
-{
-    [JsonPropertyName("id")]
-    public long Id { get; set; }
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-}
-

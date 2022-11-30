@@ -51,6 +51,18 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ResourceFeedbackState
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"requires_action")]
+        RequiresAction = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"success")]
+        Success = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record ResourceFeedbackOrig
     {
         /// <summary>

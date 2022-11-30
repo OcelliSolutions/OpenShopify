@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using OpenShopify.Admin.Builder.Data;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models;
 //TODO: create DiscountCodeCreation
@@ -22,7 +22,7 @@ public partial record DiscountCodeCreationBase
     /// The state of the discount code creation job
     /// </summary>
     [JsonPropertyName("status")]
-    public DiscountCodeCreationStatus? Status { get; set; }
+    public Data.DiscountCodeCreationStatus? Status { get; set; }
 
     /// <summary>
     /// The number of discount codes to create
@@ -50,14 +50,4 @@ public partial record DiscountCodeCreationBase
 
     [JsonPropertyName("errors")] 
     public DiscountCodeCreationErrors? Errors { get; set; }
-}
-
-public partial record DiscountCodeCreationOrig
-{
-}
-
-public record DiscountCodeCreationErrors
-{
-    [JsonPropertyName("code")] 
-    public IEnumerable<string>? Code { get; set; }
 }

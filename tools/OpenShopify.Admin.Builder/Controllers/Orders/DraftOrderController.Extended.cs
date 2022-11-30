@@ -15,6 +15,7 @@ public class DraftOrderController : DraftOrderControllerBase
     [HttpPost]
     [Route("draft_orders.json")]
     [ProducesResponseType(typeof(DraftOrderItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(DraftOrderItem), StatusCodes.Status202Accepted)]
     public override Task CreateDraftOrder([Required] CreateDraftOrderRequest request) =>
         throw new NotImplementedException();
 

@@ -94,7 +94,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieve a specific order
         /// </summary>
         /// <remarks>
-        /// Retrieve an order by specifying the ID. All fields of an order are returned unless specific fields are named.
+        /// Retrieve an order by specifying the ID. All fields of an order are returned unless specific fields are named. The GET orders endpoint returns open orders by default.
         /// </remarks>
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
@@ -165,6 +165,201 @@ namespace OpenShopify.Admin.Builder.Models
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/cancel.json")]
         public abstract System.Threading.Tasks.Task CancelOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CancelOrderRequest request, long order_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum OrderCancelReason
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer")]
+        Customer = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fraud")]
+        Fraud = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inventory")]
+        Inventory = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"declined")]
+        Declined = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"other")]
+        Other = 4,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum OrderDiscountApplications
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"discount_applications")]
+        DiscountApplications = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"discount_code")]
+        DiscountCode = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
+        Manual = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"script")]
+        Script = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"allocation_method")]
+        AllocationMethod = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"across")]
+        Across = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"each")]
+        Each = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"one")]
+        One = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"code")]
+        Code = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"description")]
+        Description = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"target_selection")]
+        TargetSelection = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"all")]
+        All = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"entitled")]
+        Entitled = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"explicit")]
+        Explicit = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"target_type")]
+        TargetType = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"line_item")]
+        LineItem = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping_line")]
+        ShippingLine = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"title")]
+        Title = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"type")]
+        Type = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"automatic")]
+        Automatic = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"value")]
+        Value = 20,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"value_type")]
+        ValueType = 21,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fixed_amount")]
+        FixedAmount = 22,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"percentage")]
+        Percentage = 23,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum OrderDiscountCodes
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"amount")]
+        Amount = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"code")]
+        Code = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"type")]
+        Type = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fixed_amount")]
+        FixedAmount = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"percentage")]
+        Percentage = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping")]
+        Shipping = 5,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum OrderFinancialStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        Pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"authorized")]
+        Authorized = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partially_paid")]
+        PartiallyPaid = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"paid")]
+        Paid = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partially_refunded")]
+        PartiallyRefunded = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"refunded")]
+        Refunded = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"voided")]
+        Voided = 6,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum OrderFulfillmentStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfilled")]
+        Fulfilled = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"null")]
+        Null = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partial")]
+        Partial = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"restocked")]
+        Restocked = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum OrderProcessingMethod
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"checkout")]
+        Checkout = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"direct")]
+        Direct = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
+        Manual = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"offsite")]
+        Offsite = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"express")]
+        Express = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"free")]
+        Free = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"")]
+        Empty = 6,
 
     }
 

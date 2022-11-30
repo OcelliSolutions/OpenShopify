@@ -67,6 +67,33 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum RecurringApplicationChargeStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        Pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"accepted")]
+        Accepted = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"active")]
+        Active = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"declined")]
+        Declined = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"expired")]
+        Expired = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"frozen")]
+        Frozen = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancelled")]
+        Cancelled = 6,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record RecurringApplicationChargeOrig
     {
         /// <summary>

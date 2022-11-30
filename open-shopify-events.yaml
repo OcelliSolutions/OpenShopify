@@ -645,9 +645,7 @@ components:
           format: int64
           nullable: true
         subject_type:
-          type: string
-          description: "The type of the resource that generated the event. Valid values:\r\n\r\n*   `Article` \r\n*   `Blog` \r\n*   `Collection` \r\n*   `Comment` \r\n*   `Order` \r\n*   `Page` \r\n*   `PriceRule` \r\n*   `Product` \r\n*   `ApiPermission`"
-          nullable: true
+          $ref: '#/components/schemas/EventSubjectType'
         verb:
           type: string
           description: 'The type of event that occurred. Different resources generate different types of event. See the [Resources](#resources-that-can-create-events) section for a list of possible verbs.'
@@ -690,6 +688,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
+      additionalProperties: { }
+    EventSubjectType:
+      enum:
+        - Article
+        - Blog
+        - Collection
+        - Comment
+        - Order
+        - Page
+        - PriceRule
+        - Product
+        - ApiPermission
+      type: string
       additionalProperties: { }
     UpdateWebhook:
       required:
@@ -797,8 +808,8 @@ components:
       additionalProperties: { }
     WebhookFormat:
       enum:
-        - json
-        - xml
+        - JSON
+        - XML
       type: string
       additionalProperties: { }
     WebhookItem:

@@ -787,18 +787,6 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum BudgetType
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"daily")]
-        Daily = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"lifetime")]
-        Lifetime = 1,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateMarketingEngagementsOnMarketingEventRequest
     {
 
@@ -820,13 +808,13 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public EventType? EventType { get; set; } = default!;
+        public MarketingEventEventType? EventType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_channel")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public MarketingChannel? MarketingChannel { get; set; } = default!;
+        public MarketingEventMarketingChannel? MarketingChannel { get; set; } = default!;
 
         /// <summary>
         /// Whether the event is paid or organic.
@@ -868,7 +856,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public BudgetType? BudgetType { get; set; } = default!;
+        public MarketingEventBudgetType? BudgetType { get; set; } = default!;
 
         /// <summary>
         /// The time when the marketing action was started.
@@ -952,7 +940,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
 
         // TODO(system.text.json): Add string enum item converter
-        public System.Collections.Generic.ICollection<MarketedResource>? MarketedResources { get; set; } = default!;
+        public System.Collections.Generic.ICollection<MarketingEventMarketedResources>? MarketedResources { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("utm_campaign")]
 
@@ -1053,84 +1041,6 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum EventType
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ad")]
-        Ad = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"post")]
-        Post = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"message")]
-        Message = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"retargeting")]
-        Retargeting = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"transactional")]
-        Transactional = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"affiliate")]
-        Affiliate = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"loyalty")]
-        Loyalty = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"newsletter")]
-        Newsletter = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"abandoned_cart")]
-        AbandonedCart = 8,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum MarketedResource
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"product")]
-        Product = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"collection")]
-        Collection = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"price_rule")]
-        PriceRule = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"page")]
-        Page = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"article")]
-        Article = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"homepage")]
-        Homepage = 5,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum MarketingChannel
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"search")]
-        Search = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"display")]
-        Display = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"social")]
-        Social = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"email")]
-        Email = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"referral")]
-        Referral = 4,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class MarketingEvent
     {
         /// <summary>
@@ -1146,13 +1056,13 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public EventType? EventType { get; set; } = default!;
+        public MarketingEventEventType? EventType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_channel")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public MarketingChannel? MarketingChannel { get; set; } = default!;
+        public MarketingEventMarketingChannel? MarketingChannel { get; set; } = default!;
 
         /// <summary>
         /// Whether the event is paid or organic.
@@ -1194,7 +1104,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public BudgetType? BudgetType { get; set; } = default!;
+        public MarketingEventBudgetType? BudgetType { get; set; } = default!;
 
         /// <summary>
         /// The time when the marketing action was started.
@@ -1278,7 +1188,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
 
         // TODO(system.text.json): Add string enum item converter
-        public System.Collections.Generic.ICollection<MarketedResource>? MarketedResources { get; set; } = default!;
+        public System.Collections.Generic.ICollection<MarketingEventMarketedResources>? MarketedResources { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("utm_campaign")]
 
@@ -1340,6 +1250,54 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum MarketingEventBudgetType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"budget")]
+        Budget = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"daily")]
+        Daily = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"lifetime")]
+        Lifetime = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum MarketingEventEventType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ad")]
+        Ad = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"post")]
+        Post = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"message")]
+        Message = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"retargeting")]
+        Retargeting = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"transactional")]
+        Transactional = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"affiliate")]
+        Affiliate = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"loyalty")]
+        Loyalty = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"newsletter")]
+        Newsletter = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"abandoned_cart")]
+        AbandonedCart = 8,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class MarketingEventItem
     {
 
@@ -1382,6 +1340,60 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum MarketingEventMarketedResources
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"type")]
+        Type = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"id")]
+        Id = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product")]
+        Product = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collection")]
+        Collection = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"price_rule")]
+        PriceRule = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"discount")]
+        Discount = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"page")]
+        Page = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"article")]
+        Article = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"homepage")]
+        Homepage = 8,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum MarketingEventMarketingChannel
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"search")]
+        Search = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"display")]
+        Display = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"social")]
+        Social = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"email")]
+        Email = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"referral")]
+        Referral = 4,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateMarketingEvent
     {
         /// <summary>
@@ -1397,13 +1409,13 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public EventType? EventType { get; set; } = default!;
+        public MarketingEventEventType? EventType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_channel")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public MarketingChannel? MarketingChannel { get; set; } = default!;
+        public MarketingEventMarketingChannel? MarketingChannel { get; set; } = default!;
 
         /// <summary>
         /// Whether the event is paid or organic.
@@ -1445,7 +1457,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public BudgetType? BudgetType { get; set; } = default!;
+        public MarketingEventBudgetType? BudgetType { get; set; } = default!;
 
         /// <summary>
         /// The time when the marketing action was started.
@@ -1529,7 +1541,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
 
         // TODO(system.text.json): Add string enum item converter
-        public System.Collections.Generic.ICollection<MarketedResource>? MarketedResources { get; set; } = default!;
+        public System.Collections.Generic.ICollection<MarketingEventMarketedResources>? MarketedResources { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("utm_campaign")]
 

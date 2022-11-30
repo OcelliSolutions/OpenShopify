@@ -61,6 +61,48 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum CheckoutAppliedDiscount
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"amount")]
+        Amount = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"title")]
+        Title = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"description")]
+        Description = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"value")]
+        Value = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"value_type")]
+        ValueType = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"non_applicable_reason")]
+        NonApplicableReason = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"applicable")]
+        Applicable = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"application_type")]
+        ApplicationType = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"automatic")]
+        Automatic = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"discount_code")]
+        DiscountCode = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
+        Manual = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"script")]
+        Script = 11,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record CheckoutOrig
     {
         /// <summary>

@@ -12,7 +12,7 @@ using Ocelli.OpenShopify.Extensions;
 namespace Ocelli.OpenShopify;
 public static class AuthorizationService
 {
-    private static readonly Regex QueryStringRegex = new(@"[?|&]([\w\.]+)=([^?|^&]+)", RegexOptions.Compiled);
+    private static readonly Regex QueryStringRegex = new(@"[?|&]([\w\.]+)=([^?]+)", RegexOptions.Compiled);
 
     /// <remarks>
     /// Source for this method: https://stackoverflow.com/a/22046389
@@ -28,7 +28,10 @@ public static class AuthorizationService
         var parameters = new Dictionary<string, string>();
         while (match.Success)
         {
-            parameters.Add(match.Groups[1].Value, match.Groups[2].Value);
+            if (parameters.ContainsKey(match.Groups[1].Value))
+                parameters[match.Groups[1].Value] = $@"{parameters[match.Groups[1].Value]},{match.Groups[2].Value}";
+            else
+                parameters.Add(match.Groups[1].Value, match.Groups[2].Value);
             match = match.NextMatch();
         }
         return parameters;
@@ -162,7 +165,8 @@ public static class AuthorizationService
         var signature = signatureValues.First();
         var kvps = PrepareQuerystring(querystring, string.Empty);
         var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(shopifySecretKey));
-        var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(string.Join(null, kvps)));
+        var data = string.Join(null, kvps);
+        var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(data));
 
         //Convert bytes back to string, replacing dashes, to get the final signature.
         var calculatedSignature = BitConverter.ToString(hash).Replace("-", "");

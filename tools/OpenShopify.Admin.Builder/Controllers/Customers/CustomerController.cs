@@ -112,8 +112,16 @@ namespace OpenShopify.Admin.Builder.Models
         /// <remarks>
         /// Retrieves a count of all customers.
         /// </remarks>
+        /// <param name="created_at_max">Count customers created before a specified date.  
+        /// (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="created_at_min">Count customers created after a specified date.  
+        /// (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="updated_at_max">Count customers last updated before a specified date.  
+        /// (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="updated_at_min">Count customers last updated after a specified date.  
+        /// (format: 2014-04-25T16:15:47-04:00)</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/count.json")]
-        public abstract System.Threading.Tasks.Task CountCustomers();
+        public abstract System.Threading.Tasks.Task CountCustomers([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Retrieves all orders that belong to a customer
@@ -124,6 +132,111 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="status">The status of the orders to return.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/orders.json")]
         public abstract System.Threading.Tasks.Task ListOrdersThatBelongToCustomer(long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum CustomerMarketingOptInLevel
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"email_marketing_consent")]
+        EmailMarketingConsent = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"single_opt_in")]
+        SingleOptIn = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"confirmed_opt_in")]
+        ConfirmedOptIn = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unknown")]
+        Unknown = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum CustomerState
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"disabled")]
+        Disabled = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invited")]
+        Invited = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"enabled")]
+        Enabled = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"declined")]
+        Declined = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum CustomerTaxExemptions
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"EXEMPT_ALL")]
+        EXEMPTALL = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_STATUS_CARD_EXEMPTION")]
+        CASTATUSCARDEXEMPTION = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_DIPLOMAT_EXEMPTION")]
+        CADIPLOMATEXEMPTION = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_RESELLER_EXEMPTION")]
+        CABCRESELLEREXEMPTION = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_RESELLER_EXEMPTION")]
+        CAMBRESELLEREXEMPTION = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_RESELLER_EXEMPTION")]
+        CASKRESELLEREXEMPTION = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_COMMERCIAL_FISHERY_EXEMPTION")]
+        CABCCOMMERCIALFISHERYEXEMPTION = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_COMMERCIAL_FISHERY_EXEMPTION")]
+        CAMBCOMMERCIALFISHERYEXEMPTION = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_NS_COMMERCIAL_FISHERY_EXEMPTION")]
+        CANSCOMMERCIALFISHERYEXEMPTION = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_PE_COMMERCIAL_FISHERY_EXEMPTION")]
+        CAPECOMMERCIALFISHERYEXEMPTION = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_COMMERCIAL_FISHERY_EXEMPTION")]
+        CASKCOMMERCIALFISHERYEXEMPTION = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION")]
+        CABCPRODUCTIONANDMACHINERYEXEMPTION = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION")]
+        CASKPRODUCTIONANDMACHINERYEXEMPTION = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_SUB_CONTRACTOR_EXEMPTION")]
+        CABCSUBCONTRACTOREXEMPTION = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_SUB_CONTRACTOR_EXEMPTION")]
+        CASKSUBCONTRACTOREXEMPTION = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_CONTRACTOR_EXEMPTION")]
+        CABCCONTRACTOREXEMPTION = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_CONTRACTOR_EXEMPTION")]
+        CASKCONTRACTOREXEMPTION = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_ON_PURCHASE_EXEMPTION")]
+        CAONPURCHASEEXEMPTION = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_FARMER_EXEMPTION")]
+        CAMBFARMEREXEMPTION = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_NS_FARMER_EXEMPTION")]
+        CANSFARMEREXEMPTION = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_FARMER_EXEMPTION")]
+        CASKFARMEREXEMPTION = 20,
 
     }
 

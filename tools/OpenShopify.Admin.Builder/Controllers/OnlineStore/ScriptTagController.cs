@@ -78,6 +78,30 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ScriptTagEvent
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"onload")]
+        Onload = 0,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ScriptTagDisplayScope
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"online_store")]
+        OnlineStore = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"order_status")]
+        OrderStatus = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"all")]
+        All = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record ScriptTagOrig
     {
         /// <summary>

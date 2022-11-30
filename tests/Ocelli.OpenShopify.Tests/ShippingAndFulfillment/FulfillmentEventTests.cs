@@ -106,9 +106,9 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
         var fulfillment = fulfillmentResponse.Result.Fulfillment;
         var request = new CreateFulfillmentEventRequest
         {
-            FulfillmentEvent = new CreateFulfillmentEvent
+            Event = new CreateFulfillmentEvent
             {
-                Status = FulfillmentEventStatus.InTransit, FulfillmentId = fulfillment.Id, OrderId = fulfillment.OrderId
+                Status = FulfillmentEventStatus.InTransit
             }
         };
         var response = await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(fulfillment.Id,

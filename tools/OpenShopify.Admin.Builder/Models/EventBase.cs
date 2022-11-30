@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -9,5 +10,9 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("author")]
         public string? Author { get; set; }
+        
+        /// <inheritdoc cref="EventOrig.SubjectType"/>
+        [JsonPropertyName("subject_type")]
+        public new EventSubjectType? SubjectType { get; set; } = default!;
     }
 }

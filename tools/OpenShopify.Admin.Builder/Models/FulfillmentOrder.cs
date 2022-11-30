@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using OpenShopify.Admin.Builder.Data;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -42,7 +42,7 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <inheritdoc cref="FulfillmentOrderOrig.RequestStatus"/>
         [JsonPropertyName("request_status"), Required]
-        public new RequestStatus RequestStatus { get; set; }
+        public new FulfillmentOrderRequestStatus RequestStatus { get; set; }
 
         /// <inheritdoc cref="FulfillmentOrderOrig.Status"/>
         [JsonPropertyName("status"), Required]
@@ -50,24 +50,10 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <inheritdoc cref="FulfillmentOrderOrig.SupportedActions"/>
         [JsonPropertyName("supported_actions"), Required]
-        public new IEnumerable<FulfillmentOrderActions> SupportedActions { get; set; } = null!;
+        public new IEnumerable<Data.FulfillmentOrderActions> SupportedActions { get; set; } = null!;
 
         /// <inheritdoc cref="FulfillmentOrderOrig.InternationalDuties"/>
         [JsonPropertyName("international_duties")]
         public new InternationalDuties? InternationalDuties { get; set; } = default!;
-    }
-
-    public record FulfillmentHold
-    {
-        /// <summary>
-        /// The reason for the fulfillment hold.
-        /// </summary>
-        [JsonPropertyName("reason")]
-        public string? Reason { get; set; }
-        /// <summary>
-        /// Additional information about the fulfillment hold reason.
-        /// </summary>
-        [JsonPropertyName("reason_notes")]
-        public string? ReasonNotes { get; set; }
     }
 }

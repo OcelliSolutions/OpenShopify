@@ -5928,7 +5928,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public SortOrder? SortOrder { get; set; } = default!;
+        public SmartCollectionSortOrder? SortOrder { get; set; } = default!;
 
         /// <summary>
         /// The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.
@@ -7272,7 +7272,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public SortOrder? SortOrder { get; set; } = default!;
+        public SmartCollectionSortOrder? SortOrder { get; set; } = default!;
 
         /// <summary>
         /// The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.
@@ -7512,32 +7512,17 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum SortOrder
+    public enum SmartCollectionSortOrder
     {
 
-        [System.Runtime.Serialization.EnumMember(Value = @"alpha-asc")]
-        AlphaAsc = 0,
+        [System.Runtime.Serialization.EnumMember(Value = @"created")]
+        Created = 0,
 
-        [System.Runtime.Serialization.EnumMember(Value = @"alpha-des")]
-        AlphaDes = 1,
+        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
+        Manual = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"best-selling")]
         BestSelling = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"created")]
-        Created = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"created-desc")]
-        CreatedDesc = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
-        Manual = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"price-asc")]
-        PriceAsc = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"price-desc")]
-        PriceDesc = 7,
 
     }
 
@@ -8358,7 +8343,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public SortOrder? SortOrder { get; set; } = default!;
+        public SmartCollectionSortOrder? SortOrder { get; set; } = default!;
 
         /// <summary>
         /// The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.

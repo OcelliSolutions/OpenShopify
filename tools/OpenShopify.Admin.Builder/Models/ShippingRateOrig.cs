@@ -23,13 +23,3 @@ public partial record ShippingRateOrig
     [JsonPropertyName("handle")]
     public string? Handle { get; set; }
 }
-
-public record ShippingRateCheckout
-{
-    [JsonPropertyName("total_tax")]
-    public decimal? TotalTax { get; set; }
-    [JsonPropertyName("total_price")]
-    public decimal? TotalPrice { get; set; }
-    [JsonPropertyName("subtotal_price")]
-    public decimal? SubtotalPrice { get; set; }
-}

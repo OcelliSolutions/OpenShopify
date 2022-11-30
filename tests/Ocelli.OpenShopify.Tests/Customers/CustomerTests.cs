@@ -108,7 +108,7 @@ public class CustomerTests : IClassFixture<CustomerFixture>
     [TestPriority(20)]
     public async Task CountCustomersAsync_CanGet()
     {
-        var response = await Fixture.Service.Customer.CountCustomersAsync(CancellationToken.None);
+        var response = await Fixture.Service.Customer.CountCustomersAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");

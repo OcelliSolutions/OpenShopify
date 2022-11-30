@@ -68,6 +68,36 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum CollectionListingSortOrder
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"alpha-asc")]
+        AlphaAsc = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"alpha-desc")]
+        AlphaDesc = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"best-selling")]
+        BestSelling = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"created")]
+        Created = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"created-desc")]
+        CreatedDesc = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
+        Manual = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"price-asc")]
+        PriceAsc = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"price-desc")]
+        PriceDesc = 7,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record CollectionListingOrig
     {
         /// <summary>

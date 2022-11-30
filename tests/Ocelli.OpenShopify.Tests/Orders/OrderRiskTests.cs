@@ -78,7 +78,7 @@ public class OrderRiskTests : IClassFixture<OrderRiskFixture>
             {
                 Id = originalOrderRisk.Id,
                 Message = "After further review, this is a legitimate order",
-                Recommendation = RiskRecommendation.Accept,
+                Recommendation = OrderRiskRecommendation.Accept,
                 Source = "External",
                 CauseCancel = false,
                 Score = (decimal)0.0

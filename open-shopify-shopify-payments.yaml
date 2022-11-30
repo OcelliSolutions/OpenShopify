@@ -1016,7 +1016,7 @@ components:
           nullable: true
         source_name:
           type: string
-          description: 'The origin of the transaction. This is set by Shopify and can''t be overridden. Example values: `web`, `pos`, `iphone`, and `android`.'
+          description: 'The origin of the transaction. This is set by Shopify and can''t be overridden. Example values (not an exhaustive list): `web`, `pos`, `iphone`, and `android`.'
           nullable: true
         status:
           type: string

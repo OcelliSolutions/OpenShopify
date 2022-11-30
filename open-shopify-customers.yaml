@@ -354,6 +354,31 @@ paths:
       summary: Retrieves a count of customers
       description: Retrieves a count of all customers.
       operationId: CountCustomers
+      parameters:
+        - name: created_at_max
+          in: query
+          description: "Count customers created before a specified date.  \r\n            (format: 2014-04-25T16:15:47-04:00)"
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: "Count customers created after a specified date.  \r\n            (format: 2014-04-25T16:15:47-04:00)"
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_max
+          in: query
+          description: "Count customers last updated before a specified date.  \r\n            (format: 2014-04-25T16:15:47-04:00)"
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: "Count customers last updated after a specified date.  \r\n            (format: 2014-04-25T16:15:47-04:00)"
+          schema:
+            type: string
+            format: date-time
       responses:
         '200':
           description: Success
@@ -1014,15 +1039,6 @@ components:
           items:
             $ref: '#/components/schemas/Address'
       additionalProperties: { }
-    CancelReason:
-      enum:
-        - customer
-        - fraud
-        - inventory
-        - declined
-        - other
-      type: string
-      additionalProperties: false
     ClientDetails:
       type: object
       properties:
@@ -1145,6 +1161,14 @@ components:
           description: The number of orders associated with this customer. Test and archived orders aren't counted.
           format: int32
           nullable: true
+        password:
+          type: string
+          description: The customer's password.
+          nullable: true
+        password_confirmation:
+          type: string
+          description: The customer's password that's confirmed.
+          nullable: true
         phone:
           type: string
           description: "The unique phone number ([E.164 format](https://en.wikipedia.org/wiki/E.164)) for this customer. Attempting to assign the same phone number to multiple customers returns an error. The property can be set using different formats, but each format must represent a number that can be dialed from anywhere in the world. The following formats are all valid:\r\n\r\n*   6135551212 \r\n*   +16135551212 \r\n*   (613)555-1212 \r\n*   +1 613-555-1212"
@@ -1179,14 +1203,6 @@ components:
         verified_email:
           type: boolean
           description: Whether the customer has verified their email address.
-          nullable: true
-        password:
-          type: string
-          description: An optional password for the user. Default is null.
-          nullable: true
-        password_confirmation:
-          type: string
-          description: Should be set and match OpenShopify.Admin.Builder.Models.CreateCustomer.Password. Default is null.
           nullable: true
         send_email_invite:
           type: boolean
@@ -1450,9 +1466,7 @@ components:
         sms_marketing_consent:
           $ref: '#/components/schemas/SmsMarketingConsent'
         state:
-          type: string
-          description: 'The state of the customer''s account with a shop. Default value: `disabled`. Valid values: * **disabled**: The customer doesn''t have an active account. Customer accounts can be disabled from the Shopify admin at any time. * **invited**: The customer has received an email invite to create an account. * **enabled**: The customer has created an account. * **declined**: The customer declined the email invite to create an account.'
-          nullable: true
+          $ref: '#/components/schemas/CustomerState'
         tags:
           type: string
           description: 'Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values. A customer can have up to 250 tags. Each tag can have up to 255 characters.'
@@ -1464,7 +1478,7 @@ components:
         tax_exemptions:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/CustomerTaxExemptions'
           description: 'Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.'
           nullable: true
         total_spent:
@@ -1713,6 +1727,39 @@ components:
           items:
             $ref: '#/components/schemas/CustomerSavedSearch'
       additionalProperties: { }
+    CustomerState:
+      enum:
+        - disabled
+        - invited
+        - enabled
+        - declined
+      type: string
+      additionalProperties: { }
+    CustomerTaxExemptions:
+      enum:
+        - EXEMPT_ALL
+        - CA_STATUS_CARD_EXEMPTION
+        - CA_DIPLOMAT_EXEMPTION
+        - CA_BC_RESELLER_EXEMPTION
+        - CA_MB_RESELLER_EXEMPTION
+        - CA_SK_RESELLER_EXEMPTION
+        - CA_BC_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_MB_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_NS_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_PE_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_SK_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION
+        - CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION
+        - CA_BC_SUB_CONTRACTOR_EXEMPTION
+        - CA_SK_SUB_CONTRACTOR_EXEMPTION
+        - CA_BC_CONTRACTOR_EXEMPTION
+        - CA_SK_CONTRACTOR_EXEMPTION
+        - CA_ON_PURCHASE_EXEMPTION
+        - CA_MB_FARMER_EXEMPTION
+        - CA_NS_FARMER_EXEMPTION
+        - CA_SK_FARMER_EXEMPTION
+      type: string
+      additionalProperties: { }
     DiscountAllocation:
       type: object
       properties:
@@ -1789,9 +1836,7 @@ components:
           description: The amount of the discount.
           nullable: true
         type:
-          type: string
-          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
-          nullable: true
+          $ref: '#/components/schemas/DiscountCodeType'
         errors:
           $ref: '#/components/schemas/DiscountCodeErrors'
         id:
@@ -1820,6 +1865,14 @@ components:
           items:
             type: string
           nullable: true
+      additionalProperties: { }
+    DiscountCodeType:
+      enum:
+        - percentage
+        - shipping
+        - fixed_amount
+        - none
+      type: string
       additionalProperties: { }
     EmailMarketingConsent:
       type: object
@@ -1851,17 +1904,6 @@ components:
           description: 'The date and time (ISO 8601 format) when the extended authorization period expires. After expiry, the merchant can''t capture the payment.'
           format: date-time
           nullable: true
-      additionalProperties: { }
-    FinancialStatus:
-      enum:
-        - pending
-        - authorized
-        - partially_paid
-        - paid
-        - partially_refunded
-        - refunded
-        - voided
-      type: string
       additionalProperties: { }
     Fulfillment:
       required:
@@ -1901,12 +1943,12 @@ components:
           description: The fulfillment service associated with the fulfillment.
           nullable: true
         shipment_status:
-          $ref: '#/components/schemas/ShipmentStatus'
+          $ref: '#/components/schemas/FulfillmentShipmentStatus'
         status:
           $ref: '#/components/schemas/FulfillmentStatus'
         tracking_company:
           type: string
-          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress** \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress \r\n\r\n <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
+          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **AGS** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **An Post** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Asendia USA** \r\n*   **Australia Post** \r\n*   **Bonshaw** \r\n*   **BPost** \r\n*   **BPost International** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **CDL Last Mile** \r\n*   **China Post** \r\n*   **Chronopost** \r\n*   **Chukou1** \r\n*   **Colissimo** \r\n*   **Comingle** \r\n*   **Coordinadora** \r\n*   **Correios** \r\n*   **Correos** \r\n*   **CTT** \r\n*   **CTT Express** \r\n*   **Cyprus Post** \r\n*   **Delnext** \r\n*   **Deutsche Post** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DoorDash** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **DTD Express** \r\n*   **DX** \r\n*   **Eagle** \r\n*   **Estes** \r\n*   **Evri** \r\n*   **FedEx** \r\n*   **First Global Logistics** \r\n*   **First Line** \r\n*   **FSC** \r\n*   **Fulfilla** \r\n*   **GLS** \r\n*   **Guangdong Weisuyi Information Technology (WSE)** \r\n*   **Heppner Internationale Spedition GmbH & Co.** \r\n*   **Iceland Post** \r\n*   **IDEX** \r\n*   **Israel Post** \r\n*   **Japan Post (EN)** \r\n*   **Japan Post (JA)** \r\n*   **La Poste** \r\n*   **Lasership** \r\n*   **Latvia Post** \r\n*   **Lietuvos Paštas** \r\n*   **Logisters** \r\n*   **Lone Star Overnight** \r\n*   **M3 Logistics** \r\n*   **Meteor Space** \r\n*   **Mondial Relay** \r\n*   **New Zealand Post** \r\n*   **NinjaVan** \r\n*   **North Russia Supply Chain (Shenzhen) Co.** \r\n*   **OnTrac** \r\n*   **Packeta** \r\n*   **Pago Logistics** \r\n*   **Ping An Da Tengfei Express** \r\n*   **Pitney Bowes** \r\n*   **Portal PostNord** \r\n*   **Poste Italiane** \r\n*   **PostNL** \r\n*   **PostNord DK** \r\n*   **PostNord NO** \r\n*   **PostNord SE** \r\n*   **Purolator** \r\n*   **Qxpress** \r\n*   **Qyun Express** \r\n*   **Royal Mail** \r\n*   **Royal Shipments** \r\n*   **Sagawa (EN)** \r\n*   **Sagawa (JA)** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfillment** \r\n*   **SHREE NANDAN COURIER** \r\n*   **Singapore Post** \r\n*   **Southwest Air Cargo** \r\n*   **StarTrack** \r\n*   **Step Forward Freight** \r\n*   **Swiss Post** \r\n*   **TForce Final Mile** \r\n*   **Tinghao** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **United Delivery Service** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Venipak** \r\n*   **We Post** \r\n*   **Whistl** \r\n*   **Wizmo** \r\n*   **WMYC** \r\n*   **Xpedigo** \r\n*   **XPO Logistics** \r\n*   **Yamato (EN)** \r\n*   **Yamato (JA)** \r\n*   **YiFan Express** \r\n*   **YunExpress** \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Australia**: Australia Post, Sendle, Aramex Australia, TNT Australia, Hunter Express, Couriers Please, Bonds, Allied Express, Direct Couriers, Northline, GO Logistics \r\n*   **Austria**: Österreichische Post \r\n*   **Bulgaria**: Speedy \r\n*   **Canada**: Intelcom, BoxKnight, Loomis, GLS \r\n*   **China**: China Post, DHL eCommerce Asia, WanbExpress, YunExpress, Anjun Logistics, SFC Fulfillment, FSC \r\n*   **Czechia**: Zásilkovna \r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL, DHL Express, Swiship, Hermes, GLS \r\n*   **Spain**: SEUR \r\n*   **France**: Colissimo, Mondial Relay, Colis Privé, GLS \r\n*   **United Kingdom**: Evri, DPD UK, Parcelforce, Yodel, DHL Parcel, Tuffnells \r\n*   **Greece**: ACS Courier \r\n*   **Hong Kong SAR**: SF Express \r\n*   **Ireland**: Fastway, DPD Ireland \r\n*   **India**: DTDC, India Post, Delhivery, Gati KWE, Professional Couriers, XpressBees, Ecom Express, Ekart, Shadowfax, Bluedart \r\n*   **Italy**: BRT, GLS Italy \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **Netherlands**: DHL Parcel, DPD \r\n*   **Norway**: Bring \r\n*   **Poland**: Inpost \r\n*   **Turkey**: PTT, Yurtiçi Kargo, Aras Kargo, Sürat Kargo \r\n*   **United States**: GLS, Alliance Air Freight, Pilot Freight, LSO, Old Dominion, R+L Carriers, Southwest Air Cargo \r\n*   **South Africa**: Fastway, Skynet \r\n\r\n <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
           nullable: true
         tracking_numbers:
           type: array
@@ -1947,6 +1989,19 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
           nullable: true
+      additionalProperties: { }
+    FulfillmentShipmentStatus:
+      enum:
+        - label_printed
+        - label_purchased
+        - attempted_delivery
+        - ready_for_pickup
+        - confirmed
+        - in_transit
+        - out_for_delivery
+        - delivered
+        - failure
+      type: string
       additionalProperties: { }
     FulfillmentStatus:
       enum:
@@ -2277,7 +2332,7 @@ components:
           description: Whether the customer consented to receive email updates from the shop.
           nullable: true
         cancel_reason:
-          $ref: '#/components/schemas/CancelReason'
+          $ref: '#/components/schemas/OrderCancelReason'
         cancelled_at:
           type: string
           description: The date and time when the order was canceled. Returns `null` if the order isn't canceled.
@@ -2355,7 +2410,7 @@ components:
           description: 'Whether taxes on the order are estimated. Many factors can change between the time a customer places an order and the time the order is shipped, which could affect the calculation of taxes. This property returns `false` when taxes on the order are finalized and aren''t subject to any changes.'
           nullable: true
         financial_status:
-          $ref: '#/components/schemas/FinancialStatus'
+          $ref: '#/components/schemas/OrderFinancialStatus'
         fulfillments:
           type: array
           items:
@@ -2444,7 +2499,7 @@ components:
           format: date-time
           nullable: true
         processing_method:
-          $ref: '#/components/schemas/ProcessingMethod'
+          $ref: '#/components/schemas/OrderProcessingMethod'
         referring_site:
           type: string
           description: The website where the customer clicked a link to the shop.
@@ -2600,9 +2655,30 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
+    OrderCancelReason:
+      enum:
+        - customer
+        - fraud
+        - inventory
+        - declined
+        - other
+      type: string
+      additionalProperties: { }
+    OrderFinancialStatus:
+      enum:
+        - pending
+        - authorized
+        - partially_paid
+        - paid
+        - partially_refunded
+        - refunded
+        - voided
+      type: string
+      additionalProperties: { }
     OrderFulfillmentStatus:
       enum:
         - fulfilled
+        - 'null'
         - partial
         - restocked
       type: string
@@ -2616,6 +2692,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Order'
+      additionalProperties: { }
+    OrderProcessingMethod:
+      enum:
+        - checkout
+        - direct
+        - manual
+        - offsite
+        - express
+        - free
+        - ''
+      type: string
       additionalProperties: { }
     PaymentDetails:
       type: object
@@ -2677,17 +2764,6 @@ components:
           $ref: '#/components/schemas/Price'
         presentment_money:
           $ref: '#/components/schemas/Price'
-      additionalProperties: { }
-    ProcessingMethod:
-      enum:
-        - ''
-        - checkout
-        - direct
-        - manual
-        - offsite
-        - express
-        - free
-      type: string
       additionalProperties: { }
     Receipt:
       type: object
@@ -2913,19 +2989,6 @@ components:
     SetDefaultAddressForCustomerRequest:
       type: object
       additionalProperties: false
-    ShipmentStatus:
-      enum:
-        - label_printed
-        - label_purchased
-        - attempted_delivery
-        - ready_for_pickup
-        - confirmed
-        - in_transit
-        - out_for_delivery
-        - delivered
-        - failure
-      type: string
-      additionalProperties: { }
     Shipping:
       type: object
       properties:
@@ -3114,7 +3177,7 @@ components:
           nullable: true
         source_name:
           type: string
-          description: 'The origin of the transaction. This is set by Shopify and can''t be overridden. Example values: `web`, `pos`, `iphone`, and `android`.'
+          description: 'The origin of the transaction. This is set by Shopify and can''t be overridden. Example values (not an exhaustive list): `web`, `pos`, `iphone`, and `android`.'
           nullable: true
         status:
           type: string
@@ -3245,6 +3308,14 @@ components:
           description: The number of orders associated with this customer. Test and archived orders aren't counted.
           format: int32
           nullable: true
+        password:
+          type: string
+          description: The customer's password.
+          nullable: true
+        password_confirmation:
+          type: string
+          description: The customer's password that's confirmed.
+          nullable: true
         phone:
           type: string
           description: "The unique phone number ([E.164 format](https://en.wikipedia.org/wiki/E.164)) for this customer. Attempting to assign the same phone number to multiple customers returns an error. The property can be set using different formats, but each format must represent a number that can be dialed from anywhere in the world. The following formats are all valid:\r\n\r\n*   6135551212 \r\n*   +16135551212 \r\n*   (613)555-1212 \r\n*   +1 613-555-1212"
@@ -3252,9 +3323,7 @@ components:
         sms_marketing_consent:
           $ref: '#/components/schemas/SmsMarketingConsent'
         state:
-          type: string
-          description: 'The state of the customer''s account with a shop. Default value: `disabled`. Valid values: * **disabled**: The customer doesn''t have an active account. Customer accounts can be disabled from the Shopify admin at any time. * **invited**: The customer has received an email invite to create an account. * **enabled**: The customer has created an account. * **declined**: The customer declined the email invite to create an account.'
-          nullable: true
+          $ref: '#/components/schemas/CustomerState'
         tags:
           type: string
           description: 'Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values. A customer can have up to 250 tags. Each tag can have up to 255 characters.'
@@ -3266,7 +3335,7 @@ components:
         tax_exemptions:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/CustomerTaxExemptions'
           description: 'Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.'
           nullable: true
         total_spent:
@@ -3295,14 +3364,6 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
-          nullable: true
-        password:
-          type: string
-          description: An optional password for the user. Default is null.
-          nullable: true
-        password_confirmation:
-          type: string
-          description: Should be set and match OpenShopify.Admin.Builder.Models.UpdateCustomer.Password. Default is null.
           nullable: true
       additionalProperties: false
     UpdateCustomerAddress:

@@ -12,12 +12,11 @@ public class IgnoreApiDocumentFilter : IDocumentFilter
         {
             description.TryGetMethodInfo(out var info);
             var devAttributes = info.GetCustomAttributes(true).OfType<IgnoreApiAttribute>().Distinct();
-            if (devAttributes.Any())
-            {
-                var keyPath = description.RelativePath;
-                var removeRoutes = swaggerDoc.Paths.Where(x => x.Key.ToLower().Contains(keyPath.ToLower())).ToList();
-                removeRoutes.ForEach(x => { swaggerDoc.Paths.Remove(x.Key); });
-            }
+            if (!devAttributes.Any()) continue;
+
+            var keyPath = description.RelativePath;
+            var removeRoutes = swaggerDoc.Paths.Where(x => keyPath != null && x.Key.ToLower().Contains(keyPath.ToLower())).ToList();
+            removeRoutes.ForEach(x => { swaggerDoc.Paths.Remove(x.Key); });
         }
     }
 }

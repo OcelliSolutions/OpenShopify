@@ -52,6 +52,42 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentEventStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"label_printed")]
+        LabelPrinted = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"label_purchased")]
+        LabelPurchased = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"attempted_delivery")]
+        AttemptedDelivery = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ready_for_pickup")]
+        ReadyForPickup = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"picked_up")]
+        PickedUp = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"confirmed")]
+        Confirmed = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"in_transit")]
+        InTransit = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"out_for_delivery")]
+        OutForDelivery = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"delivered")]
+        Delivered = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"failure")]
+        Failure = 9,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record FulfillmentEventOrig
     {
         /// <summary>

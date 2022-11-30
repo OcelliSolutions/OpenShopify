@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using OpenShopify.Admin.Builder.Data;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -12,7 +12,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// The relationship between the column choice, and the condition.
         /// </summary>
         [JsonPropertyName("relation")]
-        public RuleRelation? Relation { get; set; }
+        public Data.RuleRelation? Relation { get; set; }
 
         /// <summary>
         /// Select products for a collection using a condition. Conditions are either strings or numbers, depending on the relation.
@@ -24,6 +24,6 @@ namespace OpenShopify.Admin.Builder.Models
         /// The properties of a product that can be used to to populate a collection.
         /// </summary>
         [JsonPropertyName("column")]
-        public RuleColumn? Column { get; set; }
+        public Data.RuleColumn? Column { get; set; }
     }
 }

@@ -195,5 +195,35 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("buyer_accepts_sms_marketing")]
         public bool? BuyerAcceptsSmsMarketing { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("privacy_policy_url")]
+        public string? PrivacyPolicyUrl { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("refund_policy_url")]
+        public string? RefundPolicyUrl { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("terms_of_service_url")]
+        public string? TermsOfServiceUrl { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("applied_discounts")]
+        public IEnumerable<DiscountCode>? AppliedDiscounts { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("discount_violations")]
+        public IEnumerable<DiscountCode>? DiscountViolations { get; set; }
     }
 }

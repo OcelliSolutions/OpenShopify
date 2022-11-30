@@ -3549,6 +3549,622 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Checkout
+    {
+        /// <summary>
+        /// A cart-level discount applied to the checkout. Apply a discount by specifying values for `amount`, `title`, `description`, `value`, and `value_type`. 
+        /// <br/>
+        /// <br/>*   **amount**: The amount that is deducted from `payment_due` in presentment currency. 
+        /// <br/>*   **title**: The title to categorize the applied discount. 
+        /// <br/>*   **description**: The description of the applied discount.  
+        /// <br/>*   **value**: The value that was used to calculate the final applied discount amount. 
+        /// <br/>*   **value_type**: The type of value that was used to calculate the final applied discount amount. Valid values: `fixed_amount` and `percentage`. 
+        /// <br/>*   **non_applicable_reason**: The reason why the discount is not applicable, if the discount cannot be applied to the checkout. 
+        /// <br/>*   **applicable**: Whether this discount code can be applied to the checkout. 
+        /// <br/>*   **application_type**: Describes how the discount was applied to the checkout. Possible values: 
+        /// <br/>
+        /// <br/>    *   **automatic**: The discount [was applied automatically](/api/examples/discounts#creating-automatic-discounts). 
+        /// <br/>    *   **discount_code**: The merchant or customer entered a [discount code](/api/examples/discounts#creating-code-discounts). 
+        /// <br/>    *   **manual**: The discount was applied manually by the merchant or an app. 
+        /// <br/>    *   **script**: The discount was applied by a [Shopify Script](https://help.shopify.com/en/manual/checkout-settings/script-editor).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("applied_discount")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? AppliedDiscount { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public Address? BillingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the customer has consented to receive marketing material via email.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("buyer_accepts_marketing")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public bool? BuyerAcceptsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) of the shop's default currency at the time of checkout. For the currency that the customer used at checkout, see `presentment_currency`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the customer associated with this checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public long? CustomerId { get; set; } = default!;
+
+        /// <summary>
+        /// The discount code that is applied to the checkout. This populates `applied_discount` with the appropriate metadata for that discount code. To remove a discount code, send an empty string or `null`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_code")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? DiscountCode { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's email address. A checkout needs to have a value for `email` or `phone` before it can be completed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ "checkout": { "gift_cards": [{ "code": "a gift card code" }, { "code": "another gift card code" }] } }`. Each gift card object has the following properties: 
+        /// <br/>
+        /// <br/>*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. 
+        /// <br/>*   **code**: The gift card code. 
+        /// <br/>*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. 
+        /// <br/>*   **id**: The ID for the applied gift card. 
+        /// <br/>*   **last_characters**: The last four characters of the applied gift card for display back to the user. 
+        /// <br/>
+        /// <br/> Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("gift_cards")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<CheckoutGiftCard>? GiftCards { get; set; } = default!;
+
+        /// <summary>
+        /// A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: 
+        /// <br/>
+        /// <br/>*   **applied_discounts**: A list of the discounts applied to the line item. 
+        /// <br/>*   **compare_at_price**: The original selling price of the product, if applicable. 
+        /// <br/>*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both "across" and "each" applications. A superset of `applied_discounts`. 
+        /// <br/>*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. 
+        /// <br/>*   **grams**: The weight of the item in grams. 
+        /// <br/>*   **id**: The checkout-specific ID of the line item. 
+        /// <br/>*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. 
+        /// <br/>*   **price**: The price of the item in presentment currency. 
+        /// <br/>*   **product_id**: The product of the line item. 
+        /// <br/>*   **properties**: The [customization information](/docs/liquid/reference/objects/line_item#line_item-properties) for a line item (optional). 
+        /// <br/>*   **quantity**: The number of products that were purchased. 
+        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. 
+        /// <br/>*   **sku**: The unique identifier of the item in the fulfillment. 
+        /// <br/>*   **taxable**: Whether this product is taxable. 
+        /// <br/>*   **title**: The title of the product. 
+        /// <br/>*   **variant_id**: The variant ID of the line item. 
+        /// <br/>*   **variant_title**: The title of the product variant. 
+        /// <br/>*   **vendor**: The name of the item's supplier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<CheckoutLineItem> LineItems { get; set; } = new System.Collections.ObjectModel.Collection<CheckoutLineItem>();
+
+        /// <summary>
+        /// An object containing the ID, name, and status page URL of the associated order when the checkout is complete. Default value: `null`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Order { get; set; } = default!;
+
+        /// <summary>
+        /// The amount left to be paid in presentment currency. This is equal to the sum of the checkout line prices, taxes, and shipping minus discounts and gift cards.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payment_due")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? PaymentDue { get; set; } = default!;
+
+        /// <summary>
+        /// The URL that must be used to store credit cards in Shopify's card vault. These URLs are subject to change, so you should always use the one supplied here. The general pattern for the URLs is `https://elb.deposit.shopifycs.com/sessions`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payment_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? PaymentUrl { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's phone number for receiving SMS notifications. A checkout needs to have a value for `email` or `phone` before it can be completed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency that the customer used for payment at checkout. For the shop's default currency, see `currency`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? PresentmentCurrency { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the checkout requires shipping. If `true`, then `shipping_line` must be set before creating a payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// The reservation time in seconds for the line item products. Default value: `null`. This property is not writable.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("reservation_time")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        [System.Obsolete]
+        public string? ReservationTime { get; set; } = default!;
+
+        /// <summary>
+        /// The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("reservation_time_left")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        [System.Obsolete]
+        public long? ReservationTimeLeft { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public Address? ShippingAddress { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_line")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public ShippingLine? ShippingLine { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_rate")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public ShippingRate? ShippingRate { get; set; } = default!;
+
+        /// <summary>
+        /// The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source_name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? SourceName { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the order placed on the originating platform.This value doesn't correspond to the Shopify ID that's generated from a completed draft.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source_identifier")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? SourceIdentifier { get; set; } = default!;
+
+        /// <summary>
+        /// A valid URL to the original order on the originating surface.This URL is displayed to merchants on the Order Details page.If the URL is invalid, then it won't be displayed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? SourceUrl { get; set; } = default!;
+
+        /// <summary>
+        /// The price of the checkout in presentment currency before shipping, taxes, and tips.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public decimal? SubtotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: 
+        /// <br/>
+        /// <br/>*   **price**: The amount of tax to be charged in presentment currency. 
+        /// <br/>*   **rate**: The rate of tax to be applied. 
+        /// <br/>*   **title**: The name of the tax.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        /// <summary>
+        /// Whether taxes are included in the subtotal price.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public bool? TaxesIncluded { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of the the checkout line prices, taxes, shipping costs, tips, and discounts in presentment currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public decimal? TotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the taxes applied to the checkout in presentment currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public decimal? TotalTax { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the user who created the checkout. This value is passed to the order. Default value: `null`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// The URL pointing to the checkout accessible from the web.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("web_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? WebUrl { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier for a particular checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("token")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Token { get; set; } = default!;
+
+        /// <summary>
+        /// The full recovery URL to be sent to a customer to recover their abandoned checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("abandoned_checkout_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? AbandonedCheckoutUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Unique identifier for a particular cart that is attached to a particular order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cart_token")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? CartToken { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the abandoned cart was completed. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("closed_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.DateTimeOffset? ClosedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the abandoned cart was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("completed_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.DateTimeOffset? CompletedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public Customer? Customer { get; set; } = default!;
+
+        /// <summary>
+        /// The two or three-letter language code, optionally followed by a region modifier. Example values: en, en-CA.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_locale")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? CustomerLocale { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the Shopify POS device that created the checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("device_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public long? DeviceId { get; set; } = default!;
+
+        /// <summary>
+        /// Applicable discount codes that can be applied to the order. If no codes exist the value will default to blank.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<DiscountCode>? DiscountCodes { get; set; } = default!;
+
+        /// <summary>
+        /// The payment gateway used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("gateway")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Gateway { get; set; } = default!;
+
+        /// <summary>
+        /// The URL for the page where the buyer landed when entering the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("landing_site")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? LandingSite { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the physical location where the checkout was processed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// The text of an optional note that a shop owner can attach to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// An array of shipping line objects, each of which details the shipping methods used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_lines")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<ShippingLine>? ShippingLines { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount of the discounts to be applied to the price of the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discounts")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public decimal? TotalDiscounts { get; set; } = default!;
+
+        /// <summary>
+        /// The total duties of the checkout in presentment currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_duties")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public decimal? TotalDuties { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public decimal? TotalLineItemsPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the weights of the line items in the order, in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_weight")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public decimal? TotalWeight { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public NoteAttribute? NoteAttributes { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payments")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<string>? Payments { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exempt")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public bool? TaxExempt { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tip_received")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public decimal? TotalTipReceived { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_manipulations")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<string>? TaxManipulations { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_rates")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<ShippingRate>? ShippingRates { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("buyer_accepts_sms_marketing")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public bool? BuyerAcceptsSmsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("privacy_policy_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? PrivacyPolicyUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund_policy_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? RefundPolicyUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("terms_of_service_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? TermsOfServiceUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("applied_discounts")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<DiscountCode>? AppliedDiscounts { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_violations")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<DiscountCode>? DiscountViolations { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CheckoutItem
     {
 
@@ -3590,23 +4206,15 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? BodyHtml { get; set; } = default!;
 
-        /// <summary>
-        /// The default product image for a collection.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("default_product_image")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? DefaultProductImage { get; set; } = default!;
-
-        /// <summary>
-        /// The image for a collection.
-        /// </summary>
+        public ProductImage? DefaultProductImage { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("image")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Image { get; set; } = default!;
+        public CollectionImage? Image { get; set; } = default!;
 
         /// <summary>
         /// A human-friendly unique string for the Collection automatically generated from its title.
@@ -4274,6 +4882,51 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? BuyerAcceptsSmsMarketing { get; set; } = default!;
 
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("privacy_policy_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? PrivacyPolicyUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund_policy_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? RefundPolicyUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("terms_of_service_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? TermsOfServiceUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("applied_discounts")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<DiscountCode>? AppliedDiscounts { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_violations")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<DiscountCode>? DiscountViolations { get; set; } = default!;
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -4580,23 +5233,15 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Handle { get; set; } = default!;
 
-        /// <summary>
-        /// A list of image objects, each one representing an image associated with the product.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("images")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Images { get; set; } = default!;
-
-        /// <summary>
-        /// Custom product property names like "Size", "Color", and "Material".
-        /// </summary>
+        public System.Collections.Generic.ICollection<ProductImage>? Images { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("options")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Options { get; set; } = default!;
+        public System.Collections.Generic.ICollection<ProductOption>? Options { get; set; } = default!;
 
         /// <summary>
         /// A categorization that a product can be tagged with, commonly used for filtering.
@@ -4634,38 +5279,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Title { get; set; } = default!;
 
-        /// <summary>
-        /// A list of variant objects, each one representing a slightly different version of the product. For example, if a product comes in different sizes and colors, each size and color permutation (such as "small black", "medium black", "large blue"), would be a variant. 
-        /// <br/>
-        /// <br/>To reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored.
-        /// <br/>
-        /// <br/>*   **barcode**: The barcode, UPC or ISBN number for the product. 
-        /// <br/>*   **compare_at_price**: The competitor's price for the same item. 
-        /// <br/>*   **created_at**: The date and time when the product variant was created. The API returns this in ISO 8601. 
-        /// <br/>*   &lt;strong&gt;fulfillment_service&lt;/strong&gt;: Service which is handling fulfillment. Valid values are: `manual`, `gift_card`, or the handle of a [FulfillmentService](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). 
-        /// <br/>*   **grams**: The weight of the product variant in grams. 
-        /// <br/>*   **weight**: The weight of the product variant in the unit system specified with **weight_unit**. 
-        /// <br/>*   **weight_unit**: The unit system that the product variant's weight is measure in. The weight_unit can be either "g", "kg, "oz", or "lb". 
-        /// <br/>*   **id**: The unique numeric identifier for the product variant. 
-        /// <br/>*   **inventory_management**: Specifies whether or not Shopify tracks the number of items in stock for this product variant. 
-        /// <br/>*   **inventory_policy**: Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. 
-        /// <br/>*   **inventory_quantity**: The number of items in stock for this product variant. 
-        /// <br/>*   **metafield**: Attaches additional information to a shop's resources. 
-        /// <br/>*   **option**: Custom properties that a shop owner can use to define product variants. Multiple options can exist. Options are represented as: `option1`, `option2`, `option3`, etc. 
-        /// <br/>*   **position**: The order of the product variant in the list of product variants. 1 is the first position. To reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored. 
-        /// <br/>*   **price**: The price of the product variant. 
-        /// <br/>*   **product_id**: The unique numeric identifier for the product. 
-        /// <br/>*   **requires_shipping**: Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant. 
-        /// <br/>*   **sku**: A unique identifier for the product in the shop. 
-        /// <br/>*   **taxable**: Specifies whether or not a tax is charged when the product variant is sold. 
-        /// <br/>*   **title**: The title of the product variant. 
-        /// <br/>*   **updated_at**: The date and time when the product variant was last modified. The API returns this in ISO 8601.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("variants")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Variants { get; set; } = default!;
+        public System.Collections.Generic.ICollection<ProductVariant>? Variants { get; set; } = default!;
 
         /// <summary>
         /// The name of the vendor of the product.
@@ -4675,6 +5292,11 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Vendor { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("available")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public bool? Available { get; set; } = default!;
 
     }
 
@@ -5231,23 +5853,15 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Handle { get; set; } = default!;
 
-        /// <summary>
-        /// A list of image objects, each one representing an image associated with the product.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("images")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Images { get; set; } = default!;
-
-        /// <summary>
-        /// Custom product property names like "Size", "Color", and "Material".
-        /// </summary>
+        public System.Collections.Generic.ICollection<ProductImage>? Images { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("options")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Options { get; set; } = default!;
+        public System.Collections.Generic.ICollection<ProductOption>? Options { get; set; } = default!;
 
         /// <summary>
         /// A categorization that a product can be tagged with, commonly used for filtering.
@@ -5285,38 +5899,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Title { get; set; } = default!;
 
-        /// <summary>
-        /// A list of variant objects, each one representing a slightly different version of the product. For example, if a product comes in different sizes and colors, each size and color permutation (such as "small black", "medium black", "large blue"), would be a variant. 
-        /// <br/>
-        /// <br/>To reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored.
-        /// <br/>
-        /// <br/>*   **barcode**: The barcode, UPC or ISBN number for the product. 
-        /// <br/>*   **compare_at_price**: The competitor's price for the same item. 
-        /// <br/>*   **created_at**: The date and time when the product variant was created. The API returns this in ISO 8601. 
-        /// <br/>*   &lt;strong&gt;fulfillment_service&lt;/strong&gt;: Service which is handling fulfillment. Valid values are: `manual`, `gift_card`, or the handle of a [FulfillmentService](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). 
-        /// <br/>*   **grams**: The weight of the product variant in grams. 
-        /// <br/>*   **weight**: The weight of the product variant in the unit system specified with **weight_unit**. 
-        /// <br/>*   **weight_unit**: The unit system that the product variant's weight is measure in. The weight_unit can be either "g", "kg, "oz", or "lb". 
-        /// <br/>*   **id**: The unique numeric identifier for the product variant. 
-        /// <br/>*   **inventory_management**: Specifies whether or not Shopify tracks the number of items in stock for this product variant. 
-        /// <br/>*   **inventory_policy**: Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. 
-        /// <br/>*   **inventory_quantity**: The number of items in stock for this product variant. 
-        /// <br/>*   **metafield**: Attaches additional information to a shop's resources. 
-        /// <br/>*   **option**: Custom properties that a shop owner can use to define product variants. Multiple options can exist. Options are represented as: `option1`, `option2`, `option3`, etc. 
-        /// <br/>*   **position**: The order of the product variant in the list of product variants. 1 is the first position. To reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored. 
-        /// <br/>*   **price**: The price of the product variant. 
-        /// <br/>*   **product_id**: The unique numeric identifier for the product. 
-        /// <br/>*   **requires_shipping**: Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant. 
-        /// <br/>*   **sku**: A unique identifier for the product in the shop. 
-        /// <br/>*   **taxable**: Specifies whether or not a tax is charged when the product variant is sold. 
-        /// <br/>*   **title**: The title of the product variant. 
-        /// <br/>*   **updated_at**: The date and time when the product variant was last modified. The API returns this in ISO 8601.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("variants")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Variants { get; set; } = default!;
+        public System.Collections.Generic.ICollection<ProductVariant>? Variants { get; set; } = default!;
 
         /// <summary>
         /// The name of the vendor of the product.
@@ -5326,6 +5912,11 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Vendor { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("available")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public bool? Available { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
@@ -6236,6 +6827,51 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? BuyerAcceptsSmsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("privacy_policy_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? PrivacyPolicyUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund_policy_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? RefundPolicyUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("terms_of_service_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? TermsOfServiceUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("applied_discounts")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<DiscountCode>? AppliedDiscounts { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_violations")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public System.Collections.Generic.ICollection<DiscountCode>? DiscountViolations { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 

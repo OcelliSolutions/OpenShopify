@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models;
 
@@ -8,7 +9,7 @@ public partial record DeprecatedApiCall
     /// The type of API that the call was made to. Valid values: REST, Webhook, GraphQL
     /// </summary>
     [JsonPropertyName("api_type")]
-    public string? ApiType { get; set; }
+    public ApiType? ApiType { get; set; }
     /// <summary>
     /// A description of the deprecation and any required migration steps.
     /// </summary>

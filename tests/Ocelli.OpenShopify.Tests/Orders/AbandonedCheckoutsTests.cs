@@ -2,7 +2,7 @@
 
 public class AbandonedCheckoutFixture : SharedFixture, IAsyncLifetime
 {
-    public List<Checkout> CreatedAbandonedCheckouts = new();
+    public List<AbandonedCheckout> CreatedAbandonedCheckouts = new();
     public IOrdersService Service;
 
     public AbandonedCheckoutFixture() =>

@@ -248,12 +248,6 @@ paths:
                 $ref: '#/components/schemas/EngagementList'
 components:
   schemas:
-    BudgetType:
-      enum:
-        - daily
-        - lifetime
-      type: string
-      additionalProperties: { }
     CountItem:
       type: object
       properties:
@@ -272,9 +266,9 @@ components:
           description: An optional remote identifier for a marketing event. The remote identifier lets Shopify validate engagement data.
           nullable: true
         event_type:
-          $ref: '#/components/schemas/EventType'
+          $ref: '#/components/schemas/MarketingEventEventType'
         marketing_channel:
-          $ref: '#/components/schemas/MarketingChannel'
+          $ref: '#/components/schemas/MarketingEventMarketingChannel'
         paid:
           type: boolean
           description: Whether the event is paid or organic.
@@ -292,7 +286,7 @@ components:
           description: The currency for the budget. Required if `budget` is specified.
           nullable: true
         budget_type:
-          $ref: '#/components/schemas/BudgetType'
+          $ref: '#/components/schemas/MarketingEventBudgetType'
         started_at:
           type: string
           description: The time when the marketing action was started.
@@ -327,7 +321,7 @@ components:
         marketed_resources:
           type: array
           items:
-            $ref: '#/components/schemas/MarketedResource'
+            $ref: '#/components/schemas/MarketingEventMarketedResources'
           description: "A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: \r\n\r\n*   `product` \r\n*   `collection` \r\n*   `price_rule` \r\n*   `discount` (Will be replaced by price_rule after April 20, 2017.) \r\n*   `page` \r\n*   `article` \r\n*   `homepage` (Doesn't have an `id`.)"
           nullable: true
         utm_campaign:
@@ -384,38 +378,6 @@ components:
           items:
             $ref: '#/components/schemas/Engagement'
       additionalProperties: { }
-    EventType:
-      enum:
-        - ad
-        - post
-        - message
-        - retargeting
-        - transactional
-        - affiliate
-        - loyalty
-        - newsletter
-        - abandoned_cart
-      type: string
-      additionalProperties: { }
-    MarketedResource:
-      enum:
-        - product
-        - collection
-        - price_rule
-        - page
-        - article
-        - homepage
-      type: string
-      additionalProperties: { }
-    MarketingChannel:
-      enum:
-        - search
-        - display
-        - social
-        - email
-        - referral
-      type: string
-      additionalProperties: { }
     MarketingEvent:
       required:
         - id
@@ -426,9 +388,9 @@ components:
           description: An optional remote identifier for a marketing event. The remote identifier lets Shopify validate engagement data.
           nullable: true
         event_type:
-          $ref: '#/components/schemas/EventType'
+          $ref: '#/components/schemas/MarketingEventEventType'
         marketing_channel:
-          $ref: '#/components/schemas/MarketingChannel'
+          $ref: '#/components/schemas/MarketingEventMarketingChannel'
         paid:
           type: boolean
           description: Whether the event is paid or organic.
@@ -446,7 +408,7 @@ components:
           description: The currency for the budget. Required if `budget` is specified.
           nullable: true
         budget_type:
-          $ref: '#/components/schemas/BudgetType'
+          $ref: '#/components/schemas/MarketingEventBudgetType'
         started_at:
           type: string
           description: The time when the marketing action was started.
@@ -481,7 +443,7 @@ components:
         marketed_resources:
           type: array
           items:
-            $ref: '#/components/schemas/MarketedResource'
+            $ref: '#/components/schemas/MarketingEventMarketedResources'
           description: "A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: \r\n\r\n*   `product` \r\n*   `collection` \r\n*   `price_rule` \r\n*   `discount` (Will be replaced by price_rule after April 20, 2017.) \r\n*   `page` \r\n*   `article` \r\n*   `homepage` (Doesn't have an `id`.)"
           nullable: true
         utm_campaign:
@@ -514,6 +476,26 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
+    MarketingEventBudgetType:
+      enum:
+        - budget
+        - daily
+        - lifetime
+      type: string
+      additionalProperties: { }
+    MarketingEventEventType:
+      enum:
+        - ad
+        - post
+        - message
+        - retargeting
+        - transactional
+        - affiliate
+        - loyalty
+        - newsletter
+        - abandoned_cart
+      type: string
+      additionalProperties: { }
     MarketingEventItem:
       required:
         - marketing_event
@@ -532,6 +514,28 @@ components:
           items:
             $ref: '#/components/schemas/MarketingEvent'
       additionalProperties: { }
+    MarketingEventMarketedResources:
+      enum:
+        - type
+        - id
+        - product
+        - collection
+        - price_rule
+        - discount
+        - page
+        - article
+        - homepage
+      type: string
+      additionalProperties: { }
+    MarketingEventMarketingChannel:
+      enum:
+        - search
+        - display
+        - social
+        - email
+        - referral
+      type: string
+      additionalProperties: { }
     UpdateMarketingEvent:
       required:
         - id
@@ -542,9 +546,9 @@ components:
           description: An optional remote identifier for a marketing event. The remote identifier lets Shopify validate engagement data.
           nullable: true
         event_type:
-          $ref: '#/components/schemas/EventType'
+          $ref: '#/components/schemas/MarketingEventEventType'
         marketing_channel:
-          $ref: '#/components/schemas/MarketingChannel'
+          $ref: '#/components/schemas/MarketingEventMarketingChannel'
         paid:
           type: boolean
           description: Whether the event is paid or organic.
@@ -562,7 +566,7 @@ components:
           description: The currency for the budget. Required if `budget` is specified.
           nullable: true
         budget_type:
-          $ref: '#/components/schemas/BudgetType'
+          $ref: '#/components/schemas/MarketingEventBudgetType'
         started_at:
           type: string
           description: The time when the marketing action was started.
@@ -597,7 +601,7 @@ components:
         marketed_resources:
           type: array
           items:
-            $ref: '#/components/schemas/MarketedResource'
+            $ref: '#/components/schemas/MarketingEventMarketedResources'
           description: "A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: \r\n\r\n*   `product` \r\n*   `collection` \r\n*   `price_rule` \r\n*   `discount` (Will be replaced by price_rule after April 20, 2017.) \r\n*   `page` \r\n*   `article` \r\n*   `homepage` (Doesn't have an `id`.)"
           nullable: true
         utm_campaign:

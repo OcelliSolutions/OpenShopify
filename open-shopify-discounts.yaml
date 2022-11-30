@@ -676,13 +676,9 @@ components:
       type: object
       properties:
         allocation_method:
-          type: string
-          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleAllocationMethod'
         customer_selection:
-          type: string
-          description: "The customer selection for the price rule. Valid values:\r\n\r\n*   **all**: The price rule is valid for all customers. \r\n*   **prerequisite**: The customer must either belong to one of the customer segments specified by `customer_segment_prerequisite_ids`, or be one of the customers specified by `prerequisite_customer_ids`."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleCustomerSelection'
         ends_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule ends. Must be after `starts_at`.'
@@ -750,13 +746,9 @@ components:
           format: date-time
           nullable: true
         target_selection:
-          type: string
-          description: "The target selection method of the price rule. Valid values:\r\n\r\n*   **all**: The price rule applies the discount to all line items in the checkout. \r\n*   **entitled**: The price rule applies the discount to selected entitlements only."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleTargetSelection'
         target_type:
-          type: string
-          description: "The target type that the price rule applies to. Valid values:\r\n\r\n*   **line_item**: The price rule applies to the cart's line items. \r\n*   **shipping_line**: The price rule applies to the cart's shipping lines."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleTargetType'
         title:
           type: string
           description: "The title of the price rule. This is used by the Shopify admin search to retrieve discounts. It is also displayed on the **Discounts** page of the Shopify admin for bulk discounts.\r\n\r\nFor non-bulk discounts, the discount code is displayed on the admin.\r\n <div class=\"note note-caution\"> \r\n\r\nFor a consistent search experience, use the same value for `title` as the `code` property of the associated discount code.\r\n </div>"
@@ -793,9 +785,7 @@ components:
           format: decimal
           nullable: true
         value_type:
-          type: string
-          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleValueType'
         prerequisite_to_entitlement_quantity_ratio:
           $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'
         allocation_limit:
@@ -833,9 +823,7 @@ components:
           description: The amount of the discount.
           nullable: true
         type:
-          type: string
-          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
-          nullable: true
+          $ref: '#/components/schemas/DiscountCodeType'
         errors:
           $ref: '#/components/schemas/DiscountCodeErrors'
         id:
@@ -964,6 +952,14 @@ components:
           items:
             $ref: '#/components/schemas/DiscountCode'
       additionalProperties: { }
+    DiscountCodeType:
+      enum:
+        - percentage
+        - shipping
+        - fixed_amount
+        - none
+      type: string
+      additionalProperties: { }
     PrerequisiteToEntitlementPurchase:
       type: object
       properties:
@@ -1003,13 +999,9 @@ components:
       type: object
       properties:
         allocation_method:
-          type: string
-          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleAllocationMethod'
         customer_selection:
-          type: string
-          description: "The customer selection for the price rule. Valid values:\r\n\r\n*   **all**: The price rule is valid for all customers. \r\n*   **prerequisite**: The customer must either belong to one of the customer segments specified by `customer_segment_prerequisite_ids`, or be one of the customers specified by `prerequisite_customer_ids`."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleCustomerSelection'
         ends_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule ends. Must be after `starts_at`.'
@@ -1077,13 +1069,9 @@ components:
           format: date-time
           nullable: true
         target_selection:
-          type: string
-          description: "The target selection method of the price rule. Valid values:\r\n\r\n*   **all**: The price rule applies the discount to all line items in the checkout. \r\n*   **entitled**: The price rule applies the discount to selected entitlements only."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleTargetSelection'
         target_type:
-          type: string
-          description: "The target type that the price rule applies to. Valid values:\r\n\r\n*   **line_item**: The price rule applies to the cart's line items. \r\n*   **shipping_line**: The price rule applies to the cart's shipping lines."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleTargetType'
         title:
           type: string
           description: "The title of the price rule. This is used by the Shopify admin search to retrieve discounts. It is also displayed on the **Discounts** page of the Shopify admin for bulk discounts.\r\n\r\nFor non-bulk discounts, the discount code is displayed on the admin.\r\n <div class=\"note note-caution\"> \r\n\r\nFor a consistent search experience, use the same value for `title` as the `code` property of the associated discount code.\r\n </div>"
@@ -1120,9 +1108,7 @@ components:
           format: decimal
           nullable: true
         value_type:
-          type: string
-          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleValueType'
         prerequisite_to_entitlement_quantity_ratio:
           $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'
         allocation_limit:
@@ -1146,6 +1132,20 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
+    PriceRuleAllocationMethod:
+      enum:
+        - each
+        - across
+        - target_type
+        - shipping_line
+      type: string
+      additionalProperties: { }
+    PriceRuleCustomerSelection:
+      enum:
+        - all
+        - prerequisite
+      type: string
+      additionalProperties: { }
     PriceRuleItem:
       required:
         - price_rule
@@ -1164,6 +1164,26 @@ components:
           items:
             $ref: '#/components/schemas/PriceRule'
       additionalProperties: { }
+    PriceRuleTargetSelection:
+      enum:
+        - all
+        - entitled
+      type: string
+      additionalProperties: { }
+    PriceRuleTargetType:
+      enum:
+        - line_item
+        - shipping_line
+      type: string
+      additionalProperties: { }
+    PriceRuleValueType:
+      enum:
+        - fixed_amount
+        - percentage
+        - target_type
+        - shipping_line
+      type: string
+      additionalProperties: { }
     UpdateDiscountCode:
       type: object
       properties:
@@ -1181,9 +1201,7 @@ components:
           description: The amount of the discount.
           nullable: true
         type:
-          type: string
-          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
-          nullable: true
+          $ref: '#/components/schemas/DiscountCodeType'
         errors:
           $ref: '#/components/schemas/DiscountCodeErrors'
         id:
@@ -1208,13 +1226,9 @@ components:
       type: object
       properties:
         allocation_method:
-          type: string
-          description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleAllocationMethod'
         customer_selection:
-          type: string
-          description: "The customer selection for the price rule. Valid values:\r\n\r\n*   **all**: The price rule is valid for all customers. \r\n*   **prerequisite**: The customer must either belong to one of the customer segments specified by `customer_segment_prerequisite_ids`, or be one of the customers specified by `prerequisite_customer_ids`."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleCustomerSelection'
         ends_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule ends. Must be after `starts_at`.'
@@ -1282,13 +1296,9 @@ components:
           format: date-time
           nullable: true
         target_selection:
-          type: string
-          description: "The target selection method of the price rule. Valid values:\r\n\r\n*   **all**: The price rule applies the discount to all line items in the checkout. \r\n*   **entitled**: The price rule applies the discount to selected entitlements only."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleTargetSelection'
         target_type:
-          type: string
-          description: "The target type that the price rule applies to. Valid values:\r\n\r\n*   **line_item**: The price rule applies to the cart's line items. \r\n*   **shipping_line**: The price rule applies to the cart's shipping lines."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleTargetType'
         title:
           type: string
           description: "The title of the price rule. This is used by the Shopify admin search to retrieve discounts. It is also displayed on the **Discounts** page of the Shopify admin for bulk discounts.\r\n\r\nFor non-bulk discounts, the discount code is displayed on the admin.\r\n <div class=\"note note-caution\"> \r\n\r\nFor a consistent search experience, use the same value for `title` as the `code` property of the associated discount code.\r\n </div>"
@@ -1325,9 +1335,7 @@ components:
           format: decimal
           nullable: true
         value_type:
-          type: string
-          description: "The value type of the price rule. Valid values:\r\n\r\n*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. \r\n*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. \r\n\r\nIf `target_type` is `shipping_line`, then only `percentage` is accepted."
-          nullable: true
+          $ref: '#/components/schemas/PriceRuleValueType'
         prerequisite_to_entitlement_quantity_ratio:
           $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'
         allocation_limit:

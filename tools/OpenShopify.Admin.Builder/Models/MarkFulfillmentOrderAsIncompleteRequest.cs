@@ -9,12 +9,3 @@ public record MarkFulfillmentOrderAsIncompleteRequest
     [Required, JsonPropertyName("fulfillment_order")]
     public FulfillmentOrderCancellationRequestDetail FulfillmentOrder { get; set; } = null!;
 }
-public record FulfillmentOrderCancellationRequestDetail
-{
-    /// <summary>
-    /// An optional reason for marking the fulfillment order as incomplete.
-    /// </summary>
-    [JsonPropertyName("message")]
-    public string? Message { get; set; }
-}
-

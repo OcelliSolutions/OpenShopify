@@ -1,6 +1,5 @@
-
-
 using System.Text.Json.Serialization;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -16,7 +15,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// The type of discount. Known values are 'percentage', 'shipping', 'fixed_amount' and 'none'.
         /// </summary>
         [JsonPropertyName("type")]
-        public string? Type { get; set; }
+        public DiscountCodeType? Type { get; set; }
 
 
         /// <summary>
@@ -24,11 +23,5 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("errors")]
         public DiscountCodeErrors? Errors { get; set; }
-    }
-
-    public record DiscountCodeErrors
-    {
-        [JsonPropertyName("code")]
-        public IEnumerable<string>? Code { get; set; }
     }
 }

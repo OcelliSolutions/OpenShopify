@@ -71,6 +71,24 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ThemeRole
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"main")]
+        Main = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unpublished")]
+        Unpublished = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"demo")]
+        Demo = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"development")]
+        Development = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record ThemeOrig
     {
         /// <summary>

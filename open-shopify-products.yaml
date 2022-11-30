@@ -2241,7 +2241,7 @@ components:
           description: "Whether the product must match all the rules to be included in the smart collection. Valid values: \r\n\r\n*   `true`: Products only need to match one or more of the rules to be included in the smart collection. \r\n*   `false`: Products must match all of the rules to be included in the smart collection."
           nullable: true
         sort_order:
-          $ref: '#/components/schemas/SortOrder'
+          $ref: '#/components/schemas/SmartCollectionSortOrder'
         template_suffix:
           type: string
           description: 'The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.'
@@ -2931,7 +2931,7 @@ components:
           description: "Whether the product must match all the rules to be included in the smart collection. Valid values: \r\n\r\n*   `true`: Products only need to match one or more of the rules to be included in the smart collection. \r\n*   `false`: Products must match all of the rules to be included in the smart collection."
           nullable: true
         sort_order:
-          $ref: '#/components/schemas/SortOrder'
+          $ref: '#/components/schemas/SmartCollectionSortOrder'
         template_suffix:
           type: string
           description: 'The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.'
@@ -3036,16 +3036,11 @@ components:
           $ref: '#/components/schemas/RuleColumn'
       additionalProperties: { }
       description: An entity representing a Shopify Smart Collection Rule.
-    SortOrder:
+    SmartCollectionSortOrder:
       enum:
-        - alpha-asc
-        - alpha-des
-        - best-selling
         - created
-        - created-desc
         - manual
-        - price-asc
-        - price-desc
+        - best-selling
       type: string
       additionalProperties: { }
     UpdateCustomCollection:
@@ -3453,7 +3448,7 @@ components:
           description: "Whether the product must match all the rules to be included in the smart collection. Valid values: \r\n\r\n*   `true`: Products only need to match one or more of the rules to be included in the smart collection. \r\n*   `false`: Products must match all of the rules to be included in the smart collection."
           nullable: true
         sort_order:
-          $ref: '#/components/schemas/SortOrder'
+          $ref: '#/components/schemas/SmartCollectionSortOrder'
         template_suffix:
           type: string
           description: 'The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.'

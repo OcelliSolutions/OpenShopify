@@ -8,9 +8,3 @@ public record ProductVariantError
     [JsonPropertyName("errors"), Required]
     public ProductVariantErrorDetails Errors { get; set; } = null!;
 }
-
-public record ProductVariantErrorDetails
-{
-    [JsonPropertyName("variant")]
-    public string? Variant { get; set; }
-}

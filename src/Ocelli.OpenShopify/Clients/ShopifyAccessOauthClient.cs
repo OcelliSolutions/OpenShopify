@@ -27,12 +27,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get a list of access scopes
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of access scopes associated with the access token.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<AccessScopeList>> ListAccessScopesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -72,12 +66,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get a list of access scopes
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of access scopes associated with the access token.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<AccessScopeList>> ListAccessScopesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

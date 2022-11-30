@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using System.Linq;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
@@ -493,11 +495,12 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
                 hasId = true;
                 continue;
             }
+
             //remove all the `created_at` and `updated_at` properties. These will be manually added later
             if (property.name == "created_at" || property.name == "updated_at")
                 continue;
             var schema = GetSchema((string)property.name);
-
+            
             var cleanProperty = new JsonSchemaProperty
             {
                 Id = property.id,
@@ -507,10 +510,101 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
                 Item = schema.Item,
                 IsRequired = property.required ?? false,
                 IsReadOnly = property.readOnly ?? false,
-                Example = property.example, 
+                Example = property.example,
                 IsDeprecated = property.deprecated ?? false
             };
             cleanComponent.Properties.Add((string)property.name, cleanProperty);
+
+            //capture any enums hidden in the property descriptions
+            var cleanDescription = property.description.ToString().ToLower();
+            if (cleanDescription.Contains("valid values"))
+            {
+                var invalidDescriptions = new List<string>() { "has the following properties", "created_at", "associated with the smart collection" };
+                var hasInvalidDescription = false;
+                foreach (var invalidDescription in invalidDescriptions.Where(invalidDescription => cleanDescription.Contains(invalidDescription)))
+                {
+                    hasInvalidDescription = true;
+                }
+                if (hasInvalidDescription)
+                    // if this is complex object and not just an enum
+                    continue;
+
+                var enumValues = new Dictionary<string, string>();
+                //Possible Enums
+                var lines = property.description.ToString().Split("\n");
+                foreach (var line in lines)
+                {
+                    if (line.Contains("**:"))
+                    {
+                        var dict = line.Split("**:");
+                        enumValues.Add(dict[0], dict[1]);
+                    }
+                    else if (line.Contains("</strong>:"))
+                    {
+                        var cleanLine = CaseInsensitiveReplace(line, "<strong>", string.Empty);
+                        cleanLine = CaseInsensitiveReplace(cleanLine, "<li>", string.Empty);
+                        cleanLine = CaseInsensitiveReplace(cleanLine, "</li>", string.Empty);
+                        var dict = cleanLine.Split("</strong>:");
+                        
+                        enumValues.Add(dict[0], dict[1]);
+                    }
+                    else if (line.Contains("<code>"))
+                    {
+                        foreach (Match subLine in Regex.Matches((string)line, @"<code>(\w+)</code>"))
+                        {
+                            var value = subLine.Groups[1].Value;
+                            if(new List<string>(){"null", "true", "false"}.Contains(value))
+                                continue;
+
+                            if (string.IsNullOrWhiteSpace(value))
+                                continue;
+                            enumValues.TryAdd(value, value);
+                        }
+                    }
+                }
+
+                if (!enumValues.Any()) continue;
+
+                var id = $@"{component.name} {property.name}".Replace("-", " ").Replace("_", " ");
+                var cleanEnum = new JsonSchemaProperty()
+                {
+                    Id = TitleCase(id).Replace(" ", ""),
+                    Type = JsonObjectType.String
+                };
+
+                foreach (var enumValue in enumValues)
+                {
+                    if (cleanEnum.Enumeration.Contains(enumValue.Key.Trim())) continue;
+                    cleanEnum.Enumeration.Add(enumValue.Key.Trim());
+                    var name = enumValue.Key.Trim().Replace("-", " ").Replace("_", " ");
+                    cleanEnum.EnumerationNames.Add(TitleCase(name).Replace(" ", ""));
+                    //cleanEnum.EnumerationNames.Add(enumValue.Value.Trim());
+                }
+
+                #region Missing Enum Values
+
+                // Shopify does not always list all the available values for their enums, they can be added here.
+
+                if (new List<string>(){ "OrderProcessingMethod" }.Contains(cleanEnum.Id))
+                {
+                    // Since Shopify seems to use strings instead of enums, and sometimes they can return an empty string,
+                    // add an empty string as a possible enum value. Just add the name of the enum that needs an empty value.
+                    cleanEnum.Enumeration.Add("");
+                    cleanEnum.EnumerationNames.Add("Empty");
+                }
+                
+                if (cleanEnum.Id == "SmartCollectionSortOrder")
+                {
+                    cleanEnum.Enumeration.Add("best-selling");
+                    cleanEnum.EnumerationNames.Add("BestSelling");
+                }
+
+                #endregion Missing Enum Values
+
+                if (!cleanEnum.Enumeration.Any()) continue;
+
+                clean.Components.Schemas.Add(cleanEnum.Id, cleanEnum);
+            }
         }
 
         if (!hasId)
@@ -599,8 +693,8 @@ JsonSchema GetSchema(string propertyName)
         "confirmed", "cache", "paid", "enabled_universal_or_app_links", "enabled_shared_webcredentials",
         "has_discounts", "has_gift_cards", "eligible_for_payments", "requires_extra_payments_agreement",
         "password_enabled","has_storefront","eligible_for_card_reader_giveaway","finances",
-        "checkout_api_supported","multi_location_enabled","setup_required","pre_launch_enabled", "notify_merchant"
-
+        "checkout_api_supported","multi_location_enabled","setup_required","pre_launch_enabled", "notify_merchant",
+        "transactional_sms_disabled", "marketing_sms_consent_enabled_at_checkout"
     };
     var decimalProperties = new List<string>()
     {
@@ -789,6 +883,13 @@ static IEnumerable<char> CharsToTitleCase(string s)
 //static string TitleCase(string input) => Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input);
 static string TitleCase(string input) => new (CharsToTitleCase(input).ToArray());
 
+static string CaseInsensitiveReplace(string originalString, string oldValue, string newValue)
+{
+    var regEx = new Regex(oldValue,
+        RegexOptions.IgnoreCase | RegexOptions.Multiline);
+    return regEx.Replace(originalString, newValue);
+}
+
 async Task CreateController(OpenApiDocument document, string section, string controllerName)
 {
     try
@@ -932,4 +1033,3 @@ internal class CustomPropertyNameGenerator : IPropertyNameGenerator
     //static string TitleCase(string input) => Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input);
     static string TitleCase(string input) => new(CharsToTitleCase(input).ToArray());
 }
-

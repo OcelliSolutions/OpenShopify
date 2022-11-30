@@ -1,25 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 		<Nullable>enable</Nullable>
 		<PackageId>Ocelli.OpenShopify</PackageId>
-		<Company>Code Cooper LLC</Company>
+		<Company>Ocelli Solutions</Company>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Authors>Jason Cooper</Authors>
 		<Description>Using OpenAPI standards, create an interface for the Shopify Management APIs.</Description>
     <RepositoryUrl>https://github.com/OcelliSolutions/OpenShopify</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>openapi swagger shopify ocelli</PackageTags>
+		<PackageTags>openapi;swagger;shopify;ocelli;openstar</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>app_icon_128_128.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Macross.Json.Extensions" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="7.0.0" />
   </ItemGroup>
 
 	<ItemGroup>

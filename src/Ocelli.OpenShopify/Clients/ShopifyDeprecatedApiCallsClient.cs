@@ -245,6 +245,21 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum ApiType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"REST")]
+        REST = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Webhook")]
+        Webhook = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"GraphQL")]
+        GraphQL = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class DeprecatedApiCall
     {
         /// <summary>
@@ -274,14 +289,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? DeprecatedApiCalls { get; set; } = default!;
 
-        /// <summary>
-        /// The type of API that the call was made to. Valid values: REST, Webhook, GraphQL
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("api_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? ApiType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ApiType? ApiType { get; set; } = default!;
 
         /// <summary>
         /// A description of the deprecation and any required migration steps.

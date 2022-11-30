@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using OpenShopify.Admin.Builder.Data;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -9,7 +9,7 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <inheritdoc cref="OrderOrig.CancelReason"/>
         [JsonPropertyName("cancel_reason")]
-        public new CancelReason? CancelReason { get; set; }
+        public new OrderCancelReason? CancelReason { get; set; }
 
         /// <inheritdoc cref="OrderOrig.FulfillmentStatus"/>
         [JsonPropertyName("fulfillment_status")]
@@ -17,11 +17,11 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <inheritdoc cref="OrderOrig.FinancialStatus"/>
         [JsonPropertyName("financial_status")]
-        public new FinancialStatus? FinancialStatus { get; set; }
+        public new OrderFinancialStatus? FinancialStatus { get; set; }
 
         /// <inheritdoc cref="OrderOrig.ProcessingMethod"/>
         [JsonPropertyName("processing_method")]
-        public new ProcessingMethod? ProcessingMethod { get; set; }
+        public new OrderProcessingMethod? ProcessingMethod { get; set; }
 
         /// <inheritdoc cref="OrderOrig.BillingAddress"/>
         [JsonPropertyName("billing_address")]

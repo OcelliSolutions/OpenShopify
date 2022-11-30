@@ -5,18 +5,6 @@ namespace OpenShopify.Admin.Builder.Models;
 public partial record CreateCustomer
 {
     /// <summary>
-    /// An optional password for the user. Default is null.
-    /// </summary>
-    [JsonPropertyName("password")]
-    public string? Password { get; set; }
-
-    /// <summary>
-    /// Should be set and match <see cref="Password"/>. Default is null.
-    /// </summary>
-    [JsonPropertyName("password_confirmation")]
-    public string? PasswordConfirmation { get; set; }
-
-    /// <summary>
     /// Whether an email invite should be sent to the new customer. Default is null.
     /// </summary>
     [JsonPropertyName("send_email_invite")]

@@ -61,12 +61,13 @@ public class TransactionTests : IClassFixture<TransactionFixture>
     {
         var request = new CreateTransactionForOrderRequest()
         {
-            Transaction = new CreateTransaction
+            Transaction = new ()
             {
                 Currency = "USD",
                 Amount = (decimal)10.00,
                 Kind = TransactionKind.Capture,
-                ParentId = Fixture.Order.Id
+                ParentId = Fixture.Order.Id,
+                Test = true
             }
         };
         var response = await Fixture.Service.Transaction.CreateTransactionForOrderAsync(Fixture.Order.Id, request);
@@ -81,7 +82,7 @@ public class TransactionTests : IClassFixture<TransactionFixture>
     {
         var request = new CreateTransactionForOrderRequest()
         {
-            Transaction = new CreateTransaction()
+            Transaction = new() { Test = true }
         };
         await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Transaction.CreateTransactionForOrderAsync(Fixture.Order.Id, request));

@@ -21,7 +21,7 @@ public class CommentController : CommentControllerBase
         string? published_status = null, long? since_id = null, string? status = null,
         DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null) =>
         throw new NotImplementedException();
-
+    
     /// <inheritdoc />
     [HttpPost]
     [Route("comments.json")]

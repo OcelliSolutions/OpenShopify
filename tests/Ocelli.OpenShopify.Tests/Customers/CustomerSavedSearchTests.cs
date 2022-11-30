@@ -56,7 +56,7 @@ public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture
             CustomerSavedSearch = new UpdateCustomerSavedSearch
             {
                 Id = originalCustomerSavedSearch.Id,
-                Name = @"This Name Has Been Changed"
+                Name = $@"This Name Has Been Changed: {Fixture.BatchId}"
             }
         };
         var response =

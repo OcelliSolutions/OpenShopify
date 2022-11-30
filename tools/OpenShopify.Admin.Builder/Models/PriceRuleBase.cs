@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models;
 
@@ -65,28 +66,25 @@ public partial record PriceRuleBase
     /// <inheritdoc cref="PriceRuleOrig.PrerequisiteToEntitlementQuantityRatio"/>
     [JsonPropertyName("prerequisite_to_entitlement_quantity_ratio")]
     public new PrerequisiteToEntitlementQuantityRatio? PrerequisiteToEntitlementQuantityRatio { get; set; }
-}
 
-public partial record PrerequisiteToEntitlementQuantityRatio
-{
-    /// <summary>
-    /// The necessary 'buy' quantity.
-    /// </summary>
-    [JsonPropertyName("prerequisite_quantity")]
-    public int PrerequisiteQuantity { get; set; }
+    /// <inheritdoc cref="PriceRuleOrig.AllocationMethod"/>
+    [JsonPropertyName("allocation_method")]
+    public new PriceRuleAllocationMethod? AllocationMethod { get; set; } = default!;
 
-    /// <summary>
-    /// The offered 'get' quantity.
-    /// </summary>
-    [JsonPropertyName("entitled_quantity ")]
-    public int EntitledQuantity { get; set; }
-}
+    /// <inheritdoc cref="PriceRuleOrig.CustomerSelection"/>
+    [JsonPropertyName("customer_selection")]
+    public new PriceRuleCustomerSelection? CustomerSelection { get; set; } = default!;
 
-public partial record PrerequisiteToEntitlementPurchase
-{
-    /// <summary>
-    /// The minimum purchase amount required to be entitled to the discount.
-    /// </summary>
-    [JsonPropertyName("prerequisite_amount")]
-    public decimal? PrerequisiteAmount { get; set; }
+
+    /// <inheritdoc cref="PriceRuleOrig.TargetSelection"/>
+    [JsonPropertyName("target_selection")]
+    public new PriceRuleTargetSelection? TargetSelection { get; set; } = default!;
+
+    /// <inheritdoc cref="PriceRuleOrig.TargetType"/>
+    [JsonPropertyName("target_type")]
+    public new PriceRuleTargetType? TargetType { get; set; } = default!;
+
+    /// <inheritdoc cref="PriceRuleOrig.TargetType"/>
+    [JsonPropertyName("value_type")]
+    public new PriceRuleValueType? ValueType { get; set; } = default!;
 }

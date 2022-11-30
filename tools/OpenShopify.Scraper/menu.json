@@ -1,16 +1,5 @@
 {
-  "features": [
-    "cg_fe_comment",
-    "cg_ownership",
-    "cg_slack_notifications",
-    "liquid_api_next",
-    "liquid_data_tab",
-    "liquid_example_rendering",
-    "liquid_rendered_output",
-    "october_experience",
-    "privacy_references",
-    "search_experience"
-  ],
+  "features": [],
   "enable_theme_mode": true,
   "api": {
     "selectable_versions": [

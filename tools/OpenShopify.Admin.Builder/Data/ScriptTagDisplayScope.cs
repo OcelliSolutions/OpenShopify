@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace OpenShopify.Admin.Builder.Models;
+namespace OpenShopify.Admin.Builder.Data;
 
 public enum ScriptTagDisplayScope
 {

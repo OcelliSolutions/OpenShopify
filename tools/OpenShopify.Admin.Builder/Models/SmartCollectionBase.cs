@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using OpenShopify.Admin.Builder.Data;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -19,7 +19,7 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <inheritdoc cref="SmartCollectionOrig.SortOrder"/>
         [JsonPropertyName("sort_order")]
-        public new SortOrder? SortOrder { get; set; }
+        public new SmartCollectionSortOrder? SortOrder { get; set; }
 
         [JsonPropertyName("products_count")] 
         public int? ProductsCount { get; set; }

@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Blog",
-    "description": "        <p>In addition to an online storefront, Shopify shops come with a built-in blogging engine, allowing a shop to have one or more blogs.</p>\n\n        {{ '/api/reference/blog.png' | image }}\n\n        <p>Shop owners are encouraged to use blogs to:</p>\n        <ul>\n          <li>Make announcements</li>\n          <li>Talk about their products in more detail</li>\n          <li>Show off their expertise</li>\n          <li>Connect with their customers and</li>\n          <li>Boost their shop's search engine rankings</li>\n        </ul>\n\n        <p>Shopify [blogs](/apps/auth/oauth) are like most other blogs: a content management system for articles posted in reverse chronological order. Articles can be posted under one or more user-defined categories and tagged with one or more user-defined tags, with an option to allow readers to post comments to articles. An Atom feed is automatically generated for each blog, allowing for syndication. The search functionality built into every shop also searches the text in blog articles.</p>\n\n        <p>Blogs are meant to be used as a type of magazine or newsletter for the shop, with content that changes over time. If your shop needs a static page (such as an \"About Us\" page), we recommend that you use a Page instead.</p>\n\n        <p>Also see the <a href=\"/docs/admin-api/rest/reference/online-store/article\">Article resource</a> for managing blog articles.</p>\n",
+    "description": "        <p>In addition to an online storefront, Shopify shops come with a built-in blogging engine, allowing a shop to have one or more blogs.</p>\n\n        {{ '/api/reference/blog.png' | image }}\n\n        <p>Shop owners are encouraged to use blogs to:</p>\n        <ul>\n          <li>Make announcements</li>\n          <li>Talk about their products in more detail</li>\n          <li>Show off their expertise</li>\n          <li>Connect with their customers and</li>\n          <li>Boost their shop's search engine rankings</li>\n        </ul>\n\n        <p>Shopify blogs are like most other blogs: a content management system for articles posted in reverse chronological order. Articles can be posted under one or more user-defined categories and tagged with one or more user-defined tags, with an option to allow readers to post comments to articles. An Atom feed is automatically generated for each blog, allowing for syndication. The search functionality built into every shop also searches the text in blog articles.</p>\n\n        <p>Blogs are meant to be used as a type of magazine or newsletter for the shop, with content that changes over time. If your shop needs a static page (such as an \"About Us\" page), we recommend that you use a Page instead.</p>\n\n        <p>Also see the <a href=\"/docs/admin-api/rest/reference/online-store/article\">Article resource</a> for managing blog articles.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/469",
     "x-description-list": null,
     "version": "2022-10",
@@ -74,7 +74,7 @@
                         "commentable": "no",
                         "feedburner": null,
                         "feedburner_location": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2022-10-11T11:03:14-06:00",
                         "template_suffix": null,
                         "tags": "",
                         "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/382285388"
@@ -87,7 +87,7 @@
                         "commentable": "no",
                         "feedburner": null,
                         "feedburner_location": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2022-10-11T11:03:14-06:00",
                         "template_suffix": null,
                         "tags": "Announcing, Mystery",
                         "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/241253187"
@@ -106,23 +106,23 @@
                         "commentable": "no",
                         "feedburner": null,
                         "feedburner_location": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2022-10-11T11:03:14-06:00",
                         "template_suffix": null,
                         "tags": "",
                         "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/382285388"
                       },
                       {
-                        "id": 1008414252,
+                        "id": 1008414250,
                         "handle": "apple-main-blog",
                         "title": "Apple main blog",
-                        "updated_at": "2022-10-03T11:06:38-06:00",
+                        "updated_at": "2022-10-11T11:03:48-06:00",
                         "commentable": "no",
                         "feedburner": null,
                         "feedburner_location": null,
-                        "created_at": "2022-10-03T11:06:38-06:00",
+                        "created_at": "2022-10-11T11:03:48-06:00",
                         "template_suffix": null,
                         "tags": "",
-                        "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/1008414252"
+                        "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/1008414250"
                       }
                     ]
                   }
@@ -146,7 +146,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"blogs\":[{\"id\":382285388,\"handle\":\"banana-blog\",\"title\":\"A Gnu Blog\",\"updated_at\":\"2006-02-02T19:00:00-05:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/382285388\"},{\"id\":241253187,\"handle\":\"apple-blog\",\"title\":\"Mah Blog\",\"updated_at\":\"2006-02-01T19:00:00-05:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}]}"
+            "body": "{\"blogs\":[{\"id\":382285388,\"handle\":\"banana-blog\",\"title\":\"A Gnu Blog\",\"updated_at\":\"2006-02-02T19:00:00-05:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:14-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/382285388\"},{\"id\":241253187,\"handle\":\"apple-blog\",\"title\":\"Mah Blog\",\"updated_at\":\"2006-02-01T19:00:00-05:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:14-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}]}"
           },
           "name": "Get all blogs for a shop",
           "codeSamples": [
@@ -181,7 +181,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"blogs\":[{\"id\":382285388,\"handle\":\"banana-blog\",\"title\":\"A Gnu Blog\",\"updated_at\":\"2006-02-02T19:00:00-05:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/382285388\"},{\"id\":1008414252,\"handle\":\"apple-main-blog\",\"title\":\"Apple main blog\",\"updated_at\":\"2022-10-03T13:06:38-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T13:06:38-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/1008414252\"}]}"
+            "body": "{\"blogs\":[{\"id\":382285388,\"handle\":\"banana-blog\",\"title\":\"A Gnu Blog\",\"updated_at\":\"2006-02-02T19:00:00-05:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:14-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/382285388\"},{\"id\":1008414250,\"handle\":\"apple-main-blog\",\"title\":\"Apple main blog\",\"updated_at\":\"2022-10-11T13:03:48-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:48-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/1008414250\"}]}"
           },
           "name": "Get all blogs for a shop after a specified ID",
           "codeSamples": [
@@ -243,37 +243,37 @@
           "content": {
             "application/json": {
               "examples": {
-                "Create a new empty blog": {
+                "Create a new empty blog with a metafield": {
                   "value": {
                     "blog": {
                       "id": 1008414248,
                       "handle": "apple-main-blog",
                       "title": "Apple main blog",
-                      "updated_at": "2022-10-03T11:06:19-06:00",
+                      "updated_at": "2022-10-11T11:03:41-06:00",
                       "commentable": "no",
                       "feedburner": null,
                       "feedburner_location": null,
-                      "created_at": "2022-10-03T11:06:19-06:00",
+                      "created_at": "2022-10-11T11:03:41-06:00",
                       "template_suffix": null,
                       "tags": "",
                       "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/1008414248"
                     }
                   }
                 },
-                "Create a new empty blog with a metafield": {
+                "Create a new empty blog": {
                   "value": {
                     "blog": {
-                      "id": 1008414250,
+                      "id": 1008414253,
                       "handle": "apple-main-blog",
                       "title": "Apple main blog",
-                      "updated_at": "2022-10-03T11:06:31-06:00",
+                      "updated_at": "2022-10-11T11:04:01-06:00",
                       "commentable": "no",
                       "feedburner": null,
                       "feedburner_location": null,
-                      "created_at": "2022-10-03T11:06:31-06:00",
+                      "created_at": "2022-10-11T11:04:01-06:00",
                       "template_suffix": null,
                       "tags": "",
-                      "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/1008414250"
+                      "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/1008414253"
                     }
                   }
                 }
@@ -309,47 +309,12 @@
           "request": {
             "action": "POST /admin/api/2021-07/blogs.json",
             "headers": {},
-            "body": "{\"blog\":{\"title\":\"Apple main blog\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"blog\":{\"id\":1008414248,\"handle\":\"apple-main-blog\",\"title\":\"Apple main blog\",\"updated_at\":\"2022-10-03T13:06:19-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T13:06:19-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/1008414248\"}}"
-          },
-          "name": "Create a new empty blog",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"blog\":{\"title\":\"Apple main blog\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/blogs.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nblog = ShopifyAPI::Blog.new(session: test_session)\nblog.title = \"Apple main blog\"\nblog.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Blog} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst blog = new Blog({session: test_session});\nblog.title = \"Apple main blog\";\nawait blog.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Blog;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$blog = new Blog($this->test_session);\n$blog->title = \"Apple main blog\";\n$blog->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/blogs.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/2021-07/blogs.json",
-            "headers": {},
             "body": "{\"blog\":{\"title\":\"Apple main blog\",\"metafields\":[{\"key\":\"sponsor\",\"value\":\"Shopify\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"blog\":{\"id\":1008414250,\"handle\":\"apple-main-blog\",\"title\":\"Apple main blog\",\"updated_at\":\"2022-10-03T13:06:31-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T13:06:31-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/1008414250\"}}"
+            "body": "{\"blog\":{\"id\":1008414248,\"handle\":\"apple-main-blog\",\"title\":\"Apple main blog\",\"updated_at\":\"2022-10-11T13:03:41-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:41-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/1008414248\"}}"
           },
           "name": "Create a new empty blog with a metafield",
           "codeSamples": [
@@ -403,6 +368,41 @@
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Blog;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$blog = new Blog($this->test_session);\n$blog->body = \"foobar\";\n$blog->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/blogs.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-07/blogs.json",
+            "headers": {},
+            "body": "{\"blog\":{\"title\":\"Apple main blog\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"blog\":{\"id\":1008414253,\"handle\":\"apple-main-blog\",\"title\":\"Apple main blog\",\"updated_at\":\"2022-10-11T13:04:01-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:04:01-04:00\",\"template_suffix\":null,\"tags\":\"\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/1008414253\"}}"
+          },
+          "name": "Create a new empty blog",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"blog\":{\"title\":\"Apple main blog\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/blogs.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nblog = ShopifyAPI::Blog.new(session: test_session)\nblog.title = \"Apple main blog\"\nblog.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Blog} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst blog = new Blog({session: test_session});\nblog.title = \"Apple main blog\";\nawait blog.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Blog;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$blog = new Blog($this->test_session);\n$blog->title = \"Apple main blog\";\n$blog->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -548,7 +548,7 @@
                       "commentable": "no",
                       "feedburner": null,
                       "feedburner_location": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
+                      "created_at": "2022-10-11T11:03:14-06:00",
                       "template_suffix": null,
                       "tags": "Announcing, Mystery",
                       "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/241253187"
@@ -609,7 +609,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"blog\":{\"id\":241253187,\"handle\":\"apple-blog\",\"title\":\"Mah Blog\",\"updated_at\":\"2006-02-01T19:00:00-05:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}}"
+            "body": "{\"blog\":{\"id\":241253187,\"handle\":\"apple-blog\",\"title\":\"Mah Blog\",\"updated_at\":\"2006-02-01T19:00:00-05:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:14-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}}"
           },
           "name": "Get a single blog",
           "codeSamples": [
@@ -670,17 +670,34 @@
           "content": {
             "application/json": {
               "examples": {
+                "Add a metafield to an existing blog": {
+                  "value": {
+                    "blog": {
+                      "title": "Mah Blog",
+                      "handle": "apple-blog",
+                      "id": 241253187,
+                      "updated_at": "2022-10-11T11:03:39-06:00",
+                      "commentable": "no",
+                      "feedburner": null,
+                      "feedburner_location": null,
+                      "created_at": "2022-10-11T11:03:14-06:00",
+                      "template_suffix": null,
+                      "tags": "Announcing, Mystery",
+                      "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/241253187"
+                    }
+                  }
+                },
                 "Update an existing blog title": {
                   "value": {
                     "blog": {
                       "title": "IPod Updates",
                       "handle": "apple-blog",
                       "id": 241253187,
-                      "updated_at": "2022-10-03T11:06:22-06:00",
+                      "updated_at": "2022-10-11T11:03:45-06:00",
                       "commentable": "no",
                       "feedburner": null,
                       "feedburner_location": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
+                      "created_at": "2022-10-11T11:03:14-06:00",
                       "template_suffix": null,
                       "tags": "Announcing, Mystery",
                       "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/241253187"
@@ -694,27 +711,10 @@
                       "handle": "ipod-updates",
                       "commentable": "moderate",
                       "id": 241253187,
-                      "updated_at": "2022-10-03T11:06:29-06:00",
+                      "updated_at": "2022-10-11T11:03:46-06:00",
                       "feedburner": null,
                       "feedburner_location": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "template_suffix": null,
-                      "tags": "Announcing, Mystery",
-                      "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/241253187"
-                    }
-                  }
-                },
-                "Add a metafield to an existing blog": {
-                  "value": {
-                    "blog": {
-                      "title": "Mah Blog",
-                      "handle": "apple-blog",
-                      "id": 241253187,
-                      "updated_at": "2022-10-03T11:06:34-06:00",
-                      "commentable": "no",
-                      "feedburner": null,
-                      "feedburner_location": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
+                      "created_at": "2022-10-11T11:03:14-06:00",
                       "template_suffix": null,
                       "tags": "Announcing, Mystery",
                       "admin_graphql_api_id": "gid://shopify/OnlineStoreBlog/241253187"
@@ -735,12 +735,47 @@
           "request": {
             "action": "PUT /admin/api/2021-07/blogs/241253187.json",
             "headers": {},
+            "body": "{\"blog\":{\"id\":241253187,\"metafields\":[{\"key\":\"sponsor\",\"value\":\"Shopify\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"blog\":{\"title\":\"Mah Blog\",\"handle\":\"apple-blog\",\"id\":241253187,\"updated_at\":\"2022-10-11T13:03:39-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:14-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}}"
+          },
+          "name": "Add a metafield to an existing blog",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"blog\":{\"id\":241253187,\"metafields\":[{\"key\":\"sponsor\",\"value\":\"Shopify\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/blogs/241253187.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nblog = ShopifyAPI::Blog.new(session: test_session)\nblog.id = 241253187\nblog.metafields = [\n  {\n    \"key\" => \"sponsor\",\n    \"value\" => \"Shopify\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\nblog.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Blog} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst blog = new Blog({session: test_session});\nblog.id = 241253187;\nblog.metafields = [\n  {\n    \"key\": \"sponsor\",\n    \"value\": \"Shopify\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait blog.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Blog;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$blog = new Blog($this->test_session);\n$blog->id = 241253187;\n$blog->metafields = [\n    [\n        \"key\" => \"sponsor\",\n        \"value\" => \"Shopify\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$blog->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/blogs/241253187.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/2021-07/blogs/241253187.json",
+            "headers": {},
             "body": "{\"blog\":{\"id\":241253187,\"title\":\"IPod Updates\"}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"blog\":{\"title\":\"IPod Updates\",\"handle\":\"apple-blog\",\"id\":241253187,\"updated_at\":\"2022-10-03T13:06:22-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}}"
+            "body": "{\"blog\":{\"title\":\"IPod Updates\",\"handle\":\"apple-blog\",\"id\":241253187,\"updated_at\":\"2022-10-11T13:03:45-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:14-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}}"
           },
           "name": "Update an existing blog title",
           "codeSamples": [
@@ -775,7 +810,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"blog\":{\"title\":\"IPod Updates\",\"handle\":\"ipod-updates\",\"commentable\":\"moderate\",\"id\":241253187,\"updated_at\":\"2022-10-03T13:06:29-04:00\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}}"
+            "body": "{\"blog\":{\"title\":\"IPod Updates\",\"handle\":\"ipod-updates\",\"commentable\":\"moderate\",\"id\":241253187,\"updated_at\":\"2022-10-11T13:03:46-04:00\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-11T13:03:14-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}}"
           },
           "name": "Update an existing blog title and handle and also activate comments",
           "codeSamples": [
@@ -794,41 +829,6 @@
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Blog;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$blog = new Blog($this->test_session);\n$blog->id = 241253187;\n$blog->title = \"IPod Updates\";\n$blog->handle = \"ipod-updates\";\n$blog->commentable = \"moderate\";\n$blog->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/blogs/241253187.json",
-          "request_method": "PUT",
-          "request": {
-            "action": "PUT /admin/api/2021-07/blogs/241253187.json",
-            "headers": {},
-            "body": "{\"blog\":{\"id\":241253187,\"metafields\":[{\"key\":\"sponsor\",\"value\":\"Shopify\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"blog\":{\"title\":\"Mah Blog\",\"handle\":\"apple-blog\",\"id\":241253187,\"updated_at\":\"2022-10-03T13:06:34-04:00\",\"commentable\":\"no\",\"feedburner\":null,\"feedburner_location\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"template_suffix\":null,\"tags\":\"Announcing, Mystery\",\"admin_graphql_api_id\":\"gid://shopify/OnlineStoreBlog/241253187\"}}"
-          },
-          "name": "Add a metafield to an existing blog",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"blog\":{\"id\":241253187,\"metafields\":[{\"key\":\"sponsor\",\"value\":\"Shopify\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/blogs/241253187.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nblog = ShopifyAPI::Blog.new(session: test_session)\nblog.id = 241253187\nblog.metafields = [\n  {\n    \"key\" => \"sponsor\",\n    \"value\" => \"Shopify\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\nblog.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Blog} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst blog = new Blog({session: test_session});\nblog.id = 241253187;\nblog.metafields = [\n  {\n    \"key\": \"sponsor\",\n    \"value\": \"Shopify\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait blog.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Blog;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$blog = new Blog($this->test_session);\n$blog->id = 241253187;\n$blog->metafields = [\n    [\n        \"key\" => \"sponsor\",\n        \"value\" => \"Shopify\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$blog->save(\n    true, // Update Object\n);"
             }
           ]
         }

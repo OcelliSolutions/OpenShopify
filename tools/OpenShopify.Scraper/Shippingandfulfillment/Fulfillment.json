@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Fulfillment",
-    "description": "        <p>You can use the <code>Fulfillment</code> resource to view fulfillments for an order or a <a href=\"/api/admin-rest/latest/resources/fulfillmentorder\">fulfillment order</a>.\n        A fulfillment order represents a group of one or more items in an order that will be fulfilled from the same location. A fulfillment represents work that is completed as part of a fulfillment order and can include one or more items.\n        You can use the <code>Fulfillment</code> resource to manage fulfillments for fulfillment orders.</p>\n        {{ '/api/reference/fulfillment_order_fulfillment.png' | image }}\n        <p>This resource is typically used in apps that perform shipping-related actions, such as making tracking and delivery updates, or creating additional shipments as required for an order or fulfillment order.</p>\n        <p>Each fulfillment supports a single tracking number. If you need to use multiple tracking numbers, then you should create separate fulfillments.</p>\n",
+    "description": "        <p>You can use the <code>Fulfillment</code> resource to view fulfillments for an order or a <a href=\"/api/admin-rest/latest/resources/fulfillmentorder\">fulfillment order</a>.\n        A fulfillment order represents a group of one or more items in an order that will be fulfilled from the same location. A fulfillment represents work that is completed as part of a fulfillment order and can include one or more items.\n        You can use the <code>Fulfillment</code> resource to manage fulfillments for fulfillment orders.</p>\n        {{ '/api/reference/fulfillment_relationships.png' | image }}\n        <p>This resource is typically used in apps that perform shipping-related actions, such as making tracking and delivery updates, or creating additional shipments as required for an order or fulfillment order.</p>\n        <p>Each fulfillment supports a single tracking number. If you need to use multiple tracking numbers, then you should create separate fulfillments.</p>\n        <p>\n          <a href=\"https://shopify.dev/apps/fulfillment\">Learn about using fulfillment order-based workflows</a>.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/457",
     "x-description-list": null,
     "version": "2022-10",
@@ -99,12 +99,12 @@
                   "value": {
                     "fulfillments": [
                       {
-                        "id": 1069019866,
+                        "id": 1069019884,
                         "order_id": 450789469,
                         "status": "success",
-                        "created_at": "2022-10-03T11:21:01-06:00",
+                        "created_at": "2022-10-21T06:57:18-06:00",
                         "service": "shipwire-app",
-                        "updated_at": "2022-10-03T11:21:01-06:00",
+                        "updated_at": "2022-10-21T06:57:18-06:00",
                         "tracking_company": "TNT",
                         "shipment_status": null,
                         "location_id": 24826418,
@@ -198,7 +198,7 @@
                         ],
                         "receipt": {},
                         "name": "#1001.1",
-                        "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019866"
+                        "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019884"
                       }
                     ]
                   }
@@ -210,9 +210,9 @@
                         "id": 255858046,
                         "order_id": 450789469,
                         "status": "failure",
-                        "created_at": "2022-10-03T11:07:13-06:00",
+                        "created_at": "2022-10-21T06:56:20-06:00",
                         "service": "manual",
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2022-10-21T06:56:20-06:00",
                         "tracking_company": "USPS",
                         "shipment_status": null,
                         "location_id": 655441491,
@@ -342,7 +342,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillments\":[{\"id\":1069019866,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-03T13:21:01-04:00\",\"service\":\"shipwire-app\",\"updated_at\":\"2022-10-03T13:21:01-04:00\",\"tracking_company\":\"TNT\",\"shipment_status\":null,\"location_id\":24826418,\"line_items\":[{\"id\":518995019,\"variant_id\":49148385,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008RED\",\"variant_title\":\"red\",\"vendor\":null,\"fulfillment_service\":\"shipwire-app\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - red\",\"variant_inventory_management\":\"shipwire-app\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"admin_graphql_api_id\":\"gid://shopify/LineItem/518995019\",\"duties\":[],\"tax_lines\":[{\"price\":\"3.98\",\"rate\":0.06,\"title\":\"State Tax\",\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}],\"tracking_number\":\"123456789\",\"tracking_numbers\":[\"123456789\"],\"tracking_url\":\"https://www.tnt.com/express/en_us/site/tracking.html?searchType=con&cons=123456789\",\"tracking_urls\":[\"https://www.tnt.com/express/en_us/site/tracking.html?searchType=con&cons=123456789\"],\"receipt\":{},\"name\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019866\"}]}"
+            "body": "{\"fulfillments\":[{\"id\":1069019884,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-21T08:57:18-04:00\",\"service\":\"shipwire-app\",\"updated_at\":\"2022-10-21T08:57:18-04:00\",\"tracking_company\":\"TNT\",\"shipment_status\":null,\"location_id\":24826418,\"line_items\":[{\"id\":518995019,\"variant_id\":49148385,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008RED\",\"variant_title\":\"red\",\"vendor\":null,\"fulfillment_service\":\"shipwire-app\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - red\",\"variant_inventory_management\":\"shipwire-app\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"admin_graphql_api_id\":\"gid://shopify/LineItem/518995019\",\"duties\":[],\"tax_lines\":[{\"price\":\"3.98\",\"rate\":0.06,\"title\":\"State Tax\",\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}],\"tracking_number\":\"123456789\",\"tracking_numbers\":[\"123456789\"],\"tracking_url\":\"https://www.tnt.com/express/en_us/site/tracking.html?searchType=con&cons=123456789\",\"tracking_urls\":[\"https://www.tnt.com/express/en_us/site/tracking.html?searchType=con&cons=123456789\"],\"receipt\":{},\"name\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019884\"}]}"
           },
           "name": "Retrieve all fulfillments after the specified ID",
           "codeSamples": [
@@ -377,7 +377,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillments\":[{\"id\":255858046,\"order_id\":450789469,\"status\":\"failure\",\"created_at\":\"2022-10-03T13:07:13-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"tracking_company\":\"USPS\",\"shipment_status\":null,\"location_id\":655441491,\"line_items\":[{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":0,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"duties\":[],\"tax_lines\":[{\"price\":\"3.98\",\"rate\":0.06,\"title\":\"State Tax\",\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}],\"tracking_number\":\"1Z2345\",\"tracking_numbers\":[\"1Z2345\"],\"tracking_url\":\"https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=1Z2345\",\"tracking_urls\":[\"https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=1Z2345\"],\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"name\":\"#1001.0\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/255858046\"}]}"
+            "body": "{\"fulfillments\":[{\"id\":255858046,\"order_id\":450789469,\"status\":\"failure\",\"created_at\":\"2022-10-21T08:56:20-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-21T08:56:20-04:00\",\"tracking_company\":\"USPS\",\"shipment_status\":null,\"location_id\":655441491,\"line_items\":[{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":0,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"duties\":[],\"tax_lines\":[{\"price\":\"3.98\",\"rate\":0.06,\"title\":\"State Tax\",\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}],\"tracking_number\":\"1Z2345\",\"tracking_numbers\":[\"1Z2345\"],\"tracking_url\":\"https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=1Z2345\",\"tracking_urls\":[\"https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=1Z2345\"],\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"name\":\"#1001.0\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/255858046\"}]}"
           },
           "name": "Retrieve a list of all fulfillments for an order",
           "codeSamples": [
@@ -455,18 +455,18 @@
                   "value": {
                     "fulfillments": [
                       {
-                        "id": 1069019874,
+                        "id": 1069019901,
                         "order_id": 450789469,
                         "status": "success",
-                        "created_at": "2022-10-03T11:07:13-06:00",
+                        "created_at": "2022-10-21T06:56:20-06:00",
                         "service": "manual",
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2022-10-21T06:56:20-06:00",
                         "tracking_company": "UPS",
                         "shipment_status": null,
                         "location_id": 24826418,
                         "line_items": [
                           {
-                            "id": 1071823194,
+                            "id": 1071823190,
                             "variant_id": 43729076,
                             "title": "Draft",
                             "quantity": 1,
@@ -509,7 +509,7 @@
                             },
                             "discount_allocations": [],
                             "duties": [],
-                            "admin_graphql_api_id": "gid://shopify/LineItem/1071823194",
+                            "admin_graphql_api_id": "gid://shopify/LineItem/1071823190",
                             "tax_lines": []
                           }
                         ],
@@ -523,7 +523,7 @@
                         ],
                         "receipt": {},
                         "name": "#1001.1",
-                        "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019874"
+                        "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019901"
                       }
                     ]
                   }
@@ -537,35 +537,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000816/fulfillments.json",
+          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000823/fulfillments.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/2020-01/fulfillment_orders/1046000816/fulfillments.json",
+            "action": "GET /admin/api/2020-01/fulfillment_orders/1046000823/fulfillments.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillments\":[{\"id\":1069019874,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-03T13:07:13-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"tracking_company\":\"UPS\",\"shipment_status\":null,\"location_id\":24826418,\"line_items\":[{\"id\":1071823194,\"variant_id\":43729076,\"title\":\"Draft\",\"quantity\":1,\"sku\":\"draft-151\",\"variant_title\":\"151cm\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":108828309,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Draft - 151cm\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823194\",\"tax_lines\":[]}],\"tracking_number\":\"#☠1☢\\n---\\n4321\\n\",\"tracking_numbers\":[\"#☠1☢\\n---\\n4321\\n\"],\"tracking_url\":\"https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=#☠1☢---4321\",\"tracking_urls\":[\"https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=#☠1☢---4321\"],\"receipt\":{},\"name\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019874\"}]}"
+            "body": "{\"fulfillments\":[{\"id\":1069019901,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-21T08:56:20-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-21T08:56:20-04:00\",\"tracking_company\":\"UPS\",\"shipment_status\":null,\"location_id\":24826418,\"line_items\":[{\"id\":1071823190,\"variant_id\":43729076,\"title\":\"Draft\",\"quantity\":1,\"sku\":\"draft-151\",\"variant_title\":\"151cm\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":108828309,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Draft - 151cm\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823190\",\"tax_lines\":[]}],\"tracking_number\":\"#☠1☢\\n---\\n4321\\n\",\"tracking_numbers\":[\"#☠1☢\\n---\\n4321\\n\"],\"tracking_url\":\"https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=#☠1☢---4321\",\"tracking_urls\":[\"https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=#☠1☢---4321\"],\"receipt\":{},\"name\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019901\"}]}"
           },
           "name": "Retrieve a list of all fulfillments for a fulfillment order",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000816/fulfillments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000823/fulfillments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Fulfillment.all(\n  session: test_session,\n  fulfillment_order_id: 1046000816,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Fulfillment.all(\n  session: test_session,\n  fulfillment_order_id: 1046000823,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Fulfillment.all({\n  session: test_session,\n  fulfillment_order_id: 1046000816,\n});"
+              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Fulfillment.all({\n  session: test_session,\n  fulfillment_order_id: 1046000823,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillment::all(\n    $this->test_session, // Session\n    [\"fulfillment_order_id\" => \"1046000816\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillment::all(\n    $this->test_session, // Session\n    [\"fulfillment_order_id\" => \"1046000823\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -741,9 +741,9 @@
                       "id": 255858046,
                       "order_id": 450789469,
                       "status": "failure",
-                      "created_at": "2022-10-03T11:07:13-06:00",
+                      "created_at": "2022-10-21T06:56:20-06:00",
                       "service": "manual",
-                      "updated_at": "2022-10-03T11:07:13-06:00",
+                      "updated_at": "2022-10-21T06:56:20-06:00",
                       "tracking_company": "USPS",
                       "shipment_status": null,
                       "location_id": 655441491,
@@ -874,7 +874,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment\":{\"id\":255858046,\"order_id\":450789469,\"status\":\"failure\",\"created_at\":\"2022-10-03T13:07:13-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"tracking_company\":\"USPS\",\"shipment_status\":null,\"location_id\":655441491,\"origin_address\":null,\"line_items\":[{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}],\"tracking_number\":\"1Z2345\",\"tracking_numbers\":[\"1Z2345\"],\"tracking_url\":\"https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=1Z2345\",\"tracking_urls\":[\"https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=1Z2345\"],\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"name\":\"#1001.0\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/255858046\"}}"
+            "body": "{\"fulfillment\":{\"id\":255858046,\"order_id\":450789469,\"status\":\"failure\",\"created_at\":\"2022-10-21T08:56:20-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-21T08:56:20-04:00\",\"tracking_company\":\"USPS\",\"shipment_status\":null,\"location_id\":655441491,\"origin_address\":null,\"line_items\":[{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}],\"tracking_number\":\"1Z2345\",\"tracking_numbers\":[\"1Z2345\"],\"tracking_url\":\"https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=1Z2345\",\"tracking_urls\":[\"https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=1Z2345\"],\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"name\":\"#1001.0\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/255858046\"}}"
           },
           "name": "Retrieve a specific fulfillment",
           "codeSamples": [
@@ -924,6 +924,48 @@
             "type": "string"
           },
           "required": true
+        },
+        {
+          "name": "line_items_by_fulfillment_order",
+          "description": "<p>\n  The fulfillment order line items that have to be fulfilled.\n</p>\n<ul>\n  <li><strong>fulfillment_order_id</strong>: (integer) (required) The ID of the fulfillment order.</li>\n  <li>\n    <strong>fulfillment_order_line_items</strong>: (array) The fulfillment order line items and the quantity of each which should be fulfilled.\n    If this property is <code>undefined</code>, then all of the fulfillment order line items of the associated fulfillment order are fulfilled.\n    <ul>\n      <li><strong>id</strong>: (integer) (required) The ID of the fulfillment order line item.</li>\n      <li><strong>quantity</strong>: (integer) (required) (minimum: 1) The quantity of the fulfillment order line item.</li>\n    </ul>\n  </li>\n</ul>\n",
+          "in": "query",
+          "schema": {
+            "type": "array"
+          },
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "A message that's associated with the fulfillment request. This message is only available if the associated\nfulfillment order is assigned to a third-party fulfillment service that has opted in to managing fulfillment\norders.\n",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "notify_customer",
+          "description": "Whether a notification should be sent to the customer when the fulfillment is created.",
+          "in": "query",
+          "schema": {
+            "type": "boolean",
+            "default": "false"
+          }
+        },
+        {
+          "name": "origin_address",
+          "description": "<p>The address of the fulfillment location.</p>\n<ul>\n  <li><strong>address1</strong>: (string) The street address of the fulfillment location.</li>\n  <li><strong>address2</strong>: (string) The second line of the address. Typically the number of the apartment, suite, or unit.</li>\n  <li><strong>city</strong>: (string) The city of the fulfillment location.</li>\n  <li>\n    <strong>country_code</strong>: (string) (required) The two-letter country code\n    (<a href=\"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2\">ISO 3166-1 alpha-2</a> format) of the fulfillment location.\n  </li>\n  <li><strong>province_code</strong>: (string) The province of the fulfillment location.</li>\n  <li><strong>zip</strong>: (string) The zip code of the fulfillment location.</li>\n</ul>\n",
+          "in": "query",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "tracking_info",
+          "description": "<p>The tracking information for the fulfillment.</p>\n<ul>\n  <li><strong>company</strong>: (string) The name of the tracking company.</li>\n  <li><strong>number</strong>: (string) The tracking number for the fulfillment.</li>\n  <li><strong>url</strong>: (string) The URL to track the fulfillment.</li>\n</ul>\n",
+          "in": "query",
+          "schema": {
+            "type": "object"
+          }
         }
       ],
       "responses": {
@@ -935,12 +977,87 @@
                 "Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank": {
                   "value": {
                     "fulfillment": {
-                      "id": 1069019870,
+                      "id": 1069019888,
                       "order_id": 450789469,
                       "status": "success",
-                      "created_at": "2022-10-03T11:21:15-06:00",
+                      "created_at": "2022-10-21T06:57:29-06:00",
                       "service": "manual",
-                      "updated_at": "2022-10-03T11:21:15-06:00",
+                      "updated_at": "2022-10-21T06:57:29-06:00",
+                      "tracking_company": "my-shipping-company",
+                      "shipment_status": null,
+                      "location_id": 24826418,
+                      "line_items": [
+                        {
+                          "id": 1071823185,
+                          "variant_id": 389013007,
+                          "title": "Crafty Shoes - Red",
+                          "quantity": 1,
+                          "sku": "crappy_shoes_red",
+                          "variant_title": "Small",
+                          "vendor": null,
+                          "fulfillment_service": "manual",
+                          "product_id": 910489600,
+                          "requires_shipping": true,
+                          "taxable": true,
+                          "gift_card": false,
+                          "name": "Crafty Shoes - Red - Small",
+                          "variant_inventory_management": null,
+                          "properties": [],
+                          "product_exists": true,
+                          "fulfillable_quantity": 0,
+                          "grams": 0,
+                          "price": "10.00",
+                          "total_discount": "0.00",
+                          "fulfillment_status": "fulfilled",
+                          "price_set": {
+                            "shop_money": {
+                              "amount": "10.00",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "10.00",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "total_discount_set": {
+                            "shop_money": {
+                              "amount": "0.00",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "0.00",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "discount_allocations": [],
+                          "duties": [],
+                          "admin_graphql_api_id": "gid://shopify/LineItem/1071823185",
+                          "tax_lines": []
+                        }
+                      ],
+                      "tracking_number": "1562678",
+                      "tracking_numbers": [
+                        "1562678"
+                      ],
+                      "tracking_url": "https://www.my-shipping-company.com",
+                      "tracking_urls": [
+                        "https://www.my-shipping-company.com"
+                      ],
+                      "receipt": {},
+                      "name": "#1001.2",
+                      "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019888"
+                    }
+                  }
+                },
+                "Create a fulfillment for the fulfillment order line items specified": {
+                  "value": {
+                    "fulfillment": {
+                      "id": 1069019894,
+                      "order_id": 450789469,
+                      "status": "success",
+                      "created_at": "2022-10-21T06:57:51-06:00",
+                      "service": "manual",
+                      "updated_at": "2022-10-21T06:57:51-06:00",
                       "tracking_company": "my-shipping-company",
                       "shipment_status": null,
                       "location_id": 24826418,
@@ -1003,82 +1120,7 @@
                       ],
                       "receipt": {},
                       "name": "#1001.2",
-                      "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019870"
-                    }
-                  }
-                },
-                "Create a fulfillment for the fulfillment order line items specified": {
-                  "value": {
-                    "fulfillment": {
-                      "id": 1069019882,
-                      "order_id": 450789469,
-                      "status": "success",
-                      "created_at": "2022-10-03T11:22:01-06:00",
-                      "service": "manual",
-                      "updated_at": "2022-10-03T11:22:01-06:00",
-                      "tracking_company": "my-shipping-company",
-                      "shipment_status": null,
-                      "location_id": 24826418,
-                      "line_items": [
-                        {
-                          "id": 1071823197,
-                          "variant_id": 389013007,
-                          "title": "Crafty Shoes - Red",
-                          "quantity": 1,
-                          "sku": "crappy_shoes_red",
-                          "variant_title": "Small",
-                          "vendor": null,
-                          "fulfillment_service": "manual",
-                          "product_id": 910489600,
-                          "requires_shipping": true,
-                          "taxable": true,
-                          "gift_card": false,
-                          "name": "Crafty Shoes - Red - Small",
-                          "variant_inventory_management": null,
-                          "properties": [],
-                          "product_exists": true,
-                          "fulfillable_quantity": 0,
-                          "grams": 0,
-                          "price": "10.00",
-                          "total_discount": "0.00",
-                          "fulfillment_status": "fulfilled",
-                          "price_set": {
-                            "shop_money": {
-                              "amount": "10.00",
-                              "currency_code": "USD"
-                            },
-                            "presentment_money": {
-                              "amount": "10.00",
-                              "currency_code": "USD"
-                            }
-                          },
-                          "total_discount_set": {
-                            "shop_money": {
-                              "amount": "0.00",
-                              "currency_code": "USD"
-                            },
-                            "presentment_money": {
-                              "amount": "0.00",
-                              "currency_code": "USD"
-                            }
-                          },
-                          "discount_allocations": [],
-                          "duties": [],
-                          "admin_graphql_api_id": "gid://shopify/LineItem/1071823197",
-                          "tax_lines": []
-                        }
-                      ],
-                      "tracking_number": "1562678",
-                      "tracking_numbers": [
-                        "1562678"
-                      ],
-                      "tracking_url": "https://www.my-shipping-company.com",
-                      "tracking_urls": [
-                        "https://www.my-shipping-company.com"
-                      ],
-                      "receipt": {},
-                      "name": "#1001.2",
-                      "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019882"
+                      "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019894"
                     }
                   }
                 }
@@ -1096,30 +1138,30 @@
           "request": {
             "action": "POST /admin/api/2020-01/fulfillments.json",
             "headers": {},
-            "body": "{\"fulfillment\":{\"message\":\"The package was shipped this morning.\",\"notify_customer\":false,\"tracking_info\":{\"number\":1562678,\"url\":\"https://www.my-shipping-company.com\",\"company\":\"my-shipping-company\"},\"line_items_by_fulfillment_order\":[{\"fulfillment_order_id\":1046000811}]}}"
+            "body": "{\"fulfillment\":{\"message\":\"The package was shipped this morning.\",\"notify_customer\":false,\"tracking_info\":{\"number\":1562678,\"url\":\"https://www.my-shipping-company.com\",\"company\":\"my-shipping-company\"},\"line_items_by_fulfillment_order\":[{\"fulfillment_order_id\":1046000807}]}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"fulfillment\":{\"id\":1069019870,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-03T13:21:15-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-03T13:21:15-04:00\",\"tracking_company\":\"my-shipping-company\",\"shipment_status\":null,\"location_id\":24826418,\"line_items\":[{\"id\":1071823189,\"variant_id\":389013007,\"title\":\"Crafty Shoes - Red\",\"quantity\":1,\"sku\":\"crappy_shoes_red\",\"variant_title\":\"Small\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":910489600,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Crafty Shoes - Red - Small\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":0,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823189\",\"tax_lines\":[]}],\"tracking_number\":\"1562678\",\"tracking_numbers\":[\"1562678\"],\"tracking_url\":\"https://www.my-shipping-company.com\",\"tracking_urls\":[\"https://www.my-shipping-company.com\"],\"receipt\":{},\"name\":\"#1001.2\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019870\"}}"
+            "body": "{\"fulfillment\":{\"id\":1069019888,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-21T08:57:29-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-21T08:57:29-04:00\",\"tracking_company\":\"my-shipping-company\",\"shipment_status\":null,\"location_id\":24826418,\"line_items\":[{\"id\":1071823185,\"variant_id\":389013007,\"title\":\"Crafty Shoes - Red\",\"quantity\":1,\"sku\":\"crappy_shoes_red\",\"variant_title\":\"Small\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":910489600,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Crafty Shoes - Red - Small\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":0,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823185\",\"tax_lines\":[]}],\"tracking_number\":\"1562678\",\"tracking_numbers\":[\"1562678\"],\"tracking_url\":\"https://www.my-shipping-company.com\",\"tracking_urls\":[\"https://www.my-shipping-company.com\"],\"receipt\":{},\"name\":\"#1001.2\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019888\"}}"
           },
           "name": "Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"fulfillment\":{\"message\":\"The package was shipped this morning.\",\"notify_customer\":false,\"tracking_info\":{\"number\":1562678,\"url\":\"https://www.my-shipping-company.com\",\"company\":\"my-shipping-company\"},\"line_items_by_fulfillment_order\":[{\"fulfillment_order_id\":1046000811}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"fulfillment\":{\"message\":\"The package was shipped this morning.\",\"notify_customer\":false,\"tracking_info\":{\"number\":1562678,\"url\":\"https://www.my-shipping-company.com\",\"company\":\"my-shipping-company\"},\"line_items_by_fulfillment_order\":[{\"fulfillment_order_id\":1046000807}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment = ShopifyAPI::Fulfillment.new(session: test_session)\nfulfillment.message = \"The package was shipped this morning.\"\nfulfillment.notify_customer = false\nfulfillment.tracking_info = {\n  \"number\" => 1562678,\n  \"url\" => \"https://www.my-shipping-company.com\",\n  \"company\" => \"my-shipping-company\"\n}\nfulfillment.line_items_by_fulfillment_order = [\n  {\n    \"fulfillment_order_id\" => 1046000811\n  }\n]\nfulfillment.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment = ShopifyAPI::Fulfillment.new(session: test_session)\nfulfillment.message = \"The package was shipped this morning.\"\nfulfillment.notify_customer = false\nfulfillment.tracking_info = {\n  \"number\" => 1562678,\n  \"url\" => \"https://www.my-shipping-company.com\",\n  \"company\" => \"my-shipping-company\"\n}\nfulfillment.line_items_by_fulfillment_order = [\n  {\n    \"fulfillment_order_id\" => 1046000807\n  }\n]\nfulfillment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment = new Fulfillment({session: test_session});\nfulfillment.message = \"The package was shipped this morning.\";\nfulfillment.notify_customer = false;\nfulfillment.tracking_info = {\n  \"number\": 1562678,\n  \"url\": \"https://www.my-shipping-company.com\",\n  \"company\": \"my-shipping-company\"\n};\nfulfillment.line_items_by_fulfillment_order = [\n  {\n    \"fulfillment_order_id\": 1046000811\n  }\n];\nawait fulfillment.save({\n  update: true,\n});"
+              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment = new Fulfillment({session: test_session});\nfulfillment.message = \"The package was shipped this morning.\";\nfulfillment.notify_customer = false;\nfulfillment.tracking_info = {\n  \"number\": 1562678,\n  \"url\": \"https://www.my-shipping-company.com\",\n  \"company\": \"my-shipping-company\"\n};\nfulfillment.line_items_by_fulfillment_order = [\n  {\n    \"fulfillment_order_id\": 1046000807\n  }\n];\nawait fulfillment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment = new Fulfillment($this->test_session);\n$fulfillment->message = \"The package was shipped this morning.\";\n$fulfillment->notify_customer = false;\n$fulfillment->tracking_info = [\n    \"number\" => 1562678,\n    \"url\" => \"https://www.my-shipping-company.com\",\n    \"company\" => \"my-shipping-company\"\n];\n$fulfillment->line_items_by_fulfillment_order = [\n    [\n        \"fulfillment_order_id\" => 1046000811\n    ]\n];\n$fulfillment->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment = new Fulfillment($this->test_session);\n$fulfillment->message = \"The package was shipped this morning.\";\n$fulfillment->notify_customer = false;\n$fulfillment->tracking_info = [\n    \"number\" => 1562678,\n    \"url\" => \"https://www.my-shipping-company.com\",\n    \"company\" => \"my-shipping-company\"\n];\n$fulfillment->line_items_by_fulfillment_order = [\n    [\n        \"fulfillment_order_id\" => 1046000807\n    ]\n];\n$fulfillment->save(\n    true, // Update Object\n);"
             }
           ]
         },
@@ -1131,30 +1173,30 @@
           "request": {
             "action": "POST /admin/api/2020-01/fulfillments.json",
             "headers": {},
-            "body": "{\"fulfillment\":{\"message\":\"The package was shipped this morning.\",\"notify_customer\":false,\"tracking_info\":{\"number\":1562678,\"url\":\"https://www.my-shipping-company.com\",\"company\":\"my-shipping-company\"},\"line_items_by_fulfillment_order\":[{\"fulfillment_order_id\":1046000827,\"fulfillment_order_line_items\":[{\"id\":1058737562,\"quantity\":1}]}]}}"
+            "body": "{\"fulfillment\":{\"message\":\"The package was shipped this morning.\",\"notify_customer\":false,\"tracking_info\":{\"number\":1562678,\"url\":\"https://www.my-shipping-company.com\",\"company\":\"my-shipping-company\"},\"line_items_by_fulfillment_order\":[{\"fulfillment_order_id\":1046000813,\"fulfillment_order_line_items\":[{\"id\":1058737556,\"quantity\":1}]}]}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"fulfillment\":{\"id\":1069019882,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-03T13:22:01-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-03T13:22:01-04:00\",\"tracking_company\":\"my-shipping-company\",\"shipment_status\":null,\"location_id\":24826418,\"line_items\":[{\"id\":1071823197,\"variant_id\":389013007,\"title\":\"Crafty Shoes - Red\",\"quantity\":1,\"sku\":\"crappy_shoes_red\",\"variant_title\":\"Small\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":910489600,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Crafty Shoes - Red - Small\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":0,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823197\",\"tax_lines\":[]}],\"tracking_number\":\"1562678\",\"tracking_numbers\":[\"1562678\"],\"tracking_url\":\"https://www.my-shipping-company.com\",\"tracking_urls\":[\"https://www.my-shipping-company.com\"],\"receipt\":{},\"name\":\"#1001.2\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019882\"}}"
+            "body": "{\"fulfillment\":{\"id\":1069019894,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-21T08:57:51-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-21T08:57:51-04:00\",\"tracking_company\":\"my-shipping-company\",\"shipment_status\":null,\"location_id\":24826418,\"line_items\":[{\"id\":1071823189,\"variant_id\":389013007,\"title\":\"Crafty Shoes - Red\",\"quantity\":1,\"sku\":\"crappy_shoes_red\",\"variant_title\":\"Small\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":910489600,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Crafty Shoes - Red - Small\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":0,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823189\",\"tax_lines\":[]}],\"tracking_number\":\"1562678\",\"tracking_numbers\":[\"1562678\"],\"tracking_url\":\"https://www.my-shipping-company.com\",\"tracking_urls\":[\"https://www.my-shipping-company.com\"],\"receipt\":{},\"name\":\"#1001.2\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019894\"}}"
           },
           "name": "Create a fulfillment for the fulfillment order line items specified",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"fulfillment\":{\"message\":\"The package was shipped this morning.\",\"notify_customer\":false,\"tracking_info\":{\"number\":1562678,\"url\":\"https://www.my-shipping-company.com\",\"company\":\"my-shipping-company\"},\"line_items_by_fulfillment_order\":[{\"fulfillment_order_id\":1046000827,\"fulfillment_order_line_items\":[{\"id\":1058737562,\"quantity\":1}]}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"fulfillment\":{\"message\":\"The package was shipped this morning.\",\"notify_customer\":false,\"tracking_info\":{\"number\":1562678,\"url\":\"https://www.my-shipping-company.com\",\"company\":\"my-shipping-company\"},\"line_items_by_fulfillment_order\":[{\"fulfillment_order_id\":1046000813,\"fulfillment_order_line_items\":[{\"id\":1058737556,\"quantity\":1}]}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment = ShopifyAPI::Fulfillment.new(session: test_session)\nfulfillment.message = \"The package was shipped this morning.\"\nfulfillment.notify_customer = false\nfulfillment.tracking_info = {\n  \"number\" => 1562678,\n  \"url\" => \"https://www.my-shipping-company.com\",\n  \"company\" => \"my-shipping-company\"\n}\nfulfillment.line_items_by_fulfillment_order = [\n  {\n    \"fulfillment_order_id\" => 1046000827,\n    \"fulfillment_order_line_items\" => [\n      {\n        \"id\" => 1058737562,\n        \"quantity\" => 1\n      }\n    ]\n  }\n]\nfulfillment.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment = ShopifyAPI::Fulfillment.new(session: test_session)\nfulfillment.message = \"The package was shipped this morning.\"\nfulfillment.notify_customer = false\nfulfillment.tracking_info = {\n  \"number\" => 1562678,\n  \"url\" => \"https://www.my-shipping-company.com\",\n  \"company\" => \"my-shipping-company\"\n}\nfulfillment.line_items_by_fulfillment_order = [\n  {\n    \"fulfillment_order_id\" => 1046000813,\n    \"fulfillment_order_line_items\" => [\n      {\n        \"id\" => 1058737556,\n        \"quantity\" => 1\n      }\n    ]\n  }\n]\nfulfillment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment = new Fulfillment({session: test_session});\nfulfillment.message = \"The package was shipped this morning.\";\nfulfillment.notify_customer = false;\nfulfillment.tracking_info = {\n  \"number\": 1562678,\n  \"url\": \"https://www.my-shipping-company.com\",\n  \"company\": \"my-shipping-company\"\n};\nfulfillment.line_items_by_fulfillment_order = [\n  {\n    \"fulfillment_order_id\": 1046000827,\n    \"fulfillment_order_line_items\": [\n      {\n        \"id\": 1058737562,\n        \"quantity\": 1\n      }\n    ]\n  }\n];\nawait fulfillment.save({\n  update: true,\n});"
+              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment = new Fulfillment({session: test_session});\nfulfillment.message = \"The package was shipped this morning.\";\nfulfillment.notify_customer = false;\nfulfillment.tracking_info = {\n  \"number\": 1562678,\n  \"url\": \"https://www.my-shipping-company.com\",\n  \"company\": \"my-shipping-company\"\n};\nfulfillment.line_items_by_fulfillment_order = [\n  {\n    \"fulfillment_order_id\": 1046000813,\n    \"fulfillment_order_line_items\": [\n      {\n        \"id\": 1058737556,\n        \"quantity\": 1\n      }\n    ]\n  }\n];\nawait fulfillment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment = new Fulfillment($this->test_session);\n$fulfillment->message = \"The package was shipped this morning.\";\n$fulfillment->notify_customer = false;\n$fulfillment->tracking_info = [\n    \"number\" => 1562678,\n    \"url\" => \"https://www.my-shipping-company.com\",\n    \"company\" => \"my-shipping-company\"\n];\n$fulfillment->line_items_by_fulfillment_order = [\n    [\n        \"fulfillment_order_id\" => 1046000827,\n        \"fulfillment_order_line_items\" => [\n            [\n                \"id\" => 1058737562,\n                \"quantity\" => 1\n            ]\n        ]\n    ]\n];\n$fulfillment->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment = new Fulfillment($this->test_session);\n$fulfillment->message = \"The package was shipped this morning.\";\n$fulfillment->notify_customer = false;\n$fulfillment->tracking_info = [\n    \"number\" => 1562678,\n    \"url\" => \"https://www.my-shipping-company.com\",\n    \"company\" => \"my-shipping-company\"\n];\n$fulfillment->line_items_by_fulfillment_order = [\n    [\n        \"fulfillment_order_id\" => 1046000813,\n        \"fulfillment_order_line_items\" => [\n            [\n                \"id\" => 1058737556,\n                \"quantity\" => 1\n            ]\n        ]\n    ]\n];\n$fulfillment->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -1183,6 +1225,23 @@
             "type": "string"
           },
           "required": true
+        },
+        {
+          "name": "tracking_info",
+          "description": "<p>The tracking information for the fulfillment.</p>\n<ul>\n  <li><strong>company</strong>: (string) The name of the tracking company.</li>\n  <li><strong>number</strong>: (string) The tracking number for the fulfillment.</li>\n  <li><strong>url</strong>: (string) The URL to track the fulfillment.</li>\n</ul>\n",
+          "in": "query",
+          "schema": {
+            "type": "object"
+          },
+          "required": true
+        },
+        {
+          "name": "notify_customer",
+          "description": "Whether the customer will be notified of this update and future updates for the fulfillment.",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          }
         }
       ],
       "responses": {
@@ -1196,16 +1255,16 @@
                     "fulfillment": {
                       "tracking_company": "my-company",
                       "location_id": 24826418,
-                      "id": 1069019871,
+                      "id": 1069019889,
                       "order_id": 450789469,
                       "status": "success",
-                      "created_at": "2022-10-03T11:07:13-06:00",
+                      "created_at": "2022-10-21T06:56:20-06:00",
                       "service": "manual",
-                      "updated_at": "2022-10-03T11:21:19-06:00",
+                      "updated_at": "2022-10-21T06:57:33-06:00",
                       "shipment_status": null,
                       "line_items": [
                         {
-                          "id": 1071823190,
+                          "id": 1071823186,
                           "variant_id": 43729076,
                           "title": "Draft",
                           "quantity": 1,
@@ -1248,7 +1307,7 @@
                           },
                           "discount_allocations": [],
                           "duties": [],
-                          "admin_graphql_api_id": "gid://shopify/LineItem/1071823190",
+                          "admin_graphql_api_id": "gid://shopify/LineItem/1071823186",
                           "tax_lines": []
                         }
                       ],
@@ -1262,7 +1321,7 @@
                       ],
                       "receipt": {},
                       "name": "#1001.1",
-                      "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019871"
+                      "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019889"
                     }
                   }
                 }
@@ -1275,35 +1334,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/fulfillments/1069019871/update_tracking.json",
+          "request_path": "/admin/api/2022-10/fulfillments/1069019889/update_tracking.json",
           "request_method": "POST",
           "request": {
-            "action": "POST /admin/api/2020-01/fulfillments/1069019871/update_tracking.json",
+            "action": "POST /admin/api/2020-01/fulfillments/1069019889/update_tracking.json",
             "headers": {},
             "body": "{\"fulfillment\":{\"notify_customer\":true,\"tracking_info\":{\"number\":\"1111\",\"url\":\"http://www.my-url.com\",\"company\":\"my-company\"}}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment\":{\"tracking_company\":\"my-company\",\"location_id\":24826418,\"id\":1069019871,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-03T13:07:13-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-03T13:21:19-04:00\",\"shipment_status\":null,\"line_items\":[{\"id\":1071823190,\"variant_id\":43729076,\"title\":\"Draft\",\"quantity\":1,\"sku\":\"draft-151\",\"variant_title\":\"151cm\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":108828309,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Draft - 151cm\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823190\",\"tax_lines\":[]}],\"tracking_number\":\"1111\",\"tracking_numbers\":[\"1111\"],\"tracking_url\":\"http://www.my-url.com\",\"tracking_urls\":[\"http://www.my-url.com\"],\"receipt\":{},\"name\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019871\"}}"
+            "body": "{\"fulfillment\":{\"tracking_company\":\"my-company\",\"location_id\":24826418,\"id\":1069019889,\"order_id\":450789469,\"status\":\"success\",\"created_at\":\"2022-10-21T08:56:20-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-21T08:57:33-04:00\",\"shipment_status\":null,\"line_items\":[{\"id\":1071823186,\"variant_id\":43729076,\"title\":\"Draft\",\"quantity\":1,\"sku\":\"draft-151\",\"variant_title\":\"151cm\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":108828309,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Draft - 151cm\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823186\",\"tax_lines\":[]}],\"tracking_number\":\"1111\",\"tracking_numbers\":[\"1111\"],\"tracking_url\":\"http://www.my-url.com\",\"tracking_urls\":[\"http://www.my-url.com\"],\"receipt\":{},\"name\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019889\"}}"
           },
           "name": "Update the tracking information for a fulfillment",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"fulfillment\":{\"notify_customer\":true,\"tracking_info\":{\"number\":\"1111\",\"url\":\"http://www.my-url.com\",\"company\":\"my-company\"}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillments/1069019871/update_tracking.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"fulfillment\":{\"notify_customer\":true,\"tracking_info\":{\"number\":\"1111\",\"url\":\"http://www.my-url.com\",\"company\":\"my-company\"}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillments/1069019889/update_tracking.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment = ShopifyAPI::Fulfillment.new(session: test_session)\nfulfillment.id = 1069019871\nfulfillment.update_tracking(\n  session: test_session,\n  body: {\"fulfillment\" => {\"notify_customer\" => true, \"tracking_info\" => {\"number\" => \"1111\", \"url\" => \"http://www.my-url.com\", \"company\" => \"my-company\"}}},\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment = ShopifyAPI::Fulfillment.new(session: test_session)\nfulfillment.id = 1069019889\nfulfillment.update_tracking(\n  session: test_session,\n  body: {\"fulfillment\" => {\"notify_customer\" => true, \"tracking_info\" => {\"number\" => \"1111\", \"url\" => \"http://www.my-url.com\", \"company\" => \"my-company\"}}},\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment = new Fulfillment({session: test_session});\nfulfillment.id = 1069019871;\nawait fulfillment.update_tracking({\n  body: {\"fulfillment\": {\"notify_customer\": true, \"tracking_info\": {\"number\": \"1111\", \"url\": \"http://www.my-url.com\", \"company\": \"my-company\"}}},\n});"
+              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment = new Fulfillment({session: test_session});\nfulfillment.id = 1069019889;\nawait fulfillment.update_tracking({\n  body: {\"fulfillment\": {\"notify_customer\": true, \"tracking_info\": {\"number\": \"1111\", \"url\": \"http://www.my-url.com\", \"company\": \"my-company\"}}},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment = new Fulfillment($this->test_session);\n$fulfillment->id = 1069019871;\n$fulfillment->update_tracking(\n    [], // Params\n    [\"fulfillment\" => [\"notify_customer\" => true, \"tracking_info\" => [\"number\" => \"1111\", \"url\" => \"http://www.my-url.com\", \"company\" => \"my-company\"]]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment = new Fulfillment($this->test_session);\n$fulfillment->id = 1069019889;\n$fulfillment->update_tracking(\n    [], // Params\n    [\"fulfillment\" => [\"notify_customer\" => true, \"tracking_info\" => [\"number\" => \"1111\", \"url\" => \"http://www.my-url.com\", \"company\" => \"my-company\"]]], // Body\n);"
             }
           ]
         }
@@ -1346,15 +1405,15 @@
                       "order_id": 450789469,
                       "status": "cancelled",
                       "location_id": 24826418,
-                      "id": 1069019872,
-                      "created_at": "2022-10-03T11:07:13-06:00",
+                      "id": 1069019883,
+                      "created_at": "2022-10-21T06:56:20-06:00",
                       "service": "manual",
-                      "updated_at": "2022-10-03T11:21:23-06:00",
+                      "updated_at": "2022-10-21T06:57:13-06:00",
                       "tracking_company": "UPS",
                       "shipment_status": null,
                       "line_items": [
                         {
-                          "id": 1071823192,
+                          "id": 1071823182,
                           "variant_id": 43729076,
                           "title": "Draft",
                           "quantity": 1,
@@ -1397,7 +1456,7 @@
                           },
                           "discount_allocations": [],
                           "duties": [],
-                          "admin_graphql_api_id": "gid://shopify/LineItem/1071823192",
+                          "admin_graphql_api_id": "gid://shopify/LineItem/1071823182",
                           "tax_lines": []
                         }
                       ],
@@ -1411,7 +1470,7 @@
                       ],
                       "receipt": {},
                       "name": "#1001.1",
-                      "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019872"
+                      "admin_graphql_api_id": "gid://shopify/Fulfillment/1069019883"
                     }
                   }
                 }
@@ -1424,35 +1483,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/fulfillments/1069019872/cancel.json",
+          "request_path": "/admin/api/2022-10/fulfillments/1069019883/cancel.json",
           "request_method": "POST",
           "request": {
-            "action": "POST /admin/api/2020-01/fulfillments/1069019872/cancel.json",
+            "action": "POST /admin/api/2020-01/fulfillments/1069019883/cancel.json",
             "headers": {},
             "body": "{}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment\":{\"order_id\":450789469,\"status\":\"cancelled\",\"location_id\":24826418,\"id\":1069019872,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-03T13:21:23-04:00\",\"tracking_company\":\"UPS\",\"shipment_status\":null,\"line_items\":[{\"id\":1071823192,\"variant_id\":43729076,\"title\":\"Draft\",\"quantity\":1,\"sku\":\"draft-151\",\"variant_title\":\"151cm\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":108828309,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Draft - 151cm\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823192\",\"tax_lines\":[]}],\"tracking_number\":\"#☠1☢\\n---\\n4321\\n\",\"tracking_numbers\":[\"#☠1☢\\n---\\n4321\\n\"],\"tracking_url\":\"https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=#☠1☢---4321\",\"tracking_urls\":[\"https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=#☠1☢---4321\"],\"receipt\":{},\"name\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019872\"}}"
+            "body": "{\"fulfillment\":{\"order_id\":450789469,\"status\":\"cancelled\",\"location_id\":24826418,\"id\":1069019883,\"created_at\":\"2022-10-21T08:56:20-04:00\",\"service\":\"manual\",\"updated_at\":\"2022-10-21T08:57:13-04:00\",\"tracking_company\":\"UPS\",\"shipment_status\":null,\"line_items\":[{\"id\":1071823182,\"variant_id\":43729076,\"title\":\"Draft\",\"quantity\":1,\"sku\":\"draft-151\",\"variant_title\":\"151cm\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":108828309,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Draft - 151cm\",\"variant_inventory_management\":null,\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":0,\"price\":\"10.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":\"fulfilled\",\"price_set\":{\"shop_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"10.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/1071823182\",\"tax_lines\":[]}],\"tracking_number\":\"#☠1☢\\n---\\n4321\\n\",\"tracking_numbers\":[\"#☠1☢\\n---\\n4321\\n\"],\"tracking_url\":\"https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=#☠1☢---4321\",\"tracking_urls\":[\"https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=#☠1☢---4321\"],\"receipt\":{},\"name\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/Fulfillment/1069019883\"}}"
           },
           "name": "Cancel a fulfillment",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillments/1069019872/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillments/1069019883/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment = ShopifyAPI::Fulfillment.new(session: test_session)\nfulfillment.id = 1069019872\nfulfillment.cancel(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nfulfillment = ShopifyAPI::Fulfillment.new(session: test_session)\nfulfillment.id = 1069019883\nfulfillment.cancel(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment = new Fulfillment({session: test_session});\nfulfillment.id = 1069019872;\nawait fulfillment.cancel({});"
+              "example_code": "import {Fulfillment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment = new Fulfillment({session: test_session});\nfulfillment.id = 1069019883;\nawait fulfillment.cancel({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment = new Fulfillment($this->test_session);\n$fulfillment->id = 1069019872;\n$fulfillment->cancel(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Fulfillment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment = new Fulfillment($this->test_session);\n$fulfillment->id = 1069019883;\n$fulfillment->cancel(\n    [], // Params\n);"
             }
           ]
         }
@@ -1570,7 +1629,7 @@
           "name": "order_id"
         },
         {
-          "description": "<p>The address from which the fulfillment occurred:</p>\n<ul>\n  <li><strong>address1</strong>: The street address of the fulfillment location.</li>\n  <li><strong>address2</strong>: The second line of the address. Typically the number of the apartment, suite, or unit.</li>\n  <li><strong>city</strong>: The city of the fulfillment location.</li>\n  <li><strong>country_code</strong>: The country of the fulfillment location.</li>\n  <li><strong>province_code</strong>: The province of the fulfillment location.</li>\n  <li><strong>zip</strong>: The zip code of the fulfillment location.</li>\n</ul>\n",
+          "description": "<p>The address of the fulfillment location.</p>\n<ul>\n  <li><strong>address1</strong>: (string) The street address of the fulfillment location.</li>\n  <li><strong>address2</strong>: (string) The second line of the address. Typically the number of the apartment, suite, or unit.</li>\n  <li><strong>city</strong>: (string) The city of the fulfillment location.</li>\n  <li>\n    <strong>country_code</strong>: (string) (required) The two-letter country code\n    (<a href=\"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2\">ISO 3166-1 alpha-2</a> format) of the fulfillment location.\n  </li>\n  <li><strong>province_code</strong>: (string) The province of the fulfillment location.</li>\n  <li><strong>zip</strong>: (string) The zip code of the fulfillment location.</li>\n</ul>\n",
           "type": "string",
           "example": [
             {
@@ -1612,7 +1671,7 @@
           "name": "status"
         },
         {
-          "description": "        The name of the tracking company. The following tracking companies display for shops located in any country:\n        <ul>\n          <li><strong>4PX</strong></li>\n          <li><strong>Amazon Logistics UK</strong></li>\n          <li><strong>Amazon Logistics US</strong></li>\n          <li><strong>Anjun Logistics</strong></li>\n          <li><strong>APC</strong></li>\n          <li><strong>Australia Post</strong></li>\n          <li><strong>Bluedart</strong></li>\n          <li><strong>Canada Post</strong></li>\n          <li><strong>Canpar</strong></li>\n          <li><strong>China Post</strong></li>\n          <li><strong>Chukou1</strong></li>\n          <li><strong>Correios</strong></li>\n          <li><strong>Couriers Please</strong></li>\n          <li><strong>Delhivery</strong></li>\n          <li><strong>DHL eCommerce</strong></li>\n          <li><strong>DHL eCommerce Asia</strong></li>\n          <li><strong>DHL Express</strong></li>\n          <li><strong>DPD</strong></li>\n          <li><strong>DPD Local</strong></li>\n          <li><strong>DPD UK</strong></li>\n          <li><strong>Eagle</strong></li>\n          <li><strong>FedEx</strong></li>\n          <li><strong>FSC</strong></li>\n          <li><strong>Asendia USA</strong></li>\n          <li><strong>GLS</strong></li>\n          <li><strong>GLS (US)</strong></li>\n          <li><strong>Japan Post</strong></li>\n          <li><strong>La Poste</strong></li>\n          <li><strong>New Zealand Post</strong></li>\n          <li><strong>Newgistics</strong></li>\n          <li><strong>PostNL</strong></li>\n          <li><strong>PostNord</strong></li>\n          <li><strong>Purolator</strong></li>\n          <li><strong>Royal Mail</strong></li>\n          <li><strong>Sagawa</strong></li>\n          <li><strong>Sendle</strong></li>\n          <li><strong>SF Express</strong></li>\n          <li><strong>SFC Fulfilllment</strong></li>\n          <li><strong>Singapore Post</strong></li>\n          <li><strong>StarTrack</strong></li>\n          <li><strong>TNT</strong></li>\n          <li><strong>Toll IPEC</strong></li>\n          <li><strong>UPS</strong></li>\n          <li><strong>USPS</strong></li>\n          <li><strong>Whistl</strong></li>\n          <li><strong>Yamato</strong></li>\n          <li><strong>YunExpress</strong></li>\n        </ul>\n\n        <p>The following tracking companies are displayed for shops located in specific countries:</p>\n        <ul>\n            <li><strong>Germany</strong>: Deutsche Post (DE), Deutsche Post (EN), DHL</li>\n            <li><strong>Ireland</strong>: An Post, Fastway</li>\n            <li><strong>Australia</strong>: Aramex Australia, Australia Post, Sendle</li>\n            <li><strong>Japan</strong>: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物</li>\n            <li><strong>China</strong>: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress</li>\n        </ul>\n        <div class=\"note\">\n          <h4>Important</h4>\n          <p>When creating a fulfillment for a supported carrier, send the <code>tracking_company</code> exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.</p>\n        </div>\n",
+          "description": "        The name of the tracking company. The following tracking companies display for shops located in any country:\n        <ul>\n          <li><strong>4PX</strong></li>\n          <li><strong>AGS</strong></li>\n          <li><strong>Amazon Logistics UK</strong></li>\n          <li><strong>Amazon Logistics US</strong></li>\n          <li><strong>An Post</strong></li>\n          <li><strong>Anjun Logistics</strong></li>\n          <li><strong>APC</strong></li>\n          <li><strong>Asendia USA</strong></li>\n          <li><strong>Australia Post</strong></li>\n          <li><strong>Bonshaw</strong></li>\n          <li><strong>BPost</strong></li>\n          <li><strong>BPost International</strong></li>\n          <li><strong>Canada Post</strong></li>\n          <li><strong>Canpar</strong></li>\n          <li><strong>CDL Last Mile</strong></li>\n          <li><strong>China Post</strong></li>\n          <li><strong>Chronopost</strong></li>\n          <li><strong>Chukou1</strong></li>\n          <li><strong>Colissimo</strong></li>\n          <li><strong>Comingle</strong></li>\n          <li><strong>Coordinadora</strong></li>\n          <li><strong>Correios</strong></li>\n          <li><strong>Correos</strong></li>\n          <li><strong>CTT</strong></li>\n          <li><strong>CTT Express</strong></li>\n          <li><strong>Cyprus Post</strong></li>\n          <li><strong>Delnext</strong></li>\n          <li><strong>Deutsche Post</strong></li>\n          <li><strong>DHL eCommerce</strong></li>\n          <li><strong>DHL eCommerce Asia</strong></li>\n          <li><strong>DHL Express</strong></li>\n          <li><strong>DoorDash</strong></li>\n          <li><strong>DPD</strong></li>\n          <li><strong>DPD Local</strong></li>\n          <li><strong>DPD UK</strong></li>\n          <li><strong>DTD Express</strong></li>\n          <li><strong>DX</strong></li>\n          <li><strong>Eagle</strong></li>\n          <li><strong>Estes</strong></li>\n          <li><strong>Evri</strong></li>\n          <li><strong>FedEx</strong></li>\n          <li><strong>First Global Logistics</strong></li>\n          <li><strong>First Line</strong></li>\n          <li><strong>FSC</strong></li>\n          <li><strong>Fulfilla</strong></li>\n          <li><strong>GLS</strong></li>\n          <li><strong>Guangdong Weisuyi Information Technology (WSE)</strong></li>\n          <li><strong>Heppner Internationale Spedition GmbH &amp; Co.</strong></li>\n          <li><strong>Iceland Post</strong></li>\n          <li><strong>IDEX</strong></li>\n          <li><strong>Israel Post</strong></li>\n          <li><strong>Japan Post (EN)</strong></li>\n          <li><strong>Japan Post (JA)</strong></li>\n          <li><strong>La Poste</strong></li>\n          <li><strong>Lasership</strong></li>\n          <li><strong>Latvia Post</strong></li>\n          <li><strong>Lietuvos Paštas</strong></li>\n          <li><strong>Logisters</strong></li>\n          <li><strong>Lone Star Overnight</strong></li>\n          <li><strong>M3 Logistics</strong></li>\n          <li><strong>Meteor Space</strong></li>\n          <li><strong>Mondial Relay</strong></li>\n          <li><strong>New Zealand Post</strong></li>\n          <li><strong>NinjaVan</strong></li>\n          <li><strong>North Russia Supply Chain (Shenzhen) Co.</strong></li>\n          <li><strong>OnTrac</strong></li>\n          <li><strong>Packeta</strong></li>\n          <li><strong>Pago Logistics</strong></li>\n          <li><strong>Ping An Da Tengfei Express</strong></li>\n          <li><strong>Pitney Bowes</strong></li>\n          <li><strong>Portal PostNord</strong></li>\n          <li><strong>Poste Italiane</strong></li>\n          <li><strong>PostNL</strong></li>\n          <li><strong>PostNord DK</strong></li>\n          <li><strong>PostNord NO</strong></li>\n          <li><strong>PostNord SE</strong></li>\n          <li><strong>Purolator</strong></li>\n          <li><strong>Qxpress</strong></li>\n          <li><strong>Qyun Express</strong></li>\n          <li><strong>Royal Mail</strong></li>\n          <li><strong>Royal Shipments</strong></li>\n          <li><strong>Sagawa (EN)</strong></li>\n          <li><strong>Sagawa (JA)</strong></li>\n          <li><strong>Sendle</strong></li>\n          <li><strong>SF Express</strong></li>\n          <li><strong>SFC Fulfillment</strong></li>\n          <li><strong>SHREE NANDAN COURIER</strong></li>\n          <li><strong>Singapore Post</strong></li>\n          <li><strong>Southwest Air Cargo</strong></li>\n          <li><strong>StarTrack</strong></li>\n          <li><strong>Step Forward Freight</strong></li>\n          <li><strong>Swiss Post</strong></li>\n          <li><strong>TForce Final Mile</strong></li>\n          <li><strong>Tinghao</strong></li>\n          <li><strong>TNT</strong></li>\n          <li><strong>Toll IPEC</strong></li>\n          <li><strong>United Delivery Service</strong></li>\n          <li><strong>UPS</strong></li>\n          <li><strong>USPS</strong></li>\n          <li><strong>Venipak</strong></li>\n          <li><strong>We Post</strong></li>\n          <li><strong>Whistl</strong></li>\n          <li><strong>Wizmo</strong></li>\n          <li><strong>WMYC</strong></li>\n          <li><strong>Xpedigo</strong></li>\n          <li><strong>XPO Logistics</strong></li>\n          <li><strong>Yamato (EN)</strong></li>\n          <li><strong>Yamato (JA)</strong></li>\n          <li><strong>YiFan Express</strong></li>\n          <li><strong>YunExpress</strong></li>\n        </ul>\n\n        <p>The following tracking companies are displayed for shops located in specific countries:</p>\n        <ul>\n        <li><strong>Australia</strong>: Australia Post, Sendle, Aramex Australia, TNT Australia, Hunter Express, Couriers Please, Bonds, Allied Express, Direct Couriers, Northline, GO Logistics</li>\n        <li><strong>Austria</strong>: Österreichische Post</li>\n        <li><strong>Bulgaria</strong>: Speedy</li>\n        <li><strong>Canada</strong>: Intelcom, BoxKnight, Loomis, GLS</li>\n        <li><strong>China</strong>: China Post, DHL eCommerce Asia, WanbExpress, YunExpress, Anjun Logistics, SFC Fulfillment, FSC</li>\n        <li><strong>Czechia</strong>: Zásilkovna</li>\n        <li><strong>Germany</strong>: Deutsche Post (DE), Deutsche Post (EN), DHL, DHL Express, Swiship, Hermes, GLS</li>\n        <li><strong>Spain</strong>: SEUR</li>\n        <li><strong>France</strong>: Colissimo, Mondial Relay, Colis Privé, GLS</li>\n        <li><strong>United Kingdom</strong>: Evri, DPD UK, Parcelforce, Yodel, DHL Parcel, Tuffnells</li>\n        <li><strong>Greece</strong>: ACS Courier</li>\n        <li><strong>Hong Kong SAR</strong>: SF Express</li>\n        <li><strong>Ireland</strong>: Fastway, DPD Ireland</li>\n        <li><strong>India</strong>: DTDC, India Post, Delhivery, Gati KWE, Professional Couriers, XpressBees, Ecom Express, Ekart, Shadowfax, Bluedart</li>\n        <li><strong>Italy</strong>: BRT, GLS Italy</li>\n        <li><strong>Japan</strong>: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物</li>\n        <li><strong>Netherlands</strong>: DHL Parcel, DPD</li>\n        <li><strong>Norway</strong>: Bring</li>\n        <li><strong>Poland</strong>: Inpost</li>\n        <li><strong>Turkey</strong>: PTT, Yurtiçi Kargo, Aras Kargo, Sürat Kargo</li>\n        <li><strong>United States</strong>: GLS, Alliance Air Freight, Pilot Freight, LSO, Old Dominion, R+L Carriers, Southwest Air Cargo</li>\n        <li><strong>South Africa</strong>: Fastway, Skynet</li>\n        </ul>\n        <div class=\"note\">\n          <h4>Important</h4>\n          <p>When creating a fulfillment for a supported carrier, send the <code>tracking_company</code> exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.</p>\n        </div>\n",
           "type": "string",
           "example": "China Post",
           "name": "tracking_company"

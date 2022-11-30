@@ -48,6 +48,13 @@ paths:
                 $ref: '#/components/schemas/DeprecatedApiCallList'
 components:
   schemas:
+    ApiType:
+      enum:
+        - REST
+        - Webhook
+        - GraphQL
+      type: string
+      additionalProperties: { }
     DeprecatedApiCall:
       type: object
       properties:
@@ -60,9 +67,7 @@ components:
           description: "A list of deprecated API calls made by the authenticated app in the past 30 days. Each object has the following properties:\r\n\r\n*   `api_type`: The type of API that the call was made to. Valid values: `REST`, `Webhook`, `GraphQL`. \r\n*   `description`: A description of the deprecation and any required migration steps. \r\n*   `documentation_url`: The documentation URL to the deprecated change. \r\n*   `endpoint`: A description of the REST endpoint, webhook topic, or GraphQL field called. \r\n*   `last_call_at`: The timestamp ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) when the last deprecated API call was made. \r\n*   `migration_deadline`: The time ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) when the deprecated API call will be removed. \r\n*   `graphql_schema_name`: The name of the GraphQL schema. If the call wasn't made to a GraphQL API, then this value is `null`. \r\n*   `version`: The earliest API version to migrate to in order to avoid making the deprecated API calls."
           nullable: true
         api_type:
-          type: string
-          description: 'The type of API that the call was made to. Valid values: REST, Webhook, GraphQL'
-          nullable: true
+          $ref: '#/components/schemas/ApiType'
         description:
           type: string
           description: A description of the deprecation and any required migration steps.

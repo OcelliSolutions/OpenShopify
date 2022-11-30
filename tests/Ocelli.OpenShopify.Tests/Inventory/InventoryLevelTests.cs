@@ -37,6 +37,10 @@ public class InventoryLevelFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var inventoryLevel in CreatedInventoryLevels.Take(1))
         {
+            var productService = new ProductsService(MyShopifyUrl, AccessToken);
+            var request = new UpdateProductVariantRequest() { Variant = new() { InventoryPolicy = "continue" } };
+            await productService.ProductVariant.UpdateProductVariantAsync(ProductVariant.Id, request);
+
             _ = await Service.InventoryLevel.DeleteInventoryLevelFromLocationAsync(inventoryLevel.InventoryItemId, inventoryLevel.LocationId ?? 0, CancellationToken.None);
         }
         CreatedInventoryLevels.Clear();

@@ -32,7 +32,7 @@ app.MapGet("/signup", (string hmac, string shop, long timestamp, HttpContext htt
             AuthorizationScope.ReadAllOrders, 
             AuthorizationScope.WriteUsers, 
             AuthorizationScope.ReadUsers, 
-            AuthorizationScope.WriteLocations,
+            //AuthorizationScope.WriteLocations,
 
             AuthorizationScope.ReadCustomerPaymentMethods,
             AuthorizationScope.WriteOwnSubscriptionContracts,

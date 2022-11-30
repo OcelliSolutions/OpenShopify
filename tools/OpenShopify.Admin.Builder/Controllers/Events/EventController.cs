@@ -97,6 +97,39 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum EventSubjectType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Article")]
+        Article = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Blog")]
+        Blog = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Collection")]
+        Collection = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Comment")]
+        Comment = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Order")]
+        Order = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Page")]
+        Page = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"PriceRule")]
+        PriceRule = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Product")]
+        Product = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ApiPermission")]
+        ApiPermission = 8,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record EventOrig
     {
         /// <summary>

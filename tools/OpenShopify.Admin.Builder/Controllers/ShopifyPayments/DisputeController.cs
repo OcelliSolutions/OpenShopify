@@ -50,6 +50,87 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum DisputeType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inquiry")]
+        Inquiry = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"chargeback")]
+        Chargeback = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum DisputeReason
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"bank_not_process")]
+        BankNotProcess = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"credit_not_processed")]
+        CreditNotProcessed = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer_initiated")]
+        CustomerInitiated = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"debit_not_authorized")]
+        DebitNotAuthorized = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"duplicate")]
+        Duplicate = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fraudulent")]
+        Fraudulent = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"general")]
+        General = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incorrect_account_details")]
+        IncorrectAccountDetails = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"insufficient_funds")]
+        InsufficientFunds = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product_not_received")]
+        ProductNotReceived = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product_unacceptable")]
+        ProductUnacceptable = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"subscription_canceled")]
+        SubscriptionCanceled = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unrecognized")]
+        Unrecognized = 12,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum DisputeStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"needs_response")]
+        NeedsResponse = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"under_review")]
+        UnderReview = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"charge_refunded")]
+        ChargeRefunded = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"accepted")]
+        Accepted = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"won")]
+        Won = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"lost")]
+        Lost = 5,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record DisputeOrig
     {
         /// <summary>

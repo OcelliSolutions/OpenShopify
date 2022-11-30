@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using OpenShopify.Admin.Builder.Data;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -22,7 +22,7 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <inheritdoc cref="FulfillmentOrig.ShipmentStatus"/>
         [JsonPropertyName("shipment_status")]
-        public new ShipmentStatus? ShipmentStatus { get; set; }
+        public new FulfillmentShipmentStatus? ShipmentStatus { get; set; }
 
         /// <inheritdoc cref="FulfillmentOrig.Status"/>
         [JsonPropertyName("status")]
@@ -37,14 +37,5 @@ namespace OpenShopify.Admin.Builder.Models
 
         [JsonPropertyName("tracking_url")]
         public string? TrackingUrl { get; set; } = default!;
-    }
-
-    public partial class Receipt
-    {
-        [JsonPropertyName("testcase")]
-        public bool? TestCase { get; set; }
-
-        [JsonPropertyName("authorization")]
-        public string? Authorization { get; set; }
     }
 }

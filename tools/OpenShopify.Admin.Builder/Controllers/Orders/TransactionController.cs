@@ -79,6 +79,66 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum TransactionKind
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"authorization")]
+        Authorization = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"capture")]
+        Capture = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"sale")]
+        Sale = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"void")]
+        Void = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"refund")]
+        Refund = 4,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum TransactionPaymentsRefundAttributes
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"status")]
+        Status = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"acquirer_reference_number")]
+        AcquirerReferenceNumber = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"payments_refund_attributes")]
+        PaymentsRefundAttributes = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"refund")]
+        Refund = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"void")]
+        Void = 4,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum TransactionStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        Pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"failure")]
+        Failure = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"success")]
+        Success = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"error")]
+        Error = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record TransactionOrig
     {
         /// <summary>
@@ -286,7 +346,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Receipt { get; set; } = default!;
 
         /// <summary>
-        /// The origin of the transaction. This is set by Shopify and can't be overridden. Example values: `web`, `pos`, `iphone`, and `android`.
+        /// The origin of the transaction. This is set by Shopify and can't be overridden. Example values (not an exhaustive list): `web`, `pos`, `iphone`, and `android`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("source_name")]

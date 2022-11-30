@@ -28,6 +28,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Receive a list of all FulfillmentServices
         /// </summary>
+        /// <param name="scope">Specify which fulfillment services to retrieve.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_services.json")]
         public abstract System.Threading.Tasks.Task ListFulfillmentServices([Microsoft.AspNetCore.Mvc.FromQuery] string? scope = null);
 
@@ -70,9 +71,13 @@ namespace OpenShopify.Admin.Builder.Models
         public string? AdminGraphqlApiId { get; set; } = default!;
 
         /// <summary>
-        /// The callback URL the fulfillment service has registered for requests.  
-        ///  If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  
-        /// The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`.
+        /// The callback URL that the fulfillment service has registered for requests. The following considerations apply: 
+        /// 
+        /// *   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `inventory_management` is set to `true`. 
+        /// *   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `tracking_support` is set to `true`. 
+        /// *   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations), if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). 
+        /// 
+        ///  The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
@@ -81,7 +86,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? CallbackUrl { get; set; } = default!;
 
         /// <summary>
-        /// Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).
+        /// Whether the fulfillment service uses the [fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]
@@ -108,7 +113,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Handle { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are "true" and "false".
+        /// Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
@@ -144,7 +149,7 @@ namespace OpenShopify.Admin.Builder.Models
         public long? ProviderId { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service requires products to be physically shipped. Valid values are "true" and "false".
+        /// Whether the fulfillment service requires products to be physically shipped. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("requires_shipping_method")]
@@ -153,7 +158,7 @@ namespace OpenShopify.Admin.Builder.Models
         public bool? RequiresShippingMethod { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
+        /// Whether the fulfillment service provides tracking numbers for packages. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_support")]

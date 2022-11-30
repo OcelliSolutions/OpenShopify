@@ -66,6 +66,21 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ProvinceTaxType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"normal")]
+        Normal = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"harmonized")]
+        Harmonized = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"compounded")]
+        Compounded = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record ProvinceOrig
     {
         /// <summary>

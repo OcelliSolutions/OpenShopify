@@ -1244,7 +1244,7 @@ public partial record CommentList
     [JsonPropertyName("comments"), Required]
     public IEnumerable<Comment> Comments { get; set; } = null!;
 }
-public partial record CreateCommentForArticleRequest
+public partial record CreateCommentRequest
 {
     [JsonPropertyName("comment"), Required]
     public CreateComment Comment { get; set; } = null!;
@@ -1252,7 +1252,7 @@ public partial record CreateCommentForArticleRequest
 
 /// <inheritdoc cref="CommentBase"/>
 public partial record CreateComment : CommentBase {}
-public partial record UpdateCommentOfArticleRequest
+public partial record UpdateCommentRequest
 {
     [JsonPropertyName("comment"), Required]
     public UpdateComment Comment { get; set; } = null!;
@@ -1270,6 +1270,126 @@ public partial record UpdateComment : Comment
 		
 /// <inheritdoc cref="CommentBase"/>
 public partial record Comment : CommentBase
+{
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+/// <inheritdoc cref="CommentOrig"/>
+public partial record CommentBase : CommentOrig{}
+
+	
+public partial record CommentForArticleItem
+{
+    [JsonPropertyName("comment"), Required]
+    public Comment CommentForArticle { get; set; } = null!;
+}
+
+public partial record CommentForArticleList
+{
+    [JsonPropertyName("comments"), Required]
+    public IEnumerable<Comment> CommentsForArticle { get; set; } = null!;
+}
+public partial record CreateCommentForArticleRequest
+{
+    [JsonPropertyName("comment"), Required]
+    public CreateCommentForArticle CommentForArticle { get; set; } = null!;
+}
+
+/// <inheritdoc cref="CommentBase"/>
+public partial record CreateCommentForArticle : CommentBase {}
+public partial record UpdateCommentForArticleRequest
+{
+    [JsonPropertyName("comment"), Required]
+    public UpdateCommentForArticle CommentForArticle { get; set; } = null!;
+}
+
+/// <inheritdoc cref="Comment"/>
+public partial record UpdateCommentForArticle : Comment
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+		
+/// <inheritdoc cref="CommentBase"/>
+public partial record CommentForArticle : CommentBase
+{
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+/// <inheritdoc cref="CommentOrig"/>
+public partial record CommentBase : CommentOrig{}
+
+	
+public partial record CommentOfArticleItem
+{
+    [JsonPropertyName("comment"), Required]
+    public Comment CommentOfArticle { get; set; } = null!;
+}
+
+public partial record CommentOfArticleList
+{
+    [JsonPropertyName("comments"), Required]
+    public IEnumerable<Comment> CommentsOfArticle { get; set; } = null!;
+}
+public partial record CreateCommentOfArticleRequest
+{
+    [JsonPropertyName("comment"), Required]
+    public CreateCommentOfArticle CommentOfArticle { get; set; } = null!;
+}
+
+/// <inheritdoc cref="CommentBase"/>
+public partial record CreateCommentOfArticle : CommentBase {}
+public partial record UpdateCommentOfArticleRequest
+{
+    [JsonPropertyName("comment"), Required]
+    public UpdateCommentOfArticle CommentOfArticle { get; set; } = null!;
+}
+
+/// <inheritdoc cref="Comment"/>
+public partial record UpdateCommentOfArticle : Comment
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+		
+/// <inheritdoc cref="CommentBase"/>
+public partial record CommentOfArticle : CommentBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
@@ -1536,13 +1656,13 @@ public partial record ThemeBase : ThemeOrig{}
 public partial record AbandonedCheckoutItem
 {
     [JsonPropertyName("checkout"), Required]
-    public Checkout AbandonedCheckout { get; set; } = null!;
+    public AbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
 public partial record AbandonedCheckoutList
 {
     [JsonPropertyName("checkouts"), Required]
-    public IEnumerable<Checkout> AbandonedCheckouts { get; set; } = null!;
+    public IEnumerable<AbandonedCheckout> AbandonedCheckouts { get; set; } = null!;
 }
 public partial record CreateAbandonedCheckoutRequest
 {
@@ -1550,16 +1670,16 @@ public partial record CreateAbandonedCheckoutRequest
     public CreateAbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
-/// <inheritdoc cref="CheckoutBase"/>
-public partial record CreateAbandonedCheckout : CheckoutBase {}
+/// <inheritdoc cref="AbandonedCheckoutBase"/>
+public partial record CreateAbandonedCheckout : AbandonedCheckoutBase {}
 public partial record UpdateAbandonedCheckoutRequest
 {
     [JsonPropertyName("checkout"), Required]
     public UpdateAbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
-/// <inheritdoc cref="Checkout"/>
-public partial record UpdateAbandonedCheckout : Checkout
+/// <inheritdoc cref="AbandonedCheckout"/>
+public partial record UpdateAbandonedCheckout : AbandonedCheckout
 {
     [JsonIgnore]
     public new System.DateTimeOffset? CreatedAt { get; set; }
@@ -1568,9 +1688,13 @@ public partial record UpdateAbandonedCheckout : Checkout
 }
 
 		
-/// <inheritdoc cref="CheckoutBase"/>
-public partial record AbandonedCheckout : CheckoutBase
+/// <inheritdoc cref="AbandonedCheckoutBase"/>
+public partial record AbandonedCheckout : AbandonedCheckoutBase
 {
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
 	
     /// <summary>
     /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
@@ -1585,8 +1709,8 @@ public partial record AbandonedCheckout : CheckoutBase
     public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
-/// <inheritdoc cref="CheckoutOrig"/>
-public partial record CheckoutBase : CheckoutOrig{}
+/// <inheritdoc cref="CheckoutBase"/>
+public partial record AbandonedCheckoutBase : CheckoutBase{}
 
 	
 public partial record DraftOrderItem
@@ -1873,7 +1997,7 @@ public partial record TransactionList
     [JsonPropertyName("transactions"), Required]
     public IEnumerable<Transaction> Transactions { get; set; } = null!;
 }
-public partial record CreateTransactionForOrderRequest
+public partial record CreateTransactionRequest
 {
     [JsonPropertyName("transaction"), Required]
     public CreateTransaction Transaction { get; set; } = null!;
@@ -1899,6 +2023,126 @@ public partial record UpdateTransaction : Transaction
 		
 /// <inheritdoc cref="TransactionBase"/>
 public partial record Transaction : TransactionBase
+{
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+/// <inheritdoc cref="TransactionOrig"/>
+public partial record TransactionBase : TransactionOrig{}
+
+	
+public partial record TransactionForOrderItem
+{
+    [JsonPropertyName("transaction"), Required]
+    public Transaction TransactionForOrder { get; set; } = null!;
+}
+
+public partial record TransactionForOrderList
+{
+    [JsonPropertyName("transactions"), Required]
+    public IEnumerable<Transaction> Transactions { get; set; } = null!;
+}
+public partial record CreateTransactionForOrderRequest
+{
+    [JsonPropertyName("transaction"), Required]
+    public CreateTransactionForOrder TransactionForOrder { get; set; } = null!;
+}
+
+/// <inheritdoc cref="TransactionBase"/>
+public partial record CreateTransactionForOrder : TransactionBase {}
+public partial record UpdateTransactionForOrderRequest
+{
+    [JsonPropertyName("transaction"), Required]
+    public UpdateTransactionForOrder TransactionForOrder { get; set; } = null!;
+}
+
+/// <inheritdoc cref="Transaction"/>
+public partial record UpdateTransactionForOrder : Transaction
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+		
+/// <inheritdoc cref="TransactionBase"/>
+public partial record TransactionForOrder : TransactionBase
+{
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+/// <inheritdoc cref="TransactionOrig"/>
+public partial record TransactionBase : TransactionOrig{}
+
+	
+public partial record TransactionOfOrItem
+{
+    [JsonPropertyName("transaction"), Required]
+    public Transaction TransactionOfOr { get; set; } = null!;
+}
+
+public partial record TransactionOfOrList
+{
+    [JsonPropertyName("transactions"), Required]
+    public IEnumerable<Transaction> Transactions { get; set; } = null!;
+}
+public partial record CreateTransactionOfOrRequest
+{
+    [JsonPropertyName("transaction"), Required]
+    public CreateTransactionOfOr TransactionOfOr { get; set; } = null!;
+}
+
+/// <inheritdoc cref="TransactionBase"/>
+public partial record CreateTransactionOfOr : TransactionBase {}
+public partial record UpdateTransactionOfOrRequest
+{
+    [JsonPropertyName("transaction"), Required]
+    public UpdateTransactionOfOr TransactionOfOr { get; set; } = null!;
+}
+
+/// <inheritdoc cref="Transaction"/>
+public partial record UpdateTransactionOfOr : Transaction
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+		
+/// <inheritdoc cref="TransactionBase"/>
+public partial record TransactionOfOr : TransactionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
@@ -3125,29 +3369,6 @@ public partial record FulfillmentEventList
     [JsonPropertyName("fulfillment_events"), Required]
     public IEnumerable<FulfillmentEvent> FulfillmentEvents { get; set; } = null!;
 }
-public partial record CreateFulfillmentEventRequest
-{
-    [JsonPropertyName("fulfillment_event"), Required]
-    public CreateFulfillmentEvent FulfillmentEvent { get; set; } = null!;
-}
-
-/// <inheritdoc cref="FulfillmentEventBase"/>
-public partial record CreateFulfillmentEvent : FulfillmentEventBase {}
-public partial record UpdateFulfillmentEventRequest
-{
-    [JsonPropertyName("fulfillment_event"), Required]
-    public UpdateFulfillmentEvent FulfillmentEvent { get; set; } = null!;
-}
-
-/// <inheritdoc cref="FulfillmentEvent"/>
-public partial record UpdateFulfillmentEvent : FulfillmentEvent
-{
-    [JsonIgnore]
-    public new System.DateTimeOffset? CreatedAt { get; set; }
-    [JsonIgnore]
-    public new System.DateTimeOffset? UpdatedAt { get; set; }
-}
-
 		
 /// <inheritdoc cref="FulfillmentEventBase"/>
 public partial record FulfillmentEvent : FulfillmentEventBase

@@ -112,6 +112,27 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum CommentStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        Pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unapproved (default)")]
+        Unapproved_default_ = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"published")]
+        Published = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"spam")]
+        Spam = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"removed")]
+        Removed = 4,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record CommentOrig
     {
         /// <summary>

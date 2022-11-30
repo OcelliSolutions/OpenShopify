@@ -1627,24 +1627,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public long? SubjectId { get; set; } = default!;
 
-        /// <summary>
-        /// The type of the resource that generated the event. Valid values:
-        /// <br/>
-        /// <br/>*   `Article` 
-        /// <br/>*   `Blog` 
-        /// <br/>*   `Collection` 
-        /// <br/>*   `Comment` 
-        /// <br/>*   `Order` 
-        /// <br/>*   `Page` 
-        /// <br/>*   `PriceRule` 
-        /// <br/>*   `Product` 
-        /// <br/>*   `ApiPermission`
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("subject_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? SubjectType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public EventSubjectType? SubjectType { get; set; } = default!;
 
         /// <summary>
         /// The type of event that occurred. Different resources generate different types of event. See the [Resources](#resources-that-can-create-events) section for a list of possible verbs.
@@ -1742,6 +1729,39 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum EventSubjectType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Article")]
+        Article = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Blog")]
+        Blog = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Collection")]
+        Collection = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Comment")]
+        Comment = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Order")]
+        Order = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Page")]
+        Page = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"PriceRule")]
+        PriceRule = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Product")]
+        Product = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ApiPermission")]
+        ApiPermission = 8,
 
     }
 
@@ -1934,11 +1954,11 @@ namespace Ocelli.OpenShopify
     public enum WebhookFormat
     {
 
-        [System.Runtime.Serialization.EnumMember(Value = @"json")]
-        Json = 0,
+        [System.Runtime.Serialization.EnumMember(Value = @"JSON")]
+        JSON = 0,
 
-        [System.Runtime.Serialization.EnumMember(Value = @"xml")]
-        Xml = 1,
+        [System.Runtime.Serialization.EnumMember(Value = @"XML")]
+        XML = 1,
 
     }
 

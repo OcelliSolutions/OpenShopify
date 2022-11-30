@@ -94,10 +94,10 @@ public class FulfillmentTests : IClassFixture<FulfillmentFixture>
 
         var fulfillmentOrder = new FulfillmentOrder()
         {
-            Id = acceptedResponse.Id,
-            OrderId = acceptedResponse.OrderId,
-            AssignedLocationId = acceptedResponse.Id,
-            LineItems = acceptedResponse.LineItems
+            Id = acceptedResponse?.Id ?? 0,
+            OrderId = acceptedResponse?.OrderId,
+            AssignedLocationId = acceptedResponse?.Id,
+            LineItems = acceptedResponse?.LineItems
         };
         var request = Fixture.CreateFulfillmentRequest(fulfillmentOrder, Fixture.FulfillmentService);
         var response = await Fixture.Service.Fulfillment.CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(request, CancellationToken.None);

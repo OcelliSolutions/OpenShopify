@@ -176,6 +176,93 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum DraftOrderTaxExemptions
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"EXEMPT_ALL")]
+        EXEMPTALL = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_STATUS_CARD_EXEMPTION")]
+        CASTATUSCARDEXEMPTION = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_DIPLOMAT_EXEMPTION")]
+        CADIPLOMATEXEMPTION = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_RESELLER_EXEMPTION")]
+        CABCRESELLEREXEMPTION = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_RESELLER_EXEMPTION")]
+        CAMBRESELLEREXEMPTION = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_RESELLER_EXEMPTION")]
+        CASKRESELLEREXEMPTION = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_COMMERCIAL_FISHERY_EXEMPTION")]
+        CABCCOMMERCIALFISHERYEXEMPTION = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_COMMERCIAL_FISHERY_EXEMPTION")]
+        CAMBCOMMERCIALFISHERYEXEMPTION = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_NS_COMMERCIAL_FISHERY_EXEMPTION")]
+        CANSCOMMERCIALFISHERYEXEMPTION = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_PE_COMMERCIAL_FISHERY_EXEMPTION")]
+        CAPECOMMERCIALFISHERYEXEMPTION = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_COMMERCIAL_FISHERY_EXEMPTION")]
+        CASKCOMMERCIALFISHERYEXEMPTION = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION")]
+        CABCPRODUCTIONANDMACHINERYEXEMPTION = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION")]
+        CASKPRODUCTIONANDMACHINERYEXEMPTION = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_SUB_CONTRACTOR_EXEMPTION")]
+        CABCSUBCONTRACTOREXEMPTION = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_SUB_CONTRACTOR_EXEMPTION")]
+        CASKSUBCONTRACTOREXEMPTION = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_CONTRACTOR_EXEMPTION")]
+        CABCCONTRACTOREXEMPTION = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_CONTRACTOR_EXEMPTION")]
+        CASKCONTRACTOREXEMPTION = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_ON_PURCHASE_EXEMPTION")]
+        CAONPURCHASEEXEMPTION = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_FARMER_EXEMPTION")]
+        CAMBFARMEREXEMPTION = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_NS_FARMER_EXEMPTION")]
+        CANSFARMEREXEMPTION = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_FARMER_EXEMPTION")]
+        CASKFARMEREXEMPTION = 20,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum DraftOrderStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"open")]
+        Open = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"status")]
+        Status = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invoice_sent")]
+        InvoiceSent = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"completed")]
+        Completed = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record DraftOrderOrig
     {
         /// <summary>

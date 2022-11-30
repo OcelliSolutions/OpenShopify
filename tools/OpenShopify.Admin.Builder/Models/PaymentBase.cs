@@ -13,13 +13,3 @@ public partial record PaymentBase
     [JsonPropertyName("session_id")] 
     public string? SessionId { get; set; }
 }
-
-public record PaymentRequestDetail
-{
-    [JsonPropertyName("ip_address")]
-    public string? IpAddress { get; set; }
-    [JsonPropertyName("accept_language")]
-    public string? AcceptLanguage { get; set; }
-    [JsonPropertyName("user_agent")]
-    public string? UserAgent { get; set; }
-}

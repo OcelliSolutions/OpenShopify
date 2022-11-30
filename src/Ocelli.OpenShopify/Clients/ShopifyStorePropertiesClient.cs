@@ -3406,7 +3406,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("transactional_sms_disabled")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? TransactionalSmsDisabled { get; set; } = default!;
+        public bool? TransactionalSmsDisabled { get; set; } = default!;
 
         /// <summary>
         /// The default unit of weight measurement for the shop.
@@ -3433,7 +3433,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("marketing_sms_consent_enabled_at_checkout")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? MarketingSmsConsentEnabledAtCheckout { get; set; } = default!;
+        public bool? MarketingSmsConsentEnabledAtCheckout { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("visitor_tracking_consent_preference")]
 

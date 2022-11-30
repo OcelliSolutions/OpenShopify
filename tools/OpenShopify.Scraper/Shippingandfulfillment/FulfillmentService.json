@@ -24,10 +24,14 @@
         },
         {
           "name": "scope",
-          "description": null,
+          "description": "Specify which fulfillment services to retrieve.",
           "in": "query",
           "schema": {
-            "type": "string"
+            "type": "enum",
+            "enum": [
+              "all",
+              "current_client"
+            ]
           },
           "examples": {
             "current_client": {
@@ -203,6 +207,64 @@
             "type": "string"
           },
           "required": true
+        },
+        {
+          "name": "callback_url",
+          "description": "    The callback URL that the fulfillment service has registered for requests. The following considerations apply:\n    <ul>\n      <li> Shopify queries the <code>callback_url/fetch_tracking_numbers</code> endpoint to retrieve tracking numbers for orders,\n          if <code>inventory_management</code> is set to <code>true</code>.</li>\n      <li> Shopify queries the <code>callback_url/fetch_stock</code> endpoint to retrieve inventory levels,\n          if <code>tracking_support</code> is set to <code>true</code>.</li>\n      <li> Shopify uses the <code>callback_url/fulfillment_order_notification</code> endpoint to send\n    <a href=\"/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations\">\n    fulfillment and cancellation requests</a>,\n    if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments\n    (<code>fulfillment_orders_opt_in</code> is set to <code>true</code>).</li>\n    </ul>\n    The <code>callback_url</code> field is required if <code>inventory_management</code>,\n    <code>tracking_support</code>, or <code>fulfillment_orders_opt_in</code> is set to <code>true</code>.\n",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "fulfillment_orders_opt_in",
+          "description": "Whether the fulfillment service uses the <a href=\"/apps/fulfillment/fulfillment-service-apps/manage-fulfillments\">fulfillment order based workflow</a> for managing fulfillments.",
+          "in": "query",
+          "schema": {
+            "type": "boolean",
+            "default": "false"
+          }
+        },
+        {
+          "name": "inventory_management",
+          "description": "Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:<code>true</code> and <code>false</code>.",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "name",
+          "description": "The name of the fulfillment service as seen by merchants.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "permits_sku_sharing",
+          "description": "Whether the fulfillment service can stock inventory alongside other locations.",
+          "in": "query",
+          "schema": {
+            "type": "boolean",
+            "default": "false"
+          }
+        },
+        {
+          "name": "requires_shipping_method",
+          "description": "Whether the fulfillment service requires products to be physically shipped. Valid values: <code>true</code> and <code>false</code>.",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "tracking_support",
+          "description": "Whether the fulfillment service provides tracking numbers for packages. Valid values: <code>true</code> and <code>false</code>.",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          }
         }
       ],
       "responses": {
@@ -214,7 +276,7 @@
                 "Create a fulfillment service": {
                   "value": {
                     "fulfillment_service": {
-                      "id": 1061774487,
+                      "id": 1061774524,
                       "name": "Jupiter Fulfillment",
                       "email": null,
                       "service_name": "Jupiter Fulfillment",
@@ -222,11 +284,11 @@
                       "fulfillment_orders_opt_in": true,
                       "include_pending_stock": false,
                       "provider_id": null,
-                      "location_id": 1072404542,
+                      "location_id": 1072404579,
                       "callback_url": "http://google.com/",
                       "tracking_support": true,
                       "inventory_management": true,
-                      "admin_graphql_api_id": "gid://shopify/ApiFulfillmentService/1061774487",
+                      "admin_graphql_api_id": "gid://shopify/ApiFulfillmentService/1061774524",
                       "permits_sku_sharing": true
                     }
                   }
@@ -250,7 +312,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"fulfillment_service\":{\"id\":1061774487,\"name\":\"Jupiter Fulfillment\",\"email\":null,\"service_name\":\"Jupiter Fulfillment\",\"handle\":\"jupiter-fulfillment\",\"fulfillment_orders_opt_in\":true,\"include_pending_stock\":false,\"provider_id\":null,\"location_id\":1072404542,\"callback_url\":\"http://google.com/\",\"tracking_support\":true,\"inventory_management\":true,\"admin_graphql_api_id\":\"gid://shopify/ApiFulfillmentService/1061774487\",\"permits_sku_sharing\":true}}"
+            "body": "{\"fulfillment_service\":{\"id\":1061774524,\"name\":\"Jupiter Fulfillment\",\"email\":null,\"service_name\":\"Jupiter Fulfillment\",\"handle\":\"jupiter-fulfillment\",\"fulfillment_orders_opt_in\":true,\"include_pending_stock\":false,\"provider_id\":null,\"location_id\":1072404579,\"callback_url\":\"http://google.com/\",\"tracking_support\":true,\"inventory_management\":true,\"admin_graphql_api_id\":\"gid://shopify/ApiFulfillmentService/1061774524\",\"permits_sku_sharing\":true}}"
           },
           "name": "Create a fulfillment service",
           "codeSamples": [
@@ -402,6 +464,64 @@
             "type": "string"
           },
           "required": true
+        },
+        {
+          "name": "callback_url",
+          "description": "    The callback URL that the fulfillment service has registered for requests. The following considerations apply:\n    <ul>\n      <li> Shopify queries the <code>callback_url/fetch_tracking_numbers</code> endpoint to retrieve tracking numbers for orders,\n          if <code>inventory_management</code> is set to <code>true</code>.</li>\n      <li> Shopify queries the <code>callback_url/fetch_stock</code> endpoint to retrieve inventory levels,\n          if <code>tracking_support</code> is set to <code>true</code>.</li>\n      <li> Shopify uses the <code>callback_url/fulfillment_order_notification</code> endpoint to send\n    <a href=\"/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations\">\n    fulfillment and cancellation requests</a>,\n    if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments\n    (<code>fulfillment_orders_opt_in</code> is set to <code>true</code>).</li>\n    </ul>\n    The <code>callback_url</code> field is required if <code>inventory_management</code>,\n    <code>tracking_support</code>, or <code>fulfillment_orders_opt_in</code> is set to <code>true</code>.\n",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "fulfillment_orders_opt_in",
+          "description": "Whether the fulfillment service uses the <a href=\"/apps/fulfillment/fulfillment-service-apps/manage-fulfillments\">fulfillment order based workflow</a> for managing fulfillments.",
+          "in": "query",
+          "schema": {
+            "type": "boolean",
+            "default": "false"
+          }
+        },
+        {
+          "name": "inventory_management",
+          "description": "Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values: <code>true</code> and <code>false</code>.",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "name",
+          "description": "The name of the fulfillment service as seen by merchants.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "permits_sku_sharing",
+          "description": "Whether the fulfillment service can stock inventory alongside other locations.",
+          "in": "query",
+          "schema": {
+            "type": "boolean",
+            "default": "false"
+          }
+        },
+        {
+          "name": "requires_shipping_method",
+          "description": "Whether the fulfillment service requires products to be physically shipped. Valid values: <code>true</code> and <code>false</code>.",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "tracking_support",
+          "description": "Whether the fulfillment service provides tracking numbers for packages. Valid values: <code>true</code> and <code>false</code>.",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          }
         }
       ],
       "responses": {
@@ -578,13 +698,13 @@
           "name": "admin_graphql_api_id"
         },
         {
-          "description": "The callback URL the fulfillment service has registered for requests.<br>\n          If the Fulfillment Service has opted in to use fulfillment orders, then the <code>callback_url/fulfillment_order_notification</code> endpoint is also used to send <a href=\"/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications\">fulfillment and cancellation requests</a>.<br>The <code>callback_url</code> field is required if <code>inventory_management</code>, <code>tracking_support</code>, or <code>fulfillment_orders_opt_in</code> is set to <code>true</code>.",
+          "description": "    The callback URL that the fulfillment service has registered for requests. The following considerations apply:\n    <ul>\n      <li> Shopify queries the <code>callback_url/fetch_tracking_numbers</code> endpoint to retrieve tracking numbers for orders,\n          if <code>inventory_management</code> is set to <code>true</code>.</li>\n      <li> Shopify queries the <code>callback_url/fetch_stock</code> endpoint to retrieve inventory levels,\n          if <code>tracking_support</code> is set to <code>true</code>.</li>\n      <li> Shopify uses the <code>callback_url/fulfillment_order_notification</code> endpoint to send\n    <a href=\"/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations\">\n    fulfillment and cancellation requests</a>,\n    if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments\n    (<code>fulfillment_orders_opt_in</code> is set to <code>true</code>).</li>\n    </ul>\n    The <code>callback_url</code> field is required if <code>inventory_management</code>,\n    <code>tracking_support</code>, or <code>fulfillment_orders_opt_in</code> is set to <code>true</code>.\n",
           "type": "string",
           "example": "http://myapp.com",
           "name": "callback_url"
         },
         {
-          "description": "Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see <a href=\"/apps/fulfillment/fulfillment-service-apps\"><em>Manage fulfillments with Fulfillment and FulfillmentOrder resources</em></a>.",
+          "description": "Whether the fulfillment service uses the <a href=\"/apps/fulfillment/fulfillment-service-apps/manage-fulfillments\">fulfillment order based workflow</a> for managing fulfillments.",
           "type": "string",
           "example": true,
           "name": "fulfillment_orders_opt_in"
@@ -602,7 +722,7 @@
           "name": "handle"
         },
         {
-          "description": "States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are \"true\" and \"false\".",
+          "description": "Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:<code>true</code> and <code>false</code>.",
           "type": "string",
           "example": true,
           "name": "inventory_management"
@@ -626,13 +746,13 @@
           "name": "provider_id"
         },
         {
-          "description": "States if the fulfillment service requires products to be physically shipped. Valid values are \"true\" and \"false\".",
+          "description": "Whether the fulfillment service requires products to be physically shipped. Valid values:<code>true</code> and <code>false</code>.",
           "type": "string",
           "example": true,
           "name": "requires_shipping_method"
         },
         {
-          "description": "States if the fulfillment service provides tracking numbers for packages. Valid values are \"true\" and \"false\".",
+          "description": "Whether the fulfillment service provides tracking numbers for packages. Valid values:<code>true</code> and <code>false</code>.",
           "type": "string",
           "example": true,
           "name": "tracking_support"

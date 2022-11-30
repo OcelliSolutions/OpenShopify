@@ -1312,6 +1312,30 @@ components:
           type: boolean
           description: Undocumented
           nullable: true
+        privacy_policy_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        refund_policy_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        terms_of_service_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        applied_discounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+          description: Undocumented
+          nullable: true
+        discount_violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+          description: Undocumented
+          nullable: true
         id:
           type: integer
           format: int64
@@ -1503,6 +1527,35 @@ components:
           format: int64
           nullable: true
       additionalProperties: { }
+    CollectionImage:
+      type: object
+      properties:
+        attachment:
+          type: string
+          description: An image attached to a collection returned as Base64-encoded binary data.
+          nullable: true
+        src:
+          type: string
+          description: The source URL that specifies the location of the image.
+          nullable: true
+        alt:
+          type: string
+          description: The alternative text that describes the collection image.
+          nullable: true
+        created_at:
+          type: string
+          description: The time and date (ISO 8601 format) when the image was added to the collection.
+          format: date-time
+          nullable: true
+        width:
+          type: integer
+          description: The width of the image in pixels.
+          format: int32
+        height:
+          type: integer
+          description: The height of the image in pixels.
+          format: int32
+      additionalProperties: { }
     CollectionListing:
       required:
         - id
@@ -1518,13 +1571,9 @@ components:
           description: 'The description of the collection, complete with HTML formatting.'
           nullable: true
         default_product_image:
-          type: string
-          description: The default product image for a collection.
-          nullable: true
+          $ref: '#/components/schemas/ProductImage'
         image:
-          type: string
-          description: The image for a collection.
-          nullable: true
+          $ref: '#/components/schemas/CollectionImage'
         handle:
           type: string
           description: A human-friendly unique string for the Collection automatically generated from its title.
@@ -1837,6 +1886,30 @@ components:
           type: boolean
           description: Undocumented
           nullable: true
+        privacy_policy_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        refund_policy_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        terms_of_service_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        applied_discounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+          description: Undocumented
+          nullable: true
+        discount_violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+          description: Undocumented
+          nullable: true
       additionalProperties: false
     CreateCheckoutRequest:
       required:
@@ -1984,12 +2057,14 @@ components:
           description: A human-friendly unique string for the Product automatically generated from its title.
           nullable: true
         images:
-          type: string
-          description: 'A list of image objects, each one representing an image associated with the product.'
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImage'
           nullable: true
         options:
-          type: string
-          description: 'Custom product property names like "Size", "Color", and "Material".'
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductOption'
           nullable: true
         product_type:
           type: string
@@ -2009,13 +2084,16 @@ components:
           description: The name of the product.
           nullable: true
         variants:
-          type: string
-          description: "A list of variant objects, each one representing a slightly different version of the product. For example, if a product comes in different sizes and colors, each size and color permutation (such as \"small black\", \"medium black\", \"large blue\"), would be a variant. \r\n\r\nTo reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored.\r\n\r\n*   **barcode**: The barcode, UPC or ISBN number for the product. \r\n*   **compare_at_price**: The competitor's price for the same item. \r\n*   **created_at**: The date and time when the product variant was created. The API returns this in ISO 8601. \r\n*   <strong>fulfillment_service</strong>: Service which is handling fulfillment. Valid values are: `manual`, `gift_card`, or the handle of a [FulfillmentService](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). \r\n*   **grams**: The weight of the product variant in grams. \r\n*   **weight**: The weight of the product variant in the unit system specified with **weight_unit**. \r\n*   **weight_unit**: The unit system that the product variant's weight is measure in. The weight_unit can be either \"g\", \"kg, \"oz\", or \"lb\". \r\n*   **id**: The unique numeric identifier for the product variant. \r\n*   **inventory_management**: Specifies whether or not Shopify tracks the number of items in stock for this product variant. \r\n*   **inventory_policy**: Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. \r\n*   **inventory_quantity**: The number of items in stock for this product variant. \r\n*   **metafield**: Attaches additional information to a shop's resources. \r\n*   **option**: Custom properties that a shop owner can use to define product variants. Multiple options can exist. Options are represented as: `option1`, `option2`, `option3`, etc. \r\n*   **position**: The order of the product variant in the list of product variants. 1 is the first position. To reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored. \r\n*   **price**: The price of the product variant. \r\n*   **product_id**: The unique numeric identifier for the product. \r\n*   **requires_shipping**: Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant. \r\n*   **sku**: A unique identifier for the product in the shop. \r\n*   **taxable**: Specifies whether or not a tax is charged when the product variant is sold. \r\n*   **title**: The title of the product variant. \r\n*   **updated_at**: The date and time when the product variant was last modified. The API returns this in ISO 8601."
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
           nullable: true
         vendor:
           type: string
           description: The name of the vendor of the product.
           nullable: true
+        available:
+          type: boolean
       additionalProperties: false
     CreateProductListingRequest:
       required:
@@ -2181,9 +2259,7 @@ components:
         sms_marketing_consent:
           $ref: '#/components/schemas/SmsMarketingConsent'
         state:
-          type: string
-          description: 'The state of the customer''s account with a shop. Default value: `disabled`. Valid values: * **disabled**: The customer doesn''t have an active account. Customer accounts can be disabled from the Shopify admin at any time. * **invited**: The customer has received an email invite to create an account. * **enabled**: The customer has created an account. * **declined**: The customer declined the email invite to create an account.'
-          nullable: true
+          $ref: '#/components/schemas/CustomerState'
         tags:
           type: string
           description: 'Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values. A customer can have up to 250 tags. Each tag can have up to 255 characters.'
@@ -2195,7 +2271,7 @@ components:
         tax_exemptions:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/CustomerTaxExemptions'
           description: 'Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.'
           nullable: true
         total_spent:
@@ -2318,6 +2394,39 @@ components:
           type: integer
           format: int64
       additionalProperties: { }
+    CustomerState:
+      enum:
+        - disabled
+        - invited
+        - enabled
+        - declined
+      type: string
+      additionalProperties: { }
+    CustomerTaxExemptions:
+      enum:
+        - EXEMPT_ALL
+        - CA_STATUS_CARD_EXEMPTION
+        - CA_DIPLOMAT_EXEMPTION
+        - CA_BC_RESELLER_EXEMPTION
+        - CA_MB_RESELLER_EXEMPTION
+        - CA_SK_RESELLER_EXEMPTION
+        - CA_BC_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_MB_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_NS_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_PE_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_SK_COMMERCIAL_FISHERY_EXEMPTION
+        - CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION
+        - CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION
+        - CA_BC_SUB_CONTRACTOR_EXEMPTION
+        - CA_SK_SUB_CONTRACTOR_EXEMPTION
+        - CA_BC_CONTRACTOR_EXEMPTION
+        - CA_SK_CONTRACTOR_EXEMPTION
+        - CA_ON_PURCHASE_EXEMPTION
+        - CA_MB_FARMER_EXEMPTION
+        - CA_NS_FARMER_EXEMPTION
+        - CA_SK_FARMER_EXEMPTION
+      type: string
+      additionalProperties: { }
     DiscountAllocation:
       type: object
       properties:
@@ -2354,9 +2463,7 @@ components:
           description: The amount of the discount.
           nullable: true
         type:
-          type: string
-          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
-          nullable: true
+          $ref: '#/components/schemas/DiscountCodeType'
         errors:
           $ref: '#/components/schemas/DiscountCodeErrors'
         id:
@@ -2385,6 +2492,14 @@ components:
           items:
             type: string
           nullable: true
+      additionalProperties: { }
+    DiscountCodeType:
+      enum:
+        - percentage
+        - shipping
+        - fixed_amount
+        - none
+      type: string
       additionalProperties: { }
     EmailMarketingConsent:
       type: object
@@ -2926,12 +3041,14 @@ components:
           description: A human-friendly unique string for the Product automatically generated from its title.
           nullable: true
         images:
-          type: string
-          description: 'A list of image objects, each one representing an image associated with the product.'
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImage'
           nullable: true
         options:
-          type: string
-          description: 'Custom product property names like "Size", "Color", and "Material".'
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductOption'
           nullable: true
         product_type:
           type: string
@@ -2951,13 +3068,16 @@ components:
           description: The name of the product.
           nullable: true
         variants:
-          type: string
-          description: "A list of variant objects, each one representing a slightly different version of the product. For example, if a product comes in different sizes and colors, each size and color permutation (such as \"small black\", \"medium black\", \"large blue\"), would be a variant. \r\n\r\nTo reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored.\r\n\r\n*   **barcode**: The barcode, UPC or ISBN number for the product. \r\n*   **compare_at_price**: The competitor's price for the same item. \r\n*   **created_at**: The date and time when the product variant was created. The API returns this in ISO 8601. \r\n*   <strong>fulfillment_service</strong>: Service which is handling fulfillment. Valid values are: `manual`, `gift_card`, or the handle of a [FulfillmentService](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). \r\n*   **grams**: The weight of the product variant in grams. \r\n*   **weight**: The weight of the product variant in the unit system specified with **weight_unit**. \r\n*   **weight_unit**: The unit system that the product variant's weight is measure in. The weight_unit can be either \"g\", \"kg, \"oz\", or \"lb\". \r\n*   **id**: The unique numeric identifier for the product variant. \r\n*   **inventory_management**: Specifies whether or not Shopify tracks the number of items in stock for this product variant. \r\n*   **inventory_policy**: Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. \r\n*   **inventory_quantity**: The number of items in stock for this product variant. \r\n*   **metafield**: Attaches additional information to a shop's resources. \r\n*   **option**: Custom properties that a shop owner can use to define product variants. Multiple options can exist. Options are represented as: `option1`, `option2`, `option3`, etc. \r\n*   **position**: The order of the product variant in the list of product variants. 1 is the first position. To reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored. \r\n*   **price**: The price of the product variant. \r\n*   **product_id**: The unique numeric identifier for the product. \r\n*   **requires_shipping**: Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant. \r\n*   **sku**: A unique identifier for the product in the shop. \r\n*   **taxable**: Specifies whether or not a tax is charged when the product variant is sold. \r\n*   **title**: The title of the product variant. \r\n*   **updated_at**: The date and time when the product variant was last modified. The API returns this in ISO 8601."
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
           nullable: true
         vendor:
           type: string
           description: The name of the vendor of the product.
           nullable: true
+        available:
+          type: boolean
         id:
           type: integer
           format: int64
@@ -3705,6 +3825,30 @@ components:
           nullable: true
         buyer_accepts_sms_marketing:
           type: boolean
+          description: Undocumented
+          nullable: true
+        privacy_policy_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        refund_policy_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        terms_of_service_url:
+          type: string
+          description: Undocumented
+          nullable: true
+        applied_discounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+          description: Undocumented
+          nullable: true
+        discount_violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
           description: Undocumented
           nullable: true
         id:

@@ -6802,20 +6802,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.DateTimeOffset? PublishedAt { get; set; } = default!;
 
-        /// <summary>
-        /// The status of the comment. Valid values:
-        /// <br/>
-        /// <br/>*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. 
-        /// <br/>*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. 
-        /// <br/>*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. 
-        /// <br/>*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. 
-        /// <br/>*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Status { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CommentStatus? Status { get; set; } = default!;
 
         /// <summary>
         /// The user agent string provided by the software used to create the comment (usually a browser).
@@ -6904,6 +6895,27 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum CommentStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        Pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unapproved (default)")]
+        UnapprovedDefault = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"published")]
+        Published = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"spam")]
+        Spam = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"removed")]
+        Removed = 4,
 
     }
 
@@ -7238,7 +7250,7 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateComment
+    public partial class CreateCommentForArticle
     {
         /// <summary>
         /// A unique numeric identifier for the article that the comment belongs to.
@@ -7346,7 +7358,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
-        public CreateComment Comment { get; set; } = new CreateComment();
+        public CreateCommentForArticle Comment { get; set; } = new CreateCommentForArticle();
 
     }
 
@@ -8496,7 +8508,7 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class UpdateComment
+    public partial class UpdateCommentOfArticle
     {
         /// <summary>
         /// A unique numeric identifier for the article that the comment belongs to.
@@ -8570,20 +8582,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.DateTimeOffset? PublishedAt { get; set; } = default!;
 
-        /// <summary>
-        /// The status of the comment. Valid values:
-        /// <br/>
-        /// <br/>*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. 
-        /// <br/>*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. 
-        /// <br/>*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. 
-        /// <br/>*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. 
-        /// <br/>*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Status { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CommentStatus? Status { get; set; } = default!;
 
         /// <summary>
         /// The user agent string provided by the software used to create the comment (usually a browser).
@@ -8614,7 +8617,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
-        public UpdateComment Comment { get; set; } = new UpdateComment();
+        public UpdateCommentOfArticle Comment { get; set; } = new UpdateCommentOfArticle();
 
     }
 

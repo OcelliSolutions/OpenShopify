@@ -76,7 +76,7 @@ public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
         var submittedFulfillmentOrder = response.SubmittedFulfillmentOrder;
         var unsubmittedFulfillmentOrder = response.UnsubmittedFulfillmentOrder;
 
-        Assert.Equal(RequestStatus.Submitted, submittedFulfillmentOrder?.RequestStatus);
+        Assert.Equal(FulfillmentOrderRequestStatus.Submitted, submittedFulfillmentOrder?.RequestStatus);
         Assert.Equal(FulfillmentOrderStatus.Open, submittedFulfillmentOrder?.Status);
         Assert.Null(unsubmittedFulfillmentOrder); //no line items were specified, so there is nothing unsubmitted.
     }
@@ -94,7 +94,7 @@ public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
-        Assert.Equal(RequestStatus.Accepted, response.RequestStatus);
+        Assert.Equal(FulfillmentOrderRequestStatus.Accepted, response.RequestStatus);
         Assert.Equal(FulfillmentOrderStatus.InProgress, response.Status);
     }
 
@@ -115,7 +115,7 @@ public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
 
         var acceptedResponse = response.Result.FulfillmentOrder;
-        Assert.Equal(RequestStatus.Rejected, acceptedResponse.RequestStatus);
+        Assert.Equal(FulfillmentOrderRequestStatus.Rejected, acceptedResponse.RequestStatus);
         Assert.Equal(FulfillmentOrderStatus.Open, acceptedResponse.Status);
     }
 

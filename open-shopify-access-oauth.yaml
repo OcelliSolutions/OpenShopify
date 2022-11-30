@@ -14,8 +14,6 @@ paths:
     get:
       tags:
         - AccessScope
-      summary: Get a list of access scopes
-      description: Retrieves a list of access scopes associated with the access token.
       operationId: ListAccessScopes
       responses:
         '200':

@@ -59,7 +59,11 @@ namespace OpenShopify.Admin.Builder.Models
         /// Moves a fulfillment order to a new location
         /// </summary>
         /// <remarks>
-        /// Moves a fulfillment order from one merchant managed location to another merchant managed location.
+        /// Moves a fulfillment order from one location to another location.Moving a fulfillment order will fail in the following events:
+        /// 
+        /// *   The fulfillment order is closed. 
+        /// *   The new location doesn't have the necessary inventory available. 
+        /// *   The API client doesn't have the correct permissions.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/move.json")]
         public abstract System.Threading.Tasks.Task MoveFulfillmentOrderToNewLocation([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MoveFulfillmentOrderToNewLocationRequest request, long fulfillment_order_id);
@@ -83,13 +87,13 @@ namespace OpenShopify.Admin.Builder.Models
         public abstract System.Threading.Tasks.Task RescheduleFulfillAtTimeOfScheduledFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest request, long fulfillment_order_id);
 
         /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status `OPEN`
+        /// Applies a fulfillment hold on an open fulfillment order
         /// </summary>
         /// <remarks>
         /// Halts all fulfillment work on a fulfillment order with status `OPEN` and changes the status of the fulfillment order to `ON_HOLD`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/hold.json")]
-        public abstract System.Threading.Tasks.Task ApplyFulfillmentHoldOnFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ApplyFulfillmentHoldOnFulfillmentOrderRequest request, long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task ApplyFulfillmentHoldOnOpenFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ApplyFulfillmentHoldOnOpenFulfillmentOrderRequest request, long fulfillment_order_id);
 
         /// <summary>
         /// Sets deadline for fulfillment orders
@@ -108,6 +112,129 @@ namespace OpenShopify.Admin.Builder.Models
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/release_hold.json")]
         public abstract System.Threading.Tasks.Task ReleaseFulfillmentHoldOnFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ReleaseFulfillmentHoldOnFulfillmentOrderRequest request, long fulfillment_order_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentOrderDeliveryMethod
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"id")]
+        Id = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"method_type")]
+        MethodType = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"local")]
+        Local = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"none")]
+        None = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pick_up")]
+        PickUp = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"retail")]
+        Retail = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping")]
+        Shipping = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"min_delivery_date_time")]
+        MinDeliveryDateTime = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"max_delivery_date_time")]
+        MaxDeliveryDateTime = 8,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentOrderInternationalDuties
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incoterm")]
+        Incoterm = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"DAP")]
+        DAP = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"DDP")]
+        DDP = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentOrderRequestStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unsubmitted")]
+        Unsubmitted = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"submitted")]
+        Submitted = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"accepted")]
+        Accepted = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"rejected")]
+        Rejected = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_requested")]
+        CancellationRequested = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_accepted")]
+        CancellationAccepted = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_rejected")]
+        CancellationRejected = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"closed")]
+        Closed = 7,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentOrderStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"open")]
+        Open = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"in_progress")]
+        InProgress = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"scheduled")]
+        Scheduled = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfill_at")]
+        FulfillAt = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancelled")]
+        Cancelled = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"on_hold")]
+        OnHold = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incomplete")]
+        Incomplete = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"closed")]
+        Closed = 7,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentOrderMerchantRequests
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"message")]
+        Message = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"request_options")]
+        RequestOptions = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"kind")]
+        Kind = 2,
 
     }
 
@@ -304,13 +431,22 @@ namespace OpenShopify.Admin.Builder.Models
         public string? MerchantRequests { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment order's assigned location. This is the location expected to perform fulfillment.
+        /// The fulfillment order's assigned location. This is the location where the fulfillment is expected to happen.
+        /// 
+        /// The fulfillment order's assigned location might change in the following cases:
+        /// 
+        /// 1.  The fulfillment order has been entirely moved to a new location. For example, the [ fulfillment order move](/api/admin-rest/latest/resources/fulfillmentorder#post-fulfillment-orders-fulfillment-order-id-move) endpoint has been called, and you see the original fulfillment order in the `moved_fulfillment_order` field within the response. 
+        /// 2.  Work on the fulfillment order has not yet begun, which means that the fulfillment order has the `open`, `scheduled`, or `on_hold` status, and the shop's location properties might be undergoing edits (for example, in the Shopify admin). 
+        /// 
+        /// If the [ move](/api/admin-rest/latest/resources/fulfillmentorder#post-fulfillment-orders-fulfillment-order-id-move) operation has moved the fulfillment order's line items to a new location, but hasn't moved the fulfillment order instance itself, then the original fulfillment order's assigned location doesn't change. This happens if the fulfillment order is being split during the move, or if all line items can be moved to an existing fitting fulfillment order at a new location.
+        /// 
+        /// Once the fulfillment order has been taken into work or canceled, which means that the fulfillment order has the `in_progress`, `closed`, `cancelled`, or `incomplete` status, assigned location acts as a snapshot of the shop's location content. Up-to-date shop's location data may be queried through [ get location](https://shopify.dev/api/admin-rest/latest/resources/location#get-locations-location-id) endpoint with `assigned_location.location_id` supplied.
         /// 
         /// *   **address1**: The street address of the assigned location. 
         /// *   **address2**: An optional additional field for the street address of the assigned location. 
         /// *   **city**: The city of the assigned location. 
         /// *   **country_code**: The two-letter code for the country of the assigned location. 
-        /// *   **location_id**: The ID of the assigned location. 
+        /// *   **location_id**: The ID of the shop's location where the fulfillment is expected to happen. It's content might be different from the `assigned_location` content if the location's attributes were updated after the fulfillment order was taken into work of canceled. 
         /// *   **name**: The name of the assigned location. 
         /// *   **phone**: The phone number of the assigned location. 
         /// *   **province**: The province of the assigned location. 

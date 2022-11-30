@@ -83,9 +83,8 @@ public class CancellationRequestTests : IClassFixture<CancellationRequestFixture
             await Fixture.Service.CancellationRequest.SendCancellationRequestAsync(sendFulfillmentResponse.SubmittedFulfillmentOrder.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
-
-        //Assert.Equal(FulfillmentOrderStatus.Scheduled, response.Result.FulfillmentOrder.Status);
-        Assert.Equal(RequestStatus.CancellationRequested, response.Result.FulfillmentOrder.RequestStatus);
+        
+        Assert.Equal(FulfillmentOrderRequestStatus.CancellationRequested, response.Result.FulfillmentOrder.RequestStatus);
     }
     /*
     [SkippableFact]

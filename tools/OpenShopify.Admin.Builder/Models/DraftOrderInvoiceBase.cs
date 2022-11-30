@@ -3,7 +3,3 @@
 public partial record DraftOrderInvoiceBase
 {
 }
-
-public partial record DraftOrderInvoiceOrig
-{
-}

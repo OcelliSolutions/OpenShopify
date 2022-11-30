@@ -79,7 +79,7 @@ public class CommentTests : IClassFixture<CommentFixture>
         var originalComment = Fixture.CreatedComments.First();
         var request = new UpdateCommentOfArticleRequest()
         {
-            Comment = new UpdateComment
+            Comment = new ()
             {
                 Id = originalComment.Id,
                 Body = "You can even update through a web service."
@@ -102,7 +102,7 @@ public class CommentTests : IClassFixture<CommentFixture>
     {
         var request = new CreateCommentForArticleRequest
         {
-            Comment = new CreateComment
+            Comment = new ()
             {
                 Body = @"I like comments\nAnd I like posting them *RESTfully*.",
                 Author = $@"{Fixture.FirstName} {Fixture.LastName}",
@@ -124,7 +124,7 @@ public class CommentTests : IClassFixture<CommentFixture>
     {
         var request = new CreateCommentForArticleRequest
         {
-            Comment = new CreateComment()
+            Comment = new ()
         };
         await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Comment.CreateCommentForArticleAsync(request, CancellationToken.None));

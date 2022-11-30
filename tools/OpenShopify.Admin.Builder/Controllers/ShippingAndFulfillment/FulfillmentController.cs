@@ -92,6 +92,150 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentLineItems
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"id")]
+        Id = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_id")]
+        VariantId = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"title")]
+        Title = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"quantity")]
+        Quantity = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"price")]
+        Price = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"grams")]
+        Grams = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"sku")]
+        Sku = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_title")]
+        VariantTitle = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"vendor")]
+        Vendor = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_service")]
+        FulfillmentService = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product_id")]
+        ProductId = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"requires_shipping")]
+        RequiresShipping = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"taxable")]
+        Taxable = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"gift_card")]
+        GiftCard = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"name")]
+        Name = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_inventory_management")]
+        VariantInventoryManagement = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"properties")]
+        Properties = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product_exists")]
+        ProductExists = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillable_quantity")]
+        FulfillableQuantity = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"line_item")]
+        LineItem = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"FulfillmentOrder")]
+        FulfillmentOrder = 20,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"total_discount")]
+        TotalDiscount = 21,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_status")]
+        FulfillmentStatus = 22,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"status")]
+        Status = 23,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_line_item_id")]
+        FulfillmentLineItemId = 24,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"tax_lines")]
+        TaxLines = 25,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"duties")]
+        Duties = 26,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentShipmentStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"label_printed")]
+        LabelPrinted = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"label_purchased")]
+        LabelPurchased = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"attempted_delivery")]
+        AttemptedDelivery = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ready_for_pickup")]
+        ReadyForPickup = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"confirmed")]
+        Confirmed = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"in_transit")]
+        InTransit = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"out_for_delivery")]
+        OutForDelivery = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"delivered")]
+        Delivered = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"failure")]
+        Failure = 8,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum FulfillmentStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        Pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"open")]
+        Open = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"success")]
+        Success = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancelled")]
+        Cancelled = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"error")]
+        Error = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"failure")]
+        Failure = 5,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record FulfillmentOrig
     {
         /// <summary>
@@ -165,14 +309,14 @@ namespace OpenShopify.Admin.Builder.Models
         public long? OrderId { get; set; } = default!;
 
         /// <summary>
-        /// The address from which the fulfillment occurred:
+        /// The address of the fulfillment location.
         /// 
-        /// *   **address1**: The street address of the fulfillment location. 
-        /// *   **address2**: The second line of the address. Typically the number of the apartment, suite, or unit. 
-        /// *   **city**: The city of the fulfillment location. 
-        /// *   **country_code**: The country of the fulfillment location. 
-        /// *   **province_code**: The province of the fulfillment location. 
-        /// *   **zip**: The zip code of the fulfillment location.
+        /// *   **address1**: (string) The street address of the fulfillment location. 
+        /// *   **address2**: (string) The second line of the address. Typically the number of the apartment, suite, or unit. 
+        /// *   **city**: (string) The city of the fulfillment location. 
+        /// *   **country_code**: (string) (required) The two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) of the fulfillment location.  
+        /// *   **province_code**: (string) The province of the fulfillment location. 
+        /// *   **zip**: (string) The zip code of the fulfillment location.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("origin_address")]
@@ -240,60 +384,140 @@ namespace OpenShopify.Admin.Builder.Models
         /// The name of the tracking company. The following tracking companies display for shops located in any country: 
         /// 
         /// *   **4PX** 
+        /// *   **AGS** 
         /// *   **Amazon Logistics UK** 
         /// *   **Amazon Logistics US** 
+        /// *   **An Post** 
         /// *   **Anjun Logistics** 
         /// *   **APC** 
+        /// *   **Asendia USA** 
         /// *   **Australia Post** 
-        /// *   **Bluedart** 
+        /// *   **Bonshaw** 
+        /// *   **BPost** 
+        /// *   **BPost International** 
         /// *   **Canada Post** 
         /// *   **Canpar** 
+        /// *   **CDL Last Mile** 
         /// *   **China Post** 
+        /// *   **Chronopost** 
         /// *   **Chukou1** 
+        /// *   **Colissimo** 
+        /// *   **Comingle** 
+        /// *   **Coordinadora** 
         /// *   **Correios** 
-        /// *   **Couriers Please** 
-        /// *   **Delhivery** 
+        /// *   **Correos** 
+        /// *   **CTT** 
+        /// *   **CTT Express** 
+        /// *   **Cyprus Post** 
+        /// *   **Delnext** 
+        /// *   **Deutsche Post** 
         /// *   **DHL eCommerce** 
         /// *   **DHL eCommerce Asia** 
         /// *   **DHL Express** 
+        /// *   **DoorDash** 
         /// *   **DPD** 
         /// *   **DPD Local** 
         /// *   **DPD UK** 
+        /// *   **DTD Express** 
+        /// *   **DX** 
         /// *   **Eagle** 
+        /// *   **Estes** 
+        /// *   **Evri** 
         /// *   **FedEx** 
+        /// *   **First Global Logistics** 
+        /// *   **First Line** 
         /// *   **FSC** 
-        /// *   **Asendia USA** 
+        /// *   **Fulfilla** 
         /// *   **GLS** 
-        /// *   **GLS (US)** 
-        /// *   **Japan Post** 
+        /// *   **Guangdong Weisuyi Information Technology (WSE)** 
+        /// *   **Heppner Internationale Spedition GmbH &amp; Co.** 
+        /// *   **Iceland Post** 
+        /// *   **IDEX** 
+        /// *   **Israel Post** 
+        /// *   **Japan Post (EN)** 
+        /// *   **Japan Post (JA)** 
         /// *   **La Poste** 
+        /// *   **Lasership** 
+        /// *   **Latvia Post** 
+        /// *   **Lietuvos Paštas** 
+        /// *   **Logisters** 
+        /// *   **Lone Star Overnight** 
+        /// *   **M3 Logistics** 
+        /// *   **Meteor Space** 
+        /// *   **Mondial Relay** 
         /// *   **New Zealand Post** 
-        /// *   **Newgistics** 
+        /// *   **NinjaVan** 
+        /// *   **North Russia Supply Chain (Shenzhen) Co.** 
+        /// *   **OnTrac** 
+        /// *   **Packeta** 
+        /// *   **Pago Logistics** 
+        /// *   **Ping An Da Tengfei Express** 
+        /// *   **Pitney Bowes** 
+        /// *   **Portal PostNord** 
+        /// *   **Poste Italiane** 
         /// *   **PostNL** 
-        /// *   **PostNord** 
+        /// *   **PostNord DK** 
+        /// *   **PostNord NO** 
+        /// *   **PostNord SE** 
         /// *   **Purolator** 
+        /// *   **Qxpress** 
+        /// *   **Qyun Express** 
         /// *   **Royal Mail** 
-        /// *   **Sagawa** 
+        /// *   **Royal Shipments** 
+        /// *   **Sagawa (EN)** 
+        /// *   **Sagawa (JA)** 
         /// *   **Sendle** 
         /// *   **SF Express** 
-        /// *   **SFC Fulfilllment** 
+        /// *   **SFC Fulfillment** 
+        /// *   **SHREE NANDAN COURIER** 
         /// *   **Singapore Post** 
+        /// *   **Southwest Air Cargo** 
         /// *   **StarTrack** 
+        /// *   **Step Forward Freight** 
+        /// *   **Swiss Post** 
+        /// *   **TForce Final Mile** 
+        /// *   **Tinghao** 
         /// *   **TNT** 
         /// *   **Toll IPEC** 
+        /// *   **United Delivery Service** 
         /// *   **UPS** 
         /// *   **USPS** 
+        /// *   **Venipak** 
+        /// *   **We Post** 
         /// *   **Whistl** 
-        /// *   **Yamato** 
+        /// *   **Wizmo** 
+        /// *   **WMYC** 
+        /// *   **Xpedigo** 
+        /// *   **XPO Logistics** 
+        /// *   **Yamato (EN)** 
+        /// *   **Yamato (JA)** 
+        /// *   **YiFan Express** 
         /// *   **YunExpress** 
         /// 
         /// The following tracking companies are displayed for shops located in specific countries:
         /// 
-        /// *   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL 
-        /// *   **Ireland**: An Post, Fastway 
-        /// *   **Australia**: Aramex Australia, Australia Post, Sendle 
+        /// *   **Australia**: Australia Post, Sendle, Aramex Australia, TNT Australia, Hunter Express, Couriers Please, Bonds, Allied Express, Direct Couriers, Northline, GO Logistics 
+        /// *   **Austria**: Österreichische Post 
+        /// *   **Bulgaria**: Speedy 
+        /// *   **Canada**: Intelcom, BoxKnight, Loomis, GLS 
+        /// *   **China**: China Post, DHL eCommerce Asia, WanbExpress, YunExpress, Anjun Logistics, SFC Fulfillment, FSC 
+        /// *   **Czechia**: Zásilkovna 
+        /// *   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL, DHL Express, Swiship, Hermes, GLS 
+        /// *   **Spain**: SEUR 
+        /// *   **France**: Colissimo, Mondial Relay, Colis Privé, GLS 
+        /// *   **United Kingdom**: Evri, DPD UK, Parcelforce, Yodel, DHL Parcel, Tuffnells 
+        /// *   **Greece**: ACS Courier 
+        /// *   **Hong Kong SAR**: SF Express 
+        /// *   **Ireland**: Fastway, DPD Ireland 
+        /// *   **India**: DTDC, India Post, Delhivery, Gati KWE, Professional Couriers, XpressBees, Ecom Express, Ekart, Shadowfax, Bluedart 
+        /// *   **Italy**: BRT, GLS Italy 
         /// *   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 
-        /// *   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress 
+        /// *   **Netherlands**: DHL Parcel, DPD 
+        /// *   **Norway**: Bring 
+        /// *   **Poland**: Inpost 
+        /// *   **Turkey**: PTT, Yurtiçi Kargo, Aras Kargo, Sürat Kargo 
+        /// *   **United States**: GLS, Alliance Air Freight, Pilot Freight, LSO, Old Dominion, R+L Carriers, Southwest Air Cargo 
+        /// *   **South Africa**: Fastway, Skynet 
         /// 
         ///  &lt;div class="note"&gt; 
         /// 

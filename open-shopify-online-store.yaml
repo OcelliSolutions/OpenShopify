@@ -2434,9 +2434,7 @@ components:
           format: date-time
           nullable: true
         status:
-          type: string
-          description: "The status of the comment. Valid values:\r\n\r\n*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. \r\n*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. \r\n*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. \r\n*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. \r\n*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog."
-          nullable: true
+          $ref: '#/components/schemas/CommentStatus'
         user_agent:
           type: string
           description: The user agent string provided by the software used to create the comment (usually a browser).
@@ -2475,6 +2473,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Comment'
+      additionalProperties: { }
+    CommentStatus:
+      enum:
+        - pending
+        - unapproved (default)
+        - published
+        - spam
+        - removed
+      type: string
       additionalProperties: { }
     CountItem:
       type: object
@@ -2639,7 +2646,7 @@ components:
         blog:
           $ref: '#/components/schemas/CreateBlog'
       additionalProperties: false
-    CreateComment:
+    CreateCommentForArticle:
       type: object
       properties:
         article_id:
@@ -2692,7 +2699,7 @@ components:
       type: object
       properties:
         comment:
-          $ref: '#/components/schemas/CreateComment'
+          $ref: '#/components/schemas/CreateCommentForArticle'
       additionalProperties: false
     CreateOrUpdatesAssetForThemeRequest:
       required:
@@ -3307,7 +3314,7 @@ components:
         blog:
           $ref: '#/components/schemas/UpdateBlog'
       additionalProperties: false
-    UpdateComment:
+    UpdateCommentOfArticle:
       required:
         - id
       type: object
@@ -3348,9 +3355,7 @@ components:
           format: date-time
           nullable: true
         status:
-          type: string
-          description: "The status of the comment. Valid values:\r\n\r\n*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. \r\n*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. \r\n*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. \r\n*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. \r\n*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog."
-          nullable: true
+          $ref: '#/components/schemas/CommentStatus'
         user_agent:
           type: string
           description: The user agent string provided by the software used to create the comment (usually a browser).
@@ -3368,7 +3373,7 @@ components:
       type: object
       properties:
         comment:
-          $ref: '#/components/schemas/UpdateComment'
+          $ref: '#/components/schemas/UpdateCommentOfArticle'
       additionalProperties: false
     UpdatePage:
       required:

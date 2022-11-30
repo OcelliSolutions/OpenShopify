@@ -3,6 +3,3 @@
 public partial record EngagementBase
 {
 }
-public partial record EngagementOrig
-{
-}

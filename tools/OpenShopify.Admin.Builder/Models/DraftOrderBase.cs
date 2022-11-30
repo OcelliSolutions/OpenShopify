@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+//using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -50,5 +51,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("use_customer_default_address")]
         public bool? UseCustomerDefaultAddress { get; set; }
+
+        /// <inheritdoc cref="DraftOrderOrig.Status"/>
+        [JsonPropertyName("status")]
+        public new DraftOrderStatus? Status { get; set; }
+
+        /// <inheritdoc cref="DraftOrderOrig.TaxExemptions"/>
+        [JsonPropertyName("tax_exemptions")]
+        public new List<DraftOrderTaxExemptions>? TaxExemptions { get; set; }
     }
 }

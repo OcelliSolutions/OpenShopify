@@ -103,7 +103,8 @@ public class CheckoutTests : IClassFixture<CheckoutFixture>
         {
             Handle = "shopify-Free%20Shipping-0.00",
             Price = 0,
-            Title = "Free Shipping"
+            Title = "Free Shipping",
+            Code = "10"
         };
 
         checkout.ShippingRate = new ShippingRate()

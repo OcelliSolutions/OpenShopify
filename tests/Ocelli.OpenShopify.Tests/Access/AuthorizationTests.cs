@@ -35,13 +35,14 @@ public class AuthorizationTests : IClassFixture<AuthorizationScopeFixture>
         //Configure querystring
         var qs = new Dictionary<string, StringValues>()
         {
-            {"shop", "stages-test-shop-2.myshopify.com"},
-            {"path_prefix", "/apps/stages-order-tracker"},
-            {"timestamp", "1459781841"},
-            {"signature", "239813a42e1164a9f52e85b2119b752774fafb26d0f730359c86572e1791854a"},
+            {"shop", "shop-name.myshopify.com"},
+            {"path_prefix", "/apps/awesome_reviews"},
+            {"timestamp", "1317327555"},
+            {"signature", "7292b834263177afa7fddbea3fa7a81f20818ee7cf05d1c4b4cac1677dc7a8f7"},
+            {"logged_in_customer_id", "1"}
         };
 
-        var isValid = AuthorizationService.IsAuthenticProxyRequest(qs, Fixture.SecretKey);
+        var isValid = AuthorizationService.IsAuthenticProxyRequest(qs, "hush");
 
         Assert.True(isValid);
     }
@@ -68,9 +69,9 @@ public class AuthorizationTests : IClassFixture<AuthorizationScopeFixture>
     public void Validates_Proxy_Requests_With_Raw_QueryString()
     {
         //Configure querystring
-        const string qs = "shop=stages-test-shop-2.myshopify.com&path_prefix=/apps/stages-order-tracker&timestamp=1459781841&signature=239813a42e1164a9f52e85b2119b752774fafb26d0f730359c86572e1791854a";
+        const string qs = "extra=1&extra=2&shop=shop-name.myshopify.com&logged_in_customer_id=&path_prefix=%2Fapps%2Fawesome_reviews&timestamp=1317327555&signature=e072b6d7e6622d85912a5214b860d3100dc1e73d9bc29f43796ac8c9ff8093cb";
 
-        var isValid = AuthorizationService.IsAuthenticProxyRequest(qs, Fixture.SecretKey);
+        var isValid = AuthorizationService.IsAuthenticProxyRequest(qs, "hush");
 
         Assert.True(isValid);
     }

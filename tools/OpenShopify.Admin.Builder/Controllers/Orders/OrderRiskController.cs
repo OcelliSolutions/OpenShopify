@@ -81,6 +81,21 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum OrderRiskRecommendation
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancel")]
+        Cancel = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"investigate")]
+        Investigate = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"accept")]
+        Accept = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record OrderRiskOrig
     {
         /// <summary>

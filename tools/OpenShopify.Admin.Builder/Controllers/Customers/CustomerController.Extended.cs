@@ -73,7 +73,6 @@ public class CustomerController : CustomerControllerBase
     public override Task SendAccountInviteToCustomer([Required] SendAccountInviteToCustomerRequest request,
         long customer_id) => throw new NotImplementedException();
 
-
     /// <inheritdoc cref="CustomerControllerBase.SendAccountInviteToCustomer" />
     [HttpPost]
     [Route("customers/{customer_id:long}/send_invite.json")]
@@ -85,8 +84,10 @@ public class CustomerController : CustomerControllerBase
     [HttpGet]
     [Route("customers/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountCustomers() => throw new NotImplementedException();
-
+    public override Task CountCustomers(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null) =>
+        throw new NotImplementedException();
+    
     /// <inheritdoc />
     [HttpGet]
     [Route("customers/{customer_id:long}/orders.json")]

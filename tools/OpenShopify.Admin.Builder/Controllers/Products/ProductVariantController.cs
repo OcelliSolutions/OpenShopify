@@ -85,6 +85,60 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ProductVariantFulfillmentService
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
+        Manual = 0,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ProductVariantInventoryManagement
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shopify")]
+        Shopify = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_service")]
+        FulfillmentService = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ProductVariantInventoryPolicy
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"deny")]
+        Deny = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"continue")]
+        Continue = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ProductVariantWeightUnit
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"weight_unit")]
+        WeightUnit = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"g")]
+        G = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"kg")]
+        Kg = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"oz")]
+        Oz = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"lb")]
+        Lb = 4,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record ProductVariantOrig
     {
         /// <summary>

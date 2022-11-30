@@ -36,5 +36,4 @@ namespace OpenShopify.Admin.Builder.Models
         public IEnumerable<string>? Bcc { get; set; }
 
     }
-    public partial record CustomerInviteOrig { }
 }

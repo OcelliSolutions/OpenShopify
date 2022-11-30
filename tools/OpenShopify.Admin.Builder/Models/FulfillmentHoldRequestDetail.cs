@@ -1,15 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models;
 
-
-public record ApplyFulfillmentHoldOnFulfillmentOrderRequest
-{
-    [Required, JsonPropertyName("fulfillment_hold")]
-    public FulfillmentHoldRequestDetail FulfillmentHold { get; set; } = null!;
-}
 public record FulfillmentHoldRequestDetail
 {
     /// <summary>
@@ -30,4 +23,3 @@ public record FulfillmentHoldRequestDetail
     [JsonPropertyName("reason_notes")]
     public string? ReasonNotes { get; set; }
 }
-

@@ -36,6 +36,57 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum AssignedFulfillmentOrderRequestStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unsubmitted")]
+        Unsubmitted = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"submitted")]
+        Submitted = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"accepted")]
+        Accepted = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"rejected")]
+        Rejected = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_requested")]
+        CancellationRequested = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_accepted")]
+        CancellationAccepted = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_rejected")]
+        CancellationRejected = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"closed")]
+        Closed = 7,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum AssignedFulfillmentOrderStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"open")]
+        Open = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"in_progress")]
+        InProgress = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancelled")]
+        Cancelled = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incomplete")]
+        Incomplete = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"closed")]
+        Closed = 4,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record AssignedFulfillmentOrderOrig
     {
         /// <summary>

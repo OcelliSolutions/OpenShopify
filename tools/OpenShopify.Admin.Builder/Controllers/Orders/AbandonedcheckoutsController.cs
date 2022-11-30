@@ -43,6 +43,39 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum AbandonedcheckoutsDiscountCodes
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"amount")]
+        Amount = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"code")]
+        Code = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"type")]
+        Type = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum AbandonedcheckoutsSourceName
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"web")]
+        Web = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pos")]
+        Pos = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"iphone")]
+        Iphone = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"android")]
+        Android = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record AbandonedcheckoutsOrig
     {
         /// <summary>

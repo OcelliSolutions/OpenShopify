@@ -38,7 +38,8 @@ foreach (var shopifyFile in shopifyFiles)
                 "RefundOrderAdjustment", "Shipping", "ShippingLine", "TaxLine", "Transaction", "CurrencyExchangeAdjustment",
                 "Order", "OrderList", "CancelReason", "FinancialStatus", "OrderFulfillmentStatus", "ProcessingMethod",
                 "TransactionErrorCode", "TransactionKind", "ExtendedAuthorizationAttributes", "PaymentsRefundAttributeStatus",
-                "PaymentsRefundAttributes", "RestockType", "Receipt", "ShipmentStatus", "FulfillmentStatus"
+                "PaymentsRefundAttributes", "RestockType", "Receipt", "ShipmentStatus", "FulfillmentStatus", "DiscountCodeType",
+                "FulfillmentShipmentStatus", "OrderCancelReason", "OrderFinancialStatus", "OrderProcessingMethod"
             });
             break;
         case "Orders":
@@ -46,7 +47,8 @@ foreach (var shopifyFile in shopifyFiles)
             {
                 "Address", "ClientDetails", "Customer", "CustomerAddress","EmailMarketingConsent", "SmsMarketingConsent", 
                 "CustomerMetafield", "DiscountCode", "DiscountCodeErrors","Price", "Fulfillment", "NoteAttribute", "Receipt", 
-                "ShipmentStatus", "FulfillmentStatus"
+                "ShipmentStatus", "FulfillmentStatus", "CustomerState", "CustomerTaxExemptions", "DiscountCodeType",
+                "FulfillmentShipmentStatus"
             });
             break;
         case "SalesChannels":
@@ -56,7 +58,8 @@ foreach (var shopifyFile in shopifyFiles)
                 "CustomerMetafield", "DiscountAllocation", "DiscountCode", "DiscountCodeErrors","LineItem", "LineItemDuty", 
                 "LineItemOriginLocation", "LineItemProperty", "Price", "PriceSet", "ShippingLine", "TaxLine",
                 "ProductImage", "Product", "PresentmentPrice", "ProductList", "ProductOption", "ProductVariant",
-                "Checkout", "CheckoutLineItem", "CheckoutGiftCard", "ShippingRateCheckout", "ShippingRate", "Transaction", "TransactionItem", "TransactionList"
+                "CheckoutLineItem", "CheckoutGiftCard", "ShippingRateCheckout", "ShippingRate", "Transaction", "TransactionItem", 
+                "TransactionList", "CustomerState", "CustomerTaxExemptions", "DiscountCodeType", "CollectionImage"
             });
             break;
         case "ShopifyPayments":
@@ -110,7 +113,8 @@ foreach (var shopifyFile in shopifyFiles)
     var generator = new CSharpClientGenerator(document, settings);
     var code = generator.GenerateFile();
     code = code.Replace("JsonStringEnumConverter", "JsonStringEnumMemberConverter");
-    
+    //code = code.Replace("JsonStringEnumConverter", "JsonNullableStringEnumConverter");
+
     code = Regex.Replace(code, @"foreach \(var item_ in (\w+).*?\}}", $@"{{urlBuilder_.Append(System.Uri.EscapeDataString(""$1"") + ""="").Append(System.Uri.EscapeDataString(string.Join("","", $1))).Append(""&""); }}");
 
     code = Regex.Replace(code, @"namespace Ocelli.OpenShopify", $@"[assembly: System.Runtime.CompilerServices.InternalsVisibleTo(""Ocelli.OpenShopify.Tests"")]

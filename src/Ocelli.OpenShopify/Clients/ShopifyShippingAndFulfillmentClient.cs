@@ -2586,7 +2586,11 @@ namespace Ocelli.OpenShopify
         /// Moves a fulfillment order to a new location
         /// </summary>
         /// <remarks>
-        /// Moves a fulfillment order from one merchant managed location to another merchant managed location.
+        /// Moves a fulfillment order from one location to another location.Moving a fulfillment order will fail in the following events:
+        /// <br/>
+        /// <br/>*   The fulfillment order is closed. 
+        /// <br/>*   The new location doesn't have the necessary inventory available. 
+        /// <br/>*   The API client doesn't have the correct permissions.
         /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2616,14 +2620,14 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status `OPEN`
+        /// Applies a fulfillment hold on an open fulfillment order
         /// </summary>
         /// <remarks>
         /// Halts all fulfillment work on a fulfillment order with status `OPEN` and changes the status of the fulfillment order to `ON_HOLD`.
         /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ApplyFulfillmentHoldOnFulfillmentOrderAsync(long fulfillmentOrderId, ApplyFulfillmentHoldOnFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ApplyFulfillmentHoldOnOpenFulfillmentOrderAsync(long fulfillmentOrderId, ApplyFulfillmentHoldOnOpenFulfillmentOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2996,7 +3000,11 @@ namespace Ocelli.OpenShopify
         /// Moves a fulfillment order to a new location
         /// </summary>
         /// <remarks>
-        /// Moves a fulfillment order from one merchant managed location to another merchant managed location.
+        /// Moves a fulfillment order from one location to another location.Moving a fulfillment order will fail in the following events:
+        /// <br/>
+        /// <br/>*   The fulfillment order is closed. 
+        /// <br/>*   The new location doesn't have the necessary inventory available. 
+        /// <br/>*   The API client doesn't have the correct permissions.
         /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -3239,20 +3247,17 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status `OPEN`
+        /// Applies a fulfillment hold on an open fulfillment order
         /// </summary>
         /// <remarks>
         /// Halts all fulfillment work on a fulfillment order with status `OPEN` and changes the status of the fulfillment order to `ON_HOLD`.
         /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ApplyFulfillmentHoldOnFulfillmentOrderAsync(long fulfillmentOrderId, ApplyFulfillmentHoldOnFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ApplyFulfillmentHoldOnOpenFulfillmentOrderAsync(long fulfillmentOrderId, ApplyFulfillmentHoldOnOpenFulfillmentOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentOrderId == null)
                 throw new System.ArgumentNullException("fulfillmentOrderId");
-
-            if (body == null)
-                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/fulfillment_orders/{fulfillment_order_id}/hold.json");
@@ -4001,6 +4006,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Receive a list of all FulfillmentServices
         /// </summary>
+        /// <param name="scope">Specify which fulfillment services to retrieve.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceList>> ListFulfillmentServicesAsync(FulfillmentServiceScope? scope = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -4075,6 +4081,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Receive a list of all FulfillmentServices
         /// </summary>
+        /// <param name="scope">Specify which fulfillment services to retrieve.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceList>> ListFulfillmentServicesAsync(FulfillmentServiceScope? scope = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4807,7 +4814,7 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ApplyFulfillmentHoldOnFulfillmentOrderRequest
+    public partial class ApplyFulfillmentHoldOnOpenFulfillmentOrderRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_hold")]
@@ -5302,11 +5309,11 @@ namespace Ocelli.OpenShopify
     public partial class CreateFulfillmentEventRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_event")]
+        [System.Text.Json.Serialization.JsonPropertyName("event")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
-        public CreateFulfillmentEvent FulfillmentEvent { get; set; } = new CreateFulfillmentEvent();
+        public CreateFulfillmentEvent Event { get; set; } = new CreateFulfillmentEvent();
 
     }
 
@@ -5365,9 +5372,13 @@ namespace Ocelli.OpenShopify
         public string? AdminGraphqlApiId { get; set; } = default!;
 
         /// <summary>
-        /// The callback URL the fulfillment service has registered for requests.  
-        /// <br/> If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  
-        /// <br/>The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`.
+        /// The callback URL that the fulfillment service has registered for requests. The following considerations apply: 
+        /// <br/>
+        /// <br/>*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `inventory_management` is set to `true`. 
+        /// <br/>*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `tracking_support` is set to `true`. 
+        /// <br/>*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations), if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). 
+        /// <br/>
+        /// <br/> The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
@@ -5376,7 +5387,7 @@ namespace Ocelli.OpenShopify
         public string? CallbackUrl { get; set; } = default!;
 
         /// <summary>
-        /// Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).
+        /// Whether the fulfillment service uses the [fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]
@@ -5403,7 +5414,7 @@ namespace Ocelli.OpenShopify
         public string? Handle { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are "true" and "false".
+        /// Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
@@ -5439,7 +5450,7 @@ namespace Ocelli.OpenShopify
         public long? ProviderId { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service requires products to be physically shipped. Valid values are "true" and "false".
+        /// Whether the fulfillment service requires products to be physically shipped. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("requires_shipping_method")]
@@ -5448,7 +5459,7 @@ namespace Ocelli.OpenShopify
         public bool? RequiresShippingMethod { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
+        /// Whether the fulfillment service provides tracking numbers for packages. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_support")]
@@ -5667,7 +5678,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public ShipmentStatus? ShipmentStatus { get; set; } = default!;
+        public FulfillmentShipmentStatus? ShipmentStatus { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("status")]
 
@@ -5679,60 +5690,140 @@ namespace Ocelli.OpenShopify
         /// The name of the tracking company. The following tracking companies display for shops located in any country: 
         /// <br/>
         /// <br/>*   **4PX** 
+        /// <br/>*   **AGS** 
         /// <br/>*   **Amazon Logistics UK** 
         /// <br/>*   **Amazon Logistics US** 
+        /// <br/>*   **An Post** 
         /// <br/>*   **Anjun Logistics** 
         /// <br/>*   **APC** 
+        /// <br/>*   **Asendia USA** 
         /// <br/>*   **Australia Post** 
-        /// <br/>*   **Bluedart** 
+        /// <br/>*   **Bonshaw** 
+        /// <br/>*   **BPost** 
+        /// <br/>*   **BPost International** 
         /// <br/>*   **Canada Post** 
         /// <br/>*   **Canpar** 
+        /// <br/>*   **CDL Last Mile** 
         /// <br/>*   **China Post** 
+        /// <br/>*   **Chronopost** 
         /// <br/>*   **Chukou1** 
+        /// <br/>*   **Colissimo** 
+        /// <br/>*   **Comingle** 
+        /// <br/>*   **Coordinadora** 
         /// <br/>*   **Correios** 
-        /// <br/>*   **Couriers Please** 
-        /// <br/>*   **Delhivery** 
+        /// <br/>*   **Correos** 
+        /// <br/>*   **CTT** 
+        /// <br/>*   **CTT Express** 
+        /// <br/>*   **Cyprus Post** 
+        /// <br/>*   **Delnext** 
+        /// <br/>*   **Deutsche Post** 
         /// <br/>*   **DHL eCommerce** 
         /// <br/>*   **DHL eCommerce Asia** 
         /// <br/>*   **DHL Express** 
+        /// <br/>*   **DoorDash** 
         /// <br/>*   **DPD** 
         /// <br/>*   **DPD Local** 
         /// <br/>*   **DPD UK** 
+        /// <br/>*   **DTD Express** 
+        /// <br/>*   **DX** 
         /// <br/>*   **Eagle** 
+        /// <br/>*   **Estes** 
+        /// <br/>*   **Evri** 
         /// <br/>*   **FedEx** 
+        /// <br/>*   **First Global Logistics** 
+        /// <br/>*   **First Line** 
         /// <br/>*   **FSC** 
-        /// <br/>*   **Asendia USA** 
+        /// <br/>*   **Fulfilla** 
         /// <br/>*   **GLS** 
-        /// <br/>*   **GLS (US)** 
-        /// <br/>*   **Japan Post** 
+        /// <br/>*   **Guangdong Weisuyi Information Technology (WSE)** 
+        /// <br/>*   **Heppner Internationale Spedition GmbH &amp; Co.** 
+        /// <br/>*   **Iceland Post** 
+        /// <br/>*   **IDEX** 
+        /// <br/>*   **Israel Post** 
+        /// <br/>*   **Japan Post (EN)** 
+        /// <br/>*   **Japan Post (JA)** 
         /// <br/>*   **La Poste** 
+        /// <br/>*   **Lasership** 
+        /// <br/>*   **Latvia Post** 
+        /// <br/>*   **Lietuvos Paštas** 
+        /// <br/>*   **Logisters** 
+        /// <br/>*   **Lone Star Overnight** 
+        /// <br/>*   **M3 Logistics** 
+        /// <br/>*   **Meteor Space** 
+        /// <br/>*   **Mondial Relay** 
         /// <br/>*   **New Zealand Post** 
-        /// <br/>*   **Newgistics** 
+        /// <br/>*   **NinjaVan** 
+        /// <br/>*   **North Russia Supply Chain (Shenzhen) Co.** 
+        /// <br/>*   **OnTrac** 
+        /// <br/>*   **Packeta** 
+        /// <br/>*   **Pago Logistics** 
+        /// <br/>*   **Ping An Da Tengfei Express** 
+        /// <br/>*   **Pitney Bowes** 
+        /// <br/>*   **Portal PostNord** 
+        /// <br/>*   **Poste Italiane** 
         /// <br/>*   **PostNL** 
-        /// <br/>*   **PostNord** 
+        /// <br/>*   **PostNord DK** 
+        /// <br/>*   **PostNord NO** 
+        /// <br/>*   **PostNord SE** 
         /// <br/>*   **Purolator** 
+        /// <br/>*   **Qxpress** 
+        /// <br/>*   **Qyun Express** 
         /// <br/>*   **Royal Mail** 
-        /// <br/>*   **Sagawa** 
+        /// <br/>*   **Royal Shipments** 
+        /// <br/>*   **Sagawa (EN)** 
+        /// <br/>*   **Sagawa (JA)** 
         /// <br/>*   **Sendle** 
         /// <br/>*   **SF Express** 
-        /// <br/>*   **SFC Fulfilllment** 
+        /// <br/>*   **SFC Fulfillment** 
+        /// <br/>*   **SHREE NANDAN COURIER** 
         /// <br/>*   **Singapore Post** 
+        /// <br/>*   **Southwest Air Cargo** 
         /// <br/>*   **StarTrack** 
+        /// <br/>*   **Step Forward Freight** 
+        /// <br/>*   **Swiss Post** 
+        /// <br/>*   **TForce Final Mile** 
+        /// <br/>*   **Tinghao** 
         /// <br/>*   **TNT** 
         /// <br/>*   **Toll IPEC** 
+        /// <br/>*   **United Delivery Service** 
         /// <br/>*   **UPS** 
         /// <br/>*   **USPS** 
+        /// <br/>*   **Venipak** 
+        /// <br/>*   **We Post** 
         /// <br/>*   **Whistl** 
-        /// <br/>*   **Yamato** 
+        /// <br/>*   **Wizmo** 
+        /// <br/>*   **WMYC** 
+        /// <br/>*   **Xpedigo** 
+        /// <br/>*   **XPO Logistics** 
+        /// <br/>*   **Yamato (EN)** 
+        /// <br/>*   **Yamato (JA)** 
+        /// <br/>*   **YiFan Express** 
         /// <br/>*   **YunExpress** 
         /// <br/>
         /// <br/>The following tracking companies are displayed for shops located in specific countries:
         /// <br/>
-        /// <br/>*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL 
-        /// <br/>*   **Ireland**: An Post, Fastway 
-        /// <br/>*   **Australia**: Aramex Australia, Australia Post, Sendle 
+        /// <br/>*   **Australia**: Australia Post, Sendle, Aramex Australia, TNT Australia, Hunter Express, Couriers Please, Bonds, Allied Express, Direct Couriers, Northline, GO Logistics 
+        /// <br/>*   **Austria**: Österreichische Post 
+        /// <br/>*   **Bulgaria**: Speedy 
+        /// <br/>*   **Canada**: Intelcom, BoxKnight, Loomis, GLS 
+        /// <br/>*   **China**: China Post, DHL eCommerce Asia, WanbExpress, YunExpress, Anjun Logistics, SFC Fulfillment, FSC 
+        /// <br/>*   **Czechia**: Zásilkovna 
+        /// <br/>*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL, DHL Express, Swiship, Hermes, GLS 
+        /// <br/>*   **Spain**: SEUR 
+        /// <br/>*   **France**: Colissimo, Mondial Relay, Colis Privé, GLS 
+        /// <br/>*   **United Kingdom**: Evri, DPD UK, Parcelforce, Yodel, DHL Parcel, Tuffnells 
+        /// <br/>*   **Greece**: ACS Courier 
+        /// <br/>*   **Hong Kong SAR**: SF Express 
+        /// <br/>*   **Ireland**: Fastway, DPD Ireland 
+        /// <br/>*   **India**: DTDC, India Post, Delhivery, Gati KWE, Professional Couriers, XpressBees, Ecom Express, Ekart, Shadowfax, Bluedart 
+        /// <br/>*   **Italy**: BRT, GLS Italy 
         /// <br/>*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 
-        /// <br/>*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress 
+        /// <br/>*   **Netherlands**: DHL Parcel, DPD 
+        /// <br/>*   **Norway**: Bring 
+        /// <br/>*   **Poland**: Inpost 
+        /// <br/>*   **Turkey**: PTT, Yurtiçi Kargo, Aras Kargo, Sürat Kargo 
+        /// <br/>*   **United States**: GLS, Alliance Air Freight, Pilot Freight, LSO, Old Dominion, R+L Carriers, Southwest Air Cargo 
+        /// <br/>*   **South Africa**: Fastway, Skynet 
         /// <br/>
         /// <br/> &lt;div class="note"&gt; 
         /// <br/>
@@ -6305,7 +6396,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public RequestStatus RequestStatus { get; set; } = default!;
+        public FulfillmentOrderRequestStatus RequestStatus { get; set; } = default!;
 
         /// <summary>
         /// The ID of the shop that's associated with the fulfillment order.
@@ -6580,6 +6671,12 @@ namespace Ocelli.OpenShopify
     public partial class FulfillmentOrderItem
     {
 
+        [System.Text.Json.Serialization.JsonPropertyName("replacement_fulfillment_order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public FulfillmentOrder ReplacementFulfillmentOrder { get; set; } = new FulfillmentOrder();
+
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
@@ -6705,6 +6802,36 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum FulfillmentOrderRequestStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unsubmitted")]
+        Unsubmitted = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"submitted")]
+        Submitted = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"accepted")]
+        Accepted = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"rejected")]
+        Rejected = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_requested")]
+        CancellationRequested = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_accepted")]
+        CancellationAccepted = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_rejected")]
+        CancellationRejected = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"closed")]
+        Closed = 7,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public enum FulfillmentOrderStatus
     {
 
@@ -6717,17 +6844,20 @@ namespace Ocelli.OpenShopify
         [System.Runtime.Serialization.EnumMember(Value = @"scheduled")]
         Scheduled = 2,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfill_at")]
+        FulfillAt = 3,
+
         [System.Runtime.Serialization.EnumMember(Value = @"cancelled")]
-        Cancelled = 3,
+        Cancelled = 4,
 
         [System.Runtime.Serialization.EnumMember(Value = @"on_hold")]
-        OnHold = 4,
+        OnHold = 5,
 
         [System.Runtime.Serialization.EnumMember(Value = @"incomplete")]
-        Incomplete = 5,
+        Incomplete = 6,
 
         [System.Runtime.Serialization.EnumMember(Value = @"closed")]
-        Closed = 6,
+        Closed = 7,
 
     }
 
@@ -6811,7 +6941,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public RequestStatus RequestStatus { get; set; } = default!;
+        public FulfillmentOrderRequestStatus RequestStatus { get; set; } = default!;
 
         /// <summary>
         /// The ID of the shop that's associated with the fulfillment order.
@@ -6855,13 +6985,22 @@ namespace Ocelli.OpenShopify
         public System.Collections.Generic.ICollection<MerchantRequest>? MerchantRequests { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment order's assigned location. This is the location expected to perform fulfillment.
+        /// The fulfillment order's assigned location. This is the location where the fulfillment is expected to happen.
+        /// <br/>
+        /// <br/>The fulfillment order's assigned location might change in the following cases:
+        /// <br/>
+        /// <br/>1.  The fulfillment order has been entirely moved to a new location. For example, the [ fulfillment order move](/api/admin-rest/latest/resources/fulfillmentorder#post-fulfillment-orders-fulfillment-order-id-move) endpoint has been called, and you see the original fulfillment order in the `moved_fulfillment_order` field within the response. 
+        /// <br/>2.  Work on the fulfillment order has not yet begun, which means that the fulfillment order has the `open`, `scheduled`, or `on_hold` status, and the shop's location properties might be undergoing edits (for example, in the Shopify admin). 
+        /// <br/>
+        /// <br/>If the [ move](/api/admin-rest/latest/resources/fulfillmentorder#post-fulfillment-orders-fulfillment-order-id-move) operation has moved the fulfillment order's line items to a new location, but hasn't moved the fulfillment order instance itself, then the original fulfillment order's assigned location doesn't change. This happens if the fulfillment order is being split during the move, or if all line items can be moved to an existing fitting fulfillment order at a new location.
+        /// <br/>
+        /// <br/>Once the fulfillment order has been taken into work or canceled, which means that the fulfillment order has the `in_progress`, `closed`, `cancelled`, or `incomplete` status, assigned location acts as a snapshot of the shop's location content. Up-to-date shop's location data may be queried through [ get location](https://shopify.dev/api/admin-rest/latest/resources/location#get-locations-location-id) endpoint with `assigned_location.location_id` supplied.
         /// <br/>
         /// <br/>*   **address1**: The street address of the assigned location. 
         /// <br/>*   **address2**: An optional additional field for the street address of the assigned location. 
         /// <br/>*   **city**: The city of the assigned location. 
         /// <br/>*   **country_code**: The two-letter code for the country of the assigned location. 
-        /// <br/>*   **location_id**: The ID of the assigned location. 
+        /// <br/>*   **location_id**: The ID of the shop's location where the fulfillment is expected to happen. It's content might be different from the `assigned_location` content if the location's attributes were updated after the fulfillment order was taken into work of canceled. 
         /// <br/>*   **name**: The name of the assigned location. 
         /// <br/>*   **phone**: The phone number of the assigned location. 
         /// <br/>*   **province**: The province of the assigned location. 
@@ -6991,9 +7130,13 @@ namespace Ocelli.OpenShopify
         public string? AdminGraphqlApiId { get; set; } = default!;
 
         /// <summary>
-        /// The callback URL the fulfillment service has registered for requests.  
-        /// <br/> If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  
-        /// <br/>The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`.
+        /// The callback URL that the fulfillment service has registered for requests. The following considerations apply: 
+        /// <br/>
+        /// <br/>*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `inventory_management` is set to `true`. 
+        /// <br/>*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `tracking_support` is set to `true`. 
+        /// <br/>*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations), if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). 
+        /// <br/>
+        /// <br/> The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
@@ -7002,7 +7145,7 @@ namespace Ocelli.OpenShopify
         public string? CallbackUrl { get; set; } = default!;
 
         /// <summary>
-        /// Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).
+        /// Whether the fulfillment service uses the [fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]
@@ -7029,7 +7172,7 @@ namespace Ocelli.OpenShopify
         public string? Handle { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are "true" and "false".
+        /// Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
@@ -7065,7 +7208,7 @@ namespace Ocelli.OpenShopify
         public long? ProviderId { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service requires products to be physically shipped. Valid values are "true" and "false".
+        /// Whether the fulfillment service requires products to be physically shipped. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("requires_shipping_method")]
@@ -7074,7 +7217,7 @@ namespace Ocelli.OpenShopify
         public bool? RequiresShippingMethod { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
+        /// Whether the fulfillment service provides tracking numbers for packages. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_support")]
@@ -7212,6 +7355,39 @@ namespace Ocelli.OpenShopify
 
         [System.Runtime.Serialization.EnumMember(Value = @"current_client")]
         CurrentClient = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum FulfillmentShipmentStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"label_printed")]
+        LabelPrinted = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"label_purchased")]
+        LabelPurchased = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"attempted_delivery")]
+        AttemptedDelivery = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ready_for_pickup")]
+        ReadyForPickup = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"confirmed")]
+        Confirmed = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"in_transit")]
+        InTransit = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"out_for_delivery")]
+        OutForDelivery = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"delivered")]
+        Delivered = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"failure")]
+        Failure = 8,
 
     }
 
@@ -7659,36 +7835,6 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum RequestStatus
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"unsubmitted")]
-        Unsubmitted = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"submitted")]
-        Submitted = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"accepted")]
-        Accepted = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"rejected")]
-        Rejected = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_requested")]
-        CancellationRequested = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_accepted")]
-        CancellationAccepted = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"cancellation_rejected")]
-        CancellationRejected = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"closed")]
-        Closed = 7,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class RescheduleFulfillAtTimeOfScheduledFulfillmentOrderDetailRequest
     {
 
@@ -7785,39 +7931,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.DateTimeOffset? FulfillmentDeadline { get; set; } = default!;
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum ShipmentStatus
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"label_printed")]
-        LabelPrinted = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"label_purchased")]
-        LabelPurchased = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"attempted_delivery")]
-        AttemptedDelivery = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ready_for_pickup")]
-        ReadyForPickup = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"confirmed")]
-        Confirmed = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"in_transit")]
-        InTransit = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"out_for_delivery")]
-        OutForDelivery = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"delivered")]
-        Delivered = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"failure")]
-        Failure = 8,
 
     }
 
@@ -7950,9 +8063,13 @@ namespace Ocelli.OpenShopify
         public string? AdminGraphqlApiId { get; set; } = default!;
 
         /// <summary>
-        /// The callback URL the fulfillment service has registered for requests.  
-        /// <br/> If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  
-        /// <br/>The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`.
+        /// The callback URL that the fulfillment service has registered for requests. The following considerations apply: 
+        /// <br/>
+        /// <br/>*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `inventory_management` is set to `true`. 
+        /// <br/>*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `tracking_support` is set to `true`. 
+        /// <br/>*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations), if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). 
+        /// <br/>
+        /// <br/> The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
@@ -7961,7 +8078,7 @@ namespace Ocelli.OpenShopify
         public string? CallbackUrl { get; set; } = default!;
 
         /// <summary>
-        /// Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).
+        /// Whether the fulfillment service uses the [fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]
@@ -7988,7 +8105,7 @@ namespace Ocelli.OpenShopify
         public string? Handle { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are "true" and "false".
+        /// Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
@@ -8024,7 +8141,7 @@ namespace Ocelli.OpenShopify
         public long? ProviderId { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service requires products to be physically shipped. Valid values are "true" and "false".
+        /// Whether the fulfillment service requires products to be physically shipped. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("requires_shipping_method")]
@@ -8033,7 +8150,7 @@ namespace Ocelli.OpenShopify
         public bool? RequiresShippingMethod { get; set; } = default!;
 
         /// <summary>
-        /// States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
+        /// Whether the fulfillment service provides tracking numbers for packages. Valid values:`true` and `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_support")]

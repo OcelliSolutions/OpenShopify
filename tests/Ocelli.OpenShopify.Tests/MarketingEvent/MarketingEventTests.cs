@@ -62,10 +62,10 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
                 EndedAt = DateTimeOffset.Now.AddDays(-1),
                 ScheduledToEndAt = DateTimeOffset.Now,
                 Budget = "11.1",
-                BudgetType = BudgetType.Daily,
+                BudgetType = MarketingEventBudgetType.Daily,
                 Currency = "CAD",
                 UtmMedium = "other",
-                EventType = EventType.Ad,
+                EventType = MarketingEventEventType.Ad,
                 ReferringDomain = "instagram.com"
             }
         };

@@ -43,7 +43,7 @@ public class PaymentTests : IClassFixture<PaymentFixture>
     public async Task CreatePaymentAsync_CanCreate()
     {
         var request = Fixture.CreatePaymentRequest();
-        var response = await Fixture.Service.Payment.CreatePaymentAsync("", body: request);
+        var response = await Fixture.Service.Payment.CreatePaymentAsync(request.Payment.UniqueToken ?? "", body: request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedPayments.Add(response.Result.Payment);

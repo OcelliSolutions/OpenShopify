@@ -300,12 +300,12 @@ public class SharedFixture
             PriceRule = new CreatePriceRule
             {
                 Title = UniqueString(callerName),
-                ValueType = "percentage",
-                TargetType = "line_item",
-                TargetSelection = "all",
-                AllocationMethod = "across",
+                ValueType = PriceRuleValueType.Percentage,
+                TargetType = PriceRuleTargetType.LineItem,
+                TargetSelection = PriceRuleTargetSelection.All,
+                AllocationMethod = PriceRuleAllocationMethod.Across,
                 Value = (decimal)-10.0,
-                CustomerSelection = "all",
+                CustomerSelection = PriceRuleCustomerSelection.All,
                 OncePerCustomer = false, PrerequisiteCollectionIds = new List<long>(),
                 PrerequisiteSubtotalRange = new PrerequisiteValueRange
                 {
@@ -564,9 +564,9 @@ public class SharedFixture
             UtmCampaign = $@"Christmas2022_{BatchId}", 
             UtmSource = "facebook",
             UtmMedium = "cpc",
-            EventType = EventType.Ad,
+            EventType = MarketingEventEventType.Ad,
             ReferringDomain = "facebook.com",
-            MarketingChannel = MarketingChannel.Social,
+            MarketingChannel = MarketingEventMarketingChannel.Social,
             Paid = true
         }
     };
@@ -640,7 +640,7 @@ public class SharedFixture
         Risk = new()
         {
             Message = "This fulfillmentOrder came from an anonymous proxy",
-            Recommendation = RiskRecommendation.Cancel,
+            Recommendation = OrderRiskRecommendation.Cancel,
             Score = (decimal)1.0,
             Source = "External",
             CauseCancel = true,

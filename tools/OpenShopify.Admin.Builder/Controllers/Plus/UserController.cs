@@ -54,6 +54,147 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum UserPermissions
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"applications")]
+        Applications = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"billing_application_charges")]
+        BillingApplicationCharges = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"billing_charges")]
+        BillingCharges = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"billing_invoices_view")]
+        BillingInvoicesView = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"billing_payment_methods_view")]
+        BillingPaymentMethodsView = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customers")]
+        Customers = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"dashboard")]
+        Dashboard = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"domains")]
+        Domains = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"draft_orders")]
+        DraftOrders = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"edit_orders")]
+        EditOrders = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"edit_private_apps")]
+        EditPrivateApps = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"export_customers")]
+        ExportCustomers = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"export_draft_orders")]
+        ExportDraftOrders = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"export_products")]
+        ExportProducts = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"export_orders")]
+        ExportOrders = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"gift_cards")]
+        GiftCards = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"links")]
+        Links = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"locations")]
+        Locations = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"marketing")]
+        Marketing = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"marketing_section")]
+        MarketingSection = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders")]
+        Orders = 20,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"overviews")]
+        Overviews = 21,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pages")]
+        Pages = 22,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"preferences")]
+        Preferences = 23,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"products")]
+        Products = 24,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"reports")]
+        Reports = 25,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shopify_payments_accounts")]
+        ShopifyPaymentsAccounts = 26,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shopify_payments_transfers")]
+        ShopifyPaymentsTransfers = 27,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"staff_audit_log_view")]
+        StaffAuditLogView = 28,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"staff_management_activation")]
+        StaffManagementActivation = 29,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"staff_management_create")]
+        StaffManagementCreate = 30,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"staff_management_delete")]
+        StaffManagementDelete = 31,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"staff_management_update")]
+        StaffManagementUpdate = 32,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"themes")]
+        Themes = 33,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"view_private_apps")]
+        ViewPrivateApps = 34,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum UserReceiveAnnouncements
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"0")]
+        _0 = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"1")]
+        _1 = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum UserUserType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"regular")]
+        Regular = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"restricted")]
+        Restricted = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invited")]
+        Invited = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collaborator")]
+        Collaborator = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record UserOrig
     {
         /// <summary>

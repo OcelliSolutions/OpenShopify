@@ -6,8 +6,3 @@ public partial record CreateDiscountCode
 {
     [JsonIgnore] public new int? UsageCount { get; set; }
 }
-
-public partial record UpdateDiscountCode
-{
-    [JsonIgnore] public new int? UsageCount { get; set; }
-}

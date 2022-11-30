@@ -82,6 +82,78 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum PriceRuleAllocationMethod
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"each")]
+        Each = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"across")]
+        Across = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"target_type")]
+        TargetType = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping_line")]
+        ShippingLine = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum PriceRuleCustomerSelection
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"all")]
+        All = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"prerequisite")]
+        Prerequisite = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum PriceRuleTargetSelection
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"all")]
+        All = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"entitled")]
+        Entitled = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum PriceRuleTargetType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"line_item")]
+        LineItem = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping_line")]
+        ShippingLine = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum PriceRuleValueType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fixed_amount")]
+        FixedAmount = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"percentage")]
+        Percentage = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"target_type")]
+        TargetType = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping_line")]
+        ShippingLine = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record PriceRuleOrig
     {
         /// <summary>

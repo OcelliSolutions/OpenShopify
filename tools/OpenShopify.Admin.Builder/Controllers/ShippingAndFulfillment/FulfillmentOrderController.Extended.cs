@@ -77,12 +77,13 @@ public class FulfillmentOrderController : FulfillmentOrderControllerBase
         [Required] RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest request, long fulfillment_order_id) =>
         throw new NotImplementedException();
 
+
     /// <inheritdoc />
     [HttpPost]
     [Route("fulfillment_orders/{fulfillment_order_id:long}/hold.json")]
     [ProducesResponseType(typeof(FulfillmentOrderItem), StatusCodes.Status200OK)]
-    public override Task ApplyFulfillmentHoldOnFulfillmentOrder(
-        [Required] ApplyFulfillmentHoldOnFulfillmentOrderRequest request, long fulfillment_order_id) =>
+    public override Task ApplyFulfillmentHoldOnOpenFulfillmentOrder(ApplyFulfillmentHoldOnOpenFulfillmentOrderRequest request,
+        long fulfillment_order_id) =>
         throw new NotImplementedException();
 
     /// <inheritdoc />

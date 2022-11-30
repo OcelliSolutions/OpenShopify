@@ -127,9 +127,17 @@ namespace Ocelli.OpenShopify
         /// <remarks>
         /// Retrieves a count of all customers.
         /// </remarks>
+        /// <param name="createdAtMax">Count customers created before a specified date.  
+        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="createdAtMin">Count customers created after a specified date.  
+        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="updatedAtMax">Count customers last updated before a specified date.  
+        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="updatedAtMin">Count customers last updated after a specified date.  
+        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomersAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -873,12 +881,37 @@ namespace Ocelli.OpenShopify
         /// <remarks>
         /// Retrieves a count of all customers.
         /// </remarks>
+        /// <param name="createdAtMax">Count customers created before a specified date.  
+        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="createdAtMin">Count customers created after a specified date.  
+        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="updatedAtMax">Count customers last updated before a specified date.  
+        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <param name="updatedAtMin">Count customers last updated after a specified date.  
+        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomersAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/customers/count.json");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/customers/count.json?");
+            if (createdAtMax != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(createdAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (createdAtMin != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(createdAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (updatedAtMax != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(updatedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (updatedAtMin != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -3098,6 +3131,24 @@ namespace Ocelli.OpenShopify
         public int? OrdersCount { get; set; } = default!;
 
         /// <summary>
+        /// The customer's password.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Password { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's password that's confirmed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password_confirmation")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? PasswordConfirmation { get; set; } = default!;
+
+        /// <summary>
         /// The unique phone number ([E.164 format](https://en.wikipedia.org/wiki/E.164)) for this customer. Attempting to assign the same phone number to multiple customers returns an error. The property can be set using different formats, but each format must represent a number that can be dialed from anywhere in the world. The following formats are all valid:
         /// <br/>
         /// <br/>*   6135551212 
@@ -3178,24 +3229,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? VerifiedEmail { get; set; } = default!;
-
-        /// <summary>
-        /// An optional password for the user. Default is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("password")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Password { get; set; } = default!;
-
-        /// <summary>
-        /// Should be set and match OpenShopify.Admin.Builder.Models.CreateCustomer.Password. Default is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("password_confirmation")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? PasswordConfirmation { get; set; } = default!;
 
         /// <summary>
         /// Whether an email invite should be sent to the new customer. Default is null.
@@ -3658,14 +3691,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public SmsMarketingConsent? SmsMarketingConsent { get; set; } = default!;
 
-        /// <summary>
-        /// The state of the customer's account with a shop. Default value: `disabled`. Valid values: * **disabled**: The customer doesn't have an active account. Customer accounts can be disabled from the Shopify admin at any time. * **invited**: The customer has received an email invite to create an account. * **enabled**: The customer has created an account. * **declined**: The customer declined the email invite to create an account.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("state")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? State { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CustomerState? State { get; set; } = default!;
 
         /// <summary>
         /// Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values. A customer can have up to 250 tags. Each tag can have up to 255 characters.
@@ -3692,7 +3722,9 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
+
+        // TODO(system.text.json): Add string enum item converter
+        public System.Collections.Generic.ICollection<CustomerTaxExemptions>? TaxExemptions { get; set; } = default!;
 
         /// <summary>
         /// The total amount of money that the customer has spent across their order history.
@@ -4219,6 +4251,93 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum CustomerState
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"disabled")]
+        Disabled = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invited")]
+        Invited = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"enabled")]
+        Enabled = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"declined")]
+        Declined = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum CustomerTaxExemptions
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"EXEMPT_ALL")]
+        EXEMPTALL = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_STATUS_CARD_EXEMPTION")]
+        CASTATUSCARDEXEMPTION = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_DIPLOMAT_EXEMPTION")]
+        CADIPLOMATEXEMPTION = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_RESELLER_EXEMPTION")]
+        CABCRESELLEREXEMPTION = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_RESELLER_EXEMPTION")]
+        CAMBRESELLEREXEMPTION = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_RESELLER_EXEMPTION")]
+        CASKRESELLEREXEMPTION = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_COMMERCIAL_FISHERY_EXEMPTION")]
+        CABCCOMMERCIALFISHERYEXEMPTION = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_COMMERCIAL_FISHERY_EXEMPTION")]
+        CAMBCOMMERCIALFISHERYEXEMPTION = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_NS_COMMERCIAL_FISHERY_EXEMPTION")]
+        CANSCOMMERCIALFISHERYEXEMPTION = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_PE_COMMERCIAL_FISHERY_EXEMPTION")]
+        CAPECOMMERCIALFISHERYEXEMPTION = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_COMMERCIAL_FISHERY_EXEMPTION")]
+        CASKCOMMERCIALFISHERYEXEMPTION = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION")]
+        CABCPRODUCTIONANDMACHINERYEXEMPTION = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION")]
+        CASKPRODUCTIONANDMACHINERYEXEMPTION = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_SUB_CONTRACTOR_EXEMPTION")]
+        CABCSUBCONTRACTOREXEMPTION = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_SUB_CONTRACTOR_EXEMPTION")]
+        CASKSUBCONTRACTOREXEMPTION = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_BC_CONTRACTOR_EXEMPTION")]
+        CABCCONTRACTOREXEMPTION = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_CONTRACTOR_EXEMPTION")]
+        CASKCONTRACTOREXEMPTION = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_ON_PURCHASE_EXEMPTION")]
+        CAONPURCHASEEXEMPTION = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_MB_FARMER_EXEMPTION")]
+        CAMBFARMEREXEMPTION = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_NS_FARMER_EXEMPTION")]
+        CANSFARMEREXEMPTION = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA_SK_FARMER_EXEMPTION")]
+        CASKFARMEREXEMPTION = 20,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class EmailMarketingConsent
     {
         /// <summary>
@@ -4464,6 +4583,24 @@ namespace Ocelli.OpenShopify
         public int? OrdersCount { get; set; } = default!;
 
         /// <summary>
+        /// The customer's password.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Password { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's password that's confirmed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password_confirmation")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? PasswordConfirmation { get; set; } = default!;
+
+        /// <summary>
         /// The unique phone number ([E.164 format](https://en.wikipedia.org/wiki/E.164)) for this customer. Attempting to assign the same phone number to multiple customers returns an error. The property can be set using different formats, but each format must represent a number that can be dialed from anywhere in the world. The following formats are all valid:
         /// <br/>
         /// <br/>*   6135551212 
@@ -4482,14 +4619,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public SmsMarketingConsent? SmsMarketingConsent { get; set; } = default!;
 
-        /// <summary>
-        /// The state of the customer's account with a shop. Default value: `disabled`. Valid values: * **disabled**: The customer doesn't have an active account. Customer accounts can be disabled from the Shopify admin at any time. * **invited**: The customer has received an email invite to create an account. * **enabled**: The customer has created an account. * **declined**: The customer declined the email invite to create an account.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("state")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? State { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CustomerState? State { get; set; } = default!;
 
         /// <summary>
         /// Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values. A customer can have up to 250 tags. Each tag can have up to 255 characters.
@@ -4516,7 +4650,9 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
+
+        // TODO(system.text.json): Add string enum item converter
+        public System.Collections.Generic.ICollection<CustomerTaxExemptions>? TaxExemptions { get; set; } = default!;
 
         /// <summary>
         /// The total amount of money that the customer has spent across their order history.
@@ -4566,24 +4702,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// An optional password for the user. Default is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("password")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Password { get; set; } = default!;
-
-        /// <summary>
-        /// Should be set and match OpenShopify.Admin.Builder.Models.UpdateCustomer.Password. Default is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("password_confirmation")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? PasswordConfirmation { get; set; } = default!;
 
     }
 

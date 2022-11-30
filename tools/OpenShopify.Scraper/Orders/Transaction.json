@@ -158,19 +158,19 @@
                   "value": {
                     "transactions": [
                       {
-                        "id": 1068278468,
+                        "id": 1068278464,
                         "order_id": 450789469,
                         "kind": "capture",
                         "gateway": "bogus",
                         "status": "success",
                         "message": "Bogus Gateway: Forced success",
-                        "created_at": "2022-10-03T10:51:21-06:00",
+                        "created_at": "2022-11-09T07:35:03-07:00",
                         "test": true,
                         "authorization": null,
                         "location_id": null,
                         "user_id": null,
                         "parent_id": 389404469,
-                        "processed_at": "2022-10-03T10:51:21-06:00",
+                        "processed_at": "2022-11-09T07:35:03-07:00",
                         "device_id": null,
                         "error_code": null,
                         "source_name": "755357713",
@@ -190,7 +190,7 @@
                         "amount": "10.00",
                         "currency": "USD",
                         "payment_id": "c901414060.1",
-                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278468"
+                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278464"
                       }
                     ]
                   }
@@ -249,7 +249,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"transactions\":[{\"id\":1068278468,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:21-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:21-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278468\"}]}"
+            "body": "{\"transactions\":[{\"id\":1068278464,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:03-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:03-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278464\"}]}"
           },
           "name": "Retrieve an order's transactions after a specified ID",
           "codeSamples": [
@@ -326,97 +326,19 @@
                 "Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID": {
                   "value": {
                     "transaction": {
-                      "id": 1068278465,
-                      "order_id": 450789469,
-                      "kind": "capture",
-                      "gateway": "bogus",
-                      "status": "success",
-                      "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-10-03T10:51:12-06:00",
-                      "test": true,
-                      "authorization": null,
-                      "location_id": null,
-                      "user_id": null,
-                      "parent_id": 389404469,
-                      "processed_at": "2022-10-03T10:51:12-06:00",
-                      "device_id": null,
-                      "error_code": null,
-                      "source_name": "755357713",
-                      "payment_details": {
-                        "credit_card_bin": null,
-                        "avs_result_code": null,
-                        "cvv_result_code": null,
-                        "credit_card_number": "•••• •••• •••• 4242",
-                        "credit_card_company": "Visa",
-                        "credit_card_name": null,
-                        "credit_card_wallet": null,
-                        "credit_card_expiration_month": null,
-                        "credit_card_expiration_year": null
-                      },
-                      "receipt": {},
-                      "currency_exchange_adjustment": null,
-                      "amount": "10.00",
-                      "currency": "USD",
-                      "payment_id": "c901414060.1",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278465"
-                    }
-                  }
-                },
-                "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code": {
-                  "value": {
-                    "transaction": {
-                      "id": 1068278466,
-                      "order_id": 450789469,
-                      "kind": "capture",
-                      "gateway": "bogus",
-                      "status": "success",
-                      "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-10-03T10:51:16-06:00",
-                      "test": true,
-                      "authorization": null,
-                      "location_id": null,
-                      "user_id": null,
-                      "parent_id": 389404469,
-                      "processed_at": "2022-10-03T10:51:16-06:00",
-                      "device_id": null,
-                      "error_code": null,
-                      "source_name": "755357713",
-                      "payment_details": {
-                        "credit_card_bin": null,
-                        "avs_result_code": null,
-                        "cvv_result_code": null,
-                        "credit_card_number": "•••• •••• •••• 4242",
-                        "credit_card_company": "Visa",
-                        "credit_card_name": null,
-                        "credit_card_wallet": null,
-                        "credit_card_expiration_month": null,
-                        "credit_card_expiration_year": null
-                      },
-                      "receipt": {},
-                      "currency_exchange_adjustment": null,
-                      "amount": "598.94",
-                      "currency": "USD",
-                      "payment_id": "c901414060.1",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278466"
-                    }
-                  }
-                },
-                "Create a test transaction": {
-                  "value": {
-                    "transaction": {
                       "id": 1068278467,
                       "order_id": 450789469,
                       "kind": "capture",
                       "gateway": "bogus",
                       "status": "success",
                       "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-10-03T10:51:19-06:00",
+                      "created_at": "2022-11-09T07:35:19-07:00",
                       "test": true,
                       "authorization": null,
                       "location_id": null,
                       "user_id": null,
                       "parent_id": 389404469,
-                      "processed_at": "2022-10-03T10:51:19-06:00",
+                      "processed_at": "2022-11-09T07:35:19-07:00",
                       "device_id": null,
                       "error_code": null,
                       "source_name": "755357713",
@@ -440,22 +362,100 @@
                     }
                   }
                 },
-                "Void a transaction": {
+                "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code": {
                   "value": {
                     "transaction": {
-                      "id": 1068278469,
+                      "id": 1068278463,
                       "order_id": 450789469,
-                      "kind": "void",
+                      "kind": "capture",
                       "gateway": "bogus",
                       "status": "success",
                       "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-10-03T10:51:33-06:00",
+                      "created_at": "2022-11-09T07:35:00-07:00",
                       "test": true,
                       "authorization": null,
                       "location_id": null,
                       "user_id": null,
                       "parent_id": 389404469,
-                      "processed_at": "2022-10-03T10:51:33-06:00",
+                      "processed_at": "2022-11-09T07:35:00-07:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "755357713",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa",
+                        "credit_card_name": null,
+                        "credit_card_wallet": null,
+                        "credit_card_expiration_month": null,
+                        "credit_card_expiration_year": null
+                      },
+                      "receipt": {},
+                      "currency_exchange_adjustment": null,
+                      "amount": "598.94",
+                      "currency": "USD",
+                      "payment_id": "c901414060.1",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278463"
+                    }
+                  }
+                },
+                "Create a test transaction": {
+                  "value": {
+                    "transaction": {
+                      "id": 1068278465,
+                      "order_id": 450789469,
+                      "kind": "capture",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": "Bogus Gateway: Forced success",
+                      "created_at": "2022-11-09T07:35:07-07:00",
+                      "test": true,
+                      "authorization": null,
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": 389404469,
+                      "processed_at": "2022-11-09T07:35:07-07:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "755357713",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa",
+                        "credit_card_name": null,
+                        "credit_card_wallet": null,
+                        "credit_card_expiration_month": null,
+                        "credit_card_expiration_year": null
+                      },
+                      "receipt": {},
+                      "currency_exchange_adjustment": null,
+                      "amount": "10.00",
+                      "currency": "USD",
+                      "payment_id": "c901414060.1",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278465"
+                    }
+                  }
+                },
+                "Void a transaction": {
+                  "value": {
+                    "transaction": {
+                      "id": 1068278466,
+                      "order_id": 450789469,
+                      "kind": "void",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": "Bogus Gateway: Forced success",
+                      "created_at": "2022-11-09T07:35:11-07:00",
+                      "test": true,
+                      "authorization": null,
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": 389404469,
+                      "processed_at": "2022-11-09T07:35:11-07:00",
                       "device_id": null,
                       "error_code": null,
                       "source_name": "755357713",
@@ -475,7 +475,7 @@
                       "amount": "0.00",
                       "currency": "USD",
                       "payment_id": "c901414060.1",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278469"
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278466"
                     }
                   }
                 }
@@ -498,7 +498,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278465,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:12-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278465\"}}"
+            "body": "{\"transaction\":{\"id\":1068278467,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:19-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:19-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278467\"}}"
           },
           "name": "Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID",
           "codeSamples": [
@@ -533,7 +533,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278466,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:16-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:16-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278466\"}}"
+            "body": "{\"transaction\":{\"id\":1068278463,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:00-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:00-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278463\"}}"
           },
           "name": "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code",
           "codeSamples": [
@@ -568,7 +568,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278467,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:19-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:19-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278467\"}}"
+            "body": "{\"transaction\":{\"id\":1068278465,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:07-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:07-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278465\"}}"
           },
           "name": "Create a test transaction",
           "codeSamples": [
@@ -603,7 +603,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278469,\"order_id\":450789469,\"kind\":\"void\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-10-03T12:51:33-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-10-03T12:51:33-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"0.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278469\"}}"
+            "body": "{\"transaction\":{\"id\":1068278466,\"order_id\":450789469,\"kind\":\"void\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:11-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:11-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"0.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278466\"}}"
           },
           "name": "Void a transaction",
           "codeSamples": [
@@ -973,7 +973,7 @@
           "description": "          A string generated by the payment provider with additional information about why the transaction succeeded or failed.\n",
           "type": "string",
           "readOnly": true,
-          "example": "Marked the Cash on Delivery (COD) payment as received",
+          "example": "Marked the Stripe payment as received",
           "name": "message"
         },
         {
@@ -1024,7 +1024,7 @@
           "name": "receipt"
         },
         {
-          "description": "          The origin of the transaction. This is set by Shopify and can't be overridden. Example values: <code>web</code>, <code>pos</code>, <code>iphone</code>, and <code>android</code>.\n",
+          "description": "          The origin of the transaction. This is set by Shopify and can't be overridden. Example values (not an exhaustive list): <code>web</code>, <code>pos</code>, <code>iphone</code>, and <code>android</code>.\n",
           "type": "string",
           "readOnly": true,
           "example": "web",

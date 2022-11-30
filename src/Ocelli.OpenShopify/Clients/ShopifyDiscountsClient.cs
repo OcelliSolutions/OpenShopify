@@ -1926,31 +1926,18 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreatePriceRule
     {
-        /// <summary>
-        /// The allocation method of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. 
-        /// <br/>*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. 
-        /// <br/>
-        /// <br/>When the value of `target_type` is `shipping_line`, then this value must be `each`.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? AllocationMethod { get; set; } = default!;
-
-        /// <summary>
-        /// The customer selection for the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **all**: The price rule is valid for all customers. 
-        /// <br/>*   **prerequisite**: The customer must either belong to one of the customer segments specified by `customer_segment_prerequisite_ids`, or be one of the customers specified by `prerequisite_customer_ids`.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleAllocationMethod? AllocationMethod { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? CustomerSelection { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleCustomerSelection? CustomerSelection { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule ends. Must be after `starts_at`.
@@ -2071,29 +2058,17 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.DateTimeOffset? StartsAt { get; set; } = default!;
 
-        /// <summary>
-        /// The target selection method of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **all**: The price rule applies the discount to all line items in the checkout. 
-        /// <br/>*   **entitled**: The price rule applies the discount to selected entitlements only.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? TargetSelection { get; set; } = default!;
-
-        /// <summary>
-        /// The target type that the price rule applies to. Valid values:
-        /// <br/>
-        /// <br/>*   **line_item**: The price rule applies to the cart's line items. 
-        /// <br/>*   **shipping_line**: The price rule applies to the cart's shipping lines.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleTargetSelection? TargetSelection { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("target_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? TargetType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleTargetType? TargetType { get; set; } = default!;
 
         /// <summary>
         /// The title of the price rule. This is used by the Shopify admin search to retrieve discounts. It is also displayed on the **Discounts** page of the Shopify admin for bulk discounts.
@@ -2186,19 +2161,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public decimal? Value { get; set; } = default!;
 
-        /// <summary>
-        /// The value type of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. 
-        /// <br/>*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. 
-        /// <br/>
-        /// <br/>If `target_type` is `shipping_line`, then only `percentage` is accepted.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("value_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? ValueType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleValueType? ValueType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_quantity_ratio")]
 
@@ -2277,14 +2244,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Amount { get; set; } = default!;
 
-        /// <summary>
-        /// The type of discount. Known values are 'percentage', 'shipping', 'fixed_amount' and 'none'.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Type { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public DiscountCodeType? Type { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("errors")]
 
@@ -2554,6 +2518,24 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum DiscountCodeType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"percentage")]
+        Percentage = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping")]
+        Shipping = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fixed_amount")]
+        FixedAmount = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"none")]
+        None = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class PrerequisiteToEntitlementPurchase
     {
         /// <summary>
@@ -2636,31 +2618,18 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class PriceRule
     {
-        /// <summary>
-        /// The allocation method of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. 
-        /// <br/>*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. 
-        /// <br/>
-        /// <br/>When the value of `target_type` is `shipping_line`, then this value must be `each`.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? AllocationMethod { get; set; } = default!;
-
-        /// <summary>
-        /// The customer selection for the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **all**: The price rule is valid for all customers. 
-        /// <br/>*   **prerequisite**: The customer must either belong to one of the customer segments specified by `customer_segment_prerequisite_ids`, or be one of the customers specified by `prerequisite_customer_ids`.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleAllocationMethod? AllocationMethod { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? CustomerSelection { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleCustomerSelection? CustomerSelection { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule ends. Must be after `starts_at`.
@@ -2781,29 +2750,17 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.DateTimeOffset? StartsAt { get; set; } = default!;
 
-        /// <summary>
-        /// The target selection method of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **all**: The price rule applies the discount to all line items in the checkout. 
-        /// <br/>*   **entitled**: The price rule applies the discount to selected entitlements only.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? TargetSelection { get; set; } = default!;
-
-        /// <summary>
-        /// The target type that the price rule applies to. Valid values:
-        /// <br/>
-        /// <br/>*   **line_item**: The price rule applies to the cart's line items. 
-        /// <br/>*   **shipping_line**: The price rule applies to the cart's shipping lines.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleTargetSelection? TargetSelection { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("target_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? TargetType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleTargetType? TargetType { get; set; } = default!;
 
         /// <summary>
         /// The title of the price rule. This is used by the Shopify admin search to retrieve discounts. It is also displayed on the **Discounts** page of the Shopify admin for bulk discounts.
@@ -2896,19 +2853,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public decimal? Value { get; set; } = default!;
 
-        /// <summary>
-        /// The value type of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. 
-        /// <br/>*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. 
-        /// <br/>
-        /// <br/>If `target_type` is `shipping_line`, then only `percentage` is accepted.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("value_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? ValueType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleValueType? ValueType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_quantity_ratio")]
 
@@ -2970,6 +2919,36 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum PriceRuleAllocationMethod
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"each")]
+        Each = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"across")]
+        Across = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"target_type")]
+        TargetType = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping_line")]
+        ShippingLine = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum PriceRuleCustomerSelection
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"all")]
+        All = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"prerequisite")]
+        Prerequisite = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class PriceRuleItem
     {
 
@@ -3012,6 +2991,48 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum PriceRuleTargetSelection
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"all")]
+        All = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"entitled")]
+        Entitled = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum PriceRuleTargetType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"line_item")]
+        LineItem = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping_line")]
+        ShippingLine = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum PriceRuleValueType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fixed_amount")]
+        FixedAmount = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"percentage")]
+        Percentage = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"target_type")]
+        TargetType = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipping_line")]
+        ShippingLine = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateDiscountCode
     {
         /// <summary>
@@ -3045,14 +3066,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Amount { get; set; } = default!;
 
-        /// <summary>
-        /// The type of discount. Known values are 'percentage', 'shipping', 'fixed_amount' and 'none'.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? Type { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public DiscountCodeType? Type { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("errors")]
 
@@ -3086,31 +3104,18 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.17.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdatePriceRule
     {
-        /// <summary>
-        /// The allocation method of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. 
-        /// <br/>*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items. 
-        /// <br/>
-        /// <br/>When the value of `target_type` is `shipping_line`, then this value must be `each`.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? AllocationMethod { get; set; } = default!;
-
-        /// <summary>
-        /// The customer selection for the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **all**: The price rule is valid for all customers. 
-        /// <br/>*   **prerequisite**: The customer must either belong to one of the customer segments specified by `customer_segment_prerequisite_ids`, or be one of the customers specified by `prerequisite_customer_ids`.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleAllocationMethod? AllocationMethod { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? CustomerSelection { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleCustomerSelection? CustomerSelection { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule ends. Must be after `starts_at`.
@@ -3231,29 +3236,17 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.DateTimeOffset? StartsAt { get; set; } = default!;
 
-        /// <summary>
-        /// The target selection method of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **all**: The price rule applies the discount to all line items in the checkout. 
-        /// <br/>*   **entitled**: The price rule applies the discount to selected entitlements only.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? TargetSelection { get; set; } = default!;
-
-        /// <summary>
-        /// The target type that the price rule applies to. Valid values:
-        /// <br/>
-        /// <br/>*   **line_item**: The price rule applies to the cart's line items. 
-        /// <br/>*   **shipping_line**: The price rule applies to the cart's shipping lines.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleTargetSelection? TargetSelection { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("target_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? TargetType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleTargetType? TargetType { get; set; } = default!;
 
         /// <summary>
         /// The title of the price rule. This is used by the Shopify admin search to retrieve discounts. It is also displayed on the **Discounts** page of the Shopify admin for bulk discounts.
@@ -3346,19 +3339,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public decimal? Value { get; set; } = default!;
 
-        /// <summary>
-        /// The value type of the price rule. Valid values:
-        /// <br/>
-        /// <br/>*   **fixed_amount**: Applies a discount of `value` as a unit of the store's currency. For example, if `value` is -30 and the store's currency is USD, then $30 USD is deducted when the discount is applied. 
-        /// <br/>*   **percentage**: Applies a percentage discount of `value`. For example, if `value` is -30, then 30% will be deducted when the discount is applied. 
-        /// <br/>
-        /// <br/>If `target_type` is `shipping_line`, then only `percentage` is accepted.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("value_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public string? ValueType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PriceRuleValueType? ValueType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_quantity_ratio")]
 
