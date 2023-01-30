@@ -72,62 +72,28 @@
                         "inventory_item_id": 49148385,
                         "location_id": 655441491,
                         "available": 2,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=49148385"
                       },
                       {
                         "inventory_item_id": 808950810,
                         "location_id": 655441491,
                         "available": 1,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810"
                       },
                       {
                         "inventory_item_id": 457924702,
                         "location_id": 655441491,
                         "available": 4,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=457924702"
                       },
                       {
                         "inventory_item_id": 39072856,
                         "location_id": 655441491,
                         "available": 3,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
-                        "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=39072856"
-                      }
-                    ]
-                  }
-                },
-                "Retrieve inventory levels for the specified inventory items and locations": {
-                  "value": {
-                    "inventory_levels": [
-                      {
-                        "inventory_item_id": 808950810,
-                        "location_id": 487838322,
-                        "available": 9,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
-                        "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810"
-                      },
-                      {
-                        "inventory_item_id": 39072856,
-                        "location_id": 487838322,
-                        "available": 27,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
-                        "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856"
-                      },
-                      {
-                        "inventory_item_id": 808950810,
-                        "location_id": 655441491,
-                        "available": 1,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
-                        "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810"
-                      },
-                      {
-                        "inventory_item_id": 39072856,
-                        "location_id": 655441491,
-                        "available": 3,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=39072856"
                       }
                     ]
@@ -140,15 +106,49 @@
                         "inventory_item_id": 808950810,
                         "location_id": 487838322,
                         "available": 9,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810"
                       },
                       {
                         "inventory_item_id": 808950810,
                         "location_id": 655441491,
                         "available": 1,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve inventory levels for the specified inventory items and locations": {
+                  "value": {
+                    "inventory_levels": [
+                      {
+                        "inventory_item_id": 808950810,
+                        "location_id": 487838322,
+                        "available": 9,
+                        "updated_at": "2023-01-03T10:56:35-07:00",
+                        "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810"
+                      },
+                      {
+                        "inventory_item_id": 39072856,
+                        "location_id": 487838322,
+                        "available": 27,
+                        "updated_at": "2023-01-03T10:56:35-07:00",
+                        "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856"
+                      },
+                      {
+                        "inventory_item_id": 808950810,
+                        "location_id": 655441491,
+                        "available": 1,
+                        "updated_at": "2023-01-03T10:56:35-07:00",
+                        "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810"
+                      },
+                      {
+                        "inventory_item_id": 39072856,
+                        "location_id": 655441491,
+                        "available": 3,
+                        "updated_at": "2023-01-03T10:56:35-07:00",
+                        "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=39072856"
                       }
                     ]
                   }
@@ -184,7 +184,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"inventory_levels\":[{\"inventory_item_id\":49148385,\"location_id\":655441491,\"available\":2,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=49148385\"},{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":1,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"},{\"inventory_item_id\":457924702,\"location_id\":655441491,\"available\":4,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=457924702\"},{\"inventory_item_id\":39072856,\"location_id\":655441491,\"available\":3,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=39072856\"}]}"
+            "body": "{\"inventory_levels\":[{\"inventory_item_id\":49148385,\"location_id\":655441491,\"available\":2,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=49148385\"},{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":1,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"},{\"inventory_item_id\":457924702,\"location_id\":655441491,\"available\":4,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=457924702\"},{\"inventory_item_id\":39072856,\"location_id\":655441491,\"available\":3,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=39072856\"}]}"
           },
           "name": "Retrieve inventory levels at a single location",
           "codeSamples": [
@@ -198,46 +198,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  location_ids: \"655441491\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.InventoryLevel.all({\n  session: session,\n  location_ids: \"655441491\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"location_ids\" => \"655441491\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "inventory_item_ids=808950810%2C39072856&location_ids=655441491%2C487838322",
-          "request_path": "/admin/api/2022-10/inventory_levels.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-10/inventory_levels.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"inventory_levels\":[{\"inventory_item_id\":808950810,\"location_id\":487838322,\"available\":9,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810\"},{\"inventory_item_id\":39072856,\"location_id\":487838322,\"available\":27,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856\"},{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":1,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"},{\"inventory_item_id\":39072856,\"location_id\":655441491,\"available\":3,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=39072856\"}]}"
-          },
-          "name": "Retrieve inventory levels for the specified inventory items and locations",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/inventory_levels.json?inventory_item_ids=808950810%2C39072856&location_ids=655441491%2C487838322\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::InventoryLevel.all(\n  session: test_session,\n  inventory_item_ids: \"808950810,39072856\",\n  location_ids: \"655441491,487838322\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  inventory_item_ids: \"808950810,39072856\",\n  location_ids: \"655441491,487838322\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_ids\" => \"808950810,39072856\", \"location_ids\" => \"655441491,487838322\"], // Params\n);"
             }
           ]
         },
@@ -254,7 +219,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"inventory_levels\":[{\"inventory_item_id\":808950810,\"location_id\":487838322,\"available\":9,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810\"},{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":1,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"}]}"
+            "body": "{\"inventory_levels\":[{\"inventory_item_id\":808950810,\"location_id\":487838322,\"available\":9,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810\"},{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":1,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"}]}"
           },
           "name": "Retrieve inventory levels for a single inventory item",
           "codeSamples": [
@@ -268,11 +233,46 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  inventory_item_ids: \"808950810\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.InventoryLevel.all({\n  session: session,\n  inventory_item_ids: \"808950810\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_ids\" => \"808950810\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "inventory_item_ids=808950810%2C39072856&location_ids=655441491%2C487838322",
+          "request_path": "/admin/api/2022-10/inventory_levels.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/inventory_levels.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"inventory_levels\":[{\"inventory_item_id\":808950810,\"location_id\":487838322,\"available\":9,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810\"},{\"inventory_item_id\":39072856,\"location_id\":487838322,\"available\":27,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856\"},{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":1,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"},{\"inventory_item_id\":39072856,\"location_id\":655441491,\"available\":3,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=39072856\"}]}"
+          },
+          "name": "Retrieve inventory levels for the specified inventory items and locations",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/inventory_levels.json?inventory_item_ids=808950810%2C39072856&location_ids=655441491%2C487838322\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::InventoryLevel.all(\n  session: test_session,\n  inventory_item_ids: \"808950810,39072856\",\n  location_ids: \"655441491,487838322\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.InventoryLevel.all({\n  session: session,\n  inventory_item_ids: \"808950810,39072856\",\n  location_ids: \"655441491,487838322\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_ids\" => \"808950810,39072856\", \"location_ids\" => \"655441491,487838322\"], // Params\n);"
             }
           ]
         },
@@ -303,7 +303,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.InventoryLevel.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -364,20 +364,6 @@
         }
       ],
       "responses": {
-        "404": {
-          "description": "Adjusts the inventory level of an inventory item at a location",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Adjusting inventory levels at a non-existent location fails and returns an error": {
-                  "value": {
-                    "errors": "Not Found"
-                  }
-                }
-              }
-            }
-          }
-        },
         "200": {
           "description": "Adjusts the inventory level of an inventory item at a location",
           "content": {
@@ -389,9 +375,23 @@
                       "inventory_item_id": 808950810,
                       "location_id": 655441491,
                       "available": 6,
-                      "updated_at": "2022-10-03T11:14:39-06:00",
+                      "updated_at": "2023-01-03T11:03:33-07:00",
                       "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810"
                     }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Adjusts the inventory level of an inventory item at a location",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Adjusting inventory levels at a non-existent location fails and returns an error": {
+                  "value": {
+                    "errors": "Not Found"
                   }
                 }
               }
@@ -412,6 +412,41 @@
         }
       },
       "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/inventory_levels/adjust.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/inventory_levels/adjust.json",
+            "headers": {},
+            "body": "{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"inventory_level\":{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":6,\"updated_at\":\"2023-01-03T13:03:33-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"}}"
+          },
+          "name": "Adjust the available quantity of an inventory item by 5 at a single location",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/inventory_levels/adjust.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ninventory_level = ShopifyAPI::InventoryLevel.new(session: test_session)\n\ninventory_level.adjust(\n  session: test_session,\n  body: {\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst inventory_level = new shopify.rest.InventoryLevel({session: session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->adjust(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5], // Body\n);"
+            }
+          ]
+        },
         {
           "status": "404",
           "request_query": "",
@@ -439,42 +474,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->adjust(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5], // Body\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/inventory_levels/adjust.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/inventory_levels/adjust.json",
-            "headers": {},
-            "body": "{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}"
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"inventory_level\":{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":6,\"updated_at\":\"2022-10-03T13:14:39-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"}}"
-          },
-          "name": "Adjust the available quantity of an inventory item by 5 at a single location",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/inventory_levels/adjust.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ninventory_level = ShopifyAPI::InventoryLevel.new(session: test_session)\n\ninventory_level.adjust(\n  session: test_session,\n  body: {\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5},\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst inventory_level = new shopify.rest.InventoryLevel({session: session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
             },
             {
               "language": "php",
@@ -509,7 +509,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst inventory_level = new shopify.rest.InventoryLevel({session: session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
             },
             {
               "language": "php",
@@ -602,7 +602,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.delete({\n  session: test_session,\n  inventory_item_id: \"808950810\",\n  location_id: \"655441491\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.InventoryLevel.delete({\n  session: session,\n  inventory_item_id: \"808950810\",\n  location_id: \"655441491\",\n});"
             },
             {
               "language": "php",
@@ -674,7 +674,7 @@
                       "inventory_item_id": 457924702,
                       "location_id": 844681632,
                       "available": 0,
-                      "updated_at": "2022-10-03T11:14:35-06:00",
+                      "updated_at": "2023-01-03T11:03:42-07:00",
                       "admin_graphql_api_id": "gid://shopify/InventoryLevel/844681632?inventory_item_id=457924702"
                     }
                   }
@@ -728,7 +728,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"inventory_level\":{\"inventory_item_id\":457924702,\"location_id\":844681632,\"available\":0,\"updated_at\":\"2022-10-03T13:14:35-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/844681632?inventory_item_id=457924702\"}}"
+            "body": "{\"inventory_level\":{\"inventory_item_id\":457924702,\"location_id\":844681632,\"available\":0,\"updated_at\":\"2023-01-03T13:03:42-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/844681632?inventory_item_id=457924702\"}}"
           },
           "name": "Connect an inventory item to a location",
           "codeSamples": [
@@ -742,7 +742,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 844681632, \"inventory_item_id\": 457924702},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst inventory_level = new shopify.rest.InventoryLevel({session: session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 844681632, \"inventory_item_id\": 457924702},\n});"
             },
             {
               "language": "php",
@@ -777,7 +777,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 24826418, \"inventory_item_id\": 808950810},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst inventory_level = new shopify.rest.InventoryLevel({session: session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 24826418, \"inventory_item_id\": 808950810},\n});"
             },
             {
               "language": "php",
@@ -812,7 +812,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 123, \"inventory_item_id\": 457924702},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst inventory_level = new shopify.rest.InventoryLevel({session: session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 123, \"inventory_item_id\": 457924702},\n});"
             },
             {
               "language": "php",
@@ -893,7 +893,7 @@
                       "inventory_item_id": 808950810,
                       "location_id": 655441491,
                       "available": 42,
-                      "updated_at": "2022-10-03T11:14:50-06:00",
+                      "updated_at": "2023-01-03T11:03:52-07:00",
                       "admin_graphql_api_id": "gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810"
                     }
                   }
@@ -933,7 +933,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"inventory_level\":{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":42,\"updated_at\":\"2022-10-03T13:14:50-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"}}"
+            "body": "{\"inventory_level\":{\"inventory_item_id\":808950810,\"location_id\":655441491,\"available\":42,\"updated_at\":\"2023-01-03T13:03:52-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/655441491?inventory_item_id=808950810\"}}"
           },
           "name": "Set the available inventory at a location",
           "codeSamples": [
@@ -947,7 +947,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.set({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available\": 42},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst inventory_level = new shopify.rest.InventoryLevel({session: session});\n\nawait inventory_level.set({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available\": 42},\n});"
             },
             {
               "language": "php",
@@ -982,7 +982,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.set({\n  body: {\"location_id\": 611870435, \"inventory_item_id\": 808950810, \"available\": 42},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst inventory_level = new shopify.rest.InventoryLevel({session: session});\n\nawait inventory_level.set({\n  body: {\"location_id\": 611870435, \"inventory_item_id\": 808950810, \"available\": 42},\n});"
             },
             {
               "language": "php",

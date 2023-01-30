@@ -589,7 +589,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {PaymentTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait PaymentTransaction.transactions({\n  session: test_session,\n  payout_id: \"623721858\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.PaymentTransaction.transactions({\n  session: session,\n  payout_id: \"623721858\",\n});"
             },
             {
               "language": "php",

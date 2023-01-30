@@ -86,7 +86,7 @@
                         "currency_exchange_adjustment": null,
                         "amount": "209.00",
                         "currency": "USD",
-                        "payment_id": "c901414060.3",
+                        "payment_id": "#1001.3",
                         "admin_graphql_api_id": "gid://shopify/OrderTransaction/179259969"
                       },
                       {
@@ -124,7 +124,7 @@
                         "currency_exchange_adjustment": null,
                         "amount": "598.94",
                         "currency": "USD",
-                        "payment_id": "c901414060.1",
+                        "payment_id": "#1001.1",
                         "admin_graphql_api_id": "gid://shopify/OrderTransaction/389404469"
                       },
                       {
@@ -148,7 +148,7 @@
                         "currency_exchange_adjustment": null,
                         "amount": "250.94",
                         "currency": "USD",
-                        "payment_id": "c901414060.2",
+                        "payment_id": "#1001.2",
                         "admin_graphql_api_id": "gid://shopify/OrderTransaction/801038806"
                       }
                     ]
@@ -158,19 +158,19 @@
                   "value": {
                     "transactions": [
                       {
-                        "id": 1068278464,
+                        "id": 1068278485,
                         "order_id": 450789469,
                         "kind": "capture",
                         "gateway": "bogus",
                         "status": "success",
                         "message": "Bogus Gateway: Forced success",
-                        "created_at": "2022-11-09T07:35:03-07:00",
+                        "created_at": "2023-01-03T10:54:26-07:00",
                         "test": true,
                         "authorization": null,
                         "location_id": null,
                         "user_id": null,
                         "parent_id": 389404469,
-                        "processed_at": "2022-11-09T07:35:03-07:00",
+                        "processed_at": "2023-01-03T10:54:26-07:00",
                         "device_id": null,
                         "error_code": null,
                         "source_name": "755357713",
@@ -190,7 +190,7 @@
                         "amount": "10.00",
                         "currency": "USD",
                         "payment_id": "c901414060.1",
-                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278464"
+                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278485"
                       }
                     ]
                   }
@@ -214,7 +214,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"209.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.3\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"},{\"id\":389404469,\"order_id\":450789469,\"kind\":\"authorization\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-01T11:57:11-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":null,\"processed_at\":\"2005-08-01T11:57:11-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/389404469\"},{\"id\":801038806,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T10:22:51-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"250.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.2\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/801038806\"}]}"
+            "body": "{\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"209.00\",\"currency\":\"USD\",\"payment_id\":\"#1001.3\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"},{\"id\":389404469,\"order_id\":450789469,\"kind\":\"authorization\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-01T11:57:11-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":null,\"processed_at\":\"2005-08-01T11:57:11-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"payment_id\":\"#1001.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/389404469\"},{\"id\":801038806,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T10:22:51-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"250.94\",\"currency\":\"USD\",\"payment_id\":\"#1001.2\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/801038806\"}]}"
           },
           "name": "Retrieve an order's transactions",
           "codeSamples": [
@@ -228,7 +228,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Transaction.all({\n  session: session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
@@ -249,7 +249,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"transactions\":[{\"id\":1068278464,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:03-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:03-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278464\"}]}"
+            "body": "{\"transactions\":[{\"id\":1068278485,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-01-03T12:54:26-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2023-01-03T12:54:26-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278485\"}]}"
           },
           "name": "Retrieve an order's transactions after a specified ID",
           "codeSamples": [
@@ -263,7 +263,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Transaction.all({\n  session: session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n});"
             },
             {
               "language": "php",
@@ -326,19 +326,19 @@
                 "Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID": {
                   "value": {
                     "transaction": {
-                      "id": 1068278467,
+                      "id": 1068278488,
                       "order_id": 450789469,
                       "kind": "capture",
                       "gateway": "bogus",
                       "status": "success",
                       "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-11-09T07:35:19-07:00",
+                      "created_at": "2023-01-03T10:54:33-07:00",
                       "test": true,
                       "authorization": null,
                       "location_id": null,
                       "user_id": null,
                       "parent_id": 389404469,
-                      "processed_at": "2022-11-09T07:35:19-07:00",
+                      "processed_at": "2023-01-03T10:54:33-07:00",
                       "device_id": null,
                       "error_code": null,
                       "source_name": "755357713",
@@ -358,26 +358,26 @@
                       "amount": "10.00",
                       "currency": "USD",
                       "payment_id": "c901414060.1",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278467"
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278488"
                     }
                   }
                 },
                 "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code": {
                   "value": {
                     "transaction": {
-                      "id": 1068278463,
+                      "id": 1068278486,
                       "order_id": 450789469,
                       "kind": "capture",
                       "gateway": "bogus",
                       "status": "success",
                       "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-11-09T07:35:00-07:00",
+                      "created_at": "2023-01-03T10:54:29-07:00",
                       "test": true,
                       "authorization": null,
                       "location_id": null,
                       "user_id": null,
                       "parent_id": 389404469,
-                      "processed_at": "2022-11-09T07:35:00-07:00",
+                      "processed_at": "2023-01-03T10:54:29-07:00",
                       "device_id": null,
                       "error_code": null,
                       "source_name": "755357713",
@@ -397,26 +397,26 @@
                       "amount": "598.94",
                       "currency": "USD",
                       "payment_id": "c901414060.1",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278463"
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278486"
                     }
                   }
                 },
                 "Create a test transaction": {
                   "value": {
                     "transaction": {
-                      "id": 1068278465,
+                      "id": 1068278484,
                       "order_id": 450789469,
                       "kind": "capture",
                       "gateway": "bogus",
                       "status": "success",
                       "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-11-09T07:35:07-07:00",
+                      "created_at": "2023-01-03T10:54:24-07:00",
                       "test": true,
                       "authorization": null,
                       "location_id": null,
                       "user_id": null,
                       "parent_id": 389404469,
-                      "processed_at": "2022-11-09T07:35:07-07:00",
+                      "processed_at": "2023-01-03T10:54:24-07:00",
                       "device_id": null,
                       "error_code": null,
                       "source_name": "755357713",
@@ -436,26 +436,26 @@
                       "amount": "10.00",
                       "currency": "USD",
                       "payment_id": "c901414060.1",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278465"
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278484"
                     }
                   }
                 },
                 "Void a transaction": {
                   "value": {
                     "transaction": {
-                      "id": 1068278466,
+                      "id": 1068278487,
                       "order_id": 450789469,
                       "kind": "void",
                       "gateway": "bogus",
                       "status": "success",
                       "message": "Bogus Gateway: Forced success",
-                      "created_at": "2022-11-09T07:35:11-07:00",
+                      "created_at": "2023-01-03T10:54:31-07:00",
                       "test": true,
                       "authorization": null,
                       "location_id": null,
                       "user_id": null,
                       "parent_id": 389404469,
-                      "processed_at": "2022-11-09T07:35:11-07:00",
+                      "processed_at": "2023-01-03T10:54:31-07:00",
                       "device_id": null,
                       "error_code": null,
                       "source_name": "755357713",
@@ -475,7 +475,7 @@
                       "amount": "0.00",
                       "currency": "USD",
                       "payment_id": "c901414060.1",
-                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278466"
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278487"
                     }
                   }
                 }
@@ -498,7 +498,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278467,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:19-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:19-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278467\"}}"
+            "body": "{\"transaction\":{\"id\":1068278488,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-01-03T12:54:33-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2023-01-03T12:54:33-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278488\"}}"
           },
           "name": "Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID",
           "codeSamples": [
@@ -512,7 +512,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst transaction = new shopify.rest.Transaction({session: session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -533,7 +533,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278463,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:00-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:00-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278463\"}}"
+            "body": "{\"transaction\":{\"id\":1068278486,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-01-03T12:54:29-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2023-01-03T12:54:29-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278486\"}}"
           },
           "name": "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code",
           "codeSamples": [
@@ -547,7 +547,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.kind = \"capture\";\ntransaction.authorization = \"authorization-key\";\nawait transaction.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst transaction = new shopify.rest.Transaction({session: session});\ntransaction.order_id = 450789469;\ntransaction.kind = \"capture\";\ntransaction.authorization = \"authorization-key\";\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -568,7 +568,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278465,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:07-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:07-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278465\"}}"
+            "body": "{\"transaction\":{\"id\":1068278484,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-01-03T12:54:24-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2023-01-03T12:54:24-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278484\"}}"
           },
           "name": "Create a test transaction",
           "codeSamples": [
@@ -582,7 +582,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\ntransaction.test = true;\nawait transaction.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst transaction = new shopify.rest.Transaction({session: session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\ntransaction.test = true;\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -603,7 +603,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"transaction\":{\"id\":1068278466,\"order_id\":450789469,\"kind\":\"void\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-11-09T09:35:11-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-11-09T09:35:11-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"0.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278466\"}}"
+            "body": "{\"transaction\":{\"id\":1068278487,\"order_id\":450789469,\"kind\":\"void\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-01-03T12:54:31-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2023-01-03T12:54:31-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"0.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278487\"}}"
           },
           "name": "Void a transaction",
           "codeSamples": [
@@ -617,7 +617,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"void\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst transaction = new shopify.rest.Transaction({session: session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"void\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -707,7 +707,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.count({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Transaction.count({\n  session: session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
@@ -856,7 +856,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Transaction.find({\n  session: session,\n  order_id: 450789469,\n  id: 389404469,\n});"
             },
             {
               "language": "php",

@@ -61,11 +61,11 @@
                       "published_scope": "web",
                       "admin_graphql_api_id": "gid://shopify/Collection/841564295",
                       "image": {
-                        "created_at": "2022-10-03T10:15:55-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
                         "alt": "MP3 Player 8gb",
                         "width": 123,
                         "height": 456,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664813755"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496"
                       }
                     }
                   }
@@ -89,7 +89,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"collection\":{\"id\":841564295,\"handle\":\"ipods\",\"title\":\"IPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"products_count\":1,\"collection_type\":\"custom\",\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/841564295\",\"image\":{\"created_at\":\"2022-10-03T12:15:55-04:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664813755\"}}}"
+            "body": "{\"collection\":{\"id\":841564295,\"handle\":\"ipods\",\"title\":\"IPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"products_count\":1,\"collection_type\":\"custom\",\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/841564295\",\"image\":{\"created_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496\"}}}"
           },
           "name": "Retrieve a specific collection by its ID",
           "codeSamples": [
@@ -103,7 +103,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collection} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collection.find({\n  session: test_session,\n  id: 841564295,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collection.find({\n  session: session,\n  id: 841564295,\n});"
             },
             {
               "language": "php",
@@ -169,9 +169,9 @@
                         "body_html": "<p>It's the small iPod with one very big idea: Video. Now the world's most popular music player, available in 4GB and 8GB models, lets you enjoy TV shows, movies, video podcasts, and more. The larger, brighter display means amazing picture quality. In six eye-catching colors, iPod nano is stunning all around. And with models starting at just $149, little speaks volumes.</p>",
                         "vendor": "Apple",
                         "product_type": "Cult Products",
-                        "created_at": "2022-10-03T10:15:55-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
                         "handle": "ipod-nano",
-                        "updated_at": "2022-10-03T10:15:55-06:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "published_at": "2007-12-31T17:00:00-07:00",
                         "template_suffix": null,
                         "published_scope": "web",
@@ -190,12 +190,12 @@
                             "id": 850703190,
                             "product_id": 632910392,
                             "position": 1,
-                            "created_at": "2022-10-03T10:15:55-06:00",
-                            "updated_at": "2022-10-03T10:15:55-06:00",
+                            "created_at": "2023-01-03T10:21:36-07:00",
+                            "updated_at": "2023-01-03T10:21:36-07:00",
                             "alt": null,
                             "width": 123,
                             "height": 456,
-                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                             "variant_ids": [],
                             "admin_graphql_api_id": "gid://shopify/ProductImage/850703190"
                           },
@@ -203,12 +203,12 @@
                             "id": 562641783,
                             "product_id": 632910392,
                             "position": 2,
-                            "created_at": "2022-10-03T10:15:55-06:00",
-                            "updated_at": "2022-10-03T10:15:55-06:00",
+                            "created_at": "2023-01-03T10:21:36-07:00",
+                            "updated_at": "2023-01-03T10:21:36-07:00",
                             "alt": null,
                             "width": 123,
                             "height": 456,
-                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755",
+                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496",
                             "variant_ids": [
                               808950810
                             ],
@@ -218,12 +218,12 @@
                             "id": 378407906,
                             "product_id": 632910392,
                             "position": 3,
-                            "created_at": "2022-10-03T10:15:55-06:00",
-                            "updated_at": "2022-10-03T10:15:55-06:00",
+                            "created_at": "2023-01-03T10:21:36-07:00",
+                            "updated_at": "2023-01-03T10:21:36-07:00",
                             "alt": null,
                             "width": 123,
                             "height": 456,
-                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                             "variant_ids": [],
                             "admin_graphql_api_id": "gid://shopify/ProductImage/378407906"
                           }
@@ -232,12 +232,12 @@
                           "id": 850703190,
                           "product_id": 632910392,
                           "position": 1,
-                          "created_at": "2022-10-03T10:15:55-06:00",
-                          "updated_at": "2022-10-03T10:15:55-06:00",
+                          "created_at": "2023-01-03T10:21:36-07:00",
+                          "updated_at": "2023-01-03T10:21:36-07:00",
                           "alt": null,
                           "width": 123,
                           "height": 456,
-                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                           "variant_ids": [],
                           "admin_graphql_api_id": "gid://shopify/ProductImage/850703190"
                         }
@@ -264,7 +264,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"products\":[{\"id\":632910392,\"title\":\"IPod Nano - 8GB\",\"body_html\":\"<p>It's the small iPod with one very big idea: Video. Now the world's most popular music player, available in 4GB and 8GB models, lets you enjoy TV shows, movies, video podcasts, and more. The larger, brighter display means amazing picture quality. In six eye-catching colors, iPod nano is stunning all around. And with models starting at just $149, little speaks volumes.</p>\",\"vendor\":\"Apple\",\"product_type\":\"Cult Products\",\"created_at\":\"2022-10-03T12:15:55-04:00\",\"handle\":\"ipod-nano\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"published_at\":\"2007-12-31T19:00:00-05:00\",\"template_suffix\":null,\"published_scope\":\"web\",\"tags\":\"Emotive, Flash Memory, MP3, Music\",\"admin_graphql_api_id\":\"gid://shopify/Product/632910392\",\"options\":[{\"id\":594680422,\"product_id\":632910392,\"name\":\"Color\",\"position\":1}],\"images\":[{\"id\":850703190,\"product_id\":632910392,\"position\":1,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"alt\":null,\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid://shopify/ProductImage/850703190\"},{\"id\":562641783,\"product_id\":632910392,\"position\":2,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"alt\":null,\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755\",\"variant_ids\":[808950810],\"admin_graphql_api_id\":\"gid://shopify/ProductImage/562641783\"},{\"id\":378407906,\"product_id\":632910392,\"position\":3,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"alt\":null,\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid://shopify/ProductImage/378407906\"}],\"image\":{\"id\":850703190,\"product_id\":632910392,\"position\":1,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"alt\":null,\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid://shopify/ProductImage/850703190\"}}]}"
+            "body": "{\"products\":[{\"id\":632910392,\"title\":\"IPod Nano - 8GB\",\"body_html\":\"<p>It's the small iPod with one very big idea: Video. Now the world's most popular music player, available in 4GB and 8GB models, lets you enjoy TV shows, movies, video podcasts, and more. The larger, brighter display means amazing picture quality. In six eye-catching colors, iPod nano is stunning all around. And with models starting at just $149, little speaks volumes.</p>\",\"vendor\":\"Apple\",\"product_type\":\"Cult Products\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"handle\":\"ipod-nano\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"published_at\":\"2007-12-31T19:00:00-05:00\",\"template_suffix\":null,\"published_scope\":\"web\",\"tags\":\"Emotive, Flash Memory, MP3, Music\",\"admin_graphql_api_id\":\"gid://shopify/Product/632910392\",\"options\":[{\"id\":594680422,\"product_id\":632910392,\"name\":\"Color\",\"position\":1}],\"images\":[{\"id\":850703190,\"product_id\":632910392,\"position\":1,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":null,\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid://shopify/ProductImage/850703190\"},{\"id\":562641783,\"product_id\":632910392,\"position\":2,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":null,\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496\",\"variant_ids\":[808950810],\"admin_graphql_api_id\":\"gid://shopify/ProductImage/562641783\"},{\"id\":378407906,\"product_id\":632910392,\"position\":3,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":null,\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid://shopify/ProductImage/378407906\"}],\"image\":{\"id\":850703190,\"product_id\":632910392,\"position\":1,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":null,\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid://shopify/ProductImage/850703190\"}}]}"
           },
           "name": "Retrieve a list of products belonging to a collection",
           "codeSamples": [
@@ -278,7 +278,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collection} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collection.products({\n  session: test_session,\n  id: 841564295,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collection.products({\n  session: session,\n  id: 841564295,\n});"
             },
             {
               "language": "php",

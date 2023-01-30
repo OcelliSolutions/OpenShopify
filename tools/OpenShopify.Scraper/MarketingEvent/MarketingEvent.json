@@ -54,7 +54,7 @@
                         "id": 998730532,
                         "event_type": "post",
                         "remote_id": "12345678",
-                        "started_at": "2022-01-15T08:56:18-07:00",
+                        "started_at": "2023-01-15T08:56:18-07:00",
                         "ended_at": null,
                         "scheduled_to_end_at": null,
                         "budget": "10.11",
@@ -96,7 +96,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"marketing_events\":[{\"id\":998730532,\"event_type\":\"post\",\"remote_id\":\"12345678\",\"started_at\":\"2022-01-15T10:56:18-05:00\",\"ended_at\":null,\"scheduled_to_end_at\":null,\"budget\":\"10.11\",\"currency\":\"GBP\",\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"1234567890\",\"utm_source\":\"facebook\",\"utm_medium\":\"facebook-post\",\"budget_type\":\"daily\",\"description\":null,\"marketing_channel\":\"social\",\"paid\":false,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":null,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/998730532\",\"marketed_resources\":[]}]}"
+            "body": "{\"marketing_events\":[{\"id\":998730532,\"event_type\":\"post\",\"remote_id\":\"12345678\",\"started_at\":\"2023-01-15T10:56:18-05:00\",\"ended_at\":null,\"scheduled_to_end_at\":null,\"budget\":\"10.11\",\"currency\":\"GBP\",\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"1234567890\",\"utm_source\":\"facebook\",\"utm_medium\":\"facebook-post\",\"budget_type\":\"daily\",\"description\":null,\"marketing_channel\":\"social\",\"paid\":false,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":null,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/998730532\",\"marketed_resources\":[]}]}"
           },
           "name": "Retrieve all marketing events",
           "codeSamples": [
@@ -110,7 +110,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {MarketingEvent} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait MarketingEvent.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.MarketingEvent.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -155,14 +155,14 @@
                       "id": 1069063883,
                       "event_type": "ad",
                       "remote_id": null,
-                      "started_at": "2022-12-14T22:00:00-07:00",
+                      "started_at": "2023-12-14T17:00:00-07:00",
                       "ended_at": null,
                       "scheduled_to_end_at": null,
                       "budget": null,
                       "currency": null,
                       "manage_url": null,
                       "preview_url": null,
-                      "utm_campaign": "Christmas2022",
+                      "utm_campaign": "Christmas2023",
                       "utm_source": "facebook",
                       "utm_medium": "cpc",
                       "budget_type": null,
@@ -191,30 +191,30 @@
           "request": {
             "action": "POST /admin/api/unstable/marketing_events.json",
             "headers": {},
-            "body": "{\"marketing_event\":{\"started_at\":\"2022-12-15\",\"utm_campaign\":\"Christmas2022\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"event_type\":\"ad\",\"referring_domain\":\"facebook.com\",\"marketing_channel\":\"social\",\"paid\":true}}"
+            "body": "{\"marketing_event\":{\"started_at\":\"2023-12-15\",\"utm_campaign\":\"Christmas2023\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"event_type\":\"ad\",\"referring_domain\":\"facebook.com\",\"marketing_channel\":\"social\",\"paid\":true}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"marketing_event\":{\"id\":1069063883,\"event_type\":\"ad\",\"remote_id\":null,\"started_at\":\"2022-12-15T00:00:00-05:00\",\"ended_at\":null,\"scheduled_to_end_at\":null,\"budget\":null,\"currency\":null,\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"Christmas2022\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"budget_type\":null,\"description\":null,\"marketing_channel\":\"social\",\"paid\":true,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":1063897333,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/1069063883\",\"marketed_resources\":[]}}"
+            "body": "{\"marketing_event\":{\"id\":1069063883,\"event_type\":\"ad\",\"remote_id\":null,\"started_at\":\"2023-12-14T19:00:00-05:00\",\"ended_at\":null,\"scheduled_to_end_at\":null,\"budget\":null,\"currency\":null,\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"Christmas2023\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"budget_type\":null,\"description\":null,\"marketing_channel\":\"social\",\"paid\":true,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":1063897333,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/1069063883\",\"marketed_resources\":[]}}"
           },
           "name": "Create a marketing event",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"marketing_event\":{\"started_at\":\"2022-12-15\",\"utm_campaign\":\"Christmas2022\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"event_type\":\"ad\",\"referring_domain\":\"facebook.com\",\"marketing_channel\":\"social\",\"paid\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"marketing_event\":{\"started_at\":\"2023-12-15\",\"utm_campaign\":\"Christmas2023\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"event_type\":\"ad\",\"referring_domain\":\"facebook.com\",\"marketing_channel\":\"social\",\"paid\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmarketing_event = ShopifyAPI::MarketingEvent.new(session: test_session)\nmarketing_event.started_at = \"2022-12-15\"\nmarketing_event.utm_campaign = \"Christmas2022\"\nmarketing_event.utm_source = \"facebook\"\nmarketing_event.utm_medium = \"cpc\"\nmarketing_event.event_type = \"ad\"\nmarketing_event.referring_domain = \"facebook.com\"\nmarketing_event.marketing_channel = \"social\"\nmarketing_event.paid = true\nmarketing_event.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmarketing_event = ShopifyAPI::MarketingEvent.new(session: test_session)\nmarketing_event.started_at = \"2023-12-15\"\nmarketing_event.utm_campaign = \"Christmas2023\"\nmarketing_event.utm_source = \"facebook\"\nmarketing_event.utm_medium = \"cpc\"\nmarketing_event.event_type = \"ad\"\nmarketing_event.referring_domain = \"facebook.com\"\nmarketing_event.marketing_channel = \"social\"\nmarketing_event.paid = true\nmarketing_event.save!"
             },
             {
               "language": "node",
-              "example_code": "import {MarketingEvent} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst marketing_event = new MarketingEvent({session: test_session});\nmarketing_event.started_at = \"2022-12-15\";\nmarketing_event.utm_campaign = \"Christmas2022\";\nmarketing_event.utm_source = \"facebook\";\nmarketing_event.utm_medium = \"cpc\";\nmarketing_event.event_type = \"ad\";\nmarketing_event.referring_domain = \"facebook.com\";\nmarketing_event.marketing_channel = \"social\";\nmarketing_event.paid = true;\nawait marketing_event.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst marketing_event = new shopify.rest.MarketingEvent({session: session});\nmarketing_event.started_at = \"2023-12-15\";\nmarketing_event.utm_campaign = \"Christmas2023\";\nmarketing_event.utm_source = \"facebook\";\nmarketing_event.utm_medium = \"cpc\";\nmarketing_event.event_type = \"ad\";\nmarketing_event.referring_domain = \"facebook.com\";\nmarketing_event.marketing_channel = \"social\";\nmarketing_event.paid = true;\nawait marketing_event.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->started_at = \"2022-12-15\";\n$marketing_event->utm_campaign = \"Christmas2022\";\n$marketing_event->utm_source = \"facebook\";\n$marketing_event->utm_medium = \"cpc\";\n$marketing_event->event_type = \"ad\";\n$marketing_event->referring_domain = \"facebook.com\";\n$marketing_event->marketing_channel = \"social\";\n$marketing_event->paid = true;\n$marketing_event->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->started_at = \"2023-12-15\";\n$marketing_event->utm_campaign = \"Christmas2023\";\n$marketing_event->utm_source = \"facebook\";\n$marketing_event->utm_medium = \"cpc\";\n$marketing_event->event_type = \"ad\";\n$marketing_event->referring_domain = \"facebook.com\";\n$marketing_event->marketing_channel = \"social\";\n$marketing_event->paid = true;\n$marketing_event->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -287,7 +287,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {MarketingEvent} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait MarketingEvent.count({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.MarketingEvent.count({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -340,7 +340,7 @@
                       "id": 998730532,
                       "event_type": "post",
                       "remote_id": "12345678",
-                      "started_at": "2022-01-15T08:56:18-07:00",
+                      "started_at": "2023-01-15T08:56:18-07:00",
                       "ended_at": null,
                       "scheduled_to_end_at": null,
                       "budget": "10.11",
@@ -381,7 +381,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"marketing_event\":{\"id\":998730532,\"event_type\":\"post\",\"remote_id\":\"12345678\",\"started_at\":\"2022-01-15T10:56:18-05:00\",\"ended_at\":null,\"scheduled_to_end_at\":null,\"budget\":\"10.11\",\"currency\":\"GBP\",\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"1234567890\",\"utm_source\":\"facebook\",\"utm_medium\":\"facebook-post\",\"budget_type\":\"daily\",\"description\":null,\"marketing_channel\":\"social\",\"paid\":false,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":null,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/998730532\",\"marketed_resources\":[]}}"
+            "body": "{\"marketing_event\":{\"id\":998730532,\"event_type\":\"post\",\"remote_id\":\"12345678\",\"started_at\":\"2023-01-15T10:56:18-05:00\",\"ended_at\":null,\"scheduled_to_end_at\":null,\"budget\":\"10.11\",\"currency\":\"GBP\",\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"1234567890\",\"utm_source\":\"facebook\",\"utm_medium\":\"facebook-post\",\"budget_type\":\"daily\",\"description\":null,\"marketing_channel\":\"social\",\"paid\":false,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":null,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/998730532\",\"marketed_resources\":[]}}"
           },
           "name": "Retrieve a single marketing event by its ID",
           "codeSamples": [
@@ -395,7 +395,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {MarketingEvent} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait MarketingEvent.find({\n  session: test_session,\n  id: 998730532,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.MarketingEvent.find({\n  session: session,\n  id: 998730532,\n});"
             },
             {
               "language": "php",
@@ -445,9 +445,9 @@
                 "Update a marketing event. Can modify only timestamps, remote_id, and budget/currency.": {
                   "value": {
                     "marketing_event": {
-                      "started_at": "2022-02-01T17:00:00-07:00",
-                      "ended_at": "2022-02-02T17:00:00-07:00",
-                      "scheduled_to_end_at": "2022-02-03T17:00:00-07:00",
+                      "started_at": "2023-02-01T17:00:00-07:00",
+                      "ended_at": "2023-02-02T17:00:00-07:00",
+                      "scheduled_to_end_at": "2023-02-03T17:00:00-07:00",
                       "remote_id": "1000:2000",
                       "currency": "CAD",
                       "budget": "11.1",
@@ -484,30 +484,30 @@
           "request": {
             "action": "PUT /admin/api/unstable/marketing_events/998730532.json",
             "headers": {},
-            "body": "{\"marketing_event\":{\"id\":998730532,\"remote_id\":\"1000:2000\",\"started_at\":\"2022-02-02T00:00 +00:00\",\"ended_at\":\"2022-02-03T00:00 +00:00\",\"scheduled_to_end_at\":\"2022-02-04T00:00 +00:00\",\"budget\":\"11.1\",\"budget_type\":\"daily\",\"currency\":\"CAD\",\"utm_campaign\":\"other\",\"utm_source\":\"other\",\"utm_medium\":\"other\",\"event_type\":\"ad\",\"referring_domain\":\"instagram.com\"}}"
+            "body": "{\"marketing_event\":{\"id\":998730532,\"remote_id\":\"1000:2000\",\"started_at\":\"2023-02-02T00:00 +00:00\",\"ended_at\":\"2023-02-03T00:00 +00:00\",\"scheduled_to_end_at\":\"2023-02-04T00:00 +00:00\",\"budget\":\"11.1\",\"budget_type\":\"daily\",\"currency\":\"CAD\",\"utm_campaign\":\"other\",\"utm_source\":\"other\",\"utm_medium\":\"other\",\"event_type\":\"ad\",\"referring_domain\":\"instagram.com\"}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"marketing_event\":{\"started_at\":\"2022-02-01T19:00:00-05:00\",\"ended_at\":\"2022-02-02T19:00:00-05:00\",\"scheduled_to_end_at\":\"2022-02-03T19:00:00-05:00\",\"remote_id\":\"1000:2000\",\"currency\":\"CAD\",\"budget\":\"11.1\",\"budget_type\":\"daily\",\"id\":998730532,\"event_type\":\"post\",\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"1234567890\",\"utm_source\":\"facebook\",\"utm_medium\":\"facebook-post\",\"description\":null,\"marketing_channel\":\"social\",\"paid\":false,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":null,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/998730532\",\"marketed_resources\":[]}}"
+            "body": "{\"marketing_event\":{\"started_at\":\"2023-02-01T19:00:00-05:00\",\"ended_at\":\"2023-02-02T19:00:00-05:00\",\"scheduled_to_end_at\":\"2023-02-03T19:00:00-05:00\",\"remote_id\":\"1000:2000\",\"currency\":\"CAD\",\"budget\":\"11.1\",\"budget_type\":\"daily\",\"id\":998730532,\"event_type\":\"post\",\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"1234567890\",\"utm_source\":\"facebook\",\"utm_medium\":\"facebook-post\",\"description\":null,\"marketing_channel\":\"social\",\"paid\":false,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":null,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/998730532\",\"marketed_resources\":[]}}"
           },
           "name": "Update a marketing event. Can modify only timestamps, remote_id, and budget/currency.",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"marketing_event\":{\"id\":998730532,\"remote_id\":\"1000:2000\",\"started_at\":\"2022-02-02T00:00 +00:00\",\"ended_at\":\"2022-02-03T00:00 +00:00\",\"scheduled_to_end_at\":\"2022-02-04T00:00 +00:00\",\"budget\":\"11.1\",\"budget_type\":\"daily\",\"currency\":\"CAD\",\"utm_campaign\":\"other\",\"utm_source\":\"other\",\"utm_medium\":\"other\",\"event_type\":\"ad\",\"referring_domain\":\"instagram.com\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/998730532.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"marketing_event\":{\"id\":998730532,\"remote_id\":\"1000:2000\",\"started_at\":\"2023-02-02T00:00 +00:00\",\"ended_at\":\"2023-02-03T00:00 +00:00\",\"scheduled_to_end_at\":\"2023-02-04T00:00 +00:00\",\"budget\":\"11.1\",\"budget_type\":\"daily\",\"currency\":\"CAD\",\"utm_campaign\":\"other\",\"utm_source\":\"other\",\"utm_medium\":\"other\",\"event_type\":\"ad\",\"referring_domain\":\"instagram.com\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/998730532.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmarketing_event = ShopifyAPI::MarketingEvent.new(session: test_session)\nmarketing_event.id = 998730532\nmarketing_event.remote_id = \"1000:2000\"\nmarketing_event.started_at = \"2022-02-02T00:00 +00:00\"\nmarketing_event.ended_at = \"2022-02-03T00:00 +00:00\"\nmarketing_event.scheduled_to_end_at = \"2022-02-04T00:00 +00:00\"\nmarketing_event.budget = \"11.1\"\nmarketing_event.budget_type = \"daily\"\nmarketing_event.currency = \"CAD\"\nmarketing_event.utm_campaign = \"other\"\nmarketing_event.utm_source = \"other\"\nmarketing_event.utm_medium = \"other\"\nmarketing_event.event_type = \"ad\"\nmarketing_event.referring_domain = \"instagram.com\"\nmarketing_event.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmarketing_event = ShopifyAPI::MarketingEvent.new(session: test_session)\nmarketing_event.id = 998730532\nmarketing_event.remote_id = \"1000:2000\"\nmarketing_event.started_at = \"2023-02-02T00:00 +00:00\"\nmarketing_event.ended_at = \"2023-02-03T00:00 +00:00\"\nmarketing_event.scheduled_to_end_at = \"2023-02-04T00:00 +00:00\"\nmarketing_event.budget = \"11.1\"\nmarketing_event.budget_type = \"daily\"\nmarketing_event.currency = \"CAD\"\nmarketing_event.utm_campaign = \"other\"\nmarketing_event.utm_source = \"other\"\nmarketing_event.utm_medium = \"other\"\nmarketing_event.event_type = \"ad\"\nmarketing_event.referring_domain = \"instagram.com\"\nmarketing_event.save!"
             },
             {
               "language": "node",
-              "example_code": "import {MarketingEvent} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst marketing_event = new MarketingEvent({session: test_session});\nmarketing_event.id = 998730532;\nmarketing_event.remote_id = \"1000:2000\";\nmarketing_event.started_at = \"2022-02-02T00:00 +00:00\";\nmarketing_event.ended_at = \"2022-02-03T00:00 +00:00\";\nmarketing_event.scheduled_to_end_at = \"2022-02-04T00:00 +00:00\";\nmarketing_event.budget = \"11.1\";\nmarketing_event.budget_type = \"daily\";\nmarketing_event.currency = \"CAD\";\nmarketing_event.utm_campaign = \"other\";\nmarketing_event.utm_source = \"other\";\nmarketing_event.utm_medium = \"other\";\nmarketing_event.event_type = \"ad\";\nmarketing_event.referring_domain = \"instagram.com\";\nawait marketing_event.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst marketing_event = new shopify.rest.MarketingEvent({session: session});\nmarketing_event.id = 998730532;\nmarketing_event.remote_id = \"1000:2000\";\nmarketing_event.started_at = \"2023-02-02T00:00 +00:00\";\nmarketing_event.ended_at = \"2023-02-03T00:00 +00:00\";\nmarketing_event.scheduled_to_end_at = \"2023-02-04T00:00 +00:00\";\nmarketing_event.budget = \"11.1\";\nmarketing_event.budget_type = \"daily\";\nmarketing_event.currency = \"CAD\";\nmarketing_event.utm_campaign = \"other\";\nmarketing_event.utm_source = \"other\";\nmarketing_event.utm_medium = \"other\";\nmarketing_event.event_type = \"ad\";\nmarketing_event.referring_domain = \"instagram.com\";\nawait marketing_event.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->id = 998730532;\n$marketing_event->remote_id = \"1000:2000\";\n$marketing_event->started_at = \"2022-02-02T00:00 +00:00\";\n$marketing_event->ended_at = \"2022-02-03T00:00 +00:00\";\n$marketing_event->scheduled_to_end_at = \"2022-02-04T00:00 +00:00\";\n$marketing_event->budget = \"11.1\";\n$marketing_event->budget_type = \"daily\";\n$marketing_event->currency = \"CAD\";\n$marketing_event->utm_campaign = \"other\";\n$marketing_event->utm_source = \"other\";\n$marketing_event->utm_medium = \"other\";\n$marketing_event->event_type = \"ad\";\n$marketing_event->referring_domain = \"instagram.com\";\n$marketing_event->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->id = 998730532;\n$marketing_event->remote_id = \"1000:2000\";\n$marketing_event->started_at = \"2023-02-02T00:00 +00:00\";\n$marketing_event->ended_at = \"2023-02-03T00:00 +00:00\";\n$marketing_event->scheduled_to_end_at = \"2023-02-04T00:00 +00:00\";\n$marketing_event->budget = \"11.1\";\n$marketing_event->budget_type = \"daily\";\n$marketing_event->currency = \"CAD\";\n$marketing_event->utm_campaign = \"other\";\n$marketing_event->utm_source = \"other\";\n$marketing_event->utm_medium = \"other\";\n$marketing_event->event_type = \"ad\";\n$marketing_event->referring_domain = \"instagram.com\";\n$marketing_event->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -586,7 +586,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {MarketingEvent} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait MarketingEvent.delete({\n  session: test_session,\n  id: 998730532,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.MarketingEvent.delete({\n  session: session,\n  id: 998730532,\n});"
             },
             {
               "language": "php",
@@ -710,7 +710,7 @@
                   "value": {
                     "engagements": [
                       {
-                        "occurred_on": "2022-01-15",
+                        "occurred_on": "2023-01-15",
                         "fetched_at": null,
                         "views_count": 0,
                         "impressions_count": null,
@@ -730,7 +730,7 @@
                         "utc_offset": null
                       },
                       {
-                        "occurred_on": "2022-01-16",
+                        "occurred_on": "2023-01-16",
                         "fetched_at": null,
                         "views_count": 100,
                         "impressions_count": null,
@@ -750,7 +750,7 @@
                         "utc_offset": null
                       },
                       {
-                        "occurred_on": "2022-01-17",
+                        "occurred_on": "2023-01-17",
                         "fetched_at": null,
                         "views_count": 200,
                         "impressions_count": null,
@@ -786,30 +786,30 @@
           "request": {
             "action": "POST /admin/api/unstable/marketing_events/998730532/engagements.json",
             "headers": {},
-            "body": "{\"engagements\":[{\"occurred_on\":\"2022-01-15\",\"views_count\":0,\"clicks_count\":0,\"favorites_count\":0,\"ad_spend\":10.0,\"is_cumulative\":true},{\"occurred_on\":\"2022-01-16\",\"views_count\":100,\"clicks_count\":50,\"is_cumulative\":true},{\"occurred_on\":\"2022-01-17\",\"views_count\":200,\"clicks_count\":100,\"is_cumulative\":true}]}"
+            "body": "{\"engagements\":[{\"occurred_on\":\"2023-01-15\",\"views_count\":0,\"clicks_count\":0,\"favorites_count\":0,\"ad_spend\":10.0,\"is_cumulative\":true},{\"occurred_on\":\"2023-01-16\",\"views_count\":100,\"clicks_count\":50,\"is_cumulative\":true},{\"occurred_on\":\"2023-01-17\",\"views_count\":200,\"clicks_count\":100,\"is_cumulative\":true}]}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"engagements\":[{\"occurred_on\":\"2022-01-15\",\"fetched_at\":null,\"views_count\":0,\"impressions_count\":null,\"clicks_count\":0,\"favorites_count\":0,\"comments_count\":null,\"shares_count\":null,\"ad_spend\":\"10.0\",\"currency_code\":null,\"is_cumulative\":true,\"unsubscribes_count\":null,\"complaints_count\":null,\"fails_count\":null,\"sends_count\":null,\"unique_views_count\":null,\"unique_clicks_count\":null,\"utc_offset\":null},{\"occurred_on\":\"2022-01-16\",\"fetched_at\":null,\"views_count\":100,\"impressions_count\":null,\"clicks_count\":50,\"favorites_count\":null,\"comments_count\":null,\"shares_count\":null,\"ad_spend\":null,\"currency_code\":null,\"is_cumulative\":true,\"unsubscribes_count\":null,\"complaints_count\":null,\"fails_count\":null,\"sends_count\":null,\"unique_views_count\":null,\"unique_clicks_count\":null,\"utc_offset\":null},{\"occurred_on\":\"2022-01-17\",\"fetched_at\":null,\"views_count\":200,\"impressions_count\":null,\"clicks_count\":100,\"favorites_count\":null,\"comments_count\":null,\"shares_count\":null,\"ad_spend\":null,\"currency_code\":null,\"is_cumulative\":true,\"unsubscribes_count\":null,\"complaints_count\":null,\"fails_count\":null,\"sends_count\":null,\"unique_views_count\":null,\"unique_clicks_count\":null,\"utc_offset\":null}]}"
+            "body": "{\"engagements\":[{\"occurred_on\":\"2023-01-15\",\"fetched_at\":null,\"views_count\":0,\"impressions_count\":null,\"clicks_count\":0,\"favorites_count\":0,\"comments_count\":null,\"shares_count\":null,\"ad_spend\":\"10.0\",\"currency_code\":null,\"is_cumulative\":true,\"unsubscribes_count\":null,\"complaints_count\":null,\"fails_count\":null,\"sends_count\":null,\"unique_views_count\":null,\"unique_clicks_count\":null,\"utc_offset\":null},{\"occurred_on\":\"2023-01-16\",\"fetched_at\":null,\"views_count\":100,\"impressions_count\":null,\"clicks_count\":50,\"favorites_count\":null,\"comments_count\":null,\"shares_count\":null,\"ad_spend\":null,\"currency_code\":null,\"is_cumulative\":true,\"unsubscribes_count\":null,\"complaints_count\":null,\"fails_count\":null,\"sends_count\":null,\"unique_views_count\":null,\"unique_clicks_count\":null,\"utc_offset\":null},{\"occurred_on\":\"2023-01-17\",\"fetched_at\":null,\"views_count\":200,\"impressions_count\":null,\"clicks_count\":100,\"favorites_count\":null,\"comments_count\":null,\"shares_count\":null,\"ad_spend\":null,\"currency_code\":null,\"is_cumulative\":true,\"unsubscribes_count\":null,\"complaints_count\":null,\"fails_count\":null,\"sends_count\":null,\"unique_views_count\":null,\"unique_clicks_count\":null,\"utc_offset\":null}]}"
           },
           "name": "Add engagements to a marketing engagement",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"engagements\":[{\"occurred_on\":\"2022-01-15\",\"views_count\":0,\"clicks_count\":0,\"favorites_count\":0,\"ad_spend\":10.0,\"is_cumulative\":true},{\"occurred_on\":\"2022-01-16\",\"views_count\":100,\"clicks_count\":50,\"is_cumulative\":true},{\"occurred_on\":\"2022-01-17\",\"views_count\":200,\"clicks_count\":100,\"is_cumulative\":true}]}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/998730532/engagements.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"engagements\":[{\"occurred_on\":\"2023-01-15\",\"views_count\":0,\"clicks_count\":0,\"favorites_count\":0,\"ad_spend\":10.0,\"is_cumulative\":true},{\"occurred_on\":\"2023-01-16\",\"views_count\":100,\"clicks_count\":50,\"is_cumulative\":true},{\"occurred_on\":\"2023-01-17\",\"views_count\":200,\"clicks_count\":100,\"is_cumulative\":true}]}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/998730532/engagements.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmarketing_event = ShopifyAPI::MarketingEvent.new(session: test_session)\nmarketing_event.id = 998730532\nmarketing_event.engagements(\n  session: test_session,\n  body: {\"engagements\" => [{\"occurred_on\" => \"2022-01-15\", \"views_count\" => 0, \"clicks_count\" => 0, \"favorites_count\" => 0, \"ad_spend\" => 10.0, \"is_cumulative\" => true}, {\"occurred_on\" => \"2022-01-16\", \"views_count\" => 100, \"clicks_count\" => 50, \"is_cumulative\" => true}, {\"occurred_on\" => \"2022-01-17\", \"views_count\" => 200, \"clicks_count\" => 100, \"is_cumulative\" => true}]},\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmarketing_event = ShopifyAPI::MarketingEvent.new(session: test_session)\nmarketing_event.id = 998730532\nmarketing_event.engagements(\n  session: test_session,\n  body: {\"engagements\" => [{\"occurred_on\" => \"2023-01-15\", \"views_count\" => 0, \"clicks_count\" => 0, \"favorites_count\" => 0, \"ad_spend\" => 10.0, \"is_cumulative\" => true}, {\"occurred_on\" => \"2023-01-16\", \"views_count\" => 100, \"clicks_count\" => 50, \"is_cumulative\" => true}, {\"occurred_on\" => \"2023-01-17\", \"views_count\" => 200, \"clicks_count\" => 100, \"is_cumulative\" => true}]},\n)"
             },
             {
               "language": "node",
-              "example_code": "import {MarketingEvent} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst marketing_event = new MarketingEvent({session: test_session});\nmarketing_event.id = 998730532;\nawait marketing_event.engagements({\n  body: {\"engagements\": [{\"occurred_on\": \"2022-01-15\", \"views_count\": 0, \"clicks_count\": 0, \"favorites_count\": 0, \"ad_spend\": 10.0, \"is_cumulative\": true}, {\"occurred_on\": \"2022-01-16\", \"views_count\": 100, \"clicks_count\": 50, \"is_cumulative\": true}, {\"occurred_on\": \"2022-01-17\", \"views_count\": 200, \"clicks_count\": 100, \"is_cumulative\": true}]},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst marketing_event = new shopify.rest.MarketingEvent({session: session});\nmarketing_event.id = 998730532;\nawait marketing_event.engagements({\n  body: {\"engagements\": [{\"occurred_on\": \"2023-01-15\", \"views_count\": 0, \"clicks_count\": 0, \"favorites_count\": 0, \"ad_spend\": 10.0, \"is_cumulative\": true}, {\"occurred_on\": \"2023-01-16\", \"views_count\": 100, \"clicks_count\": 50, \"is_cumulative\": true}, {\"occurred_on\": \"2023-01-17\", \"views_count\": 200, \"clicks_count\": 100, \"is_cumulative\": true}]},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->id = 998730532;\n$marketing_event->engagements(\n    [], // Params\n    [\"engagements\" => [[\"occurred_on\" => \"2022-01-15\", \"views_count\" => 0, \"clicks_count\" => 0, \"favorites_count\" => 0, \"ad_spend\" => 10.0, \"is_cumulative\" => true], [\"occurred_on\" => \"2022-01-16\", \"views_count\" => 100, \"clicks_count\" => 50, \"is_cumulative\" => true], [\"occurred_on\" => \"2022-01-17\", \"views_count\" => 200, \"clicks_count\" => 100, \"is_cumulative\" => true]]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->id = 998730532;\n$marketing_event->engagements(\n    [], // Params\n    [\"engagements\" => [[\"occurred_on\" => \"2023-01-15\", \"views_count\" => 0, \"clicks_count\" => 0, \"favorites_count\" => 0, \"ad_spend\" => 10.0, \"is_cumulative\" => true], [\"occurred_on\" => \"2023-01-16\", \"views_count\" => 100, \"clicks_count\" => 50, \"is_cumulative\" => true], [\"occurred_on\" => \"2023-01-17\", \"views_count\" => 200, \"clicks_count\" => 100, \"is_cumulative\" => true]]], // Body\n);"
             }
           ]
         }
@@ -876,19 +876,19 @@
         {
           "description": "          The time when the marketing action was started.\n",
           "type": "string",
-          "example": "2022-01-15T08:56:18-07:00",
+          "example": "2023-01-15T08:56:18-07:00",
           "name": "started_at"
         },
         {
           "description": "For events with a duration, the time when the event was scheduled to end.",
           "type": "string",
-          "example": "2022-01-22T08:56:18-07:00",
+          "example": "2023-01-22T08:56:18-07:00",
           "name": "scheduled_to_end_at"
         },
         {
           "description": "          For events with a duration, the time when the event actually ended.\n",
           "type": "string",
-          "example": "2022-01-20T08:56:18-07:00",
+          "example": "2023-01-20T08:56:18-07:00",
           "name": "ended_at"
         },
         {
@@ -896,7 +896,7 @@
           "type": "string",
           "example": {
             "marketing_event": {
-              "utm_campaign": "CanadaDay2022",
+              "utm_campaign": "CanadaDay2023",
               "utm_source": "facebook",
               "utm_medium": "cpc"
             }

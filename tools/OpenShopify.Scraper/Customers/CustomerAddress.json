@@ -121,7 +121,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerAddress.all({\n  session: test_session,\n  customer_id: 207119551,\n  limit: \"1\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerAddress.all({\n  session: session,\n  customer_id: 207119551,\n  limit: \"1\",\n});"
             },
             {
               "language": "php",
@@ -156,7 +156,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerAddress.all({\n  session: test_session,\n  customer_id: 207119551,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerAddress.all({\n  session: session,\n  customer_id: 207119551,\n});"
             },
             {
               "language": "php",
@@ -279,7 +279,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerAddress.find({\n  session: test_session,\n  customer_id: 207119551,\n  id: 207119551,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerAddress.find({\n  session: session,\n  customer_id: 207119551,\n  id: 207119551,\n});"
             },
             {
               "language": "php",
@@ -425,7 +425,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_address = new CustomerAddress({session: test_session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.id = 207119551;\ncustomer_address.zip = \"90210\";\nawait customer_address.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.id = 207119551;\ncustomer_address.zip = \"90210\";\nawait customer_address.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -460,7 +460,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_address = new CustomerAddress({session: test_session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.id = 207119551;\ncustomer_address.address1 = \"Apartment 23\";\ncustomer_address.address2 = \"Chestnut Street 92\";\nawait customer_address.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.id = 207119551;\ncustomer_address.address1 = \"Apartment 23\";\ncustomer_address.address2 = \"Chestnut Street 92\";\nawait customer_address.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -522,6 +522,18 @@
         }
       ],
       "responses": {
+        "200": {
+          "description": "Removes an address from a customer’s address list",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Remove a customer address": {
+                  "value": {}
+                }
+              }
+            }
+          }
+        },
         "422": {
           "description": "Removes an address from a customer’s address list",
           "content": {
@@ -539,21 +551,44 @@
               }
             }
           }
-        },
-        "200": {
-          "description": "Removes an address from a customer’s address list",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Remove a customer address": {
-                  "value": {}
-                }
-              }
-            }
-          }
         }
       },
       "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/customers/207119551/addresses/1053317306.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/customers/207119551/addresses/1053317306.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{}"
+          },
+          "name": "Remove a customer address",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/1053317306.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerAddress.delete(\n  session: test_session,\n  customer_id: 207119551,\n  id: 1053317306,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerAddress.delete({\n  session: session,\n  customer_id: 207119551,\n  id: 1053317306,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::delete(\n    $this->test_session, // Session\n    1053317306, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
         {
           "status": "422",
           "request_query": "",
@@ -581,46 +616,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerAddress.delete({\n  session: test_session,\n  customer_id: 207119551,\n  id: 207119551,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerAddress.delete({\n  session: session,\n  customer_id: 207119551,\n  id: 207119551,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::delete(\n    $this->test_session, // Session\n    207119551, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/1053317288.json",
-          "request_method": "DELETE",
-          "request": {
-            "action": "DELETE /admin/api/unstable/customers/207119551/addresses/1053317288.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{}"
-          },
-          "name": "Remove a customer address",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/1053317288.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerAddress.delete(\n  session: test_session,\n  customer_id: 207119551,\n  id: 1053317288,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerAddress.delete({\n  session: test_session,\n  customer_id: 207119551,\n  id: 1053317288,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::delete(\n    $this->test_session, // Session\n    1053317288, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -678,7 +678,7 @@
                 "Create a new address for a customer": {
                   "value": {
                     "customer_address": {
-                      "id": 1053317286,
+                      "id": 1053317303,
                       "customer_id": 207119551,
                       "first_name": "Samuel",
                       "last_name": "de Champlain",
@@ -717,7 +717,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"customer_address\":{\"id\":1053317286,\"customer_id\":207119551,\"first_name\":\"Samuel\",\"last_name\":\"de Champlain\",\"company\":\"Fancy Co.\",\"address1\":\"1 Rue des Carrieres\",\"address2\":\"Suite 1234\",\"city\":\"Montreal\",\"province\":\"Quebec\",\"country\":\"Canada\",\"zip\":\"G1R 4P5\",\"phone\":\"819-555-5555\",\"name\":\"Samuel de Champlain\",\"province_code\":\"QC\",\"country_code\":\"CA\",\"country_name\":\"Canada\",\"default\":false}}"
+            "body": "{\"customer_address\":{\"id\":1053317303,\"customer_id\":207119551,\"first_name\":\"Samuel\",\"last_name\":\"de Champlain\",\"company\":\"Fancy Co.\",\"address1\":\"1 Rue des Carrieres\",\"address2\":\"Suite 1234\",\"city\":\"Montreal\",\"province\":\"Quebec\",\"country\":\"Canada\",\"zip\":\"G1R 4P5\",\"phone\":\"819-555-5555\",\"name\":\"Samuel de Champlain\",\"province_code\":\"QC\",\"country_code\":\"CA\",\"country_name\":\"Canada\",\"default\":false}}"
           },
           "name": "Create a new address for a customer",
           "codeSamples": [
@@ -731,7 +731,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_address = new CustomerAddress({session: test_session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.address1 = \"1 Rue des Carrieres\";\ncustomer_address.address2 = \"Suite 1234\";\ncustomer_address.city = \"Montreal\";\ncustomer_address.company = \"Fancy Co.\";\ncustomer_address.first_name = \"Samuel\";\ncustomer_address.last_name = \"de Champlain\";\ncustomer_address.phone = \"819-555-5555\";\ncustomer_address.province = \"Quebec\";\ncustomer_address.country = \"Canada\";\ncustomer_address.zip = \"G1R 4P5\";\ncustomer_address.name = \"Samuel de Champlain\";\ncustomer_address.province_code = \"QC\";\ncustomer_address.country_code = \"CA\";\ncustomer_address.country_name = \"Canada\";\nawait customer_address.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.address1 = \"1 Rue des Carrieres\";\ncustomer_address.address2 = \"Suite 1234\";\ncustomer_address.city = \"Montreal\";\ncustomer_address.company = \"Fancy Co.\";\ncustomer_address.first_name = \"Samuel\";\ncustomer_address.last_name = \"de Champlain\";\ncustomer_address.phone = \"819-555-5555\";\ncustomer_address.province = \"Quebec\";\ncustomer_address.country = \"Canada\";\ncustomer_address.zip = \"G1R 4P5\";\ncustomer_address.name = \"Samuel de Champlain\";\ncustomer_address.province_code = \"QC\";\ncustomer_address.country_code = \"CA\";\ncustomer_address.country_name = \"Canada\";\nawait customer_address.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -819,7 +819,7 @@
       "x-examples": [
         {
           "status": "200",
-          "request_query": "address_ids%5B%5D=1053317287&operation=destroy",
+          "request_query": "address_ids%5B%5D=1053317305&operation=destroy",
           "request_path": "/admin/api/2022-10/customers/207119551/addresses/set.json",
           "request_method": "PUT",
           "request": {
@@ -836,19 +836,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/set.json?address_ids%5B%5D=1053317287&operation=destroy\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/set.json?address_ids%5B%5D=1053317305&operation=destroy\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_address = ShopifyAPI::CustomerAddress.new(session: test_session)\ncustomer_address.customer_id = 207119551\ncustomer_address.set(\n  session: test_session,\n  address_ids: [\"1053317287\"],\n  operation: \"destroy\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_address = ShopifyAPI::CustomerAddress.new(session: test_session)\ncustomer_address.customer_id = 207119551\ncustomer_address.set(\n  session: test_session,\n  address_ids: [\"1053317305\"],\n  operation: \"destroy\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_address = new CustomerAddress({session: test_session});\ncustomer_address.customer_id = 207119551;\nawait customer_address.set({\n  address_ids: [\"1053317287\"],\n  operation: \"destroy\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\nawait customer_address.set({\n  address_ids: [\"1053317305\"],\n  operation: \"destroy\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->set(\n    [\"address_ids\" => [\"1053317287\"], \"operation\" => \"destroy\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->set(\n    [\"address_ids\" => [\"1053317305\"], \"operation\" => \"destroy\"], // Params\n);"
             }
           ]
         }
@@ -860,7 +860,7 @@
           }
         ]
       },
-      "url": "/admin/api/{api_version}/customers/{customer_id}/addresses/set.json?address_ids[]=1053317287&operation=destroy",
+      "url": "/admin/api/{api_version}/customers/{customer_id}/addresses/set.json?address_ids[]=1053317305&operation=destroy",
       "action": "put"
     },
     {
@@ -902,7 +902,7 @@
                 "Set a default address for a customer": {
                   "value": {
                     "customer_address": {
-                      "id": 1053317289,
+                      "id": 1053317304,
                       "customer_id": 207119551,
                       "first_name": "Bob",
                       "last_name": "Norman",
@@ -931,35 +931,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/1053317289/default.json",
+          "request_path": "/admin/api/2022-10/customers/207119551/addresses/1053317304/default.json",
           "request_method": "PUT",
           "request": {
-            "action": "PUT /admin/api/unstable/customers/207119551/addresses/1053317289/default.json",
+            "action": "PUT /admin/api/unstable/customers/207119551/addresses/1053317304/default.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_address\":{\"id\":1053317289,\"customer_id\":207119551,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"Bob Norman\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}"
+            "body": "{\"customer_address\":{\"id\":1053317304,\"customer_id\":207119551,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"Bob Norman\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}"
           },
           "name": "Set a default address for a customer",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/1053317289/default.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/1053317304/default.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_address = ShopifyAPI::CustomerAddress.new(session: test_session)\ncustomer_address.customer_id = 207119551\ncustomer_address.id = 1053317289\ncustomer_address.default(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_address = ShopifyAPI::CustomerAddress.new(session: test_session)\ncustomer_address.customer_id = 207119551\ncustomer_address.id = 1053317304\ncustomer_address.default(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CustomerAddress} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_address = new CustomerAddress({session: test_session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.id = 1053317289;\nawait customer_address.default({});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.id = 1053317304;\nawait customer_address.default({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->id = 1053317289;\n$customer_address->default(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->id = 1053317304;\n$customer_address->default(\n    [], // Params\n);"
             }
           ]
         }

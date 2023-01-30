@@ -13,8 +13,8 @@ public partial class MetafieldController : MetafieldControllerBase
     [HttpGet]
     [Route("pages/{page_id}/metafields/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public Task CountMetafieldsAttachedToPage(long? page_id = null) => throw new NotImplementedException();
-
+    public override Task CountMetafieldsAttachedToPage(long? page_id = null) => throw new NotImplementedException();
+    
     /// <inheritdoc />
     [HttpPost]
     [Route("pages/{page_id}/metafields.json")]

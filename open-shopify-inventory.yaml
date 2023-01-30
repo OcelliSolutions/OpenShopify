@@ -23,7 +23,7 @@ paths:
     get:
       tags:
         - InventoryItem
-      summary: Retrieves a list of inventory items
+      summary: Retrieves a detailed list for inventory items by IDs
       description: 'Retrieves a list of inventory items. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).'
       operationId: ListInventoryItems
       parameters:

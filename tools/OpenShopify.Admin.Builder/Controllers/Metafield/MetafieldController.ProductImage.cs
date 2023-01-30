@@ -26,7 +26,7 @@ public partial class MetafieldController : MetafieldControllerBase
     [HttpDelete]
     [Route("product_images/{product_image_id}/metafields/{metafield_id}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public Task DeleteMetafieldForProductImage([Required] long product_image_id, [Required] long metafield_id) => throw new NotImplementedException();
+    public override Task DeleteMetafieldForProductImage([Required] long product_image_id, [Required] long metafield_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
     [HttpGet]

@@ -89,7 +89,7 @@
           "content": {
             "application/json": {
               "examples": {
-                "Count all abandoned checkouts": {
+                "Count abandoned checkouts created before date specified": {
                   "value": {
                     "checkouts": [
                       {
@@ -148,7 +148,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "955c2067a4e0b28e",
+                            "key": "28a7cdfa0b96243e",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -186,7 +186,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "971595d5d798ba36",
+                            "key": "5e12f3305d99c598",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -280,8 +280,8 @@
                           "id": 207119551,
                           "email": "bob.norman@mail.example.com",
                           "accepts_marketing": false,
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "updated_at": "2022-10-03T11:07:13-06:00",
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "updated_at": "2023-01-03T10:56:35-07:00",
                           "first_name": "Bob",
                           "last_name": "Norman",
                           "orders_count": 1,
@@ -307,7 +307,253 @@
                           "sms_marketing_consent": {
                             "state": "not_subscribed",
                             "opt_in_level": "single_opt_in",
-                            "consent_updated_at": "2022-10-03T11:07:13-06:00",
+                            "consent_updated_at": "2023-01-03T10:56:35-07:00",
+                            "consent_collected_from": "OTHER"
+                          },
+                          "admin_graphql_api_id": "gid://shopify/Customer/207119551",
+                          "default_address": {
+                            "id": 207119551,
+                            "customer_id": 207119551,
+                            "first_name": null,
+                            "last_name": null,
+                            "company": null,
+                            "address1": "Chestnut Street 92",
+                            "address2": "",
+                            "city": "Louisville",
+                            "province": "Kentucky",
+                            "country": "United States",
+                            "zip": "40202",
+                            "phone": "555-625-1199",
+                            "name": "",
+                            "province_code": "KY",
+                            "country_code": "US",
+                            "country_name": "United States",
+                            "default": true
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "Count all abandoned checkouts": {
+                  "value": {
+                    "checkouts": [
+                      {
+                        "id": 450789469,
+                        "token": "2a1ace52255252df566af0faaedfbfa7",
+                        "cart_token": "68778783ad298f1c80c3bafcddeea02f",
+                        "email": "bob.norman@mail.example.com",
+                        "gateway": null,
+                        "buyer_accepts_marketing": false,
+                        "created_at": "2012-10-12T05:05:27-06:00",
+                        "updated_at": "2012-10-12T05:05:27-06:00",
+                        "landing_site": null,
+                        "note": null,
+                        "note_attributes": [
+                          {
+                            "name": "custom engraving",
+                            "value": "Happy Birthday"
+                          },
+                          {
+                            "name": "colour",
+                            "value": "green"
+                          }
+                        ],
+                        "referring_site": null,
+                        "shipping_lines": [
+                          {
+                            "title": "Free Shipping",
+                            "price": "0.00",
+                            "code": "Free Shipping",
+                            "source": "shopify",
+                            "applied_discounts": [],
+                            "id": "5da41c1738454765"
+                          }
+                        ],
+                        "taxes_included": false,
+                        "total_weight": 400,
+                        "currency": "USD",
+                        "completed_at": null,
+                        "closed_at": null,
+                        "user_id": null,
+                        "location_id": null,
+                        "source_identifier": null,
+                        "source_url": null,
+                        "device_id": null,
+                        "phone": null,
+                        "customer_locale": "en",
+                        "line_items": [
+                          {
+                            "applied_discounts": [],
+                            "discount_allocations": [
+                              {
+                                "id": null,
+                                "amount": "19.90",
+                                "description": null,
+                                "created_at": null,
+                                "application_type": "discount_code"
+                              }
+                            ],
+                            "key": "28a7cdfa0b96243e",
+                            "destination_location_id": null,
+                            "fulfillment_service": "manual",
+                            "gift_card": false,
+                            "grams": 200,
+                            "origin_location_id": null,
+                            "presentment_title": "IPod Nano - 8GB",
+                            "presentment_variant_title": "Red",
+                            "product_id": 632910392,
+                            "properties": null,
+                            "quantity": 1,
+                            "requires_shipping": true,
+                            "sku": "IPOD2008RED",
+                            "tax_lines": [],
+                            "taxable": true,
+                            "title": "IPod Nano - 8GB",
+                            "variant_id": 49148385,
+                            "variant_title": "Red",
+                            "variant_price": null,
+                            "vendor": "Apple",
+                            "user_id": null,
+                            "unit_price_measurement": null,
+                            "rank": null,
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "price": "199.00"
+                          },
+                          {
+                            "applied_discounts": [],
+                            "discount_allocations": [
+                              {
+                                "id": null,
+                                "amount": "19.90",
+                                "description": null,
+                                "created_at": null,
+                                "application_type": "discount_code"
+                              }
+                            ],
+                            "key": "5e12f3305d99c598",
+                            "destination_location_id": null,
+                            "fulfillment_service": "manual",
+                            "gift_card": false,
+                            "grams": 200,
+                            "origin_location_id": null,
+                            "presentment_title": "IPod Nano - 8GB",
+                            "presentment_variant_title": "Pink",
+                            "product_id": 632910392,
+                            "properties": null,
+                            "quantity": 1,
+                            "requires_shipping": true,
+                            "sku": "IPOD2008PINK",
+                            "tax_lines": [],
+                            "taxable": true,
+                            "title": "IPod Nano - 8GB",
+                            "variant_id": 808950810,
+                            "variant_title": "Pink",
+                            "variant_price": null,
+                            "vendor": "Apple",
+                            "user_id": null,
+                            "unit_price_measurement": null,
+                            "rank": null,
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "price": "199.00"
+                          }
+                        ],
+                        "name": "#450789469",
+                        "source": null,
+                        "abandoned_checkout_url": "https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover",
+                        "discount_codes": [
+                          {
+                            "code": "TENOFF",
+                            "amount": "39.80",
+                            "type": "percentage"
+                          }
+                        ],
+                        "tax_lines": [
+                          {
+                            "price": "21.49",
+                            "rate": 0.06,
+                            "title": "State Tax",
+                            "channel_liable": null
+                          }
+                        ],
+                        "source_name": "web",
+                        "presentment_currency": "USD",
+                        "buyer_accepts_sms_marketing": false,
+                        "sms_marketing_phone": null,
+                        "total_discounts": "39.80",
+                        "total_line_items_price": "398.00",
+                        "total_price": "379.69",
+                        "total_tax": "21.49",
+                        "subtotal_price": "358.20",
+                        "total_duties": null,
+                        "billing_address": {
+                          "first_name": "Bob",
+                          "address1": "Chestnut Street 92",
+                          "phone": "+1(502)-459-2181",
+                          "city": "Louisville",
+                          "zip": "40202",
+                          "province": "Kentucky",
+                          "country": "United States",
+                          "last_name": "Norman",
+                          "address2": "",
+                          "company": null,
+                          "latitude": 45.41634,
+                          "longitude": -75.6868,
+                          "name": "Bob Norman",
+                          "country_code": "US",
+                          "province_code": "KY"
+                        },
+                        "shipping_address": {
+                          "first_name": "Bob",
+                          "address1": "Chestnut Street 92",
+                          "phone": "+1(502)-459-2181",
+                          "city": "Louisville",
+                          "zip": "40202",
+                          "province": "Kentucky",
+                          "country": "United States",
+                          "last_name": "Norman",
+                          "address2": "",
+                          "company": null,
+                          "latitude": 45.41634,
+                          "longitude": -75.6868,
+                          "name": "Bob Norman",
+                          "country_code": "US",
+                          "province_code": "KY"
+                        },
+                        "customer": {
+                          "id": 207119551,
+                          "email": "bob.norman@mail.example.com",
+                          "accepts_marketing": false,
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "updated_at": "2023-01-03T10:56:35-07:00",
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "orders_count": 1,
+                          "state": "disabled",
+                          "total_spent": "199.65",
+                          "last_order_id": 450789469,
+                          "note": null,
+                          "verified_email": true,
+                          "multipass_identifier": null,
+                          "tax_exempt": false,
+                          "tags": "",
+                          "last_order_name": "#1001",
+                          "currency": "USD",
+                          "phone": "+16136120707",
+                          "accepts_marketing_updated_at": "2005-06-12T09:57:11-06:00",
+                          "marketing_opt_in_level": null,
+                          "tax_exemptions": [],
+                          "email_marketing_consent": {
+                            "state": "not_subscribed",
+                            "opt_in_level": null,
+                            "consent_updated_at": "2004-06-13T09:57:11-06:00"
+                          },
+                          "sms_marketing_consent": {
+                            "state": "not_subscribed",
+                            "opt_in_level": "single_opt_in",
+                            "consent_updated_at": "2023-01-03T10:56:35-07:00",
                             "consent_collected_from": "OTHER"
                           },
                           "admin_graphql_api_id": "gid://shopify/Customer/207119551",
@@ -394,7 +640,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "955c2067a4e0b28e",
+                            "key": "28a7cdfa0b96243e",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -432,7 +678,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "971595d5d798ba36",
+                            "key": "5e12f3305d99c598",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -526,8 +772,8 @@
                           "id": 207119551,
                           "email": "bob.norman@mail.example.com",
                           "accepts_marketing": false,
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "updated_at": "2022-10-03T11:07:13-06:00",
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "updated_at": "2023-01-03T10:56:35-07:00",
                           "first_name": "Bob",
                           "last_name": "Norman",
                           "orders_count": 1,
@@ -553,253 +799,7 @@
                           "sms_marketing_consent": {
                             "state": "not_subscribed",
                             "opt_in_level": "single_opt_in",
-                            "consent_updated_at": "2022-10-03T11:07:13-06:00",
-                            "consent_collected_from": "OTHER"
-                          },
-                          "admin_graphql_api_id": "gid://shopify/Customer/207119551",
-                          "default_address": {
-                            "id": 207119551,
-                            "customer_id": 207119551,
-                            "first_name": null,
-                            "last_name": null,
-                            "company": null,
-                            "address1": "Chestnut Street 92",
-                            "address2": "",
-                            "city": "Louisville",
-                            "province": "Kentucky",
-                            "country": "United States",
-                            "zip": "40202",
-                            "phone": "555-625-1199",
-                            "name": "",
-                            "province_code": "KY",
-                            "country_code": "US",
-                            "country_name": "United States",
-                            "default": true
-                          }
-                        }
-                      }
-                    ]
-                  }
-                },
-                "Count abandoned checkouts created before date specified": {
-                  "value": {
-                    "checkouts": [
-                      {
-                        "id": 450789469,
-                        "token": "2a1ace52255252df566af0faaedfbfa7",
-                        "cart_token": "68778783ad298f1c80c3bafcddeea02f",
-                        "email": "bob.norman@mail.example.com",
-                        "gateway": null,
-                        "buyer_accepts_marketing": false,
-                        "created_at": "2012-10-12T05:05:27-06:00",
-                        "updated_at": "2012-10-12T05:05:27-06:00",
-                        "landing_site": null,
-                        "note": null,
-                        "note_attributes": [
-                          {
-                            "name": "custom engraving",
-                            "value": "Happy Birthday"
-                          },
-                          {
-                            "name": "colour",
-                            "value": "green"
-                          }
-                        ],
-                        "referring_site": null,
-                        "shipping_lines": [
-                          {
-                            "title": "Free Shipping",
-                            "price": "0.00",
-                            "code": "Free Shipping",
-                            "source": "shopify",
-                            "applied_discounts": [],
-                            "id": "5da41c1738454765"
-                          }
-                        ],
-                        "taxes_included": false,
-                        "total_weight": 400,
-                        "currency": "USD",
-                        "completed_at": null,
-                        "closed_at": null,
-                        "user_id": null,
-                        "location_id": null,
-                        "source_identifier": null,
-                        "source_url": null,
-                        "device_id": null,
-                        "phone": null,
-                        "customer_locale": "en",
-                        "line_items": [
-                          {
-                            "applied_discounts": [],
-                            "discount_allocations": [
-                              {
-                                "id": null,
-                                "amount": "19.90",
-                                "description": null,
-                                "created_at": null,
-                                "application_type": "discount_code"
-                              }
-                            ],
-                            "key": "955c2067a4e0b28e",
-                            "destination_location_id": null,
-                            "fulfillment_service": "manual",
-                            "gift_card": false,
-                            "grams": 200,
-                            "origin_location_id": null,
-                            "presentment_title": "IPod Nano - 8GB",
-                            "presentment_variant_title": "Red",
-                            "product_id": 632910392,
-                            "properties": null,
-                            "quantity": 1,
-                            "requires_shipping": true,
-                            "sku": "IPOD2008RED",
-                            "tax_lines": [],
-                            "taxable": true,
-                            "title": "IPod Nano - 8GB",
-                            "variant_id": 49148385,
-                            "variant_title": "Red",
-                            "variant_price": null,
-                            "vendor": "Apple",
-                            "user_id": null,
-                            "unit_price_measurement": null,
-                            "rank": null,
-                            "compare_at_price": null,
-                            "line_price": "199.00",
-                            "price": "199.00"
-                          },
-                          {
-                            "applied_discounts": [],
-                            "discount_allocations": [
-                              {
-                                "id": null,
-                                "amount": "19.90",
-                                "description": null,
-                                "created_at": null,
-                                "application_type": "discount_code"
-                              }
-                            ],
-                            "key": "971595d5d798ba36",
-                            "destination_location_id": null,
-                            "fulfillment_service": "manual",
-                            "gift_card": false,
-                            "grams": 200,
-                            "origin_location_id": null,
-                            "presentment_title": "IPod Nano - 8GB",
-                            "presentment_variant_title": "Pink",
-                            "product_id": 632910392,
-                            "properties": null,
-                            "quantity": 1,
-                            "requires_shipping": true,
-                            "sku": "IPOD2008PINK",
-                            "tax_lines": [],
-                            "taxable": true,
-                            "title": "IPod Nano - 8GB",
-                            "variant_id": 808950810,
-                            "variant_title": "Pink",
-                            "variant_price": null,
-                            "vendor": "Apple",
-                            "user_id": null,
-                            "unit_price_measurement": null,
-                            "rank": null,
-                            "compare_at_price": null,
-                            "line_price": "199.00",
-                            "price": "199.00"
-                          }
-                        ],
-                        "name": "#450789469",
-                        "source": null,
-                        "abandoned_checkout_url": "https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover",
-                        "discount_codes": [
-                          {
-                            "code": "TENOFF",
-                            "amount": "39.80",
-                            "type": "percentage"
-                          }
-                        ],
-                        "tax_lines": [
-                          {
-                            "price": "21.49",
-                            "rate": 0.06,
-                            "title": "State Tax",
-                            "channel_liable": null
-                          }
-                        ],
-                        "source_name": "web",
-                        "presentment_currency": "USD",
-                        "buyer_accepts_sms_marketing": false,
-                        "sms_marketing_phone": null,
-                        "total_discounts": "39.80",
-                        "total_line_items_price": "398.00",
-                        "total_price": "379.69",
-                        "total_tax": "21.49",
-                        "subtotal_price": "358.20",
-                        "total_duties": null,
-                        "billing_address": {
-                          "first_name": "Bob",
-                          "address1": "Chestnut Street 92",
-                          "phone": "+1(502)-459-2181",
-                          "city": "Louisville",
-                          "zip": "40202",
-                          "province": "Kentucky",
-                          "country": "United States",
-                          "last_name": "Norman",
-                          "address2": "",
-                          "company": null,
-                          "latitude": 45.41634,
-                          "longitude": -75.6868,
-                          "name": "Bob Norman",
-                          "country_code": "US",
-                          "province_code": "KY"
-                        },
-                        "shipping_address": {
-                          "first_name": "Bob",
-                          "address1": "Chestnut Street 92",
-                          "phone": "+1(502)-459-2181",
-                          "city": "Louisville",
-                          "zip": "40202",
-                          "province": "Kentucky",
-                          "country": "United States",
-                          "last_name": "Norman",
-                          "address2": "",
-                          "company": null,
-                          "latitude": 45.41634,
-                          "longitude": -75.6868,
-                          "name": "Bob Norman",
-                          "country_code": "US",
-                          "province_code": "KY"
-                        },
-                        "customer": {
-                          "id": 207119551,
-                          "email": "bob.norman@mail.example.com",
-                          "accepts_marketing": false,
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "updated_at": "2022-10-03T11:07:13-06:00",
-                          "first_name": "Bob",
-                          "last_name": "Norman",
-                          "orders_count": 1,
-                          "state": "disabled",
-                          "total_spent": "199.65",
-                          "last_order_id": 450789469,
-                          "note": null,
-                          "verified_email": true,
-                          "multipass_identifier": null,
-                          "tax_exempt": false,
-                          "tags": "",
-                          "last_order_name": "#1001",
-                          "currency": "USD",
-                          "phone": "+16136120707",
-                          "accepts_marketing_updated_at": "2005-06-12T09:57:11-06:00",
-                          "marketing_opt_in_level": null,
-                          "tax_exemptions": [],
-                          "email_marketing_consent": {
-                            "state": "not_subscribed",
-                            "opt_in_level": null,
-                            "consent_updated_at": "2004-06-13T09:57:11-06:00"
-                          },
-                          "sms_marketing_consent": {
-                            "state": "not_subscribed",
-                            "opt_in_level": "single_opt_in",
-                            "consent_updated_at": "2022-10-03T11:07:13-06:00",
+                            "consent_updated_at": "2023-01-03T10:56:35-07:00",
                             "consent_collected_from": "OTHER"
                           },
                           "admin_graphql_api_id": "gid://shopify/Customer/207119551",
@@ -835,6 +835,41 @@
       "x-examples": [
         {
           "status": "200",
+          "request_query": "created_at_max=2013-10-12T07%3A05%3A27-02%3A00",
+          "request_path": "/admin/api/2022-10/checkouts.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/checkouts.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"28a7cdfa0b96243e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"5e12f3305d99c598\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2023-01-03T12:56:35-05:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
+          },
+          "name": "Count abandoned checkouts created before date specified",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts.json?created_at_max=2013-10-12T07%3A05%3A27-02%3A00\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::AbandonedCheckout.checkouts(\n  session: test_session,\n  created_at_max: \"2013-10-12T07:05:27-02:00\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AbandonedCheckout.checkouts({\n  session: session,\n  created_at_max: \"2013-10-12T07:05:27-02:00\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"created_at_max\" => \"2013-10-12T07:05:27-02:00\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
           "request_query": "",
           "request_path": "/admin/api/2022-10/checkouts.json",
           "request_method": "GET",
@@ -846,7 +881,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"955c2067a4e0b28e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"971595d5d798ba36\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-03T13:07:13-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
+            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"28a7cdfa0b96243e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"5e12f3305d99c598\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2023-01-03T12:56:35-05:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
           },
           "name": "Count all abandoned checkouts",
           "codeSamples": [
@@ -860,7 +895,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AbandonedCheckout.checkouts({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -881,7 +916,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"955c2067a4e0b28e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"971595d5d798ba36\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-03T13:07:13-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
+            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"28a7cdfa0b96243e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"5e12f3305d99c598\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2023-01-03T12:56:35-05:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
           },
           "name": "Count closed abandoned checkouts",
           "codeSamples": [
@@ -895,46 +930,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  status: \"closed\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AbandonedCheckout.checkouts({\n  session: session,\n  status: \"closed\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"closed\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "created_at_max=2013-10-12T07%3A05%3A27-02%3A00",
-          "request_path": "/admin/api/2022-10/checkouts.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/unstable/checkouts.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"955c2067a4e0b28e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"971595d5d798ba36\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-03T13:07:13-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
-          },
-          "name": "Count abandoned checkouts created before date specified",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts.json?created_at_max=2013-10-12T07%3A05%3A27-02%3A00\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::AbandonedCheckout.checkouts(\n  session: test_session,\n  created_at_max: \"2013-10-12T07:05:27-02:00\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  created_at_max: \"2013-10-12T07:05:27-02:00\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"created_at_max\" => \"2013-10-12T07:05:27-02:00\"], // Params\n);"
             }
           ]
         }
@@ -946,7 +946,7 @@
           }
         ]
       },
-      "url": "/admin/api/{api_version}/checkouts.json",
+      "url": "/admin/api/{api_version}/checkouts.json?created_at_max=2013-10-12T07:05:27-02:00",
       "action": "get"
     },
     {
@@ -1097,7 +1097,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "955c2067a4e0b28e",
+                            "key": "28a7cdfa0b96243e",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -1135,7 +1135,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "971595d5d798ba36",
+                            "key": "5e12f3305d99c598",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -1229,8 +1229,8 @@
                           "id": 207119551,
                           "email": "bob.norman@mail.example.com",
                           "accepts_marketing": false,
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "updated_at": "2022-10-03T11:07:13-06:00",
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "updated_at": "2023-01-03T10:56:35-07:00",
                           "first_name": "Bob",
                           "last_name": "Norman",
                           "orders_count": 1,
@@ -1256,253 +1256,7 @@
                           "sms_marketing_consent": {
                             "state": "not_subscribed",
                             "opt_in_level": "single_opt_in",
-                            "consent_updated_at": "2022-10-03T11:07:13-06:00",
-                            "consent_collected_from": "OTHER"
-                          },
-                          "admin_graphql_api_id": "gid://shopify/Customer/207119551",
-                          "default_address": {
-                            "id": 207119551,
-                            "customer_id": 207119551,
-                            "first_name": null,
-                            "last_name": null,
-                            "company": null,
-                            "address1": "Chestnut Street 92",
-                            "address2": "",
-                            "city": "Louisville",
-                            "province": "Kentucky",
-                            "country": "United States",
-                            "zip": "40202",
-                            "phone": "555-625-1199",
-                            "name": "",
-                            "province_code": "KY",
-                            "country_code": "US",
-                            "country_name": "United States",
-                            "default": true
-                          }
-                        }
-                      }
-                    ]
-                  }
-                },
-                "Retrieve closed abandoned checkouts": {
-                  "value": {
-                    "checkouts": [
-                      {
-                        "id": 450789469,
-                        "token": "2a1ace52255252df566af0faaedfbfa7",
-                        "cart_token": "68778783ad298f1c80c3bafcddeea02f",
-                        "email": "bob.norman@mail.example.com",
-                        "gateway": null,
-                        "buyer_accepts_marketing": false,
-                        "created_at": "2012-10-12T05:05:27-06:00",
-                        "updated_at": "2012-10-12T05:05:27-06:00",
-                        "landing_site": null,
-                        "note": null,
-                        "note_attributes": [
-                          {
-                            "name": "custom engraving",
-                            "value": "Happy Birthday"
-                          },
-                          {
-                            "name": "colour",
-                            "value": "green"
-                          }
-                        ],
-                        "referring_site": null,
-                        "shipping_lines": [
-                          {
-                            "title": "Free Shipping",
-                            "price": "0.00",
-                            "code": "Free Shipping",
-                            "source": "shopify",
-                            "applied_discounts": [],
-                            "id": "5da41c1738454765"
-                          }
-                        ],
-                        "taxes_included": false,
-                        "total_weight": 400,
-                        "currency": "USD",
-                        "completed_at": null,
-                        "closed_at": null,
-                        "user_id": null,
-                        "location_id": null,
-                        "source_identifier": null,
-                        "source_url": null,
-                        "device_id": null,
-                        "phone": null,
-                        "customer_locale": "en",
-                        "line_items": [
-                          {
-                            "applied_discounts": [],
-                            "discount_allocations": [
-                              {
-                                "id": null,
-                                "amount": "19.90",
-                                "description": null,
-                                "created_at": null,
-                                "application_type": "discount_code"
-                              }
-                            ],
-                            "key": "955c2067a4e0b28e",
-                            "destination_location_id": null,
-                            "fulfillment_service": "manual",
-                            "gift_card": false,
-                            "grams": 200,
-                            "origin_location_id": null,
-                            "presentment_title": "IPod Nano - 8GB",
-                            "presentment_variant_title": "Red",
-                            "product_id": 632910392,
-                            "properties": null,
-                            "quantity": 1,
-                            "requires_shipping": true,
-                            "sku": "IPOD2008RED",
-                            "tax_lines": [],
-                            "taxable": true,
-                            "title": "IPod Nano - 8GB",
-                            "variant_id": 49148385,
-                            "variant_title": "Red",
-                            "variant_price": null,
-                            "vendor": "Apple",
-                            "user_id": null,
-                            "unit_price_measurement": null,
-                            "rank": null,
-                            "compare_at_price": null,
-                            "line_price": "199.00",
-                            "price": "199.00"
-                          },
-                          {
-                            "applied_discounts": [],
-                            "discount_allocations": [
-                              {
-                                "id": null,
-                                "amount": "19.90",
-                                "description": null,
-                                "created_at": null,
-                                "application_type": "discount_code"
-                              }
-                            ],
-                            "key": "971595d5d798ba36",
-                            "destination_location_id": null,
-                            "fulfillment_service": "manual",
-                            "gift_card": false,
-                            "grams": 200,
-                            "origin_location_id": null,
-                            "presentment_title": "IPod Nano - 8GB",
-                            "presentment_variant_title": "Pink",
-                            "product_id": 632910392,
-                            "properties": null,
-                            "quantity": 1,
-                            "requires_shipping": true,
-                            "sku": "IPOD2008PINK",
-                            "tax_lines": [],
-                            "taxable": true,
-                            "title": "IPod Nano - 8GB",
-                            "variant_id": 808950810,
-                            "variant_title": "Pink",
-                            "variant_price": null,
-                            "vendor": "Apple",
-                            "user_id": null,
-                            "unit_price_measurement": null,
-                            "rank": null,
-                            "compare_at_price": null,
-                            "line_price": "199.00",
-                            "price": "199.00"
-                          }
-                        ],
-                        "name": "#450789469",
-                        "source": null,
-                        "abandoned_checkout_url": "https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover",
-                        "discount_codes": [
-                          {
-                            "code": "TENOFF",
-                            "amount": "39.80",
-                            "type": "percentage"
-                          }
-                        ],
-                        "tax_lines": [
-                          {
-                            "price": "21.49",
-                            "rate": 0.06,
-                            "title": "State Tax",
-                            "channel_liable": null
-                          }
-                        ],
-                        "source_name": "web",
-                        "presentment_currency": "USD",
-                        "buyer_accepts_sms_marketing": false,
-                        "sms_marketing_phone": null,
-                        "total_discounts": "39.80",
-                        "total_line_items_price": "398.00",
-                        "total_price": "379.69",
-                        "total_tax": "21.49",
-                        "subtotal_price": "358.20",
-                        "total_duties": null,
-                        "billing_address": {
-                          "first_name": "Bob",
-                          "address1": "Chestnut Street 92",
-                          "phone": "+1(502)-459-2181",
-                          "city": "Louisville",
-                          "zip": "40202",
-                          "province": "Kentucky",
-                          "country": "United States",
-                          "last_name": "Norman",
-                          "address2": "",
-                          "company": null,
-                          "latitude": 45.41634,
-                          "longitude": -75.6868,
-                          "name": "Bob Norman",
-                          "country_code": "US",
-                          "province_code": "KY"
-                        },
-                        "shipping_address": {
-                          "first_name": "Bob",
-                          "address1": "Chestnut Street 92",
-                          "phone": "+1(502)-459-2181",
-                          "city": "Louisville",
-                          "zip": "40202",
-                          "province": "Kentucky",
-                          "country": "United States",
-                          "last_name": "Norman",
-                          "address2": "",
-                          "company": null,
-                          "latitude": 45.41634,
-                          "longitude": -75.6868,
-                          "name": "Bob Norman",
-                          "country_code": "US",
-                          "province_code": "KY"
-                        },
-                        "customer": {
-                          "id": 207119551,
-                          "email": "bob.norman@mail.example.com",
-                          "accepts_marketing": false,
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "updated_at": "2022-10-03T11:07:13-06:00",
-                          "first_name": "Bob",
-                          "last_name": "Norman",
-                          "orders_count": 1,
-                          "state": "disabled",
-                          "total_spent": "199.65",
-                          "last_order_id": 450789469,
-                          "note": null,
-                          "verified_email": true,
-                          "multipass_identifier": null,
-                          "tax_exempt": false,
-                          "tags": "",
-                          "last_order_name": "#1001",
-                          "currency": "USD",
-                          "phone": "+16136120707",
-                          "accepts_marketing_updated_at": "2005-06-12T09:57:11-06:00",
-                          "marketing_opt_in_level": null,
-                          "tax_exemptions": [],
-                          "email_marketing_consent": {
-                            "state": "not_subscribed",
-                            "opt_in_level": null,
-                            "consent_updated_at": "2004-06-13T09:57:11-06:00"
-                          },
-                          "sms_marketing_consent": {
-                            "state": "not_subscribed",
-                            "opt_in_level": "single_opt_in",
-                            "consent_updated_at": "2022-10-03T11:07:13-06:00",
+                            "consent_updated_at": "2023-01-03T10:56:35-07:00",
                             "consent_collected_from": "OTHER"
                           },
                           "admin_graphql_api_id": "gid://shopify/Customer/207119551",
@@ -1589,7 +1343,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "955c2067a4e0b28e",
+                            "key": "28a7cdfa0b96243e",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -1627,7 +1381,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "971595d5d798ba36",
+                            "key": "5e12f3305d99c598",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -1721,8 +1475,8 @@
                           "id": 207119551,
                           "email": "bob.norman@mail.example.com",
                           "accepts_marketing": false,
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "updated_at": "2022-10-03T11:07:13-06:00",
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "updated_at": "2023-01-03T10:56:35-07:00",
                           "first_name": "Bob",
                           "last_name": "Norman",
                           "orders_count": 1,
@@ -1748,7 +1502,7 @@
                           "sms_marketing_consent": {
                             "state": "not_subscribed",
                             "opt_in_level": "single_opt_in",
-                            "consent_updated_at": "2022-10-03T11:07:13-06:00",
+                            "consent_updated_at": "2023-01-03T10:56:35-07:00",
                             "consent_collected_from": "OTHER"
                           },
                           "admin_graphql_api_id": "gid://shopify/Customer/207119551",
@@ -1835,7 +1589,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "955c2067a4e0b28e",
+                            "key": "28a7cdfa0b96243e",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -1873,7 +1627,7 @@
                                 "application_type": "discount_code"
                               }
                             ],
-                            "key": "971595d5d798ba36",
+                            "key": "5e12f3305d99c598",
                             "destination_location_id": null,
                             "fulfillment_service": "manual",
                             "gift_card": false,
@@ -1967,8 +1721,8 @@
                           "id": 207119551,
                           "email": "bob.norman@mail.example.com",
                           "accepts_marketing": false,
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "updated_at": "2022-10-03T11:07:13-06:00",
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "updated_at": "2023-01-03T10:56:35-07:00",
                           "first_name": "Bob",
                           "last_name": "Norman",
                           "orders_count": 1,
@@ -1994,7 +1748,253 @@
                           "sms_marketing_consent": {
                             "state": "not_subscribed",
                             "opt_in_level": "single_opt_in",
-                            "consent_updated_at": "2022-10-03T11:07:13-06:00",
+                            "consent_updated_at": "2023-01-03T10:56:35-07:00",
+                            "consent_collected_from": "OTHER"
+                          },
+                          "admin_graphql_api_id": "gid://shopify/Customer/207119551",
+                          "default_address": {
+                            "id": 207119551,
+                            "customer_id": 207119551,
+                            "first_name": null,
+                            "last_name": null,
+                            "company": null,
+                            "address1": "Chestnut Street 92",
+                            "address2": "",
+                            "city": "Louisville",
+                            "province": "Kentucky",
+                            "country": "United States",
+                            "zip": "40202",
+                            "phone": "555-625-1199",
+                            "name": "",
+                            "province_code": "KY",
+                            "country_code": "US",
+                            "country_name": "United States",
+                            "default": true
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "Retrieve closed abandoned checkouts": {
+                  "value": {
+                    "checkouts": [
+                      {
+                        "id": 450789469,
+                        "token": "2a1ace52255252df566af0faaedfbfa7",
+                        "cart_token": "68778783ad298f1c80c3bafcddeea02f",
+                        "email": "bob.norman@mail.example.com",
+                        "gateway": null,
+                        "buyer_accepts_marketing": false,
+                        "created_at": "2012-10-12T05:05:27-06:00",
+                        "updated_at": "2012-10-12T05:05:27-06:00",
+                        "landing_site": null,
+                        "note": null,
+                        "note_attributes": [
+                          {
+                            "name": "custom engraving",
+                            "value": "Happy Birthday"
+                          },
+                          {
+                            "name": "colour",
+                            "value": "green"
+                          }
+                        ],
+                        "referring_site": null,
+                        "shipping_lines": [
+                          {
+                            "title": "Free Shipping",
+                            "price": "0.00",
+                            "code": "Free Shipping",
+                            "source": "shopify",
+                            "applied_discounts": [],
+                            "id": "5da41c1738454765"
+                          }
+                        ],
+                        "taxes_included": false,
+                        "total_weight": 400,
+                        "currency": "USD",
+                        "completed_at": null,
+                        "closed_at": null,
+                        "user_id": null,
+                        "location_id": null,
+                        "source_identifier": null,
+                        "source_url": null,
+                        "device_id": null,
+                        "phone": null,
+                        "customer_locale": "en",
+                        "line_items": [
+                          {
+                            "applied_discounts": [],
+                            "discount_allocations": [
+                              {
+                                "id": null,
+                                "amount": "19.90",
+                                "description": null,
+                                "created_at": null,
+                                "application_type": "discount_code"
+                              }
+                            ],
+                            "key": "28a7cdfa0b96243e",
+                            "destination_location_id": null,
+                            "fulfillment_service": "manual",
+                            "gift_card": false,
+                            "grams": 200,
+                            "origin_location_id": null,
+                            "presentment_title": "IPod Nano - 8GB",
+                            "presentment_variant_title": "Red",
+                            "product_id": 632910392,
+                            "properties": null,
+                            "quantity": 1,
+                            "requires_shipping": true,
+                            "sku": "IPOD2008RED",
+                            "tax_lines": [],
+                            "taxable": true,
+                            "title": "IPod Nano - 8GB",
+                            "variant_id": 49148385,
+                            "variant_title": "Red",
+                            "variant_price": null,
+                            "vendor": "Apple",
+                            "user_id": null,
+                            "unit_price_measurement": null,
+                            "rank": null,
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "price": "199.00"
+                          },
+                          {
+                            "applied_discounts": [],
+                            "discount_allocations": [
+                              {
+                                "id": null,
+                                "amount": "19.90",
+                                "description": null,
+                                "created_at": null,
+                                "application_type": "discount_code"
+                              }
+                            ],
+                            "key": "5e12f3305d99c598",
+                            "destination_location_id": null,
+                            "fulfillment_service": "manual",
+                            "gift_card": false,
+                            "grams": 200,
+                            "origin_location_id": null,
+                            "presentment_title": "IPod Nano - 8GB",
+                            "presentment_variant_title": "Pink",
+                            "product_id": 632910392,
+                            "properties": null,
+                            "quantity": 1,
+                            "requires_shipping": true,
+                            "sku": "IPOD2008PINK",
+                            "tax_lines": [],
+                            "taxable": true,
+                            "title": "IPod Nano - 8GB",
+                            "variant_id": 808950810,
+                            "variant_title": "Pink",
+                            "variant_price": null,
+                            "vendor": "Apple",
+                            "user_id": null,
+                            "unit_price_measurement": null,
+                            "rank": null,
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "price": "199.00"
+                          }
+                        ],
+                        "name": "#450789469",
+                        "source": null,
+                        "abandoned_checkout_url": "https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover",
+                        "discount_codes": [
+                          {
+                            "code": "TENOFF",
+                            "amount": "39.80",
+                            "type": "percentage"
+                          }
+                        ],
+                        "tax_lines": [
+                          {
+                            "price": "21.49",
+                            "rate": 0.06,
+                            "title": "State Tax",
+                            "channel_liable": null
+                          }
+                        ],
+                        "source_name": "web",
+                        "presentment_currency": "USD",
+                        "buyer_accepts_sms_marketing": false,
+                        "sms_marketing_phone": null,
+                        "total_discounts": "39.80",
+                        "total_line_items_price": "398.00",
+                        "total_price": "379.69",
+                        "total_tax": "21.49",
+                        "subtotal_price": "358.20",
+                        "total_duties": null,
+                        "billing_address": {
+                          "first_name": "Bob",
+                          "address1": "Chestnut Street 92",
+                          "phone": "+1(502)-459-2181",
+                          "city": "Louisville",
+                          "zip": "40202",
+                          "province": "Kentucky",
+                          "country": "United States",
+                          "last_name": "Norman",
+                          "address2": "",
+                          "company": null,
+                          "latitude": 45.41634,
+                          "longitude": -75.6868,
+                          "name": "Bob Norman",
+                          "country_code": "US",
+                          "province_code": "KY"
+                        },
+                        "shipping_address": {
+                          "first_name": "Bob",
+                          "address1": "Chestnut Street 92",
+                          "phone": "+1(502)-459-2181",
+                          "city": "Louisville",
+                          "zip": "40202",
+                          "province": "Kentucky",
+                          "country": "United States",
+                          "last_name": "Norman",
+                          "address2": "",
+                          "company": null,
+                          "latitude": 45.41634,
+                          "longitude": -75.6868,
+                          "name": "Bob Norman",
+                          "country_code": "US",
+                          "province_code": "KY"
+                        },
+                        "customer": {
+                          "id": 207119551,
+                          "email": "bob.norman@mail.example.com",
+                          "accepts_marketing": false,
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "updated_at": "2023-01-03T10:56:35-07:00",
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "orders_count": 1,
+                          "state": "disabled",
+                          "total_spent": "199.65",
+                          "last_order_id": 450789469,
+                          "note": null,
+                          "verified_email": true,
+                          "multipass_identifier": null,
+                          "tax_exempt": false,
+                          "tags": "",
+                          "last_order_name": "#1001",
+                          "currency": "USD",
+                          "phone": "+16136120707",
+                          "accepts_marketing_updated_at": "2005-06-12T09:57:11-06:00",
+                          "marketing_opt_in_level": null,
+                          "tax_exemptions": [],
+                          "email_marketing_consent": {
+                            "state": "not_subscribed",
+                            "opt_in_level": null,
+                            "consent_updated_at": "2004-06-13T09:57:11-06:00"
+                          },
+                          "sms_marketing_consent": {
+                            "state": "not_subscribed",
+                            "opt_in_level": "single_opt_in",
+                            "consent_updated_at": "2023-01-03T10:56:35-07:00",
                             "consent_collected_from": "OTHER"
                           },
                           "admin_graphql_api_id": "gid://shopify/Customer/207119551",
@@ -2041,7 +2041,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"955c2067a4e0b28e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"971595d5d798ba36\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-03T13:07:13-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
+            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"28a7cdfa0b96243e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"5e12f3305d99c598\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2023-01-03T12:56:35-05:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
           },
           "name": "Retrieve a limited number of abandoned checkouts",
           "codeSamples": [
@@ -2055,46 +2055,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  limit: \"1\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AbandonedCheckout.checkouts({\n  session: session,\n  limit: \"1\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"limit\" => \"1\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "status=closed",
-          "request_path": "/admin/api/2022-10/checkouts.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/unstable/checkouts.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"955c2067a4e0b28e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"971595d5d798ba36\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-03T13:07:13-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
-          },
-          "name": "Retrieve closed abandoned checkouts",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts.json?status=closed\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::AbandonedCheckout.checkouts(\n  session: test_session,\n  status: \"closed\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  status: \"closed\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"closed\"], // Params\n);"
             }
           ]
         },
@@ -2111,7 +2076,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"955c2067a4e0b28e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"971595d5d798ba36\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-03T13:07:13-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
+            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"28a7cdfa0b96243e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"5e12f3305d99c598\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2023-01-03T12:56:35-05:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
           },
           "name": "Retrieve all abandoned checkouts",
           "codeSamples": [
@@ -2125,7 +2090,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AbandonedCheckout.checkouts({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -2146,7 +2111,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"955c2067a4e0b28e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"971595d5d798ba36\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-03T13:07:13-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
+            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"28a7cdfa0b96243e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"5e12f3305d99c598\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2023-01-03T12:56:35-05:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
           },
           "name": "Retrieve checkouts created before date specified",
           "codeSamples": [
@@ -2160,11 +2125,46 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  created_at_max: \"2013-10-12T07:05:27-02:00\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AbandonedCheckout.checkouts({\n  session: session,\n  created_at_max: \"2013-10-12T07:05:27-02:00\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"created_at_max\" => \"2013-10-12T07:05:27-02:00\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "status=closed",
+          "request_path": "/admin/api/2022-10/checkouts.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/checkouts.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"checkouts\":[{\"id\":450789469,\"token\":\"2a1ace52255252df566af0faaedfbfa7\",\"cart_token\":\"68778783ad298f1c80c3bafcddeea02f\",\"email\":\"bob.norman@mail.example.com\",\"gateway\":null,\"buyer_accepts_marketing\":false,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"landing_site\":null,\"note\":null,\"note_attributes\":[{\"name\":\"custom engraving\",\"value\":\"Happy Birthday\"},{\"name\":\"colour\",\"value\":\"green\"}],\"referring_site\":null,\"shipping_lines\":[{\"title\":\"Free Shipping\",\"price\":\"0.00\",\"code\":\"Free Shipping\",\"source\":\"shopify\",\"applied_discounts\":[],\"id\":\"5da41c1738454765\"}],\"taxes_included\":false,\"total_weight\":400,\"currency\":\"USD\",\"completed_at\":null,\"closed_at\":null,\"user_id\":null,\"location_id\":null,\"source_identifier\":null,\"source_url\":null,\"device_id\":null,\"phone\":null,\"customer_locale\":\"en\",\"line_items\":[{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"28a7cdfa0b96243e\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Red\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":49148385,\"variant_title\":\"Red\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"},{\"applied_discounts\":[],\"discount_allocations\":[{\"id\":null,\"amount\":\"19.90\",\"description\":null,\"created_at\":null,\"application_type\":\"discount_code\"}],\"key\":\"5e12f3305d99c598\",\"destination_location_id\":null,\"fulfillment_service\":\"manual\",\"gift_card\":false,\"grams\":200,\"origin_location_id\":null,\"presentment_title\":\"IPod Nano - 8GB\",\"presentment_variant_title\":\"Pink\",\"product_id\":632910392,\"properties\":null,\"quantity\":1,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"tax_lines\":[],\"taxable\":true,\"title\":\"IPod Nano - 8GB\",\"variant_id\":808950810,\"variant_title\":\"Pink\",\"variant_price\":null,\"vendor\":\"Apple\",\"user_id\":null,\"unit_price_measurement\":null,\"rank\":null,\"compare_at_price\":null,\"line_price\":\"199.00\",\"price\":\"199.00\"}],\"name\":\"#450789469\",\"source\":null,\"abandoned_checkout_url\":\"https://checkout.local/548380009/checkouts/2a1ace52255252df566af0faaedfbfa7/recover\",\"discount_codes\":[{\"code\":\"TENOFF\",\"amount\":\"39.80\",\"type\":\"percentage\"}],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"channel_liable\":null}],\"source_name\":\"web\",\"presentment_currency\":\"USD\",\"buyer_accepts_sms_marketing\":false,\"sms_marketing_phone\":null,\"total_discounts\":\"39.80\",\"total_line_items_price\":\"398.00\",\"total_price\":\"379.69\",\"total_tax\":\"21.49\",\"subtotal_price\":\"358.20\",\"total_duties\":null,\"billing_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"shipping_address\":{\"first_name\":\"Bob\",\"address1\":\"Chestnut Street 92\",\"phone\":\"+1(502)-459-2181\",\"city\":\"Louisville\",\"zip\":\"40202\",\"province\":\"Kentucky\",\"country\":\"United States\",\"last_name\":\"Norman\",\"address2\":\"\",\"company\":null,\"latitude\":45.41634,\"longitude\":-75.6868,\"name\":\"Bob Norman\",\"country_code\":\"US\",\"province_code\":\"KY\"},\"customer\":{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":false,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"accepts_marketing_updated_at\":\"2005-06-12T11:57:11-04:00\",\"marketing_opt_in_level\":null,\"tax_exemptions\":[],\"email_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":null,\"consent_updated_at\":\"2004-06-13T11:57:11-04:00\"},\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2023-01-03T12:56:35-05:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}}]}"
+          },
+          "name": "Retrieve closed abandoned checkouts",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts.json?status=closed\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::AbandonedCheckout.checkouts(\n  session: test_session,\n  status: \"closed\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AbandonedCheckout.checkouts({\n  session: session,\n  status: \"closed\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"closed\"], // Params\n);"
             }
           ]
         }

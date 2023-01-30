@@ -24,50 +24,12 @@
         }
       ],
       "responses": {
-        "201": {
-          "description": "Creates an application credit",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Create a test application credit that will not issue a credit to the merchant": {
-                  "value": {
-                    "application_credit": {
-                      "id": 1031636125,
-                      "amount": "5.00",
-                      "description": "application credit for refund",
-                      "test": true
-                    }
-                  }
-                },
-                "Create a new credit": {
-                  "value": {
-                    "application_credit": {
-                      "id": 1031636127,
-                      "amount": "5.00",
-                      "description": "application credit for refund",
-                      "test": null
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "422": {
           "description": "Creates an application credit",
           "content": {
             "application/json": {
               "examples": {
                 "Applying a credit to a shop without a previous app purchase will return an error": {
-                  "value": {
-                    "errors": {
-                      "base": [
-                        "exceeded pending receivable credit issue limit (0.00)"
-                      ]
-                    }
-                  }
-                },
-                "Creating a credit amount that exceeds the total pending payouts for the app will return an error": {
                   "value": {
                     "errors": {
                       "base": [
@@ -84,6 +46,44 @@
                       ]
                     }
                   }
+                },
+                "Creating a credit amount that exceeds the total pending payouts for the app will return an error": {
+                  "value": {
+                    "errors": {
+                      "base": [
+                        "exceeded pending receivable credit issue limit (0.00)"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "201": {
+          "description": "Creates an application credit",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a new credit": {
+                  "value": {
+                    "application_credit": {
+                      "id": 1031636125,
+                      "amount": "5.00",
+                      "description": "application credit for refund",
+                      "test": null
+                    }
+                  }
+                },
+                "Create a test application credit that will not issue a credit to the merchant": {
+                  "value": {
+                    "application_credit": {
+                      "id": 1031636129,
+                      "amount": "5.00",
+                      "description": "application credit for refund",
+                      "test": true
+                    }
+                  }
                 }
               }
             }
@@ -91,41 +91,6 @@
         }
       },
       "x-examples": [
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/application_credits.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/application_credits.json",
-            "headers": {},
-            "body": "{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0,\"test\":true}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"application_credit\":{\"id\":1031636125,\"amount\":\"5.00\",\"description\":\"application credit for refund\",\"test\":true}}"
-          },
-          "name": "Create a test application credit that will not issue a credit to the merchant",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.test = true\napplication_credit.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\napplication_credit.test = true;\nawait application_credit.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->test = true;\n$application_credit->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
         {
           "status": "422",
           "request_query": "",
@@ -153,7 +118,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst application_credit = new shopify.rest.ApplicationCredit({session: session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -174,7 +139,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"application_credit\":{\"id\":1031636127,\"amount\":\"5.00\",\"description\":\"application credit for refund\",\"test\":null}}"
+            "body": "{\"application_credit\":{\"id\":1031636125,\"amount\":\"5.00\",\"description\":\"application credit for refund\",\"test\":null}}"
           },
           "name": "Create a new credit",
           "codeSamples": [
@@ -188,7 +153,77 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst application_credit = new shopify.rest.ApplicationCredit({session: session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/application_credits.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/application_credits.json",
+            "headers": {},
+            "body": "{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0,\"test\":true}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"application_credit\":{\"id\":1031636129,\"amount\":\"5.00\",\"description\":\"application credit for refund\",\"test\":true}}"
+          },
+          "name": "Create a test application credit that will not issue a credit to the merchant",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.test = true\napplication_credit.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst application_credit = new shopify.rest.ApplicationCredit({session: session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\napplication_credit.test = true;\nawait application_credit.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->test = true;\n$application_credit->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/application_credits.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/application_credits.json",
+            "headers": {},
+            "body": "{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"base\":[\"exceeded 30 day shop credit issue limit (0.00)\"]}}"
+          },
+          "name": "Creating a credit amount that exceeds shop owner purchases over last 30 days will return an error",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst application_credit = new shopify.rest.ApplicationCredit({session: session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -223,42 +258,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "422",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/application_credits.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/application_credits.json",
-            "headers": {},
-            "body": "{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 422 Unprocessable Entity",
-            "headers": {},
-            "body": "{\"errors\":{\"base\":[\"exceeded 30 day shop credit issue limit (0.00)\"]}}"
-          },
-          "name": "Creating a credit amount that exceeds shop owner purchases over last 30 days will return an error",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst application_credit = new shopify.rest.ApplicationCredit({session: session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -350,7 +350,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCredit.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.ApplicationCredit.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -448,7 +448,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCredit.find({\n  session: test_session,\n  id: 140583599,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.ApplicationCredit.find({\n  session: session,\n  id: 140583599,\n});"
             },
             {
               "language": "php",

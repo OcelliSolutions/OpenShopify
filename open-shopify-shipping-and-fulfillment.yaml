@@ -1802,7 +1802,7 @@ components:
           nullable: true
         callback_url:
           type: string
-          description: "The callback URL that the fulfillment service has registered for requests. The following considerations apply: \r\n\r\n*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `inventory_management` is set to `true`. \r\n*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `tracking_support` is set to `true`. \r\n*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations), if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). \r\n\r\n The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
+          description: "The callback URL that the fulfillment service has registered for requests. The following considerations apply: \r\n\r\n*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `tracking_support` is set to `true`. \r\n*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `inventory_management` is set to `true`. \r\n*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations) if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). \r\n\r\n The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
         fulfillment_orders_opt_in:
           type: boolean
@@ -1818,7 +1818,7 @@ components:
           nullable: true
         inventory_management:
           type: boolean
-          description: Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values: `true` and `false`.'
           nullable: true
         location_id:
           type: integer
@@ -1836,11 +1836,11 @@ components:
           nullable: true
         requires_shipping_method:
           type: boolean
-          description: Whether the fulfillment service requires products to be physically shipped. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service requires products to be physically shipped. Valid values: `true` and `false`.'
           nullable: true
         tracking_support:
           type: boolean
-          description: Whether the fulfillment service provides tracking numbers for packages. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service provides tracking numbers for packages. Valid values: `true` and `false`.'
           nullable: true
         format:
           $ref: '#/components/schemas/FulfillmentServiceFormat'
@@ -2546,7 +2546,7 @@ components:
           nullable: true
         callback_url:
           type: string
-          description: "The callback URL that the fulfillment service has registered for requests. The following considerations apply: \r\n\r\n*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `inventory_management` is set to `true`. \r\n*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `tracking_support` is set to `true`. \r\n*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations), if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). \r\n\r\n The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
+          description: "The callback URL that the fulfillment service has registered for requests. The following considerations apply: \r\n\r\n*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `tracking_support` is set to `true`. \r\n*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `inventory_management` is set to `true`. \r\n*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations) if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). \r\n\r\n The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
         fulfillment_orders_opt_in:
           type: boolean
@@ -2562,7 +2562,7 @@ components:
           nullable: true
         inventory_management:
           type: boolean
-          description: Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values: `true` and `false`.'
           nullable: true
         location_id:
           type: integer
@@ -2580,11 +2580,11 @@ components:
           nullable: true
         requires_shipping_method:
           type: boolean
-          description: Whether the fulfillment service requires products to be physically shipped. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service requires products to be physically shipped. Valid values: `true` and `false`.'
           nullable: true
         tracking_support:
           type: boolean
-          description: Whether the fulfillment service provides tracking numbers for packages. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service provides tracking numbers for packages. Valid values: `true` and `false`.'
           nullable: true
         format:
           $ref: '#/components/schemas/FulfillmentServiceFormat'
@@ -3244,7 +3244,7 @@ components:
           nullable: true
         callback_url:
           type: string
-          description: "The callback URL that the fulfillment service has registered for requests. The following considerations apply: \r\n\r\n*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `inventory_management` is set to `true`. \r\n*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `tracking_support` is set to `true`. \r\n*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations), if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). \r\n\r\n The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
+          description: "The callback URL that the fulfillment service has registered for requests. The following considerations apply: \r\n\r\n*   Shopify queries the `callback_url/fetch_tracking_numbers` endpoint to retrieve tracking numbers for orders, if `tracking_support` is set to `true`. \r\n*   Shopify queries the `callback_url/fetch_stock` endpoint to retrieve inventory levels, if `inventory_management` is set to `true`. \r\n*   Shopify uses the `callback_url/fulfillment_order_notification` endpoint to send [ fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments#step-2-receive-fulfillment-requests-and-cancellations) if the fulfillment service has opted in to the fulfillment order based workflow for managing fulfillments (`fulfillment_orders_opt_in` is set to `true`). \r\n\r\n The `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
         fulfillment_orders_opt_in:
           type: boolean
@@ -3260,7 +3260,7 @@ components:
           nullable: true
         inventory_management:
           type: boolean
-          description: Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values: `true` and `false`.'
           nullable: true
         location_id:
           type: integer
@@ -3278,11 +3278,11 @@ components:
           nullable: true
         requires_shipping_method:
           type: boolean
-          description: Whether the fulfillment service requires products to be physically shipped. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service requires products to be physically shipped. Valid values: `true` and `false`.'
           nullable: true
         tracking_support:
           type: boolean
-          description: Whether the fulfillment service provides tracking numbers for packages. Valid values:`true` and `false`.
+          description: 'Whether the fulfillment service provides tracking numbers for packages. Valid values: `true` and `false`.'
           nullable: true
         format:
           $ref: '#/components/schemas/FulfillmentServiceFormat'

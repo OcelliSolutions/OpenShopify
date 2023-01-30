@@ -87,6 +87,12 @@
                           "locations",
                           "marketing",
                           "marketing_section",
+                          "metaobjects_delete",
+                          "metaobjects_edit",
+                          "metaobjects_view",
+                          "metaobject_definitions_delete",
+                          "metaobject_definitions_edit",
+                          "metaobject_definitions_view",
                           "orders",
                           "overviews",
                           "pages",
@@ -184,7 +190,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"users\":[{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false},{\"id\":930143300,\"first_name\":\"John\",\"email\":\"j.limited@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Limited\",\"account_owner\":false,\"receive_announcements\":1,\"bio\":null,\"permissions\":[],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/930143300\",\"tfa_enabled?\":false}]}"
+            "body": "{\"users\":[{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"metaobjects_delete\",\"metaobjects_edit\",\"metaobjects_view\",\"metaobject_definitions_delete\",\"metaobject_definitions_edit\",\"metaobject_definitions_view\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false},{\"id\":930143300,\"first_name\":\"John\",\"email\":\"j.limited@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Limited\",\"account_owner\":false,\"receive_announcements\":1,\"bio\":null,\"permissions\":[],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/930143300\",\"tfa_enabled?\":false}]}"
           },
           "name": "Retrieve a list of all users",
           "codeSamples": [
@@ -198,7 +204,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.User.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -284,6 +290,12 @@
                         "locations",
                         "marketing",
                         "marketing_section",
+                        "metaobjects_delete",
+                        "metaobjects_edit",
+                        "metaobjects_view",
+                        "metaobject_definitions_delete",
+                        "metaobject_definitions_edit",
+                        "metaobject_definitions_view",
                         "orders",
                         "overviews",
                         "pages",
@@ -362,7 +374,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
+            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"metaobjects_delete\",\"metaobjects_edit\",\"metaobjects_view\",\"metaobject_definitions_delete\",\"metaobject_definitions_edit\",\"metaobject_definitions_view\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
           },
           "name": "Retrieve a single user",
           "codeSamples": [
@@ -376,7 +388,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.find({\n  session: test_session,\n  id: 548380009,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.User.find({\n  session: session,\n  id: 548380009,\n});"
             },
             {
               "language": "php",
@@ -454,6 +466,12 @@
                         "locations",
                         "marketing",
                         "marketing_section",
+                        "metaobjects_delete",
+                        "metaobjects_edit",
+                        "metaobjects_view",
+                        "metaobject_definitions_delete",
+                        "metaobject_definitions_edit",
+                        "metaobject_definitions_view",
                         "orders",
                         "overviews",
                         "pages",
@@ -532,7 +550,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
+            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"content_entries_delete\",\"content_entries_edit\",\"content_entries_view\",\"content_models_delete\",\"content_models_edit\",\"content_models_view\",\"custom_pixels_management\",\"custom_pixels_view\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"metaobjects_delete\",\"metaobjects_edit\",\"metaobjects_view\",\"metaobject_definitions_delete\",\"metaobject_definitions_edit\",\"metaobject_definitions_view\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"refund_orders\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"shopify_credit\",\"customer_private_data\",\"erase_customer_data\",\"request_customer_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
           },
           "name": "Retrieve the the currently logged-in user",
           "codeSamples": [
@@ -546,7 +564,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.current({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.User.current({\n  session: session,\n});"
             },
             {
               "language": "php",

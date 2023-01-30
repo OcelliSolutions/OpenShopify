@@ -67,7 +67,7 @@
                   "value": {
                     "fulfillment_orders": [
                       {
-                        "id": 1046000777,
+                        "id": 1046000830,
                         "shop_id": 548380009,
                         "order_id": 450789469,
                         "assigned_location_id": 24826418,
@@ -78,7 +78,7 @@
                           "create_fulfillment"
                         ],
                         "destination": {
-                          "id": 1046000777,
+                          "id": 1046000821,
                           "address1": "Chestnut Street 92",
                           "address2": "",
                           "city": "Louisville",
@@ -93,9 +93,9 @@
                         },
                         "line_items": [
                           {
-                            "id": 1058737481,
+                            "id": 1058737568,
                             "shop_id": 548380009,
-                            "fulfillment_order_id": 1046000777,
+                            "fulfillment_order_id": 1046000830,
                             "quantity": 1,
                             "line_item_id": 518995019,
                             "inventory_item_id": 49148385,
@@ -139,7 +139,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment_orders\":[{\"id\":1046000777,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"cancellation_requested\",\"status\":\"in_progress\",\"supported_actions\":[\"cancel_fulfillment_order\",\"create_fulfillment\"],\"destination\":{\"id\":1046000777,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737481,\"shop_id\":548380009,\"fulfillment_order_id\":1046000777,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null}}]}"
+            "body": "{\"fulfillment_orders\":[{\"id\":1046000830,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"cancellation_requested\",\"status\":\"in_progress\",\"supported_actions\":[\"cancel_fulfillment_order\",\"create_fulfillment\"],\"destination\":{\"id\":1046000821,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737568,\"shop_id\":548380009,\"fulfillment_order_id\":1046000830,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null}}]}"
           },
           "name": "Retrieve a list of fulfillment orders in cancellation_requested state at a location for an app",
           "codeSamples": [
@@ -153,7 +153,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {AssignedFulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AssignedFulfillmentOrder.all({\n  session: test_session,\n  assignment_status: \"cancellation_requested\",\n  location_ids: [\"24826418\"],\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AssignedFulfillmentOrder.all({\n  session: session,\n  assignment_status: \"cancellation_requested\",\n  location_ids: [\"24826418\"],\n});"
             },
             {
               "language": "php",

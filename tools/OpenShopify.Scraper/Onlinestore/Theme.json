@@ -43,8 +43,8 @@
                       {
                         "id": 828155753,
                         "name": "Comfort",
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "role": "main",
                         "theme_store_id": null,
                         "previewable": true,
@@ -54,8 +54,8 @@
                       {
                         "id": 976877075,
                         "name": "Preview of Parallax",
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "role": "demo",
                         "theme_store_id": 688,
                         "previewable": true,
@@ -65,8 +65,8 @@
                       {
                         "id": 752253240,
                         "name": "Sandbox",
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "role": "unpublished",
                         "theme_store_id": null,
                         "previewable": true,
@@ -95,7 +95,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"themes\":[{\"id\":828155753,\"name\":\"Comfort\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"role\":\"main\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/828155753\"},{\"id\":976877075,\"name\":\"Preview of Parallax\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"role\":\"demo\",\"theme_store_id\":688,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/976877075\"},{\"id\":752253240,\"name\":\"Sandbox\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"role\":\"unpublished\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/752253240\"}]}"
+            "body": "{\"themes\":[{\"id\":828155753,\"name\":\"Comfort\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"role\":\"main\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/828155753\"},{\"id\":976877075,\"name\":\"Preview of Parallax\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"role\":\"demo\",\"theme_store_id\":688,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/976877075\"},{\"id\":752253240,\"name\":\"Sandbox\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"role\":\"unpublished\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/752253240\"}]}"
           },
           "name": "Retrieve a list of themes",
           "codeSamples": [
@@ -109,7 +109,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Theme.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -143,6 +143,30 @@
         }
       ],
       "responses": {
+        "201": {
+          "description": "Creates a theme",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a theme that has a custom name and is published": {
+                  "value": {
+                    "theme": {
+                      "id": 1049083723,
+                      "name": "Lemongrass",
+                      "created_at": "2023-01-03T10:25:57-07:00",
+                      "updated_at": "2023-01-03T10:25:57-07:00",
+                      "role": "unpublished",
+                      "theme_store_id": null,
+                      "previewable": false,
+                      "processing": true,
+                      "admin_graphql_api_id": "gid://shopify/Theme/1049083723"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "422": {
           "description": "Creates a theme",
           "content": {
@@ -160,33 +184,44 @@
               }
             }
           }
-        },
-        "201": {
-          "description": "Creates a theme",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Create a theme that has a custom name and is published": {
-                  "value": {
-                    "theme": {
-                      "id": 1049083723,
-                      "name": "Lemongrass",
-                      "created_at": "2022-10-03T11:05:00-06:00",
-                      "updated_at": "2022-10-03T11:05:00-06:00",
-                      "role": "unpublished",
-                      "theme_store_id": null,
-                      "previewable": false,
-                      "processing": true,
-                      "admin_graphql_api_id": "gid://shopify/Theme/1049083723"
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       },
       "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/themes.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/themes.json",
+            "headers": {},
+            "body": "{\"theme\":{\"name\":\"Lemongrass\",\"src\":\"http://themes.shopify.com/theme.zip\",\"role\":\"main\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"theme\":{\"id\":1049083723,\"name\":\"Lemongrass\",\"created_at\":\"2023-01-03T12:25:57-05:00\",\"updated_at\":\"2023-01-03T12:25:57-05:00\",\"role\":\"unpublished\",\"theme_store_id\":null,\"previewable\":false,\"processing\":true,\"admin_graphql_api_id\":\"gid://shopify/Theme/1049083723\"}}"
+          },
+          "name": "Create a theme that has a custom name and is published",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"theme\":{\"name\":\"Lemongrass\",\"src\":\"http://themes.shopify.com/theme.zip\",\"role\":\"main\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/themes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.name = \"Lemongrass\"\ntheme.src = \"http://themes.shopify.com/theme.zip\"\ntheme.role = \"main\"\ntheme.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst theme = new shopify.rest.Theme({session: session});\ntheme.name = \"Lemongrass\";\ntheme.src = \"http://themes.shopify.com/theme.zip\";\ntheme.role = \"main\";\nawait theme.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->name = \"Lemongrass\";\n$theme->src = \"http://themes.shopify.com/theme.zip\";\n$theme->role = \"main\";\n$theme->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
         {
           "status": "422",
           "request_query": "",
@@ -214,46 +249,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.body = \"foobar\";\nawait theme.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst theme = new shopify.rest.Theme({session: session});\ntheme.body = \"foobar\";\nawait theme.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->body = \"foobar\";\n$theme->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/themes.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/themes.json",
-            "headers": {},
-            "body": "{\"theme\":{\"name\":\"Lemongrass\",\"src\":\"http://themes.shopify.com/theme.zip\",\"role\":\"main\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"theme\":{\"id\":1049083723,\"name\":\"Lemongrass\",\"created_at\":\"2022-10-03T13:05:00-04:00\",\"updated_at\":\"2022-10-03T13:05:00-04:00\",\"role\":\"unpublished\",\"theme_store_id\":null,\"previewable\":false,\"processing\":true,\"admin_graphql_api_id\":\"gid://shopify/Theme/1049083723\"}}"
-          },
-          "name": "Create a theme that has a custom name and is published",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"theme\":{\"name\":\"Lemongrass\",\"src\":\"http://themes.shopify.com/theme.zip\",\"role\":\"main\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/themes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.name = \"Lemongrass\"\ntheme.src = \"http://themes.shopify.com/theme.zip\"\ntheme.role = \"main\"\ntheme.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.name = \"Lemongrass\";\ntheme.src = \"http://themes.shopify.com/theme.zip\";\ntheme.role = \"main\";\nawait theme.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->name = \"Lemongrass\";\n$theme->src = \"http://themes.shopify.com/theme.zip\";\n$theme->role = \"main\";\n$theme->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -309,8 +309,8 @@
                     "theme": {
                       "id": 828155753,
                       "name": "Comfort",
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:44:45-06:00",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:21:36-07:00",
                       "role": "main",
                       "theme_store_id": null,
                       "previewable": true,
@@ -338,7 +338,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"theme\":{\"id\":828155753,\"name\":\"Comfort\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"role\":\"main\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/828155753\"}}"
+            "body": "{\"theme\":{\"id\":828155753,\"name\":\"Comfort\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"role\":\"main\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/828155753\"}}"
           },
           "name": "Retrieve a single theme",
           "codeSamples": [
@@ -352,7 +352,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.find({\n  session: test_session,\n  id: 828155753,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Theme.find({\n  session: session,\n  id: 828155753,\n});"
             },
             {
               "language": "php",
@@ -399,14 +399,14 @@
           "content": {
             "application/json": {
               "examples": {
-                "Update a theme's name": {
+                "Publish an unpublished theme": {
                   "value": {
                     "theme": {
-                      "name": "Experimental",
-                      "role": "unpublished",
+                      "role": "main",
                       "id": 752253240,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T11:04:50-06:00",
+                      "name": "Sandbox",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:25:51-07:00",
                       "theme_store_id": null,
                       "previewable": true,
                       "processing": false,
@@ -414,14 +414,14 @@
                     }
                   }
                 },
-                "Publish an unpublished theme": {
+                "Update a theme's name": {
                   "value": {
                     "theme": {
-                      "role": "main",
+                      "name": "Experimental",
+                      "role": "unpublished",
                       "id": 752253240,
-                      "name": "Sandbox",
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T11:04:59-06:00",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:26:01-07:00",
                       "theme_store_id": null,
                       "previewable": true,
                       "processing": false,
@@ -443,47 +443,12 @@
           "request": {
             "action": "PUT /admin/api/unstable/themes/752253240.json",
             "headers": {},
-            "body": "{\"theme\":{\"id\":752253240,\"name\":\"Experimental\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"theme\":{\"name\":\"Experimental\",\"role\":\"unpublished\",\"id\":752253240,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T13:04:50-04:00\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/752253240\"}}"
-          },
-          "name": "Update a theme's name",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"theme\":{\"id\":752253240,\"name\":\"Experimental\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/themes/752253240.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.id = 752253240\ntheme.name = \"Experimental\"\ntheme.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.id = 752253240;\ntheme.name = \"Experimental\";\nawait theme.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->id = 752253240;\n$theme->name = \"Experimental\";\n$theme->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/themes/752253240.json",
-          "request_method": "PUT",
-          "request": {
-            "action": "PUT /admin/api/unstable/themes/752253240.json",
-            "headers": {},
             "body": "{\"theme\":{\"id\":752253240,\"role\":\"main\"}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"theme\":{\"role\":\"main\",\"id\":752253240,\"name\":\"Sandbox\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T13:04:59-04:00\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/752253240\"}}"
+            "body": "{\"theme\":{\"role\":\"main\",\"id\":752253240,\"name\":\"Sandbox\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:25:51-05:00\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/752253240\"}}"
           },
           "name": "Publish an unpublished theme",
           "codeSamples": [
@@ -497,11 +462,46 @@
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.id = 752253240;\ntheme.role = \"main\";\nawait theme.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst theme = new shopify.rest.Theme({session: session});\ntheme.id = 752253240;\ntheme.role = \"main\";\nawait theme.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->id = 752253240;\n$theme->role = \"main\";\n$theme->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/themes/752253240.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/themes/752253240.json",
+            "headers": {},
+            "body": "{\"theme\":{\"id\":752253240,\"name\":\"Experimental\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"theme\":{\"name\":\"Experimental\",\"role\":\"unpublished\",\"id\":752253240,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:26:01-05:00\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/752253240\"}}"
+          },
+          "name": "Update a theme's name",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"theme\":{\"id\":752253240,\"name\":\"Experimental\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/themes/752253240.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.id = 752253240\ntheme.name = \"Experimental\"\ntheme.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst theme = new shopify.rest.Theme({session: session});\ntheme.id = 752253240;\ntheme.name = \"Experimental\";\nawait theme.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->id = 752253240;\n$theme->name = \"Experimental\";\n$theme->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -548,8 +548,8 @@
                   "value": {
                     "id": 752253240,
                     "name": "Sandbox",
-                    "created_at": "2022-10-03T10:44:45-06:00",
-                    "updated_at": "2022-10-03T10:44:45-06:00",
+                    "created_at": "2023-01-03T10:21:36-07:00",
+                    "updated_at": "2023-01-03T10:21:36-07:00",
                     "role": "unpublished",
                     "theme_store_id": null,
                     "previewable": true,
@@ -576,7 +576,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"id\":752253240,\"name\":\"Sandbox\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"role\":\"unpublished\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/752253240\"}"
+            "body": "{\"id\":752253240,\"name\":\"Sandbox\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"role\":\"unpublished\",\"theme_store_id\":null,\"previewable\":true,\"processing\":false,\"admin_graphql_api_id\":\"gid://shopify/Theme/752253240\"}"
           },
           "name": "Delete a theme",
           "codeSamples": [
@@ -590,7 +590,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.delete({\n  session: test_session,\n  id: 752253240,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Theme.delete({\n  session: session,\n  id: 752253240,\n});"
             },
             {
               "language": "php",

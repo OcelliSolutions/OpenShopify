@@ -40,10 +40,10 @@
                 "Create a new usage charge": {
                   "value": {
                     "usage_charge": {
-                      "id": 1034618208,
+                      "id": 1034618209,
                       "description": "Super Mega Plan 1000 emails",
                       "price": "1.00",
-                      "created_at": "2022-10-03T10:53:15-06:00",
+                      "created_at": "2023-01-03T10:42:12-07:00",
                       "billing_on": null,
                       "balance_used": 11.0,
                       "balance_remaining": 89.0,
@@ -60,6 +60,15 @@
           "content": {
             "application/json": {
               "examples": {
+                "Trying to create a charge which exceeds the remaining balance will return an error": {
+                  "value": {
+                    "errors": {
+                      "base": [
+                        "Total price exceeds balance remaining"
+                      ]
+                    }
+                  }
+                },
                 "Trying to create a charge without a price or a description will return an error": {
                   "value": {
                     "errors": {
@@ -68,15 +77,6 @@
                       ],
                       "price": [
                         "must be greater than zero"
-                      ]
-                    }
-                  }
-                },
-                "Trying to create a charge which exceeds the remaining balance will return an error": {
-                  "value": {
-                    "errors": {
-                      "base": [
-                        "Total price exceeds balance remaining"
                       ]
                     }
                   }
@@ -100,7 +100,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"usage_charge\":{\"id\":1034618208,\"description\":\"Super Mega Plan 1000 emails\",\"price\":\"1.00\",\"created_at\":\"2022-10-03T12:53:15-04:00\",\"billing_on\":null,\"balance_used\":11.0,\"balance_remaining\":89.0,\"risk_level\":0}}"
+            "body": "{\"usage_charge\":{\"id\":1034618209,\"description\":\"Super Mega Plan 1000 emails\",\"price\":\"1.00\",\"created_at\":\"2023-01-03T12:42:12-05:00\",\"billing_on\":null,\"balance_used\":11.0,\"balance_remaining\":89.0,\"risk_level\":0}}"
           },
           "name": "Create a new usage charge",
           "codeSamples": [
@@ -114,46 +114,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {UsageCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst usage_charge = new UsageCharge({session: test_session});\nusage_charge.recurring_application_charge_id = 455696195;\nusage_charge.description = \"Super Mega Plan 1000 emails\";\nusage_charge.price = 1.0;\nawait usage_charge.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst usage_charge = new shopify.rest.UsageCharge({session: session});\nusage_charge.recurring_application_charge_id = 455696195;\nusage_charge.description = \"Super Mega Plan 1000 emails\";\nusage_charge.price = 1.0;\nawait usage_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"Super Mega Plan 1000 emails\";\n$usage_charge->price = 1.0;\n$usage_charge->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "422",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/recurring_application_charges/455696195/usage_charges.json",
-            "headers": {},
-            "body": "{\"usage_charge\":{\"description\":\"\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 422 Unprocessable Entity",
-            "headers": {},
-            "body": "{\"errors\":{\"description\":[\"can't be blank\"],\"price\":[\"must be greater than zero\"]}}"
-          },
-          "name": "Trying to create a charge without a price or a description will return an error",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"usage_charge\":{\"description\":\"\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nusage_charge = ShopifyAPI::UsageCharge.new(session: test_session)\nusage_charge.recurring_application_charge_id = 455696195\nusage_charge.description = \"\"\nusage_charge.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {UsageCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst usage_charge = new UsageCharge({session: test_session});\nusage_charge.recurring_application_charge_id = 455696195;\nusage_charge.description = \"\";\nawait usage_charge.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"\";\n$usage_charge->save(\n    true, // Update Object\n);"
             }
           ]
         },
@@ -184,11 +149,46 @@
             },
             {
               "language": "node",
-              "example_code": "import {UsageCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst usage_charge = new UsageCharge({session: test_session});\nusage_charge.recurring_application_charge_id = 455696195;\nusage_charge.description = \"Super Mega Plan 1000 emails\";\nusage_charge.price = 9999;\nawait usage_charge.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst usage_charge = new shopify.rest.UsageCharge({session: session});\nusage_charge.recurring_application_charge_id = 455696195;\nusage_charge.description = \"Super Mega Plan 1000 emails\";\nusage_charge.price = 9999;\nawait usage_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"Super Mega Plan 1000 emails\";\n$usage_charge->price = 9999;\n$usage_charge->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/recurring_application_charges/455696195/usage_charges.json",
+            "headers": {},
+            "body": "{\"usage_charge\":{\"description\":\"\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"description\":[\"can't be blank\"],\"price\":[\"must be greater than zero\"]}}"
+          },
+          "name": "Trying to create a charge without a price or a description will return an error",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"usage_charge\":{\"description\":\"\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nusage_charge = ShopifyAPI::UsageCharge.new(session: test_session)\nusage_charge.recurring_application_charge_id = 455696195\nusage_charge.description = \"\"\nusage_charge.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst usage_charge = new shopify.rest.UsageCharge({session: session});\nusage_charge.recurring_application_charge_id = 455696195;\nusage_charge.description = \"\";\nawait usage_charge.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"\";\n$usage_charge->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -246,7 +246,7 @@
                         "id": 1034618206,
                         "description": "Super Mega Plan Add-ons",
                         "price": "10.00",
-                        "created_at": "2022-10-03T10:53:13-06:00",
+                        "created_at": "2023-01-03T10:42:08-07:00",
                         "billing_on": null,
                         "balance_used": 10.0,
                         "balance_remaining": 90.0,
@@ -274,7 +274,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"usage_charges\":[{\"id\":1034618206,\"description\":\"Super Mega Plan Add-ons\",\"price\":\"10.00\",\"created_at\":\"2022-10-03T12:53:13-04:00\",\"billing_on\":null,\"balance_used\":10.0,\"balance_remaining\":90.0,\"risk_level\":0}]}"
+            "body": "{\"usage_charges\":[{\"id\":1034618206,\"description\":\"Super Mega Plan Add-ons\",\"price\":\"10.00\",\"created_at\":\"2023-01-03T12:42:08-05:00\",\"billing_on\":null,\"balance_used\":10.0,\"balance_remaining\":90.0,\"risk_level\":0}]}"
           },
           "name": "Retrieve all usage charges",
           "codeSamples": [
@@ -288,7 +288,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {UsageCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait UsageCharge.all({\n  session: test_session,\n  recurring_application_charge_id: 455696195,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.UsageCharge.all({\n  session: session,\n  recurring_application_charge_id: 455696195,\n});"
             },
             {
               "language": "php",
@@ -354,10 +354,10 @@
                 "Retrieve a single charge": {
                   "value": {
                     "usage_charge": {
-                      "id": 1034618210,
+                      "id": 1034618207,
                       "description": "Super Mega Plan Add-ons",
                       "price": "10.00",
-                      "created_at": "2022-10-03T10:53:16-06:00",
+                      "created_at": "2023-01-03T10:42:10-07:00",
                       "billing_on": null,
                       "balance_used": 10.0,
                       "balance_remaining": 90.0,
@@ -374,35 +374,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges/1034618210.json",
+          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges/1034618207.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/unstable/recurring_application_charges/455696195/usage_charges/1034618210.json",
+            "action": "GET /admin/api/unstable/recurring_application_charges/455696195/usage_charges/1034618207.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"usage_charge\":{\"id\":1034618210,\"description\":\"Super Mega Plan Add-ons\",\"price\":\"10.00\",\"created_at\":\"2022-10-03T12:53:16-04:00\",\"billing_on\":null,\"balance_used\":10.0,\"balance_remaining\":90.0,\"risk_level\":0}}"
+            "body": "{\"usage_charge\":{\"id\":1034618207,\"description\":\"Super Mega Plan Add-ons\",\"price\":\"10.00\",\"created_at\":\"2023-01-03T12:42:10-05:00\",\"billing_on\":null,\"balance_used\":10.0,\"balance_remaining\":90.0,\"risk_level\":0}}"
           },
           "name": "Retrieve a single charge",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges/1034618210.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges/1034618207.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::UsageCharge.find(\n  session: test_session,\n  recurring_application_charge_id: 455696195,\n  id: 1034618210,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::UsageCharge.find(\n  session: test_session,\n  recurring_application_charge_id: 455696195,\n  id: 1034618207,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {UsageCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait UsageCharge.find({\n  session: test_session,\n  recurring_application_charge_id: 455696195,\n  id: 1034618210,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.UsageCharge.find({\n  session: session,\n  recurring_application_charge_id: 455696195,\n  id: 1034618207,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUsageCharge::find(\n    $this->test_session, // Session\n    1034618210, // Id\n    [\"recurring_application_charge_id\" => \"455696195\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUsageCharge::find(\n    $this->test_session, // Session\n    1034618207, // Id\n    [\"recurring_application_charge_id\" => \"455696195\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }

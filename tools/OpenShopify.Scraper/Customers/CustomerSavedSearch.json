@@ -61,22 +61,22 @@
                       {
                         "id": 789629109,
                         "name": "Accepts Marketing",
-                        "created_at": "2022-10-24T08:32:41-06:00",
-                        "updated_at": "2022-10-24T08:32:41-06:00",
+                        "created_at": "2022-12-27T10:56:35-07:00",
+                        "updated_at": "2022-12-27T10:56:35-07:00",
                         "query": "accepts_marketing:1"
                       },
                       {
                         "id": 20610973,
                         "name": "Canadian Snowboarders",
-                        "created_at": "2022-10-24T08:32:41-06:00",
-                        "updated_at": "2022-10-24T08:32:41-06:00",
+                        "created_at": "2022-12-27T10:56:35-07:00",
+                        "updated_at": "2022-12-27T10:56:35-07:00",
                         "query": "country:Canada"
                       },
                       {
                         "id": 669439218,
                         "name": "Premier Customers",
-                        "created_at": "2022-10-24T08:32:41-06:00",
-                        "updated_at": "2022-10-24T08:32:41-06:00",
+                        "created_at": "2022-12-27T10:56:35-07:00",
+                        "updated_at": "2022-12-27T10:56:35-07:00",
                         "query": "John Smith orders_count:>10 total_spent:>100.00"
                       }
                     ]
@@ -88,15 +88,15 @@
                       {
                         "id": 669439218,
                         "name": "Premier Customers",
-                        "created_at": "2022-10-24T08:32:41-06:00",
-                        "updated_at": "2022-10-24T08:32:41-06:00",
+                        "created_at": "2022-12-27T10:56:35-07:00",
+                        "updated_at": "2022-12-27T10:56:35-07:00",
                         "query": "John Smith orders_count:>10 total_spent:>100.00"
                       },
                       {
                         "id": 789629109,
                         "name": "Accepts Marketing",
-                        "created_at": "2022-10-24T08:32:41-06:00",
-                        "updated_at": "2022-10-24T08:32:41-06:00",
+                        "created_at": "2022-12-27T10:56:35-07:00",
+                        "updated_at": "2022-12-27T10:56:35-07:00",
                         "query": "accepts_marketing:1"
                       }
                     ]
@@ -121,7 +121,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_saved_searches\":[{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-10-24T10:32:41-04:00\",\"updated_at\":\"2022-10-24T10:32:41-04:00\",\"query\":\"accepts_marketing:1\"},{\"id\":20610973,\"name\":\"Canadian Snowboarders\",\"created_at\":\"2022-10-24T10:32:41-04:00\",\"updated_at\":\"2022-10-24T10:32:41-04:00\",\"query\":\"country:Canada\"},{\"id\":669439218,\"name\":\"Premier Customers\",\"created_at\":\"2022-10-24T10:32:41-04:00\",\"updated_at\":\"2022-10-24T10:32:41-04:00\",\"query\":\"John Smith orders_count:>10 total_spent:>100.00\"}]}"
+            "body": "{\"customer_saved_searches\":[{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-12-27T12:56:35-05:00\",\"updated_at\":\"2022-12-27T12:56:35-05:00\",\"query\":\"accepts_marketing:1\"},{\"id\":20610973,\"name\":\"Canadian Snowboarders\",\"created_at\":\"2022-12-27T12:56:35-05:00\",\"updated_at\":\"2022-12-27T12:56:35-05:00\",\"query\":\"country:Canada\"},{\"id\":669439218,\"name\":\"Premier Customers\",\"created_at\":\"2022-12-27T12:56:35-05:00\",\"updated_at\":\"2022-12-27T12:56:35-05:00\",\"query\":\"John Smith orders_count:>10 total_spent:>100.00\"}]}"
           },
           "name": "Retrieve all customer saved searches for a shop",
           "codeSamples": [
@@ -135,7 +135,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerSavedSearch.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -156,7 +156,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_saved_searches\":[{\"id\":669439218,\"name\":\"Premier Customers\",\"created_at\":\"2022-10-24T10:32:41-04:00\",\"updated_at\":\"2022-10-24T10:32:41-04:00\",\"query\":\"John Smith orders_count:>10 total_spent:>100.00\"},{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-10-24T10:32:41-04:00\",\"updated_at\":\"2022-10-24T10:32:41-04:00\",\"query\":\"accepts_marketing:1\"}]}"
+            "body": "{\"customer_saved_searches\":[{\"id\":669439218,\"name\":\"Premier Customers\",\"created_at\":\"2022-12-27T12:56:35-05:00\",\"updated_at\":\"2022-12-27T12:56:35-05:00\",\"query\":\"John Smith orders_count:>10 total_spent:>100.00\"},{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-12-27T12:56:35-05:00\",\"updated_at\":\"2022-12-27T12:56:35-05:00\",\"query\":\"accepts_marketing:1\"}]}"
           },
           "name": "Retrieve all customer saved searches for a shop after a specified ID",
           "codeSamples": [
@@ -170,7 +170,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.all({\n  session: test_session,\n  since_id: \"20610973\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerSavedSearch.all({\n  session: session,\n  since_id: \"20610973\",\n});"
             },
             {
               "language": "php",
@@ -214,8 +214,8 @@
                     "customer_saved_search": {
                       "id": 1068136102,
                       "name": "Spent more than $50",
-                      "created_at": "2022-10-31T08:33:27-06:00",
-                      "updated_at": "2022-10-31T08:33:27-06:00",
+                      "created_at": "2023-01-03T11:07:07-07:00",
+                      "updated_at": "2023-01-03T11:07:07-07:00",
                       "query": "total_spent:>50"
                     }
                   }
@@ -225,8 +225,8 @@
                     "customer_saved_search": {
                       "id": 1068136103,
                       "name": "Spent more than $50 and after 2013",
-                      "created_at": "2022-10-31T08:33:49-06:00",
-                      "updated_at": "2022-10-31T08:33:49-06:00",
+                      "created_at": "2023-01-03T11:07:17-07:00",
+                      "updated_at": "2023-01-03T11:07:17-07:00",
                       "query": "total_spent:>50 order_date:>=2013-01-01"
                     }
                   }
@@ -271,7 +271,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"customer_saved_search\":{\"id\":1068136102,\"name\":\"Spent more than $50\",\"created_at\":\"2022-10-31T10:33:27-04:00\",\"updated_at\":\"2022-10-31T10:33:27-04:00\",\"query\":\"total_spent:>50\"}}"
+            "body": "{\"customer_saved_search\":{\"id\":1068136102,\"name\":\"Spent more than $50\",\"created_at\":\"2023-01-03T13:07:07-05:00\",\"updated_at\":\"2023-01-03T13:07:07-05:00\",\"query\":\"total_spent:>50\"}}"
           },
           "name": "Create a customer saved search",
           "codeSamples": [
@@ -285,7 +285,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.name = \"Spent more than $50\";\ncustomer_saved_search.query = \"total_spent:>50\";\nawait customer_saved_search.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_saved_search = new shopify.rest.CustomerSavedSearch({session: session});\ncustomer_saved_search.name = \"Spent more than $50\";\ncustomer_saved_search.query = \"total_spent:>50\";\nawait customer_saved_search.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -306,7 +306,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"customer_saved_search\":{\"id\":1068136103,\"name\":\"Spent more than $50 and after 2013\",\"created_at\":\"2022-10-31T10:33:49-04:00\",\"updated_at\":\"2022-10-31T10:33:49-04:00\",\"query\":\"total_spent:>50 order_date:>=2013-01-01\"}}"
+            "body": "{\"customer_saved_search\":{\"id\":1068136103,\"name\":\"Spent more than $50 and after 2013\",\"created_at\":\"2023-01-03T13:07:17-05:00\",\"updated_at\":\"2023-01-03T13:07:17-05:00\",\"query\":\"total_spent:>50 order_date:>=2013-01-01\"}}"
           },
           "name": "Create a customer saved search with multiple terms",
           "codeSamples": [
@@ -320,7 +320,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.name = \"Spent more than $50 and after 2013\";\ncustomer_saved_search.query = \"total_spent:>50 order_date:>=2013-01-01\";\nawait customer_saved_search.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_saved_search = new shopify.rest.CustomerSavedSearch({session: session});\ncustomer_saved_search.name = \"Spent more than $50 and after 2013\";\ncustomer_saved_search.query = \"total_spent:>50 order_date:>=2013-01-01\";\nawait customer_saved_search.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -355,7 +355,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.body = \"foobar\";\nawait customer_saved_search.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_saved_search = new shopify.rest.CustomerSavedSearch({session: session});\ncustomer_saved_search.body = \"foobar\";\nawait customer_saved_search.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -445,7 +445,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.count({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerSavedSearch.count({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -480,7 +480,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.count({\n  session: test_session,\n  since_id: \"20610973\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerSavedSearch.count({\n  session: session,\n  since_id: \"20610973\",\n});"
             },
             {
               "language": "php",
@@ -540,8 +540,8 @@
                     "customer_saved_search": {
                       "id": 789629109,
                       "name": "Accepts Marketing",
-                      "created_at": "2022-10-24T08:32:41-06:00",
-                      "updated_at": "2022-10-24T08:32:41-06:00",
+                      "created_at": "2022-12-27T10:56:35-07:00",
+                      "updated_at": "2022-12-27T10:56:35-07:00",
                       "query": "accepts_marketing:1"
                     }
                   }
@@ -565,7 +565,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_saved_search\":{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-10-24T10:32:41-04:00\",\"updated_at\":\"2022-10-24T10:32:41-04:00\",\"query\":\"accepts_marketing:1\"}}"
+            "body": "{\"customer_saved_search\":{\"id\":789629109,\"name\":\"Accepts Marketing\",\"created_at\":\"2022-12-27T12:56:35-05:00\",\"updated_at\":\"2022-12-27T12:56:35-05:00\",\"query\":\"accepts_marketing:1\"}}"
           },
           "name": "Get one customer saved search by ID",
           "codeSamples": [
@@ -579,7 +579,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.find({\n  session: test_session,\n  id: 789629109,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerSavedSearch.find({\n  session: session,\n  id: 789629109,\n});"
             },
             {
               "language": "php",
@@ -631,8 +631,8 @@
                     "customer_saved_search": {
                       "name": "This Name Has Been Changed",
                       "id": 789629109,
-                      "created_at": "2022-10-24T08:32:41-06:00",
-                      "updated_at": "2022-10-31T08:33:35-06:00",
+                      "created_at": "2022-12-27T10:56:35-07:00",
+                      "updated_at": "2023-01-03T11:06:53-07:00",
                       "query": "accepts_marketing:1"
                     }
                   }
@@ -656,7 +656,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_saved_search\":{\"name\":\"This Name Has Been Changed\",\"id\":789629109,\"created_at\":\"2022-10-24T10:32:41-04:00\",\"updated_at\":\"2022-10-31T10:33:35-04:00\",\"query\":\"accepts_marketing:1\"}}"
+            "body": "{\"customer_saved_search\":{\"name\":\"This Name Has Been Changed\",\"id\":789629109,\"created_at\":\"2022-12-27T12:56:35-05:00\",\"updated_at\":\"2023-01-03T13:06:53-05:00\",\"query\":\"accepts_marketing:1\"}}"
           },
           "name": "Update an existing customer saved search",
           "codeSamples": [
@@ -670,7 +670,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst customer_saved_search = new CustomerSavedSearch({session: test_session});\ncustomer_saved_search.id = 789629109;\ncustomer_saved_search.name = \"This Name Has Been Changed\";\nawait customer_saved_search.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_saved_search = new shopify.rest.CustomerSavedSearch({session: session});\ncustomer_saved_search.id = 789629109;\ncustomer_saved_search.name = \"This Name Has Been Changed\";\nawait customer_saved_search.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -753,7 +753,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.delete({\n  session: test_session,\n  id: 789629109,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerSavedSearch.delete({\n  session: session,\n  id: 789629109,\n});"
             },
             {
               "language": "php",
@@ -834,8 +834,8 @@
                         "id": 207119551,
                         "email": "bob.norman@mail.example.com",
                         "accepts_marketing": true,
-                        "created_at": "2022-10-31T08:32:41-06:00",
-                        "updated_at": "2022-10-31T08:33:36-06:00",
+                        "created_at": "2023-01-03T10:56:35-07:00",
+                        "updated_at": "2023-01-03T11:07:04-07:00",
                         "first_name": "Bob",
                         "last_name": "Norman",
                         "orders_count": 1,
@@ -871,13 +871,13 @@
                             "default": true
                           }
                         ],
-                        "accepts_marketing_updated_at": "2022-10-31T08:33:36-06:00",
+                        "accepts_marketing_updated_at": "2023-01-03T11:07:04-07:00",
                         "marketing_opt_in_level": "single_opt_in",
                         "tax_exemptions": [],
                         "sms_marketing_consent": {
                           "state": "not_subscribed",
                           "opt_in_level": "single_opt_in",
-                          "consent_updated_at": "2022-10-31T08:32:41-06:00",
+                          "consent_updated_at": "2023-01-03T10:56:35-07:00",
                           "consent_collected_from": "OTHER"
                         },
                         "admin_graphql_api_id": "gid://shopify/Customer/207119551",
@@ -923,7 +923,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customers\":[{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":true,\"created_at\":\"2022-10-31T10:32:41-04:00\",\"updated_at\":\"2022-10-31T10:33:36-04:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"addresses\":[{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}],\"accepts_marketing_updated_at\":\"2022-10-31T10:33:36-04:00\",\"marketing_opt_in_level\":\"single_opt_in\",\"tax_exemptions\":[],\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2022-10-31T10:32:41-04:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}]}"
+            "body": "{\"customers\":[{\"id\":207119551,\"email\":\"bob.norman@mail.example.com\",\"accepts_marketing\":true,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T13:07:04-05:00\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"orders_count\":1,\"state\":\"disabled\",\"total_spent\":\"199.65\",\"last_order_id\":450789469,\"note\":null,\"verified_email\":true,\"multipass_identifier\":null,\"tax_exempt\":false,\"tags\":\"\",\"last_order_name\":\"#1001\",\"currency\":\"USD\",\"phone\":\"+16136120707\",\"addresses\":[{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}],\"accepts_marketing_updated_at\":\"2023-01-03T13:07:04-05:00\",\"marketing_opt_in_level\":\"single_opt_in\",\"tax_exemptions\":[],\"sms_marketing_consent\":{\"state\":\"not_subscribed\",\"opt_in_level\":\"single_opt_in\",\"consent_updated_at\":\"2023-01-03T12:56:35-05:00\",\"consent_collected_from\":\"OTHER\"},\"admin_graphql_api_id\":\"gid://shopify/Customer/207119551\",\"default_address\":{\"id\":207119551,\"customer_id\":207119551,\"first_name\":null,\"last_name\":null,\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}]}"
           },
           "name": "Retrieve customers who match the query for the specified customer saved search",
           "codeSamples": [
@@ -937,7 +937,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CustomerSavedSearch} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CustomerSavedSearch.customers({\n  session: test_session,\n  id: 789629109,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerSavedSearch.customers({\n  session: session,\n  id: 789629109,\n});"
             },
             {
               "language": "php",

@@ -17,7 +17,7 @@ public class InventoryItemController : InventoryItemControllerBase
     [ProducesResponseType(typeof(InventoryItemList), StatusCodes.Status200OK)]
     public override Task ListInventoryItems([Required, FromQuery] IEnumerable<long>? ids = null, int? limit = null,
         string? page_info = null) => throw new NotImplementedException();
-
+    
     /// <inheritdoc />
     [HttpGet]
     [Route("inventory_items/{inventory_item_id:long}.json")]

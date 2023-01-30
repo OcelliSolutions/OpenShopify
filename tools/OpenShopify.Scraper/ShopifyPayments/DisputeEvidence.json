@@ -134,7 +134,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DisputeEvidence} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DisputeEvidence.find({\n  session: test_session,\n  dispute_id: 598735659,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DisputeEvidence.find({\n  session: session,\n  dispute_id: 598735659,\n});"
             },
             {
               "language": "php",
@@ -340,7 +340,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DisputeEvidence} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst dispute_evidence = new DisputeEvidence({session: test_session});\ndispute_evidence.dispute_id = 598735659;\ndispute_evidence.access_activity_log = \"https://example.com/access-activity-log\";\ndispute_evidence.cancellation_policy_disclosure = \"https://example.com/cancellation-policy\";\ndispute_evidence.cancellation_rebuttal = \"https://example.com/cancellation-rebuttal\";\ndispute_evidence.customer_email_address = \"customer@example.com\";\ndispute_evidence.customer_first_name = \"John\";\ndispute_evidence.customer_last_name = \"Doe\";\ndispute_evidence.refund_policy_disclosure = \"https://example.com/refund-policy\";\ndispute_evidence.refund_refusal_explanation = \"Product must have receipt of proof of purchase\";\ndispute_evidence.uncategorized_text = \"Any additional notes\";\ndispute_evidence.shipping_address_attributes = {\n  \"address1\": \"1 Infinite Loop\",\n  \"address2\": \"Muppet Studio\",\n  \"city\": \"Cupertino\",\n  \"zip\": \"95014\",\n  \"country_code\": \"US\",\n  \"province_code\": \"CA\"\n};\ndispute_evidence.fulfillments_attributes = [\n  {\n    \"shipping_carrier\": \"FedEx\",\n    \"shipping_tracking_number\": 4321,\n    \"shipping_date\": \"2017-01-02T13:00:00+00:00\"\n  }\n];\nawait dispute_evidence.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst dispute_evidence = new shopify.rest.DisputeEvidence({session: session});\ndispute_evidence.dispute_id = 598735659;\ndispute_evidence.access_activity_log = \"https://example.com/access-activity-log\";\ndispute_evidence.cancellation_policy_disclosure = \"https://example.com/cancellation-policy\";\ndispute_evidence.cancellation_rebuttal = \"https://example.com/cancellation-rebuttal\";\ndispute_evidence.customer_email_address = \"customer@example.com\";\ndispute_evidence.customer_first_name = \"John\";\ndispute_evidence.customer_last_name = \"Doe\";\ndispute_evidence.refund_policy_disclosure = \"https://example.com/refund-policy\";\ndispute_evidence.refund_refusal_explanation = \"Product must have receipt of proof of purchase\";\ndispute_evidence.uncategorized_text = \"Any additional notes\";\ndispute_evidence.shipping_address_attributes = {\n  \"address1\": \"1 Infinite Loop\",\n  \"address2\": \"Muppet Studio\",\n  \"city\": \"Cupertino\",\n  \"zip\": \"95014\",\n  \"country_code\": \"US\",\n  \"province_code\": \"CA\"\n};\ndispute_evidence.fulfillments_attributes = [\n  {\n    \"shipping_carrier\": \"FedEx\",\n    \"shipping_tracking_number\": 4321,\n    \"shipping_date\": \"2017-01-02T13:00:00+00:00\"\n  }\n];\nawait dispute_evidence.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -375,7 +375,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DisputeEvidence} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst dispute_evidence = new DisputeEvidence({session: test_session});\ndispute_evidence.dispute_id = 598735659;\ndispute_evidence.submit_evidence = true;\nawait dispute_evidence.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst dispute_evidence = new shopify.rest.DisputeEvidence({session: session});\ndispute_evidence.dispute_id = 598735659;\ndispute_evidence.submit_evidence = true;\nawait dispute_evidence.save({\n  update: true,\n});"
             },
             {
               "language": "php",

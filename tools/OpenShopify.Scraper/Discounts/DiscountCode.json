@@ -44,8 +44,8 @@
                       "price_rule_id": 507328175,
                       "code": "SUMMERSALE10OFF",
                       "usage_count": 0,
-                      "created_at": "2022-10-03T10:22:02-06:00",
-                      "updated_at": "2022-10-03T10:22:02-06:00"
+                      "created_at": "2023-01-03T10:38:34-07:00",
+                      "updated_at": "2023-01-03T10:38:34-07:00"
                     }
                   }
                 }
@@ -68,7 +68,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"discount_code\":{\"id\":1054381139,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2022-10-03T12:22:02-04:00\",\"updated_at\":\"2022-10-03T12:22:02-04:00\"}}"
+            "body": "{\"discount_code\":{\"id\":1054381139,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2023-01-03T12:38:34-05:00\",\"updated_at\":\"2023-01-03T12:38:34-05:00\"}}"
           },
           "name": "Create a discount code",
           "codeSamples": [
@@ -82,7 +82,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst discount_code = new DiscountCode({session: test_session});\ndiscount_code.price_rule_id = 507328175;\ndiscount_code.code = \"SUMMERSALE10OFF\";\nawait discount_code.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst discount_code = new shopify.rest.DiscountCode({session: session});\ndiscount_code.price_rule_id = 507328175;\ndiscount_code.code = \"SUMMERSALE10OFF\";\nawait discount_code.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -137,8 +137,8 @@
                         "price_rule_id": 507328175,
                         "code": "SUMMERSALE10OFF",
                         "usage_count": 0,
-                        "created_at": "2022-10-03T10:15:55-06:00",
-                        "updated_at": "2022-10-03T10:15:55-06:00"
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00"
                       }
                     ]
                   }
@@ -162,7 +162,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"discount_codes\":[{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\"}]}"
+            "body": "{\"discount_codes\":[{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\"}]}"
           },
           "name": "Retrieve a list of all discount codes",
           "codeSamples": [
@@ -176,7 +176,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.all({\n  session: test_session,\n  price_rule_id: 507328175,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DiscountCode.all({\n  session: session,\n  price_rule_id: 507328175,\n});"
             },
             {
               "language": "php",
@@ -238,8 +238,8 @@
                       "price_rule_id": 507328175,
                       "code": "WINTERSALE20OFF",
                       "usage_count": 0,
-                      "created_at": "2022-10-03T10:15:55-06:00",
-                      "updated_at": "2022-10-03T10:22:08-06:00"
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:38:31-07:00"
                     }
                   }
                 }
@@ -262,7 +262,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"discount_code\":{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"WINTERSALE20OFF\",\"usage_count\":0,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:22:08-04:00\"}}"
+            "body": "{\"discount_code\":{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"WINTERSALE20OFF\",\"usage_count\":0,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:38:31-05:00\"}}"
           },
           "name": "Update the code for a discount",
           "codeSamples": [
@@ -276,7 +276,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst discount_code = new DiscountCode({session: test_session});\ndiscount_code.price_rule_id = 507328175;\ndiscount_code.id = 507328175;\ndiscount_code.code = \"WINTERSALE20OFF\";\nawait discount_code.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst discount_code = new shopify.rest.DiscountCode({session: session});\ndiscount_code.price_rule_id = 507328175;\ndiscount_code.id = 507328175;\ndiscount_code.code = \"WINTERSALE20OFF\";\nawait discount_code.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -338,8 +338,8 @@
                       "price_rule_id": 507328175,
                       "code": "SUMMERSALE10OFF",
                       "usage_count": 0,
-                      "created_at": "2022-10-03T10:15:55-06:00",
-                      "updated_at": "2022-10-03T10:15:55-06:00"
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:21:36-07:00"
                     }
                   }
                 }
@@ -362,7 +362,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"discount_code\":{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\"}}"
+            "body": "{\"discount_code\":{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\"}}"
           },
           "name": "Retrieve a single discount code",
           "codeSamples": [
@@ -376,7 +376,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.find({\n  session: test_session,\n  price_rule_id: 507328175,\n  id: 507328175,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DiscountCode.find({\n  session: session,\n  price_rule_id: 507328175,\n  id: 507328175,\n});"
             },
             {
               "language": "php",
@@ -467,7 +467,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.delete({\n  session: test_session,\n  price_rule_id: 507328175,\n  id: 507328175,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DiscountCode.delete({\n  session: session,\n  price_rule_id: 507328175,\n  id: 507328175,\n});"
             },
             {
               "language": "php",
@@ -552,7 +552,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.lookup({\n  session: test_session,\n  code: \"SUMMERSALE10OFF\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DiscountCode.lookup({\n  session: session,\n  code: \"SUMMERSALE10OFF\",\n});"
             },
             {
               "language": "php",
@@ -653,7 +653,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.count({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DiscountCode.count({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -707,8 +707,8 @@
                       "price_rule_id": 507328175,
                       "started_at": null,
                       "completed_at": null,
-                      "created_at": "2022-10-03T10:22:11-06:00",
-                      "updated_at": "2022-10-03T10:22:11-06:00",
+                      "created_at": "2023-01-03T10:38:25-07:00",
+                      "updated_at": "2023-01-03T10:38:25-07:00",
                       "status": "queued",
                       "codes_count": 3,
                       "imported_count": 0,
@@ -736,7 +736,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"discount_code_creation\":{\"id\":989355119,\"price_rule_id\":507328175,\"started_at\":null,\"completed_at\":null,\"created_at\":\"2022-10-03T12:22:11-04:00\",\"updated_at\":\"2022-10-03T12:22:11-04:00\",\"status\":\"queued\",\"codes_count\":3,\"imported_count\":0,\"failed_count\":0,\"logs\":[]}}"
+            "body": "{\"discount_code_creation\":{\"id\":989355119,\"price_rule_id\":507328175,\"started_at\":null,\"completed_at\":null,\"created_at\":\"2023-01-03T12:38:25-05:00\",\"updated_at\":\"2023-01-03T12:38:25-05:00\",\"status\":\"queued\",\"codes_count\":3,\"imported_count\":0,\"failed_count\":0,\"logs\":[]}}"
           },
           "name": "Create a discount code creation job",
           "codeSamples": [
@@ -750,7 +750,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst discount_code = new DiscountCode({session: test_session});\ndiscount_code.price_rule_id = 507328175;\nawait discount_code.batch({\n  body: {\"discount_codes\": [{\"code\": \"SUMMER1\"}, {\"code\": \"SUMMER2\"}, {\"code\": \"SUMMER3\"}]},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst discount_code = new shopify.rest.DiscountCode({session: session});\ndiscount_code.price_rule_id = 507328175;\nawait discount_code.batch({\n  body: {\"discount_codes\": [{\"code\": \"SUMMER1\"}, {\"code\": \"SUMMER2\"}, {\"code\": \"SUMMER3\"}]},\n});"
             },
             {
               "language": "php",
@@ -806,8 +806,8 @@
                       "price_rule_id": 507328175,
                       "started_at": null,
                       "completed_at": null,
-                      "created_at": "2022-10-03T10:15:55-06:00",
-                      "updated_at": "2022-10-03T10:15:55-06:00",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:21:36-07:00",
                       "status": "queued",
                       "codes_count": 3,
                       "imported_count": 0,
@@ -835,7 +835,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"discount_code_creation\":{\"id\":173232803,\"price_rule_id\":507328175,\"started_at\":null,\"completed_at\":null,\"created_at\":\"2022-10-03T12:15:55-04:00\",\"updated_at\":\"2022-10-03T12:15:55-04:00\",\"status\":\"queued\",\"codes_count\":3,\"imported_count\":0,\"failed_count\":0,\"logs\":[]}}"
+            "body": "{\"discount_code_creation\":{\"id\":173232803,\"price_rule_id\":507328175,\"started_at\":null,\"completed_at\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"status\":\"queued\",\"codes_count\":3,\"imported_count\":0,\"failed_count\":0,\"logs\":[]}}"
           },
           "name": "Retrieve a discount code creation job",
           "codeSamples": [
@@ -849,7 +849,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.get_all({\n  session: test_session,\n  price_rule_id: 507328175,\n  batch_id: 173232803,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DiscountCode.get_all({\n  session: session,\n  price_rule_id: 507328175,\n  batch_id: 173232803,\n});"
             },
             {
               "language": "php",
@@ -952,7 +952,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.all({\n  session: test_session,\n  price_rule_id: 507328175,\n  batch_id: 173232803,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DiscountCode.all({\n  session: session,\n  price_rule_id: 507328175,\n  batch_id: 173232803,\n});"
             },
             {
               "language": "php",

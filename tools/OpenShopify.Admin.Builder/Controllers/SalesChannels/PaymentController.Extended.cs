@@ -11,13 +11,6 @@ namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 [ApiController]
 public class PaymentController : PaymentControllerBase
 {
-    /// TODO: different URLs https://shopify.dev/api/admin-rest/2022-10/resources/payment#post-https:-elb.deposit.shopifycs.com-sessions
-    /// <inheritdoc />
-    [IgnoreApi]
-    [HttpPost]
-    [Route("elb.deposit.shopifycs.com/sessions")]
-    public override Task StoreCreditCardInCardVault() => throw new NotImplementedException();
-
     /// <inheritdoc />
     [HttpPost]
     [Route("checkouts/{token}/payments.json")]

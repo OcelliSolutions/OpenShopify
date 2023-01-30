@@ -379,7 +379,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -414,7 +414,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.all({\n  session: session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
@@ -449,7 +449,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.all({\n  session: test_session,\n  filter: \"Product,Order\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.all({\n  session: session,\n  filter: \"Product,Order\",\n});"
             },
             {
               "language": "php",
@@ -484,7 +484,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.all({\n  session: test_session,\n  filter: \"Product\",\n  verb: \"destroy\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.all({\n  session: session,\n  filter: \"Product\",\n  verb: \"destroy\",\n});"
             },
             {
               "language": "php",
@@ -519,7 +519,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.all({\n  session: test_session,\n  created_at_min: \"2008-01-10 12:30:00+00:00\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.all({\n  session: session,\n  created_at_min: \"2008-01-10 12:30:00+00:00\",\n});"
             },
             {
               "language": "php",
@@ -554,7 +554,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.all({\n  session: test_session,\n  since_id: \"164748010\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.all({\n  session: session,\n  since_id: \"164748010\",\n});"
             },
             {
               "language": "php",
@@ -589,7 +589,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.all({\n  session: test_session,\n  product_id: 921728736,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.all({\n  session: session,\n  product_id: 921728736,\n});"
             },
             {
               "language": "php",
@@ -624,7 +624,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.all({\n  session: test_session,\n  order_id: 450789469,\n  limit: \"1\",\n  since_id: \"164748010\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.all({\n  session: session,\n  order_id: 450789469,\n  limit: \"1\",\n  since_id: \"164748010\",\n});"
             },
             {
               "language": "php",
@@ -734,7 +734,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.find({\n  session: test_session,\n  id: 677313116,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.find({\n  session: session,\n  id: 677313116,\n});"
             },
             {
               "language": "php",
@@ -835,7 +835,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.count({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.count({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -870,7 +870,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Event} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Event.count({\n  session: test_session,\n  created_at_min: \"2008-01-10T13:00:00+00:00\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Event.count({\n  session: session,\n  created_at_min: \"2008-01-10T13:00:00+00:00\",\n});"
             },
             {
               "language": "php",

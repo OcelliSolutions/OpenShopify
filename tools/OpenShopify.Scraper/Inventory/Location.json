@@ -42,8 +42,8 @@
                         "province": "Ontario",
                         "country": "CA",
                         "phone": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "country_code": "CA",
                         "country_name": "Canada",
                         "province_code": "ON",
@@ -63,8 +63,8 @@
                         "province": null,
                         "country": "DE",
                         "phone": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "country_code": "DE",
                         "country_name": "Germany",
                         "province_code": null,
@@ -84,8 +84,8 @@
                         "province": null,
                         "country": "US",
                         "phone": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "country_code": "US",
                         "country_name": "United States",
                         "province_code": null,
@@ -105,8 +105,8 @@
                         "province": null,
                         "country": "DE",
                         "phone": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "country_code": "DE",
                         "country_name": "Germany",
                         "province_code": null,
@@ -126,8 +126,8 @@
                         "province": null,
                         "country": "US",
                         "phone": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "country_code": "US",
                         "country_name": "United States",
                         "province_code": null,
@@ -159,7 +159,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"locations\":[{\"id\":655441491,\"name\":\"50 Rideau Street\",\"address1\":\"50 Rideau Street\",\"address2\":null,\"city\":\"Ottawa\",\"zip\":\"K1N 9J7\",\"province\":\"Ontario\",\"country\":\"CA\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"CA\",\"country_name\":\"Canada\",\"province_code\":\"ON\",\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/655441491\",\"localized_country_name\":\"Canada\",\"localized_province_name\":\"Ontario\"},{\"id\":24826418,\"name\":\"Apple Api Shipwire\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"DE\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"DE\",\"country_name\":\"Germany\",\"province_code\":null,\"legacy\":true,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/24826418\",\"localized_country_name\":\"Germany\",\"localized_province_name\":null},{\"id\":844681632,\"name\":\"Apple Cupertino\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/844681632\",\"localized_country_name\":\"United States\",\"localized_province_name\":null},{\"id\":611870435,\"name\":\"Apple Shipwire\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"DE\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"DE\",\"country_name\":\"Germany\",\"province_code\":null,\"legacy\":true,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/611870435\",\"localized_country_name\":\"Germany\",\"localized_province_name\":null},{\"id\":487838322,\"name\":\"Fifth Avenue AppleStore\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/487838322\",\"localized_country_name\":\"United States\",\"localized_province_name\":null}]}"
+            "body": "{\"locations\":[{\"id\":655441491,\"name\":\"50 Rideau Street\",\"address1\":\"50 Rideau Street\",\"address2\":null,\"city\":\"Ottawa\",\"zip\":\"K1N 9J7\",\"province\":\"Ontario\",\"country\":\"CA\",\"phone\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"country_code\":\"CA\",\"country_name\":\"Canada\",\"province_code\":\"ON\",\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/655441491\",\"localized_country_name\":\"Canada\",\"localized_province_name\":\"Ontario\"},{\"id\":24826418,\"name\":\"Apple Api Shipwire\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"DE\",\"phone\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"country_code\":\"DE\",\"country_name\":\"Germany\",\"province_code\":null,\"legacy\":true,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/24826418\",\"localized_country_name\":\"Germany\",\"localized_province_name\":null},{\"id\":844681632,\"name\":\"Apple Cupertino\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/844681632\",\"localized_country_name\":\"United States\",\"localized_province_name\":null},{\"id\":611870435,\"name\":\"Apple Shipwire\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"DE\",\"phone\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"country_code\":\"DE\",\"country_name\":\"Germany\",\"province_code\":null,\"legacy\":true,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/611870435\",\"localized_country_name\":\"Germany\",\"localized_province_name\":null},{\"id\":487838322,\"name\":\"Fifth Avenue AppleStore\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/487838322\",\"localized_country_name\":\"United States\",\"localized_province_name\":null}]}"
           },
           "name": "Retrieve a list of all locations",
           "codeSamples": [
@@ -173,7 +173,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Location.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -232,8 +232,8 @@
                       "province": null,
                       "country": "US",
                       "phone": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:44:45-06:00",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:21:36-07:00",
                       "country_code": "US",
                       "country_name": "United States",
                       "province_code": null,
@@ -262,7 +262,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"location\":{\"id\":487838322,\"name\":\"Fifth Avenue AppleStore\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/487838322\"}}"
+            "body": "{\"location\":{\"id\":487838322,\"name\":\"Fifth Avenue AppleStore\",\"address1\":null,\"address2\":null,\"city\":null,\"zip\":null,\"province\":null,\"country\":\"US\",\"phone\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"province_code\":null,\"legacy\":false,\"active\":true,\"admin_graphql_api_id\":\"gid://shopify/Location/487838322\"}}"
           },
           "name": "Retrieve a single location",
           "codeSamples": [
@@ -276,7 +276,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.find({\n  session: test_session,\n  id: 487838322,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Location.find({\n  session: session,\n  id: 487838322,\n});"
             },
             {
               "language": "php",
@@ -353,7 +353,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.count({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Location.count({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -407,28 +407,28 @@
                         "inventory_item_id": 49148385,
                         "location_id": 487838322,
                         "available": 18,
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=49148385"
                       },
                       {
                         "inventory_item_id": 808950810,
                         "location_id": 487838322,
                         "available": 9,
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810"
                       },
                       {
                         "inventory_item_id": 457924702,
                         "location_id": 487838322,
                         "available": 36,
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=457924702"
                       },
                       {
                         "inventory_item_id": 39072856,
                         "location_id": 487838322,
                         "available": 27,
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "admin_graphql_api_id": "gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856"
                       }
                     ]
@@ -453,7 +453,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"inventory_levels\":[{\"inventory_item_id\":49148385,\"location_id\":487838322,\"available\":18,\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=49148385\"},{\"inventory_item_id\":808950810,\"location_id\":487838322,\"available\":9,\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810\"},{\"inventory_item_id\":457924702,\"location_id\":487838322,\"available\":36,\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=457924702\"},{\"inventory_item_id\":39072856,\"location_id\":487838322,\"available\":27,\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856\"}]}"
+            "body": "{\"inventory_levels\":[{\"inventory_item_id\":49148385,\"location_id\":487838322,\"available\":18,\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=49148385\"},{\"inventory_item_id\":808950810,\"location_id\":487838322,\"available\":9,\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=808950810\"},{\"inventory_item_id\":457924702,\"location_id\":487838322,\"available\":36,\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=457924702\"},{\"inventory_item_id\":39072856,\"location_id\":487838322,\"available\":27,\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"admin_graphql_api_id\":\"gid://shopify/InventoryLevel/548380009?inventory_item_id=39072856\"}]}"
           },
           "name": "Retrieve a list of all inventory for a location by its ID",
           "codeSamples": [
@@ -467,7 +467,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.inventory_levels({\n  session: test_session,\n  id: 487838322,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Location.inventory_levels({\n  session: session,\n  id: 487838322,\n});"
             },
             {
               "language": "php",

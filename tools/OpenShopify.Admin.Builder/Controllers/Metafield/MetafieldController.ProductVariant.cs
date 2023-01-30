@@ -28,11 +28,11 @@ public partial class MetafieldController : MetafieldControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public override Task DeleteMetafieldForProductVariant([Required] long variant_id, [Required] long metafield_id) => throw new NotImplementedException();
 
-    /// <inheritdoc cref="MetafieldControllerBase.GetMetafield" />
+    /// <inheritdoc />
     [HttpGet]
     [Route("variants/{variant_id}/metafields/{metafield_id}.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
-    public Task GetMetafieldAttachedToProductVariant([Required] long metafield_id, [Required] long variant_id, string? fields = null) =>
+    public override Task GetMetafieldAttachedToProductVariant([Required] long metafield_id, [Required] long variant_id, string? fields = null) =>
         throw new NotImplementedException();
 
     /// <inheritdoc />

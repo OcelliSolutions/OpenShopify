@@ -34,8 +34,8 @@
                     "policies": [
                       {
                         "body": "You have 30 days to get a refund",
-                        "created_at": "2022-10-03T10:52:45-06:00",
-                        "updated_at": "2022-10-03T10:52:45-06:00",
+                        "created_at": "2023-01-03T10:39:49-07:00",
+                        "updated_at": "2023-01-03T10:39:49-07:00",
                         "handle": "refund-policy",
                         "title": "Refund policy",
                         "url": "https://jsmith.myshopify.com/548380009/policies/878590288"
@@ -62,7 +62,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"policies\":[{\"body\":\"You have 30 days to get a refund\",\"created_at\":\"2022-10-03T12:52:45-04:00\",\"updated_at\":\"2022-10-03T12:52:45-04:00\",\"handle\":\"refund-policy\",\"title\":\"Refund policy\",\"url\":\"https://jsmith.myshopify.com/548380009/policies/878590288\"}]}"
+            "body": "{\"policies\":[{\"body\":\"You have 30 days to get a refund\",\"created_at\":\"2023-01-03T12:39:49-05:00\",\"updated_at\":\"2023-01-03T12:39:49-05:00\",\"handle\":\"refund-policy\",\"title\":\"Refund policy\",\"url\":\"https://jsmith.myshopify.com/548380009/policies/878590288\"}]}"
           },
           "name": "Retrieve a list of the shop's policies",
           "codeSamples": [
@@ -76,7 +76,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Policy} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Policy.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Policy.all({\n  session: session,\n});"
             },
             {
               "language": "php",

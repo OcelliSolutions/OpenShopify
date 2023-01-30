@@ -44,13 +44,13 @@
                     "collection_listings": [
                       {
                         "collection_id": 482865238,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "body_html": "<p>The best selling ipod ever</p>",
                         "default_product_image": null,
                         "handle": "smart-ipods",
                         "image": {
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664816833"
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672768595"
                         },
                         "title": "Smart iPods",
                         "sort_order": "manual",
@@ -58,13 +58,13 @@
                       },
                       {
                         "collection_id": 841564295,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "body_html": "<p>The best selling ipod ever</p>",
                         "default_product_image": null,
                         "handle": "ipods",
                         "image": {
-                          "created_at": "2022-10-03T11:07:13-06:00",
-                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664816833"
+                          "created_at": "2023-01-03T10:56:35-07:00",
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672768595"
                         },
                         "title": "IPods",
                         "sort_order": "manual",
@@ -72,15 +72,15 @@
                       },
                       {
                         "collection_id": 395646240,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "body_html": "<p>The best selling ipod ever. Again</p>",
                         "default_product_image": {
                           "id": 850703190,
-                          "created_at": "2022-10-03T11:07:13-06:00",
+                          "created_at": "2023-01-03T10:56:35-07:00",
                           "position": 1,
-                          "updated_at": "2022-10-03T11:07:13-06:00",
+                          "updated_at": "2023-01-03T10:56:35-07:00",
                           "product_id": 632910392,
-                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664816833",
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672768595",
                           "variant_ids": [],
                           "width": 123,
                           "height": 456
@@ -93,7 +93,7 @@
                       },
                       {
                         "collection_id": 691652237,
-                        "updated_at": "2022-10-03T11:07:13-06:00",
+                        "updated_at": "2023-01-03T10:56:35-07:00",
                         "body_html": "<p>No ipods here</p>",
                         "default_product_image": null,
                         "handle": "non-ipods",
@@ -124,7 +124,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"collection_listings\":[{\"collection_id\":482865238,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2022-10-03T13:07:13-04:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664816833\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":841564295,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"ipods\",\"image\":{\"created_at\":\"2022-10-03T13:07:13-04:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664816833\"},\"title\":\"IPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":395646240,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"body_html\":\"<p>The best selling ipod ever. Again</p>\",\"default_product_image\":{\"id\":850703190,\"created_at\":\"2022-10-03T13:07:13-04:00\",\"position\":1,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664816833\",\"variant_ids\":[],\"width\":123,\"height\":456},\"handle\":\"ipods_two\",\"image\":null,\"title\":\"IPods Two\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":691652237,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"body_html\":\"<p>No ipods here</p>\",\"default_product_image\":null,\"handle\":\"non-ipods\",\"image\":null,\"title\":\"Non Ipods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}]}"
+            "body": "{\"collection_listings\":[{\"collection_id\":482865238,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2023-01-03T12:56:35-05:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672768595\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":841564295,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"ipods\",\"image\":{\"created_at\":\"2023-01-03T12:56:35-05:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672768595\"},\"title\":\"IPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":395646240,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"body_html\":\"<p>The best selling ipod ever. Again</p>\",\"default_product_image\":{\"id\":850703190,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"position\":1,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672768595\",\"variant_ids\":[],\"width\":123,\"height\":456},\"handle\":\"ipods_two\",\"image\":null,\"title\":\"IPods Two\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":691652237,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"body_html\":\"<p>No ipods here</p>\",\"default_product_image\":null,\"handle\":\"non-ipods\",\"image\":null,\"title\":\"Non Ipods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}]}"
           },
           "name": "Retrieve collection listings that are published to your app",
           "codeSamples": [
@@ -138,7 +138,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CollectionListing.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CollectionListing.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -235,7 +235,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CollectionListing.product_ids({\n  session: test_session,\n  collection_id: 841564295,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CollectionListing.product_ids({\n  session: session,\n  collection_id: 841564295,\n});"
             },
             {
               "language": "php",
@@ -280,13 +280,13 @@
                   "value": {
                     "collection_listing": {
                       "collection_id": 482865238,
-                      "updated_at": "2022-10-03T11:07:13-06:00",
+                      "updated_at": "2023-01-03T10:56:35-07:00",
                       "body_html": "<p>The best selling ipod ever</p>",
                       "default_product_image": null,
                       "handle": "smart-ipods",
                       "image": {
-                        "created_at": "2022-10-03T11:07:13-06:00",
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664816833"
+                        "created_at": "2023-01-03T10:56:35-07:00",
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672768595"
                       },
                       "title": "Smart iPods",
                       "sort_order": "manual",
@@ -313,7 +313,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"collection_listing\":{\"collection_id\":482865238,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2022-10-03T13:07:13-04:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664816833\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}}"
+            "body": "{\"collection_listing\":{\"collection_id\":482865238,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2023-01-03T12:56:35-05:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672768595\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}}"
           },
           "name": "Retrieve a specific collection listing that is published to your app",
           "codeSamples": [
@@ -327,7 +327,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CollectionListing.find({\n  session: test_session,\n  collection_id: 482865238,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CollectionListing.find({\n  session: session,\n  collection_id: 482865238,\n});"
             },
             {
               "language": "php",
@@ -378,13 +378,13 @@
                   "value": {
                     "collection_listing": {
                       "collection_id": 482865238,
-                      "updated_at": "2022-10-03T11:07:13-06:00",
+                      "updated_at": "2023-01-03T10:56:35-07:00",
                       "body_html": "<p>The best selling ipod ever</p>",
                       "default_product_image": null,
                       "handle": "smart-ipods",
                       "image": {
-                        "created_at": "2022-10-03T11:07:13-06:00",
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664816833"
+                        "created_at": "2023-01-03T10:56:35-07:00",
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672768595"
                       },
                       "title": "Smart iPods",
                       "sort_order": "manual",
@@ -411,7 +411,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"collection_listing\":{\"collection_id\":482865238,\"updated_at\":\"2022-10-03T13:07:13-04:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2022-10-03T13:07:13-04:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1664816833\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}}"
+            "body": "{\"collection_listing\":{\"collection_id\":482865238,\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2023-01-03T12:56:35-05:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672768595\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}}"
           },
           "name": "Create a collection listing to publish a collection to your app",
           "codeSamples": [
@@ -425,7 +425,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst collection_listing = new CollectionListing({session: test_session});\ncollection_listing.collection_id = 482865238;\nawait collection_listing.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst collection_listing = new shopify.rest.CollectionListing({session: session});\ncollection_listing.collection_id = 482865238;\nawait collection_listing.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -508,7 +508,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CollectionListing.delete({\n  session: test_session,\n  collection_id: 482865238,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CollectionListing.delete({\n  session: session,\n  collection_id: 482865238,\n});"
             },
             {
               "language": "php",

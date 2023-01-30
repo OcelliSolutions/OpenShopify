@@ -831,6 +831,7 @@ string CreateOperationId(string summary, string path)
         .Replace("GetListOf", "List")
         .Replace("GetAllOf", "List")
         .Replace("GetAll", "List")
+        .Replace("GetDetailedListFor", "List")
         .Replace("ListAllOf", "List")
         .Replace("GetMetafields", "ListMetafields")
         .Replace("GetDetailsForSingle", "Get")
@@ -856,6 +857,7 @@ string CreateOperationId(string summary, string path)
         .Replace("ToUnpublishProductFromYourApp", "")
         .Replace("WithStatusOPEN","")
         .Replace("ByItsID", "")
+        .Replace("ByIDs", "")
         .Replace("ByID", "")
         .Replace("GetCollectionListings", "ListCollectionListings")
         .Replace("GetProductListings", "ListProductListings");
@@ -864,7 +866,20 @@ string CreateOperationId(string summary, string path)
         summary = "GetUsageCharge"; 
     else if (path.Contains("recurring_application_charges") && summary == "GetCharge")
         summary = "GetRecurringApplicationCharge";
-
+    /*
+    else if (path.Contains("metafields") && summary == "ListMetafieldsFromResourcesEndpoint")
+        summary = "ListMetafieldsAttachedToBlog";
+    else if (path.Contains("metafields") && summary == "CreateMetafield")
+        summary = "CreateMetafieldForBlog";
+    else if (path.Contains("metafields") && summary == "CountResourcesMetafields")
+        summary = "CountMetafieldsAttachedToBlog";
+    else if (path.Contains("metafields") && summary == "GetMetafield")
+        summary = "GetMetafieldAttachedToBlog";
+    else if (path.Contains("metafields") && summary == "UpdateMetafield")
+        summary = "UpdateMetafieldForBlog";
+    else if (path.Contains("metafields") && summary == "DeleteMetafield")
+        summary = "DeleteMetafieldForBlog";
+    */
     return summary;
 }
 

@@ -136,7 +136,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.all({\n  session: test_session,\n  since_id: \"668809255\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Redirect.all({\n  session: session,\n  since_id: \"668809255\",\n});"
             },
             {
               "language": "php",
@@ -171,7 +171,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Redirect.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -264,7 +264,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.count({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Redirect.count({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -361,7 +361,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.find({\n  session: test_session,\n  id: 668809255,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Redirect.find({\n  session: session,\n  id: 668809255,\n});"
             },
             {
               "language": "php",
@@ -468,7 +468,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.id = 950115854;\nredirect.path = \"/powermac\";\nredirect.target = \"/pages/macpro\";\nawait redirect.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst redirect = new shopify.rest.Redirect({session: session});\nredirect.id = 950115854;\nredirect.path = \"/powermac\";\nredirect.target = \"/pages/macpro\";\nawait redirect.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -503,7 +503,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.id = 668809255;\nredirect.path = \"/tiger\";\nawait redirect.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst redirect = new shopify.rest.Redirect({session: session});\nredirect.id = 668809255;\nredirect.path = \"/tiger\";\nawait redirect.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -538,7 +538,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.id = 668809255;\nredirect.target = \"/pages/macpro\";\nawait redirect.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst redirect = new shopify.rest.Redirect({session: session});\nredirect.id = 668809255;\nredirect.target = \"/pages/macpro\";\nawait redirect.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -621,7 +621,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.delete({\n  session: test_session,\n  id: 668809255,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Redirect.delete({\n  session: session,\n  id: 668809255,\n});"
             },
             {
               "language": "php",
@@ -663,7 +663,7 @@
                 "Create a redirect": {
                   "value": {
                     "redirect": {
-                      "id": 984542199,
+                      "id": 984542200,
                       "path": "/ipod",
                       "target": "/pages/itunes"
                     }
@@ -672,7 +672,7 @@
                 "Create a redirect using a full URL for the path, which will be saved as an absolute path without a domain": {
                   "value": {
                     "redirect": {
-                      "id": 984542200,
+                      "id": 984542199,
                       "path": "/forums",
                       "target": "http://forums.apple.com/"
                     }
@@ -719,7 +719,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"redirect\":{\"id\":984542199,\"path\":\"/ipod\",\"target\":\"/pages/itunes\"}}"
+            "body": "{\"redirect\":{\"id\":984542200,\"path\":\"/ipod\",\"target\":\"/pages/itunes\"}}"
           },
           "name": "Create a redirect",
           "codeSamples": [
@@ -733,7 +733,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.path = \"/ipod\";\nredirect.target = \"/pages/itunes\";\nawait redirect.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst redirect = new shopify.rest.Redirect({session: session});\nredirect.path = \"/ipod\";\nredirect.target = \"/pages/itunes\";\nawait redirect.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -754,7 +754,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"redirect\":{\"id\":984542200,\"path\":\"/forums\",\"target\":\"http://forums.apple.com/\"}}"
+            "body": "{\"redirect\":{\"id\":984542199,\"path\":\"/forums\",\"target\":\"http://forums.apple.com/\"}}"
           },
           "name": "Create a redirect using a full URL for the path, which will be saved as an absolute path without a domain",
           "codeSamples": [
@@ -768,7 +768,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.path = \"http://www.apple.com/forums\";\nredirect.target = \"http://forums.apple.com\";\nawait redirect.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst redirect = new shopify.rest.Redirect({session: session});\nredirect.path = \"http://www.apple.com/forums\";\nredirect.target = \"http://forums.apple.com\";\nawait redirect.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -803,7 +803,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.body = \"foobar\";\nawait redirect.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst redirect = new shopify.rest.Redirect({session: session});\nredirect.body = \"foobar\";\nawait redirect.save({\n  update: true,\n});"
             },
             {
               "language": "php",

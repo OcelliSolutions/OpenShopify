@@ -336,7 +336,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n  initiated_at: \"2013-05-03\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Dispute.all({\n  session: session,\n  initiated_at: \"2013-05-03\",\n});"
             },
             {
               "language": "php",
@@ -371,7 +371,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Dispute.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -406,7 +406,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.all({\n  session: test_session,\n  status: \"won\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Dispute.all({\n  session: session,\n  status: \"won\",\n});"
             },
             {
               "language": "php",
@@ -509,7 +509,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Dispute} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Dispute.find({\n  session: test_session,\n  id: 598735659,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Dispute.find({\n  session: session,\n  id: 598735659,\n});"
             },
             {
               "language": "php",

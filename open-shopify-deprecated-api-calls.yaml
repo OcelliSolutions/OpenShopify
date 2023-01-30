@@ -24,7 +24,7 @@ paths:
       tags:
         - DeprecatedApiCalls
       summary: Retrieves a list of deprecated API calls
-      description: Retrieves a list of deprecated API calls made by your private apps in the past 30 days.
+      description: Retrieves a list of deprecated API calls made by your custom apps in the past 30 days.
       operationId: ListDeprecatedAPICalls
       responses:
         '200':

@@ -32,12 +32,12 @@
                 "Create a carrier service": {
                   "value": {
                     "carrier_service": {
-                      "id": 1067451814,
+                      "id": 1036894957,
                       "name": "Shipping Rate Provider",
                       "active": true,
                       "service_discovery": true,
                       "carrier_service_type": "api",
-                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1067451814",
+                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894957",
                       "format": "json",
                       "callback_url": "http://shipping.example.com/"
                     }
@@ -62,7 +62,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"carrier_service\":{\"id\":1067451814,\"name\":\"Shipping Rate Provider\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1067451814\",\"format\":\"json\",\"callback_url\":\"http://shipping.example.com/\"}}"
+            "body": "{\"carrier_service\":{\"id\":1036894957,\"name\":\"Shipping Rate Provider\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894957\",\"format\":\"json\",\"callback_url\":\"http://shipping.example.com/\"}}"
           },
           "name": "Create a carrier service",
           "codeSamples": [
@@ -76,7 +76,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CarrierService} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst carrier_service = new CarrierService({session: test_session});\ncarrier_service.name = \"Shipping Rate Provider\";\ncarrier_service.callback_url = \"http://shipping.example.com\";\ncarrier_service.service_discovery = true;\nawait carrier_service.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst carrier_service = new shopify.rest.CarrierService({session: session});\ncarrier_service.name = \"Shipping Rate Provider\";\ncarrier_service.callback_url = \"http://shipping.example.com\";\ncarrier_service.service_discovery = true;\nawait carrier_service.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -119,12 +119,12 @@
                   "value": {
                     "carrier_services": [
                       {
-                        "id": 1067451817,
+                        "id": 1036894958,
                         "name": "Purolator",
                         "active": true,
                         "service_discovery": true,
                         "carrier_service_type": "api",
-                        "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1067451817",
+                        "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894958",
                         "format": "json",
                         "callback_url": "http://example.com/"
                       },
@@ -158,7 +158,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"carrier_services\":[{\"id\":1067451817,\"name\":\"Purolator\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1067451817\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"},{\"id\":260046840,\"name\":\"ups_shipping\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"legacy\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/260046840\"}]}"
+            "body": "{\"carrier_services\":[{\"id\":1036894958,\"name\":\"Purolator\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894958\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"},{\"id\":260046840,\"name\":\"ups_shipping\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"legacy\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/260046840\"}]}"
           },
           "name": "Retrieve a list of carrier services",
           "codeSamples": [
@@ -172,7 +172,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {CarrierService} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CarrierService.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CarrierService.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -223,11 +223,11 @@
                   "value": {
                     "carrier_service": {
                       "active": false,
-                      "id": 1067451815,
+                      "id": 1036894955,
                       "name": "Some new name",
                       "service_discovery": true,
                       "carrier_service_type": "api",
-                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1067451815",
+                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894955",
                       "format": "json",
                       "callback_url": "http://example.com/"
                     }
@@ -242,35 +242,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/carrier_services/1067451815.json",
+          "request_path": "/admin/api/2022-10/carrier_services/1036894955.json",
           "request_method": "PUT",
           "request": {
-            "action": "PUT /admin/api/unstable/carrier_services/1067451815.json",
+            "action": "PUT /admin/api/unstable/carrier_services/1036894955.json",
             "headers": {},
-            "body": "{\"carrier_service\":{\"id\":1067451815,\"name\":\"Some new name\",\"active\":false}}"
+            "body": "{\"carrier_service\":{\"id\":1036894955,\"name\":\"Some new name\",\"active\":false}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"carrier_service\":{\"active\":false,\"id\":1067451815,\"name\":\"Some new name\",\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1067451815\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"}}"
+            "body": "{\"carrier_service\":{\"active\":false,\"id\":1036894955,\"name\":\"Some new name\",\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894955\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"}}"
           },
           "name": "Update a carrier service",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"carrier_service\":{\"id\":1067451815,\"name\":\"Some new name\",\"active\":false}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1067451815.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"carrier_service\":{\"id\":1036894955,\"name\":\"Some new name\",\"active\":false}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1036894955.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncarrier_service = ShopifyAPI::CarrierService.new(session: test_session)\ncarrier_service.id = 1067451815\ncarrier_service.name = \"Some new name\"\ncarrier_service.active = false\ncarrier_service.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncarrier_service = ShopifyAPI::CarrierService.new(session: test_session)\ncarrier_service.id = 1036894955\ncarrier_service.name = \"Some new name\"\ncarrier_service.active = false\ncarrier_service.save!"
             },
             {
               "language": "node",
-              "example_code": "import {CarrierService} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst carrier_service = new CarrierService({session: test_session});\ncarrier_service.id = 1067451815;\ncarrier_service.name = \"Some new name\";\ncarrier_service.active = false;\nawait carrier_service.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst carrier_service = new shopify.rest.CarrierService({session: session});\ncarrier_service.id = 1036894955;\ncarrier_service.name = \"Some new name\";\ncarrier_service.active = false;\nawait carrier_service.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$carrier_service = new CarrierService($this->test_session);\n$carrier_service->id = 1067451815;\n$carrier_service->name = \"Some new name\";\n$carrier_service->active = false;\n$carrier_service->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$carrier_service = new CarrierService($this->test_session);\n$carrier_service->id = 1036894955;\n$carrier_service->name = \"Some new name\";\n$carrier_service->active = false;\n$carrier_service->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -316,12 +316,12 @@
                 "Get a single carrier service by its ID": {
                   "value": {
                     "carrier_service": {
-                      "id": 1067451816,
+                      "id": 1036894954,
                       "name": "Purolator",
                       "active": true,
                       "service_discovery": true,
                       "carrier_service_type": "api",
-                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1067451816",
+                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894954",
                       "format": "json",
                       "callback_url": "http://example.com/"
                     }
@@ -336,35 +336,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/carrier_services/1067451816.json",
+          "request_path": "/admin/api/2022-10/carrier_services/1036894954.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/unstable/carrier_services/1067451816.json",
+            "action": "GET /admin/api/unstable/carrier_services/1036894954.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"carrier_service\":{\"id\":1067451816,\"name\":\"Purolator\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1067451816\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"}}"
+            "body": "{\"carrier_service\":{\"id\":1036894954,\"name\":\"Purolator\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894954\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"}}"
           },
           "name": "Get a single carrier service by its ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1067451816.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1036894954.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CarrierService.find(\n  session: test_session,\n  id: 1067451816,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CarrierService.find(\n  session: test_session,\n  id: 1036894954,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CarrierService} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CarrierService.find({\n  session: test_session,\n  id: 1067451816,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CarrierService.find({\n  session: session,\n  id: 1036894954,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::find(\n    $this->test_session, // Session\n    1067451816, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::find(\n    $this->test_session, // Session\n    1036894954, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -419,10 +419,10 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/carrier_services/1067451812.json",
+          "request_path": "/admin/api/2022-10/carrier_services/1036894959.json",
           "request_method": "DELETE",
           "request": {
-            "action": "DELETE /admin/api/unstable/carrier_services/1067451812.json",
+            "action": "DELETE /admin/api/unstable/carrier_services/1036894959.json",
             "headers": {},
             "body": ""
           },
@@ -435,19 +435,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1067451812.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1036894959.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CarrierService.delete(\n  session: test_session,\n  id: 1067451812,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CarrierService.delete(\n  session: test_session,\n  id: 1036894959,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {CarrierService} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CarrierService.delete({\n  session: test_session,\n  id: 1067451812,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CarrierService.delete({\n  session: session,\n  id: 1036894959,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::delete(\n    $this->test_session, // Session\n    1067451812, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::delete(\n    $this->test_session, // Session\n    1036894959, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }

@@ -18,12 +18,20 @@ public partial class MetafieldController : MetafieldControllerBase
     public override Task CountMetafieldsAttachedToShopResource() => throw new NotImplementedException();
 
     [IgnoreApi]
+    [HttpPost]
+    [Route("metafields.invalid")]
+    public override Task CreatingMetafieldWithoutKeyWillFailAndGetError() => throw new NotImplementedException();
+
+    [IgnoreApi]
     [HttpGet]
     [Route("pages/{page_id}/metafields/count.invalid")]
     public override Task CountResourcesMetafields(long? page_id = null) => throw new NotImplementedException();
 
+    [IgnoreApi]
+    [HttpPost]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status201Created)]
-    public override Task CreateMetafield(CreateMetafieldRequest request) => throw new NotImplementedException();
+    [Route("blogs/{blog_id}/metafields.invalid")]
+    public override Task CreateMetafield(CreateMetafieldRequest request, long blog_id) => throw new NotImplementedException();
 
     [IgnoreApi]
     [HttpDelete]
@@ -32,7 +40,14 @@ public partial class MetafieldController : MetafieldControllerBase
     public override Task DeleteMetafield(long metafield_id, long product_image_id) =>
         throw new NotImplementedException();
 
+    [IgnoreApi]
+    [HttpPut]
+    [Route("metafields/{metafield_id}.invalid")]
+    public override Task UpdateMetafieldForShopResource(UpdateMetafieldForShopResourceRequest request, long metafield_id) => throw new NotImplementedException();
+
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [HttpDelete]
+    [Route("metafields/{metafield_id}.invalid")]
     public override Task DeleteMetafieldForShopResource(long metafield_id) => throw new NotImplementedException();
 
     [IgnoreApi]
@@ -41,12 +56,17 @@ public partial class MetafieldController : MetafieldControllerBase
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
     public override Task GetMetafield(long metafield_id, long variant_id, string? fields = null) =>
         throw new NotImplementedException();
-    
+
+    [IgnoreApi]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
+    [HttpGet]
+    [Route("metafields/{metafield_id}.invalid")]
     public override Task GetMetafieldAttachedToShopResource(long metafield_id, string? fields = null) =>
         throw new NotImplementedException();
 
     [ProducesResponseType(typeof(MetafieldList), StatusCodes.Status200OK)]
+    [HttpGet]
+    [Route("metafields.json")]
     public override Task ListMetafieldsByUsingQueryParameters(string? metafieldowner_id = null,
         string? metafieldowner_resource = null) => throw new NotImplementedException();
 
@@ -60,7 +80,9 @@ public partial class MetafieldController : MetafieldControllerBase
         DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null) =>
         throw new NotImplementedException();
 
+    [IgnoreApi]
+    [HttpDelete]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
-    public override Task UpdateMetafield([Required] UpdateMetafieldRequest request, [Required] long metafield_id) =>
-        throw new NotImplementedException();
+    [Route("blogs/{blog_id}/metafields.invalid")]
+    public override Task UpdateMetafield([Required] UpdateMetafieldRequest request, long blog_id, long metafield_id) => throw new NotImplementedException();
 }

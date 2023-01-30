@@ -76,10 +76,10 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000830/locations_for_move.json",
+          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000829/locations_for_move.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/2020-01/fulfillment_orders/1046000830/locations_for_move.json",
+            "action": "GET /admin/api/2020-01/fulfillment_orders/1046000829/locations_for_move.json",
             "headers": {},
             "body": ""
           },
@@ -92,19 +92,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000830/locations_for_move.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000829/locations_for_move.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::LocationsForMove.all(\n  session: test_session,\n  fulfillment_order_id: 1046000830,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::LocationsForMove.all(\n  session: test_session,\n  fulfillment_order_id: 1046000829,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {LocationsForMove} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait LocationsForMove.all({\n  session: test_session,\n  fulfillment_order_id: 1046000830,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.LocationsForMove.all({\n  session: session,\n  fulfillment_order_id: 1046000829,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\LocationsForMove;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocationsForMove::all(\n    $this->test_session, // Session\n    [\"fulfillment_order_id\" => \"1046000830\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\LocationsForMove;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocationsForMove::all(\n    $this->test_session, // Session\n    [\"fulfillment_order_id\" => \"1046000829\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }

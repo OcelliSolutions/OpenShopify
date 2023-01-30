@@ -149,6 +149,27 @@
           "content": {
             "application/json": {
               "examples": {
+                "Retrieve all comments for this shop after the specified ID": {
+                  "value": {
+                    "comments": [
+                      {
+                        "id": 653537639,
+                        "body": "Hi author, I really _like_ what you're doing there.",
+                        "body_html": "<p>Hi author, I really <em>like</em> what you're doing there.</p>",
+                        "author": "Soleone",
+                        "email": "soleone@example.net",
+                        "status": "unapproved",
+                        "article_id": 134645308,
+                        "blog_id": 241253187,
+                        "created_at": "2023-01-03T10:05:09-07:00",
+                        "updated_at": "2023-01-03T10:05:09-07:00",
+                        "ip": "127.0.0.1",
+                        "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
+                        "published_at": null
+                      }
+                    ]
+                  }
+                },
                 "Retrieve all the comments for a certain article of a blog": {
                   "value": {
                     "comments": [
@@ -161,8 +182,8 @@
                         "status": "unapproved",
                         "article_id": 134645308,
                         "blog_id": 241253187,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:05:09-07:00",
+                        "updated_at": "2023-01-03T10:05:09-07:00",
                         "ip": "127.0.0.1",
                         "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
                         "published_at": null
@@ -176,44 +197,8 @@
                         "status": "published",
                         "article_id": 134645308,
                         "blog_id": 241253187,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
-                        "ip": "127.0.0.1",
-                        "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
-                        "published_at": null
-                      }
-                    ]
-                  }
-                },
-                "Retrieve all the comments for this shop": {
-                  "value": {
-                    "comments": [
-                      {
-                        "id": 653537639,
-                        "body": "Hi author, I really _like_ what you're doing there.",
-                        "body_html": "<p>Hi author, I really <em>like</em> what you're doing there.</p>",
-                        "author": "Soleone",
-                        "email": "soleone@example.net",
-                        "status": "unapproved",
-                        "article_id": 134645308,
-                        "blog_id": 241253187,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
-                        "ip": "127.0.0.1",
-                        "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
-                        "published_at": null
-                      },
-                      {
-                        "id": 118373535,
-                        "body": "Hi author, I really _like_ what you're doing there.",
-                        "body_html": "<p>Hi author, I really <em>like</em> what you're doing there.</p>",
-                        "author": "Soleone",
-                        "email": "soleone@example.net",
-                        "status": "published",
-                        "article_id": 134645308,
-                        "blog_id": 241253187,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:05:09-07:00",
+                        "updated_at": "2023-01-03T10:05:09-07:00",
                         "ip": "127.0.0.1",
                         "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
                         "published_at": null
@@ -233,8 +218,8 @@
                         "status": "unapproved",
                         "article_id": 134645308,
                         "blog_id": 241253187,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:05:09-07:00",
+                        "updated_at": "2023-01-03T10:05:09-07:00",
                         "ip": "127.0.0.1",
                         "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
                         "published_at": null
@@ -248,8 +233,8 @@
                         "status": "published",
                         "article_id": 134645308,
                         "blog_id": 241253187,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:05:09-07:00",
+                        "updated_at": "2023-01-03T10:05:09-07:00",
                         "ip": "127.0.0.1",
                         "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
                         "published_at": null
@@ -257,7 +242,7 @@
                     ]
                   }
                 },
-                "Retrieve all comments for this shop after the specified ID": {
+                "Retrieve all the comments for this shop": {
                   "value": {
                     "comments": [
                       {
@@ -269,8 +254,23 @@
                         "status": "unapproved",
                         "article_id": 134645308,
                         "blog_id": 241253187,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:05:09-07:00",
+                        "updated_at": "2023-01-03T10:05:09-07:00",
+                        "ip": "127.0.0.1",
+                        "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
+                        "published_at": null
+                      },
+                      {
+                        "id": 118373535,
+                        "body": "Hi author, I really _like_ what you're doing there.",
+                        "body_html": "<p>Hi author, I really <em>like</em> what you're doing there.</p>",
+                        "author": "Soleone",
+                        "email": "soleone@example.net",
+                        "status": "published",
+                        "article_id": 134645308,
+                        "blog_id": 241253187,
+                        "created_at": "2023-01-03T10:05:09-07:00",
+                        "updated_at": "2023-01-03T10:05:09-07:00",
                         "ip": "127.0.0.1",
                         "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
                         "published_at": null
@@ -286,6 +286,41 @@
       "x-examples": [
         {
           "status": "200",
+          "request_query": "since_id=118373535",
+          "request_path": "/admin/api/2022-10/comments.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/comments.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"comments\":[{\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"unapproved\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}]}"
+          },
+          "name": "Retrieve all comments for this shop after the specified ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/comments.json?since_id=118373535\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Comment.all(\n  session: test_session,\n  since_id: \"118373535\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Comment.all({\n  session: session,\n  since_id: \"118373535\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"118373535\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
           "request_query": "article_id=134645308&blog_id=241253187",
           "request_path": "/admin/api/2022-10/comments.json",
           "request_method": "GET",
@@ -297,7 +332,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"comments\":[{\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"unapproved\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null},{\"id\":118373535,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}]}"
+            "body": "{\"comments\":[{\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"unapproved\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null},{\"id\":118373535,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}]}"
           },
           "name": "Retrieve all the comments for a certain article of a blog",
           "codeSamples": [
@@ -311,46 +346,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  article_id: \"134645308\",\n  blog_id: \"241253187\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Comment.all({\n  session: session,\n  article_id: \"134645308\",\n  blog_id: \"241253187\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"article_id\" => \"134645308\", \"blog_id\" => \"241253187\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/comments.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-10/comments.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"comments\":[{\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"unapproved\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null},{\"id\":118373535,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}]}"
-          },
-          "name": "Retrieve all the comments for this shop",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/comments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Comment.all(\n  session: test_session,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
@@ -367,7 +367,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"comments\":[{\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"unapproved\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null},{\"id\":118373535,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}]}"
+            "body": "{\"comments\":[{\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"unapproved\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null},{\"id\":118373535,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}]}"
           },
           "name": "Retrieve all the comments for all the articles of a blog",
           "codeSamples": [
@@ -381,7 +381,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  blog_id: \"241253187\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Comment.all({\n  session: session,\n  blog_id: \"241253187\",\n});"
             },
             {
               "language": "php",
@@ -391,7 +391,7 @@
         },
         {
           "status": "200",
-          "request_query": "since_id=118373535",
+          "request_query": "",
           "request_path": "/admin/api/2022-10/comments.json",
           "request_method": "GET",
           "request": {
@@ -402,25 +402,25 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"comments\":[{\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"unapproved\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}]}"
+            "body": "{\"comments\":[{\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"unapproved\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null},{\"id\":118373535,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}]}"
           },
-          "name": "Retrieve all comments for this shop after the specified ID",
+          "name": "Retrieve all the comments for this shop",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/comments.json?since_id=118373535\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/comments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Comment.all(\n  session: test_session,\n  since_id: \"118373535\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Comment.all(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  since_id: \"118373535\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Comment.all({\n  session: session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"118373535\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -439,7 +439,7 @@
           "ip"
         ]
       },
-      "url": "/admin/api/{api_version}/comments.json?article_id=134645308&blog_id=241253187",
+      "url": "/admin/api/{api_version}/comments.json?since_id=118373535",
       "action": "get"
     },
     {
@@ -603,7 +603,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n  article_id: \"134645308\",\n  blog_id: \"241253187\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Comment.count({\n  session: session,\n  article_id: \"134645308\",\n  blog_id: \"241253187\",\n});"
             },
             {
               "language": "php",
@@ -638,7 +638,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n  blog_id: \"241253187\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Comment.count({\n  session: session,\n  blog_id: \"241253187\",\n});"
             },
             {
               "language": "php",
@@ -673,7 +673,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Comment.count({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -739,8 +739,8 @@
                       "status": "published",
                       "article_id": 134645308,
                       "blog_id": 241253187,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:44:45-06:00",
+                      "created_at": "2023-01-03T10:05:09-07:00",
+                      "updated_at": "2023-01-03T10:05:09-07:00",
                       "ip": "127.0.0.1",
                       "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1",
                       "published_at": null
@@ -766,7 +766,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"comment\":{\"id\":118373535,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}}"
+            "body": "{\"comment\":{\"id\":118373535,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\",\"published_at\":null}}"
           },
           "name": "Retrieve a single comment",
           "codeSamples": [
@@ -780,7 +780,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.find({\n  session: test_session,\n  id: 118373535,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Comment.find({\n  session: session,\n  id: 118373535,\n});"
             },
             {
               "language": "php",
@@ -840,14 +840,14 @@
                       "author": "Your new name",
                       "body": "You can even update through a web service.",
                       "email": "your@updated-email.com",
-                      "published_at": "2022-10-03T11:05:08-06:00",
+                      "published_at": "2023-01-03T10:06:05-07:00",
                       "id": 118373535,
                       "body_html": "<p>You can even update through a web service.</p>",
                       "status": "published",
                       "article_id": 134645308,
                       "blog_id": 241253187,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T11:05:08-06:00",
+                      "created_at": "2023-01-03T10:05:09-07:00",
+                      "updated_at": "2023-01-03T10:06:06-07:00",
                       "ip": "127.0.0.1",
                       "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1"
                     }
@@ -867,30 +867,30 @@
           "request": {
             "action": "PUT /admin/api/unstable/comments/118373535.json",
             "headers": {},
-            "body": "{\"comment\":{\"id\":118373535,\"body\":\"You can even update through a web service.\",\"author\":\"Your new name\",\"email\":\"your@updated-email.com\",\"published_at\":\"2022-10-03T17:05:08.150Z\"}}"
+            "body": "{\"comment\":{\"id\":118373535,\"body\":\"You can even update through a web service.\",\"author\":\"Your new name\",\"email\":\"your@updated-email.com\",\"published_at\":\"2023-01-03T17:06:05.929Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"comment\":{\"author\":\"Your new name\",\"body\":\"You can even update through a web service.\",\"email\":\"your@updated-email.com\",\"published_at\":\"2022-10-03T13:05:08-04:00\",\"id\":118373535,\"body_html\":\"<p>You can even update through a web service.</p>\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T13:05:08-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}}"
+            "body": "{\"comment\":{\"author\":\"Your new name\",\"body\":\"You can even update through a web service.\",\"email\":\"your@updated-email.com\",\"published_at\":\"2023-01-03T12:06:05-05:00\",\"id\":118373535,\"body_html\":\"<p>You can even update through a web service.</p>\",\"status\":\"published\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:06:06-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}}"
           },
           "name": "Update the body of an existing comment",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"comment\":{\"id\":118373535,\"body\":\"You can even update through a web service.\",\"author\":\"Your new name\",\"email\":\"your@updated-email.com\",\"published_at\":\"2022-10-03T17:05:08.150Z\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/comments/118373535.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"comment\":{\"id\":118373535,\"body\":\"You can even update through a web service.\",\"author\":\"Your new name\",\"email\":\"your@updated-email.com\",\"published_at\":\"2023-01-03T17:06:05.929Z\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/comments/118373535.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncomment = ShopifyAPI::Comment.new(session: test_session)\ncomment.id = 118373535\ncomment.body = \"You can even update through a web service.\"\ncomment.author = \"Your new name\"\ncomment.email = \"your@updated-email.com\"\ncomment.published_at = \"2022-10-03T17:05:08.150Z\"\ncomment.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncomment = ShopifyAPI::Comment.new(session: test_session)\ncomment.id = 118373535\ncomment.body = \"You can even update through a web service.\"\ncomment.author = \"Your new name\"\ncomment.email = \"your@updated-email.com\"\ncomment.published_at = \"2023-01-03T17:06:05.929Z\"\ncomment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 118373535;\ncomment.body = \"You can even update through a web service.\";\ncomment.author = \"Your new name\";\ncomment.email = \"your@updated-email.com\";\ncomment.published_at = \"2022-10-03T17:05:08.150Z\";\nawait comment.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst comment = new shopify.rest.Comment({session: session});\ncomment.id = 118373535;\ncomment.body = \"You can even update through a web service.\";\ncomment.author = \"Your new name\";\ncomment.email = \"your@updated-email.com\";\ncomment.published_at = \"2023-01-03T17:06:05.929Z\";\nawait comment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 118373535;\n$comment->body = \"You can even update through a web service.\";\n$comment->author = \"Your new name\";\n$comment->email = \"your@updated-email.com\";\n$comment->published_at = \"2022-10-03T17:05:08.150Z\";\n$comment->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 118373535;\n$comment->body = \"You can even update through a web service.\";\n$comment->author = \"Your new name\";\n$comment->email = \"your@updated-email.com\";\n$comment->published_at = \"2023-01-03T17:06:05.929Z\";\n$comment->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -943,8 +943,8 @@
                       "status": "pending",
                       "article_id": 134645308,
                       "blog_id": 241253187,
-                      "created_at": "2022-10-03T11:05:29-06:00",
-                      "updated_at": "2022-10-03T11:05:29-06:00",
+                      "created_at": "2023-01-03T10:06:09-07:00",
+                      "updated_at": "2023-01-03T10:06:09-07:00",
                       "ip": "107.20.160.121",
                       "user_agent": null,
                       "published_at": null
@@ -994,7 +994,7 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"comment\":{\"id\":757536352,\"body\":\"I like comments\\nAnd I like posting them *RESTfully*.\",\"body_html\":\"<p>I like comments<br>\\nAnd I like posting them <strong>RESTfully</strong>.</p>\",\"author\":\"Your name\",\"email\":\"your@email.com\",\"status\":\"pending\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T13:05:29-04:00\",\"updated_at\":\"2022-10-03T13:05:29-04:00\",\"ip\":\"107.20.160.121\",\"user_agent\":null,\"published_at\":null}}"
+            "body": "{\"comment\":{\"id\":757536352,\"body\":\"I like comments\\nAnd I like posting them *RESTfully*.\",\"body_html\":\"<p>I like comments<br>\\nAnd I like posting them <strong>RESTfully</strong>.</p>\",\"author\":\"Your name\",\"email\":\"your@email.com\",\"status\":\"pending\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:06:09-05:00\",\"updated_at\":\"2023-01-03T12:06:09-05:00\",\"ip\":\"107.20.160.121\",\"user_agent\":null,\"published_at\":null}}"
           },
           "name": "Create a comment for an article of a blog using basic Textile markup",
           "codeSamples": [
@@ -1008,7 +1008,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.body = \"I like comments\\nAnd I like posting them *RESTfully*.\";\ncomment.author = \"Your name\";\ncomment.email = \"your@email.com\";\ncomment.ip = \"107.20.160.121\";\ncomment.blog_id = 241253187;\ncomment.article_id = 134645308;\nawait comment.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst comment = new shopify.rest.Comment({session: session});\ncomment.body = \"I like comments\\nAnd I like posting them *RESTfully*.\";\ncomment.author = \"Your name\";\ncomment.email = \"your@email.com\";\ncomment.ip = \"107.20.160.121\";\ncomment.blog_id = 241253187;\ncomment.article_id = 134645308;\nawait comment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -1043,7 +1043,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.article_id = 134645308;\nawait comment.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst comment = new shopify.rest.Comment({session: session});\ncomment.article_id = 134645308;\nawait comment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -1108,8 +1108,8 @@
                     "email": "soleone@example.net",
                     "article_id": 134645308,
                     "blog_id": 241253187,
-                    "created_at": "2022-10-03T10:44:45-06:00",
-                    "updated_at": "2022-10-03T11:05:02-06:00",
+                    "created_at": "2023-01-03T10:05:09-07:00",
+                    "updated_at": "2023-01-03T10:05:59-07:00",
                     "ip": "127.0.0.1",
                     "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1"
                   }
@@ -1133,7 +1133,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"published_at\":null,\"status\":\"spam\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T13:05:02-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
+            "body": "{\"published_at\":null,\"status\":\"spam\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:59-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
           },
           "name": "Mark a comment as spam",
           "codeSamples": [
@@ -1147,7 +1147,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.spam({});"
+              "example_code": "// Session is built by the OAuth process\n\nconst comment = new shopify.rest.Comment({session: session});\ncomment.id = 653537639;\nawait comment.spam({});"
             },
             {
               "language": "php",
@@ -1203,7 +1203,7 @@
               "examples": {
                 "Mark a comment as not spam, restoring it to an unapproved or published state": {
                   "value": {
-                    "published_at": "2022-10-03T11:05:06-06:00",
+                    "published_at": "2023-01-03T10:06:19-07:00",
                     "status": "published",
                     "id": 653537639,
                     "body": "Hi author, I really _like_ what you're doing there.",
@@ -1212,8 +1212,8 @@
                     "email": "soleone@example.net",
                     "article_id": 134645308,
                     "blog_id": 241253187,
-                    "created_at": "2022-10-03T10:44:45-06:00",
-                    "updated_at": "2022-10-03T11:05:06-06:00",
+                    "created_at": "2023-01-03T10:05:09-07:00",
+                    "updated_at": "2023-01-03T10:06:19-07:00",
                     "ip": "127.0.0.1",
                     "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1"
                   }
@@ -1237,7 +1237,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"published_at\":\"2022-10-03T13:05:06-04:00\",\"status\":\"published\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T13:05:06-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
+            "body": "{\"published_at\":\"2023-01-03T12:06:19-05:00\",\"status\":\"published\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:06:19-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
           },
           "name": "Mark a comment as not spam, restoring it to an unapproved or published state",
           "codeSamples": [
@@ -1251,7 +1251,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.not_spam({});"
+              "example_code": "// Session is built by the OAuth process\n\nconst comment = new shopify.rest.Comment({session: session});\ncomment.id = 653537639;\nawait comment.not_spam({});"
             },
             {
               "language": "php",
@@ -1307,7 +1307,7 @@
               "examples": {
                 "Approve a comment and publish it to the blog": {
                   "value": {
-                    "published_at": "2022-10-03T11:05:53-06:00",
+                    "published_at": "2023-01-03T10:06:30-07:00",
                     "status": "published",
                     "id": 653537639,
                     "body": "Hi author, I really _like_ what you're doing there.",
@@ -1316,8 +1316,8 @@
                     "email": "soleone@example.net",
                     "article_id": 134645308,
                     "blog_id": 241253187,
-                    "created_at": "2022-10-03T10:44:45-06:00",
-                    "updated_at": "2022-10-03T11:05:53-06:00",
+                    "created_at": "2023-01-03T10:05:09-07:00",
+                    "updated_at": "2023-01-03T10:06:30-07:00",
                     "ip": "127.0.0.1",
                     "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1"
                   }
@@ -1341,7 +1341,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"published_at\":\"2022-10-03T13:05:53-04:00\",\"status\":\"published\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T13:05:53-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
+            "body": "{\"published_at\":\"2023-01-03T12:06:30-05:00\",\"status\":\"published\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:06:30-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
           },
           "name": "Approve a comment and publish it to the blog",
           "codeSamples": [
@@ -1355,7 +1355,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.approve({});"
+              "example_code": "// Session is built by the OAuth process\n\nconst comment = new shopify.rest.Comment({session: session});\ncomment.id = 653537639;\nawait comment.approve({});"
             },
             {
               "language": "php",
@@ -1420,8 +1420,8 @@
                     "email": "soleone@example.net",
                     "article_id": 134645308,
                     "blog_id": 241253187,
-                    "created_at": "2022-10-03T10:44:45-06:00",
-                    "updated_at": "2022-10-03T11:05:04-06:00",
+                    "created_at": "2023-01-03T10:05:09-07:00",
+                    "updated_at": "2023-01-03T10:06:12-07:00",
                     "ip": "127.0.0.1",
                     "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1"
                   }
@@ -1445,7 +1445,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"published_at\":null,\"status\":\"removed\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T13:05:04-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
+            "body": "{\"published_at\":null,\"status\":\"removed\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:06:12-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
           },
           "name": "Remove a comment",
           "codeSamples": [
@@ -1459,7 +1459,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.remove({});"
+              "example_code": "// Session is built by the OAuth process\n\nconst comment = new shopify.rest.Comment({session: session});\ncomment.id = 653537639;\nawait comment.remove({});"
             },
             {
               "language": "php",
@@ -1515,7 +1515,7 @@
               "examples": {
                 "Restore a removed comment": {
                   "value": {
-                    "published_at": "2022-10-03T11:05:15-06:00",
+                    "published_at": "2023-01-03T10:05:56-07:00",
                     "status": "published",
                     "id": 653537639,
                     "body": "Hi author, I really _like_ what you're doing there.",
@@ -1524,8 +1524,8 @@
                     "email": "soleone@example.net",
                     "article_id": 134645308,
                     "blog_id": 241253187,
-                    "created_at": "2022-10-03T10:44:45-06:00",
-                    "updated_at": "2022-10-03T11:05:15-06:00",
+                    "created_at": "2023-01-03T10:05:09-07:00",
+                    "updated_at": "2023-01-03T10:05:56-07:00",
                     "ip": "127.0.0.1",
                     "user_agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1"
                   }
@@ -1549,7 +1549,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"published_at\":\"2022-10-03T13:05:15-04:00\",\"status\":\"published\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T13:05:15-04:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
+            "body": "{\"published_at\":\"2023-01-03T12:05:56-05:00\",\"status\":\"published\",\"id\":653537639,\"body\":\"Hi author, I really _like_ what you're doing there.\",\"body_html\":\"<p>Hi author, I really <em>like</em> what you're doing there.</p>\",\"author\":\"Soleone\",\"email\":\"soleone@example.net\",\"article_id\":134645308,\"blog_id\":241253187,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:56-05:00\",\"ip\":\"127.0.0.1\",\"user_agent\":\"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1\"}"
           },
           "name": "Restore a removed comment",
           "codeSamples": [
@@ -1563,7 +1563,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.restore({});"
+              "example_code": "// Session is built by the OAuth process\n\nconst comment = new shopify.rest.Comment({session: session});\ncomment.id = 653537639;\nawait comment.restore({});"
             },
             {
               "language": "php",

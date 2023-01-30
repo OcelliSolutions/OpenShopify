@@ -29,47 +29,25 @@
           "content": {
             "application/json": {
               "examples": {
-                "Create a recurring application charge": {
+                "Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.": {
                   "value": {
                     "recurring_application_charge": {
-                      "id": 1029266947,
+                      "id": 1029266949,
                       "name": "Super Duper Plan",
                       "api_client_id": 755357713,
                       "price": "10.00",
                       "status": "pending",
                       "return_url": "http://super-duper.shopifyapps.com/",
                       "billing_on": null,
-                      "created_at": "2022-10-03T10:52:52-06:00",
-                      "updated_at": "2022-10-03T10:52:52-06:00",
+                      "created_at": "2023-01-03T11:06:35-07:00",
+                      "updated_at": "2023-01-03T11:06:35-07:00",
                       "test": null,
                       "activated_on": null,
                       "cancelled_on": null,
-                      "trial_days": 0,
+                      "trial_days": 5,
                       "trial_ends_on": null,
-                      "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1029266947",
-                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266947/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBANeWT06EmF1dG9fYWN0aXZhdGVU--fd1fceece89091b9d39f3c13b2b6ba1868c07823"
-                    }
-                  }
-                },
-                "Create a recurring test charge that will not cause a credit card to be charged": {
-                  "value": {
-                    "recurring_application_charge": {
-                      "id": 1029266950,
-                      "name": "Super Duper Plan",
-                      "api_client_id": 755357713,
-                      "price": "10.00",
-                      "status": "pending",
-                      "return_url": "http://super-duper.shopifyapps.com/",
-                      "billing_on": null,
-                      "created_at": "2022-10-03T10:52:58-06:00",
-                      "updated_at": "2022-10-03T10:52:58-06:00",
-                      "test": true,
-                      "activated_on": null,
-                      "cancelled_on": null,
-                      "trial_days": 0,
-                      "trial_ends_on": null,
-                      "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1029266950",
-                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266950/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAZeWT06EmF1dG9fYWN0aXZhdGVU--c5d071902db4f2e27dd740432882625a5fab74c9"
+                      "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1029266949",
+                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266949/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAVeWT06EmF1dG9fYWN0aXZhdGVU--9b5c79476bf6e10095d51a27255892c04e5dd4fa"
                     }
                   }
                 },
@@ -83,8 +61,8 @@
                       "status": "pending",
                       "return_url": "http://super-duper.shopifyapps.com/",
                       "billing_on": null,
-                      "created_at": "2022-10-03T10:52:59-06:00",
-                      "updated_at": "2022-10-03T10:52:59-06:00",
+                      "created_at": "2023-01-03T11:06:39-07:00",
+                      "updated_at": "2023-01-03T11:06:39-07:00",
                       "test": null,
                       "activated_on": null,
                       "cancelled_on": null,
@@ -95,11 +73,33 @@
                       "balance_remaining": 100.0,
                       "risk_level": 0,
                       "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1029266951",
-                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266951/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAdeWT06EmF1dG9fYWN0aXZhdGVU--c1960487d59ce5a37a7ff2dfa85ca64c904b92cd"
+                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266951/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAdeWT06EmF1dG9fYWN0aXZhdGVU--4e07fb141094c2ffacfcff713a2dc85eab38a229"
                     }
                   }
                 },
-                "Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.": {
+                "Create a recurring application charge": {
+                  "value": {
+                    "recurring_application_charge": {
+                      "id": 1029266952,
+                      "name": "Super Duper Plan",
+                      "api_client_id": 755357713,
+                      "price": "10.00",
+                      "status": "pending",
+                      "return_url": "http://super-duper.shopifyapps.com/",
+                      "billing_on": null,
+                      "created_at": "2023-01-03T11:06:41-07:00",
+                      "updated_at": "2023-01-03T11:06:41-07:00",
+                      "test": null,
+                      "activated_on": null,
+                      "cancelled_on": null,
+                      "trial_days": 0,
+                      "trial_ends_on": null,
+                      "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1029266952",
+                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266952/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAheWT06EmF1dG9fYWN0aXZhdGVU--c278a9ebe0e4885c8b9df2be46598c9b9abf0731"
+                    }
+                  }
+                },
+                "Create a recurring test charge that will not cause a credit card to be charged": {
                   "value": {
                     "recurring_application_charge": {
                       "id": 1029266954,
@@ -109,15 +109,15 @@
                       "status": "pending",
                       "return_url": "http://super-duper.shopifyapps.com/",
                       "billing_on": null,
-                      "created_at": "2022-10-03T10:53:11-06:00",
-                      "updated_at": "2022-10-03T10:53:11-06:00",
-                      "test": null,
+                      "created_at": "2023-01-03T11:06:51-07:00",
+                      "updated_at": "2023-01-03T11:06:51-07:00",
+                      "test": true,
                       "activated_on": null,
                       "cancelled_on": null,
-                      "trial_days": 5,
+                      "trial_days": 0,
                       "trial_ends_on": null,
                       "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1029266954",
-                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266954/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBApeWT06EmF1dG9fYWN0aXZhdGVU--784a3d7ab3ffbe680e66bc9b6017f0b19a84eb94"
+                      "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266954/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBApeWT06EmF1dG9fYWN0aXZhdGVU--f0a955813cb17f90e052cdbc976832ce6f213068"
                     }
                   }
                 }
@@ -156,12 +156,82 @@
           "request": {
             "action": "POST /admin/api/unstable/recurring_application_charges.json",
             "headers": {},
+            "body": "{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"trial_days\":5}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"recurring_application_charge\":{\"id\":1029266949,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2023-01-03T13:06:35-05:00\",\"updated_at\":\"2023-01-03T13:06:35-05:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":5,\"trial_ends_on\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266949\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266949/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAVeWT06EmF1dG9fYWN0aXZhdGVU--9b5c79476bf6e10095d51a27255892c04e5dd4fa\"}}"
+          },
+          "name": "Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"trial_days\":5}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nrecurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(session: test_session)\nrecurring_application_charge.name = \"Super Duper Plan\"\nrecurring_application_charge.price = 10.0\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\"\nrecurring_application_charge.trial_days = 5\nrecurring_application_charge.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst recurring_application_charge = new shopify.rest.RecurringApplicationCharge({session: session});\nrecurring_application_charge.name = \"Super Duper Plan\";\nrecurring_application_charge.price = 10.0;\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\";\nrecurring_application_charge.trial_days = 5;\nawait recurring_application_charge.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$recurring_application_charge = new RecurringApplicationCharge($this->test_session);\n$recurring_application_charge->name = \"Super Duper Plan\";\n$recurring_application_charge->price = 10.0;\n$recurring_application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$recurring_application_charge->trial_days = 5;\n$recurring_application_charge->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/recurring_application_charges.json",
+            "headers": {},
+            "body": "{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"capped_amount\":100,\"terms\":\"$1 for 1000 emails\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"recurring_application_charge\":{\"id\":1029266951,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2023-01-03T13:06:39-05:00\",\"updated_at\":\"2023-01-03T13:06:39-05:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"capped_amount\":\"100.00\",\"trial_ends_on\":null,\"balance_used\":0.0,\"balance_remaining\":100.0,\"risk_level\":0,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266951\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266951/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAdeWT06EmF1dG9fYWN0aXZhdGVU--4e07fb141094c2ffacfcff713a2dc85eab38a229\"}}"
+          },
+          "name": "Create a new charge with terms and a capped amount",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"capped_amount\":100,\"terms\":\"$1 for 1000 emails\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nrecurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(session: test_session)\nrecurring_application_charge.name = \"Super Duper Plan\"\nrecurring_application_charge.price = 10.0\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\"\nrecurring_application_charge.capped_amount = 100\nrecurring_application_charge.terms = \"$1 for 1000 emails\"\nrecurring_application_charge.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst recurring_application_charge = new shopify.rest.RecurringApplicationCharge({session: session});\nrecurring_application_charge.name = \"Super Duper Plan\";\nrecurring_application_charge.price = 10.0;\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\";\nrecurring_application_charge.capped_amount = 100;\nrecurring_application_charge.terms = \"$1 for 1000 emails\";\nawait recurring_application_charge.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$recurring_application_charge = new RecurringApplicationCharge($this->test_session);\n$recurring_application_charge->name = \"Super Duper Plan\";\n$recurring_application_charge->price = 10.0;\n$recurring_application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$recurring_application_charge->capped_amount = 100;\n$recurring_application_charge->terms = \"\\$1 for 1000 emails\";\n$recurring_application_charge->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/recurring_application_charges.json",
+            "headers": {},
             "body": "{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\"}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"recurring_application_charge\":{\"id\":1029266947,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2022-10-03T12:52:52-04:00\",\"updated_at\":\"2022-10-03T12:52:52-04:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266947\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266947/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBANeWT06EmF1dG9fYWN0aXZhdGVU--fd1fceece89091b9d39f3c13b2b6ba1868c07823\"}}"
+            "body": "{\"recurring_application_charge\":{\"id\":1029266952,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2023-01-03T13:06:41-05:00\",\"updated_at\":\"2023-01-03T13:06:41-05:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266952\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266952/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAheWT06EmF1dG9fYWN0aXZhdGVU--c278a9ebe0e4885c8b9df2be46598c9b9abf0731\"}}"
           },
           "name": "Create a recurring application charge",
           "codeSamples": [
@@ -175,11 +245,46 @@
             },
             {
               "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst recurring_application_charge = new RecurringApplicationCharge({session: test_session});\nrecurring_application_charge.name = \"Super Duper Plan\";\nrecurring_application_charge.price = 10.0;\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait recurring_application_charge.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst recurring_application_charge = new shopify.rest.RecurringApplicationCharge({session: session});\nrecurring_application_charge.name = \"Super Duper Plan\";\nrecurring_application_charge.price = 10.0;\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait recurring_application_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$recurring_application_charge = new RecurringApplicationCharge($this->test_session);\n$recurring_application_charge->name = \"Super Duper Plan\";\n$recurring_application_charge->price = 10.0;\n$recurring_application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$recurring_application_charge->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/recurring_application_charges.json",
+            "headers": {},
+            "body": "{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"recurring_application_charge\":{\"id\":1029266954,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2023-01-03T13:06:51-05:00\",\"updated_at\":\"2023-01-03T13:06:51-05:00\",\"test\":true,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266954\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266954/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBApeWT06EmF1dG9fYWN0aXZhdGVU--f0a955813cb17f90e052cdbc976832ce6f213068\"}}"
+          },
+          "name": "Create a recurring test charge that will not cause a credit card to be charged",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nrecurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(session: test_session)\nrecurring_application_charge.name = \"Super Duper Plan\"\nrecurring_application_charge.price = 10.0\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\"\nrecurring_application_charge.test = true\nrecurring_application_charge.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst recurring_application_charge = new shopify.rest.RecurringApplicationCharge({session: session});\nrecurring_application_charge.name = \"Super Duper Plan\";\nrecurring_application_charge.price = 10.0;\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\";\nrecurring_application_charge.test = true;\nawait recurring_application_charge.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$recurring_application_charge = new RecurringApplicationCharge($this->test_session);\n$recurring_application_charge->name = \"Super Duper Plan\";\n$recurring_application_charge->price = 10.0;\n$recurring_application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$recurring_application_charge->test = true;\n$recurring_application_charge->save(\n    true, // Update Object\n);"
             }
           ]
         },
@@ -210,116 +315,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst recurring_application_charge = new RecurringApplicationCharge({session: test_session});\nrecurring_application_charge.name = \"\";\nawait recurring_application_charge.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst recurring_application_charge = new shopify.rest.RecurringApplicationCharge({session: session});\nrecurring_application_charge.name = \"\";\nawait recurring_application_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$recurring_application_charge = new RecurringApplicationCharge($this->test_session);\n$recurring_application_charge->name = \"\";\n$recurring_application_charge->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/recurring_application_charges.json",
-            "headers": {},
-            "body": "{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"recurring_application_charge\":{\"id\":1029266950,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2022-10-03T12:52:58-04:00\",\"updated_at\":\"2022-10-03T12:52:58-04:00\",\"test\":true,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266950\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266950/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAZeWT06EmF1dG9fYWN0aXZhdGVU--c5d071902db4f2e27dd740432882625a5fab74c9\"}}"
-          },
-          "name": "Create a recurring test charge that will not cause a credit card to be charged",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nrecurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(session: test_session)\nrecurring_application_charge.name = \"Super Duper Plan\"\nrecurring_application_charge.price = 10.0\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\"\nrecurring_application_charge.test = true\nrecurring_application_charge.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst recurring_application_charge = new RecurringApplicationCharge({session: test_session});\nrecurring_application_charge.name = \"Super Duper Plan\";\nrecurring_application_charge.price = 10.0;\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\";\nrecurring_application_charge.test = true;\nawait recurring_application_charge.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$recurring_application_charge = new RecurringApplicationCharge($this->test_session);\n$recurring_application_charge->name = \"Super Duper Plan\";\n$recurring_application_charge->price = 10.0;\n$recurring_application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$recurring_application_charge->test = true;\n$recurring_application_charge->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/recurring_application_charges.json",
-            "headers": {},
-            "body": "{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"capped_amount\":100,\"terms\":\"$1 for 1000 emails\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"recurring_application_charge\":{\"id\":1029266951,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2022-10-03T12:52:59-04:00\",\"updated_at\":\"2022-10-03T12:52:59-04:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"capped_amount\":\"100.00\",\"trial_ends_on\":null,\"balance_used\":0.0,\"balance_remaining\":100.0,\"risk_level\":0,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266951\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266951/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAdeWT06EmF1dG9fYWN0aXZhdGVU--c1960487d59ce5a37a7ff2dfa85ca64c904b92cd\"}}"
-          },
-          "name": "Create a new charge with terms and a capped amount",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"capped_amount\":100,\"terms\":\"$1 for 1000 emails\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nrecurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(session: test_session)\nrecurring_application_charge.name = \"Super Duper Plan\"\nrecurring_application_charge.price = 10.0\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\"\nrecurring_application_charge.capped_amount = 100\nrecurring_application_charge.terms = \"$1 for 1000 emails\"\nrecurring_application_charge.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst recurring_application_charge = new RecurringApplicationCharge({session: test_session});\nrecurring_application_charge.name = \"Super Duper Plan\";\nrecurring_application_charge.price = 10.0;\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\";\nrecurring_application_charge.capped_amount = 100;\nrecurring_application_charge.terms = \"$1 for 1000 emails\";\nawait recurring_application_charge.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$recurring_application_charge = new RecurringApplicationCharge($this->test_session);\n$recurring_application_charge->name = \"Super Duper Plan\";\n$recurring_application_charge->price = 10.0;\n$recurring_application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$recurring_application_charge->capped_amount = 100;\n$recurring_application_charge->terms = \"\\$1 for 1000 emails\";\n$recurring_application_charge->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/recurring_application_charges.json",
-            "headers": {},
-            "body": "{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"trial_days\":5}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"recurring_application_charge\":{\"id\":1029266954,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2022-10-03T12:53:11-04:00\",\"updated_at\":\"2022-10-03T12:53:11-04:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":5,\"trial_ends_on\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266954\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266954/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBApeWT06EmF1dG9fYWN0aXZhdGVU--784a3d7ab3ffbe680e66bc9b6017f0b19a84eb94\"}}"
-          },
-          "name": "Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"recurring_application_charge\":{\"name\":\"Super Duper Plan\",\"price\":10.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"trial_days\":5}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nrecurring_application_charge = ShopifyAPI::RecurringApplicationCharge.new(session: test_session)\nrecurring_application_charge.name = \"Super Duper Plan\"\nrecurring_application_charge.price = 10.0\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\"\nrecurring_application_charge.trial_days = 5\nrecurring_application_charge.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst recurring_application_charge = new RecurringApplicationCharge({session: test_session});\nrecurring_application_charge.name = \"Super Duper Plan\";\nrecurring_application_charge.price = 10.0;\nrecurring_application_charge.return_url = \"http://super-duper.shopifyapps.com\";\nrecurring_application_charge.trial_days = 5;\nawait recurring_application_charge.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$recurring_application_charge = new RecurringApplicationCharge($this->test_session);\n$recurring_application_charge->name = \"Super Duper Plan\";\n$recurring_application_charge->price = 10.0;\n$recurring_application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$recurring_application_charge->trial_days = 5;\n$recurring_application_charge->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -333,6 +333,176 @@
       },
       "url": "/admin/api/{api_version}/recurring_application_charges.json",
       "action": "post"
+    },
+    {
+      "description": "Retrieves a list of recurring application charges",
+      "summary": "Retrieves a list of recurring application charges",
+      "operationId": "Retrievesalistofrecurringapplicationcharges",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "A comma-separated list of fields to include in the response.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Restrict results to after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of recurring application charges",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all recurring application charges": {
+                  "value": {
+                    "recurring_application_charges": [
+                      {
+                        "id": 455696195,
+                        "name": "Super Mega Plan",
+                        "api_client_id": 755357713,
+                        "price": "15.00",
+                        "status": "accepted",
+                        "return_url": "http://yourapp.example.org",
+                        "billing_on": "2023-01-03",
+                        "created_at": "2023-01-03T10:56:35-07:00",
+                        "updated_at": "2023-01-03T11:06:22-07:00",
+                        "test": null,
+                        "activated_on": null,
+                        "cancelled_on": null,
+                        "trial_days": 0,
+                        "trial_ends_on": null,
+                        "decorated_return_url": "http://yourapp.example.org?charge_id=455696195"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve all recurring charges since a specified ID": {
+                  "value": {
+                    "recurring_application_charges": [
+                      {
+                        "id": 1029266947,
+                        "name": "Super Duper Plan",
+                        "api_client_id": 755357713,
+                        "price": "10.00",
+                        "status": "pending",
+                        "return_url": "http://super-duper.shopifyapps.com/",
+                        "billing_on": null,
+                        "created_at": "2023-01-03T11:06:21-07:00",
+                        "updated_at": "2023-01-03T11:06:21-07:00",
+                        "test": null,
+                        "activated_on": null,
+                        "cancelled_on": null,
+                        "trial_days": 0,
+                        "trial_ends_on": null,
+                        "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1029266947",
+                        "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266947/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBANeWT06EmF1dG9fYWN0aXZhdGVU--4e6554253be678506a3421452fb801fd291e6db7"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/recurring_application_charges.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"recurring_application_charges\":[{\"id\":455696195,\"name\":\"Super Mega Plan\",\"api_client_id\":755357713,\"price\":\"15.00\",\"status\":\"accepted\",\"return_url\":\"http://yourapp.example.org\",\"billing_on\":\"2023-01-03\",\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T13:06:22-05:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://yourapp.example.org?charge_id=455696195\"}]}"
+          },
+          "name": "Retrieve all recurring application charges",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::RecurringApplicationCharge.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.RecurringApplicationCharge.all({\n  session: session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRecurringApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "since_id=455696195",
+          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/recurring_application_charges.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"recurring_application_charges\":[{\"id\":1029266947,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2023-01-03T13:06:21-05:00\",\"updated_at\":\"2023-01-03T13:06:21-05:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266947\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266947/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBANeWT06EmF1dG9fYWN0aXZhdGVU--4e6554253be678506a3421452fb801fd291e6db7\"}]}"
+          },
+          "name": "Retrieve all recurring charges since a specified ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json?since_id=455696195\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::RecurringApplicationCharge.all(\n  session: test_session,\n  since_id: \"455696195\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.RecurringApplicationCharge.all({\n  session: session,\n  since_id: \"455696195\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRecurringApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"455696195\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": null
+          }
+        ]
+      },
+      "url": "/admin/api/{api_version}/recurring_application_charges.json",
+      "action": "get"
     },
     {
       "description": "Retrieves a single charge",
@@ -379,9 +549,9 @@
                       "price": "15.00",
                       "status": "pending",
                       "return_url": "http://yourapp.example.org",
-                      "billing_on": "2022-10-03",
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:44:45-06:00",
+                      "billing_on": "2023-01-03",
+                      "created_at": "2023-01-03T10:56:35-07:00",
+                      "updated_at": "2023-01-03T10:56:35-07:00",
                       "test": null,
                       "activated_on": null,
                       "cancelled_on": null,
@@ -411,7 +581,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"recurring_application_charge\":{\"id\":455696195,\"name\":\"Super Mega Plan\",\"api_client_id\":755357713,\"price\":\"15.00\",\"status\":\"pending\",\"return_url\":\"http://yourapp.example.org\",\"billing_on\":\"2022-10-03\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://yourapp.example.org?charge_id=455696195\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/455696195/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBENfKRs6EmF1dG9fYWN0aXZhdGVU--b5f90d04779cc5242b396e4054f2e650c5dace1c\"}}"
+            "body": "{\"recurring_application_charge\":{\"id\":455696195,\"name\":\"Super Mega Plan\",\"api_client_id\":755357713,\"price\":\"15.00\",\"status\":\"pending\",\"return_url\":\"http://yourapp.example.org\",\"billing_on\":\"2023-01-03\",\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T12:56:35-05:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://yourapp.example.org?charge_id=455696195\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/455696195/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBENfKRs6EmF1dG9fYWN0aXZhdGVU--b5f90d04779cc5242b396e4054f2e650c5dace1c\"}}"
           },
           "name": "Retrieve a single charge",
           "codeSamples": [
@@ -425,7 +595,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait RecurringApplicationCharge.find({\n  session: test_session,\n  id: 455696195,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.RecurringApplicationCharge.find({\n  session: session,\n  id: 455696195,\n});"
             },
             {
               "language": "php",
@@ -508,7 +678,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait RecurringApplicationCharge.delete({\n  session: test_session,\n  id: 455696195,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.RecurringApplicationCharge.delete({\n  session: session,\n  id: 455696195,\n});"
             },
             {
               "language": "php",
@@ -526,176 +696,6 @@
       },
       "url": "/admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}.json",
       "action": "delete"
-    },
-    {
-      "description": "Retrieves a list of recurring application charges",
-      "summary": "Retrieves a list of recurring application charges",
-      "operationId": "Retrievesalistofrecurringapplicationcharges",
-      "parameters": [
-        {
-          "name": "api_version",
-          "in": "path",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        },
-        {
-          "name": "fields",
-          "description": "A comma-separated list of fields to include in the response.",
-          "in": "query",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "since_id",
-          "description": "Restrict results to after the specified ID.",
-          "in": "query",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Retrieves a list of recurring application charges",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Retrieve all recurring charges since a specified ID": {
-                  "value": {
-                    "recurring_application_charges": [
-                      {
-                        "id": 1029266953,
-                        "name": "Super Duper Plan",
-                        "api_client_id": 755357713,
-                        "price": "10.00",
-                        "status": "pending",
-                        "return_url": "http://super-duper.shopifyapps.com/",
-                        "billing_on": null,
-                        "created_at": "2022-10-03T10:53:09-06:00",
-                        "updated_at": "2022-10-03T10:53:09-06:00",
-                        "test": null,
-                        "activated_on": null,
-                        "cancelled_on": null,
-                        "trial_days": 0,
-                        "trial_ends_on": null,
-                        "decorated_return_url": "http://super-duper.shopifyapps.com/?charge_id=1029266953",
-                        "confirmation_url": "https://jsmith.myshopify.com/admin/charges/755357713/1029266953/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAleWT06EmF1dG9fYWN0aXZhdGVU--1255bd14c50f77b5a2bab1190e116c8784e01280"
-                      }
-                    ]
-                  }
-                },
-                "Retrieve all recurring application charges": {
-                  "value": {
-                    "recurring_application_charges": [
-                      {
-                        "id": 455696195,
-                        "name": "Super Mega Plan",
-                        "api_client_id": 755357713,
-                        "price": "15.00",
-                        "status": "accepted",
-                        "return_url": "http://yourapp.example.org",
-                        "billing_on": "2022-10-03",
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:53:11-06:00",
-                        "test": null,
-                        "activated_on": null,
-                        "cancelled_on": null,
-                        "trial_days": 0,
-                        "trial_ends_on": null,
-                        "decorated_return_url": "http://yourapp.example.org?charge_id=455696195"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "x-examples": [
-        {
-          "status": "200",
-          "request_query": "since_id=455696195",
-          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/unstable/recurring_application_charges.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"recurring_application_charges\":[{\"id\":1029266953,\"name\":\"Super Duper Plan\",\"api_client_id\":755357713,\"price\":\"10.00\",\"status\":\"pending\",\"return_url\":\"http://super-duper.shopifyapps.com/\",\"billing_on\":null,\"created_at\":\"2022-10-03T12:53:09-04:00\",\"updated_at\":\"2022-10-03T12:53:09-04:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://super-duper.shopifyapps.com/?charge_id=1029266953\",\"confirmation_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/1029266953/RecurringApplicationCharge/confirm_recurring_application_charge?signature=BAh7BzoHaWRpBAleWT06EmF1dG9fYWN0aXZhdGVU--1255bd14c50f77b5a2bab1190e116c8784e01280\"}]}"
-          },
-          "name": "Retrieve all recurring charges since a specified ID",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json?since_id=455696195\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::RecurringApplicationCharge.all(\n  session: test_session,\n  since_id: \"455696195\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait RecurringApplicationCharge.all({\n  session: test_session,\n  since_id: \"455696195\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRecurringApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"455696195\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/unstable/recurring_application_charges.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"recurring_application_charges\":[{\"id\":455696195,\"name\":\"Super Mega Plan\",\"api_client_id\":755357713,\"price\":\"15.00\",\"status\":\"accepted\",\"return_url\":\"http://yourapp.example.org\",\"billing_on\":\"2022-10-03\",\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:53:11-04:00\",\"test\":null,\"activated_on\":null,\"cancelled_on\":null,\"trial_days\":0,\"trial_ends_on\":null,\"decorated_return_url\":\"http://yourapp.example.org?charge_id=455696195\"}]}"
-          },
-          "name": "Retrieve all recurring application charges",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::RecurringApplicationCharge.all(\n  session: test_session,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait RecurringApplicationCharge.all({\n  session: test_session,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\RecurringApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRecurringApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
-            }
-          ]
-        }
-      ],
-      "x-api-accessibilities": {
-        "initial": [
-          {
-            "scope": null
-          }
-        ]
-      },
-      "url": "/admin/api/{api_version}/recurring_application_charges.json?since_id=455696195",
-      "action": "get"
     },
     {
       "description": "Updates the capped amount of an active recurring application charge. Note that you cannot\n          use this endpoint to update any other proprty on a recurring application charge or the capped amount on\n          an <a href=\"https://shopify.dev/apps/billing/subscriptions/annual#limitations\">Annual subscription</a>.",
@@ -735,19 +735,19 @@
                       "price": "15.00",
                       "status": "active",
                       "billing_on": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:53:07-06:00",
+                      "created_at": "2023-01-03T10:56:35-07:00",
+                      "updated_at": "2023-01-03T11:06:19-07:00",
                       "test": null,
-                      "activated_on": "2022-10-03",
+                      "activated_on": "2023-01-03",
                       "cancelled_on": null,
                       "trial_days": 0,
                       "capped_amount": "100.00",
-                      "trial_ends_on": "2022-10-03",
+                      "trial_ends_on": "2023-01-03",
                       "balance_used": 0.0,
                       "balance_remaining": 100.0,
                       "risk_level": 0,
                       "decorated_return_url": "http://yourapp.example.org/?charge_id=455696195",
-                      "update_capped_amount_url": "https://jsmith.myshopify.com/admin/charges/755357713/455696195/RecurringApplicationCharge/confirm_update_capped_amount?signature=BAh7BzoHaWRpBENfKRs6EmF1dG9fYWN0aXZhdGVG--4fa9614788ca5e1cf650a7e46ca7681295b568d8"
+                      "update_capped_amount_url": "https://jsmith.myshopify.com/admin/charges/755357713/455696195/RecurringApplicationCharge/confirm_update_capped_amount?signature=BAh7BzoHaWRpBENfKRs6EmF1dG9fYWN0aXZhdGVG--c9d104c0a19c52b84fa17360f32abc13aae86935"
                     }
                   }
                 }
@@ -770,7 +770,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"recurring_application_charge\":{\"return_url\":\"http://yourapp.example.org/\",\"id\":455696195,\"name\":\"Super Mega Plan\",\"api_client_id\":755357713,\"price\":\"15.00\",\"status\":\"active\",\"billing_on\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:53:07-04:00\",\"test\":null,\"activated_on\":\"2022-10-03\",\"cancelled_on\":null,\"trial_days\":0,\"capped_amount\":\"100.00\",\"trial_ends_on\":\"2022-10-03\",\"balance_used\":0.0,\"balance_remaining\":100.0,\"risk_level\":0,\"decorated_return_url\":\"http://yourapp.example.org/?charge_id=455696195\",\"update_capped_amount_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/455696195/RecurringApplicationCharge/confirm_update_capped_amount?signature=BAh7BzoHaWRpBENfKRs6EmF1dG9fYWN0aXZhdGVG--4fa9614788ca5e1cf650a7e46ca7681295b568d8\"}}"
+            "body": "{\"recurring_application_charge\":{\"return_url\":\"http://yourapp.example.org/\",\"id\":455696195,\"name\":\"Super Mega Plan\",\"api_client_id\":755357713,\"price\":\"15.00\",\"status\":\"active\",\"billing_on\":null,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"updated_at\":\"2023-01-03T13:06:19-05:00\",\"test\":null,\"activated_on\":\"2023-01-03\",\"cancelled_on\":null,\"trial_days\":0,\"capped_amount\":\"100.00\",\"trial_ends_on\":\"2023-01-03\",\"balance_used\":0.0,\"balance_remaining\":100.0,\"risk_level\":0,\"decorated_return_url\":\"http://yourapp.example.org/?charge_id=455696195\",\"update_capped_amount_url\":\"https://jsmith.myshopify.com/admin/charges/755357713/455696195/RecurringApplicationCharge/confirm_update_capped_amount?signature=BAh7BzoHaWRpBENfKRs6EmF1dG9fYWN0aXZhdGVG--c9d104c0a19c52b84fa17360f32abc13aae86935\"}}"
           },
           "name": "Increase the capped amount for a shop",
           "codeSamples": [
@@ -784,7 +784,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {RecurringApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst recurring_application_charge = new RecurringApplicationCharge({session: test_session});\nrecurring_application_charge.id = 455696195;\nawait recurring_application_charge.customize({\n  recurring_application_charge: {\"capped_amount\": \"200\"},\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst recurring_application_charge = new shopify.rest.RecurringApplicationCharge({session: session});\nrecurring_application_charge.id = 455696195;\nawait recurring_application_charge.customize({\n  recurring_application_charge: {\"capped_amount\": \"200\"},\n});"
             },
             {
               "language": "php",

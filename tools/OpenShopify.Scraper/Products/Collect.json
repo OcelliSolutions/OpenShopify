@@ -24,6 +24,28 @@
         }
       ],
       "responses": {
+        "201": {
+          "description": "Adds a product to a custom collection",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a new link between an existing product and an existing collection": {
+                  "value": {
+                    "collect": {
+                      "id": 1071559576,
+                      "collection_id": 841564295,
+                      "product_id": 921728736,
+                      "created_at": "2023-01-03T10:45:21-07:00",
+                      "updated_at": "2023-01-03T10:45:21-07:00",
+                      "position": 2,
+                      "sort_value": "0000000002"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "422": {
           "description": "Adds a product to a custom collection",
           "content": {
@@ -50,31 +72,44 @@
               }
             }
           }
-        },
-        "201": {
-          "description": "Adds a product to a custom collection",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Create a new link between an existing product and an existing collection": {
-                  "value": {
-                    "collect": {
-                      "id": 1071559580,
-                      "collection_id": 841564295,
-                      "product_id": 921728736,
-                      "created_at": "2022-10-03T11:19:30-06:00",
-                      "updated_at": "2022-10-03T11:19:30-06:00",
-                      "position": 2,
-                      "sort_value": "0000000002"
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       },
       "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/collects.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/collects.json",
+            "headers": {},
+            "body": "{\"collect\":{\"product_id\":921728736,\"collection_id\":841564295}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"collect\":{\"id\":1071559576,\"collection_id\":841564295,\"product_id\":921728736,\"created_at\":\"2023-01-03T12:45:21-05:00\",\"updated_at\":\"2023-01-03T12:45:21-05:00\",\"position\":2,\"sort_value\":\"0000000002\"}}"
+          },
+          "name": "Create a new link between an existing product and an existing collection",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"collect\":{\"product_id\":921728736,\"collection_id\":841564295}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncollect = ShopifyAPI::Collect.new(session: test_session)\ncollect.product_id = 921728736\ncollect.collection_id = 841564295\ncollect.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst collect = new shopify.rest.Collect({session: session});\ncollect.product_id = 921728736;\ncollect.collection_id = 841564295;\nawait collect.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$collect = new Collect($this->test_session);\n$collect->product_id = 921728736;\n$collect->collection_id = 841564295;\n$collect->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
         {
           "status": "422",
           "request_query": "",
@@ -102,46 +137,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst collect = new Collect({session: test_session});\ncollect.body = \"foobar\";\nawait collect.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst collect = new shopify.rest.Collect({session: session});\ncollect.body = \"foobar\";\nawait collect.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$collect = new Collect($this->test_session);\n$collect->body = \"foobar\";\n$collect->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/collects.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/collects.json",
-            "headers": {},
-            "body": "{\"collect\":{\"product_id\":921728736,\"collection_id\":841564295}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"collect\":{\"id\":1071559580,\"collection_id\":841564295,\"product_id\":921728736,\"created_at\":\"2022-10-03T13:19:30-04:00\",\"updated_at\":\"2022-10-03T13:19:30-04:00\",\"position\":2,\"sort_value\":\"0000000002\"}}"
-          },
-          "name": "Create a new link between an existing product and an existing collection",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"collect\":{\"product_id\":921728736,\"collection_id\":841564295}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncollect = ShopifyAPI::Collect.new(session: test_session)\ncollect.product_id = 921728736\ncollect.collection_id = 841564295\ncollect.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst collect = new Collect({session: test_session});\ncollect.product_id = 921728736;\ncollect.collection_id = 841564295;\nawait collect.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$collect = new Collect($this->test_session);\n$collect->product_id = 921728736;\n$collect->collection_id = 841564295;\n$collect->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -155,6 +155,273 @@
       },
       "url": "/admin/api/{api_version}/collects.json",
       "action": "post"
+    },
+    {
+      "description": "Retrieves a list of collects. <strong>Note:</strong> As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/api/usage/pagination-rest\"><em>Make paginated requests to the REST Admin API</em></a>.",
+      "summary": "Retrieves a list of collects",
+      "operationId": "Retrievesalistofcollects",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specified by a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "limit",
+          "description": "The maximum number of results to show.",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "default": 50,
+            "maximum": 250
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Restrict results to after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of collects",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all collects for the shop": {
+                  "value": {
+                    "collects": [
+                      {
+                        "id": 358268117,
+                        "collection_id": 482865238,
+                        "product_id": 632910392,
+                        "created_at": null,
+                        "updated_at": null,
+                        "position": 1,
+                        "sort_value": "0000000001"
+                      },
+                      {
+                        "id": 455204334,
+                        "collection_id": 841564295,
+                        "product_id": 632910392,
+                        "created_at": null,
+                        "updated_at": null,
+                        "position": 1,
+                        "sort_value": "0000000001"
+                      },
+                      {
+                        "id": 773559378,
+                        "collection_id": 395646240,
+                        "product_id": 632910392,
+                        "created_at": null,
+                        "updated_at": null,
+                        "position": 1,
+                        "sort_value": "0000000001"
+                      },
+                      {
+                        "id": 800915878,
+                        "collection_id": 482865238,
+                        "product_id": 921728736,
+                        "created_at": null,
+                        "updated_at": null,
+                        "position": 1,
+                        "sort_value": "0000000001"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve only collects for a certain collection": {
+                  "value": {
+                    "collects": [
+                      {
+                        "id": 455204334,
+                        "collection_id": 841564295,
+                        "product_id": 632910392,
+                        "created_at": null,
+                        "updated_at": null,
+                        "position": 1,
+                        "sort_value": "0000000001"
+                      },
+                      {
+                        "id": 1071559574,
+                        "collection_id": 841564295,
+                        "product_id": 921728736,
+                        "created_at": "2023-01-03T10:45:12-07:00",
+                        "updated_at": "2023-01-03T10:45:12-07:00",
+                        "position": 2,
+                        "sort_value": "0000000002"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve only collects for a certain product": {
+                  "value": {
+                    "collects": [
+                      {
+                        "id": 358268117,
+                        "collection_id": 482865238,
+                        "product_id": 632910392,
+                        "created_at": null,
+                        "updated_at": null,
+                        "position": 1,
+                        "sort_value": "0000000001"
+                      },
+                      {
+                        "id": 455204334,
+                        "collection_id": 841564295,
+                        "product_id": 632910392,
+                        "created_at": null,
+                        "updated_at": null,
+                        "position": 1,
+                        "sort_value": "0000000001"
+                      },
+                      {
+                        "id": 773559378,
+                        "collection_id": 395646240,
+                        "product_id": 632910392,
+                        "created_at": null,
+                        "updated_at": null,
+                        "position": 1,
+                        "sort_value": "0000000001"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/collects.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-07/collects.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"collects\":[{\"id\":358268117,\"collection_id\":482865238,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":455204334,\"collection_id\":841564295,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":773559378,\"collection_id\":395646240,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":800915878,\"collection_id\":482865238,\"product_id\":921728736,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"}]}"
+          },
+          "name": "Retrieve all collects for the shop",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Collect.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collect.all({\n  session: session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "collection_id=841564295",
+          "request_path": "/admin/api/2022-10/collects.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-07/collects.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"collects\":[{\"id\":455204334,\"collection_id\":841564295,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":1071559574,\"collection_id\":841564295,\"product_id\":921728736,\"created_at\":\"2023-01-03T12:45:12-05:00\",\"updated_at\":\"2023-01-03T12:45:12-05:00\",\"position\":2,\"sort_value\":\"0000000002\"}]}"
+          },
+          "name": "Retrieve only collects for a certain collection",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/collects.json?collection_id=841564295\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Collect.all(\n  session: test_session,\n  collection_id: \"841564295\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collect.all({\n  session: session,\n  collection_id: \"841564295\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"collection_id\" => \"841564295\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "product_id=632910392",
+          "request_path": "/admin/api/2022-10/collects.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-07/collects.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"collects\":[{\"id\":358268117,\"collection_id\":482865238,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":455204334,\"collection_id\":841564295,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":773559378,\"collection_id\":395646240,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"}]}"
+          },
+          "name": "Retrieve only collects for a certain product",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/collects.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Collect.all(\n  session: test_session,\n  product_id: \"632910392\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collect.all({\n  session: session,\n  product_id: \"632910392\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "products"
+          }
+        ]
+      },
+      "url": "/admin/api/{api_version}/collects.json",
+      "action": "get"
     },
     {
       "description": "Removes a product from a collection.",
@@ -220,7 +487,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.delete({\n  session: test_session,\n  id: 455204334,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collect.delete({\n  session: session,\n  id: 455204334,\n});"
             },
             {
               "language": "php",
@@ -321,7 +588,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.find({\n  session: test_session,\n  id: 455204334,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collect.find({\n  session: session,\n  id: 455204334,\n});"
             },
             {
               "language": "php",
@@ -338,273 +605,6 @@
         ]
       },
       "url": "/admin/api/{api_version}/collects/{collect_id}.json",
-      "action": "get"
-    },
-    {
-      "description": "Retrieves a list of collects. <strong>Note:</strong> As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/api/usage/pagination-rest\"><em>Make paginated requests to the REST Admin API</em></a>.",
-      "summary": "Retrieves a list of collects",
-      "operationId": "Retrievesalistofcollects",
-      "parameters": [
-        {
-          "name": "api_version",
-          "in": "path",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        },
-        {
-          "name": "fields",
-          "description": "Show only certain fields, specified by a comma-separated list of field names.",
-          "in": "query",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "limit",
-          "description": "The maximum number of results to show.",
-          "in": "query",
-          "schema": {
-            "type": "string",
-            "default": 50,
-            "maximum": 250
-          }
-        },
-        {
-          "name": "since_id",
-          "description": "Restrict results to after the specified ID.",
-          "in": "query",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Retrieves a list of collects",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Retrieve only collects for a certain product": {
-                  "value": {
-                    "collects": [
-                      {
-                        "id": 358268117,
-                        "collection_id": 482865238,
-                        "product_id": 632910392,
-                        "created_at": null,
-                        "updated_at": null,
-                        "position": 1,
-                        "sort_value": "0000000001"
-                      },
-                      {
-                        "id": 455204334,
-                        "collection_id": 841564295,
-                        "product_id": 632910392,
-                        "created_at": null,
-                        "updated_at": null,
-                        "position": 1,
-                        "sort_value": "0000000001"
-                      },
-                      {
-                        "id": 773559378,
-                        "collection_id": 395646240,
-                        "product_id": 632910392,
-                        "created_at": null,
-                        "updated_at": null,
-                        "position": 1,
-                        "sort_value": "0000000001"
-                      }
-                    ]
-                  }
-                },
-                "Retrieve all collects for the shop": {
-                  "value": {
-                    "collects": [
-                      {
-                        "id": 358268117,
-                        "collection_id": 482865238,
-                        "product_id": 632910392,
-                        "created_at": null,
-                        "updated_at": null,
-                        "position": 1,
-                        "sort_value": "0000000001"
-                      },
-                      {
-                        "id": 455204334,
-                        "collection_id": 841564295,
-                        "product_id": 632910392,
-                        "created_at": null,
-                        "updated_at": null,
-                        "position": 1,
-                        "sort_value": "0000000001"
-                      },
-                      {
-                        "id": 773559378,
-                        "collection_id": 395646240,
-                        "product_id": 632910392,
-                        "created_at": null,
-                        "updated_at": null,
-                        "position": 1,
-                        "sort_value": "0000000001"
-                      },
-                      {
-                        "id": 800915878,
-                        "collection_id": 482865238,
-                        "product_id": 921728736,
-                        "created_at": null,
-                        "updated_at": null,
-                        "position": 1,
-                        "sort_value": "0000000001"
-                      }
-                    ]
-                  }
-                },
-                "Retrieve only collects for a certain collection": {
-                  "value": {
-                    "collects": [
-                      {
-                        "id": 455204334,
-                        "collection_id": 841564295,
-                        "product_id": 632910392,
-                        "created_at": null,
-                        "updated_at": null,
-                        "position": 1,
-                        "sort_value": "0000000001"
-                      },
-                      {
-                        "id": 1071559581,
-                        "collection_id": 841564295,
-                        "product_id": 921728736,
-                        "created_at": "2022-10-03T11:19:33-06:00",
-                        "updated_at": "2022-10-03T11:19:33-06:00",
-                        "position": 2,
-                        "sort_value": "0000000002"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "x-examples": [
-        {
-          "status": "200",
-          "request_query": "product_id=632910392",
-          "request_path": "/admin/api/2022-10/collects.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-07/collects.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"collects\":[{\"id\":358268117,\"collection_id\":482865238,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":455204334,\"collection_id\":841564295,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":773559378,\"collection_id\":395646240,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"}]}"
-          },
-          "name": "Retrieve only collects for a certain product",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/collects.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Collect.all(\n  session: test_session,\n  product_id: \"632910392\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n  product_id: \"632910392\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/collects.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-07/collects.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"collects\":[{\"id\":358268117,\"collection_id\":482865238,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":455204334,\"collection_id\":841564295,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":773559378,\"collection_id\":395646240,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":800915878,\"collection_id\":482865238,\"product_id\":921728736,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"}]}"
-          },
-          "name": "Retrieve all collects for the shop",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Collect.all(\n  session: test_session,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "collection_id=841564295",
-          "request_path": "/admin/api/2022-10/collects.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-07/collects.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"collects\":[{\"id\":455204334,\"collection_id\":841564295,\"product_id\":632910392,\"created_at\":null,\"updated_at\":null,\"position\":1,\"sort_value\":\"0000000001\"},{\"id\":1071559581,\"collection_id\":841564295,\"product_id\":921728736,\"created_at\":\"2022-10-03T13:19:33-04:00\",\"updated_at\":\"2022-10-03T13:19:33-04:00\",\"position\":2,\"sort_value\":\"0000000002\"}]}"
-          },
-          "name": "Retrieve only collects for a certain collection",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/collects.json?collection_id=841564295\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Collect.all(\n  session: test_session,\n  collection_id: \"841564295\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n  collection_id: \"841564295\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"collection_id\" => \"841564295\"], // Params\n);"
-            }
-          ]
-        }
-      ],
-      "x-api-accessibilities": {
-        "initial": [
-          {
-            "scope": "products"
-          }
-        ]
-      },
-      "url": "/admin/api/{api_version}/collects.json?product_id=632910392",
       "action": "get"
     },
     {
@@ -627,17 +627,17 @@
           "content": {
             "application/json": {
               "examples": {
+                "Count all collects for the shop": {
+                  "value": {
+                    "count": 2
+                  }
+                },
                 "Count only collects for a certain collection": {
                   "value": {
                     "count": 1
                   }
                 },
                 "Count only collects for a certain product": {
-                  "value": {
-                    "count": 2
-                  }
-                },
-                "Count all collects for the shop": {
                   "value": {
                     "count": 2
                   }
@@ -648,6 +648,41 @@
         }
       },
       "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/collects/count.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2020-01/collects/count.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"count\":2}"
+          },
+          "name": "Count all collects for the shop",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/collects/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Collect.count(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collect.count({\n  session: session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
         {
           "status": "200",
           "request_query": "collection_id=841564295",
@@ -675,7 +710,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n  collection_id: \"841564295\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collect.count({\n  session: session,\n  collection_id: \"841564295\",\n});"
             },
             {
               "language": "php",
@@ -710,46 +745,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n  product_id: \"632910392\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Collect.count({\n  session: session,\n  product_id: \"632910392\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/collects/count.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2020-01/collects/count.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"count\":2}"
-          },
-          "name": "Count all collects for the shop",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/collects/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Collect.count(\n  session: test_session,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -761,7 +761,7 @@
           }
         ]
       },
-      "url": "/admin/api/{api_version}/collects/count.json?collection_id=841564295",
+      "url": "/admin/api/{api_version}/collects/count.json",
       "action": "get"
     }
   ],

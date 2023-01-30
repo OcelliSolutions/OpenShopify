@@ -361,7 +361,7 @@ paths:
             format: int64
         - name: topic
           in: query
-          description: 'Show webhook subscriptions with a given topic.For a list of valid values, refer to the [`topic` property](#topic-property-{{ current_version }}).>'
+          description: 'Show webhook subscriptions with a given topic.For valid values, refer to the [list of event topics](#event-topics).'
           schema:
             type: string
         - name: updated_at_max
@@ -400,7 +400,7 @@ paths:
       tags:
         - Webhook
       summary: Create a new Webhook
-      description: "Create a new webhook subscription by specifying both an `address` and a `topic`.\r\n\r\nAmazon EventBridge and Google Pub/Sub webhook subscriptions use this field differently.For more information, refer to the [Amazon EventBridge](/apps/webhooks/eventbridge)and [Google Cloud Pub/Sub](/apps/webhooks/google-cloud) pages."
+      description: "Create a new webhook subscription by specifying both an `address` and a `topic`.\r\n\r\nAmazon EventBridge and Google Pub/Sub webhook subscriptions use this field differently.For more information, refer to the [Amazon EventBridge](/apps/webhooks/eventbridge) and [Google Cloud Pub/Sub](/apps/webhooks/google-cloud) pages."
       operationId: CreateWebhook
       requestBody:
         content:
@@ -442,7 +442,7 @@ paths:
             type: string
         - name: topic
           in: query
-          description: 'The topic of the webhook subscriptions.For a list of valid values, refer to the [`topic` property](#topic-property-{{ current_version }}).'
+          description: 'The topic of the webhook subscriptions.For valid values, refer to the [list of event topics](#event-topics).'
           schema:
             type: string
       responses:

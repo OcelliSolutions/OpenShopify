@@ -407,7 +407,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.all({\n  session: test_session,\n  date_max: \"2012-11-12\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Payout.all({\n  session: session,\n  date_max: \"2012-11-12\",\n});"
             },
             {
               "language": "php",
@@ -442,7 +442,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Payout.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -550,7 +550,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.find({\n  session: test_session,\n  id: 623721858,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Payout.find({\n  session: session,\n  id: 623721858,\n});"
             },
             {
               "language": "php",

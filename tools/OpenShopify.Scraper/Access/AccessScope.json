@@ -68,7 +68,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {AccessScope} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AccessScope.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.AccessScope.all({\n  session: session,\n});"
             },
             {
               "language": "php",

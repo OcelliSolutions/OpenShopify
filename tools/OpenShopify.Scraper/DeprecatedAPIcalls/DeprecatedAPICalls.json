@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Deprecated API calls",
-    "description": "        <div class=\"note\">\n          <h4>Private apps</h4>\n          <p>The Deprecated API calls resource is available only for <a href=\"/concepts/apps#private-apps\">private</a> apps.</p>\n        </div>\n\n        <p>\n          You can call this endpoint to get a list of all the deprecated calls your private apps have made in the past 30 days, information on migration steps, and the deadline to update these calls in your apps.\n        </p>\n\n        <p>\n          Follow the <a href=\"https://shopify.dev/changelog\">developer changelog</a> to make sure you're aware of any breaking changes that might affect your app.\n          You can learn more about how to update your apps in our <a href=\"/api/usage/versioning\">versioning guide</a>.\n        </p>\n",
+    "description": "        <div class=\"note\">\n          <h4>Custom apps</h4>\n          <p>The Deprecated API calls resource is available only for <a href=\"/concepts/apps#custom-apps\">custom</a> apps.</p>\n        </div>\n\n        <p>\n          You can call this endpoint to get a list of all the deprecated calls your custom apps have made in the past 30 days, information on migration steps, and the deadline to update these calls in your apps.\n        </p>\n\n        <p>\n          Follow the <a href=\"https://shopify.dev/changelog\">developer changelog</a> to make sure you're aware of any breaking changes that might affect your app.\n          You can learn more about how to update your apps in our <a href=\"/api/usage/versioning\">versioning guide</a>.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/47",
     "x-description-list": null,
     "version": "2022-10",
@@ -10,7 +10,7 @@
   },
   "paths": [
     {
-      "description": "Retrieves a list of deprecated API calls made by your private apps in the past 30 days.",
+      "description": "Retrieves a list of deprecated API calls made by your custom apps in the past 30 days.",
       "summary": "Retrieves a list of deprecated API calls",
       "operationId": "RetrievesalistofdeprecatedAPIcalls",
       "parameters": [
@@ -79,7 +79,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {DeprecatedApiCall} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DeprecatedApiCall.all({\n  session: test_session,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.DeprecatedApiCall.all({\n  session: session,\n});"
             },
             {
               "language": "php",
@@ -141,7 +141,7 @@
     "glossary": false,
     "hidden": false,
     "legacy-urls": null,
-    "meta_description": "Retrieve deprecated API calls made by the authenticated private app in the past 30 days.",
+    "meta_description": "Retrieve deprecated API calls made by the authenticated custom app in the past 30 days.",
     "postman_group": "Deprecated api calls",
     "keywords": [
       "api"

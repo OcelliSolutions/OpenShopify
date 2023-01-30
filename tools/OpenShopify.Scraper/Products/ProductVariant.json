@@ -71,9 +71,83 @@
           "content": {
             "application/json": {
               "examples": {
-                "Retrieve all variants for a product after a specified ID": {
+                "Retrieve all variants for a product": {
                   "value": {
                     "variants": [
+                      {
+                        "id": 39072856,
+                        "product_id": 632910392,
+                        "title": "Green",
+                        "price": "199.00",
+                        "sku": "IPOD2008GREEN",
+                        "position": 3,
+                        "inventory_policy": "continue",
+                        "compare_at_price": null,
+                        "fulfillment_service": "manual",
+                        "inventory_management": "shopify",
+                        "option1": "Green",
+                        "option2": null,
+                        "option3": null,
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "taxable": true,
+                        "barcode": "1234_green",
+                        "grams": 567,
+                        "image_id": null,
+                        "weight": 1.25,
+                        "weight_unit": "lb",
+                        "inventory_item_id": 39072856,
+                        "inventory_quantity": 30,
+                        "old_inventory_quantity": 30,
+                        "presentment_prices": [
+                          {
+                            "price": {
+                              "amount": "199.00",
+                              "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                          }
+                        ],
+                        "requires_shipping": true,
+                        "admin_graphql_api_id": "gid://shopify/ProductVariant/39072856"
+                      },
+                      {
+                        "id": 49148385,
+                        "product_id": 632910392,
+                        "title": "Red",
+                        "price": "199.00",
+                        "sku": "IPOD2008RED",
+                        "position": 2,
+                        "inventory_policy": "continue",
+                        "compare_at_price": null,
+                        "fulfillment_service": "manual",
+                        "inventory_management": "shopify",
+                        "option1": "Red",
+                        "option2": null,
+                        "option3": null,
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "taxable": true,
+                        "barcode": "1234_red",
+                        "grams": 567,
+                        "image_id": null,
+                        "weight": 1.25,
+                        "weight_unit": "lb",
+                        "inventory_item_id": 49148385,
+                        "inventory_quantity": 20,
+                        "old_inventory_quantity": 20,
+                        "presentment_prices": [
+                          {
+                            "price": {
+                              "amount": "199.00",
+                              "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                          }
+                        ],
+                        "requires_shipping": true,
+                        "admin_graphql_api_id": "gid://shopify/ProductVariant/49148385"
+                      },
                       {
                         "id": 457924702,
                         "product_id": 632910392,
@@ -88,8 +162,8 @@
                         "option1": "Black",
                         "option2": null,
                         "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "taxable": true,
                         "barcode": "1234_black",
                         "grams": 567,
@@ -125,8 +199,88 @@
                         "option1": "Pink",
                         "option2": null,
                         "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "taxable": true,
+                        "barcode": "1234_pink",
+                        "grams": 567,
+                        "image_id": 562641783,
+                        "weight": 1.25,
+                        "weight_unit": "lb",
+                        "inventory_item_id": 808950810,
+                        "inventory_quantity": 10,
+                        "old_inventory_quantity": 10,
+                        "presentment_prices": [
+                          {
+                            "price": {
+                              "amount": "199.00",
+                              "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                          }
+                        ],
+                        "requires_shipping": true,
+                        "admin_graphql_api_id": "gid://shopify/ProductVariant/808950810"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve all variants for a product after a specified ID": {
+                  "value": {
+                    "variants": [
+                      {
+                        "id": 457924702,
+                        "product_id": 632910392,
+                        "title": "Black",
+                        "price": "199.00",
+                        "sku": "IPOD2008BLACK",
+                        "position": 4,
+                        "inventory_policy": "continue",
+                        "compare_at_price": null,
+                        "fulfillment_service": "manual",
+                        "inventory_management": "shopify",
+                        "option1": "Black",
+                        "option2": null,
+                        "option3": null,
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "taxable": true,
+                        "barcode": "1234_black",
+                        "grams": 567,
+                        "image_id": null,
+                        "weight": 1.25,
+                        "weight_unit": "lb",
+                        "inventory_item_id": 457924702,
+                        "inventory_quantity": 40,
+                        "old_inventory_quantity": 40,
+                        "presentment_prices": [
+                          {
+                            "price": {
+                              "amount": "199.00",
+                              "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                          }
+                        ],
+                        "requires_shipping": true,
+                        "admin_graphql_api_id": "gid://shopify/ProductVariant/457924702"
+                      },
+                      {
+                        "id": 808950810,
+                        "product_id": 632910392,
+                        "title": "Pink",
+                        "price": "199.00",
+                        "sku": "IPOD2008PINK",
+                        "position": 1,
+                        "inventory_policy": "continue",
+                        "compare_at_price": null,
+                        "fulfillment_service": "manual",
+                        "inventory_management": "shopify",
+                        "option1": "Pink",
+                        "option2": null,
+                        "option3": null,
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "taxable": true,
                         "barcode": "1234_pink",
                         "grams": 567,
@@ -168,8 +322,8 @@
                         "option1": "Green",
                         "option2": null,
                         "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "taxable": true,
                         "barcode": "1234_green",
                         "grams": 567,
@@ -218,8 +372,8 @@
                         "option1": "Red",
                         "option2": null,
                         "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "taxable": true,
                         "barcode": "1234_red",
                         "grams": 567,
@@ -268,8 +422,8 @@
                         "option1": "Black",
                         "option2": null,
                         "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "taxable": true,
                         "barcode": "1234_black",
                         "grams": 567,
@@ -318,8 +472,8 @@
                         "option1": "Pink",
                         "option2": null,
                         "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
+                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "updated_at": "2023-01-03T10:21:36-07:00",
                         "taxable": true,
                         "barcode": "1234_pink",
                         "grams": 567,
@@ -349,160 +503,6 @@
                               "amount": "312.00",
                               "currency_code": "CAD"
                             }
-                          }
-                        ],
-                        "requires_shipping": true,
-                        "admin_graphql_api_id": "gid://shopify/ProductVariant/808950810"
-                      }
-                    ]
-                  }
-                },
-                "Retrieve all variants for a product": {
-                  "value": {
-                    "variants": [
-                      {
-                        "id": 39072856,
-                        "product_id": 632910392,
-                        "title": "Green",
-                        "price": "199.00",
-                        "sku": "IPOD2008GREEN",
-                        "position": 3,
-                        "inventory_policy": "continue",
-                        "compare_at_price": null,
-                        "fulfillment_service": "manual",
-                        "inventory_management": "shopify",
-                        "option1": "Green",
-                        "option2": null,
-                        "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
-                        "taxable": true,
-                        "barcode": "1234_green",
-                        "grams": 567,
-                        "image_id": null,
-                        "weight": 1.25,
-                        "weight_unit": "lb",
-                        "inventory_item_id": 39072856,
-                        "inventory_quantity": 30,
-                        "old_inventory_quantity": 30,
-                        "presentment_prices": [
-                          {
-                            "price": {
-                              "amount": "199.00",
-                              "currency_code": "USD"
-                            },
-                            "compare_at_price": null
-                          }
-                        ],
-                        "requires_shipping": true,
-                        "admin_graphql_api_id": "gid://shopify/ProductVariant/39072856"
-                      },
-                      {
-                        "id": 49148385,
-                        "product_id": 632910392,
-                        "title": "Red",
-                        "price": "199.00",
-                        "sku": "IPOD2008RED",
-                        "position": 2,
-                        "inventory_policy": "continue",
-                        "compare_at_price": null,
-                        "fulfillment_service": "manual",
-                        "inventory_management": "shopify",
-                        "option1": "Red",
-                        "option2": null,
-                        "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
-                        "taxable": true,
-                        "barcode": "1234_red",
-                        "grams": 567,
-                        "image_id": null,
-                        "weight": 1.25,
-                        "weight_unit": "lb",
-                        "inventory_item_id": 49148385,
-                        "inventory_quantity": 20,
-                        "old_inventory_quantity": 20,
-                        "presentment_prices": [
-                          {
-                            "price": {
-                              "amount": "199.00",
-                              "currency_code": "USD"
-                            },
-                            "compare_at_price": null
-                          }
-                        ],
-                        "requires_shipping": true,
-                        "admin_graphql_api_id": "gid://shopify/ProductVariant/49148385"
-                      },
-                      {
-                        "id": 457924702,
-                        "product_id": 632910392,
-                        "title": "Black",
-                        "price": "199.00",
-                        "sku": "IPOD2008BLACK",
-                        "position": 4,
-                        "inventory_policy": "continue",
-                        "compare_at_price": null,
-                        "fulfillment_service": "manual",
-                        "inventory_management": "shopify",
-                        "option1": "Black",
-                        "option2": null,
-                        "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
-                        "taxable": true,
-                        "barcode": "1234_black",
-                        "grams": 567,
-                        "image_id": null,
-                        "weight": 1.25,
-                        "weight_unit": "lb",
-                        "inventory_item_id": 457924702,
-                        "inventory_quantity": 40,
-                        "old_inventory_quantity": 40,
-                        "presentment_prices": [
-                          {
-                            "price": {
-                              "amount": "199.00",
-                              "currency_code": "USD"
-                            },
-                            "compare_at_price": null
-                          }
-                        ],
-                        "requires_shipping": true,
-                        "admin_graphql_api_id": "gid://shopify/ProductVariant/457924702"
-                      },
-                      {
-                        "id": 808950810,
-                        "product_id": 632910392,
-                        "title": "Pink",
-                        "price": "199.00",
-                        "sku": "IPOD2008PINK",
-                        "position": 1,
-                        "inventory_policy": "continue",
-                        "compare_at_price": null,
-                        "fulfillment_service": "manual",
-                        "inventory_management": "shopify",
-                        "option1": "Pink",
-                        "option2": null,
-                        "option3": null,
-                        "created_at": "2022-10-03T10:44:45-06:00",
-                        "updated_at": "2022-10-03T10:44:45-06:00",
-                        "taxable": true,
-                        "barcode": "1234_pink",
-                        "grams": 567,
-                        "image_id": 562641783,
-                        "weight": 1.25,
-                        "weight_unit": "lb",
-                        "inventory_item_id": 808950810,
-                        "inventory_quantity": 10,
-                        "old_inventory_quantity": 10,
-                        "presentment_prices": [
-                          {
-                            "price": {
-                              "amount": "199.00",
-                              "currency_code": "USD"
-                            },
-                            "compare_at_price": null
                           }
                         ],
                         "requires_shipping": true,
@@ -519,6 +519,41 @@
       "x-examples": [
         {
           "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/products/632910392/variants.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/products/632910392/variants.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"variants\":[{\"id\":39072856,\"product_id\":632910392,\"title\":\"Green\",\"price\":\"199.00\",\"sku\":\"IPOD2008GREEN\",\"position\":3,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Green\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_green\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":39072856,\"inventory_quantity\":30,\"old_inventory_quantity\":30,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/39072856\"},{\"id\":49148385,\"product_id\":632910392,\"title\":\"Red\",\"price\":\"199.00\",\"sku\":\"IPOD2008RED\",\"position\":2,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Red\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_red\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":49148385,\"inventory_quantity\":20,\"old_inventory_quantity\":20,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/49148385\"},{\"id\":457924702,\"product_id\":632910392,\"title\":\"Black\",\"price\":\"199.00\",\"sku\":\"IPOD2008BLACK\",\"position\":4,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Black\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_black\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":457924702,\"inventory_quantity\":40,\"old_inventory_quantity\":40,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/457924702\"},{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}]}"
+          },
+          "name": "Retrieve all variants for a product",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/variants.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Variant.all(\n  session: test_session,\n  product_id: 632910392,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Variant.all({\n  session: session,\n  product_id: 632910392,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nVariant::all(\n    $this->test_session, // Session\n    [\"product_id\" => \"632910392\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
           "request_query": "since_id=49148385",
           "request_path": "/admin/api/2022-10/products/632910392/variants.json",
           "request_method": "GET",
@@ -530,7 +565,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"variants\":[{\"id\":457924702,\"product_id\":632910392,\"title\":\"Black\",\"price\":\"199.00\",\"sku\":\"IPOD2008BLACK\",\"position\":4,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Black\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_black\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":457924702,\"inventory_quantity\":40,\"old_inventory_quantity\":40,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/457924702\"},{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}]}"
+            "body": "{\"variants\":[{\"id\":457924702,\"product_id\":632910392,\"title\":\"Black\",\"price\":\"199.00\",\"sku\":\"IPOD2008BLACK\",\"position\":4,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Black\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_black\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":457924702,\"inventory_quantity\":40,\"old_inventory_quantity\":40,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/457924702\"},{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}]}"
           },
           "name": "Retrieve all variants for a product after a specified ID",
           "codeSamples": [
@@ -544,7 +579,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Variant.all({\n  session: test_session,\n  product_id: 632910392,\n  since_id: \"49148385\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Variant.all({\n  session: session,\n  product_id: 632910392,\n  since_id: \"49148385\",\n});"
             },
             {
               "language": "php",
@@ -565,7 +600,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"variants\":[{\"id\":39072856,\"product_id\":632910392,\"title\":\"Green\",\"price\":\"199.00\",\"sku\":\"IPOD2008GREEN\",\"position\":3,\"inventory_policy\":\"continue\",\"compare_at_price\":\"249.00\",\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Green\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_green\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":39072856,\"inventory_quantity\":30,\"old_inventory_quantity\":30,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":{\"amount\":\"249.00\",\"currency_code\":\"USD\"}},{\"price\":{\"amount\":\"249.00\",\"currency_code\":\"CAD\"},\"compare_at_price\":{\"amount\":\"312.00\",\"currency_code\":\"CAD\"}}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/39072856\"},{\"id\":49148385,\"product_id\":632910392,\"title\":\"Red\",\"price\":\"199.00\",\"sku\":\"IPOD2008RED\",\"position\":2,\"inventory_policy\":\"continue\",\"compare_at_price\":\"249.00\",\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Red\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_red\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":49148385,\"inventory_quantity\":20,\"old_inventory_quantity\":20,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":{\"amount\":\"249.00\",\"currency_code\":\"USD\"}},{\"price\":{\"amount\":\"249.00\",\"currency_code\":\"CAD\"},\"compare_at_price\":{\"amount\":\"312.00\",\"currency_code\":\"CAD\"}}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/49148385\"},{\"id\":457924702,\"product_id\":632910392,\"title\":\"Black\",\"price\":\"199.00\",\"sku\":\"IPOD2008BLACK\",\"position\":4,\"inventory_policy\":\"continue\",\"compare_at_price\":\"249.00\",\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Black\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_black\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":457924702,\"inventory_quantity\":40,\"old_inventory_quantity\":40,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":{\"amount\":\"249.00\",\"currency_code\":\"USD\"}},{\"price\":{\"amount\":\"249.00\",\"currency_code\":\"CAD\"},\"compare_at_price\":{\"amount\":\"312.00\",\"currency_code\":\"CAD\"}}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/457924702\"},{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":\"249.00\",\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":{\"amount\":\"249.00\",\"currency_code\":\"USD\"}},{\"price\":{\"amount\":\"249.00\",\"currency_code\":\"CAD\"},\"compare_at_price\":{\"amount\":\"312.00\",\"currency_code\":\"CAD\"}}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}]}"
+            "body": "{\"variants\":[{\"id\":39072856,\"product_id\":632910392,\"title\":\"Green\",\"price\":\"199.00\",\"sku\":\"IPOD2008GREEN\",\"position\":3,\"inventory_policy\":\"continue\",\"compare_at_price\":\"249.00\",\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Green\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_green\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":39072856,\"inventory_quantity\":30,\"old_inventory_quantity\":30,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":{\"amount\":\"249.00\",\"currency_code\":\"USD\"}},{\"price\":{\"amount\":\"249.00\",\"currency_code\":\"CAD\"},\"compare_at_price\":{\"amount\":\"312.00\",\"currency_code\":\"CAD\"}}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/39072856\"},{\"id\":49148385,\"product_id\":632910392,\"title\":\"Red\",\"price\":\"199.00\",\"sku\":\"IPOD2008RED\",\"position\":2,\"inventory_policy\":\"continue\",\"compare_at_price\":\"249.00\",\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Red\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_red\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":49148385,\"inventory_quantity\":20,\"old_inventory_quantity\":20,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":{\"amount\":\"249.00\",\"currency_code\":\"USD\"}},{\"price\":{\"amount\":\"249.00\",\"currency_code\":\"CAD\"},\"compare_at_price\":{\"amount\":\"312.00\",\"currency_code\":\"CAD\"}}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/49148385\"},{\"id\":457924702,\"product_id\":632910392,\"title\":\"Black\",\"price\":\"199.00\",\"sku\":\"IPOD2008BLACK\",\"position\":4,\"inventory_policy\":\"continue\",\"compare_at_price\":\"249.00\",\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Black\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_black\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":457924702,\"inventory_quantity\":40,\"old_inventory_quantity\":40,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":{\"amount\":\"249.00\",\"currency_code\":\"USD\"}},{\"price\":{\"amount\":\"249.00\",\"currency_code\":\"CAD\"},\"compare_at_price\":{\"amount\":\"312.00\",\"currency_code\":\"CAD\"}}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/457924702\"},{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":\"249.00\",\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":{\"amount\":\"249.00\",\"currency_code\":\"USD\"}},{\"price\":{\"amount\":\"249.00\",\"currency_code\":\"CAD\"},\"compare_at_price\":{\"amount\":\"312.00\",\"currency_code\":\"CAD\"}}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}]}"
           },
           "name": "Retrieve all variants for a product with prices in specified presentment currencies",
           "codeSamples": [
@@ -579,46 +614,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Variant.all({\n  session: test_session,\n  product_id: 632910392,\n  presentment_currencies: \"USD,CAD\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Variant.all({\n  session: session,\n  product_id: 632910392,\n  presentment_currencies: \"USD,CAD\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nVariant::all(\n    $this->test_session, // Session\n    [\"product_id\" => \"632910392\"], // Url Ids\n    [\"presentment_currencies\" => \"USD,CAD\"], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/variants.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/2019-10/products/632910392/variants.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"variants\":[{\"id\":39072856,\"product_id\":632910392,\"title\":\"Green\",\"price\":\"199.00\",\"sku\":\"IPOD2008GREEN\",\"position\":3,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Green\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_green\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":39072856,\"inventory_quantity\":30,\"old_inventory_quantity\":30,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/39072856\"},{\"id\":49148385,\"product_id\":632910392,\"title\":\"Red\",\"price\":\"199.00\",\"sku\":\"IPOD2008RED\",\"position\":2,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Red\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_red\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":49148385,\"inventory_quantity\":20,\"old_inventory_quantity\":20,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/49148385\"},{\"id\":457924702,\"product_id\":632910392,\"title\":\"Black\",\"price\":\"199.00\",\"sku\":\"IPOD2008BLACK\",\"position\":4,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Black\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_black\",\"grams\":567,\"image_id\":null,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":457924702,\"inventory_quantity\":40,\"old_inventory_quantity\":40,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/457924702\"},{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}]}"
-          },
-          "name": "Retrieve all variants for a product",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/variants.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Variant.all(\n  session: test_session,\n  product_id: 632910392,\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Variant.all({\n  session: test_session,\n  product_id: 632910392,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nVariant::all(\n    $this->test_session, // Session\n    [\"product_id\" => \"632910392\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -630,8 +630,281 @@
           }
         ]
       },
-      "url": "/admin/api/{api_version}/products/{product_id}/variants.json?since_id=49148385",
+      "url": "/admin/api/{api_version}/products/{product_id}/variants.json",
       "action": "get"
+    },
+    {
+      "description": "Creates a new product variant",
+      "summary": "Create a new Product Variant",
+      "operationId": "CreateanewProductVariant",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "product_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Create a new Product Variant",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a new product variant": {
+                  "value": {
+                    "variant": {
+                      "id": 1070325020,
+                      "product_id": 632910392,
+                      "title": "Yellow",
+                      "price": "1.00",
+                      "sku": "",
+                      "position": 5,
+                      "inventory_policy": "deny",
+                      "compare_at_price": null,
+                      "fulfillment_service": "manual",
+                      "inventory_management": "shopify",
+                      "option1": "Yellow",
+                      "option2": null,
+                      "option3": null,
+                      "created_at": "2023-01-03T10:25:18-07:00",
+                      "updated_at": "2023-01-03T10:25:18-07:00",
+                      "taxable": true,
+                      "barcode": null,
+                      "grams": 0,
+                      "image_id": null,
+                      "weight": 0.0,
+                      "weight_unit": "lb",
+                      "inventory_item_id": 1070325020,
+                      "inventory_quantity": 0,
+                      "old_inventory_quantity": 0,
+                      "presentment_prices": [
+                        {
+                          "price": {
+                            "amount": "1.00",
+                            "currency_code": "USD"
+                          },
+                          "compare_at_price": null
+                        }
+                      ],
+                      "requires_shipping": true,
+                      "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325020"
+                    }
+                  }
+                },
+                "Create a new product variant with a metafield": {
+                  "value": {
+                    "variant": {
+                      "id": 1070325023,
+                      "product_id": 632910392,
+                      "title": "Blue",
+                      "price": "0.00",
+                      "sku": "",
+                      "position": 5,
+                      "inventory_policy": "deny",
+                      "compare_at_price": null,
+                      "fulfillment_service": "manual",
+                      "inventory_management": "shopify",
+                      "option1": "Blue",
+                      "option2": null,
+                      "option3": null,
+                      "created_at": "2023-01-03T10:25:36-07:00",
+                      "updated_at": "2023-01-03T10:25:36-07:00",
+                      "taxable": true,
+                      "barcode": null,
+                      "grams": 0,
+                      "image_id": null,
+                      "weight": 0.0,
+                      "weight_unit": "lb",
+                      "inventory_item_id": 1070325023,
+                      "inventory_quantity": 0,
+                      "old_inventory_quantity": 0,
+                      "presentment_prices": [
+                        {
+                          "price": {
+                            "amount": "0.00",
+                            "currency_code": "USD"
+                          },
+                          "compare_at_price": null
+                        }
+                      ],
+                      "requires_shipping": true,
+                      "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325023"
+                    }
+                  }
+                },
+                "Create a new product variant with an image": {
+                  "value": {
+                    "variant": {
+                      "id": 1070325022,
+                      "product_id": 632910392,
+                      "title": "Purple",
+                      "price": "0.00",
+                      "sku": "",
+                      "position": 5,
+                      "inventory_policy": "deny",
+                      "compare_at_price": null,
+                      "fulfillment_service": "manual",
+                      "inventory_management": "shopify",
+                      "option1": "Purple",
+                      "option2": null,
+                      "option3": null,
+                      "created_at": "2023-01-03T10:25:32-07:00",
+                      "updated_at": "2023-01-03T10:25:32-07:00",
+                      "taxable": true,
+                      "barcode": null,
+                      "grams": 0,
+                      "image_id": 850703190,
+                      "weight": 0.0,
+                      "weight_unit": "lb",
+                      "inventory_item_id": 1070325022,
+                      "inventory_quantity": 0,
+                      "old_inventory_quantity": 0,
+                      "presentment_prices": [
+                        {
+                          "price": {
+                            "amount": "0.00",
+                            "currency_code": "USD"
+                          },
+                          "compare_at_price": null
+                        }
+                      ],
+                      "requires_shipping": true,
+                      "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325022"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/products/632910392/variants.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-07/products/632910392/variants.json",
+            "headers": {},
+            "body": "{\"variant\":{\"option1\":\"Yellow\",\"price\":\"1.00\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"variant\":{\"id\":1070325020,\"product_id\":632910392,\"title\":\"Yellow\",\"price\":\"1.00\",\"sku\":\"\",\"position\":5,\"inventory_policy\":\"deny\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Yellow\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:25:18-05:00\",\"updated_at\":\"2023-01-03T12:25:18-05:00\",\"taxable\":true,\"barcode\":null,\"grams\":0,\"image_id\":null,\"weight\":0.0,\"weight_unit\":\"lb\",\"inventory_item_id\":1070325020,\"inventory_quantity\":0,\"old_inventory_quantity\":0,\"presentment_prices\":[{\"price\":{\"amount\":\"1.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/1070325020\"}}"
+          },
+          "name": "Create a new product variant",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"variant\":{\"option1\":\"Yellow\",\"price\":\"1.00\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/variants.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nvariant = ShopifyAPI::Variant.new(session: test_session)\nvariant.product_id = 632910392\nvariant.option1 = \"Yellow\"\nvariant.price = \"1.00\"\nvariant.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst variant = new shopify.rest.Variant({session: session});\nvariant.product_id = 632910392;\nvariant.option1 = \"Yellow\";\nvariant.price = \"1.00\";\nawait variant.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->product_id = 632910392;\n$variant->option1 = \"Yellow\";\n$variant->price = \"1.00\";\n$variant->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/products/632910392/variants.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-07/products/632910392/variants.json",
+            "headers": {},
+            "body": "{\"variant\":{\"option1\":\"Blue\",\"metafields\":[{\"key\":\"new\",\"value\":\"newvalue\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"variant\":{\"id\":1070325023,\"product_id\":632910392,\"title\":\"Blue\",\"price\":\"0.00\",\"sku\":\"\",\"position\":5,\"inventory_policy\":\"deny\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Blue\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:25:36-05:00\",\"updated_at\":\"2023-01-03T12:25:36-05:00\",\"taxable\":true,\"barcode\":null,\"grams\":0,\"image_id\":null,\"weight\":0.0,\"weight_unit\":\"lb\",\"inventory_item_id\":1070325023,\"inventory_quantity\":0,\"old_inventory_quantity\":0,\"presentment_prices\":[{\"price\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/1070325023\"}}"
+          },
+          "name": "Create a new product variant with a metafield",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"variant\":{\"option1\":\"Blue\",\"metafields\":[{\"key\":\"new\",\"value\":\"newvalue\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/variants.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nvariant = ShopifyAPI::Variant.new(session: test_session)\nvariant.product_id = 632910392\nvariant.option1 = \"Blue\"\nvariant.metafields = [\n  {\n    \"key\" => \"new\",\n    \"value\" => \"newvalue\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\nvariant.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst variant = new shopify.rest.Variant({session: session});\nvariant.product_id = 632910392;\nvariant.option1 = \"Blue\";\nvariant.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"newvalue\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait variant.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->product_id = 632910392;\n$variant->option1 = \"Blue\";\n$variant->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"newvalue\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$variant->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/products/632910392/variants.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-07/products/632910392/variants.json",
+            "headers": {},
+            "body": "{\"variant\":{\"image_id\":850703190,\"option1\":\"Purple\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"variant\":{\"id\":1070325022,\"product_id\":632910392,\"title\":\"Purple\",\"price\":\"0.00\",\"sku\":\"\",\"position\":5,\"inventory_policy\":\"deny\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Purple\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:25:32-05:00\",\"updated_at\":\"2023-01-03T12:25:32-05:00\",\"taxable\":true,\"barcode\":null,\"grams\":0,\"image_id\":850703190,\"weight\":0.0,\"weight_unit\":\"lb\",\"inventory_item_id\":1070325022,\"inventory_quantity\":0,\"old_inventory_quantity\":0,\"presentment_prices\":[{\"price\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/1070325022\"}}"
+          },
+          "name": "Create a new product variant with an image",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"variant\":{\"image_id\":850703190,\"option1\":\"Purple\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/variants.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nvariant = ShopifyAPI::Variant.new(session: test_session)\nvariant.product_id = 632910392\nvariant.image_id = 850703190\nvariant.option1 = \"Purple\"\nvariant.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst variant = new shopify.rest.Variant({session: session});\nvariant.product_id = 632910392;\nvariant.image_id = 850703190;\nvariant.option1 = \"Purple\";\nawait variant.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->product_id = 632910392;\n$variant->image_id = 850703190;\n$variant->option1 = \"Purple\";\n$variant->save(\n    true, // Update Object\n);"
+            }
+          ]
+        }
+      ],
+      "x-api-accessibilities": {
+        "initial": [
+          {
+            "scope": "products"
+          }
+        ]
+      },
+      "url": "/admin/api/{api_version}/products/{product_id}/variants.json",
+      "action": "post"
     },
     {
       "description": "Retrieves a count of product variants",
@@ -699,7 +972,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Variant.count({\n  session: test_session,\n  product_id: 632910392,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Variant.count({\n  session: session,\n  product_id: 632910392,\n});"
             },
             {
               "language": "php",
@@ -770,8 +1043,8 @@
                       "option1": "Pink",
                       "option2": null,
                       "option3": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:44:45-06:00",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:21:36-07:00",
                       "taxable": true,
                       "barcode": "1234_pink",
                       "grams": 567,
@@ -815,7 +1088,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"variant\":{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:44:45-04:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"tax_code\":\"DA040000\",\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}}"
+            "body": "{\"variant\":{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"tax_code\":\"DA040000\",\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}}"
           },
           "name": "Retrieve a product variant by ID",
           "codeSamples": [
@@ -829,7 +1102,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Variant.find({\n  session: test_session,\n  id: 808950810,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Variant.find({\n  session: session,\n  id: 808950810,\n});"
             },
             {
               "language": "php",
@@ -876,7 +1149,7 @@
           "content": {
             "application/json": {
               "examples": {
-                "Add an existing image to an existing variant": {
+                "Add a metafield to an existing variant": {
                   "value": {
                     "variant": {
                       "id": 808950810,
@@ -892,8 +1165,8 @@
                       "option1": "Pink",
                       "option2": null,
                       "option3": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:50:21-06:00",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:25:13-07:00",
                       "taxable": true,
                       "barcode": "1234_pink",
                       "grams": 567,
@@ -917,7 +1190,7 @@
                     }
                   }
                 },
-                "Add a metafield to an existing variant": {
+                "Add an existing image to an existing variant": {
                   "value": {
                     "variant": {
                       "id": 808950810,
@@ -933,8 +1206,8 @@
                       "option1": "Pink",
                       "option2": null,
                       "option3": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:50:38-06:00",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:25:26-07:00",
                       "taxable": true,
                       "barcode": "1234_pink",
                       "grams": 567,
@@ -974,8 +1247,8 @@
                       "option1": "Not Pink",
                       "option2": null,
                       "option3": null,
-                      "created_at": "2022-10-03T10:44:45-06:00",
-                      "updated_at": "2022-10-03T10:50:49-06:00",
+                      "created_at": "2023-01-03T10:21:36-07:00",
+                      "updated_at": "2023-01-03T10:25:43-07:00",
                       "taxable": true,
                       "barcode": "1234_pink",
                       "grams": 567,
@@ -1013,47 +1286,12 @@
           "request": {
             "action": "PUT /admin/api/2021-07/variants/808950810.json",
             "headers": {},
-            "body": "{\"variant\":{\"id\":808950810,\"image_id\":562641783}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 200 OK",
-            "headers": {},
-            "body": "{\"variant\":{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:50:21-04:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}}"
-          },
-          "name": "Add an existing image to an existing variant",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"variant\":{\"id\":808950810,\"image_id\":562641783}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/variants/808950810.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nvariant = ShopifyAPI::Variant.new(session: test_session)\nvariant.id = 808950810\nvariant.image_id = 562641783\nvariant.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst variant = new Variant({session: test_session});\nvariant.id = 808950810;\nvariant.image_id = 562641783;\nawait variant.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->id = 808950810;\n$variant->image_id = 562641783;\n$variant->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "200",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/variants/808950810.json",
-          "request_method": "PUT",
-          "request": {
-            "action": "PUT /admin/api/2021-07/variants/808950810.json",
-            "headers": {},
             "body": "{\"variant\":{\"id\":808950810,\"metafields\":[{\"key\":\"new\",\"value\":\"newvalue\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"variant\":{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:50:38-04:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}}"
+            "body": "{\"variant\":{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:25:13-05:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}}"
           },
           "name": "Add a metafield to an existing variant",
           "codeSamples": [
@@ -1067,11 +1305,46 @@
             },
             {
               "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst variant = new Variant({session: test_session});\nvariant.id = 808950810;\nvariant.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"newvalue\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait variant.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst variant = new shopify.rest.Variant({session: session});\nvariant.id = 808950810;\nvariant.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"newvalue\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait variant.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->id = 808950810;\n$variant->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"newvalue\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$variant->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/variants/808950810.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/2021-07/variants/808950810.json",
+            "headers": {},
+            "body": "{\"variant\":{\"id\":808950810,\"image_id\":562641783}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"variant\":{\"id\":808950810,\"product_id\":632910392,\"title\":\"Pink\",\"price\":\"199.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:25:26-05:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}}"
+          },
+          "name": "Add an existing image to an existing variant",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"variant\":{\"id\":808950810,\"image_id\":562641783}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/variants/808950810.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nvariant = ShopifyAPI::Variant.new(session: test_session)\nvariant.id = 808950810\nvariant.image_id = 562641783\nvariant.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst variant = new shopify.rest.Variant({session: session});\nvariant.id = 808950810;\nvariant.image_id = 562641783;\nawait variant.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->id = 808950810;\n$variant->image_id = 562641783;\n$variant->save(\n    true, // Update Object\n);"
             }
           ]
         },
@@ -1088,7 +1361,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"variant\":{\"id\":808950810,\"product_id\":632910392,\"title\":\"Not Pink\",\"price\":\"99.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Not Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:44:45-04:00\",\"updated_at\":\"2022-10-03T12:50:49-04:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"99.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}}"
+            "body": "{\"variant\":{\"id\":808950810,\"product_id\":632910392,\"title\":\"Not Pink\",\"price\":\"99.00\",\"sku\":\"IPOD2008PINK\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Not Pink\",\"option2\":null,\"option3\":null,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:25:43-05:00\",\"taxable\":true,\"barcode\":\"1234_pink\",\"grams\":567,\"image_id\":562641783,\"weight\":1.25,\"weight_unit\":\"lb\",\"inventory_item_id\":808950810,\"inventory_quantity\":10,\"old_inventory_quantity\":10,\"presentment_prices\":[{\"price\":{\"amount\":\"99.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/808950810\"}}"
           },
           "name": "Update the title and price of an existing variant",
           "codeSamples": [
@@ -1102,7 +1375,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst variant = new Variant({session: test_session});\nvariant.id = 808950810;\nvariant.option1 = \"Not Pink\";\nvariant.price = \"99.00\";\nawait variant.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst variant = new shopify.rest.Variant({session: session});\nvariant.id = 808950810;\nvariant.option1 = \"Not Pink\";\nvariant.price = \"99.00\";\nawait variant.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -1120,279 +1393,6 @@
       },
       "url": "/admin/api/{api_version}/variants/{variant_id}.json",
       "action": "put"
-    },
-    {
-      "description": "Creates a new product variant",
-      "summary": "Create a new Product Variant",
-      "operationId": "CreateanewProductVariant",
-      "parameters": [
-        {
-          "name": "api_version",
-          "in": "path",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        },
-        {
-          "name": "product_id",
-          "in": "path",
-          "schema": {
-            "type": "string"
-          },
-          "required": true
-        }
-      ],
-      "responses": {
-        "201": {
-          "description": "Create a new Product Variant",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Create a new product variant with an image": {
-                  "value": {
-                    "variant": {
-                      "id": 1070325019,
-                      "product_id": 632910392,
-                      "title": "Purple",
-                      "price": "0.00",
-                      "sku": "",
-                      "position": 5,
-                      "inventory_policy": "deny",
-                      "compare_at_price": null,
-                      "fulfillment_service": "manual",
-                      "inventory_management": "shopify",
-                      "option1": "Purple",
-                      "option2": null,
-                      "option3": null,
-                      "created_at": "2022-10-03T10:50:00-06:00",
-                      "updated_at": "2022-10-03T10:50:00-06:00",
-                      "taxable": true,
-                      "barcode": null,
-                      "grams": 0,
-                      "image_id": 850703190,
-                      "weight": 0.0,
-                      "weight_unit": "lb",
-                      "inventory_item_id": 1070325019,
-                      "inventory_quantity": 0,
-                      "old_inventory_quantity": 0,
-                      "presentment_prices": [
-                        {
-                          "price": {
-                            "amount": "0.00",
-                            "currency_code": "USD"
-                          },
-                          "compare_at_price": null
-                        }
-                      ],
-                      "requires_shipping": true,
-                      "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325019"
-                    }
-                  }
-                },
-                "Create a new product variant": {
-                  "value": {
-                    "variant": {
-                      "id": 1070325020,
-                      "product_id": 632910392,
-                      "title": "Yellow",
-                      "price": "1.00",
-                      "sku": "",
-                      "position": 5,
-                      "inventory_policy": "deny",
-                      "compare_at_price": null,
-                      "fulfillment_service": "manual",
-                      "inventory_management": "shopify",
-                      "option1": "Yellow",
-                      "option2": null,
-                      "option3": null,
-                      "created_at": "2022-10-03T10:50:03-06:00",
-                      "updated_at": "2022-10-03T10:50:03-06:00",
-                      "taxable": true,
-                      "barcode": null,
-                      "grams": 0,
-                      "image_id": null,
-                      "weight": 0.0,
-                      "weight_unit": "lb",
-                      "inventory_item_id": 1070325020,
-                      "inventory_quantity": 0,
-                      "old_inventory_quantity": 0,
-                      "presentment_prices": [
-                        {
-                          "price": {
-                            "amount": "1.00",
-                            "currency_code": "USD"
-                          },
-                          "compare_at_price": null
-                        }
-                      ],
-                      "requires_shipping": true,
-                      "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325020"
-                    }
-                  }
-                },
-                "Create a new product variant with a metafield": {
-                  "value": {
-                    "variant": {
-                      "id": 1070325024,
-                      "product_id": 632910392,
-                      "title": "Blue",
-                      "price": "0.00",
-                      "sku": "",
-                      "position": 5,
-                      "inventory_policy": "deny",
-                      "compare_at_price": null,
-                      "fulfillment_service": "manual",
-                      "inventory_management": "shopify",
-                      "option1": "Blue",
-                      "option2": null,
-                      "option3": null,
-                      "created_at": "2022-10-03T10:50:35-06:00",
-                      "updated_at": "2022-10-03T10:50:35-06:00",
-                      "taxable": true,
-                      "barcode": null,
-                      "grams": 0,
-                      "image_id": null,
-                      "weight": 0.0,
-                      "weight_unit": "lb",
-                      "inventory_item_id": 1070325024,
-                      "inventory_quantity": 0,
-                      "old_inventory_quantity": 0,
-                      "presentment_prices": [
-                        {
-                          "price": {
-                            "amount": "0.00",
-                            "currency_code": "USD"
-                          },
-                          "compare_at_price": null
-                        }
-                      ],
-                      "requires_shipping": true,
-                      "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325024"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "x-examples": [
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/variants.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/2021-07/products/632910392/variants.json",
-            "headers": {},
-            "body": "{\"variant\":{\"image_id\":850703190,\"option1\":\"Purple\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"variant\":{\"id\":1070325019,\"product_id\":632910392,\"title\":\"Purple\",\"price\":\"0.00\",\"sku\":\"\",\"position\":5,\"inventory_policy\":\"deny\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Purple\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:50:00-04:00\",\"updated_at\":\"2022-10-03T12:50:00-04:00\",\"taxable\":true,\"barcode\":null,\"grams\":0,\"image_id\":850703190,\"weight\":0.0,\"weight_unit\":\"lb\",\"inventory_item_id\":1070325019,\"inventory_quantity\":0,\"old_inventory_quantity\":0,\"presentment_prices\":[{\"price\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/1070325019\"}}"
-          },
-          "name": "Create a new product variant with an image",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"variant\":{\"image_id\":850703190,\"option1\":\"Purple\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/variants.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nvariant = ShopifyAPI::Variant.new(session: test_session)\nvariant.product_id = 632910392\nvariant.image_id = 850703190\nvariant.option1 = \"Purple\"\nvariant.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst variant = new Variant({session: test_session});\nvariant.product_id = 632910392;\nvariant.image_id = 850703190;\nvariant.option1 = \"Purple\";\nawait variant.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->product_id = 632910392;\n$variant->image_id = 850703190;\n$variant->option1 = \"Purple\";\n$variant->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/variants.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/2021-07/products/632910392/variants.json",
-            "headers": {},
-            "body": "{\"variant\":{\"option1\":\"Yellow\",\"price\":\"1.00\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"variant\":{\"id\":1070325020,\"product_id\":632910392,\"title\":\"Yellow\",\"price\":\"1.00\",\"sku\":\"\",\"position\":5,\"inventory_policy\":\"deny\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Yellow\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:50:03-04:00\",\"updated_at\":\"2022-10-03T12:50:03-04:00\",\"taxable\":true,\"barcode\":null,\"grams\":0,\"image_id\":null,\"weight\":0.0,\"weight_unit\":\"lb\",\"inventory_item_id\":1070325020,\"inventory_quantity\":0,\"old_inventory_quantity\":0,\"presentment_prices\":[{\"price\":{\"amount\":\"1.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/1070325020\"}}"
-          },
-          "name": "Create a new product variant",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"variant\":{\"option1\":\"Yellow\",\"price\":\"1.00\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/variants.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nvariant = ShopifyAPI::Variant.new(session: test_session)\nvariant.product_id = 632910392\nvariant.option1 = \"Yellow\"\nvariant.price = \"1.00\"\nvariant.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst variant = new Variant({session: test_session});\nvariant.product_id = 632910392;\nvariant.option1 = \"Yellow\";\nvariant.price = \"1.00\";\nawait variant.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->product_id = 632910392;\n$variant->option1 = \"Yellow\";\n$variant->price = \"1.00\";\n$variant->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/variants.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/2021-07/products/632910392/variants.json",
-            "headers": {},
-            "body": "{\"variant\":{\"option1\":\"Blue\",\"metafields\":[{\"key\":\"new\",\"value\":\"newvalue\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {},
-            "body": "{\"variant\":{\"id\":1070325024,\"product_id\":632910392,\"title\":\"Blue\",\"price\":\"0.00\",\"sku\":\"\",\"position\":5,\"inventory_policy\":\"deny\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"Blue\",\"option2\":null,\"option3\":null,\"created_at\":\"2022-10-03T12:50:35-04:00\",\"updated_at\":\"2022-10-03T12:50:35-04:00\",\"taxable\":true,\"barcode\":null,\"grams\":0,\"image_id\":null,\"weight\":0.0,\"weight_unit\":\"lb\",\"inventory_item_id\":1070325024,\"inventory_quantity\":0,\"old_inventory_quantity\":0,\"presentment_prices\":[{\"price\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"compare_at_price\":null}],\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid://shopify/ProductVariant/1070325024\"}}"
-          },
-          "name": "Create a new product variant with a metafield",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"variant\":{\"option1\":\"Blue\",\"metafields\":[{\"key\":\"new\",\"value\":\"newvalue\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/variants.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nvariant = ShopifyAPI::Variant.new(session: test_session)\nvariant.product_id = 632910392\nvariant.option1 = \"Blue\"\nvariant.metafields = [\n  {\n    \"key\" => \"new\",\n    \"value\" => \"newvalue\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\nvariant.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst variant = new Variant({session: test_session});\nvariant.product_id = 632910392;\nvariant.option1 = \"Blue\";\nvariant.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"newvalue\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait variant.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Variant;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$variant = new Variant($this->test_session);\n$variant->product_id = 632910392;\n$variant->option1 = \"Blue\";\n$variant->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"newvalue\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$variant->save(\n    true, // Update Object\n);"
-            }
-          ]
-        }
-      ],
-      "x-api-accessibilities": {
-        "initial": [
-          {
-            "scope": "products"
-          }
-        ]
-      },
-      "url": "/admin/api/{api_version}/products/{product_id}/variants.json",
-      "action": "post"
     },
     {
       "description": null,
@@ -1466,7 +1466,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Variant} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Variant.delete({\n  session: test_session,\n  product_id: 632910392,\n  id: 808950810,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Variant.delete({\n  session: session,\n  product_id: 632910392,\n  id: 808950810,\n});"
             },
             {
               "language": "php",

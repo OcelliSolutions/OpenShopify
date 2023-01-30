@@ -285,7 +285,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Province.all({\n  session: test_session,\n  country_id: 879921427,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Province.all({\n  session: session,\n  country_id: 879921427,\n});"
             },
             {
               "language": "php",
@@ -320,7 +320,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Province.all({\n  session: test_session,\n  country_id: 879921427,\n  since_id: \"536137098\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Province.all({\n  session: session,\n  country_id: 879921427,\n  since_id: \"536137098\",\n});"
             },
             {
               "language": "php",
@@ -405,7 +405,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Province.count({\n  session: test_session,\n  country_id: 879921427,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Province.count({\n  session: session,\n  country_id: 879921427,\n});"
             },
             {
               "language": "php",
@@ -516,7 +516,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Province.find({\n  session: test_session,\n  country_id: 879921427,\n  id: 224293623,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Province.find({\n  session: session,\n  country_id: 879921427,\n  id: 224293623,\n});"
             },
             {
               "language": "php",
@@ -619,7 +619,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst province = new Province({session: test_session});\nprovince.country_id = 879921427;\nprovince.id = 224293623;\nprovince.tax = 0.09;\nawait province.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst province = new shopify.rest.Province({session: session});\nprovince.country_id = 879921427;\nprovince.id = 224293623;\nprovince.tax = 0.09;\nawait province.save({\n  update: true,\n});"
             },
             {
               "language": "php",

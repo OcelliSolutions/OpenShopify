@@ -86,7 +86,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order_risk = new OrderRisk({session: test_session});\norder_risk.order_id = 450789469;\norder_risk.message = \"This order came from an anonymous proxy\";\norder_risk.recommendation = \"cancel\";\norder_risk.score = 1.0;\norder_risk.source = \"External\";\norder_risk.cause_cancel = true;\norder_risk.display = true;\nawait order_risk.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst order_risk = new shopify.rest.OrderRisk({session: session});\norder_risk.order_id = 450789469;\norder_risk.message = \"This order came from an anonymous proxy\";\norder_risk.recommendation = \"cancel\";\norder_risk.score = 1.0;\norder_risk.source = \"External\";\norder_risk.cause_cancel = true;\norder_risk.display = true;\nawait order_risk.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -196,7 +196,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.OrderRisk.all({\n  session: session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
@@ -300,7 +300,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.OrderRisk.find({\n  session: session,\n  order_id: 450789469,\n  id: 284138680,\n});"
             },
             {
               "language": "php",
@@ -404,7 +404,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order_risk = new OrderRisk({session: test_session});\norder_risk.order_id = 450789469;\norder_risk.id = 284138680;\norder_risk.message = \"After further review, this is a legitimate order\";\norder_risk.recommendation = \"accept\";\norder_risk.source = \"External\";\norder_risk.cause_cancel = false;\norder_risk.score = 0.0;\nawait order_risk.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst order_risk = new shopify.rest.OrderRisk({session: session});\norder_risk.order_id = 450789469;\norder_risk.id = 284138680;\norder_risk.message = \"After further review, this is a legitimate order\";\norder_risk.recommendation = \"accept\";\norder_risk.source = \"External\";\norder_risk.cause_cancel = false;\norder_risk.score = 0.0;\nawait order_risk.save({\n  update: true,\n});"
             },
             {
               "language": "php",
@@ -495,7 +495,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.delete({\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.OrderRisk.delete({\n  session: session,\n  order_id: 450789469,\n  id: 284138680,\n});"
             },
             {
               "language": "php",

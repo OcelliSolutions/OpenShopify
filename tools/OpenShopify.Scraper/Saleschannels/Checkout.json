@@ -30,77 +30,11 @@
           "content": {
             "application/json": {
               "examples": {
-                "Create a checkout without any line items": {
-                  "value": {
-                    "checkout": {
-                      "completed_at": null,
-                      "created_at": "2022-10-03T10:24:56-06:00",
-                      "currency": "USD",
-                      "presentment_currency": "USD",
-                      "customer_id": 1073339458,
-                      "customer_locale": "en",
-                      "device_id": null,
-                      "discount_code": null,
-                      "discount_codes": [],
-                      "email": "me@example.com",
-                      "legal_notice_url": null,
-                      "location_id": null,
-                      "name": "#1066348319",
-                      "note": "",
-                      "note_attributes": {},
-                      "order_id": null,
-                      "order_status_url": null,
-                      "order": null,
-                      "payment_due": "0.00",
-                      "payment_url": "https://app.local/cardserver/sessions",
-                      "payments": [],
-                      "phone": null,
-                      "shopify_payments_account_id": null,
-                      "privacy_policy_url": null,
-                      "refund_policy_url": null,
-                      "requires_shipping": false,
-                      "reservation_time_left": 0,
-                      "reservation_time": null,
-                      "source_identifier": null,
-                      "source_name": "755357713",
-                      "source_url": null,
-                      "subscription_policy_url": null,
-                      "subtotal_price": "0.00",
-                      "shipping_policy_url": null,
-                      "tax_exempt": false,
-                      "taxes_included": false,
-                      "terms_of_sale_url": null,
-                      "terms_of_service_url": null,
-                      "token": "8fa96ad154739bb205a00fab92a6cbb4",
-                      "total_price": "0.00",
-                      "total_tax": "0.00",
-                      "total_tip_received": "0.00",
-                      "total_line_items_price": "0.00",
-                      "updated_at": "2022-10-03T10:24:56-06:00",
-                      "user_id": null,
-                      "web_url": "https://jsmith.myshopify.com/548380009/checkouts/8fa96ad154739bb205a00fab92a6cbb4",
-                      "total_duties": null,
-                      "total_additional_fees": null,
-                      "line_items": [],
-                      "gift_cards": [],
-                      "tax_lines": [],
-                      "tax_manipulations": [],
-                      "shipping_line": null,
-                      "shipping_rate": null,
-                      "shipping_address": null,
-                      "credit_card": null,
-                      "billing_address": null,
-                      "applied_discount": null,
-                      "applied_discounts": [],
-                      "discount_violations": []
-                    }
-                  }
-                },
                 "Create a checkout with a product variant and quantity": {
                   "value": {
                     "checkout": {
                       "completed_at": null,
-                      "created_at": "2022-10-03T10:25:20-06:00",
+                      "created_at": "2023-01-03T10:41:32-07:00",
                       "currency": "USD",
                       "presentment_currency": "USD",
                       "customer_id": null,
@@ -111,7 +45,7 @@
                       "email": null,
                       "legal_notice_url": null,
                       "location_id": null,
-                      "name": "#1066348320",
+                      "name": "#1066348317",
                       "note": "",
                       "note_attributes": {},
                       "order_id": null,
@@ -137,27 +71,27 @@
                       "taxes_included": false,
                       "terms_of_sale_url": null,
                       "terms_of_service_url": null,
-                      "token": "d0c540d493f50196bbdf010794a53b9d",
+                      "token": "c3b86d7cdfaf5a4d1bf89efbbe88789e",
                       "total_price": "995.00",
                       "total_tax": "0.00",
                       "total_tip_received": "0.00",
                       "total_line_items_price": "995.00",
-                      "updated_at": "2022-10-03T10:25:20-06:00",
+                      "updated_at": "2023-01-03T10:41:32-07:00",
                       "user_id": null,
-                      "web_url": "https://jsmith.myshopify.com/548380009/checkouts/d0c540d493f50196bbdf010794a53b9d",
+                      "web_url": "https://jsmith.myshopify.com/548380009/checkouts/c3b86d7cdfaf5a4d1bf89efbbe88789e",
                       "total_duties": null,
                       "total_additional_fees": null,
                       "line_items": [
                         {
-                          "id": "4b03a6477a2646f2bef85f95822a6615",
-                          "key": "4b03a6477a2646f2bef85f95822a6615",
+                          "id": "e8a51fbe23cff8fcad2766f024a761d6",
+                          "key": "e8a51fbe23cff8fcad2766f024a761d6",
                           "product_id": 632910392,
                           "variant_id": 39072856,
                           "sku": "IPOD2008GREEN",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Green",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -186,6 +120,72 @@
                       "discount_violations": []
                     }
                   }
+                },
+                "Create a checkout without any line items": {
+                  "value": {
+                    "checkout": {
+                      "completed_at": null,
+                      "created_at": "2023-01-03T10:41:50-07:00",
+                      "currency": "USD",
+                      "presentment_currency": "USD",
+                      "customer_id": 1073339479,
+                      "customer_locale": "en",
+                      "device_id": null,
+                      "discount_code": null,
+                      "discount_codes": [],
+                      "email": "me@example.com",
+                      "legal_notice_url": null,
+                      "location_id": null,
+                      "name": "#1066348318",
+                      "note": "",
+                      "note_attributes": {},
+                      "order_id": null,
+                      "order_status_url": null,
+                      "order": null,
+                      "payment_due": "0.00",
+                      "payment_url": "https://app.local/cardserver/sessions",
+                      "payments": [],
+                      "phone": null,
+                      "shopify_payments_account_id": null,
+                      "privacy_policy_url": null,
+                      "refund_policy_url": null,
+                      "requires_shipping": false,
+                      "reservation_time_left": 0,
+                      "reservation_time": null,
+                      "source_identifier": null,
+                      "source_name": "755357713",
+                      "source_url": null,
+                      "subscription_policy_url": null,
+                      "subtotal_price": "0.00",
+                      "shipping_policy_url": null,
+                      "tax_exempt": false,
+                      "taxes_included": false,
+                      "terms_of_sale_url": null,
+                      "terms_of_service_url": null,
+                      "token": "8a8043ef00104a4738ba3a235cd2441b",
+                      "total_price": "0.00",
+                      "total_tax": "0.00",
+                      "total_tip_received": "0.00",
+                      "total_line_items_price": "0.00",
+                      "updated_at": "2023-01-03T10:41:50-07:00",
+                      "user_id": null,
+                      "web_url": "https://jsmith.myshopify.com/548380009/checkouts/8a8043ef00104a4738ba3a235cd2441b",
+                      "total_duties": null,
+                      "total_additional_fees": null,
+                      "line_items": [],
+                      "gift_cards": [],
+                      "tax_lines": [],
+                      "tax_manipulations": [],
+                      "shipping_line": null,
+                      "shipping_rate": null,
+                      "shipping_address": null,
+                      "credit_card": null,
+                      "billing_address": null,
+                      "applied_discount": null,
+                      "applied_discounts": [],
+                      "discount_violations": []
+                    }
+                  }
                 }
               }
             }
@@ -196,6 +196,23 @@
           "content": {
             "application/json": {
               "examples": {
+                "Creating a checkout with errors, such as using the ID of a variant that doesn't exist or that isn't published to your sales channel, fails with a 422 response and returns errors": {
+                  "value": {
+                    "errors": {
+                      "line_items": {
+                        "0": {
+                          "variant_id": [
+                            {
+                              "code": "invalid",
+                              "message": "is invalid",
+                              "options": {}
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "Creating a checkout with line item errors fails and returns the errors mapped by index": {
                   "value": {
                     "errors": {
@@ -230,23 +247,6 @@
                       }
                     }
                   }
-                },
-                "Creating a checkout with errors, such as using the ID of a variant that doesn't exist or that isn't published to your sales channel, fails with a 422 response and returns errors": {
-                  "value": {
-                    "errors": {
-                      "line_items": {
-                        "0": {
-                          "variant_id": [
-                            {
-                              "code": "invalid",
-                              "message": "is invalid",
-                              "options": {}
-                            }
-                          ]
-                        }
-                      }
-                    }
-                  }
                 }
               }
             }
@@ -262,86 +262,14 @@
           "request": {
             "action": "POST /admin/api/unstable/checkouts.json",
             "headers": {},
-            "body": "{\"checkout\":{\"email\":\"me@example.com\"}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 201 Created",
-            "headers": {
-              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/8fa96ad154739bb205a00fab92a6cbb4.json"
-            },
-            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2022-10-03T12:24:56-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":1073339458,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"me@example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#1066348319\",\"note\":\"\",\"note_attributes\":{},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"0.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":false,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"755357713\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"0.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"8fa96ad154739bb205a00fab92a6cbb4\",\"total_price\":\"0.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"0.00\",\"updated_at\":\"2022-10-03T12:24:56-04:00\",\"user_id\":null,\"web_url\":\"https://jsmith.myshopify.com/548380009/checkouts/8fa96ad154739bb205a00fab92a6cbb4\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":null,\"shipping_rate\":null,\"shipping_address\":null,\"credit_card\":null,\"billing_address\":null,\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
-          },
-          "name": "Create a checkout without any line items",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"email\":\"me@example.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.email = \"me@example.com\"\ncheckout.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.email = \"me@example.com\";\nawait checkout.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->email = \"me@example.com\";\n$checkout->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "422",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/checkouts.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/checkouts.json",
-            "headers": {},
-            "body": "{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":49148385,\"quantity\":1},{\"variant_id\":1,\"quantity\":1}]}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 422 Unprocessable Entity",
-            "headers": {},
-            "body": "{\"errors\":{\"line_items\":{\"1\":{\"variant_id\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]},\"2\":{\"variant_id\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]},\"4\":{\"variant_id\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]}}}}"
-          },
-          "name": "Creating a checkout with line item errors fails and returns the errors mapped by index",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":49148385,\"quantity\":1},{\"variant_id\":1,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.line_items = [\n  {\n    \"variant_id\" => 39072856,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 49148385,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  }\n]\ncheckout.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 39072856,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 49148385,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  }\n];\nawait checkout.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 39072856,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 49148385,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ]\n];\n$checkout->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "201",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/checkouts.json",
-          "request_method": "POST",
-          "request": {
-            "action": "POST /admin/api/unstable/checkouts.json",
-            "headers": {},
             "body": "{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":5}]}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {
-              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/d0c540d493f50196bbdf010794a53b9d.json"
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/c3b86d7cdfaf5a4d1bf89efbbe88789e.json"
             },
-            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2022-10-03T12:25:20-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":null,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":null,\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#1066348320\",\"note\":\"\",\"note_attributes\":{},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"995.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"755357713\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"995.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"d0c540d493f50196bbdf010794a53b9d\",\"total_price\":\"995.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"995.00\",\"updated_at\":\"2022-10-03T12:25:20-04:00\",\"user_id\":null,\"web_url\":\"https://jsmith.myshopify.com/548380009/checkouts/d0c540d493f50196bbdf010794a53b9d\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"4b03a6477a2646f2bef85f95822a6615\",\"key\":\"4b03a6477a2646f2bef85f95822a6615\",\"product_id\":632910392,\"variant_id\":39072856,\"sku\":\"IPOD2008GREEN\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Green\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"995.00\",\"properties\":{},\"quantity\":5,\"grams\":567,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":null,\"shipping_rate\":null,\"shipping_address\":null,\"credit_card\":null,\"billing_address\":null,\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
+            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2023-01-03T12:41:32-05:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":null,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":null,\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#1066348317\",\"note\":\"\",\"note_attributes\":{},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"995.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"755357713\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"995.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"c3b86d7cdfaf5a4d1bf89efbbe88789e\",\"total_price\":\"995.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"995.00\",\"updated_at\":\"2023-01-03T12:41:32-05:00\",\"user_id\":null,\"web_url\":\"https://jsmith.myshopify.com/548380009/checkouts/c3b86d7cdfaf5a4d1bf89efbbe88789e\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"e8a51fbe23cff8fcad2766f024a761d6\",\"key\":\"e8a51fbe23cff8fcad2766f024a761d6\",\"product_id\":632910392,\"variant_id\":39072856,\"sku\":\"IPOD2008GREEN\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Green\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"995.00\",\"properties\":{},\"quantity\":5,\"grams\":567,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":null,\"shipping_rate\":null,\"shipping_address\":null,\"credit_card\":null,\"billing_address\":null,\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
           },
           "name": "Create a checkout with a product variant and quantity",
           "codeSamples": [
@@ -355,11 +283,48 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 39072856,\n    \"quantity\": 5\n  }\n];\nawait checkout.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst checkout = new shopify.rest.Checkout({session: session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 39072856,\n    \"quantity\": 5\n  }\n];\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 39072856,\n        \"quantity\" => 5\n    ]\n];\n$checkout->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/checkouts.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/checkouts.json",
+            "headers": {},
+            "body": "{\"checkout\":{\"email\":\"me@example.com\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/8a8043ef00104a4738ba3a235cd2441b.json"
+            },
+            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2023-01-03T12:41:50-05:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":1073339479,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"me@example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#1066348318\",\"note\":\"\",\"note_attributes\":{},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"0.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":false,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"755357713\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"0.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"8a8043ef00104a4738ba3a235cd2441b\",\"total_price\":\"0.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"0.00\",\"updated_at\":\"2023-01-03T12:41:50-05:00\",\"user_id\":null,\"web_url\":\"https://jsmith.myshopify.com/548380009/checkouts/8a8043ef00104a4738ba3a235cd2441b\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":null,\"shipping_rate\":null,\"shipping_address\":null,\"credit_card\":null,\"billing_address\":null,\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
+          },
+          "name": "Create a checkout without any line items",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"checkout\":{\"email\":\"me@example.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.email = \"me@example.com\"\ncheckout.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst checkout = new shopify.rest.Checkout({session: session});\ncheckout.email = \"me@example.com\";\nawait checkout.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->email = \"me@example.com\";\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         },
@@ -390,11 +355,46 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 123456789,\n    \"quantity\": 1\n  }\n];\nawait checkout.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst checkout = new shopify.rest.Checkout({session: session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 123456789,\n    \"quantity\": 1\n  }\n];\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 123456789,\n        \"quantity\" => 1\n    ]\n];\n$checkout->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/checkouts.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/checkouts.json",
+            "headers": {},
+            "body": "{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":49148385,\"quantity\":1},{\"variant_id\":1,\"quantity\":1}]}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"line_items\":{\"1\":{\"variant_id\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]},\"2\":{\"variant_id\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]},\"4\":{\"variant_id\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]}}}}"
+          },
+          "name": "Creating a checkout with line item errors fails and returns the errors mapped by index",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":49148385,\"quantity\":1},{\"variant_id\":1,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.line_items = [\n  {\n    \"variant_id\" => 39072856,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 49148385,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  }\n]\ncheckout.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst checkout = new shopify.rest.Checkout({session: session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 39072856,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 49148385,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  }\n];\nawait checkout.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 39072856,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 49148385,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ]\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -495,7 +495,7 @@
                       "total_tax": "0.00",
                       "total_tip_received": "0.00",
                       "total_line_items_price": "0.00",
-                      "updated_at": "2022-10-03T10:25:25-06:00",
+                      "updated_at": "2023-01-03T10:41:10-07:00",
                       "user_id": null,
                       "web_url": "https://checkout.local/548380009/checkouts/b490a9220cd14d7344024f4874f640a6",
                       "total_duties": null,
@@ -510,7 +510,7 @@
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Red",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": false,
                           "gift_card": false,
@@ -590,7 +590,7 @@
               "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/b490a9220cd14d7344024f4874f640a6.json",
               "Retry-After": "1"
             },
-            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#86568385\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"0.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":false,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"0.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"b490a9220cd14d7344024f4874f640a6\",\"total_price\":\"0.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"0.00\",\"updated_at\":\"2022-10-03T12:25:25-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/b490a9220cd14d7344024f4874f640a6\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":49148385,\"key\":49148385,\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":false,\"gift_card\":false,\"price\":\"0.00\",\"compare_at_price\":null,\"line_price\":\"0.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":null,\"shipping_rate\":null,\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
+            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#86568385\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"0.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":false,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"0.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"b490a9220cd14d7344024f4874f640a6\",\"total_price\":\"0.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"0.00\",\"updated_at\":\"2023-01-03T12:41:10-05:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/b490a9220cd14d7344024f4874f640a6\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":49148385,\"key\":49148385,\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":false,\"gift_card\":false,\"price\":\"0.00\",\"compare_at_price\":null,\"line_price\":\"0.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":null,\"shipping_rate\":null,\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
           },
           "name": "Complete a checkout without requiring payment",
           "codeSamples": [
@@ -604,7 +604,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"b490a9220cd14d7344024f4874f640a6\";\nawait checkout.complete({});"
+              "example_code": "// Session is built by the OAuth process\n\nconst checkout = new shopify.rest.Checkout({session: session});\ncheckout.token = \"b490a9220cd14d7344024f4874f640a6\";\nawait checkout.complete({});"
             },
             {
               "language": "php",
@@ -720,15 +720,15 @@
                       "total_additional_fees": null,
                       "line_items": [
                         {
-                          "id": "921bef3967ebdc26",
-                          "key": "921bef3967ebdc26",
+                          "id": "71e61dc0fa94a2fc",
+                          "key": "71e61dc0fa94a2fc",
                           "product_id": 632910392,
                           "variant_id": 49148385,
                           "sku": "IPOD2008RED",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Red",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -744,15 +744,15 @@
                           "tax_lines": []
                         },
                         {
-                          "id": "531e7a36585bcf41",
-                          "key": "531e7a36585bcf41",
+                          "id": "d76e2360549fc5e0",
+                          "key": "d76e2360549fc5e0",
                           "product_id": 632910392,
                           "variant_id": 808950810,
                           "sku": "IPOD2008PINK",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Pink",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -828,168 +828,6 @@
           "content": {
             "application/json": {
               "examples": {
-                "Retrieve an existing checkout": {
-                  "value": {
-                    "checkout": {
-                      "completed_at": null,
-                      "created_at": "2012-10-12T05:05:27-06:00",
-                      "currency": "USD",
-                      "presentment_currency": "USD",
-                      "customer_id": 207119551,
-                      "customer_locale": "en",
-                      "device_id": null,
-                      "discount_code": null,
-                      "discount_codes": [],
-                      "email": "bob.norman@mail.example.com",
-                      "legal_notice_url": null,
-                      "location_id": null,
-                      "name": "#862052962",
-                      "note": "",
-                      "note_attributes": {
-                        "custom engraving": "Happy Birthday",
-                        "colour": "green"
-                      },
-                      "order_id": null,
-                      "order_status_url": null,
-                      "order": null,
-                      "payment_due": "419.49",
-                      "payment_url": "https://app.local/cardserver/sessions",
-                      "payments": [],
-                      "phone": null,
-                      "shopify_payments_account_id": null,
-                      "privacy_policy_url": null,
-                      "refund_policy_url": null,
-                      "requires_shipping": true,
-                      "reservation_time_left": 0,
-                      "reservation_time": null,
-                      "source_identifier": null,
-                      "source_name": "web",
-                      "source_url": null,
-                      "subscription_policy_url": null,
-                      "subtotal_price": "398.00",
-                      "shipping_policy_url": null,
-                      "tax_exempt": false,
-                      "taxes_included": false,
-                      "terms_of_sale_url": null,
-                      "terms_of_service_url": null,
-                      "token": "exuw7apwoycchjuwtiqg8nytfhphr62a",
-                      "total_price": "419.49",
-                      "total_tax": "21.49",
-                      "total_tip_received": "0.00",
-                      "total_line_items_price": "398.00",
-                      "updated_at": "2012-10-12T05:05:27-06:00",
-                      "user_id": null,
-                      "web_url": "https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a",
-                      "total_duties": null,
-                      "total_additional_fees": null,
-                      "line_items": [
-                        {
-                          "id": "921bef3967ebdc26",
-                          "key": "921bef3967ebdc26",
-                          "product_id": 632910392,
-                          "variant_id": 49148385,
-                          "sku": "IPOD2008RED",
-                          "vendor": "Apple",
-                          "title": "IPod Nano - 8GB",
-                          "variant_title": "Red",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
-                          "taxable": true,
-                          "requires_shipping": true,
-                          "gift_card": false,
-                          "price": "199.00",
-                          "compare_at_price": null,
-                          "line_price": "199.00",
-                          "properties": {},
-                          "quantity": 1,
-                          "grams": 200,
-                          "fulfillment_service": "manual",
-                          "applied_discounts": [],
-                          "discount_allocations": [],
-                          "tax_lines": []
-                        },
-                        {
-                          "id": "531e7a36585bcf41",
-                          "key": "531e7a36585bcf41",
-                          "product_id": 632910392,
-                          "variant_id": 808950810,
-                          "sku": "IPOD2008PINK",
-                          "vendor": "Apple",
-                          "title": "IPod Nano - 8GB",
-                          "variant_title": "Pink",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755",
-                          "taxable": true,
-                          "requires_shipping": true,
-                          "gift_card": false,
-                          "price": "199.00",
-                          "compare_at_price": null,
-                          "line_price": "199.00",
-                          "properties": {},
-                          "quantity": 1,
-                          "grams": 200,
-                          "fulfillment_service": "manual",
-                          "applied_discounts": [],
-                          "discount_allocations": [],
-                          "tax_lines": []
-                        }
-                      ],
-                      "gift_cards": [],
-                      "tax_lines": [
-                        {
-                          "price": "21.49",
-                          "rate": 0.06,
-                          "title": "State Tax",
-                          "compare_at": 0.06
-                        }
-                      ],
-                      "tax_manipulations": [],
-                      "shipping_line": {
-                        "handle": "shopify-Free%20Shipping-0.00",
-                        "price": "0.00",
-                        "title": "Free Shipping",
-                        "tax_lines": []
-                      },
-                      "shipping_rate": {
-                        "id": "shopify-Free%20Shipping-0.00",
-                        "price": "0.00",
-                        "title": "Free Shipping"
-                      },
-                      "shipping_address": {
-                        "id": 550558813,
-                        "first_name": "Bob",
-                        "last_name": "Norman",
-                        "phone": "+1(502)-459-2181",
-                        "company": null,
-                        "address1": "Chestnut Street 92",
-                        "address2": "",
-                        "city": "Louisville",
-                        "province": "Kentucky",
-                        "province_code": "KY",
-                        "country": "United States",
-                        "country_code": "US",
-                        "zip": "40202"
-                      },
-                      "credit_card": null,
-                      "billing_address": {
-                        "id": 550558813,
-                        "first_name": "Bob",
-                        "last_name": "Norman",
-                        "phone": "+1(502)-459-2181",
-                        "company": null,
-                        "address1": "Chestnut Street 92",
-                        "address2": "",
-                        "city": "Louisville",
-                        "province": "Kentucky",
-                        "province_code": "KY",
-                        "country": "United States",
-                        "country_code": "US",
-                        "zip": "40202"
-                      },
-                      "applied_discount": null,
-                      "applied_discounts": [],
-                      "discount_violations": []
-                    }
-                  }
-                },
                 "Retrieve a processing checkout": {
                   "value": {
                     "checkout": {
@@ -1090,15 +928,15 @@
                       "total_additional_fees": null,
                       "line_items": [
                         {
-                          "id": "921bef3967ebdc26",
-                          "key": "921bef3967ebdc26",
+                          "id": "71e61dc0fa94a2fc",
+                          "key": "71e61dc0fa94a2fc",
                           "product_id": 632910392,
                           "variant_id": 49148385,
                           "sku": "IPOD2008RED",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Red",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -1114,15 +952,15 @@
                           "tax_lines": []
                         },
                         {
-                          "id": "531e7a36585bcf41",
-                          "key": "531e7a36585bcf41",
+                          "id": "d76e2360549fc5e0",
+                          "key": "d76e2360549fc5e0",
                           "product_id": 632910392,
                           "variant_id": 808950810,
                           "sku": "IPOD2008PINK",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Pink",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -1204,6 +1042,168 @@
                       "discount_violations": []
                     }
                   }
+                },
+                "Retrieve an existing checkout": {
+                  "value": {
+                    "checkout": {
+                      "completed_at": null,
+                      "created_at": "2012-10-12T05:05:27-06:00",
+                      "currency": "USD",
+                      "presentment_currency": "USD",
+                      "customer_id": 207119551,
+                      "customer_locale": "en",
+                      "device_id": null,
+                      "discount_code": null,
+                      "discount_codes": [],
+                      "email": "bob.norman@mail.example.com",
+                      "legal_notice_url": null,
+                      "location_id": null,
+                      "name": "#862052962",
+                      "note": "",
+                      "note_attributes": {
+                        "custom engraving": "Happy Birthday",
+                        "colour": "green"
+                      },
+                      "order_id": null,
+                      "order_status_url": null,
+                      "order": null,
+                      "payment_due": "419.49",
+                      "payment_url": "https://app.local/cardserver/sessions",
+                      "payments": [],
+                      "phone": null,
+                      "shopify_payments_account_id": null,
+                      "privacy_policy_url": null,
+                      "refund_policy_url": null,
+                      "requires_shipping": true,
+                      "reservation_time_left": 0,
+                      "reservation_time": null,
+                      "source_identifier": null,
+                      "source_name": "web",
+                      "source_url": null,
+                      "subscription_policy_url": null,
+                      "subtotal_price": "398.00",
+                      "shipping_policy_url": null,
+                      "tax_exempt": false,
+                      "taxes_included": false,
+                      "terms_of_sale_url": null,
+                      "terms_of_service_url": null,
+                      "token": "exuw7apwoycchjuwtiqg8nytfhphr62a",
+                      "total_price": "419.49",
+                      "total_tax": "21.49",
+                      "total_tip_received": "0.00",
+                      "total_line_items_price": "398.00",
+                      "updated_at": "2012-10-12T05:05:27-06:00",
+                      "user_id": null,
+                      "web_url": "https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a",
+                      "total_duties": null,
+                      "total_additional_fees": null,
+                      "line_items": [
+                        {
+                          "id": "71e61dc0fa94a2fc",
+                          "key": "71e61dc0fa94a2fc",
+                          "product_id": 632910392,
+                          "variant_id": 49148385,
+                          "sku": "IPOD2008RED",
+                          "vendor": "Apple",
+                          "title": "IPod Nano - 8GB",
+                          "variant_title": "Red",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
+                          "taxable": true,
+                          "requires_shipping": true,
+                          "gift_card": false,
+                          "price": "199.00",
+                          "compare_at_price": null,
+                          "line_price": "199.00",
+                          "properties": {},
+                          "quantity": 1,
+                          "grams": 200,
+                          "fulfillment_service": "manual",
+                          "applied_discounts": [],
+                          "discount_allocations": [],
+                          "tax_lines": []
+                        },
+                        {
+                          "id": "d76e2360549fc5e0",
+                          "key": "d76e2360549fc5e0",
+                          "product_id": 632910392,
+                          "variant_id": 808950810,
+                          "sku": "IPOD2008PINK",
+                          "vendor": "Apple",
+                          "title": "IPod Nano - 8GB",
+                          "variant_title": "Pink",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496",
+                          "taxable": true,
+                          "requires_shipping": true,
+                          "gift_card": false,
+                          "price": "199.00",
+                          "compare_at_price": null,
+                          "line_price": "199.00",
+                          "properties": {},
+                          "quantity": 1,
+                          "grams": 200,
+                          "fulfillment_service": "manual",
+                          "applied_discounts": [],
+                          "discount_allocations": [],
+                          "tax_lines": []
+                        }
+                      ],
+                      "gift_cards": [],
+                      "tax_lines": [
+                        {
+                          "price": "21.49",
+                          "rate": 0.06,
+                          "title": "State Tax",
+                          "compare_at": 0.06
+                        }
+                      ],
+                      "tax_manipulations": [],
+                      "shipping_line": {
+                        "handle": "shopify-Free%20Shipping-0.00",
+                        "price": "0.00",
+                        "title": "Free Shipping",
+                        "tax_lines": []
+                      },
+                      "shipping_rate": {
+                        "id": "shopify-Free%20Shipping-0.00",
+                        "price": "0.00",
+                        "title": "Free Shipping"
+                      },
+                      "shipping_address": {
+                        "id": 550558813,
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "+1(502)-459-2181",
+                        "company": null,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "province": "Kentucky",
+                        "province_code": "KY",
+                        "country": "United States",
+                        "country_code": "US",
+                        "zip": "40202"
+                      },
+                      "credit_card": null,
+                      "billing_address": {
+                        "id": 550558813,
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "+1(502)-459-2181",
+                        "company": null,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "province": "Kentucky",
+                        "province_code": "KY",
+                        "country": "United States",
+                        "country_code": "US",
+                        "zip": "40202"
+                      },
+                      "applied_discount": null,
+                      "applied_discounts": [],
+                      "discount_violations": []
+                    }
+                  }
                 }
               }
             }
@@ -1226,7 +1226,7 @@
             "headers": {
               "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json"
             },
-            "body": "{\"checkout\":{\"completed_at\":\"2005-07-31T11:57:11-04:00\",\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#901414060\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":450789469,\"order_status_url\":\"https://checkout.local/548380009/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c/thank_you\",\"order\":{\"id\":450789469,\"name\":\"#1001\",\"status_url\":\"https://checkout.local/548380009/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c/thank_you\"},\"payment_due\":\"398.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"bd5a8aa1ecd019dd3520ff791ee3a24c\",\"total_price\":\"398.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"921bef3967ebdc26\",\"key\":\"921bef3967ebdc26\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"531e7a36585bcf41\",\"key\":\"531e7a36585bcf41\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
+            "body": "{\"checkout\":{\"completed_at\":\"2005-07-31T11:57:11-04:00\",\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#901414060\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":450789469,\"order_status_url\":\"https://checkout.local/548380009/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c/thank_you\",\"order\":{\"id\":450789469,\"name\":\"#1001\",\"status_url\":\"https://checkout.local/548380009/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c/thank_you\"},\"payment_due\":\"398.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"bd5a8aa1ecd019dd3520ff791ee3a24c\",\"total_price\":\"398.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"71e61dc0fa94a2fc\",\"key\":\"71e61dc0fa94a2fc\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"d76e2360549fc5e0\",\"key\":\"d76e2360549fc5e0\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
           },
           "name": "Retrieve a completed checkout",
           "codeSamples": [
@@ -1240,49 +1240,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"bd5a8aa1ecd019dd3520ff791ee3a24c\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Checkout.find({\n  session: session,\n  token: \"bd5a8aa1ecd019dd3520ff791ee3a24c\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"bd5a8aa1ecd019dd3520ff791ee3a24c\", // Id\n    [], // Url Ids\n    [], // Params\n);"
-            }
-          ]
-        },
-        {
-          "status": "202",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
-          "request_method": "GET",
-          "request": {
-            "action": "GET /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
-            "headers": {},
-            "body": ""
-          },
-          "response": {
-            "action": "HTTP/1.1 202 Accepted",
-            "headers": {
-              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
-              "Retry-After": "1"
-            },
-            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#862052962\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"419.49\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_price\":\"419.49\",\"total_tax\":\"21.49\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"921bef3967ebdc26\",\"key\":\"921bef3967ebdc26\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"531e7a36585bcf41\",\"key\":\"531e7a36585bcf41\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"compare_at\":0.06}],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
-          },
-          "name": "Retrieve an existing checkout",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Checkout.find(\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n)"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
@@ -1302,7 +1264,7 @@
               "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x.json",
               "Retry-After": "1"
             },
-            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#446514532\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"419.49\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"fraudulent\":false,\"transaction\":{\"amount\":\"598.94\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":\"authorization-key\",\"created_at\":\"2005-08-01T11:57:11-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":389404469,\"kind\":\"authorization\",\"message\":null,\"status\":\"success\",\"test\":false,\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"location_id\":null,\"user_id\":null,\"transaction_group_id\":null,\"device_id\":null,\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null}},\"credit_card\":null}],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_price\":\"419.49\",\"total_tax\":\"21.49\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"921bef3967ebdc26\",\"key\":\"921bef3967ebdc26\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"531e7a36585bcf41\",\"key\":\"531e7a36585bcf41\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"compare_at\":0.06}],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":{\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"first_digits\":\"1\",\"last_digits\":\"1\",\"brand\":\"bogus\",\"expiry_month\":8,\"expiry_year\":2042,\"customer_id\":null},\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
+            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#446514532\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"419.49\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"fraudulent\":false,\"transaction\":{\"amount\":\"598.94\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":\"authorization-key\",\"created_at\":\"2005-08-01T11:57:11-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":389404469,\"kind\":\"authorization\",\"message\":null,\"status\":\"success\",\"test\":false,\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"location_id\":null,\"user_id\":null,\"transaction_group_id\":null,\"device_id\":null,\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null}},\"credit_card\":null}],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_price\":\"419.49\",\"total_tax\":\"21.49\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"71e61dc0fa94a2fc\",\"key\":\"71e61dc0fa94a2fc\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"d76e2360549fc5e0\",\"key\":\"d76e2360549fc5e0\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"compare_at\":0.06}],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":{\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"first_digits\":\"1\",\"last_digits\":\"1\",\"brand\":\"bogus\",\"expiry_month\":8,\"expiry_year\":2042,\"customer_id\":null},\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
           },
           "name": "Retrieve a processing checkout",
           "codeSamples": [
@@ -1316,11 +1278,49 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Checkout.find({\n  session: session,\n  token: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "202",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 202 Accepted",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+              "Retry-After": "1"
+            },
+            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#862052962\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"419.49\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_price\":\"419.49\",\"total_tax\":\"21.49\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"71e61dc0fa94a2fc\",\"key\":\"71e61dc0fa94a2fc\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"d76e2360549fc5e0\",\"key\":\"d76e2360549fc5e0\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"compare_at\":0.06}],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
+          },
+          "name": "Retrieve an existing checkout",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Checkout.find(\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Checkout.find({\n  session: session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1421,22 +1421,22 @@
                       "total_tax": "0.00",
                       "total_tip_received": "0.00",
                       "total_line_items_price": "398.00",
-                      "updated_at": "2022-10-03T10:25:06-06:00",
+                      "updated_at": "2023-01-03T10:41:57-07:00",
                       "user_id": null,
                       "web_url": "https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a",
                       "total_duties": null,
                       "total_additional_fees": null,
                       "line_items": [
                         {
-                          "id": "921bef3967ebdc26",
-                          "key": "921bef3967ebdc26",
+                          "id": "71e61dc0fa94a2fc",
+                          "key": "71e61dc0fa94a2fc",
                           "product_id": 632910392,
                           "variant_id": 49148385,
                           "sku": "IPOD2008RED",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Red",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -1452,15 +1452,15 @@
                           "tax_lines": []
                         },
                         {
-                          "id": "531e7a36585bcf41",
-                          "key": "531e7a36585bcf41",
+                          "id": "d76e2360549fc5e0",
+                          "key": "d76e2360549fc5e0",
                           "product_id": 632910392,
                           "variant_id": 808950810,
                           "sku": "IPOD2008PINK",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Pink",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -1531,32 +1531,6 @@
             }
           }
         },
-        "422": {
-          "description": "Modifies an existing checkout",
-          "content": {
-            "application/json": {
-              "examples": {
-                "Updating a shipping address with an invalid zip code fails and returns errors": {
-                  "value": {
-                    "errors": {
-                      "shipping_address": {
-                        "zip": [
-                          {
-                            "code": "invalid_for_country",
-                            "message": "Enter a valid United States ZIP code",
-                            "options": {
-                              "country": "United States"
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "202": {
           "description": "Modifies an existing checkout",
           "content": {
@@ -1569,7 +1543,7 @@
                       "created_at": "2012-10-12T05:05:27-06:00",
                       "currency": "USD",
                       "presentment_currency": "USD",
-                      "customer_id": 1073339459,
+                      "customer_id": 1073339478,
                       "customer_locale": "en",
                       "device_id": null,
                       "discount_code": null,
@@ -1611,22 +1585,22 @@
                       "total_tax": "0.00",
                       "total_tip_received": "0.00",
                       "total_line_items_price": "398.00",
-                      "updated_at": "2022-10-03T10:25:22-06:00",
+                      "updated_at": "2023-01-03T10:41:43-07:00",
                       "user_id": null,
                       "web_url": "https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a",
                       "total_duties": null,
                       "total_additional_fees": null,
                       "line_items": [
                         {
-                          "id": "921bef3967ebdc26",
-                          "key": "921bef3967ebdc26",
+                          "id": "71e61dc0fa94a2fc",
+                          "key": "71e61dc0fa94a2fc",
                           "product_id": 632910392,
                           "variant_id": 49148385,
                           "sku": "IPOD2008RED",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Red",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -1642,15 +1616,15 @@
                           "tax_lines": []
                         },
                         {
-                          "id": "531e7a36585bcf41",
-                          "key": "531e7a36585bcf41",
+                          "id": "d76e2360549fc5e0",
+                          "key": "d76e2360549fc5e0",
                           "product_id": 632910392,
                           "variant_id": 808950810,
                           "sku": "IPOD2008PINK",
                           "vendor": "Apple",
                           "title": "IPod Nano - 8GB",
                           "variant_title": "Pink",
-                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755",
+                          "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496",
                           "taxable": true,
                           "requires_shipping": true,
                           "gift_card": false,
@@ -1711,6 +1685,32 @@
               }
             }
           }
+        },
+        "422": {
+          "description": "Modifies an existing checkout",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Updating a shipping address with an invalid zip code fails and returns errors": {
+                  "value": {
+                    "errors": {
+                      "shipping_address": {
+                        "zip": [
+                          {
+                            "code": "invalid_for_country",
+                            "message": "Enter a valid United States ZIP code",
+                            "options": {
+                              "country": "United States"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "x-examples": [
@@ -1729,7 +1729,7 @@
             "headers": {
               "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json"
             },
-            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#862052962\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"398.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_price\":\"398.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2022-10-03T12:25:06-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"921bef3967ebdc26\",\"key\":\"921bef3967ebdc26\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"531e7a36585bcf41\",\"key\":\"531e7a36585bcf41\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
+            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#862052962\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"398.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_price\":\"398.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2023-01-03T12:41:57-05:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"71e61dc0fa94a2fc\",\"key\":\"71e61dc0fa94a2fc\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"d76e2360549fc5e0\",\"key\":\"d76e2360549fc5e0\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
           },
           "name": "Select a shipping rate",
           "codeSamples": [
@@ -1743,11 +1743,49 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.shipping_line = {\n  \"handle\": \"shopify-Free%20Shipping-0.00\"\n};\nawait checkout.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst checkout = new shopify.rest.Checkout({session: session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.shipping_line = {\n  \"handle\": \"shopify-Free%20Shipping-0.00\"\n};\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->shipping_line = [\n    \"handle\" => \"shopify-Free%20Shipping-0.00\"\n];\n$checkout->save(\n    true, // Update Object\n);"
+            }
+          ]
+        },
+        {
+          "status": "202",
+          "request_query": "",
+          "request_path": "/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+            "headers": {},
+            "body": "{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"email\":\"john.smith@example.com\",\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"126 York St.\",\"city\":\"Los Angeles\",\"province_code\":\"CA\",\"country_code\":\"US\",\"phone\":\"(123)456-7890\",\"zip\":\"90002\"}}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 202 Accepted",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+              "Retry-After": "1"
+            },
+            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":1073339478,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"john.smith@example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#862052962\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"398.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_price\":\"398.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2023-01-03T12:41:43-05:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"71e61dc0fa94a2fc\",\"key\":\"71e61dc0fa94a2fc\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"d76e2360549fc5e0\",\"key\":\"d76e2360549fc5e0\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672766496\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":null,\"shipping_rate\":null,\"shipping_address\":{\"id\":550558813,\"first_name\":\"John\",\"last_name\":\"Smith\",\"phone\":\"(123)456-7890\",\"company\":null,\"address1\":\"126 York St.\",\"address2\":\"\",\"city\":\"Los Angeles\",\"province\":\"California\",\"province_code\":\"CA\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"90002\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
+          },
+          "name": "Update the shipping address and email of a checkout",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"email\":\"john.smith@example.com\",\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"126 York St.\",\"city\":\"Los Angeles\",\"province_code\":\"CA\",\"country_code\":\"US\",\"phone\":\"(123)456-7890\",\"zip\":\"90002\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\"\ncheckout.email = \"john.smith@example.com\"\ncheckout.shipping_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"126 York St.\",\n  \"city\" => \"Los Angeles\",\n  \"province_code\" => \"CA\",\n  \"country_code\" => \"US\",\n  \"phone\" => \"(123)456-7890\",\n  \"zip\" => \"90002\"\n}\ncheckout.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "// Session is built by the OAuth process\n\nconst checkout = new shopify.rest.Checkout({session: session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.email = \"john.smith@example.com\";\ncheckout.shipping_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"126 York St.\",\n  \"city\": \"Los Angeles\",\n  \"province_code\": \"CA\",\n  \"country_code\": \"US\",\n  \"phone\": \"(123)456-7890\",\n  \"zip\": \"90002\"\n};\nawait checkout.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->email = \"john.smith@example.com\";\n$checkout->shipping_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"126 York St.\",\n    \"city\" => \"Los Angeles\",\n    \"province_code\" => \"CA\",\n    \"country_code\" => \"US\",\n    \"phone\" => \"(123)456-7890\",\n    \"zip\" => \"90002\"\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         },
@@ -1778,49 +1816,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.shipping_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"126 York St.\",\n  \"city\": \"Beverly Hills\",\n  \"province_code\": \"CA\",\n  \"country_code\": \"US\",\n  \"phone\": \"(123)456-7890\",\n  \"zip\": \"1234\"\n};\nawait checkout.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst checkout = new shopify.rest.Checkout({session: session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.shipping_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"126 York St.\",\n  \"city\": \"Beverly Hills\",\n  \"province_code\": \"CA\",\n  \"country_code\": \"US\",\n  \"phone\": \"(123)456-7890\",\n  \"zip\": \"1234\"\n};\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
               "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->shipping_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"126 York St.\",\n    \"city\" => \"Beverly Hills\",\n    \"province_code\" => \"CA\",\n    \"country_code\" => \"US\",\n    \"phone\" => \"(123)456-7890\",\n    \"zip\" => \"1234\"\n];\n$checkout->save(\n    true, // Update Object\n);"
-            }
-          ]
-        },
-        {
-          "status": "202",
-          "request_query": "",
-          "request_path": "/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
-          "request_method": "PUT",
-          "request": {
-            "action": "PUT /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
-            "headers": {},
-            "body": "{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"email\":\"john.smith@example.com\",\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"126 York St.\",\"city\":\"Los Angeles\",\"province_code\":\"CA\",\"country_code\":\"US\",\"phone\":\"(123)456-7890\",\"zip\":\"90002\"}}}"
-          },
-          "response": {
-            "action": "HTTP/1.1 202 Accepted",
-            "headers": {
-              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
-              "Retry-After": "1"
-            },
-            "body": "{\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":1073339459,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"discount_codes\":[],\"email\":\"john.smith@example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#862052962\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"398.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_price\":\"398.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2022-10-03T12:25:22-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"921bef3967ebdc26\",\"key\":\"921bef3967ebdc26\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"531e7a36585bcf41\",\"key\":\"531e7a36585bcf41\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1664813755\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":null,\"shipping_rate\":null,\"shipping_address\":{\"id\":550558813,\"first_name\":\"John\",\"last_name\":\"Smith\",\"phone\":\"(123)456-7890\",\"company\":null,\"address1\":\"126 York St.\",\"address2\":\"\",\"city\":\"Los Angeles\",\"province\":\"California\",\"province_code\":\"CA\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"90002\"},\"credit_card\":null,\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null,\"applied_discounts\":[],\"discount_violations\":[]}}"
-          },
-          "name": "Update the shipping address and email of a checkout",
-          "codeSamples": [
-            {
-              "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"email\":\"john.smith@example.com\",\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"126 York St.\",\"city\":\"Los Angeles\",\"province_code\":\"CA\",\"country_code\":\"US\",\"phone\":\"(123)456-7890\",\"zip\":\"90002\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
-            },
-            {
-              "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\"\ncheckout.email = \"john.smith@example.com\"\ncheckout.shipping_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"126 York St.\",\n  \"city\" => \"Los Angeles\",\n  \"province_code\" => \"CA\",\n  \"country_code\" => \"US\",\n  \"phone\" => \"(123)456-7890\",\n  \"zip\" => \"90002\"\n}\ncheckout.save!"
-            },
-            {
-              "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.email = \"john.smith@example.com\";\ncheckout.shipping_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"126 York St.\",\n  \"city\": \"Los Angeles\",\n  \"province_code\": \"CA\",\n  \"country_code\": \"US\",\n  \"phone\": \"(123)456-7890\",\n  \"zip\": \"90002\"\n};\nawait checkout.save({\n  update: true,\n});"
-            },
-            {
-              "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->email = \"john.smith@example.com\";\n$checkout->shipping_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"126 York St.\",\n    \"city\" => \"Los Angeles\",\n    \"province_code\" => \"CA\",\n    \"country_code\" => \"US\",\n    \"phone\" => \"(123)456-7890\",\n    \"zip\" => \"90002\"\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -1863,11 +1863,6 @@
           "content": {
             "application/json": {
               "examples": {
-                "Retrieving shipping rates when none are available for the current shipping address or cart returns an empty array": {
-                  "value": {
-                    "shipping_rates": []
-                  }
-                },
                 "Retrieve available shipping rates": {
                   "value": {
                     "shipping_rates": [
@@ -1886,6 +1881,11 @@
                         "handle": "shopify-Free%20Shipping-0.00"
                       }
                     ]
+                  }
+                },
+                "Retrieving shipping rates when none are available for the current shipping address or cart returns an empty array": {
+                  "value": {
+                    "shipping_rates": []
                   }
                 }
               }
@@ -1911,37 +1911,37 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json",
+          "request_path": "/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/unstable/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json",
+            "action": "GET /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {
-              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json"
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json"
             },
-            "body": "{\"shipping_rates\":[]}"
+            "body": "{\"shipping_rates\":[{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"checkout\":{\"total_tax\":\"0.00\",\"total_price\":\"398.00\",\"subtotal_price\":\"398.00\"},\"phone_required\":false,\"delivery_range\":null,\"estimated_time_in_transit\":null,\"handle\":\"shopify-Free%20Shipping-0.00\"}]}"
           },
-          "name": "Retrieving shipping rates when none are available for the current shipping address or cart returns an empty array",
+          "name": "Retrieve available shipping rates",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Checkout.shipping_rates(\n  session: test_session,\n  token: \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Checkout.shipping_rates(\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Checkout.shipping_rates({\n  session: session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
@@ -1975,7 +1975,7 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Checkout.shipping_rates({\n  session: session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
             },
             {
               "language": "php",
@@ -1986,37 +1986,37 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
+          "request_path": "/admin/api/2022-10/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
+            "action": "GET /admin/api/unstable/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {
-              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json"
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json"
             },
-            "body": "{\"shipping_rates\":[{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"checkout\":{\"total_tax\":\"0.00\",\"total_price\":\"398.00\",\"subtotal_price\":\"398.00\"},\"phone_required\":false,\"delivery_range\":null,\"estimated_time_in_transit\":null,\"handle\":\"shopify-Free%20Shipping-0.00\"}]}"
+            "body": "{\"shipping_rates\":[]}"
           },
-          "name": "Retrieve available shipping rates",
+          "name": "Retrieving shipping rates when none are available for the current shipping address or cart returns an empty array",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Checkout.shipping_rates(\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::Checkout.shipping_rates(\n  session: test_session,\n  token: \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\",\n)"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-10/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.Checkout.shipping_rates({\n  session: session,\n  token: \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_10\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -2129,7 +2129,7 @@
           "name": "gift_cards"
         },
         {
-          "description": "        A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties:\n        <ul>\n          <li><strong>applied_discounts</strong>: A list of the discounts applied to the line item.</li>\n          <li><strong>compare_at_price</strong>: The original selling price of the product, if applicable.</li>\n          <li><strong>discount_allocations</strong>: A list all discounts on the checkout that target this line item, including both \"across\" and \"each\" applications. A superset of <code>applied_discounts</code>.</li>\n          <li><strong>fulfillment_service</strong>: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: <code>manual</code>.</li>\n          <li><strong>grams</strong>: The weight of the item in grams.</li>\n          <li><strong>id</strong>: The checkout-specific ID of the line item.</li>\n          <li><strong>line_price</strong>: The line price of the item, based on <code>price</code> multiplied by <code>quantity</code>.</li>\n          <li><strong>price</strong>: The price of the item in presentment currency.</li>\n          <li><strong>product_id</strong>: The product of the line item.</li>\n          <li><strong>properties</strong>: The <a href=\"/docs/liquid/reference/objects/line_item#line_item-properties\">customization information</a> for a line item (optional).</li>\n          <li><strong>quantity</strong>: The number of products that were purchased.</li>\n          <li><strong>requires_shipping</strong>: Whether the fulfillment requires shipping.</li>\n          <li><strong>sku</strong>: The unique identifier of the item in the fulfillment.</li>\n          <li><strong>taxable</strong>: Whether this product is taxable.</li>\n          <li><strong>title</strong>: The title of the product.</li>\n          <li><strong>variant_id</strong>: The variant ID of the line item.</li>\n          <li><strong>variant_title</strong>: The title of the product variant.</li>\n          <li><strong>vendor</strong>: The name of the item's supplier.</li>\n        </ul>\n",
+          "description": "        A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties:\n        <ul>\n          <li><strong>applied_discounts</strong>: A list of the discounts applied to the line item.</li>\n          <li><strong>compare_at_price</strong>: The original selling price of the product, if applicable.</li>\n          <li><strong>discount_allocations</strong>: A list all discounts on the checkout that target this line item, including both \"across\" and \"each\" applications. A superset of <code>applied_discounts</code>.</li>\n          <li><strong>fulfillment_service</strong>: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: <code>manual</code>.</li>\n          <li><strong>grams</strong>: The weight of the item in grams.</li>\n          <li><strong>id</strong>: The checkout-specific ID of the line item.</li>\n          <li><strong>line_price</strong>: The line price of the item, based on <code>price</code> multiplied by <code>quantity</code>.</li>\n          <li><strong>price</strong>: The price of the item in presentment currency.</li>\n          <li><strong>product_id</strong>: The product of the line item.</li>\n          <li><strong>properties</strong>: The <a href=\"/api/liquid/objects/line_item#line_item-properties\">customization information</a> for a line item (optional).</li>\n          <li><strong>quantity</strong>: The number of products that were purchased.</li>\n          <li><strong>requires_shipping</strong>: Whether the fulfillment requires shipping.</li>\n          <li><strong>sku</strong>: The unique identifier of the item in the fulfillment.</li>\n          <li><strong>taxable</strong>: Whether this product is taxable.</li>\n          <li><strong>title</strong>: The title of the product.</li>\n          <li><strong>variant_id</strong>: The variant ID of the line item.</li>\n          <li><strong>variant_title</strong>: The title of the product variant.</li>\n          <li><strong>vendor</strong>: The name of the item's supplier.</li>\n        </ul>\n",
           "type": "string",
           "example": {
             "line_items": [
