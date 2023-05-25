@@ -5,8 +5,7 @@
     "description": "        <div class=\"note\">\n          <h4>Custom apps</h4>\n          <p>The Deprecated API calls resource is available only for <a href=\"/concepts/apps#custom-apps\">custom</a> apps.</p>\n        </div>\n\n        <p>\n          You can call this endpoint to get a list of all the deprecated calls your custom apps have made in the past 30 days, information on migration steps, and the deadline to update these calls in your apps.\n        </p>\n\n        <p>\n          Follow the <a href=\"https://shopify.dev/changelog\">developer changelog</a> to make sure you're aware of any breaking changes that might affect your app.\n          You can learn more about how to update your apps in our <a href=\"/api/usage/versioning\">versioning guide</a>.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/47",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -55,7 +54,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/deprecated_api_calls.json",
+          "request_path": "/admin/api/2023-04/deprecated_api_calls.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2021-01/deprecated_api_calls.json",
@@ -71,7 +70,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/deprecated_api_calls.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/deprecated_api_calls.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -83,7 +82,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\DeprecatedApiCall;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDeprecatedApiCall::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\DeprecatedApiCall;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDeprecatedApiCall::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -151,5 +150,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

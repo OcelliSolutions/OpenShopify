@@ -486,6 +486,15 @@ namespace OpenShopify.Admin.Builder.Models
         public System.DateTimeOffset? ClosedAt { get; set; } = default!;
 
         /// <summary>
+        /// Represents information about the purchasing company for the order. `null` will be returned if there is no purchasing company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
         /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the shop currency.
         /// </summary>
 
@@ -493,6 +502,15 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The current total additional fees on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("current_total_additional_fees_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? CurrentTotalAdditionalFeesSet { get; set; } = default!;
 
         /// <summary>
         /// The current total discounts on the order in the shop currency. The value of this field reflects order edits, returns, and refunds.
@@ -731,11 +749,34 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// A list of line item objects, each containing information about an item in the order. Each object has the following properties: 
         /// 
+        /// *   **attributed_staffs**: The staff members attributed to the line item. 
+        /// 
+        ///     *   `id`: The id of the staff member. 
+        ///     *   `quantity`: The quantity of the line item attributed to the staff member. 
+        /// 
         /// *   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: 
         /// 
         /// `*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`
         /// 
-        /// *   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be **deprecated**. Consider using [' "FulfillmentOrder#assigned_location](https://shopify.dev/api/admin-rest/latest/resources/fulfillmentorder#resource-object) instead. 
+        /// *   **fulfillment_service**: The handle of a fulfillment service that stocks the product variant belonging to a line item. 
+        /// 
+        ///  This is the handle of a third-party fulfillment service in the following scenarios: 
+        /// 
+        ///  **Scenario 1** 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 
+        /// 
+        ///  **Scenario 2** 1. Multiple fulfillment services stock the product variant. 2. The last time that the line item was unfulfilled, it was awaiting fulfillment by a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 
+        ///  If none of the above conditions are met, then this is `manual`.  
+        /// 
+        ///  The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. 
+        /// 
+        ///  If you previously set this field, then we recommend that you instead [connect inventory items to locations](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. 
+        /// 
+        ///  If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. 
+        /// 
+        ///  Altering the locations which stock a product variant won't change the value of this field for existing orders. 
+        /// 
+        ///  Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states). 
+        /// 
         /// *   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. 
         /// *   **grams**: The weight of the item in grams. 
         /// *   **id**: The ID of the line item. 
@@ -854,6 +895,15 @@ namespace OpenShopify.Admin.Builder.Models
         public int? OrderNumber { get; set; } = default!;
 
         /// <summary>
+        /// The original total additional fees on the order in shop and presentment currencies.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_total_additional_fees_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? OriginalTotalAdditionalFeesSet { get; set; } = default!;
+
+        /// <summary>
         /// The original total duties charged on the order in shop and presentment currencies.
         /// </summary>
 
@@ -951,6 +1001,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("processing_method")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        [System.Obsolete]
         public string? ProcessingMethod { get; set; } = default!;
 
         /// <summary>

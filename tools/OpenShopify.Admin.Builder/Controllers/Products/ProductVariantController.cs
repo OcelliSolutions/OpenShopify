@@ -85,15 +85,6 @@ namespace OpenShopify.Admin.Builder.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum ProductVariantFulfillmentService
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
-        Manual = 0,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum ProductVariantInventoryManagement
     {
 
@@ -160,7 +151,17 @@ namespace OpenShopify.Admin.Builder.Models
         public decimal? CompareAtPrice { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.
+        /// The handle of a fulfillment service that stocks a product variant. 
+        /// 
+        ///  This is the handle of a third-party fulfillment service if the following conditions are met: 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 3. The fulfillment service [hasn't opted into SKU sharing](/changelog/fulfillment-service-sku-sharing). If the conditions aren't met, then this is `manual`. 
+        /// 
+        ///  The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. 
+        /// 
+        ///  If you previously set this field, then we recommend that you instead [connect an inventory item to a location](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. 
+        /// 
+        ///  If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. 
+        /// 
+        ///  Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]

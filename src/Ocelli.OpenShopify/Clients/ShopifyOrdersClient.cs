@@ -32,18 +32,6 @@ namespace Ocelli.OpenShopify
         System.Threading.Tasks.Task<ShopifyResponse<AbandonedCheckoutList>> ListAbandonedCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, int? limit = null, string? pageInfo = null, long? sinceId = null, AbandonedCheckoutStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of checkouts
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of checkouts from the past 90 days
-        /// </remarks>
-        /// <param name="createdAtMax">Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="status">Count checkouts with a given status.</param>
-        /// <param name="updatedAtMax">Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<AbandonedCheckoutList>> CountCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -183,18 +171,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of checkouts
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of checkouts from the past 90 days
-        /// </remarks>
-        /// <param name="createdAtMax">Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="status">Count checkouts with a given status.</param>
-        /// <param name="updatedAtMax">Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<AbandonedCheckoutList>> CountCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -391,166 +367,41 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new DraftOrder
-        /// </summary>
-        /// <remarks>
-        /// Creates a draft order.
-        /// <br/>
-        /// <br/>Using the `DraftOrder` resource you can create orders in draft state using product variant line items, or custom line items. To create a product variant draft order, provide the `variant_id`, `quantity` and `discount` properties. To create a custom line item, provide the `title`, `price`, `taxable`, and `quantity` properties.
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If you are using this endpoint with a Partner development store or a trial store, then you can only create five draft orders per minute.
-        /// <br/> &lt;/aside&gt; 
-        /// <br/>
-        /// <br/>### Polling
-        /// <br/>
-        /// <br/> When you create and update draft orders some calculations are done asynchronously, such as calculating shipping and taxes. There might be times when a draft order is created but these calculations haven't completed. In these cases, you need to poll the draft order until the calculations are finished. When a draft order requires polling, a `202 accepted` response code is returned along with `location` and `retry-after` response headers. The `location` header refers to the URL to be polled, and `retry-after` denotes the interval (in seconds) at which polling requests should be sent. When the draft order is ready, a `200 OK` response code will be returned. 
-        /// <br/>
-        /// <br/>### About custom shipping lines
-        /// <br/>
-        /// <br/> You can use the DraftOrder resource to send orders with custom shipping lines. A custom shipping line includes a `title` and `price` with `handle` set to `Nil`. A shipping line with a carrier provided shipping rate (currently set via the Shopify admin) includes the shipping rate handle. 
-        /// <br/>
-        /// <br/>### Applying discounts
-        /// <br/>
-        /// <br/>A draft order and its line items can have one discount each. Calculations for discounts are based on the setting of the `value_type` property, which can be set to either `fixed_amount` or `percentage`. For example, you can apply a fixed amount discount to a draft order to reduce the price by the specified `value` property. When you use a percentage discount, the discount `amount` property is the price multiplied by the `value` property. For line item discounts, the `value` property is applied per individual unit of the item, based on the line item's quantity.
-        /// <br/>
-        /// <br/>**Calculating line item discount amounts**
-        /// <br/>
-        /// <br/>For `fixed_amount` discounts, the total `amount` corresponds to the line item quantity times the value of the discount. For percentage discounts, the total `amount` corresponds to the following:
-        /// <br/>
-        /// <br/>`amount = floor(price * quantity * value) / 100`, where `floor()` is the usual round down function.
-        /// <br/>
-        /// <br/>For non-fractional currencies, this formula needs to use `round()` instead of `floor()`, and the division by 100 takes place inside the rounding, resulting in a non-fractional value. Otherwise, an error is returned.
-        /// <br/>
-        /// <br/>`amount = round(price * quantity * value / 100)`
-        /// <br/> **Line item examples** 
-        /// <br/>
-        /// <br/>*Fixed amount discount*
-        /// <br/>
-        /// <br/>For a $19.99 line item with quantity of 2 and with $5 dollars off, discount amount corresponds to $10 ($5 * 2):
-        /// <br/>
-        /// <br/>`applied_discount: { "value_type": "fixed_amount", "value": 5, "amount": 10 }`
-        /// <br/>
-        /// <br/>*Percentage discount*
-        /// <br/>
-        /// <br/>For a $19.99 line item with quantity of 2 and with 15% off, discount amount corresponds to $5.99 (floor ($19.99 * 2 * 15) / 100):
-        /// <br/>
-        /// <br/>`applied_discount: { "value_type": "percentage", "value": 15, "amount": 5.99 }`
-        /// <br/>
-        /// <br/>### Loading and removing customers
-        /// <br/>
-        /// <br/>You can load a customer to a draft order by sending the `customer_id` as part of the draft order resource. We recommend removing a customer from a draft order by making a POST request with the `Customer` resource set to `null`, without specifying an email, shipping address, or billing address. A customer can also be removed by setting `customer`, `email`, `shipping_address`, and `billing_address` to `null`.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CreateDraftOrderAsync(CreateDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of draft orders
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of draft orders. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
-        /// <param name="ids">Filter by list of IDs</param>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
-        /// <param name="updatedAtMax">Show orders last updated before date (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show orders last updated after date (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DraftOrderList>> ListDraftOrdersAsync(string? fields = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing DraftOrder
-        /// </summary>
-        /// <remarks>
-        /// Updates a draft order.
-        /// <br/> &lt;aside class="note caution"&gt; If a checkout has been started for a draft order, any update to the draft will unlink the checkout. Checkouts are created but not immediately completed when opening the merchant credit card modal in the admin, and when a buyer opens the invoice URL. This is usually fine, but there is an edge case where a checkout is in progress and the draft is updated before the checkout completes. This will not interfere with the checkout and order creation, but if the link from draft to checkout is broken the draft will remain open even after the order is created. &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> UpdateDraftOrderAsync(long draftOrderId, UpdateDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single DraftOrder
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a specific draft order
-        /// </remarks>
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> GetDraftOrderAsync(long draftOrderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing DraftOrder
-        /// </summary>
-        /// <remarks>
-        /// Deletes a draft order
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteDraftOrderAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all DraftOrders
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of draft orders
-        /// </remarks>
-        /// <param name="sinceId">Count draft orders after the specified ID.</param>
-        /// <param name="status">Count draft orders that have a given status.</param>
-        /// <param name="updatedAtMax">Count draft orders last updated before the specified date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountDraftOrdersAsync(long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Send an invoice
-        /// </summary>
-        /// <remarks>
-        /// Sends an invoice for the draft order.
-        /// <br/>
-        /// <br/>You can include the following parameters in the body of the request:
-        /// <br/>
-        /// <br/>*   **draft_order_invoice**: The resource to send in the body of the request. 
-        /// <br/>
-        /// <br/>    *   **to**: The email address that will populate the **to** field of the email. 
-        /// <br/>    *   **from**: The email address that will populate the **from** field of the email. 
-        /// <br/>    *   **bcc**: The list of email addresses to include in the **bcc** field of the email. Emails must be associated with staff accounts on the shop. 
-        /// <br/>    *   **subject**: The email subject. 
-        /// <br/>    *   **custom_message**: The custom message displayed in the email.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DraftOrderInvoiceItem>> SendInvoiceAsync(long draftOrderId, SendInvoiceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Complete a draft order
-        /// </summary>
-        /// <remarks>
-        /// Completes a draft order. 
-        /// <br/>
-        /// <br/>Using the DraftOrder resource, you can create a draft order and transition it to an order.
-        /// <br/>
-        /// <br/>The following flows are supported:
-        /// <br/>
-        /// <br/>*   Create a draft order that calculates taxes and totals but accept payment from the customer outside of Shopify. 
-        /// <br/>*   Create a draft order and send an invoice to the customer.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CompleteDraftOrderAsync(long draftOrderId, CompleteDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -590,59 +441,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new DraftOrder
-        /// </summary>
-        /// <remarks>
-        /// Creates a draft order.
-        /// <br/>
-        /// <br/>Using the `DraftOrder` resource you can create orders in draft state using product variant line items, or custom line items. To create a product variant draft order, provide the `variant_id`, `quantity` and `discount` properties. To create a custom line item, provide the `title`, `price`, `taxable`, and `quantity` properties.
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If you are using this endpoint with a Partner development store or a trial store, then you can only create five draft orders per minute.
-        /// <br/> &lt;/aside&gt; 
-        /// <br/>
-        /// <br/>### Polling
-        /// <br/>
-        /// <br/> When you create and update draft orders some calculations are done asynchronously, such as calculating shipping and taxes. There might be times when a draft order is created but these calculations haven't completed. In these cases, you need to poll the draft order until the calculations are finished. When a draft order requires polling, a `202 accepted` response code is returned along with `location` and `retry-after` response headers. The `location` header refers to the URL to be polled, and `retry-after` denotes the interval (in seconds) at which polling requests should be sent. When the draft order is ready, a `200 OK` response code will be returned. 
-        /// <br/>
-        /// <br/>### About custom shipping lines
-        /// <br/>
-        /// <br/> You can use the DraftOrder resource to send orders with custom shipping lines. A custom shipping line includes a `title` and `price` with `handle` set to `Nil`. A shipping line with a carrier provided shipping rate (currently set via the Shopify admin) includes the shipping rate handle. 
-        /// <br/>
-        /// <br/>### Applying discounts
-        /// <br/>
-        /// <br/>A draft order and its line items can have one discount each. Calculations for discounts are based on the setting of the `value_type` property, which can be set to either `fixed_amount` or `percentage`. For example, you can apply a fixed amount discount to a draft order to reduce the price by the specified `value` property. When you use a percentage discount, the discount `amount` property is the price multiplied by the `value` property. For line item discounts, the `value` property is applied per individual unit of the item, based on the line item's quantity.
-        /// <br/>
-        /// <br/>**Calculating line item discount amounts**
-        /// <br/>
-        /// <br/>For `fixed_amount` discounts, the total `amount` corresponds to the line item quantity times the value of the discount. For percentage discounts, the total `amount` corresponds to the following:
-        /// <br/>
-        /// <br/>`amount = floor(price * quantity * value) / 100`, where `floor()` is the usual round down function.
-        /// <br/>
-        /// <br/>For non-fractional currencies, this formula needs to use `round()` instead of `floor()`, and the division by 100 takes place inside the rounding, resulting in a non-fractional value. Otherwise, an error is returned.
-        /// <br/>
-        /// <br/>`amount = round(price * quantity * value / 100)`
-        /// <br/> **Line item examples** 
-        /// <br/>
-        /// <br/>*Fixed amount discount*
-        /// <br/>
-        /// <br/>For a $19.99 line item with quantity of 2 and with $5 dollars off, discount amount corresponds to $10 ($5 * 2):
-        /// <br/>
-        /// <br/>`applied_discount: { "value_type": "fixed_amount", "value": 5, "amount": 10 }`
-        /// <br/>
-        /// <br/>*Percentage discount*
-        /// <br/>
-        /// <br/>For a $19.99 line item with quantity of 2 and with 15% off, discount amount corresponds to $5.99 (floor ($19.99 * 2 * 15) / 100):
-        /// <br/>
-        /// <br/>`applied_discount: { "value_type": "percentage", "value": 15, "amount": 5.99 }`
-        /// <br/>
-        /// <br/>### Loading and removing customers
-        /// <br/>
-        /// <br/>You can load a customer to a draft order by sending the `customer_id` as part of the draft order resource. We recommend removing a customer from a draft order by making a POST request with the `Customer` resource set to `null`, without specifying an email, shipping address, or billing address. A customer can also be removed by setting `customer`, `email`, `shipping_address`, and `billing_address` to `null`.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CreateDraftOrderAsync(CreateDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -727,19 +525,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of draft orders
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of draft orders. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
-        /// <param name="ids">Filter by list of IDs</param>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
-        /// <param name="updatedAtMax">Show orders last updated before date (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show orders last updated after date (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderList>> ListDraftOrdersAsync(string? fields = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -840,13 +625,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing DraftOrder
-        /// </summary>
-        /// <remarks>
-        /// Updates a draft order.
-        /// <br/> &lt;aside class="note caution"&gt; If a checkout has been started for a draft order, any update to the draft will unlink the checkout. Checkouts are created but not immediately completed when opening the merchant credit card modal in the admin, and when a buyer opens the invoice URL. This is usually fine, but there is an edge case where a checkout is in progress and the draft is updated before the checkout completes. This will not interfere with the checkout and order creation, but if the link from draft to checkout is broken the draft will remain open even after the order is created. &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> UpdateDraftOrderAsync(long draftOrderId, UpdateDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -925,13 +703,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single DraftOrder
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a specific draft order
-        /// </remarks>
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> GetDraftOrderAsync(long draftOrderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1008,12 +779,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing DraftOrder
-        /// </summary>
-        /// <remarks>
-        /// Deletes a draft order
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteDraftOrderAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1079,16 +844,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all DraftOrders
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of draft orders
-        /// </remarks>
-        /// <param name="sinceId">Count draft orders after the specified ID.</param>
-        /// <param name="status">Count draft orders that have a given status.</param>
-        /// <param name="updatedAtMax">Count draft orders last updated before the specified date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountDraftOrdersAsync(long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1173,22 +928,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Send an invoice
-        /// </summary>
-        /// <remarks>
-        /// Sends an invoice for the draft order.
-        /// <br/>
-        /// <br/>You can include the following parameters in the body of the request:
-        /// <br/>
-        /// <br/>*   **draft_order_invoice**: The resource to send in the body of the request. 
-        /// <br/>
-        /// <br/>    *   **to**: The email address that will populate the **to** field of the email. 
-        /// <br/>    *   **from**: The email address that will populate the **from** field of the email. 
-        /// <br/>    *   **bcc**: The list of email addresses to include in the **bcc** field of the email. Emails must be associated with staff accounts on the shop. 
-        /// <br/>    *   **subject**: The email subject. 
-        /// <br/>    *   **custom_message**: The custom message displayed in the email.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderInvoiceItem>> SendInvoiceAsync(long draftOrderId, SendInvoiceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1267,19 +1006,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Complete a draft order
-        /// </summary>
-        /// <remarks>
-        /// Completes a draft order. 
-        /// <br/>
-        /// <br/>Using the DraftOrder resource, you can create a draft order and transition it to an order.
-        /// <br/>
-        /// <br/>The following flows are supported:
-        /// <br/>
-        /// <br/>*   Create a draft order that calculates taxes and totals but accept payment from the customer outside of Shopify. 
-        /// <br/>*   Create a draft order and send an invoice to the customer.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CompleteDraftOrderAsync(long draftOrderId, CompleteDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1462,161 +1188,46 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of orders
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of orders that meet the specified criteria. **Usage notes:**  
-        /// <br/> This endpoint implements pagination by using links that are provided in the response header. To learn more, see [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="attributionAppId">Show orders attributed to a certain app, specified by the app ID. Set as `current` to show orders for the app currently consuming the API.</param>
-        /// <param name="createdAtMax">Show orders created at or before date.</param>
-        /// <param name="createdAtMin">Show orders created at or after date.</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="financialStatus">Filter orders by their financial status.</param>
-        /// <param name="fulfillmentStatus">Filter orders by their fulfillment status.</param>
-        /// <param name="ids">Retrieve only orders specified by a comma-separated list of order IDs.</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="processedAtMax">Show orders imported at or before date.</param>
-        /// <param name="processedAtMin">Show orders imported at or after date.</param>
-        /// <param name="sinceId">Show orders after the specified ID.</param>
-        /// <param name="status">Filter orders by their status.</param>
-        /// <param name="updatedAtMax">Show orders last updated at or before date.</param>
-        /// <param name="updatedAtMin">Show orders last updated at or after date.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderList>> ListOrdersAsync(long? attributionAppId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, FinancialStatusRequest? financialStatus = null, FulfillmentStatusRequest? fulfillmentStatus = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, OrderStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <remarks>
-        /// Creates an order.
-        /// <br/>
-        /// <br/>By default, product inventory is not claimed when creating an order.
-        /// <br/>
-        /// <br/>There are additional optional parameters that can be specified in the body of the request when creating an order:
-        /// <br/>
-        /// <br/>*   **inventory_behaviour**: The behaviour to use when updating inventory. (default: `bypass`) 
-        /// <br/>
-        /// <br/>    *   **bypass**: Do not claim inventory. 
-        /// <br/>    *   **decrement_ignoring_policy**: Ignore the product's inventory policy and claim inventory. 
-        /// <br/>    *   **decrement_obeying_policy**: Follow the product's inventory policy and claim inventory, if possible. 
-        /// <br/>
-        /// <br/>*   **send_receipt**: Whether to send an order confirmation to the customer. (default: `false`) 
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If you're working on a private app and order confirmations are still being sent to the customer when `send_receipt` is set to `false`, then you need to disable the Storefront API from the private app's page in the Shopify admin.
-        /// <br/> &lt;/aside&gt; 
-        /// <br/>
-        /// <br/>*   **send_fulfillment_receipt**: Whether to send a shipping confirmation to the customer. (default: `false`) 
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If you are including **shipping_address** or **billing_address**, make sure to pass both **first_name** and **last_name**. Otherwise both these addresses will be ignored.
-        /// <br/>
-        /// <br/>**Usage notes:**  
-        /// <br/> If you're using this endpoint with a trial or Partner development store, then you can create no more than 5 new orders per minute.
-        /// <br/> &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CreateOrderAsync(CreateOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a specific order
-        /// </summary>
-        /// <remarks>
-        /// Retrieve an order by specifying the ID. All fields of an order are returned unless specific fields are named. The GET orders endpoint returns open orders by default.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> GetOrderAsync(long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of orders
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of orders that meet the specified criteria. **Usage notes:**  
-        /// <br/> This endpoint implements pagination by using links that are provided in the response header. To learn more, see [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> UpdateOrderAsync(long orderId, UpdateOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete an order
-        /// </summary>
-        /// <remarks>
-        /// Deletes an order. Orders that interact with an online gateway can't be deleted.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve an order count
-        /// </summary>
-        /// <remarks>
-        /// Retrieve the total number of orders that meet the specified criteria.
-        /// </remarks>
-        /// <param name="createdAtMax">Orders created before date specified.</param>
-        /// <param name="createdAtMin">Orders created after date specified.</param>
-        /// <param name="financialStatus">Orders of a given financial status.</param>
-        /// <param name="fulfillmentStatus">Orders of a given fulfillment status.</param>
-        /// <param name="status">Orders of a given status.</param>
-        /// <param name="updatedAtMax">Orders last updated before date specified.</param>
-        /// <param name="updatedAtMin">Orders last updated after date specified.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, FinancialStatusRequest? financialStatus = null, FulfillmentStatusRequest? fulfillmentStatus = null, OrderStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Close an order
-        /// </summary>
-        /// <remarks>
-        /// Closes an order. A closed order is one that has no more work to be done. All items have been fulfilled or refunded.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CloseOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Re-open a closed order
-        /// </summary>
-        /// <remarks>
-        /// Re-opens a closed order
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> ReOpenClosedOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Cancel an order
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>For multi-currency orders, the `currency` property is required whenever the `amount` property is provided. For more information, refer to the [*Transaction resource*](/api/admin-rest/latest/resources/transaction).
-        /// <br/>&lt;/aside&gt;Cancels an order. Orders that are paid and have fulfillments can't be canceled.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, CancelOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1656,28 +1267,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of orders
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of orders that meet the specified criteria. **Usage notes:**  
-        /// <br/> This endpoint implements pagination by using links that are provided in the response header. To learn more, see [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="attributionAppId">Show orders attributed to a certain app, specified by the app ID. Set as `current` to show orders for the app currently consuming the API.</param>
-        /// <param name="createdAtMax">Show orders created at or before date.</param>
-        /// <param name="createdAtMin">Show orders created at or after date.</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="financialStatus">Filter orders by their financial status.</param>
-        /// <param name="fulfillmentStatus">Filter orders by their fulfillment status.</param>
-        /// <param name="ids">Retrieve only orders specified by a comma-separated list of order IDs.</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="processedAtMax">Show orders imported at or before date.</param>
-        /// <param name="processedAtMin">Show orders imported at or after date.</param>
-        /// <param name="sinceId">Show orders after the specified ID.</param>
-        /// <param name="status">Filter orders by their status.</param>
-        /// <param name="updatedAtMax">Show orders last updated at or before date.</param>
-        /// <param name="updatedAtMin">Show orders last updated at or after date.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderList>> ListOrdersAsync(long? attributionAppId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, FinancialStatusRequest? financialStatus = null, FulfillmentStatusRequest? fulfillmentStatus = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, OrderStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1806,43 +1395,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <remarks>
-        /// Creates an order.
-        /// <br/>
-        /// <br/>By default, product inventory is not claimed when creating an order.
-        /// <br/>
-        /// <br/>There are additional optional parameters that can be specified in the body of the request when creating an order:
-        /// <br/>
-        /// <br/>*   **inventory_behaviour**: The behaviour to use when updating inventory. (default: `bypass`) 
-        /// <br/>
-        /// <br/>    *   **bypass**: Do not claim inventory. 
-        /// <br/>    *   **decrement_ignoring_policy**: Ignore the product's inventory policy and claim inventory. 
-        /// <br/>    *   **decrement_obeying_policy**: Follow the product's inventory policy and claim inventory, if possible. 
-        /// <br/>
-        /// <br/>*   **send_receipt**: Whether to send an order confirmation to the customer. (default: `false`) 
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If you're working on a private app and order confirmations are still being sent to the customer when `send_receipt` is set to `false`, then you need to disable the Storefront API from the private app's page in the Shopify admin.
-        /// <br/> &lt;/aside&gt; 
-        /// <br/>
-        /// <br/>*   **send_fulfillment_receipt**: Whether to send a shipping confirmation to the customer. (default: `false`) 
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If you are including **shipping_address** or **billing_address**, make sure to pass both **first_name** and **last_name**. Otherwise both these addresses will be ignored.
-        /// <br/>
-        /// <br/>**Usage notes:**  
-        /// <br/> If you're using this endpoint with a trial or Partner development store, then you can create no more than 5 new orders per minute.
-        /// <br/> &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CreateOrderAsync(CreateOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1917,13 +1469,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a specific order
-        /// </summary>
-        /// <remarks>
-        /// Retrieve an order by specifying the ID. All fields of an order are returned unless specific fields are named. The GET orders endpoint returns open orders by default.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> GetOrderAsync(long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2000,13 +1545,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of orders
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of orders that meet the specified criteria. **Usage notes:**  
-        /// <br/> This endpoint implements pagination by using links that are provided in the response header. To learn more, see [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> UpdateOrderAsync(long orderId, UpdateOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2085,12 +1623,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete an order
-        /// </summary>
-        /// <remarks>
-        /// Deletes an order. Orders that interact with an online gateway can't be deleted.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2156,19 +1688,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve an order count
-        /// </summary>
-        /// <remarks>
-        /// Retrieve the total number of orders that meet the specified criteria.
-        /// </remarks>
-        /// <param name="createdAtMax">Orders created before date specified.</param>
-        /// <param name="createdAtMin">Orders created after date specified.</param>
-        /// <param name="financialStatus">Orders of a given financial status.</param>
-        /// <param name="fulfillmentStatus">Orders of a given fulfillment status.</param>
-        /// <param name="status">Orders of a given status.</param>
-        /// <param name="updatedAtMax">Orders last updated before date specified.</param>
-        /// <param name="updatedAtMin">Orders last updated after date specified.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, FinancialStatusRequest? financialStatus = null, FulfillmentStatusRequest? fulfillmentStatus = null, OrderStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2265,12 +1784,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Close an order
-        /// </summary>
-        /// <remarks>
-        /// Closes an order. A closed order is one that has no more work to be done. All items have been fulfilled or refunded.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CloseOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2343,12 +1856,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Re-open a closed order
-        /// </summary>
-        /// <remarks>
-        /// Re-opens a closed order
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> ReOpenClosedOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2421,17 +1928,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Cancel an order
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>For multi-currency orders, the `currency` property is required whenever the `amount` property is provided. For more information, refer to the [*Transaction resource*](/api/admin-rest/latest/resources/transaction).
-        /// <br/>&lt;/aside&gt;Cancels an order. Orders that are paid and have fulfillments can't be canceled.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, CancelOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2614,64 +2110,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates an order risk for an order
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskForOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all order risks for an order
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all order risks for an order. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderRiskList>> ListOrderRisksForOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single order risk by its ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> GetOrderRiskAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an order risk
-        /// </summary>
-        /// <remarks>
-        /// Updates an order risk
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>You cannot modify an order risk that was created by another application.
-        /// <br/> &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> UpdateOrderRiskAsync(long orderId, long riskId, UpdateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an order risk for an order
-        /// </summary>
-        /// <remarks>
-        /// Deletes an order risk for an order
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>You cannot delete an order risk that was created by another application.
-        /// <br/> &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> DeleteOrderRiskForOrderAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -2711,9 +2169,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates an order risk for an order
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskForOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2789,12 +2244,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all order risks for an order
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all order risks for an order. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskList>> ListOrderRisksForOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2866,9 +2315,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single order risk by its ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> GetOrderRiskAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2944,19 +2390,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an order risk
-        /// </summary>
-        /// <remarks>
-        /// Updates an order risk
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>You cannot modify an order risk that was created by another application.
-        /// <br/> &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> UpdateOrderRiskAsync(long orderId, long riskId, UpdateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3039,19 +2472,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an order risk for an order
-        /// </summary>
-        /// <remarks>
-        /// Deletes an order risk for an order
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>You cannot delete an order risk that was created by another application.
-        /// <br/> &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> DeleteOrderRiskForOrderAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3231,71 +2651,21 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of refunds for an order
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of refunds for an order. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, see [ *Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<RefundList>> ListRefundsForOrderAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a refund
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>For multi-currency orders, the `currency` property is required whenever the `amount` property is provided. 
-        /// <br/> &lt;/aside&gt; 
-        /// <br/>
-        /// <br/>Creates a refund. Use the `calculate` endpoint to produce the transactions to submit.
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>When you use this endpoint with a Partner development store or a trial store, you can create only five refunds per minute.
-        /// <br/> &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CreateRefundAsync(long orderId, CreateRefundRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a specific refund
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> GetRefundAsync(long orderId, long refundId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Calculates a refund
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>For multi-currency orders, the `currency` property is required whenever the `amount` property is provided.
-        /// <br/> &lt;/aside&gt; 
-        /// <br/>
-        /// <br/>Calculates refund transactions based on line items and shipping. When you want to create a refund, you should first use the `calculate` endpoint to generate accurate refund transactions. Specify the line items that are being refunded, their quantity and restock instructions, and whether you intend to refund shipping costs. If the restock instructions can't be met—for example, because you try to return more items than have been fulfilled—then the endpoint returns modified restock instructions. You can then use the response in the body of the request to create the actual refund.
-        /// <br/>
-        /// <br/>The response includes a `transactions` object with `"kind": "suggested_refund"`, which must to be changed to `"kind" : "refund"` for the refund to be accepted.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CalculateRefundAsync(long orderId, CalculateRefundRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -3335,16 +2705,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of refunds for an order
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of refunds for an order. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, see [ *Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundList>> ListRefundsForOrderAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3433,26 +2793,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a refund
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>For multi-currency orders, the `currency` property is required whenever the `amount` property is provided. 
-        /// <br/> &lt;/aside&gt; 
-        /// <br/>
-        /// <br/>Creates a refund. Use the `calculate` endpoint to produce the transactions to submit.
-        /// <br/>
-        /// <br/> &lt;aside class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>When you use this endpoint with a Partner development store or a trial store, you can create only five refunds per minute.
-        /// <br/> &lt;/aside&gt;
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CreateRefundAsync(long orderId, CreateRefundRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3531,11 +2871,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a specific refund
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> GetRefundAsync(long orderId, long refundId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3620,21 +2955,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Calculates a refund
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>For multi-currency orders, the `currency` property is required whenever the `amount` property is provided.
-        /// <br/> &lt;/aside&gt; 
-        /// <br/>
-        /// <br/>Calculates refund transactions based on line items and shipping. When you want to create a refund, you should first use the `calculate` endpoint to generate accurate refund transactions. Specify the line items that are being refunded, their quantity and restock instructions, and whether you intend to refund shipping costs. If the restock instructions can't be met—for example, because you try to return more items than have been fulfilled—then the endpoint returns modified restock instructions. You can then use the response in the body of the request to create the actual refund.
-        /// <br/>
-        /// <br/>The response includes a `transactions` object with `"kind": "suggested_refund"`, which must to be changed to `"kind" : "refund"` for the refund to be accepted.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CalculateRefundAsync(long orderId, CalculateRefundRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3817,60 +3137,21 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of transactions
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of transactions.
-        /// <br/>
-        /// <br/>Transactions attached to multi-currency orders are in the presentment currency by default. To retrieve transactions in the shop currency, include the URL parameter `in_shop_currency=true`.
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specifed by a comma-separated list of fields names.</param>
-        /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
-        /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<TransactionList>> ListTransactionsAsync(long orderId, string? fields = null, bool? inShopCurrency = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a transaction for an order
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>For multi-currency orders, the `currency` property is required when creating refund and capture transactions. The value should be the presentment currency from the order. For more information, refer to the [*Transaction resource*](/api/admin-rest/latest/resources/transaction).
-        /// <br/>&lt;/aside&gt; 
-        /// <br/>
-        /// <br/>Creates a transaction for an order.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> CreateTransactionForOrderAsync(long orderId, CreateTransactionForOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of an order's transactions
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a specific transaction
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a specific transaction.
-        /// <br/>
-        /// <br/>Transactions attached to multi-currency orders are in the presentment currency by default. To retrieve transactions in the shop currency, include the URL parameter `in_shop_currency=true`.
-        /// <br/>
-        /// <br/>`extended_authorization_attributes` are available on this endpoint only to stores on the [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan that use Shopify Payments. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> GetTransactionAsync(long orderId, long transactionId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -3910,17 +3191,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of transactions
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of transactions.
-        /// <br/>
-        /// <br/>Transactions attached to multi-currency orders are in the presentment currency by default. To retrieve transactions in the shop currency, include the URL parameter `in_shop_currency=true`.
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specifed by a comma-separated list of fields names.</param>
-        /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
-        /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionList>> ListTransactionsAsync(long orderId, string? fields = null, bool? inShopCurrency = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4005,19 +3275,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a transaction for an order
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>For multi-currency orders, the `currency` property is required when creating refund and capture transactions. The value should be the presentment currency from the order. For more information, refer to the [*Transaction resource*](/api/admin-rest/latest/resources/transaction).
-        /// <br/>&lt;/aside&gt; 
-        /// <br/>
-        /// <br/>Creates a transaction for an order.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> CreateTransactionForOrderAsync(long orderId, CreateTransactionForOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4096,9 +3353,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of an order's transactions
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4170,18 +3424,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a specific transaction
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a specific transaction.
-        /// <br/>
-        /// <br/>Transactions attached to multi-currency orders are in the presentment currency by default. To retrieve transactions in the shop currency, include the URL parameter `in_shop_currency=true`.
-        /// <br/>
-        /// <br/>`extended_authorization_attributes` are available on this endpoint only to stores on the [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan that use Shopify Payments. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> GetTransactionAsync(long orderId, long transactionId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4441,45 +3683,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Email { get; set; } = default!;
 
-        /// <summary>
-        /// A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ "checkout": { "gift_cards": [{ "code": "a gift card code" }, { "code": "another gift card code" }] } }`. Each gift card object has the following properties: 
-        /// <br/>
-        /// <br/>*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. 
-        /// <br/>*   **code**: The gift card code. 
-        /// <br/>*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. 
-        /// <br/>*   **id**: The ID for the applied gift card. 
-        /// <br/>*   **last_characters**: The last four characters of the applied gift card for display back to the user. 
-        /// <br/>
-        /// <br/> Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("gift_cards")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<CheckoutGiftCard>? GiftCards { get; set; } = default!;
-
-        /// <summary>
-        /// A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: 
-        /// <br/>
-        /// <br/>*   **applied_discounts**: A list of the discounts applied to the line item. 
-        /// <br/>*   **compare_at_price**: The original selling price of the product, if applicable. 
-        /// <br/>*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both "across" and "each" applications. A superset of `applied_discounts`. 
-        /// <br/>*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **id**: The checkout-specific ID of the line item. 
-        /// <br/>*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. 
-        /// <br/>*   **price**: The price of the item in presentment currency. 
-        /// <br/>*   **product_id**: The product of the line item. 
-        /// <br/>*   **properties**: The [customization information](/api/liquid/objects/line_item#line_item-properties) for a line item (optional). 
-        /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. 
-        /// <br/>*   **sku**: The unique identifier of the item in the fulfillment. 
-        /// <br/>*   **taxable**: Whether this product is taxable. 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **variant_id**: The variant ID of the line item. 
-        /// <br/>*   **variant_title**: The title of the product variant. 
-        /// <br/>*   **vendor**: The name of the item's supplier.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -4551,10 +3758,6 @@ namespace Ocelli.OpenShopify
         [System.Obsolete]
         public string? ReservationTime { get; set; } = default!;
 
-        /// <summary>
-        /// The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("reservation_time_left")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -4612,14 +3815,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public decimal? SubtotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in presentment currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -4669,10 +3864,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? WebUrl { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier for a particular checkout.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("token")]
 
@@ -5090,35 +4281,11 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))")]
     public partial class CalculateRefundRequestDetail
     {
-        /// <summary>
-        /// The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// A list of refunded line items. Each entry has the following properties: 
-        /// <br/>
-        /// <br/>*   **id**: The unique identifier of the line item in the refund. 
-        /// <br/>*   **line_item**: A line item being refunded. 
-        /// <br/>*   **line_item_id**: The ID of the related line item in the order. 
-        /// <br/>*   **quantity**: The refunded quantity of the associated line item. 
-        /// <br/>*   **restock_type**: How this refund line item affects inventory levels. Valid values: 
-        /// <br/>
-        /// <br/>    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. 
-        /// <br/>    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. 
-        /// <br/>    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. 
-        /// <br/>    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds. 
-        /// <br/>
-        /// <br/>*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. 
-        /// <br/>*   **subtotal**: The subtotal of the refund line item. 
-        /// <br/>*   **total_tax**: The total tax on the refund line item. 
-        /// <br/>*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. 
-        /// <br/>*   **total_tax_set**: The total tax of the line item in shop and presentment currencies.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("refund_line_items")]
 
@@ -5532,10 +4699,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Note { get; set; } = default!;
 
-        /// <summary>
-        /// The extra information that's added to the order. The information appears in the**Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -5576,35 +4739,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? InvoiceUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: 
-        /// <br/>
-        /// <br/>*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. 
-        /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
-        /// <br/>*   **product_id**: The ID of the product corresponding to the line item’s product variant. 
-        /// <br/>*   **name**: The name of the product. 
-        /// <br/>*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. 
-        /// <br/>*   **vendor**: The vendor. 
-        /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. 
-        /// <br/>*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. 
-        /// <br/>*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. 
-        /// <br/>*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. 
-        /// <br/>*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. 
-        /// <br/>
-        /// <br/>    *   **price**: The amount of tax to be charged. 
-        /// <br/>    *   **rate**: The rate of tax to be applied. 
-        /// <br/>    *   **title**: The name of the tax. 
-        /// <br/>
-        /// <br/>*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. 
-        /// <br/>*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` 
-        /// <br/>*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. 
-        /// <br/>*   **taxable**: Whether the product is taxable. Applicable only to custom line items.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -5666,24 +4800,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? TaxExempt { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
 
         // TODO(system.text.json): Add string enum item converter
         public System.Collections.Generic.ICollection<DraftOrderTaxExemptions>? TaxExemptions { get; set; } = default!;
-
-        /// <summary>
-        /// An array of tax line resources, each of which details a tax applicable to the order. Each `tax_lines` resource has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
@@ -5863,6 +4985,15 @@ namespace Ocelli.OpenShopify
         public System.DateTimeOffset? ClosedAt { get; set; } = default!;
 
         /// <summary>
+        /// Represents information about the purchasing company for the order. `null` will be returned if there is no purchasing company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
         /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the shop currency.
         /// </summary>
 
@@ -5870,6 +5001,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The current total additional fees on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("current_total_additional_fees_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? CurrentTotalAdditionalFeesSet { get; set; } = default!;
 
         /// <summary>
         /// The current total discounts on the order in the shop currency. The value of this field reflects order edits, returns, and refunds.
@@ -5946,58 +5086,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? CustomerLocale { get; set; } = default!;
 
-        /// <summary>
-        /// An ordered list of stacked discount applications.
-        /// <br/>
-        /// <br/>The `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.
-        /// <br/>
-        /// <br/>*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: 
-        /// <br/>
-        /// <br/>    *   `across`: The value is spread across all entitled lines. 
-        /// <br/>    *   `each`: The value is applied onto every entitled line. 
-        /// <br/>    *   `one`: The value is applied onto a single line. &lt;div class="note-caution note"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.
-        /// <br/> &lt;/div&gt; 
-        /// <br/>
-        /// <br/>*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  
-        /// <br/>*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  
-        /// <br/>*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: 
-        /// <br/>
-        /// <br/>    *   `all`: The discount is allocated onto all lines, 
-        /// <br/>    *   `entitled`: The discount is allocated only onto lines it is entitled for. 
-        /// <br/>    *   `explicit`: The discount is allocated onto explicitly selected lines. 
-        /// <br/>
-        /// <br/>*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: 
-        /// <br/>
-        /// <br/>    *   `line_item`: The discount applies to line items. 
-        /// <br/>    *   `shipping_line`: The discount applies to shipping lines. 
-        /// <br/>
-        /// <br/>*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. 
-        /// <br/>*   **type**: The discount application type. Valid values: 
-        /// <br/>
-        /// <br/>    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. 
-        /// <br/>    *   `discount_code`: The discount was applied by a discount code. 
-        /// <br/>    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). 
-        /// <br/>    *   `script`: The discount was applied by a Shopify Script. 
-        /// <br/>
-        /// <br/>*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  
-        /// <br/>*   **value_type**: The type of the value. Valid values: 
-        /// <br/>
-        /// <br/>    *   `fixed_amount`: A fixed amount discount value in the currency of the order. 
-        /// <br/>    *   `percentage`: A percentage discount value.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("discount_applications")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<DiscountApplication>? DiscountApplications { get; set; } = default!;
-
-        /// <summary>
-        /// A list of discounts applied to the order. Each discount object includes the following properties: * **amount**: The amount that's deducted from the order total. When you create an order, this value is the percentage or monetary amount to deduct. After the order is created, this property returns the calculated amount. * **code**: When the associated discount application is of type `code`, this property returns the discount code that was entered at checkout. Otherwise this property returns the title of the discount that was applied. * **type**: The type of discount. Default value: `fixed_amount`. Valid values: * `fixed_amount`: Applies `amount` as a unit of the store's currency. For example, if `amount` is 30 and the store's currency is USD, then 30 USD is deducted from the order total when the discount is applied. * `percentage`: Applies a discount of `amount` as a percentage of the order total. * `shipping`: Applies a free shipping discount on orders that have a shipping rate less than or equal to `amount`. For example, if `amount` is 30, then the discount will give the customer free shipping for any shipping rate that is less than or equal to $30.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
 
@@ -6028,10 +5120,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public OrderFinancialStatus? FinancialStatus { get; set; } = default!;
 
-        /// <summary>
-        /// An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -6061,63 +5149,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? LandingSite { get; set; } = default!;
-
-        /// <summary>
-        /// A list of line item objects, each containing information about an item in the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: 
-        /// <br/>
-        /// <br/>`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`
-        /// <br/>
-        /// <br/>*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be **deprecated**. Consider using [' "FulfillmentOrder#assigned_location](https://shopify.dev/api/admin-rest/latest/resources/fulfillmentorder#resource-object) instead. 
-        /// <br/>*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied in the shop currency. 
-        /// <br/>*   **price_set**: The price of the line item in shop and presentment currencies. 
-        /// <br/>*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. 
-        /// <br/>*   **quantity**: The number of items that were purchased. 
-        /// <br/>*   **requires_shipping**: Whether the item requires shipping. 
-        /// <br/>*   **sku**: The item's SKU (stock keeping unit). 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **variant_id**: The ID of the product variant. 
-        /// <br/>*   **variant_title**: The title of the product variant. 
-        /// <br/>*   **vendor**: The name of the item's supplier. 
-        /// <br/>*   **name**: The name of the product variant. 
-        /// <br/>*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. 
-        /// <br/>*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  
-        /// <br/>*   **taxable**: Whether the item was taxable. 
-        /// <br/>*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. 
-        /// <br/>
-        /// <br/>    *   `title`: The name of the tax. 
-        /// <br/>    *   `price`: The amount added to the order for this tax in the shop currency. 
-        /// <br/>    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. 
-        /// <br/>    *   `rate`: The tax rate applied to the order to calculate the tax price. 
-        /// <br/>    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. 
-        /// <br/>
-        /// <br/>*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. 
-        /// <br/>*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. 
-        /// <br/>*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. 
-        /// <br/>*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. 
-        /// <br/>*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. 
-        /// <br/>
-        /// <br/>    *   `amount`: The discount amount allocated to the line in the shop currency. 
-        /// <br/>    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. 
-        /// <br/>    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies. 
-        /// <br/>
-        /// <br/>*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' "FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. 
-        /// <br/>
-        /// <br/>    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. 
-        /// <br/>    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. 
-        /// <br/>    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. 
-        /// <br/>    *   `name`: The name of the item's supplier. 
-        /// <br/>    *   `address1`: The street address of the item's supplier. 
-        /// <br/>    *   `address2`: The suite number of the item's supplier. 
-        /// <br/>    *   `city`: The city of the item's supplier. 
-        /// <br/>    *   `zip`: The zip of the item's supplier. 
-        /// <br/>
-        /// <br/>*   **duties**: A list of duty objects, each containing information about a duty on the line item.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -6160,10 +5191,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Note { get; set; } = default!;
 
-        /// <summary>
-        /// Extra information that is added to the order. Appears in the **Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -6186,6 +5213,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public int? OrderNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The original total additional fees on the order in shop and presentment currencies.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_total_additional_fees_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? OriginalTotalAdditionalFeesSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("original_total_duties_set")]
 
@@ -6282,10 +5318,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? ReferringSite { get; set; } = default!;
 
-        /// <summary>
-        /// A list of refunds applied to the order. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund).
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("refunds")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -6295,21 +5327,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public Address? ShippingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// An array of objects, each of which details a shipping method used. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **code**: A reference to the shipping method. 
-        /// <br/>*   **discounted_price**: The price of the shipping method after line-level discounts have been applied. Doesn't reflect cart-level or order-level discounts. 
-        /// <br/>*   **discounted_price_set**: The price of the shipping method in both shop and presentment currencies after line-level discounts have been applied. 
-        /// <br/>*   **price**: The price of this shipping method in the shop currency. Can't be negative. 
-        /// <br/>*   **price_set**: The price of the shipping method in shop and presentment currencies. 
-        /// <br/>*   **source**: The source of the shipping method. 
-        /// <br/>*   **title**: The title of the shipping method. 
-        /// <br/>*   **tax_lines**: A list of tax line objects, each of which details a tax applicable to this shipping line. 
-        /// <br/>*   **carrier_identifier**: A reference to the carrier service that provided the rate. Present when the rate was computed by a third-party carrier service. 
-        /// <br/>*   **requested_fulfillment_service_id**: A reference to the fulfillment service that is being requested for the shipping method. Present if the shipping method requires processing by a third party fulfillment service; `null` otherwise.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("shipping_lines")]
 
@@ -6365,17 +5382,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Tags { get; set; } = default!;
-
-        /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in the shop currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax. 
-        /// <br/>*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. 
-        /// <br/>
-        /// <br/> When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
@@ -6682,9 +5688,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))")]
     public partial class CreateRefund
     {
-        /// <summary>
-        /// A list of duties that have been reimbursed as part of the refund.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("duties")]
 
@@ -6700,20 +5703,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Note { get; set; } = default!;
 
-        /// <summary>
-        /// A list of order adjustments attached to the refund. Order adjustments are generated to account for refunded shipping costs and differences between calculated and actual refund amounts. Each entry has the following properties:
-        /// <br/>
-        /// <br/>*   **id**: The unique identifier for the order adjustment. 
-        /// <br/>*   **order_id**: The unique identifier for the order that the order adjustment is associated with. 
-        /// <br/>*   **refund_id**: The unique identifier for the refund that the order adjustment is associated with. 
-        /// <br/>*   **amount**: The value of the discrepancy between the calculated refund and the actual refund. If the `kind` property's value is `shipping_refund`, then `amount` returns the value of shipping charges refunded to the customer. 
-        /// <br/>*   **tax_amount**: The taxes that are added to `amount`, such as applicable shipping taxes added to a shipping refund. 
-        /// <br/>*   **kind**: The order adjustment type. Valid values: `shipping_refund` and `refund_discrepancy`. 
-        /// <br/>*   **reason**: The reason for the order adjustment. To set this value, include `discrepancy_reason` when you create a refund. 
-        /// <br/>*   **amount_set**: The amount of the order adjustment in shop and presentment currencies. 
-        /// <br/>*   **tax_amount_set**: The tax amount of the order adjustment in shop and presentment currencies.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("order_adjustments")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -6728,41 +5717,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
 
-        /// <summary>
-        /// A list of refunded duties. Each entry has the following properties:
-        /// <br/>
-        /// <br/>*   **duty_id**: The unique identifier of the duty. 
-        /// <br/>*   **refund_type**: Specifies how you want the duty refunded. Valid values: 
-        /// <br/>
-        /// <br/>    *   `FULL`: Refunds all the duties associated with a duty ID. You do not need to include refund line items if you are using the full refund type. 
-        /// <br/>    *   `PROPORTIONAL`: Refunds duties in proportion to the line item quantity that you want to refund. If you choose the proportional refund type, then you must also pass the refund line items to calculate the portion of duties to refund.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("refund_duties")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<RefundDutyType>? RefundDuties { get; set; } = default!;
-
-        /// <summary>
-        /// A list of refunded line items. Each entry has the following properties: 
-        /// <br/>
-        /// <br/>*   **id**: The unique identifier of the line item in the refund. 
-        /// <br/>*   **line_item**: A line item being refunded. 
-        /// <br/>*   **line_item_id**: The ID of the related line item in the order. 
-        /// <br/>*   **quantity**: The refunded quantity of the associated line item. 
-        /// <br/>*   **restock_type**: How this refund line item affects inventory levels. Valid values: 
-        /// <br/>
-        /// <br/>    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. 
-        /// <br/>    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. 
-        /// <br/>    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. 
-        /// <br/>    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds. 
-        /// <br/>
-        /// <br/>*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. 
-        /// <br/>*   **subtotal**: The subtotal of the refund line item. 
-        /// <br/>*   **total_tax**: The total tax on the refund line item. 
-        /// <br/>*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. 
-        /// <br/>*   **total_tax_set**: The total tax of the line item in shop and presentment currencies.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("refund_line_items")]
 
@@ -6778,10 +5736,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Obsolete]
         public string? Restock { get; set; } = default!;
-
-        /// <summary>
-        /// A list of transactions involved in the refund. A single order can have multiple transactions associated with it. For more information, see the [ Transaction](/api/admin-rest/current/resources/transaction) resource.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("transactions")]
 
@@ -7007,6 +5961,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the available amount with currency to capture on the gateway in shop and presentment currencies. Only available when an amount is capturable or manually mark as paid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_unsettled_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? TotalUnsettledSet { get; set; } = default!;
 
         /// <summary>
         /// Whether the transaction is a test transaction.
@@ -7606,10 +6569,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Note { get; set; } = default!;
 
-        /// <summary>
-        /// The extra information that's added to the order. The information appears in the**Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -7650,35 +6609,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? InvoiceUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: 
-        /// <br/>
-        /// <br/>*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. 
-        /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
-        /// <br/>*   **product_id**: The ID of the product corresponding to the line item’s product variant. 
-        /// <br/>*   **name**: The name of the product. 
-        /// <br/>*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. 
-        /// <br/>*   **vendor**: The vendor. 
-        /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. 
-        /// <br/>*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. 
-        /// <br/>*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. 
-        /// <br/>*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. 
-        /// <br/>*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. 
-        /// <br/>
-        /// <br/>    *   **price**: The amount of tax to be charged. 
-        /// <br/>    *   **rate**: The rate of tax to be applied. 
-        /// <br/>    *   **title**: The name of the tax. 
-        /// <br/>
-        /// <br/>*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. 
-        /// <br/>*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` 
-        /// <br/>*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. 
-        /// <br/>*   **taxable**: Whether the product is taxable. Applicable only to custom line items.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -7740,24 +6670,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? TaxExempt { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
 
         // TODO(system.text.json): Add string enum item converter
         public System.Collections.Generic.ICollection<DraftOrderTaxExemptions>? TaxExemptions { get; set; } = default!;
-
-        /// <summary>
-        /// An array of tax line resources, each of which details a tax applicable to the order. Each `tax_lines` resource has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
@@ -8755,6 +7673,15 @@ namespace Ocelli.OpenShopify
         public System.DateTimeOffset? ClosedAt { get; set; } = default!;
 
         /// <summary>
+        /// Represents information about the purchasing company for the order. `null` will be returned if there is no purchasing company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
         /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the shop currency.
         /// </summary>
 
@@ -8762,6 +7689,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The current total additional fees on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("current_total_additional_fees_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? CurrentTotalAdditionalFeesSet { get; set; } = default!;
 
         /// <summary>
         /// The current total discounts on the order in the shop currency. The value of this field reflects order edits, returns, and refunds.
@@ -8838,58 +7774,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? CustomerLocale { get; set; } = default!;
 
-        /// <summary>
-        /// An ordered list of stacked discount applications.
-        /// <br/>
-        /// <br/>The `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.
-        /// <br/>
-        /// <br/>*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: 
-        /// <br/>
-        /// <br/>    *   `across`: The value is spread across all entitled lines. 
-        /// <br/>    *   `each`: The value is applied onto every entitled line. 
-        /// <br/>    *   `one`: The value is applied onto a single line. &lt;div class="note-caution note"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.
-        /// <br/> &lt;/div&gt; 
-        /// <br/>
-        /// <br/>*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  
-        /// <br/>*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  
-        /// <br/>*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: 
-        /// <br/>
-        /// <br/>    *   `all`: The discount is allocated onto all lines, 
-        /// <br/>    *   `entitled`: The discount is allocated only onto lines it is entitled for. 
-        /// <br/>    *   `explicit`: The discount is allocated onto explicitly selected lines. 
-        /// <br/>
-        /// <br/>*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: 
-        /// <br/>
-        /// <br/>    *   `line_item`: The discount applies to line items. 
-        /// <br/>    *   `shipping_line`: The discount applies to shipping lines. 
-        /// <br/>
-        /// <br/>*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. 
-        /// <br/>*   **type**: The discount application type. Valid values: 
-        /// <br/>
-        /// <br/>    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. 
-        /// <br/>    *   `discount_code`: The discount was applied by a discount code. 
-        /// <br/>    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). 
-        /// <br/>    *   `script`: The discount was applied by a Shopify Script. 
-        /// <br/>
-        /// <br/>*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  
-        /// <br/>*   **value_type**: The type of the value. Valid values: 
-        /// <br/>
-        /// <br/>    *   `fixed_amount`: A fixed amount discount value in the currency of the order. 
-        /// <br/>    *   `percentage`: A percentage discount value.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("discount_applications")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<DiscountApplication>? DiscountApplications { get; set; } = default!;
-
-        /// <summary>
-        /// A list of discounts applied to the order. Each discount object includes the following properties: * **amount**: The amount that's deducted from the order total. When you create an order, this value is the percentage or monetary amount to deduct. After the order is created, this property returns the calculated amount. * **code**: When the associated discount application is of type `code`, this property returns the discount code that was entered at checkout. Otherwise this property returns the title of the discount that was applied. * **type**: The type of discount. Default value: `fixed_amount`. Valid values: * `fixed_amount`: Applies `amount` as a unit of the store's currency. For example, if `amount` is 30 and the store's currency is USD, then 30 USD is deducted from the order total when the discount is applied. * `percentage`: Applies a discount of `amount` as a percentage of the order total. * `shipping`: Applies a free shipping discount on orders that have a shipping rate less than or equal to `amount`. For example, if `amount` is 30, then the discount will give the customer free shipping for any shipping rate that is less than or equal to $30.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
 
@@ -8920,10 +7808,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public OrderFinancialStatus? FinancialStatus { get; set; } = default!;
 
-        /// <summary>
-        /// An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -8953,63 +7837,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? LandingSite { get; set; } = default!;
-
-        /// <summary>
-        /// A list of line item objects, each containing information about an item in the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: 
-        /// <br/>
-        /// <br/>`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`
-        /// <br/>
-        /// <br/>*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be **deprecated**. Consider using [' "FulfillmentOrder#assigned_location](https://shopify.dev/api/admin-rest/latest/resources/fulfillmentorder#resource-object) instead. 
-        /// <br/>*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied in the shop currency. 
-        /// <br/>*   **price_set**: The price of the line item in shop and presentment currencies. 
-        /// <br/>*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. 
-        /// <br/>*   **quantity**: The number of items that were purchased. 
-        /// <br/>*   **requires_shipping**: Whether the item requires shipping. 
-        /// <br/>*   **sku**: The item's SKU (stock keeping unit). 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **variant_id**: The ID of the product variant. 
-        /// <br/>*   **variant_title**: The title of the product variant. 
-        /// <br/>*   **vendor**: The name of the item's supplier. 
-        /// <br/>*   **name**: The name of the product variant. 
-        /// <br/>*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. 
-        /// <br/>*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  
-        /// <br/>*   **taxable**: Whether the item was taxable. 
-        /// <br/>*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. 
-        /// <br/>
-        /// <br/>    *   `title`: The name of the tax. 
-        /// <br/>    *   `price`: The amount added to the order for this tax in the shop currency. 
-        /// <br/>    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. 
-        /// <br/>    *   `rate`: The tax rate applied to the order to calculate the tax price. 
-        /// <br/>    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. 
-        /// <br/>
-        /// <br/>*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. 
-        /// <br/>*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. 
-        /// <br/>*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. 
-        /// <br/>*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. 
-        /// <br/>*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. 
-        /// <br/>
-        /// <br/>    *   `amount`: The discount amount allocated to the line in the shop currency. 
-        /// <br/>    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. 
-        /// <br/>    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies. 
-        /// <br/>
-        /// <br/>*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' "FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. 
-        /// <br/>
-        /// <br/>    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. 
-        /// <br/>    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. 
-        /// <br/>    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. 
-        /// <br/>    *   `name`: The name of the item's supplier. 
-        /// <br/>    *   `address1`: The street address of the item's supplier. 
-        /// <br/>    *   `address2`: The suite number of the item's supplier. 
-        /// <br/>    *   `city`: The city of the item's supplier. 
-        /// <br/>    *   `zip`: The zip of the item's supplier. 
-        /// <br/>
-        /// <br/>*   **duties**: A list of duty objects, each containing information about a duty on the line item.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -9052,10 +7879,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Note { get; set; } = default!;
 
-        /// <summary>
-        /// Extra information that is added to the order. Appears in the **Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -9078,6 +7901,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public int? OrderNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The original total additional fees on the order in shop and presentment currencies.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_total_additional_fees_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? OriginalTotalAdditionalFeesSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("original_total_duties_set")]
 
@@ -9174,10 +8006,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? ReferringSite { get; set; } = default!;
 
-        /// <summary>
-        /// A list of refunds applied to the order. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund).
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("refunds")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -9187,21 +8015,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public Address? ShippingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// An array of objects, each of which details a shipping method used. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **code**: A reference to the shipping method. 
-        /// <br/>*   **discounted_price**: The price of the shipping method after line-level discounts have been applied. Doesn't reflect cart-level or order-level discounts. 
-        /// <br/>*   **discounted_price_set**: The price of the shipping method in both shop and presentment currencies after line-level discounts have been applied. 
-        /// <br/>*   **price**: The price of this shipping method in the shop currency. Can't be negative. 
-        /// <br/>*   **price_set**: The price of the shipping method in shop and presentment currencies. 
-        /// <br/>*   **source**: The source of the shipping method. 
-        /// <br/>*   **title**: The title of the shipping method. 
-        /// <br/>*   **tax_lines**: A list of tax line objects, each of which details a tax applicable to this shipping line. 
-        /// <br/>*   **carrier_identifier**: A reference to the carrier service that provided the rate. Present when the rate was computed by a third-party carrier service. 
-        /// <br/>*   **requested_fulfillment_service_id**: A reference to the fulfillment service that is being requested for the shipping method. Present if the shipping method requires processing by a third party fulfillment service; `null` otherwise.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("shipping_lines")]
 
@@ -9257,17 +8070,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Tags { get; set; } = default!;
-
-        /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in the shop currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax. 
-        /// <br/>*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. 
-        /// <br/>
-        /// <br/> When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
@@ -9944,9 +8746,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))")]
     public partial class Refund
     {
-        /// <summary>
-        /// A list of duties that have been reimbursed as part of the refund.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("duties")]
 
@@ -9962,20 +8761,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Note { get; set; } = default!;
 
-        /// <summary>
-        /// A list of order adjustments attached to the refund. Order adjustments are generated to account for refunded shipping costs and differences between calculated and actual refund amounts. Each entry has the following properties:
-        /// <br/>
-        /// <br/>*   **id**: The unique identifier for the order adjustment. 
-        /// <br/>*   **order_id**: The unique identifier for the order that the order adjustment is associated with. 
-        /// <br/>*   **refund_id**: The unique identifier for the refund that the order adjustment is associated with. 
-        /// <br/>*   **amount**: The value of the discrepancy between the calculated refund and the actual refund. If the `kind` property's value is `shipping_refund`, then `amount` returns the value of shipping charges refunded to the customer. 
-        /// <br/>*   **tax_amount**: The taxes that are added to `amount`, such as applicable shipping taxes added to a shipping refund. 
-        /// <br/>*   **kind**: The order adjustment type. Valid values: `shipping_refund` and `refund_discrepancy`. 
-        /// <br/>*   **reason**: The reason for the order adjustment. To set this value, include `discrepancy_reason` when you create a refund. 
-        /// <br/>*   **amount_set**: The amount of the order adjustment in shop and presentment currencies. 
-        /// <br/>*   **tax_amount_set**: The tax amount of the order adjustment in shop and presentment currencies.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("order_adjustments")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -9990,41 +8775,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
 
-        /// <summary>
-        /// A list of refunded duties. Each entry has the following properties:
-        /// <br/>
-        /// <br/>*   **duty_id**: The unique identifier of the duty. 
-        /// <br/>*   **refund_type**: Specifies how you want the duty refunded. Valid values: 
-        /// <br/>
-        /// <br/>    *   `FULL`: Refunds all the duties associated with a duty ID. You do not need to include refund line items if you are using the full refund type. 
-        /// <br/>    *   `PROPORTIONAL`: Refunds duties in proportion to the line item quantity that you want to refund. If you choose the proportional refund type, then you must also pass the refund line items to calculate the portion of duties to refund.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("refund_duties")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<RefundDutyType>? RefundDuties { get; set; } = default!;
-
-        /// <summary>
-        /// A list of refunded line items. Each entry has the following properties: 
-        /// <br/>
-        /// <br/>*   **id**: The unique identifier of the line item in the refund. 
-        /// <br/>*   **line_item**: A line item being refunded. 
-        /// <br/>*   **line_item_id**: The ID of the related line item in the order. 
-        /// <br/>*   **quantity**: The refunded quantity of the associated line item. 
-        /// <br/>*   **restock_type**: How this refund line item affects inventory levels. Valid values: 
-        /// <br/>
-        /// <br/>    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. 
-        /// <br/>    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. 
-        /// <br/>    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. 
-        /// <br/>    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds. 
-        /// <br/>
-        /// <br/>*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. 
-        /// <br/>*   **subtotal**: The subtotal of the refund line item. 
-        /// <br/>*   **total_tax**: The total tax on the refund line item. 
-        /// <br/>*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. 
-        /// <br/>*   **total_tax_set**: The total tax of the line item in shop and presentment currencies.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("refund_line_items")]
 
@@ -10040,10 +8794,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Obsolete]
         public string? Restock { get; set; } = default!;
-
-        /// <summary>
-        /// A list of transactions involved in the refund. A single order can have multiple transactions associated with it. For more information, see the [ Transaction](/api/admin-rest/current/resources/transaction) resource.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("transactions")]
 
@@ -10915,6 +9665,15 @@ namespace Ocelli.OpenShopify
         public string? Status { get; set; } = default!;
 
         /// <summary>
+        /// Specifies the available amount with currency to capture on the gateway in shop and presentment currencies. Only available when an amount is capturable or manually mark as paid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_unsettled_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? TotalUnsettledSet { get; set; } = default!;
+
+        /// <summary>
         /// Whether the transaction is a test transaction.
         /// </summary>
 
@@ -11135,10 +9894,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Note { get; set; } = default!;
 
-        /// <summary>
-        /// The extra information that's added to the order. The information appears in the**Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -11179,35 +9934,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? InvoiceUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: 
-        /// <br/>
-        /// <br/>*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. 
-        /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
-        /// <br/>*   **product_id**: The ID of the product corresponding to the line item’s product variant. 
-        /// <br/>*   **name**: The name of the product. 
-        /// <br/>*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. 
-        /// <br/>*   **vendor**: The vendor. 
-        /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. 
-        /// <br/>*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. 
-        /// <br/>*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. 
-        /// <br/>*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. 
-        /// <br/>*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. 
-        /// <br/>
-        /// <br/>    *   **price**: The amount of tax to be charged. 
-        /// <br/>    *   **rate**: The rate of tax to be applied. 
-        /// <br/>    *   **title**: The name of the tax. 
-        /// <br/>
-        /// <br/>*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. 
-        /// <br/>*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` 
-        /// <br/>*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. 
-        /// <br/>*   **taxable**: Whether the product is taxable. Applicable only to custom line items.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -11269,24 +9995,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? TaxExempt { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
 
         // TODO(system.text.json): Add string enum item converter
         public System.Collections.Generic.ICollection<DraftOrderTaxExemptions>? TaxExemptions { get; set; } = default!;
-
-        /// <summary>
-        /// An array of tax line resources, each of which details a tax applicable to the order. Each `tax_lines` resource has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
@@ -11476,6 +10190,15 @@ namespace Ocelli.OpenShopify
         public System.DateTimeOffset? ClosedAt { get; set; } = default!;
 
         /// <summary>
+        /// Represents information about the purchasing company for the order. `null` will be returned if there is no purchasing company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
         /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the shop currency.
         /// </summary>
 
@@ -11483,6 +10206,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The current total additional fees on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("current_total_additional_fees_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? CurrentTotalAdditionalFeesSet { get; set; } = default!;
 
         /// <summary>
         /// The current total discounts on the order in the shop currency. The value of this field reflects order edits, returns, and refunds.
@@ -11559,58 +10291,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? CustomerLocale { get; set; } = default!;
 
-        /// <summary>
-        /// An ordered list of stacked discount applications.
-        /// <br/>
-        /// <br/>The `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.
-        /// <br/>
-        /// <br/>*   **allocation_method**: The method by which the discount application value has been allocated to entitled lines. Valid values: 
-        /// <br/>
-        /// <br/>    *   `across`: The value is spread across all entitled lines. 
-        /// <br/>    *   `each`: The value is applied onto every entitled line. 
-        /// <br/>    *   `one`: The value is applied onto a single line. &lt;div class="note-caution note"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-07, `across` is returned instead of `one` as the meaning is the same for explicit discounts.
-        /// <br/> &lt;/div&gt; 
-        /// <br/>
-        /// <br/>*   **code**: The discount code that was used to apply the discount. Available only for discount code applications.  
-        /// <br/>*   **description**: The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.  
-        /// <br/>*   **target_selection**: The lines on the order, of the type defined by `target_type`, that the discount is allocated over. Valid values: 
-        /// <br/>
-        /// <br/>    *   `all`: The discount is allocated onto all lines, 
-        /// <br/>    *   `entitled`: The discount is allocated only onto lines it is entitled for. 
-        /// <br/>    *   `explicit`: The discount is allocated onto explicitly selected lines. 
-        /// <br/>
-        /// <br/>*   **target_type**: The type of line on the order that the discount is applicable on. Valid values: 
-        /// <br/>
-        /// <br/>    *   `line_item`: The discount applies to line items. 
-        /// <br/>    *   `shipping_line`: The discount applies to shipping lines. 
-        /// <br/>
-        /// <br/>*   **title**: The title of the discount application, as defined by the merchant. Available only for manual discount applications. 
-        /// <br/>*   **type**: The discount application type. Valid values: 
-        /// <br/>
-        /// <br/>    *   `automatic`: The discount was applied automatically, such as by a Buy X Get Y automatic discount. 
-        /// <br/>    *   `discount_code`: The discount was applied by a discount code. 
-        /// <br/>    *   `manual`: The discount was manually applied by the merchant (for example, by using an app or creating a draft order). 
-        /// <br/>    *   `script`: The discount was applied by a Shopify Script. 
-        /// <br/>
-        /// <br/>*   **value**: The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`.  
-        /// <br/>*   **value_type**: The type of the value. Valid values: 
-        /// <br/>
-        /// <br/>    *   `fixed_amount`: A fixed amount discount value in the currency of the order. 
-        /// <br/>    *   `percentage`: A percentage discount value.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("discount_applications")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<DiscountApplication>? DiscountApplications { get; set; } = default!;
-
-        /// <summary>
-        /// A list of discounts applied to the order. Each discount object includes the following properties: * **amount**: The amount that's deducted from the order total. When you create an order, this value is the percentage or monetary amount to deduct. After the order is created, this property returns the calculated amount. * **code**: When the associated discount application is of type `code`, this property returns the discount code that was entered at checkout. Otherwise this property returns the title of the discount that was applied. * **type**: The type of discount. Default value: `fixed_amount`. Valid values: * `fixed_amount`: Applies `amount` as a unit of the store's currency. For example, if `amount` is 30 and the store's currency is USD, then 30 USD is deducted from the order total when the discount is applied. * `percentage`: Applies a discount of `amount` as a percentage of the order total. * `shipping`: Applies a free shipping discount on orders that have a shipping rate less than or equal to `amount`. For example, if `amount` is 30, then the discount will give the customer free shipping for any shipping rate that is less than or equal to $30.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
 
@@ -11641,10 +10325,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public OrderFinancialStatus? FinancialStatus { get; set; } = default!;
 
-        /// <summary>
-        /// An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -11674,63 +10354,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? LandingSite { get; set; } = default!;
-
-        /// <summary>
-        /// A list of line item objects, each containing information about an item in the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **fulfillable_quantity**: The amount available to fulfill, calculated as follows: 
-        /// <br/>
-        /// <br/>`*quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity*`
-        /// <br/>
-        /// <br/>*   **fulfillment_service**: The service provider that's fulfilling the item. Valid values: `manual`, or the name of the provider, such as `amazon` or `shipwire`. Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be **deprecated**. Consider using [' "FulfillmentOrder#assigned_location](https://shopify.dev/api/admin-rest/latest/resources/fulfillmentorder#resource-object) instead. 
-        /// <br/>*   **fulfillment_status**: How far along an order is in terms line items fulfilled. Valid values: `null`, `fulfilled`, `partial`, and `not_eligible`. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied in the shop currency. 
-        /// <br/>*   **price_set**: The price of the line item in shop and presentment currencies. 
-        /// <br/>*   **product_id**: The ID of the product that the line item belongs to. Can be `null` if the original product associated with the order is deleted at a later date. 
-        /// <br/>*   **quantity**: The number of items that were purchased. 
-        /// <br/>*   **requires_shipping**: Whether the item requires shipping. 
-        /// <br/>*   **sku**: The item's SKU (stock keeping unit). 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **variant_id**: The ID of the product variant. 
-        /// <br/>*   **variant_title**: The title of the product variant. 
-        /// <br/>*   **vendor**: The name of the item's supplier. 
-        /// <br/>*   **name**: The name of the product variant. 
-        /// <br/>*   **gift_card**: Whether the item is a gift card. If `true`, then the item is not taxed or considered for shipping charges. 
-        /// <br/>*   **properties**: An array of custom information for the item that has been added to the cart. Often used to provide product customization options.  
-        /// <br/>*   **taxable**: Whether the item was taxable. 
-        /// <br/>*   **tax_lines**: A list of tax line objects, each of which details a tax applied to the item. 
-        /// <br/>
-        /// <br/>    *   `title`: The name of the tax. 
-        /// <br/>    *   `price`: The amount added to the order for this tax in the shop currency. 
-        /// <br/>    *   `price_set`: The amount added to the order for this tax in shop and presentment currencies. 
-        /// <br/>    *   `rate`: The tax rate applied to the order to calculate the tax price. 
-        /// <br/>    *   `channel_liable`: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. 
-        /// <br/>
-        /// <br/>*   **tip_payment_gateway**: The payment gateway used to tender the tip, such as `shopify_payments`. Present only on tips. 
-        /// <br/>*   **tip_payment_method**: The payment method used to tender the tip, such as `Visa`. Present only on tips. 
-        /// <br/>*   **total_discount**: The total amount of the discount allocated to the line item in the shop currency. This field must be explicitly set using draft orders, Shopify scripts, or the API. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. 
-        /// <br/>*   **total_discount_set**: The total amount allocated to the line item in the presentment currency. Instead of using this field, Shopify recommends using `discount_allocations`, which provides the same information. 
-        /// <br/>*   **discount_allocations**: An ordered list of amounts allocated by discount applications. Each discount allocation is associated with a particular discount application. 
-        /// <br/>
-        /// <br/>    *   `amount`: The discount amount allocated to the line in the shop currency. 
-        /// <br/>    *   `discount_application_index`: The index of the associated discount application in the order's `discount_applications` list. 
-        /// <br/>    *   `amount_set`: The discount amount allocated to the line item in shop and presentment currencies. 
-        /// <br/>
-        /// <br/>*   **origin_location**: The location of the line item’s fulfillment origin. This field is due to be **deprecated**. Consider using [' "FulfillmentOrder#assigned_location_id](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) instead. 
-        /// <br/>
-        /// <br/>    *   `id`: The location ID of the line item’s fulfillment origin. Used by Shopify to calculate applicable taxes. This is not the ID of the location where the order was placed. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource to determine the location an item will be sourced from. 
-        /// <br/>    *   `country_code`: The two-letter code ([ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) for the country of the item's supplier. 
-        /// <br/>    *   `province_code`: The two-letter abbreviation for the region of the item's supplier. 
-        /// <br/>    *   `name`: The name of the item's supplier. 
-        /// <br/>    *   `address1`: The street address of the item's supplier. 
-        /// <br/>    *   `address2`: The suite number of the item's supplier. 
-        /// <br/>    *   `city`: The city of the item's supplier. 
-        /// <br/>    *   `zip`: The zip of the item's supplier. 
-        /// <br/>
-        /// <br/>*   **duties**: A list of duty objects, each containing information about a duty on the line item.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -11773,10 +10396,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Note { get; set; } = default!;
 
-        /// <summary>
-        /// Extra information that is added to the order. Appears in the **Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -11799,6 +10418,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public int? OrderNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The original total additional fees on the order in shop and presentment currencies.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_total_additional_fees_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? OriginalTotalAdditionalFeesSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("original_total_duties_set")]
 
@@ -11895,10 +10523,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? ReferringSite { get; set; } = default!;
 
-        /// <summary>
-        /// A list of refunds applied to the order. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund).
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("refunds")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -11908,21 +10532,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public Address? ShippingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// An array of objects, each of which details a shipping method used. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **code**: A reference to the shipping method. 
-        /// <br/>*   **discounted_price**: The price of the shipping method after line-level discounts have been applied. Doesn't reflect cart-level or order-level discounts. 
-        /// <br/>*   **discounted_price_set**: The price of the shipping method in both shop and presentment currencies after line-level discounts have been applied. 
-        /// <br/>*   **price**: The price of this shipping method in the shop currency. Can't be negative. 
-        /// <br/>*   **price_set**: The price of the shipping method in shop and presentment currencies. 
-        /// <br/>*   **source**: The source of the shipping method. 
-        /// <br/>*   **title**: The title of the shipping method. 
-        /// <br/>*   **tax_lines**: A list of tax line objects, each of which details a tax applicable to this shipping line. 
-        /// <br/>*   **carrier_identifier**: A reference to the carrier service that provided the rate. Present when the rate was computed by a third-party carrier service. 
-        /// <br/>*   **requested_fulfillment_service_id**: A reference to the fulfillment service that is being requested for the shipping method. Present if the shipping method requires processing by a third party fulfillment service; `null` otherwise.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("shipping_lines")]
 
@@ -11978,17 +10587,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Tags { get; set; } = default!;
-
-        /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in the shop currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax. 
-        /// <br/>*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line. 
-        /// <br/>
-        /// <br/> When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 

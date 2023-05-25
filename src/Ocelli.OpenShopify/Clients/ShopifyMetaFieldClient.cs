@@ -27,481 +27,191 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to an Article
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToArticleAsync(long articleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for an article
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForArticleAsync(long articleId, CreateMetafieldForArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to an Article
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToArticleAsync(long articleId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for an Article
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForArticleAsync(long articleId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to an Article
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToArticleAsync(long metafieldId, long articleId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for an Article
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForArticleAsync(long articleId, long metafieldId, UpdateMetafieldForArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to the Shop resource
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToBlogAsync(long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForBlogAsync(long blogId, CreateMetafieldForBlogRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of metafields from the resource's endpoint
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToBlogAsync(long blogId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a metafield by its ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForBlogAsync(long blogId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a specific metafield
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToBlogAsync(long metafieldId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a metafield
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForBlogAsync(long blogId, long metafieldId, UpdateMetafieldForBlogRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Collection
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToCollectionAsync(long collectionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a collection
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForCollectionAsync(long collectionId, CreateMetafieldForCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Collection
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToCollectionAsync(long collectionId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Collection
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForCollectionAsync(long collectionId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Collection
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToCollectionAsync(long metafieldId, long collectionId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Collection
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForCollectionAsync(long collectionId, long metafieldId, UpdateMetafieldForCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Customer
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a customer
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForCustomerAsync(long customerId, CreateMetafieldForCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to an Article
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToCustomerAsync(long customerId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Customer
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForCustomerAsync(long customerId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Customer
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToCustomerAsync(long metafieldId, long customerId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Customer
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForCustomerAsync(long customerId, long metafieldId, UpdateMetafieldForCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToDraftOrderAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a draft order
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForDraftOrderAsync(long draftOrderId, CreateMetafieldForDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToDraftOrderAsync(long draftOrderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForDraftOrderAsync(long draftOrderId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToDraftOrderAsync(long metafieldId, long draftOrderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForDraftOrderAsync(long draftOrderId, long metafieldId, UpdateMetafieldForDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to the Shop resource
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToShopResourceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of metafields by using query parameters
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields that belong to a resource by using query parameters.
-        /// </remarks>
-        /// <param name="metafieldownerId">Filter by the resource ID on which the metafield is attached to.</param>
-        /// <param name="metafieldownerResource">Filter by the resource name on which the metafield is attached to.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsByUsingQueryParametersAsync(string? metafieldownerId = null, string? metafieldownerResource = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to an Order
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for an order
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForOrderAsync(long orderId, CreateMetafieldForOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to an Order
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToOrderAsync(long orderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for an Order
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForOrderAsync(long orderId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to an Order
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToOrderAsync(long metafieldId, long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for an Order
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForOrderAsync(long orderId, long metafieldId, UpdateMetafieldForOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -512,295 +222,116 @@ namespace Ocelli.OpenShopify
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToPageAsync(long pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a page
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForPageAsync(long pageId, CreateMetafieldForPageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Page
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToPageAsync(long pageId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Page
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForPageAsync(long pageId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Page
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToPageAsync(long metafieldId, long pageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Page
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForPageAsync(long pageId, long metafieldId, UpdateMetafieldForPageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Product
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToProductAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a product
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForProductAsync(long productId, CreateMetafieldForProductRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Product
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToProductAsync(long productId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Product
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForProductAsync(long productId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Product
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToProductAsync(long metafieldId, long productId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Product
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForProductAsync(long productId, long metafieldId, UpdateMetafieldForProductRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Product Image
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToProductImageAsync(long productImageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a product image
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForProductImageAsync(long productImageId, CreateMetafieldForProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Product Image
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToProductImageAsync(long productImageId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a metafield by its ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForProductImageAsync(long productImageId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Product Image
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToProductImageAsync(long metafieldId, long productImageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Product Image
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForProductImageAsync(long productImageId, long metafieldId, UpdateMetafieldForProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToProductVariantAsync(long variantId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a product variant
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForProductVariantAsync(long variantId, CreateMetafieldForProductVariantRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToProductVariantAsync(long variantId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForProductVariantAsync(long variantId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToProductVariantAsync(long metafieldId, long variantId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForProductVariantAsync(long variantId, long metafieldId, UpdateMetafieldForProductVariantRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -840,12 +371,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to an Article
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToArticleAsync(long articleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -917,12 +442,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for an article
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForArticleAsync(long articleId, CreateMetafieldForArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1001,22 +520,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to an Article
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToArticleAsync(long articleId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1133,12 +636,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for an Article
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForArticleAsync(long articleId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1208,13 +705,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to an Article
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToArticleAsync(long metafieldId, long articleId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1295,12 +785,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for an Article
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForArticleAsync(long articleId, long metafieldId, UpdateMetafieldForArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1383,12 +867,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to the Shop resource
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToBlogAsync(long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1460,12 +938,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForBlogAsync(long blogId, CreateMetafieldForBlogRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1544,22 +1016,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of metafields from the resource's endpoint
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToBlogAsync(long blogId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1676,9 +1132,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a metafield by its ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForBlogAsync(long blogId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1748,13 +1201,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a specific metafield
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToBlogAsync(long metafieldId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1835,9 +1281,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a metafield
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForBlogAsync(long blogId, long metafieldId, UpdateMetafieldForBlogRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1920,12 +1363,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Collection
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToCollectionAsync(long collectionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1997,12 +1434,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a collection
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForCollectionAsync(long collectionId, CreateMetafieldForCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2081,22 +1512,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Collection
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToCollectionAsync(long collectionId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2213,12 +1628,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Collection
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForCollectionAsync(long collectionId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2288,13 +1697,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Collection
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToCollectionAsync(long metafieldId, long collectionId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2375,12 +1777,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Collection
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForCollectionAsync(long collectionId, long metafieldId, UpdateMetafieldForCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2463,12 +1859,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Customer
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2540,12 +1930,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a customer
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForCustomerAsync(long customerId, CreateMetafieldForCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2624,22 +2008,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to an Article
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToCustomerAsync(long customerId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2756,12 +2124,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Customer
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForCustomerAsync(long customerId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2831,13 +2193,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Customer
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToCustomerAsync(long metafieldId, long customerId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2918,12 +2273,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Customer
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForCustomerAsync(long customerId, long metafieldId, UpdateMetafieldForCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3006,12 +2355,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToDraftOrderAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3083,12 +2426,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a draft order
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForDraftOrderAsync(long draftOrderId, CreateMetafieldForDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3167,22 +2504,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToDraftOrderAsync(long draftOrderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3299,12 +2620,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForDraftOrderAsync(long draftOrderId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3374,13 +2689,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToDraftOrderAsync(long metafieldId, long draftOrderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3461,12 +2769,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Draft Order
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForDraftOrderAsync(long draftOrderId, long metafieldId, UpdateMetafieldForDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3549,12 +2851,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to the Shop resource
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToShopResourceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3622,14 +2918,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of metafields by using query parameters
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields that belong to a resource by using query parameters.
-        /// </remarks>
-        /// <param name="metafieldownerId">Filter by the resource ID on which the metafield is attached to.</param>
-        /// <param name="metafieldownerResource">Filter by the resource name on which the metafield is attached to.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsByUsingQueryParametersAsync(string? metafieldownerId = null, string? metafieldownerResource = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3706,12 +2994,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to an Order
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3783,12 +3065,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for an order
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForOrderAsync(long orderId, CreateMetafieldForOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3867,22 +3143,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to an Order
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToOrderAsync(long orderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3999,12 +3259,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for an Order
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForOrderAsync(long orderId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4074,13 +3328,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to an Order
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToOrderAsync(long metafieldId, long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4161,12 +3408,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for an Order
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForOrderAsync(long orderId, long metafieldId, UpdateMetafieldForOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4320,12 +3561,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a page
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForPageAsync(long pageId, CreateMetafieldForPageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4404,22 +3639,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Page
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToPageAsync(long pageId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4536,12 +3755,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Page
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForPageAsync(long pageId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4611,13 +3824,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Page
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToPageAsync(long metafieldId, long pageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4698,12 +3904,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Page
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForPageAsync(long pageId, long metafieldId, UpdateMetafieldForPageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4786,12 +3986,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Product
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToProductAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4863,12 +4057,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a product
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForProductAsync(long productId, CreateMetafieldForProductRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4947,22 +4135,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Product
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToProductAsync(long productId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5079,12 +4251,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Product
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForProductAsync(long productId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5154,13 +4320,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Product
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToProductAsync(long metafieldId, long productId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5241,12 +4400,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Product
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForProductAsync(long productId, long metafieldId, UpdateMetafieldForProductRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5329,12 +4482,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Product Image
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToProductImageAsync(long productImageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5406,12 +4553,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a product image
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForProductImageAsync(long productImageId, CreateMetafieldForProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5490,22 +4631,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Product Image
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToProductImageAsync(long productImageId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5622,9 +4747,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a metafield by its ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForProductImageAsync(long productImageId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5694,13 +4816,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Product Image
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToProductImageAsync(long metafieldId, long productImageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5781,12 +4896,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Product Image
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForProductImageAsync(long productImageId, long metafieldId, UpdateMetafieldForProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5869,12 +4978,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of metafields attached to a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all metafields that belong to a particular resource.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMetafieldsAttachedToProductVariantAsync(long variantId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5946,12 +5049,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a metafield for a product variant
-        /// </summary>
-        /// <remarks>
-        /// You can create any number of metafields for a resource. To create metafields, use the corresponding resource's endpoint as listed on the examples.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldForProductVariantAsync(long variantId, CreateMetafieldForProductVariantRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -6030,22 +5127,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve metafields attached to a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
-        /// </remarks>
-        /// <param name="createdAtMax">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="key">Show metafields with given key</param>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show metafields created after the specified ID.</param>
-        /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
-        /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsAttachedToProductVariantAsync(long variantId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -6162,12 +5243,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a metafield by its ID for a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Deletes a metafield by its ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldForProductVariantAsync(long variantId, long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -6237,13 +5312,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single metafield by its ID attached to a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
-        /// </remarks>
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> GetMetafieldAttachedToProductVariantAsync(long metafieldId, long variantId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -6324,12 +5392,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a metafield for a Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Updates a metafield.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> UpdateMetafieldForProductVariantAsync(long variantId, long metafieldId, UpdateMetafieldForProductVariantRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -6515,7 +5577,7 @@ namespace Ocelli.OpenShopify
     public partial class CreateMetafield
     {
         /// <summary>
-        /// A description of the information that the metafield contains.
+        /// The description of the metafield.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -6524,7 +5586,8 @@ namespace Ocelli.OpenShopify
         public string? Description { get; set; } = default!;
 
         /// <summary>
-        /// The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.
+        /// The unique identifier for a metafield within its namespace.   
+        /// <br/> Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("key")]
@@ -6533,7 +5596,8 @@ namespace Ocelli.OpenShopify
         public string? Key { get; set; } = default!;
 
         /// <summary>
-        /// A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+        /// The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   
+        /// <br/> Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("namespace")]
@@ -6558,10 +5622,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? OwnerResource { get; set; } = default!;
-
-        /// <summary>
-        /// The data to store in the metafield. The value is always stored as a string, regardless of the metafield's type.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 
@@ -6712,7 +5772,7 @@ namespace Ocelli.OpenShopify
     public partial class Metafield
     {
         /// <summary>
-        /// A description of the information that the metafield contains.
+        /// The description of the metafield.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -6721,7 +5781,8 @@ namespace Ocelli.OpenShopify
         public string? Description { get; set; } = default!;
 
         /// <summary>
-        /// The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.
+        /// The unique identifier for a metafield within its namespace.   
+        /// <br/> Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("key")]
@@ -6730,7 +5791,8 @@ namespace Ocelli.OpenShopify
         public string? Key { get; set; } = default!;
 
         /// <summary>
-        /// A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+        /// The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   
+        /// <br/> Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("namespace")]
@@ -6755,10 +5817,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? OwnerResource { get; set; } = default!;
-
-        /// <summary>
-        /// The data to store in the metafield. The value is always stored as a string, regardless of the metafield's type.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 
@@ -6913,7 +5971,7 @@ namespace Ocelli.OpenShopify
     public partial class UpdateMetafield
     {
         /// <summary>
-        /// A description of the information that the metafield contains.
+        /// The description of the metafield.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -6922,7 +5980,8 @@ namespace Ocelli.OpenShopify
         public string? Description { get; set; } = default!;
 
         /// <summary>
-        /// The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.
+        /// The unique identifier for a metafield within its namespace.   
+        /// <br/> Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("key")]
@@ -6931,7 +5990,8 @@ namespace Ocelli.OpenShopify
         public string? Key { get; set; } = default!;
 
         /// <summary>
-        /// A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+        /// The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   
+        /// <br/> Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("namespace")]
@@ -6956,10 +6016,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? OwnerResource { get; set; } = default!;
-
-        /// <summary>
-        /// The data to store in the metafield. The value is always stored as a string, regardless of the metafield's type.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 

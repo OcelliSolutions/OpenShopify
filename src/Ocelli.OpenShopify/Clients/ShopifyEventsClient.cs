@@ -27,80 +27,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of events
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="filter">Show events specified in this filter.</param>
-        /// <param name="limit">The number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show only results after the specified ID.</param>
-        /// <param name="verb">Show events of a certain type.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<EventList>> ListEventsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? filter = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? verb = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single event
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single event by its ID
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<EventItem>> GetEventAsync(long eventId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of events
-        /// </summary>
-        /// <param name="createdAtMax">Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountEventsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve an event after a specific ID using `since_id`
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="filter">Show events specified in this filter.</param>
-        /// <param name="limit">The number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show only results after the specified ID.</param>
-        /// <param name="verb">Show events of a certain type.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<EventList>> GetEventAfterSpecificIDUsingSinceIdAsync(long orderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? filter = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? verb = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve all events from a specific product
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="filter">Show events specified in this filter.</param>
-        /// <param name="limit">The number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show only results after the specified ID.</param>
-        /// <param name="verb">Show events of a certain type.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<EventList>> ListEventsFromSpecificProductAsync(long productId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? filter = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? verb = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -140,20 +86,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of events
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="filter">Show events specified in this filter.</param>
-        /// <param name="limit">The number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show only results after the specified ID.</param>
-        /// <param name="verb">Show events of a certain type.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<EventList>> ListEventsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? filter = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? verb = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -254,13 +186,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single event
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single event by its ID
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<EventItem>> GetEventAsync(long eventId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -337,11 +262,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of events
-        /// </summary>
-        /// <param name="createdAtMax">Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountEventsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -418,20 +338,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve an event after a specific ID using `since_id`
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="filter">Show events specified in this filter.</param>
-        /// <param name="limit">The number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show only results after the specified ID.</param>
-        /// <param name="verb">Show events of a certain type.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<EventList>> GetEventAfterSpecificIDUsingSinceIdAsync(long orderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? filter = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? verb = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -536,20 +442,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve all events from a specific product
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="filter">Show events specified in this filter.</param>
-        /// <param name="limit">The number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Show only results after the specified ID.</param>
-        /// <param name="verb">Show events of a certain type.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<EventList>> ListEventsFromSpecificProductAsync(long productId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? filter = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? verb = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -758,79 +650,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of webhooks
-        /// </summary>
-        /// <param name="address">Retrieve webhook subscriptions that send the POST request to this URI.</param>
-        /// <param name="createdAtMax">Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
-        /// <param name="limit">Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.</param>
-        /// <param name="topic">Show webhook subscriptions with a given topic.For valid values, refer to the [list of event topics](#event-topics).</param>
-        /// <param name="updatedAtMax">Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<WebhookList>> ListWebhooksAsync(string? address = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? topic = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Webhook
-        /// </summary>
-        /// <remarks>
-        /// Create a new webhook subscription by specifying both an `address` and a `topic`.
-        /// <br/>
-        /// <br/>Amazon EventBridge and Google Pub/Sub webhook subscriptions use this field differently.For more information, refer to the [Amazon EventBridge](/apps/webhooks/eventbridge) and [Google Cloud Pub/Sub](/apps/webhooks/google-cloud) pages.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> CreateWebhookAsync(CreateWebhookRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all Webhooks
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of existing webhook subscriptions. The results can be filtered by address or by topic.
-        /// </remarks>
-        /// <param name="address">Webhook subscriptions that send the POST request to this URI.</param>
-        /// <param name="topic">The topic of the webhook subscriptions.For valid values, refer to the [list of event topics](#event-topics).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountWebhooksAsync(string? address = null, string? topic = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Webhook
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single webhook subscription. The properties desired in the result can be specified.
-        /// </remarks>
-        /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> GetWebhookAsync(long webhookId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Webhook
-        /// </summary>
-        /// <remarks>
-        /// Update a webhook subscription's topic or address URIs
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> UpdateWebhookAsync(long webhookId, UpdateWebhookRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Webhook
-        /// </summary>
-        /// <remarks>
-        /// Delete a webhook subscription
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteWebhookAsync(long webhookId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -870,19 +714,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of webhooks
-        /// </summary>
-        /// <param name="address">Retrieve webhook subscriptions that send the POST request to this URI.</param>
-        /// <param name="createdAtMax">Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
-        /// <param name="limit">Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.</param>
-        /// <param name="topic">Show webhook subscriptions with a given topic.For valid values, refer to the [list of event topics](#event-topics).</param>
-        /// <param name="updatedAtMax">Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookList>> ListWebhooksAsync(string? address = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? topic = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -991,14 +822,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Webhook
-        /// </summary>
-        /// <remarks>
-        /// Create a new webhook subscription by specifying both an `address` and a `topic`.
-        /// <br/>
-        /// <br/>Amazon EventBridge and Google Pub/Sub webhook subscriptions use this field differently.For more information, refer to the [Amazon EventBridge](/apps/webhooks/eventbridge) and [Google Cloud Pub/Sub](/apps/webhooks/google-cloud) pages.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> CreateWebhookAsync(CreateWebhookRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1073,14 +896,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all Webhooks
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of existing webhook subscriptions. The results can be filtered by address or by topic.
-        /// </remarks>
-        /// <param name="address">Webhook subscriptions that send the POST request to this URI.</param>
-        /// <param name="topic">The topic of the webhook subscriptions.For valid values, refer to the [list of event topics](#event-topics).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountWebhooksAsync(string? address = null, string? topic = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1157,13 +972,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Webhook
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single webhook subscription. The properties desired in the result can be specified.
-        /// </remarks>
-        /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> GetWebhookAsync(long webhookId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1240,12 +1048,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Webhook
-        /// </summary>
-        /// <remarks>
-        /// Update a webhook subscription's topic or address URIs
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> UpdateWebhookAsync(long webhookId, UpdateWebhookRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1324,12 +1126,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Webhook
-        /// </summary>
-        /// <remarks>
-        /// Delete a webhook subscription
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteWebhookAsync(long webhookId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

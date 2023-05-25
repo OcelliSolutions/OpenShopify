@@ -2,17 +2,16 @@
   "openapi": "3.0.0",
   "info": {
     "title": "AssignedFulfillmentOrder",
-    "description": "        <p>\n          A list of all the <a href=\"/api/admin-rest/latest/resources/fulfillmentorder\">fulfillment orders</a>\n          that are assigned to an app  at the shop level. The list of fulfillment orders can be filtered\n          by <a href=\"/api/admin-rest/latest/resources/location\">location</a> and assignment status.\n        </p>\n",
-    "x-owner": "https://vault.shopify.io/teams/457",
+    "description": "        <p>\n          A list of all the <a href=\"/api/admin-rest/latest/resources/fulfillmentorder\">fulfillment orders</a>\n          that are assigned to an app at the shop level. The list of fulfillment orders can be filtered\n          by <a href=\"/api/admin-rest/latest/resources/location\">location</a> and assignment status.\n        </p>\n        <p>\n          Assigned fulfillment orders are fulfillment orders that are set to be fulfilled from locations\n          managed by\n          <a href=\"/docs/api/admin-rest/latest/resources/fulfillmentservice\">fulfillment services</a>\n          that are registered by the app.\n          One app (api_client) may host multiple fulfillment services on a shop.\n          Each fulfillment service manages a dedicated location on a shop.\n          Assigned fulfillment orders can have associated\n          <a href=\"/docs/api/admin-rest/latest/resources/fulfillmentrequest\">fulfillment requests</a>\n          or might currently not be requested to be fulfilled.\n        </p>\n",
+    "x-owner": "https://vault.shopify.io/teams/2678",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
-      "description": "Retrieves a list of fulfillment orders on a shop for a specific app.",
-      "summary": "Retrieves a list of fulfillment orders on a shop for a specific app",
-      "operationId": "Retrievesalistoffulfillmentordersonashopforaspecificapp",
+      "description": "<p>Retrieves a list of fulfillment orders assigned to the shop locations that are owned by the app.</p>\n          <p>\n            The app must have the <code>read_assigned_fulfillment_orders</code>\n            <a href=\"/docs/api/usage/access-scopes\">access scope</a>\n            to be able to retrieve fulfillment orders assigned to its locations.\n          </p>\n          <p>\n            All assigned fulfillment orders (except those with the <code>CLOSED</code> status)\n            will be returned by default.\n            Perform filtering with the <code>assignment_status</code> query parameter\n            to receive only fulfillment orders that have been requested to be fulfilled.\n          </p>",
+      "summary": "Retrieves a list of fulfillment orders assigned to the shop locations that are owned by the app",
+      "operationId": "Retrievesalistoffulfillmentordersassignedtotheshoplocationsthatareownedbytheapp",
       "parameters": [
         {
           "name": "api_version",
@@ -24,33 +23,33 @@
         },
         {
           "name": "assignment_status",
-          "description": "The assigment status of the fulfillment orders that should be returned:",
+          "description": "            The assignment status of the fulfillment orders that should be returned.\n            If <code>assignment_status</code> parameter isn't provided, then\n            the query will return all assigned fulfillment orders,\n            except those with the <code>CLOSED</code> status.\n",
           "in": "query",
           "schema": {
             "type": "string"
           },
           "examples": {
-            "cancellation_requested": {
-              "summary": "Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.",
-              "value": "cancellation_requested"
+            "fulfillment_unsubmitted": {
+              "summary": "              Fulfillment orders for which the merchant hasn't yet requested fulfillment.\n              Filtering by this value is supported as of the <code>2023-04</code> API version.\n",
+              "value": "fulfillment_unsubmitted"
             },
             "fulfillment_requested": {
               "summary": "Fulfillment orders for which the merchant has requested fulfillment.",
               "value": "fulfillment_requested"
             },
             "fulfillment_accepted": {
-              "summary": "Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items.",
+              "summary": "              Fulfillment orders for which the merchant's fulfillment request has been accepted.\n              Any number of fulfillments can be created on these fulfillment orders to completely fulfill the\n              requested items.\n",
               "value": "fulfillment_accepted"
             },
-            "fulfillment_unsubmitted": {
-              "summary": "Fulfillment orders for which the merchant has not yet requested fulfillment.",
-              "value": "fulfillment_unsubmitted"
+            "cancellation_requested": {
+              "summary": "            Fulfillment orders for which the merchant has requested cancellation of the previously\n            accepted fulfillment request.\n",
+              "value": "cancellation_requested"
             }
           }
         },
         {
           "name": "location_ids",
-          "description": "The IDs of the assigned locations of the fulfillment orders that should be returned.",
+          "description": "            The IDs of the assigned locations of the fulfillment orders that should be returned.\n            <br>\n            If the <code>location_ids</code> parameter isn't provided, then all fulfillment orders assigned\n            to the shop locations that are managed by the app will be returned.\n",
           "in": "query",
           "schema": {
             "type": "string"
@@ -59,7 +58,7 @@
       ],
       "responses": {
         "200": {
-          "description": "Retrieves a list of fulfillment orders on a shop for a specific app",
+          "description": "Retrieves a list of fulfillment orders assigned to the shop locations that are owned by the app",
           "content": {
             "application/json": {
               "examples": {
@@ -67,7 +66,7 @@
                   "value": {
                     "fulfillment_orders": [
                       {
-                        "id": 1046000830,
+                        "id": 1046000824,
                         "shop_id": 548380009,
                         "order_id": 450789469,
                         "assigned_location_id": 24826418,
@@ -78,7 +77,7 @@
                           "create_fulfillment"
                         ],
                         "destination": {
-                          "id": 1046000821,
+                          "id": 1046000818,
                           "address1": "Chestnut Street 92",
                           "address2": "",
                           "city": "Louisville",
@@ -93,9 +92,9 @@
                         },
                         "line_items": [
                           {
-                            "id": 1058737568,
+                            "id": 1058737562,
                             "shop_id": 548380009,
-                            "fulfillment_order_id": 1046000830,
+                            "fulfillment_order_id": 1046000824,
                             "quantity": 1,
                             "line_item_id": 518995019,
                             "inventory_item_id": 49148385,
@@ -129,7 +128,7 @@
         {
           "status": "200",
           "request_query": "assignment_status=cancellation_requested&location_ids%5B%5D=24826418",
-          "request_path": "/admin/api/2022-10/assigned_fulfillment_orders.json",
+          "request_path": "/admin/api/2023-04/assigned_fulfillment_orders.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2020-01/assigned_fulfillment_orders.json",
@@ -139,13 +138,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment_orders\":[{\"id\":1046000830,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"cancellation_requested\",\"status\":\"in_progress\",\"supported_actions\":[\"cancel_fulfillment_order\",\"create_fulfillment\"],\"destination\":{\"id\":1046000821,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737568,\"shop_id\":548380009,\"fulfillment_order_id\":1046000830,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null}}]}"
+            "body": "{\"fulfillment_orders\":[{\"id\":1046000824,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"cancellation_requested\",\"status\":\"in_progress\",\"supported_actions\":[\"cancel_fulfillment_order\",\"create_fulfillment\"],\"destination\":{\"id\":1046000818,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"+1(502)-459-2181\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737562,\"shop_id\":548380009,\"fulfillment_order_id\":1046000824,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null}}]}"
           },
           "name": "Retrieve a list of fulfillment orders in cancellation_requested state at a location for an app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/assigned_fulfillment_orders.json?assignment_status=cancellation_requested&location_ids%5B%5D=24826418\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/assigned_fulfillment_orders.json?assignment_status=cancellation_requested&location_ids%5B%5D=24826418\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -157,7 +156,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\AssignedFulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAssignedFulfillmentOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"assignment_status\" => \"cancellation_requested\", \"location_ids\" => [\"24826418\"]], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\AssignedFulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAssignedFulfillmentOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"assignment_status\" => \"cancellation_requested\", \"location_ids\" => [\"24826418\"]], // Params\n);"
             }
           ]
         }
@@ -273,5 +272,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

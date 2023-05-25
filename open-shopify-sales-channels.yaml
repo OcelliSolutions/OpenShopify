@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Sales Channels
   description: Sales Channels
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,7 +23,6 @@ paths:
     post:
       tags:
         - Checkout
-      summary: Creates a checkout
       operationId: CreateCheckout
       requestBody:
         content:
@@ -69,7 +68,6 @@ paths:
     post:
       tags:
         - Checkout
-      summary: Completes a checkout
       operationId: CompleteCheckout
       parameters:
         - name: token
@@ -97,7 +95,6 @@ paths:
     get:
       tags:
         - Checkout
-      summary: Retrieves a checkout
       operationId: GetCheckout
       parameters:
         - name: token
@@ -124,7 +121,6 @@ paths:
     put:
       tags:
         - Checkout
-      summary: Modifies an existing checkout
       operationId: UpdateCheckout
       parameters:
         - name: token
@@ -161,8 +157,6 @@ paths:
     get:
       tags:
         - Checkout
-      summary: Retrieves a list of shipping rates
-      description: 'Retrieves a list of available shipping rates for the specified checkout. Implementers need to poll this endpoint until rates become available. Each shipping rate contains the checkout''s new subtotal price, total tax, and total price in the event that this shipping rate is selected. This can be used to update the UI without performing further API requests.</p> To apply a shipping rate, update the checkout''s shipping line with the handle of the selected rate.'
       operationId: ListShippingRates
       parameters:
         - name: token
@@ -194,19 +188,15 @@ paths:
     get:
       tags:
         - CollectionListing
-      summary: Retrieve collection listings that are published to your app
-      description: 'Retrieve collection listings that are published to your app. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListCollectionListings
       parameters:
         - name: limit
           in: query
-          description: Amount of results
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
       responses:
@@ -233,8 +223,6 @@ paths:
     get:
       tags:
         - CollectionListing
-      summary: Retrieve `product_ids` that are published to a `collection_id`
-      description: 'Retrieve `product_ids` that are published to a `collection_id`. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: GetProductIdsThatArePublishedToCollectionId
       parameters:
         - name: collection_listing_id
@@ -245,13 +233,11 @@ paths:
             format: int64
         - name: limit
           in: query
-          description: Amount of results
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
       responses:
@@ -274,7 +260,6 @@ paths:
     get:
       tags:
         - CollectionListing
-      summary: Retrieve a specific collection listing that is published to your app
       operationId: GetCollectionListing
       parameters:
         - name: collection_listing_id
@@ -302,7 +287,6 @@ paths:
     put:
       tags:
         - CollectionListing
-      summary: Create a collection listing to publish a collection to your app
       operationId: CreateCollectionListing
       parameters:
         - name: collection_listing_id
@@ -339,7 +323,6 @@ paths:
     delete:
       tags:
         - CollectionListing
-      summary: Delete a collection listing to unpublish a collection from your app
       operationId: DeleteCollectionListing
       parameters:
         - name: collection_listing_id
@@ -364,8 +347,6 @@ paths:
     get:
       tags:
         - MobilePlatformApplication
-      summary: List all of the mobile platform applications associated with the app
-      description: List the mobile platform applications
       operationId: ListMobilePlatformApplicationsAssociatedWithApp
       responses:
         '200':
@@ -390,7 +371,6 @@ paths:
     post:
       tags:
         - MobilePlatformApplication
-      summary: Create a mobile platform application
       operationId: CreateMobilePlatformApplication
       requestBody:
         content:
@@ -421,7 +401,6 @@ paths:
     get:
       tags:
         - MobilePlatformApplication
-      summary: Get a mobile platform application
       operationId: GetMobilePlatformApplication
       parameters:
         - name: mobile_platform_application_id
@@ -449,7 +428,6 @@ paths:
     put:
       tags:
         - MobilePlatformApplication
-      summary: Update a mobile platform application
       operationId: UpdateMobilePlatformApplication
       parameters:
         - name: mobile_platform_application_id
@@ -486,7 +464,6 @@ paths:
     delete:
       tags:
         - MobilePlatformApplication
-      summary: Delete a mobile platform application
       operationId: DeleteMobilePlatformApplication
       parameters:
         - name: mobile_platform_application_id
@@ -511,8 +488,6 @@ paths:
     post:
       tags:
         - Payment
-      summary: Creates a new payment
-      description: Creates a payment on a checkout using the session ID returned by the card vault
       operationId: CreatePayment
       parameters:
         - name: token
@@ -548,7 +523,6 @@ paths:
     get:
       tags:
         - Payment
-      summary: Retrieves a list of payments on a particular checkout
       operationId: ListPaymentsOnParticularCheckout
       parameters:
         - name: token
@@ -580,8 +554,6 @@ paths:
     get:
       tags:
         - Payment
-      summary: Retrieves a single payment
-      description: Retrieves the payment information for an existing payment
       operationId: GetPayment
       parameters:
         - name: payment_id
@@ -615,7 +587,6 @@ paths:
     get:
       tags:
         - Payment
-      summary: Counts the number of payments attempted on a checkout
       operationId: CountNumberOfPaymentsAttemptedOnCheckout
       parameters:
         - name: token
@@ -643,40 +614,32 @@ paths:
     get:
       tags:
         - ProductListing
-      summary: Retrieve product listings that are published to your app
-      description: 'Retrieve product listings that are published to your app. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListProductListings
       parameters:
         - name: collection_id
           in: query
-          description: Filter by products belonging to a particular collection
           schema:
             type: integer
             format: int64
         - name: handle
           in: query
-          description: Filter by product handle
           schema:
             type: string
         - name: limit
           in: query
-          description: Amount of results
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: product_ids
           in: query
-          description: A comma-separated list of product ids
           schema:
             type: string
         - name: updated_at_min
           in: query
-          description: Filter by product listings last updated after a certain date and time (formatted in ISO 8601)
           schema:
             type: string
             format: date-time
@@ -704,19 +667,15 @@ paths:
     get:
       tags:
         - ProductListing
-      summary: Retrieve `product_ids` that are published to your app
-      description: 'Retrieve `product_ids` that are published to your app. Maximum 1,000 results per page.'
       operationId: GetProductIds
       parameters:
         - name: limit
           in: query
-          description: Amount of results
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
       responses:
@@ -739,7 +698,6 @@ paths:
     get:
       tags:
         - ProductListing
-      summary: Retrieve a count of products that are published to your app
       operationId: CountProducts
       responses:
         '200':
@@ -761,7 +719,6 @@ paths:
     get:
       tags:
         - ProductListing
-      summary: Retrieve a specific product listing that is published to your app
       operationId: GetProductListing
       parameters:
         - name: product_listing_id
@@ -789,7 +746,6 @@ paths:
     put:
       tags:
         - ProductListing
-      summary: Create a product listing to publish a product to your app
       operationId: CreateProductListing
       parameters:
         - name: product_listing_id
@@ -826,7 +782,6 @@ paths:
     delete:
       tags:
         - ProductListing
-      summary: Delete a product listing to unpublish a product from your app
       operationId: DeleteProductListing
       parameters:
         - name: product_listing_id
@@ -851,8 +806,6 @@ paths:
     post:
       tags:
         - ProductResourceFeedback
-      summary: Create a new Product ResourceFeedback
-      description: Create product feedback.
       operationId: CreateProductResourceFeedback
       parameters:
         - name: product_id
@@ -889,8 +842,6 @@ paths:
     get:
       tags:
         - ProductResourceFeedback
-      summary: Receive a list of all Product ResourceFeedbacks
-      description: Retrieve all product feedback from your app associated with the product.
       operationId: ListProductResourceFeedbacks
       parameters:
         - name: product_id
@@ -923,8 +874,6 @@ paths:
     post:
       tags:
         - ResourceFeedback
-      summary: Create a new ResourceFeedback
-      description: Creates shop resource feedback.
       operationId: CreateResourceFeedback
       requestBody:
         content:
@@ -954,8 +903,6 @@ paths:
     get:
       tags:
         - ResourceFeedback
-      summary: Receive a list of all ResourceFeedbacks
-      description: "Returns a list (zero or one) of resource feedback objects. <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nNote that ids are not returned as part of this request. Records are immutable except when POST replaces them.\r\n </div>"
       operationId: ListResourceFeedbacks
       responses:
         '200':
@@ -1099,13 +1046,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutGiftCard'
-          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user. \r\n\r\n Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
           nullable: true
         line_items:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutLineItem'
-          description: "A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: \r\n\r\n*   **applied_discounts**: A list of the discounts applied to the line item. \r\n*   **compare_at_price**: The original selling price of the product, if applicable. \r\n*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both \"across\" and \"each\" applications. A superset of `applied_discounts`. \r\n*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The checkout-specific ID of the line item. \r\n*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. \r\n*   **price**: The price of the item in presentment currency. \r\n*   **product_id**: The product of the line item. \r\n*   **properties**: The [customization information](/api/liquid/objects/line_item#line_item-properties) for a line item (optional). \r\n*   **quantity**: The number of products that were purchased. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. \r\n*   **sku**: The unique identifier of the item in the fulfillment. \r\n*   **taxable**: Whether this product is taxable. \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The variant ID of the line item. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier."
         order:
           type: string
           description: 'An object containing the ID, name, and status page URL of the associated order when the checkout is complete. Default value: `null`.'
@@ -1137,7 +1082,6 @@ components:
           deprecated: true
         reservation_time_left:
           type: integer
-          description: 'The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.'
           format: int64
           nullable: true
           deprecated: true
@@ -1168,7 +1112,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxLine'
-          description: "An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in presentment currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax."
           nullable: true
         taxes_included:
           type: boolean
@@ -1196,7 +1139,6 @@ components:
         token:
           minLength: 1
           type: string
-          description: A unique identifier for a particular checkout.
         abandoned_checkout_url:
           type: string
           description: The full recovery URL to be sent to a customer to recover their abandoned checkout.
@@ -1673,13 +1615,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutGiftCard'
-          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user. \r\n\r\n Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
           nullable: true
         line_items:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutLineItem'
-          description: "A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: \r\n\r\n*   **applied_discounts**: A list of the discounts applied to the line item. \r\n*   **compare_at_price**: The original selling price of the product, if applicable. \r\n*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both \"across\" and \"each\" applications. A superset of `applied_discounts`. \r\n*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The checkout-specific ID of the line item. \r\n*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. \r\n*   **price**: The price of the item in presentment currency. \r\n*   **product_id**: The product of the line item. \r\n*   **properties**: The [customization information](/api/liquid/objects/line_item#line_item-properties) for a line item (optional). \r\n*   **quantity**: The number of products that were purchased. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. \r\n*   **sku**: The unique identifier of the item in the fulfillment. \r\n*   **taxable**: Whether this product is taxable. \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The variant ID of the line item. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier."
         order:
           type: string
           description: 'An object containing the ID, name, and status page URL of the associated order when the checkout is complete. Default value: `null`.'
@@ -1711,7 +1651,6 @@ components:
           deprecated: true
         reservation_time_left:
           type: integer
-          description: 'The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.'
           format: int64
           nullable: true
           deprecated: true
@@ -1742,7 +1681,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxLine'
-          description: "An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in presentment currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax."
           nullable: true
         taxes_included:
           type: boolean
@@ -1770,7 +1708,6 @@ components:
         token:
           minLength: 1
           type: string
-          description: A unique identifier for a particular checkout.
         abandoned_checkout_url:
           type: string
           description: The full recovery URL to be sent to a customer to recover their abandoned checkout.
@@ -2191,7 +2128,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomerAddress'
-          description: 'A list of the ten most recently updated addresses for the customer. Each address has the following properties: * **address1**: The customer''s mailing address. * **address2**: An additional field for the customer''s mailing address. * **city**: The customer''s city, town, or village. * **company**: The customer''s company. * **country**: The customer''s country. * **country_code**: The two-letter country code corresponding to the customer''s country. * **country_name**: The customer''s normalized country name. * **customer_id**: A unique identifier for the customer. * **default**: Whether this address is the default address for the customer. * **first_name**: The customer''s first name. * **id**: A unique identifier for the address. * **last_name**: The customer''s last name. * **name**: The customer''s first and last names. * **phone**: The customer''s phone number at this address. * **province**: The customer''s region name. Typically a province, a state, or a prefecture. * **province_code**: The code for the region of the address, such as the province, state, or district. For example QC for Quebec, Canada. * **zip**: The customer''s postal code, also known as zip, postcode, Eircode, etc.'
           nullable: true
         currency:
           type: string
@@ -2272,7 +2208,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomerTaxExemptions'
-          description: 'Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.'
           nullable: true
         total_spent:
           type: number
@@ -2291,7 +2226,6 @@ components:
           nullable: true
         accepts_marketing_updated_at:
           type: string
-          description: 'As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format)when the customer consented or objected to receiving marketing material by email. Set this value wheneverthe customer consents or objects to marketing materials.'
           format: date-time
           nullable: true
           deprecated: true
@@ -2458,14 +2392,14 @@ components:
           description: The number of times that the discount code has been redeemed.
           format: int32
           nullable: true
+        errors:
+          $ref: '#/components/schemas/DiscountCodeErrors'
         amount:
           type: string
           description: The amount of the discount.
           nullable: true
         type:
           $ref: '#/components/schemas/DiscountCodeType'
-        errors:
-          $ref: '#/components/schemas/DiscountCodeErrors'
         id:
           type: integer
           format: int64
@@ -2607,15 +2541,15 @@ components:
       properties:
         description:
           type: string
-          description: A description of the information that the metafield contains.
+          description: The description of the metafield.
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: "The unique identifier for a metafield within its namespace.   \r\n Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+          description: "The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   \r\n Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         owner_id:
           type: integer
@@ -2627,7 +2561,6 @@ components:
           description: The type of resource that the metafield is attached to.
           nullable: true
         value:
-          description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
@@ -2872,13 +2805,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductImage'
-          description: 'A list of [product image](/docs/admin-api/rest/reference/products/product-image) objects, each one representing an image associated with the product.'
           nullable: true
         options:
           type: array
           items:
             $ref: '#/components/schemas/ProductOption'
-          description: 'The custom product properties. For example, **Size**, **Color**, and **Material**. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.'
           nullable: true
         product_type:
           type: string
@@ -2913,7 +2844,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductVariant'
-          description: "An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.\r\n\r\nThe `position` property is read-only. The position of variants is indicated by the order in which they are listed."
           nullable: true
         vendor:
           type: string
@@ -3222,7 +3152,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.'
+          description: "The handle of a fulfillment service that stocks a product variant. \r\n\r\n This is the handle of a third-party fulfillment service if the following conditions are met: 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 3. The fulfillment service [hasn't opted into SKU sharing](/changelog/fulfillment-service-sku-sharing). If the conditions aren't met, then this is `manual`. \r\n\r\n The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. \r\n\r\n If you previously set this field, then we recommend that you instead [connect an inventory item to a location](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. \r\n\r\n If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. \r\n\r\n Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states)."
           nullable: true
         grams:
           type: number
@@ -3271,7 +3201,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PresentmentPrice'
-          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.\r\n\r\nRequires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
           nullable: true
         position:
           type: integer
@@ -3614,13 +3543,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutGiftCard'
-          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user. \r\n\r\n Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
           nullable: true
         line_items:
           type: array
           items:
             $ref: '#/components/schemas/CheckoutLineItem'
-          description: "A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: \r\n\r\n*   **applied_discounts**: A list of the discounts applied to the line item. \r\n*   **compare_at_price**: The original selling price of the product, if applicable. \r\n*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both \"across\" and \"each\" applications. A superset of `applied_discounts`. \r\n*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The checkout-specific ID of the line item. \r\n*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. \r\n*   **price**: The price of the item in presentment currency. \r\n*   **product_id**: The product of the line item. \r\n*   **properties**: The [customization information](/api/liquid/objects/line_item#line_item-properties) for a line item (optional). \r\n*   **quantity**: The number of products that were purchased. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. \r\n*   **sku**: The unique identifier of the item in the fulfillment. \r\n*   **taxable**: Whether this product is taxable. \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The variant ID of the line item. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier."
         order:
           type: string
           description: 'An object containing the ID, name, and status page URL of the associated order when the checkout is complete. Default value: `null`.'
@@ -3652,7 +3579,6 @@ components:
           deprecated: true
         reservation_time_left:
           type: integer
-          description: 'The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.'
           format: int64
           nullable: true
           deprecated: true
@@ -3683,7 +3609,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxLine'
-          description: "An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in presentment currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax."
           nullable: true
         taxes_included:
           type: boolean
@@ -3711,7 +3636,6 @@ components:
         token:
           minLength: 1
           type: string
-          description: A unique identifier for a particular checkout.
         abandoned_checkout_url:
           type: string
           description: The full recovery URL to be sent to a customer to recover their abandoned checkout.

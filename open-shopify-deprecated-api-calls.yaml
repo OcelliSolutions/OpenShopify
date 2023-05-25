@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Deprecated API Calls
   description: Deprecated API Calls
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,8 +23,6 @@ paths:
     get:
       tags:
         - DeprecatedApiCalls
-      summary: Retrieves a list of deprecated API calls
-      description: Retrieves a list of deprecated API calls made by your custom apps in the past 30 days.
       operationId: ListDeprecatedAPICalls
       responses:
         '200':

@@ -27,19 +27,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of tender transactions
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of tender transactions. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="order">Show tender transactions ordered by processed_at in ascending or descending order.</param>
-        /// <param name="processedAt">Show tender transactions processed at the specified date.</param>
-        /// <param name="processedAtMax">Show tender transactions processed_at or before the specified date.</param>
-        /// <param name="processedAtMin">Show tender transactions processed_at or after the specified date.</param>
-        /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<TenderTransactionList>> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, System.DateTimeOffset? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -79,19 +66,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of tender transactions
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of tender transactions. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="order">Show tender transactions ordered by processed_at in ascending or descending order.</param>
-        /// <param name="processedAt">Show tender transactions processed at the specified date.</param>
-        /// <param name="processedAtMax">Show tender transactions processed_at or before the specified date.</param>
-        /// <param name="processedAtMin">Show tender transactions processed_at or after the specified date.</param>
-        /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<TenderTransactionList>> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, System.DateTimeOffset? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

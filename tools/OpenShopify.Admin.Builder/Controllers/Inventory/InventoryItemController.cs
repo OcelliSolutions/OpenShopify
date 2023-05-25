@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieves a detailed list for inventory items by IDs
         /// </summary>
         /// <remarks>
-        /// Retrieves a list of inventory items. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
+        /// Retrieves a list that will display details for the inventory item IDs you specify. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
         /// </remarks>
         /// <param name="ids">Show only inventory items specified by a comma-separated list of IDs.</param>
         /// <param name="limit">The maximum number of results to show.</param>

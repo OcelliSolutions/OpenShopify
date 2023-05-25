@@ -27,12 +27,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return the current balance
-        /// </summary>
-        /// <remarks>
-        /// Retrieves the account's current balance.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<BalanceList>> GetCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -72,12 +66,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return the current balance
-        /// </summary>
-        /// <remarks>
-        /// Retrieves the account's current balance.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<BalanceList>> GetCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -249,27 +237,11 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a list of all disputes
-        /// </summary>
-        /// <remarks>
-        /// Retrieve all disputes ordered by `initiated_at` date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format), with the most recent being first. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="initiatedAt">Return only disputes with the specified `initiated_at` date ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format).</param>
-        /// <param name="lastId">Return only disputes before the specified ID.</param>
-        /// <param name="sinceId">Return only disputes after the specified ID.</param>
-        /// <param name="status">Return only disputes with the specified status.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DisputeList>> ListDisputesAsync(string? initiatedAt = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a single dispute
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single dispute by ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DisputeItem>> GetDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -309,16 +281,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a list of all disputes
-        /// </summary>
-        /// <remarks>
-        /// Retrieve all disputes ordered by `initiated_at` date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format), with the most recent being first. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="initiatedAt">Return only disputes with the specified `initiated_at` date ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format).</param>
-        /// <param name="lastId">Return only disputes before the specified ID.</param>
-        /// <param name="sinceId">Return only disputes after the specified ID.</param>
-        /// <param name="status">Return only disputes with the specified status.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DisputeList>> ListDisputesAsync(string? initiatedAt = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -403,12 +365,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a single dispute
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single dispute by ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DisputeItem>> GetDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -584,23 +540,11 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Returns evidence associated with the dispute
-        /// </summary>
-        /// <remarks>
-        /// Retrieves evidence associated with dispute ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DisputeEvidenceItem>> GetEvidenceAssociatedWithDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates dispute evidence
-        /// </summary>
-        /// <remarks>
-        /// Updates dispute evidence associated with the dispute ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DisputeList>> UpdateDisputeEvidenceAsync(long disputeId, UpdateDisputeEvidenceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -640,12 +584,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Returns evidence associated with the dispute
-        /// </summary>
-        /// <remarks>
-        /// Retrieves evidence associated with dispute ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DisputeEvidenceItem>> GetEvidenceAssociatedWithDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -717,12 +655,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates dispute evidence
-        /// </summary>
-        /// <remarks>
-        /// Updates dispute evidence associated with the dispute ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DisputeList>> UpdateDisputeEvidenceAsync(long disputeId, UpdateDisputeEvidenceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -902,23 +834,11 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Upload a file to a dispute
-        /// </summary>
-        /// <remarks>
-        /// Upload a `.png`, `.jpeg`, or `.pdf` file of a category to a dispute. Maximum total files size of all files should be less than **4 MBs**
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DisputeFileUploadItem>> UploadFileToDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a dispute evidence file
-        /// </summary>
-        /// <remarks>
-        /// Delete a dispute evidence file given an ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteDisputeEvidenceFileAsync(long disputeFileUploadId, long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -958,12 +878,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Upload a file to a dispute
-        /// </summary>
-        /// <remarks>
-        /// Upload a `.png`, `.jpeg`, or `.pdf` file of a category to a dispute. Maximum total files size of all files should be less than **4 MBs**
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DisputeFileUploadItem>> UploadFileToDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1036,12 +950,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a dispute evidence file
-        /// </summary>
-        /// <remarks>
-        /// Delete a dispute evidence file given an ID.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteDisputeEvidenceFileAsync(long disputeFileUploadId, long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1215,29 +1123,11 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a list of all payouts
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all payouts ordered by payout date, with the most recent being first. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="date">Filter the response to payouts made on the specified date.</param>
-        /// <param name="dateMax">Filter the response to payouts made inclusively before the specified date.</param>
-        /// <param name="dateMin">Filter the response to payouts made inclusively after the specified date.</param>
-        /// <param name="lastId">Filter the response to payouts made before the specified ID.</param>
-        /// <param name="sinceId">Filter the response to payouts made after the specified ID.</param>
-        /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PayoutList>> ListPayoutsAsync(System.DateTimeOffset? date = null, System.DateTimeOffset? dateMax = null, System.DateTimeOffset? dateMin = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a single payout
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single payout by id.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PayoutItem>> GetPayoutAsync(long payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1277,18 +1167,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a list of all payouts
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all payouts ordered by payout date, with the most recent being first. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="date">Filter the response to payouts made on the specified date.</param>
-        /// <param name="dateMax">Filter the response to payouts made inclusively before the specified date.</param>
-        /// <param name="dateMin">Filter the response to payouts made inclusively after the specified date.</param>
-        /// <param name="lastId">Filter the response to payouts made before the specified ID.</param>
-        /// <param name="sinceId">Filter the response to payouts made after the specified ID.</param>
-        /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PayoutList>> ListPayoutsAsync(System.DateTimeOffset? date = null, System.DateTimeOffset? dateMax = null, System.DateTimeOffset? dateMin = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1381,12 +1259,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a single payout
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single payout by id.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PayoutItem>> GetPayoutAsync(long payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1562,17 +1434,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a list of all balance transactions
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all balance transactions ordered by processingtime, with the most recent being first.**Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="payoutId">Filter response to transactions paid out in the specified payout.</param>
-        /// <param name="lastId">Filter response to transactions exclusively before the specified ID</param>
-        /// <param name="payoutStatus">Filter response to transactions with the specified payout status</param>
-        /// <param name="sinceId">Filter response to transactions exclusively after the specified ID.</param>
-        /// <param name="test">Filter response to transactions placed in test mode.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<TransactionList>> ListBalanceTransactionsAsync(long? payoutId = null, long? lastId = null, string? payoutStatus = null, long? sinceId = null, bool? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1612,17 +1473,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Return a list of all balance transactions
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all balance transactions ordered by processingtime, with the most recent being first.**Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="payoutId">Filter response to transactions paid out in the specified payout.</param>
-        /// <param name="lastId">Filter response to transactions exclusively before the specified ID</param>
-        /// <param name="payoutStatus">Filter response to transactions with the specified payout status</param>
-        /// <param name="sinceId">Filter response to transactions exclusively after the specified ID.</param>
-        /// <param name="test">Filter response to transactions placed in test mode.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionList>> ListBalanceTransactionsAsync(long? payoutId = null, long? lastId = null, string? payoutStatus = null, long? sinceId = null, bool? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2164,10 +2014,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public Address? BillingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillments associated with the dispute evidence.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
 
@@ -2764,10 +2610,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public Address? BillingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillments associated with the dispute evidence.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
 

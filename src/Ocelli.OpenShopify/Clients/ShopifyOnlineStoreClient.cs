@@ -27,115 +27,51 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all articles from a blog
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all articles from a blog. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="author">Filter articles by article author.</param>
-        /// <param name="createdAtMax">Show articles created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Show articles created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Retrieve an article with a specific handle.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="publishedAtMax">Show articles published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show articles published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Retrieve results based on their published status.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="tag">Filter articles with a specific tag.</param>
-        /// <param name="updatedAtMax">Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ArticleList>> ListArticlesFromBlogAsync(long blogId, string? author = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? tag = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates an article for a blog
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> CreateArticleForBlogAsync(long blogId, CreateArticleForBlogRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all articles from a blog
-        /// </summary>
-        /// <param name="createdAtMax">Count articles created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Count articles created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMax">Count articles published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Count articles published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Count articles with a given published status.</param>
-        /// <param name="updatedAtMax">Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountArticlesFromBlogAsync(long blogId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Article
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single article
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> GetArticleAsync(long articleId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an article
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> UpdateArticleAsync(long articleId, long blogId, UpdateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an article
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteArticleAsync(long articleId, long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all article authors
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<AuthorList>> ListArticleAuthorsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all article tags
-        /// </summary>
-        /// <param name="limit">The maximum number of tags to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<TagList>> ListArticleTagsAsync(int? limit = null, string? pageInfo = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all article tags from a specific blog
-        /// </summary>
-        /// <param name="limit">The maximum number of tags to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<TagList>> ListArticleTagsFromSpecificBlogAsync(long blogId, int? limit = null, string? pageInfo = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove the image from an article
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> DeleteImageFromArticleAsync(long articleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -175,26 +111,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all articles from a blog
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all articles from a blog. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="author">Filter articles by article author.</param>
-        /// <param name="createdAtMax">Show articles created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Show articles created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Retrieve an article with a specific handle.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="publishedAtMax">Show articles published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show articles published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Retrieve results based on their published status.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="tag">Filter articles with a specific tag.</param>
-        /// <param name="updatedAtMax">Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleList>> ListArticlesFromBlogAsync(long blogId, string? author = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? tag = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -323,9 +239,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates an article for a blog
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> CreateArticleForBlogAsync(long blogId, CreateArticleForBlogRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -401,16 +314,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all articles from a blog
-        /// </summary>
-        /// <param name="createdAtMax">Count articles created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Count articles created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMax">Count articles published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Count articles published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Count articles with a given published status.</param>
-        /// <param name="updatedAtMax">Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountArticlesFromBlogAsync(long blogId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -511,13 +414,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Article
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single article
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> GetArticleAsync(long articleId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -598,9 +494,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an article
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> UpdateArticleAsync(long articleId, long blogId, UpdateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -683,9 +576,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an article
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteArticleAsync(long articleId, long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -755,9 +645,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all article authors
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<AuthorList>> ListArticleAuthorsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -825,12 +712,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all article tags
-        /// </summary>
-        /// <param name="limit">The maximum number of tags to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<TagList>> ListArticleTagsAsync(int? limit = null, string? pageInfo = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -911,12 +792,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all article tags from a specific blog
-        /// </summary>
-        /// <param name="limit">The maximum number of tags to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<TagList>> ListArticleTagsFromSpecificBlogAsync(long blogId, int? limit = null, string? pageInfo = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1001,9 +876,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove the image from an article
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> DeleteImageFromArticleAsync(long articleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1180,36 +1052,16 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of assets for a theme
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of assets for a theme.
-        /// <br/>
-        /// <br/>**Note:** Retrieving a list of assets returns only metadata about each asset. To retrieve an asset's content, you need to retrieve the asset individually.
-        /// </remarks>
-        /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<AssetList>> ListAssetsForThemeAsync(long themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates or updates an asset for a theme
-        /// </summary>
-        /// <remarks>
-        /// Creates or updates an asset for a theme.
-        /// <br/>
-        /// <br/>In the PUT request, you can include the `src` or `source_key` property to create the asset from an existing file.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<AssetItem>> CreateOrUpdatesAssetForThemeAsync(long themeId, CreateOrUpdatesAssetForThemeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an asset from a theme
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteAssetFromThemeAsync(long themeId, string? assetkey = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1249,15 +1101,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of assets for a theme
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of assets for a theme.
-        /// <br/>
-        /// <br/>**Note:** Retrieving a list of assets returns only metadata about each asset. To retrieve an asset's content, you need to retrieve the asset individually.
-        /// </remarks>
-        /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<AssetList>> ListAssetsForThemeAsync(long themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1334,14 +1177,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates or updates an asset for a theme
-        /// </summary>
-        /// <remarks>
-        /// Creates or updates an asset for a theme.
-        /// <br/>
-        /// <br/>In the PUT request, you can include the `src` or `source_key` property to create the asset from an existing file.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<AssetItem>> CreateOrUpdatesAssetForThemeAsync(long themeId, CreateOrUpdatesAssetForThemeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1420,9 +1255,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an asset from a theme
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteAssetFromThemeAsync(long themeId, string? assetkey = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1597,70 +1429,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of all blogs
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of all blogs. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
-        /// <param name="handle">Filter by blog handle</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<BlogList>> ListBlogsAsync(string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Blog
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<BlogItem>> CreateBlogAsync(CreateBlogRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all Blogs
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all blogs
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountBlogsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Blog
-        /// </summary>
-        /// <remarks>
-        /// Get a single blog by its ID
-        /// </remarks>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<BlogItem>> GetBlogAsync(long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Blog
-        /// </summary>
-        /// <remarks>
-        /// Update a blog
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<BlogItem>> UpdateBlogAsync(long blogId, UpdateBlogRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Blog
-        /// </summary>
-        /// <remarks>
-        /// Delete a blog
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteBlogAsync(long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1700,17 +1493,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of all blogs
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of all blogs. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
-        /// <param name="handle">Filter by blog handle</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<BlogList>> ListBlogsAsync(string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1799,9 +1581,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Blog
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<BlogItem>> CreateBlogAsync(CreateBlogRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1876,12 +1655,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all Blogs
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all blogs
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountBlogsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1949,13 +1722,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Blog
-        /// </summary>
-        /// <remarks>
-        /// Get a single blog by its ID
-        /// </remarks>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<BlogItem>> GetBlogAsync(long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2032,12 +1798,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Blog
-        /// </summary>
-        /// <remarks>
-        /// Update a blog
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<BlogItem>> UpdateBlogAsync(long blogId, UpdateBlogRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2116,12 +1876,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Blog
-        /// </summary>
-        /// <remarks>
-        /// Delete a blog
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteBlogAsync(long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2291,105 +2045,51 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of comments
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of comments. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show comments created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Show comments created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="publishedAtMax">Show comments published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show comments published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Filter results by their published status.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="status">Filter results by their status.</param>
-        /// <param name="updatedAtMax">Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CommentList>> ListCommentsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a comment for an article
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> CreateCommentForArticleAsync(CreateCommentForArticleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of comments
-        /// </summary>
-        /// <param name="createdAtMax">Count comments created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Count comments created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMax">Count comments published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Count comments published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Retrieve a count of comments with a given published status.</param>
-        /// <param name="status">Retrieve a count of comments with a given status.</param>
-        /// <param name="updatedAtMax">Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCommentsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single comment by its ID
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> GetCommentAsync(long commentId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a comment of an article
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> UpdateCommentOfArticleAsync(long commentId, UpdateCommentOfArticleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Marks a comment as spam
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> MarkCommentAsSpamAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Marks a comment as not spam
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> MarkCommentAsNotSpamAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Approves a comment
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> ApproveCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Removes a comment
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Restores a previously removed comment
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> RestorePreviouslyDeletedCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -2429,24 +2129,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of comments
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of comments. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show comments created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Show comments created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="publishedAtMax">Show comments published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show comments published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Filter results by their published status.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="status">Filter results by their status.</param>
-        /// <param name="updatedAtMax">Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentList>> ListCommentsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2563,9 +2245,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a comment for an article
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> CreateCommentForArticleAsync(CreateCommentForArticleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2637,17 +2316,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of comments
-        /// </summary>
-        /// <param name="createdAtMax">Count comments created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Count comments created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMax">Count comments published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Count comments published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Retrieve a count of comments with a given published status.</param>
-        /// <param name="status">Retrieve a count of comments with a given status.</param>
-        /// <param name="updatedAtMax">Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCommentsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2748,10 +2416,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single comment by its ID
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> GetCommentAsync(long commentId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2828,9 +2492,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a comment of an article
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> UpdateCommentOfArticleAsync(long commentId, UpdateCommentOfArticleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2906,9 +2567,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Marks a comment as spam
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> MarkCommentAsSpamAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2981,9 +2639,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Marks a comment as not spam
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> MarkCommentAsNotSpamAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3056,9 +2711,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Approves a comment
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> ApproveCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3131,9 +2783,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Removes a comment
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3200,9 +2849,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Restores a previously removed comment
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentItem>> RestorePreviouslyDeletedCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3379,74 +3025,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of pages
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of all pages. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show pages created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Show pages created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Retrieve a page with a given handle.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="publishedAtMax">Show pages published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show pages published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Restrict results to pages with a given published status:</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="title">Retrieve pages with a given title.</param>
-        /// <param name="updatedAtMax">Show pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PageList>> ListPagesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, PagePublishStatus? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a page
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PageItem>> CreatePageAsync(CreatePageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a page count
-        /// </summary>
-        /// <param name="createdAtMax">Count pages created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Count pages created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMax">Show pages published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show pages published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Count pages with a given published status:</param>
-        /// <param name="title">Count pages with a given title.</param>
-        /// <param name="updatedAtMax">Count pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetPageCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, PagePublishStatus? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single page by its ID
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PageItem>> GetPageAsync(long pageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a page
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PageItem>> UpdatePageAsync(long pageId, UpdatePageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a page
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PageItem>> DeletePageAsync(long pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -3486,25 +3089,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of pages
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of all pages. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show pages created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Show pages created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Retrieve a page with a given handle.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="publishedAtMax">Show pages published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show pages published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Restrict results to pages with a given published status:</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="title">Retrieve pages with a given title.</param>
-        /// <param name="updatedAtMax">Show pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PageList>> ListPagesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, PagePublishStatus? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3625,9 +3209,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a page
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PageItem>> CreatePageAsync(CreatePageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3702,17 +3283,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a page count
-        /// </summary>
-        /// <param name="createdAtMax">Count pages created before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Count pages created after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMax">Show pages published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show pages published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Count pages with a given published status:</param>
-        /// <param name="title">Count pages with a given title.</param>
-        /// <param name="updatedAtMax">Count pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetPageCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, PagePublishStatus? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3813,10 +3383,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single page by its ID
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PageItem>> GetPageAsync(long pageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3893,9 +3459,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a page
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PageItem>> UpdatePageAsync(long pageId, UpdatePageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3974,9 +3537,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a page
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PageItem>> DeletePageAsync(long pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4152,67 +3712,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of URL redirects
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of URL redirects. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="path">Show redirects with a given path.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="target">Show redirects with a given target.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<RedirectList>> ListUrlRedirectsAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? path = null, long? sinceId = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a redirect
-        /// </summary>
-        /// <remarks>
-        /// Creates a redirect. When you provide a full URL as the value of the `path` property, it will be saved as an absolute path without the domain. For example, `"path": "http://www.johns-apparel.com/springwear"` will be saved as `"path": "springwear"`.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<RedirectItem>> CreateRedirectAsync(CreateRedirectRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of URL redirects
-        /// </summary>
-        /// <param name="path">Count redirects with given path.</param>
-        /// <param name="target">Count redirects with given target.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountUrlRedirectsAsync(string? path = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single redirect
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<RedirectItem>> GetRedirectAsync(long redirectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing redirect
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing [redirect](https://shopify.dev/api/admin-rest/latest/resources/redirect)
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<RedirectItem>> UpdateRedirectAsync(long redirectId, UpdateRedirectRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a redirect
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteRedirectAsync(long redirectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -4252,18 +3776,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of URL redirects
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of URL redirects. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="path">Show redirects with a given path.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="target">Show redirects with a given target.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<RedirectList>> ListUrlRedirectsAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? path = null, long? sinceId = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4356,12 +3868,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a redirect
-        /// </summary>
-        /// <remarks>
-        /// Creates a redirect. When you provide a full URL as the value of the `path` property, it will be saved as an absolute path without the domain. For example, `"path": "http://www.johns-apparel.com/springwear"` will be saved as `"path": "springwear"`.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<RedirectItem>> CreateRedirectAsync(CreateRedirectRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4436,11 +3942,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of URL redirects
-        /// </summary>
-        /// <param name="path">Count redirects with given path.</param>
-        /// <param name="target">Count redirects with given target.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountUrlRedirectsAsync(string? path = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4517,10 +4018,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single redirect
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<RedirectItem>> GetRedirectAsync(long redirectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4597,12 +4094,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing redirect
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing [redirect](https://shopify.dev/api/admin-rest/latest/resources/redirect)
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<RedirectItem>> UpdateRedirectAsync(long redirectId, UpdateRedirectRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4681,9 +4172,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a redirect
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteRedirectAsync(long redirectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4853,63 +4341,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all script tags
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all script tags. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-        /// <param name="limit">The number of results to return.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="src">Show script tags with this URL.</param>
-        /// <param name="updatedAtMax">Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ScriptTagList>> ListScriptTagsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? src = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a new script tag
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ScriptTagItem>> CreateScriptTagAsync(CreateScriptTagRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all script tags
-        /// </summary>
-        /// <param name="src">Count only script tags with a given URL.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountScriptTagsAsync(string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single script tag
-        /// </summary>
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ScriptTagItem>> GetScriptTagAsync(long scriptTagId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a script tag
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ScriptTagItem>> UpdateScriptTagAsync(long scriptTagId, UpdateScriptTagRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a script tag
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ScriptTagItem>> DeleteScriptTagAsync(long scriptTagId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -4949,21 +4405,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all script tags
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all script tags. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-        /// <param name="limit">The number of results to return.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="src">Show script tags with this URL.</param>
-        /// <param name="updatedAtMax">Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ScriptTagList>> ListScriptTagsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? src = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5068,9 +4509,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a new script tag
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ScriptTagItem>> CreateScriptTagAsync(CreateScriptTagRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5145,10 +4583,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all script tags
-        /// </summary>
-        /// <param name="src">Count only script tags with a given URL.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountScriptTagsAsync(string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5221,10 +4655,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single script tag
-        /// </summary>
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ScriptTagItem>> GetScriptTagAsync(long scriptTagId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5301,9 +4731,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a script tag
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ScriptTagItem>> UpdateScriptTagAsync(long scriptTagId, UpdateScriptTagRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5382,9 +4809,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a script tag
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ScriptTagItem>> DeleteScriptTagAsync(long scriptTagId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5560,54 +4984,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of themes
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ThemeList>> ListThemesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a theme
-        /// </summary>
-        /// <remarks>
-        /// Creates a theme by providing the public URL of a ZIP file that contains the theme. 
-        /// <br/>
-        /// <br/>A new theme is always unpublished by default. To publish a theme when you create it, include `"role": "main"` in the POST request. The theme will be published only after all of its files have been extracted and stored by Shopify, which might take a couple of minutes.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ThemeItem>> CreateThemeAsync(CreateThemeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single theme by its ID
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ThemeItem>> GetThemeAsync(long themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Theme
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing theme.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ThemeItem>> UpdateThemeAsync(long themeId, UpdateThemeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Theme
-        /// </summary>
-        /// <remarks>
-        /// Deletes a theme. A theme can't be deleted while it's uploading, updating, or if the theme is the last published theme.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteThemeAsync(long themeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -5647,10 +5043,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of themes
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ThemeList>> ListThemesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5723,14 +5115,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a theme
-        /// </summary>
-        /// <remarks>
-        /// Creates a theme by providing the public URL of a ZIP file that contains the theme. 
-        /// <br/>
-        /// <br/>A new theme is always unpublished by default. To publish a theme when you create it, include `"role": "main"` in the POST request. The theme will be published only after all of its files have been extracted and stored by Shopify, which might take a couple of minutes.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ThemeItem>> CreateThemeAsync(CreateThemeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5805,10 +5189,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single theme by its ID
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ThemeItem>> GetThemeAsync(long themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5885,12 +5265,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Theme
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing theme.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ThemeItem>> UpdateThemeAsync(long themeId, UpdateThemeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5969,12 +5343,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Theme
-        /// </summary>
-        /// <remarks>
-        /// Deletes a theme. A theme can't be deleted while it's uploading, updating, or if the theme is the last published theme.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteThemeAsync(long themeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -6574,10 +5942,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Commentable { get; set; } = default!;
-
-        /// <summary>
-        /// FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can't use the service. This property will default to blank unless FeedBurner is enabled.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("feedburner")]
 
@@ -8411,10 +7775,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Commentable { get; set; } = default!;
-
-        /// <summary>
-        /// FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can't use the service. This property will default to blank unless FeedBurner is enabled.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("feedburner")]
 

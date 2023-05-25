@@ -27,74 +27,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all Countries
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of countries.
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountryList>> ListCountriesAsync(string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a country
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-10, the tax field is deprecated.
-        /// <br/>&lt;/aside&gt;Creates a country.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> CreateCountryAsync(CreateCountryRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of countries
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCountriesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a specific county
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> GetCountyAsync(long countryId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing country
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-10, the tax field is deprecated.
-        /// <br/>&lt;/aside&gt;Updates an existing country.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateCountryAsync(long countryId, UpdateCountryRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Country
-        /// </summary>
-        /// <remarks>
-        /// Deletes a country.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteCountryAsync(long countryId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -134,14 +91,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all Countries
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of countries.
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryList>> ListCountriesAsync(string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -218,17 +167,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a country
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-10, the tax field is deprecated.
-        /// <br/>&lt;/aside&gt;Creates a country.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> CreateCountryAsync(CreateCountryRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -303,9 +241,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of countries
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCountriesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -373,10 +308,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a specific county
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> GetCountyAsync(long countryId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -453,17 +384,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing country
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-10, the tax field is deprecated.
-        /// <br/>&lt;/aside&gt;Updates an existing country.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateCountryAsync(long countryId, UpdateCountryRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -542,12 +462,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Country
-        /// </summary>
-        /// <remarks>
-        /// Deletes a country.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteCountryAsync(long countryId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -717,9 +631,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of currencies enabled on a shop
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CurrencyList>> ListCurrenciesEnabledOnShopAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -759,9 +670,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of currencies enabled on a shop
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CurrencyList>> ListCurrenciesEnabledOnShopAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -933,9 +841,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of the shop's policies
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PolicyList>> ListShopsPoliciesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -975,9 +880,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of the shop's policies
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PolicyList>> ListShopsPoliciesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1149,47 +1051,21 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of provinces for a country
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of provinces
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProvinceList>> ListProvincesAsync(long countryId, string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of provinces for a country
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProvincesAsync(long countryId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single province for a country
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProvinceItem>> GetProvinceAsync(long countryId, long provinceId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing province for a country
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-10, the tax field is deprecated.
-        /// <br/>&lt;/aside&gt;Updates an existing province for a country.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProvinceItem>> UpdateProvinceAsync(long countryId, long provinceId, UpdateProvinceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1229,14 +1105,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of provinces for a country
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of provinces
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of fields names.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProvinceList>> ListProvincesAsync(long countryId, string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1317,9 +1185,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of provinces for a country
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProvincesAsync(long countryId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1391,10 +1256,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single province for a country
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProvinceItem>> GetProvinceAsync(long countryId, long provinceId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1475,17 +1336,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing province for a country
-        /// </summary>
-        /// <remarks>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>As of version 2020-10, the tax field is deprecated.
-        /// <br/>&lt;/aside&gt;Updates an existing province for a country.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProvinceItem>> UpdateProvinceAsync(long countryId, long provinceId, UpdateProvinceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1672,13 +1522,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all ShippingZones
-        /// </summary>
-        /// <remarks>
-        /// Get a list of all shipping zones
-        /// </remarks>
-        /// <param name="fields">Show only specific fields by providing a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ShippingZoneList>> ListShippingZonesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1718,13 +1561,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all ShippingZones
-        /// </summary>
-        /// <remarks>
-        /// Get a list of all shipping zones
-        /// </remarks>
-        /// <param name="fields">Show only specific fields by providing a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ShippingZoneList>> ListShippingZonesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1901,10 +1737,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves the shop's configuration
-        /// </summary>
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ShopItem>> GetShopsConfigurationAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1944,10 +1776,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves the shop's configuration
-        /// </summary>
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ShopItem>> GetShopsConfigurationAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2203,19 +2031,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The sub-regions of a country, such as its provinces or states. Each sub-region has the following properties:
-        /// <br/>
-        /// <br/>*   **code**: The two letter province or state code. 
-        /// <br/>*   **country_id**: The ID for the country to which this sub-region belongs. 
-        /// <br/>*   **id**: The ID for the particular sub-region. 
-        /// <br/>*   **name**: The name of the sub-region. 
-        /// <br/>*   **tax**: The tax value in decimal format. 
-        /// <br/>*   **tax_name**: The name of the tax as it is referred to in the applicable sub-region. For example, in Canada, the sales tax in the province Ontario is referred to as HST. 
-        /// <br/>*   **tax_type**: The tax type. Valid values: `null`, `normal`, or `harmonized`. If the value is `harmonized`, then the tax is compounded of the provincial and federal sales taxes. 
-        /// <br/>*   **tax_percentage**: The tax value in percent format.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("provinces")]
 
@@ -2785,6 +2600,9 @@ namespace Ocelli.OpenShopify
 
     }
 
+    /// <summary>
+    /// This is used to view shipping zones, their countries, provinces, and shipping rates.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))")]
     public partial class ShippingZone
     {
@@ -2815,17 +2633,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? LocationGroupId { get; set; } = default!;
 
-        /// <summary>
-        /// A list of countries that belong to the shipping zone.
-        /// <br/>
-        /// <br/>*   **id**: The unique numeric identifier for the country. 
-        /// <br/>*   **code**: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop. 
-        /// <br/>*   **shipping_zone_id**: The unique numeric identifier for the shipping zone. 
-        /// <br/>*   **name**: The full name of the country, in English. 
-        /// <br/>*   **tax**: The tax value in decimal format. 
-        /// <br/>*   **tax_name**: The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("countries")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -2850,41 +2657,15 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Provinces { get; set; } = default!;
 
-        /// <summary>
-        /// Information about carrier shipping providers and the rates used.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("carrier_shipping_rate_providers")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<CarrierShippingRateProvider>? CarrierShippingRateProviders { get; set; } = default!;
 
-        /// <summary>
-        /// Information about a price-based shipping rate.
-        /// <br/>
-        /// <br/>*   **id**: The unique numeric identifier for the shipping rate. 
-        /// <br/>*   **name**: The name of the shipping rate. 
-        /// <br/>*   **price**: The price of the shipping rate. 
-        /// <br/>*   **shipping_zone_id**: The unique numeric identifier for the associated shipping zone. 
-        /// <br/>*   **min_order_subtotal**: The minimum price of an order for it to be eligible for the shipping rate. 
-        /// <br/>*   **max_order_subtotal**: The maximum price of an order for it to be eligible for the shipping rate.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("price_based_shipping_rates")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<PriceBasedShippingRate>? PriceBasedShippingRates { get; set; } = default!;
-
-        /// <summary>
-        /// Information about a weight-based shipping rate.
-        /// <br/>
-        /// <br/>*   **id**: The unique numeric identifier for the shipping rate. 
-        /// <br/>*   **name**: The name of the shipping rate. 
-        /// <br/>*   **price**: The price of the shipping rate. 
-        /// <br/>*   **shipping_zone_id**: The unique numeric identifier for the associated shipping zone. 
-        /// <br/>*   **weight_low**: The minimum weight of an order for it to be eligible for the shipping rate. 
-        /// <br/>*   **weight_high**: The maximum weight of an order for it to be eligible for the shipping rate.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("weight_based_shipping_rates")]
 
@@ -2973,7 +2754,7 @@ namespace Ocelli.OpenShopify
         public string? Address2 { get; set; } = default!;
 
         /// <summary>
-        /// Whether the shop is capable of accepting payments directly through the [Checkout API](/apps/channels/checkout-api).
+        /// Whether the shop is capable of accepting payments directly through the [Checkout API](/docs/api/admin-rest/current/resources/checkout).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("checkout_api_supported")]
@@ -3520,19 +3301,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The sub-regions of a country, such as its provinces or states. Each sub-region has the following properties:
-        /// <br/>
-        /// <br/>*   **code**: The two letter province or state code. 
-        /// <br/>*   **country_id**: The ID for the country to which this sub-region belongs. 
-        /// <br/>*   **id**: The ID for the particular sub-region. 
-        /// <br/>*   **name**: The name of the sub-region. 
-        /// <br/>*   **tax**: The tax value in decimal format. 
-        /// <br/>*   **tax_name**: The name of the tax as it is referred to in the applicable sub-region. For example, in Canada, the sales tax in the province Ontario is referred to as HST. 
-        /// <br/>*   **tax_type**: The tax type. Valid values: `null`, `normal`, or `harmonized`. If the value is `harmonized`, then the tax is compounded of the provincial and federal sales taxes. 
-        /// <br/>*   **tax_percentage**: The tax value in percent format.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("provinces")]
 

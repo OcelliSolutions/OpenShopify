@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Plus
   description: Plus
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,35 +23,28 @@ paths:
     get:
       tags:
         - GiftCard
-      summary: Retrieves a list of gift cards
-      description: 'Retrieves a list of gift cards. This endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListGiftCards
       parameters:
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: status
           in: query
-          description: 'Retrieve gift cards with a given status. Valid values:'
           schema:
             type: string
       responses:
@@ -77,7 +70,6 @@ paths:
     post:
       tags:
         - GiftCard
-      summary: Creates a gift card
       operationId: CreateGiftCard
       requestBody:
         content:
@@ -108,8 +100,6 @@ paths:
     get:
       tags:
         - GiftCard
-      summary: Retrieves a single gift card
-      description: Retrieves a single gift card by its ID
       operationId: GetGiftCard
       parameters:
         - name: gift_card_id
@@ -137,8 +127,6 @@ paths:
     put:
       tags:
         - GiftCard
-      summary: Updates an existing gift card
-      description: "Updates an existing gift card.\r\n\r\nOnly the expiry date, note, and template suffix properties of a gift card can be changed via the API."
       operationId: UpdateGiftCard
       parameters:
         - name: gift_card_id
@@ -176,13 +164,10 @@ paths:
     get:
       tags:
         - GiftCard
-      summary: Retrieves a count of gift cards
-      description: Retrieves a count of gift cards with a given status.
       operationId: CountGiftCards
       parameters:
         - name: status
           in: query
-          description: 'Count gift cards with a given status. Valid values:'
           schema:
             type: string
       responses:
@@ -205,8 +190,6 @@ paths:
     post:
       tags:
         - GiftCard
-      summary: Disables a gift card
-      description: Disables a gift card. This action can't be undone.
       operationId: DisableGiftCard
       parameters:
         - name: gift_card_id
@@ -235,57 +218,46 @@ paths:
     get:
       tags:
         - GiftCard
-      summary: Searches for gift cards
-      description: "Searches for gift cards that match a supplied query. The following fields are indexed by search:\r\n\r\n*   `created_at` \r\n*   `updated_at` \r\n*   `disabled_at` \r\n*   `balance` \r\n*   `initial_value` \r\n*   `amount_spent` \r\n*   `email` \r\n*   `last_characters` \r\n\r\nThis endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest)."
       operationId: SearchForGiftCards
       parameters:
         - name: created_at_max
           in: query
-          description: Show gift cards created at or before date.
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: Show gift cards created at or after date.
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: order
           in: query
-          description: The field and direction to order results by.
           schema:
             type: string
         - name: query
           in: query
-          description: The text to search for.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: Show gift cards last updated at or before date.
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: Show gift cards last updated at or after date.
           schema:
             type: string
             format: date-time
@@ -309,19 +281,15 @@ paths:
     get:
       tags:
         - User
-      summary: Retrieves a list of all users
-      description: 'Retrieves a list of all users. **Note:** As of version 2021-01, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListUsers
       parameters:
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
       responses:
@@ -348,7 +316,6 @@ paths:
     get:
       tags:
         - User
-      summary: Retrieves a single user
       operationId: GetUser
       parameters:
         - name: user_id
@@ -377,8 +344,6 @@ paths:
     get:
       tags:
         - User
-      summary: Retrieves the currently logged-in user
-      description: Retrieves information about the user account associated with the access token used to make this API request. This request works only when the access token was created for a specific user of the shop.
       operationId: GetCurrentlyLoggedInUser
       responses:
         '200':

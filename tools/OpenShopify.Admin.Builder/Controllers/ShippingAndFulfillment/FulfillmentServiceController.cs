@@ -86,7 +86,8 @@ namespace OpenShopify.Admin.Builder.Models
         public string? CallbackUrl { get; set; } = default!;
 
         /// <summary>
-        /// Whether the fulfillment service uses the [fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.
+        /// Whether the fulfillment service uses the[fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.  
+        /// [As of 2022-07 API version](/changelog/legacy-fulfillment-api-deprecation), the fulfillment order based workflow is the only way to manage fulfillments, and `fulfillment_orders_opt_in` must be set to `true`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]

@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Access (OAuth)
   description: OAuth
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com'
     variables:

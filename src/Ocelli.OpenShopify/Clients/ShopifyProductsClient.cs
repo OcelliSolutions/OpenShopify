@@ -27,49 +27,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Adds a product to a custom collection
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> AddProductToCustomCollectionAsync(CollectItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of collects
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of collects. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CollectList>> ListCollectsAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Removes a product from a collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteProductFromCollectionAsync(long collectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a specific collect by its ID
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> GetCollectAsync(long collectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of collects
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCollectsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -109,9 +86,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Adds a product to a custom collection
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> AddProductToCustomCollectionAsync(CollectItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -183,16 +157,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of collects
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of collects. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectList>> ListCollectsAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -277,9 +241,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Removes a product from a collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteProductFromCollectionAsync(long collectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -345,10 +306,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a specific collect by its ID
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> GetCollectAsync(long collectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -425,9 +382,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of collects
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCollectsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -599,23 +553,11 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single collection
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CollectionItem>> GetCollectionAsync(long collectionId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of products belonging to a collection
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of products belonging to a collection. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).. The products returned are sorted by the collection's sort order.
-        /// </remarks>
-        /// <param name="limit">The number of products to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductList>> ListProductsBelongingToCollectionAsync(long collectionId, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -655,10 +597,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single collection
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectionItem>> GetCollectionAsync(long collectionId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -735,14 +673,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of products belonging to a collection
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of products belonging to a collection. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).. The products returned are sorted by the collection's sort order.
-        /// </remarks>
-        /// <param name="limit">The number of products to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductList>> ListProductsBelongingToCollectionAsync(long collectionId, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -927,73 +857,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of custom collections
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of custom collections. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Filter by custom collection handle.</param>
-        /// <param name="ids">Show only collections specified by a comma-separated list of IDs.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="productId">Show custom collections that include a given product.</param>
-        /// <param name="publishedAtMax">Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Show custom collectsion with a given published status.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="title">Show custom collections with a given title.</param>
-        /// <param name="updatedAtMax">Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionList>> ListCustomCollectionsAsync(string? fields = null, string? handle = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a custom collection
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> CreateCustomCollectionAsync(CreateCustomCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of custom collections
-        /// </summary>
-        /// <param name="productId">Count custom collections that include a given product.</param>
-        /// <param name="publishedAtMax">Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Count custom collections with a given published status.</param>
-        /// <param name="title">Count custom collections with given title.</param>
-        /// <param name="updatedAtMax">Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single custom collection
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> GetCustomCollectionAsync(long customCollectionId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing custom collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> UpdateCustomCollectionAsync(long customCollectionId, UpdateCustomCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a custom collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteCustomCollectionAsync(long customCollectionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1033,25 +921,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of custom collections
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of custom collections. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Filter by custom collection handle.</param>
-        /// <param name="ids">Show only collections specified by a comma-separated list of IDs.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="productId">Show custom collections that include a given product.</param>
-        /// <param name="publishedAtMax">Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Show custom collectsion with a given published status.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="title">Show custom collections with a given title.</param>
-        /// <param name="updatedAtMax">Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionList>> ListCustomCollectionsAsync(string? fields = null, string? handle = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1172,9 +1041,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a custom collection
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> CreateCustomCollectionAsync(CreateCustomCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1249,16 +1115,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of custom collections
-        /// </summary>
-        /// <param name="productId">Count custom collections that include a given product.</param>
-        /// <param name="publishedAtMax">Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedAtMin">Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="publishedStatus">Count custom collections with a given published status.</param>
-        /// <param name="title">Count custom collections with given title.</param>
-        /// <param name="updatedAtMax">Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1355,10 +1211,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single custom collection
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> GetCustomCollectionAsync(long customCollectionId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1435,9 +1287,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing custom collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> UpdateCustomCollectionAsync(long customCollectionId, UpdateCustomCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1516,9 +1365,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a custom collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteCustomCollectionAsync(long customCollectionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1688,88 +1534,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of products
-        /// </summary>
-        /// <param name="collectionId">Return products by product collection ID.</param>
-        /// <param name="createdAtMax">Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Return only certain fields specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Return only products specified by a comma-separated list of product handles.</param>
-        /// <param name="ids">Return only products specified by a comma-separated list of product IDs.</param>
-        /// <param name="limit">Return up to this many results per page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="presentmentCurrencies">Return presentment prices in only certain currencies, specified by a comma-separated list of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes.</param>
-        /// <param name="productType">Return products by product type.</param>
-        /// <param name="publishedAtMax">Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedAtMin">Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedStatus">Return products by their published status.</param>
-        /// <param name="sinceId">Return only products after the specified ID.</param>
-        /// <param name="status">Return only products specified by a comma-separated list of statuses.</param>
-        /// <param name="title">Return products by product title.</param>
-        /// <param name="updatedAtMax">Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductList>> ListProductsAsync(long? collectionId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, string? presentmentCurrencies = null, string? productType = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? status = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? vendor = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new product
-        /// </summary>
-        /// <remarks>
-        /// Create a new product
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> CreateProductAsync(CreateProductRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of products
-        /// </summary>
-        /// <param name="collectionId">Return products by product collection ID.</param>
-        /// <param name="createdAtMax">Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="productType">Return products by product type.</param>
-        /// <param name="publishedAtMax">Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedAtMin">Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedStatus">Return products by their published status.</param>
-        /// <param name="updatedAtMax">Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProductsAsync(long? collectionId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? productType = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? vendor = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single product
-        /// </summary>
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> GetProductAsync(long productId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a product
-        /// </summary>
-        /// <remarks>
-        /// Update a product
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> UpdateProductAsync(long productId, UpdateProductRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a product
-        /// </summary>
-        /// <remarks>
-        /// Deletes a product.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteProductAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1809,28 +1598,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of products
-        /// </summary>
-        /// <param name="collectionId">Return products by product collection ID.</param>
-        /// <param name="createdAtMax">Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Return only certain fields specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Return only products specified by a comma-separated list of product handles.</param>
-        /// <param name="ids">Return only products specified by a comma-separated list of product IDs.</param>
-        /// <param name="limit">Return up to this many results per page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="presentmentCurrencies">Return presentment prices in only certain currencies, specified by a comma-separated list of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes.</param>
-        /// <param name="productType">Return products by product type.</param>
-        /// <param name="publishedAtMax">Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedAtMin">Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedStatus">Return products by their published status.</param>
-        /// <param name="sinceId">Return only products after the specified ID.</param>
-        /// <param name="status">Return only products specified by a comma-separated list of statuses.</param>
-        /// <param name="title">Return products by product title.</param>
-        /// <param name="updatedAtMax">Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductList>> ListProductsAsync(long? collectionId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, string? presentmentCurrencies = null, string? productType = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? status = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? vendor = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1975,12 +1742,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new product
-        /// </summary>
-        /// <remarks>
-        /// Create a new product
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> CreateProductAsync(CreateProductRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2055,19 +1816,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of products
-        /// </summary>
-        /// <param name="collectionId">Return products by product collection ID.</param>
-        /// <param name="createdAtMax">Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="productType">Return products by product type.</param>
-        /// <param name="publishedAtMax">Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedAtMin">Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedStatus">Return products by their published status.</param>
-        /// <param name="updatedAtMax">Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProductsAsync(long? collectionId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? productType = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? vendor = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2176,10 +1924,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single product
-        /// </summary>
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> GetProductAsync(long productId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2256,12 +2000,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a product
-        /// </summary>
-        /// <remarks>
-        /// Update a product
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> UpdateProductAsync(long productId, UpdateProductRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2340,12 +2078,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a product
-        /// </summary>
-        /// <remarks>
-        /// Deletes a product.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteProductAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2515,62 +2247,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all Product Images
-        /// </summary>
-        /// <remarks>
-        /// Get all product images
-        /// </remarks>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductImageList>> ListProductImagesAsync(long productId, string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Product Image
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductImageItem>> CreateProductImageAsync(long productId, CreateProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all Product Images
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all product images
-        /// </remarks>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProductImagesAsync(long productId, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Product Image
-        /// </summary>
-        /// <remarks>
-        /// Get a single product image by id
-        /// </remarks>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductImageItem>> GetProductImageAsync(long imageId, long productId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Product Image
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductImageItem>> UpdateProductImageAsync(long imageId, long productId, UpdateProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Product Image
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteProductImageAsync(long imageId, long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -2610,14 +2311,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all Product Images
-        /// </summary>
-        /// <remarks>
-        /// Get all product images
-        /// </remarks>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductImageList>> ListProductImagesAsync(long productId, string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2698,9 +2391,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Product Image
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductImageItem>> CreateProductImageAsync(long productId, CreateProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2779,13 +2469,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all Product Images
-        /// </summary>
-        /// <remarks>
-        /// Get a count of all product images
-        /// </remarks>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProductImagesAsync(long productId, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2862,13 +2545,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Product Image
-        /// </summary>
-        /// <remarks>
-        /// Get a single product image by id
-        /// </remarks>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductImageItem>> GetProductImageAsync(long imageId, long productId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2949,9 +2625,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Product Image
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductImageItem>> UpdateProductImageAsync(long imageId, long productId, UpdateProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3034,9 +2707,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Product Image
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteProductImageAsync(long imageId, long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3210,70 +2880,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of product variants
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of product variants. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
-        /// <param name="limit">Return up to this many results per page</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="presentmentCurrencies">Return presentment prices in only certain currencies, specified by a comma-separated list of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductVariantList>> ListProductVariantsAsync(long productId, string? fields = null, int? limit = null, string? pageInfo = null, string? presentmentCurrencies = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Creates a new product variant
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductVariantItem>> CreateProductVariantAsync(long productId, CreateProductVariantRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all Product Variants
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of product variants
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProductVariantsAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single product variant by ID
-        /// </remarks>
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductVariantItem>> GetProductVariantAsync(long variantId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing product variant
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductVariantItem>> UpdateProductVariantAsync(long variantId, UpdateProductVariantRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Product Variant
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteProductVariantAsync(long productId, long variantId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -3313,17 +2944,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of product variants
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of product variants. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
-        /// <param name="limit">Return up to this many results per page</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="presentmentCurrencies">Return presentment prices in only certain currencies, specified by a comma-separated list of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductVariantList>> ListProductVariantsAsync(long productId, string? fields = null, int? limit = null, string? pageInfo = null, string? presentmentCurrencies = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3416,12 +3036,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Creates a new product variant
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductVariantItem>> CreateProductVariantAsync(long productId, CreateProductVariantRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3500,12 +3114,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a count of all Product Variants
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of product variants
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProductVariantsAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3577,13 +3185,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a single Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single product variant by ID
-        /// </remarks>
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductVariantItem>> GetProductVariantAsync(long variantId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3660,12 +3261,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modify an existing Product Variant
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing product variant
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductVariantItem>> UpdateProductVariantAsync(long variantId, UpdateProductVariantRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3744,9 +3339,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing Product Variant
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteProductVariantAsync(long productId, long variantId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3920,84 +3512,36 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of smart collections
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of smart collections. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Filter results by smart collection handle.</param>
-        /// <param name="ids">Show only the smart collections specified by a comma-separated list of IDs.</param>
-        /// <param name="limit">The number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="productId">Show smart collections that includes the specified product.</param>
-        /// <param name="publishedAtMax">Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedAtMin">Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedStatus">Filter results based on the published status of smart collections.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="title">Show smart collections with the specified title.</param>
-        /// <param name="updatedAtMax">Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionList>> ListSmartCollectionsAsync(string? fields = null, string? handle = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a smart collection
-        /// </summary>
-        /// <remarks>
-        /// Creates a new smart collection using the specified rules.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> CreateSmartCollectionAsync(CreateSmartCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of smart collections
-        /// </summary>
-        /// <param name="productId">Show smart collections that include the specified product.</param>
-        /// <param name="publishedAtMax">Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedAtMin">Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedStatus">Filter results based on the published status of smart collections.</param>
-        /// <param name="title">Show smart collections with the specified title.</param>
-        /// <param name="updatedAtMax">Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountSmartCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single smart collection
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> GetSmartCollectionAsync(long smartCollectionId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing smart collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> UpdateSmartCollectionAsync(long smartCollectionId, UpdateSmartCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Removes a smart collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteSmartCollectionAsync(long smartCollectionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates the ordering type of products in a smart collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, UpdateOrderingTypeOfProductsInSmartCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -4037,25 +3581,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of smart collections
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of smart collections. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="handle">Filter results by smart collection handle.</param>
-        /// <param name="ids">Show only the smart collections specified by a comma-separated list of IDs.</param>
-        /// <param name="limit">The number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="productId">Show smart collections that includes the specified product.</param>
-        /// <param name="publishedAtMax">Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedAtMin">Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedStatus">Filter results based on the published status of smart collections.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="title">Show smart collections with the specified title.</param>
-        /// <param name="updatedAtMax">Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionList>> ListSmartCollectionsAsync(string? fields = null, string? handle = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4176,12 +3701,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a smart collection
-        /// </summary>
-        /// <remarks>
-        /// Creates a new smart collection using the specified rules.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> CreateSmartCollectionAsync(CreateSmartCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4256,16 +3775,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of smart collections
-        /// </summary>
-        /// <param name="productId">Show smart collections that include the specified product.</param>
-        /// <param name="publishedAtMax">Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedAtMin">Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="publishedStatus">Filter results based on the published status of smart collections.</param>
-        /// <param name="title">Show smart collections with the specified title.</param>
-        /// <param name="updatedAtMax">Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountSmartCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4362,10 +3871,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single smart collection
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> GetSmartCollectionAsync(long smartCollectionId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4442,9 +3947,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing smart collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> UpdateSmartCollectionAsync(long smartCollectionId, UpdateSmartCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4523,9 +4025,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Removes a smart collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteSmartCollectionAsync(long smartCollectionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4591,9 +4090,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates the ordering type of products in a smart collection
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, UpdateOrderingTypeOfProductsInSmartCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -5311,18 +4807,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Handle { get; set; } = default!;
 
-        /// <summary>
-        /// A list of [product image](/docs/admin-api/rest/reference/products/product-image) objects, each one representing an image associated with the product.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("images")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<CreateProductImage>? Images { get; set; } = default!;
-
-        /// <summary>
-        /// The custom product properties. For example, **Size**, **Color**, and **Material**. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("options")]
 
@@ -5398,12 +4886,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.
-        /// <br/>
-        /// <br/>The `position` property is read-only. The position of variants is indicated by the order in which they are listed.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("variants")]
 
@@ -5568,7 +5050,17 @@ namespace Ocelli.OpenShopify
         public decimal? CompareAtPrice { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.
+        /// The handle of a fulfillment service that stocks a product variant. 
+        /// <br/>
+        /// <br/> This is the handle of a third-party fulfillment service if the following conditions are met: 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 3. The fulfillment service [hasn't opted into SKU sharing](/changelog/fulfillment-service-sku-sharing). If the conditions aren't met, then this is `manual`. 
+        /// <br/>
+        /// <br/> The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. 
+        /// <br/>
+        /// <br/> If you previously set this field, then we recommend that you instead [connect an inventory item to a location](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. 
+        /// <br/>
+        /// <br/> If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. 
+        /// <br/>
+        /// <br/> Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
@@ -5667,15 +5159,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Option { get; set; } = default!;
-
-        /// <summary>
-        /// A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:
-        /// <br/>
-        /// <br/>*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. 
-        /// <br/>*   `amount`: The variant's price or compare-at price in the presentment currency.
-        /// <br/>
-        /// <br/>Requires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("presentment_prices")]
 
@@ -5865,47 +5348,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public SmartCollectionPublishedScope? PublishedScope { get; set; } = default!;
-
-        /// <summary>
-        /// The list of rules that define what products go into the smart collection. Each rule has the following properties:
-        /// <br/>
-        /// <br/>*   
-        /// <br/>
-        /// <br/>**column**: The property of a product being used to populate the smart collection.
-        /// <br/>
-        /// <br/>Valid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. 
-        /// <br/>
-        /// <br/>Valid values for number relations:
-        /// <br/>
-        /// <br/>    *   `variant_compare_at_price`: The compare price. 
-        /// <br/>    *   `variant_weight`: The weight of the product. 
-        /// <br/>    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. 
-        /// <br/>    *   `variant_price`: product price. 
-        /// <br/>
-        /// <br/>Valid values for an `equals` relation: * `tag`: A tag associated with the product. * 
-        /// <br/>
-        /// <br/>**relation**: The relationship between the **column** choice, and the **condition**.
-        /// <br/>
-        /// <br/>Valid values for number relations:
-        /// <br/>
-        /// <br/>    *   `greater_than` The column value is greater than the condition. 
-        /// <br/>    *   `less_than` The column value is less than the condition. 
-        /// <br/>    *   `equals` The column value is equal to the condition. 
-        /// <br/>    *   `not_equals` The column value is not equal to the condition. 
-        /// <br/>
-        /// <br/>Valid values for text relations:
-        /// <br/>
-        /// <br/>    *   `equals`: Checks if the **column** value is equal to the **condition** value. 
-        /// <br/>    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. 
-        /// <br/>    *   `starts_with`: Checks if the **column** value starts with the **condition** value. 
-        /// <br/>    *   `ends_with`: Checks if the **column** value ends with the **condition** value. 
-        /// <br/>    *   `contains`: Checks if the **column** value contains the **condition** value. 
-        /// <br/>    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. 
-        /// <br/>
-        /// <br/>*   
-        /// <br/>
-        /// <br/>**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("rules")]
 
@@ -6327,18 +5769,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Handle { get; set; } = default!;
 
-        /// <summary>
-        /// A list of [product image](/docs/admin-api/rest/reference/products/product-image) objects, each one representing an image associated with the product.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("images")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<ProductImage>? Images { get; set; } = default!;
-
-        /// <summary>
-        /// The custom product properties. For example, **Size**, **Color**, and **Material**. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("options")]
 
@@ -6414,12 +5848,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.
-        /// <br/>
-        /// <br/>The `position` property is read-only. The position of variants is indicated by the order in which they are listed.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("variants")]
 
@@ -6782,7 +6210,17 @@ namespace Ocelli.OpenShopify
         public decimal? CompareAtPrice { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.
+        /// The handle of a fulfillment service that stocks a product variant. 
+        /// <br/>
+        /// <br/> This is the handle of a third-party fulfillment service if the following conditions are met: 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 3. The fulfillment service [hasn't opted into SKU sharing](/changelog/fulfillment-service-sku-sharing). If the conditions aren't met, then this is `manual`. 
+        /// <br/>
+        /// <br/> The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. 
+        /// <br/>
+        /// <br/> If you previously set this field, then we recommend that you instead [connect an inventory item to a location](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. 
+        /// <br/>
+        /// <br/> If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. 
+        /// <br/>
+        /// <br/> Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
@@ -6881,15 +6319,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Option { get; set; } = default!;
-
-        /// <summary>
-        /// A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:
-        /// <br/>
-        /// <br/>*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. 
-        /// <br/>*   `amount`: The variant's price or compare-at price in the presentment currency.
-        /// <br/>
-        /// <br/>Requires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("presentment_prices")]
 
@@ -7209,47 +6638,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public SmartCollectionPublishedScope? PublishedScope { get; set; } = default!;
-
-        /// <summary>
-        /// The list of rules that define what products go into the smart collection. Each rule has the following properties:
-        /// <br/>
-        /// <br/>*   
-        /// <br/>
-        /// <br/>**column**: The property of a product being used to populate the smart collection.
-        /// <br/>
-        /// <br/>Valid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. 
-        /// <br/>
-        /// <br/>Valid values for number relations:
-        /// <br/>
-        /// <br/>    *   `variant_compare_at_price`: The compare price. 
-        /// <br/>    *   `variant_weight`: The weight of the product. 
-        /// <br/>    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. 
-        /// <br/>    *   `variant_price`: product price. 
-        /// <br/>
-        /// <br/>Valid values for an `equals` relation: * `tag`: A tag associated with the product. * 
-        /// <br/>
-        /// <br/>**relation**: The relationship between the **column** choice, and the **condition**.
-        /// <br/>
-        /// <br/>Valid values for number relations:
-        /// <br/>
-        /// <br/>    *   `greater_than` The column value is greater than the condition. 
-        /// <br/>    *   `less_than` The column value is less than the condition. 
-        /// <br/>    *   `equals` The column value is equal to the condition. 
-        /// <br/>    *   `not_equals` The column value is not equal to the condition. 
-        /// <br/>
-        /// <br/>Valid values for text relations:
-        /// <br/>
-        /// <br/>    *   `equals`: Checks if the **column** value is equal to the **condition** value. 
-        /// <br/>    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. 
-        /// <br/>    *   `starts_with`: Checks if the **column** value starts with the **condition** value. 
-        /// <br/>    *   `ends_with`: Checks if the **column** value ends with the **condition** value. 
-        /// <br/>    *   `contains`: Checks if the **column** value contains the **condition** value. 
-        /// <br/>    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. 
-        /// <br/>
-        /// <br/>*   
-        /// <br/>
-        /// <br/>**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("rules")]
 
@@ -7696,18 +7084,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Handle { get; set; } = default!;
 
-        /// <summary>
-        /// A list of [product image](/docs/admin-api/rest/reference/products/product-image) objects, each one representing an image associated with the product.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("images")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<ProductImage>? Images { get; set; } = default!;
-
-        /// <summary>
-        /// The custom product properties. For example, **Size**, **Color**, and **Material**. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("options")]
 
@@ -7783,12 +7163,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.
-        /// <br/>
-        /// <br/>The `position` property is read-only. The position of variants is indicated by the order in which they are listed.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("variants")]
 
@@ -7973,7 +7347,17 @@ namespace Ocelli.OpenShopify
         public decimal? CompareAtPrice { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.
+        /// The handle of a fulfillment service that stocks a product variant. 
+        /// <br/>
+        /// <br/> This is the handle of a third-party fulfillment service if the following conditions are met: 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 3. The fulfillment service [hasn't opted into SKU sharing](/changelog/fulfillment-service-sku-sharing). If the conditions aren't met, then this is `manual`. 
+        /// <br/>
+        /// <br/> The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. 
+        /// <br/>
+        /// <br/> If you previously set this field, then we recommend that you instead [connect an inventory item to a location](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. 
+        /// <br/>
+        /// <br/> If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. 
+        /// <br/>
+        /// <br/> Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
@@ -8072,15 +7456,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Option { get; set; } = default!;
-
-        /// <summary>
-        /// A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:
-        /// <br/>
-        /// <br/>*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. 
-        /// <br/>*   `amount`: The variant's price or compare-at price in the presentment currency.
-        /// <br/>
-        /// <br/>Requires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("presentment_prices")]
 
@@ -8280,47 +7655,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public SmartCollectionPublishedScope? PublishedScope { get; set; } = default!;
-
-        /// <summary>
-        /// The list of rules that define what products go into the smart collection. Each rule has the following properties:
-        /// <br/>
-        /// <br/>*   
-        /// <br/>
-        /// <br/>**column**: The property of a product being used to populate the smart collection.
-        /// <br/>
-        /// <br/>Valid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. 
-        /// <br/>
-        /// <br/>Valid values for number relations:
-        /// <br/>
-        /// <br/>    *   `variant_compare_at_price`: The compare price. 
-        /// <br/>    *   `variant_weight`: The weight of the product. 
-        /// <br/>    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. 
-        /// <br/>    *   `variant_price`: product price. 
-        /// <br/>
-        /// <br/>Valid values for an `equals` relation: * `tag`: A tag associated with the product. * 
-        /// <br/>
-        /// <br/>**relation**: The relationship between the **column** choice, and the **condition**.
-        /// <br/>
-        /// <br/>Valid values for number relations:
-        /// <br/>
-        /// <br/>    *   `greater_than` The column value is greater than the condition. 
-        /// <br/>    *   `less_than` The column value is less than the condition. 
-        /// <br/>    *   `equals` The column value is equal to the condition. 
-        /// <br/>    *   `not_equals` The column value is not equal to the condition. 
-        /// <br/>
-        /// <br/>Valid values for text relations:
-        /// <br/>
-        /// <br/>    *   `equals`: Checks if the **column** value is equal to the **condition** value. 
-        /// <br/>    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. 
-        /// <br/>    *   `starts_with`: Checks if the **column** value starts with the **condition** value. 
-        /// <br/>    *   `ends_with`: Checks if the **column** value ends with the **condition** value. 
-        /// <br/>    *   `contains`: Checks if the **column** value contains the **condition** value. 
-        /// <br/>    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. 
-        /// <br/>
-        /// <br/>*   
-        /// <br/>
-        /// <br/>**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("rules")]
 

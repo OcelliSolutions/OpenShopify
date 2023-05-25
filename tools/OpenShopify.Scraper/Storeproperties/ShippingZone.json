@@ -3,10 +3,9 @@
   "info": {
     "title": "ShippingZone",
     "description": "You can use the ShippingZone resource to view shipping zones  and their countries, provinces, and shipping rates. A shipping zone belongs to a delivery profile, which provides shops with the ability to  create shipping rates per product variant and per location. For example, the merchant might want to use a  shipping rate that applies only to fragile products. When querying the ShippingZone resource, each shipping zone  is returned with its corresponding profile ID, location group ID, and countries. Its possible for the  same country to exist in multiple shipping zones, if the shipping zones with overlapping countries have  different delivery profiles.",
-    "x-owner": "https://vault.shopify.io/teams/2644",
+    "x-owner": "https://vault.shopify.io/teams/2836-Buyer-Trust",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -166,7 +165,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/shipping_zones.json",
+          "request_path": "/admin/api/2023-04/shipping_zones.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shipping_zones.json",
@@ -182,7 +181,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shipping_zones.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/shipping_zones.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -194,7 +193,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ShippingZone;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShippingZone::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ShippingZone;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShippingZone::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -231,13 +230,13 @@
         {
           "description": "The ID of the shipping zone's delivery profile. Shipping profiles allow merchants  to create product-based or location-based shipping rates.",
           "type": "string",
-          "example": 163945,
+          "example": "gid://shopify/DeliveryProfile/1234",
           "name": "profile_id"
         },
         {
           "description": "The ID of the shipping zone's location group. Location groups allow merchants  to create shipping rates that apply only to the specific locations in the group.",
           "type": "string",
-          "example": 32873,
+          "example": "gid://shopify/DeliveryLocationGroup/32873",
           "name": "location_group_id"
         },
         {
@@ -278,27 +277,35 @@
         },
         {
           "description": "        <p>Information about a price-based shipping rate.</p>\n        <ul>\n          <li><strong>id</strong>: The unique numeric identifier for the shipping rate.</li>\n          <li><strong>name</strong>: The name of the shipping rate.</li>\n          <li><strong>price</strong>: The price of the shipping rate.</li>\n          <li><strong>shipping_zone_id</strong>: The unique numeric identifier for the associated shipping zone.</li>\n          <li><strong>min_order_subtotal</strong>: The minimum price of an order for it to be eligible for the shipping rate.</li>\n          <li><strong>max_order_subtotal</strong>: The maximum price of an order for it to be eligible for the shipping rate.</li>\n        </ul>\n",
-          "type": "string",
+          "type": "array",
           "example": {
-            "id": 882078077,
-            "name": "$5 Shipping",
-            "price": "5.00",
-            "shipping_zone_id": 881877113,
-            "min_order_subtotal": "40.0",
-            "max_order_subtotal": null
+            "price_based_shipping_rates": [
+              {
+                "id": 882078077,
+                "name": "$5 Shipping",
+                "price": "5.00",
+                "shipping_zone_id": 881877113,
+                "min_order_subtotal": "40.0",
+                "max_order_subtotal": null
+              }
+            ]
           },
           "name": "price_based_shipping_rates"
         },
         {
           "description": "        <p>Information about a weight-based shipping rate.</p>\n        <ul>\n          <li><strong>id</strong>: The unique numeric identifier for the shipping rate.</li>\n          <li><strong>name</strong>: The name of the shipping rate.</li>\n          <li><strong>price</strong>: The price of the shipping rate.</li>\n          <li><strong>shipping_zone_id</strong>: The unique numeric identifier for the associated shipping zone.</li>\n          <li><strong>weight_low</strong>: The minimum weight of an order for it to be eligible for the shipping rate.</li>\n          <li><strong>weight_high</strong>: The maximum weight of an order for it to be eligible for the shipping rate.</li>\n        </ul>\n",
-          "type": "string",
+          "type": "array",
           "example": {
-            "id": 882078078,
-            "name": "Canada Air Shipping",
-            "price": "25.00",
-            "shipping_zone_id": 881877113,
-            "weight_low": 0.0,
-            "weight_high": 11.02
+            "weight_based_shipping_rates": [
+              {
+                "id": 882078078,
+                "name": "Canada Air Shipping",
+                "price": "25.00",
+                "shipping_zone_id": 881877113,
+                "weight_low": 0.0,
+                "weight_high": 11.02
+              }
+            ]
           },
           "name": "weight_based_shipping_rates"
         }
@@ -326,5 +333,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

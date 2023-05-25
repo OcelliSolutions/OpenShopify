@@ -27,25 +27,16 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a new StorefrontAccessToken
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<StorefrontAccessTokenItem>> CreateStorefrontAccessTokenAsync(CreateStorefrontAccessTokenRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of storefront access tokens that have been issued
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<StorefrontAccessTokenList>> ListStorefrontAccessTokensThatHaveBeenIssuedAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an existing storefront access token
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteStorefrontAccessTokenAsync(long storefrontAccessTokenId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -85,9 +76,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a new StorefrontAccessToken
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<StorefrontAccessTokenItem>> CreateStorefrontAccessTokenAsync(CreateStorefrontAccessTokenRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -162,9 +150,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of storefront access tokens that have been issued
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<StorefrontAccessTokenList>> ListStorefrontAccessTokensThatHaveBeenIssuedAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -232,9 +217,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an existing storefront access token
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteStorefrontAccessTokenAsync(long storefrontAccessTokenId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

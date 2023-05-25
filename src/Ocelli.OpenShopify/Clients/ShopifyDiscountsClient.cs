@@ -27,146 +27,51 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a discount code
-        /// </summary>
-        /// <remarks>
-        /// Creates a discount code.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code will belong to. This is required because each discount code must belong to a price rule.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, CreateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of discount codes
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of discount codes. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount codes belongs to.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> ListDiscountCodesAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing discount code
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing discount code.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.
-        /// <br/>
-        /// <br/>The `discount_code_id` path parameter is the ID of the discount code to update for the associated price rule.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single discount code
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single discount code.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.
-        /// <br/>
-        /// <br/>The `discount_code_id` path parameter is the ID of the discount code to retrieve for the associated price rule.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> GetDiscountCodeAsync(long discountCodeId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a discount code
-        /// </summary>
-        /// <remarks>
-        /// Deletes a discount code.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.
-        /// <br/>
-        /// <br/>The `discount_code_id` path parameter is the ID of the discount code to delete for the associated price rule.
-        /// </remarks>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteDiscountCodeAsync(long discountCodeId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves the location of a discount code
-        /// </summary>
-        /// <remarks>
-        /// Retrieves the location of a discount code.
-        /// <br/>
-        /// <br/>The discount code's location is returned in the location header, not in the DiscountCode object itself. Depending on your HTTP client, the location of the discount code might follow the location header automatically.
-        /// </remarks>
-        /// <param name="code">Retrieves the location of a discount code by code name.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> GetLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of discount codes for a shop
-        /// </summary>
-        /// <param name="timesUsed">Show discount codes with times used.</param>
-        /// <param name="timesUsedMax">Show discount codes used greater than or equal to this value.</param>
-        /// <param name="timesUsedMin">Show discount codes used less than or equal to this value.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountDiscountCodesForShopAsync(int? timesUsed = null, int? timesUsedMax = null, int? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a discount code creation job
-        /// </summary>
-        /// <remarks>
-        /// Creates a discount code creation job.
-        /// <br/>
-        /// <br/>The batch endpoint can be used to asynchronously create up to 100 discount codes in a single request. It enqueues and returns a `discount_code_creation` object that can be monitored for completion. You can enqueue a single creation job per a shop and you can't enqueue more until the job completes.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code will belong to. This is required because each discount code must belong to a price rule.
-        /// <br/>
-        /// <br/>Response fields that are specific to the batch endpoint include: * `status`: The state of the discount code creation job. Possible values are: * `queued`: The job is acknowledged, but not started. * `running`: The job is in process. * `completed`: The job has finished. * `codes_count`: The number of discount codes to create. * `imported_count`: The number of discount codes created successfully. * `failed_count`: The number of discount codes that were not created successfully. Unsuccessful attempts will retry up to three times. * `logs`: A report that specifies when no discount codes were created because the provided data was invalid. Example responses: * "Price rule target selection can't be blank" * "Price rule allocation method can't be blank"
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeBatchRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a discount code creation job
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a discount code creation job
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code creation job was ran for. This is required because each discount code creation job is associated to a price rule.
-        /// <br/>
-        /// <br/>The `batch_id` path parameter is the ID of the discount code creation job for the associated price rule.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> GetDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of discount codes for a discount code creation job
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of discount codes for a discount code creation job.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code creation job was ran for. This is required because each discount code creation job is associated to a price rule.
-        /// <br/>
-        /// <br/>The `batch_id` path parameter is the ID of the discount code creation job for the associated price rule.
-        /// <br/>
-        /// <br/>Discount codes that have been successfully created include a populated `id` field. Discount codes that encountered errors during the creation process include a populated `errors` field.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> ListDiscountCodesForDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -206,14 +111,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a discount code
-        /// </summary>
-        /// <remarks>
-        /// Creates a discount code.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code will belong to. This is required because each discount code must belong to a price rule.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, CreateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -292,14 +189,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of discount codes
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of discount codes. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount codes belongs to.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> ListDiscountCodesAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -371,16 +260,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing discount code
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing discount code.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.
-        /// <br/>
-        /// <br/>The `discount_code_id` path parameter is the ID of the discount code to update for the associated price rule.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -463,16 +342,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single discount code
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single discount code.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.
-        /// <br/>
-        /// <br/>The `discount_code_id` path parameter is the ID of the discount code to retrieve for the associated price rule.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> GetDiscountCodeAsync(long discountCodeId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -548,16 +417,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a discount code
-        /// </summary>
-        /// <remarks>
-        /// Deletes a discount code.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.
-        /// <br/>
-        /// <br/>The `discount_code_id` path parameter is the ID of the discount code to delete for the associated price rule.
-        /// </remarks>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteDiscountCodeAsync(long discountCodeId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -627,15 +486,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves the location of a discount code
-        /// </summary>
-        /// <remarks>
-        /// Retrieves the location of a discount code.
-        /// <br/>
-        /// <br/>The discount code's location is returned in the location header, not in the DiscountCode object itself. Depending on your HTTP client, the location of the discount code might follow the location header automatically.
-        /// </remarks>
-        /// <param name="code">Retrieves the location of a discount code by code name.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> GetLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -708,12 +558,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of discount codes for a shop
-        /// </summary>
-        /// <param name="timesUsed">Show discount codes with times used.</param>
-        /// <param name="timesUsedMax">Show discount codes used greater than or equal to this value.</param>
-        /// <param name="timesUsedMin">Show discount codes used less than or equal to this value.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountDiscountCodesForShopAsync(int? timesUsed = null, int? timesUsedMax = null, int? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -794,18 +638,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a discount code creation job
-        /// </summary>
-        /// <remarks>
-        /// Creates a discount code creation job.
-        /// <br/>
-        /// <br/>The batch endpoint can be used to asynchronously create up to 100 discount codes in a single request. It enqueues and returns a `discount_code_creation` object that can be monitored for completion. You can enqueue a single creation job per a shop and you can't enqueue more until the job completes.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code will belong to. This is required because each discount code must belong to a price rule.
-        /// <br/>
-        /// <br/>Response fields that are specific to the batch endpoint include: * `status`: The state of the discount code creation job. Possible values are: * `queued`: The job is acknowledged, but not started. * `running`: The job is in process. * `completed`: The job has finished. * `codes_count`: The number of discount codes to create. * `imported_count`: The number of discount codes created successfully. * `failed_count`: The number of discount codes that were not created successfully. Unsuccessful attempts will retry up to three times. * `logs`: A report that specifies when no discount codes were created because the provided data was invalid. Example responses: * "Price rule target selection can't be blank" * "Price rule allocation method can't be blank"
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeBatchRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -884,16 +716,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a discount code creation job
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a discount code creation job
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code creation job was ran for. This is required because each discount code creation job is associated to a price rule.
-        /// <br/>
-        /// <br/>The `batch_id` path parameter is the ID of the discount code creation job for the associated price rule.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> GetDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -969,18 +791,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of discount codes for a discount code creation job
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of discount codes for a discount code creation job.
-        /// <br/>
-        /// <br/>The `price_rule_id` path parameter is the ID of the price rule that the discount code creation job was ran for. This is required because each discount code creation job is associated to a price rule.
-        /// <br/>
-        /// <br/>The `batch_id` path parameter is the ID of the discount code creation job for the associated price rule.
-        /// <br/>
-        /// <br/>Discount codes that have been successfully created include a populated `id` field. Discount codes that encountered errors during the creation process include a populated `errors` field.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> ListDiscountCodesForDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1160,67 +970,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a price rule
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(CreatePriceRuleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of price rules
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of price rules. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show price rules created before date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Show price rules created after date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="endsAtMax">Show price rules ending before date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="endsAtMin">Show price rules ending after date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="startsAtMax">Show price rules starting before date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="startsAtMin">Show price rules starting after date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="timesUsed">Show price rules with times used.</param>
-        /// <param name="updatedAtMax">Show price rules last updated before date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PriceRuleList>> ListPriceRulesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? endsAtMax = null, System.DateTimeOffset? endsAtMin = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.DateTimeOffset? startsAtMax = null, System.DateTimeOffset? startsAtMin = null, int? timesUsed = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing a price rule
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdatePriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single price rule
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> GetPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing PriceRule
-        /// </summary>
-        /// <remarks>
-        /// Deletes a price rule
-        /// </remarks>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeletePriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all price rules
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1260,9 +1034,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a price rule
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(CreatePriceRuleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1337,24 +1108,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of price rules
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of price rules. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show price rules created before date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="createdAtMin">Show price rules created after date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="endsAtMax">Show price rules ending before date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="endsAtMin">Show price rules ending after date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="startsAtMax">Show price rules starting before date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="startsAtMin">Show price rules starting after date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="timesUsed">Show price rules with times used.</param>
-        /// <param name="updatedAtMax">Show price rules last updated before date (format 2017-03-25T16:15:47-04:00).</param>
-        /// <param name="updatedAtMin">Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleList>> ListPriceRulesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? endsAtMax = null, System.DateTimeOffset? endsAtMin = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.DateTimeOffset? startsAtMax = null, System.DateTimeOffset? startsAtMin = null, int? timesUsed = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1471,9 +1224,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing a price rule
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdatePriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1552,9 +1302,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single price rule
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> GetPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1626,12 +1373,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove an existing PriceRule
-        /// </summary>
-        /// <remarks>
-        /// Deletes a price rule
-        /// </remarks>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeletePriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1697,9 +1438,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all price rules
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1890,6 +1628,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public long? PriceRuleId { get; set; } = default!;
+
+        /// <summary>
+        /// An array of errors that occurred when retrieving a list of discount codes for a discount code creation job.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Errors { get; set; } = default!;
 
     }
 
@@ -2152,10 +1899,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<long>? PrerequisiteCollectionIds { get; set; } = default!;
 
-        /// <summary>
-        /// The value of the price rule. If if the value of `target_type` is `shipping_line`, then only `-100` is accepted. The value must be negative.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -2235,6 +1978,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public int? UsageCount { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public DiscountCodeErrors? Errors { get; set; } = default!;
+
         /// <summary>
         /// The amount of the discount.
         /// </summary>
@@ -2249,11 +1997,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public DiscountCodeType? Type { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public DiscountCodeErrors? Errors { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
@@ -2844,10 +2587,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<long>? PrerequisiteCollectionIds { get; set; } = default!;
 
-        /// <summary>
-        /// The value of the price rule. If if the value of `target_type` is `shipping_line`, then only `-100` is accepted. The value must be negative.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -3057,6 +2796,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public long? PriceRuleId { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public DiscountCodeErrors? Errors { get; set; } = default!;
+
         /// <summary>
         /// The amount of the discount.
         /// </summary>
@@ -3071,11 +2815,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public DiscountCodeType? Type { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public DiscountCodeErrors? Errors { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
@@ -3329,10 +3068,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<long>? PrerequisiteCollectionIds { get; set; } = default!;
-
-        /// <summary>
-        /// The value of the price rule. If if the value of `target_type` is `shipping_line`, then only `-100` is accepted. The value must be negative.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 

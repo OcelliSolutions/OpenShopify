@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Discounts
   description: Discounts
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,8 +23,6 @@ paths:
     post:
       tags:
         - DiscountCode
-      summary: Creates a discount code
-      description: "Creates a discount code.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code will belong to. This is required because each discount code must belong to a price rule."
       operationId: CreateDiscountCode
       parameters:
         - name: price_rule_id
@@ -61,8 +59,6 @@ paths:
     get:
       tags:
         - DiscountCode
-      summary: Retrieves a list of discount codes
-      description: "Retrieve a list of discount codes. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount codes belongs to."
       operationId: ListDiscountCodes
       parameters:
         - name: price_rule_id
@@ -95,8 +91,6 @@ paths:
     put:
       tags:
         - DiscountCode
-      summary: Updates an existing discount code
-      description: "Updates an existing discount code.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.\r\n\r\nThe `discount_code_id` path parameter is the ID of the discount code to update for the associated price rule."
       operationId: UpdateDiscountCode
       parameters:
         - name: discount_code_id
@@ -139,8 +133,6 @@ paths:
     get:
       tags:
         - DiscountCode
-      summary: Retrieves a single discount code
-      description: "Retrieves a single discount code.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.\r\n\r\nThe `discount_code_id` path parameter is the ID of the discount code to retrieve for the associated price rule."
       operationId: GetDiscountCode
       parameters:
         - name: discount_code_id
@@ -174,8 +166,6 @@ paths:
     delete:
       tags:
         - DiscountCode
-      summary: Deletes a discount code
-      description: "Deletes a discount code.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code belongs to. This is required because each discount code must belong to a price rule.\r\n\r\nThe `discount_code_id` path parameter is the ID of the discount code to delete for the associated price rule."
       operationId: DeleteDiscountCode
       parameters:
         - name: discount_code_id
@@ -206,13 +196,10 @@ paths:
     get:
       tags:
         - DiscountCode
-      summary: Retrieves the location of a discount code
-      description: "Retrieves the location of a discount code.\r\n\r\nThe discount code's location is returned in the location header, not in the DiscountCode object itself. Depending on your HTTP client, the location of the discount code might follow the location header automatically."
       operationId: GetLocationOfDiscountCode
       parameters:
         - name: code
           in: query
-          description: Retrieves the location of a discount code by code name.
           schema:
             type: string
       responses:
@@ -235,24 +222,20 @@ paths:
     get:
       tags:
         - DiscountCode
-      summary: Retrieves a count of discount codes for a shop
       operationId: CountDiscountCodesForShop
       parameters:
         - name: times_used
           in: query
-          description: Show discount codes with times used.
           schema:
             type: integer
             format: int32
         - name: times_used_max
           in: query
-          description: Show discount codes used greater than or equal to this value.
           schema:
             type: integer
             format: int32
         - name: times_used_min
           in: query
-          description: Show discount codes used less than or equal to this value.
           schema:
             type: integer
             format: int32
@@ -276,8 +259,6 @@ paths:
     post:
       tags:
         - DiscountCode
-      summary: Creates a discount code creation job
-      description: "Creates a discount code creation job.\r\n\r\nThe batch endpoint can be used to asynchronously create up to 100 discount codes in a single request. It enqueues and returns a `discount_code_creation` object that can be monitored for completion. You can enqueue a single creation job per a shop and you can't enqueue more until the job completes.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code will belong to. This is required because each discount code must belong to a price rule.\r\n\r\nResponse fields that are specific to the batch endpoint include: * `status`: The state of the discount code creation job. Possible values are: * `queued`: The job is acknowledged, but not started. * `running`: The job is in process. * `completed`: The job has finished. * `codes_count`: The number of discount codes to create. * `imported_count`: The number of discount codes created successfully. * `failed_count`: The number of discount codes that were not created successfully. Unsuccessful attempts will retry up to three times. * `logs`: A report that specifies when no discount codes were created because the provided data was invalid. Example responses: * \"Price rule target selection can't be blank\" * \"Price rule allocation method can't be blank\""
       operationId: CreateDiscountCodeCreationJob
       parameters:
         - name: price_rule_id
@@ -315,8 +296,6 @@ paths:
     get:
       tags:
         - DiscountCode
-      summary: Retrieves a discount code creation job
-      description: "Retrieves a discount code creation job\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code creation job was ran for. This is required because each discount code creation job is associated to a price rule.\r\n\r\nThe `batch_id` path parameter is the ID of the discount code creation job for the associated price rule."
       operationId: GetDiscountCodeCreationJob
       parameters:
         - name: batch_id
@@ -351,8 +330,6 @@ paths:
     get:
       tags:
         - DiscountCode
-      summary: Retrieves a list of discount codes for a discount code creation job
-      description: "Retrieves a list of discount codes for a discount code creation job.\r\n\r\nThe `price_rule_id` path parameter is the ID of the price rule that the discount code creation job was ran for. This is required because each discount code creation job is associated to a price rule.\r\n\r\nThe `batch_id` path parameter is the ID of the discount code creation job for the associated price rule.\r\n\r\nDiscount codes that have been successfully created include a populated `id` field. Discount codes that encountered errors during the creation process include a populated `errors` field."
       operationId: ListDiscountCodesForDiscountCodeCreationJob
       parameters:
         - name: batch_id
@@ -391,7 +368,6 @@ paths:
     post:
       tags:
         - PriceRule
-      summary: Creates a price rule
       operationId: CreatePriceRule
       requestBody:
         content:
@@ -421,78 +397,64 @@ paths:
     get:
       tags:
         - PriceRule
-      summary: Retrieves a list of price rules
-      description: 'Retrieves a list of price rules. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListPriceRules
       parameters:
         - name: created_at_max
           in: query
-          description: Show price rules created before date (format 2017-03-25T16:15:47-04:00).
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: Show price rules created after date (format 2017-03-25T16:15:47-04:00).
           schema:
             type: string
             format: date-time
         - name: ends_at_max
           in: query
-          description: Show price rules ending before date (format 2017-03-25T16:15:47-04:00).
           schema:
             type: string
             format: date-time
         - name: ends_at_min
           in: query
-          description: Show price rules ending after date (format 2017-03-25T16:15:47-04:00).
           schema:
             type: string
             format: date-time
         - name: limit
           in: query
-          description: The maximum number of results to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: starts_at_max
           in: query
-          description: Show price rules starting before date (format 2017-03-25T16:15:47-04:00).
           schema:
             type: string
             format: date-time
         - name: starts_at_min
           in: query
-          description: Show price rules starting after date (format 2017-03-25T16:15:47-04:00).
           schema:
             type: string
             format: date-time
         - name: times_used
           in: query
-          description: Show price rules with times used.
           schema:
             type: integer
             format: int32
         - name: updated_at_max
           in: query
-          description: Show price rules last updated before date (format 2017-03-25T16:15:47-04:00).
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).
           schema:
             type: string
             format: date-time
@@ -520,7 +482,6 @@ paths:
     put:
       tags:
         - PriceRule
-      summary: Updates an existing a price rule
       operationId: UpdatePriceRule
       parameters:
         - name: price_rule_id
@@ -557,7 +518,6 @@ paths:
     get:
       tags:
         - PriceRule
-      summary: Retrieves a single price rule
       operationId: GetPriceRule
       parameters:
         - name: price_rule_id
@@ -585,8 +545,6 @@ paths:
     delete:
       tags:
         - PriceRule
-      summary: Remove an existing PriceRule
-      description: Deletes a price rule
       operationId: DeletePriceRule
       parameters:
         - name: price_rule_id
@@ -611,7 +569,6 @@ paths:
     get:
       tags:
         - PriceRule
-      summary: Retrieves a count of all price rules
       operationId: CountPriceRules
       responses:
         '200':
@@ -649,6 +606,10 @@ components:
           type: integer
           description: The ID for the price rule that this discount code belongs to.
           format: int64
+          nullable: true
+        errors:
+          type: string
+          description: An array of errors that occurred when retrieving a list of discount codes for a discount code creation job.
           nullable: true
       additionalProperties: false
     CreateDiscountCodeBatchRequest:
@@ -781,7 +742,6 @@ components:
           nullable: true
         value:
           type: number
-          description: 'The value of the price rule. If if the value of `target_type` is `shipping_line`, then only `-100` is accepted. The value must be negative.'
           format: decimal
           nullable: true
         value_type:
@@ -818,14 +778,14 @@ components:
           description: The number of times that the discount code has been redeemed.
           format: int32
           nullable: true
+        errors:
+          $ref: '#/components/schemas/DiscountCodeErrors'
         amount:
           type: string
           description: The amount of the discount.
           nullable: true
         type:
           $ref: '#/components/schemas/DiscountCodeType'
-        errors:
-          $ref: '#/components/schemas/DiscountCodeErrors'
         id:
           type: integer
           format: int64
@@ -1104,7 +1064,6 @@ components:
           nullable: true
         value:
           type: number
-          description: 'The value of the price rule. If if the value of `target_type` is `shipping_line`, then only `-100` is accepted. The value must be negative.'
           format: decimal
           nullable: true
         value_type:
@@ -1196,14 +1155,14 @@ components:
           description: The ID for the price rule that this discount code belongs to.
           format: int64
           nullable: true
+        errors:
+          $ref: '#/components/schemas/DiscountCodeErrors'
         amount:
           type: string
           description: The amount of the discount.
           nullable: true
         type:
           $ref: '#/components/schemas/DiscountCodeType'
-        errors:
-          $ref: '#/components/schemas/DiscountCodeErrors'
         id:
           type: integer
           format: int64
@@ -1331,7 +1290,6 @@ components:
           nullable: true
         value:
           type: number
-          description: 'The value of the price rule. If if the value of `target_type` is `shipping_line`, then only `-100` is accepted. The value must be negative.'
           format: decimal
           nullable: true
         value_type:

@@ -5,8 +5,7 @@
     "description": "        <p>\n\n        <div class=\"note-caution note\">\n          <h4>Important</h4>\n          <p>\n            Product ResourceFeedback is only for use with the <a href=\"/concepts/channels\">Sales Channel SDK</a>.\n          </p>\n        </div>\n\n          The Product ResourceFeedback API allows you to communicate the state of a shop's individual products, as it pertains to your application,\n          by sending product feedback within the Shopify admin.\n          Once created, product resource feedback is used help merchants get your app setup on their store\n          by addressing missing steps or fixing problems.\n\n        </p>\n\n        <h2>Send product feedback</h2>\n\n        <p>You can send feedback on a product to let merchants know what steps they need to take to make sure your app is set up correctly.\n        Feedback can have one of two states: <code>requires_action</code> or <code>success</code>.\n        You will need to send a <code>requires_action</code> feedback request for each step that the merchant is required to complete.\n        If there are multiple setup steps requiring merchant action, send feedback with a state of <code>requires_action</code> as merchants complete prior steps.\n        Send a success feedback request to remove the feedback message from Shopify admin.</p>\n\n        <div class=\"note\">\n          <h4>Important</h4>\n          <p>Sending feedback replaces previously sent feedback for the Shop. Unlike REST-style APIs, you don't need to make a PATCH or PUT request to update any previously sent feedback. Send a new POST request to push the latest state of a shop or its resources to Shopify.</p>\n        </div>\n\n        <h3>Formatting the resource feedback message field</h3>\n\n        <p>If your state is <code>requires_action</code> you can send up to four string messages, which communicate the action to be taken by the\n        merchant. Each string must be a single message up to 100 characters long, must start with a capital letter (but not use all caps), and must end with a period.\n        You must adhere to the message formatting rules or your requests will fail:</p>\n\n        <p><strong>Examples:</strong></p>\n\n        <p><li><code>Needs at least one image.</code></li>\n        <li><code>Needs to be a shippable product.</code></li></p>\n\n        <p>\n          Merchants viewing individual products will see your app's messages as a bulleted list of errors.\n          Other user interfaces in Shopify admin will report statistics like the number of errors your app has\n          reported.\n\n          Once the merchant has made a single or a series of updates to validate the product,\n          your app can send a status of<code>success</code>.\n        </p>\n\n",
     "x-owner": "https://vault.shopify.io/teams/2386",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -66,15 +65,15 @@
                 "Create a product feedback record indicating a problem specific to your app": {
                   "value": {
                     "resource_feedback": {
-                      "created_at": "2023-01-03T10:45:42-07:00",
-                      "updated_at": "2023-01-03T10:45:42-07:00",
+                      "created_at": "2023-02-02T07:27:03-07:00",
+                      "updated_at": "2023-02-02T07:27:03-07:00",
                       "resource_id": 632910392,
                       "resource_type": "Product",
-                      "resource_updated_at": "2023-01-03T10:21:36-07:00",
+                      "resource_updated_at": "2023-02-02T07:09:49-07:00",
                       "messages": [
                         "Needs at least one image."
                       ],
-                      "feedback_generated_at": "2023-01-03T10:45:40-07:00",
+                      "feedback_generated_at": "2023-02-02T07:27:02-07:00",
                       "state": "requires_action"
                     }
                   }
@@ -82,13 +81,13 @@
                 "Create a product feedback record indicating the product is usable by your app": {
                   "value": {
                     "resource_feedback": {
-                      "created_at": "2023-01-03T10:45:45-07:00",
-                      "updated_at": "2023-01-03T10:45:45-07:00",
+                      "created_at": "2023-02-02T07:27:04-07:00",
+                      "updated_at": "2023-02-02T07:27:04-07:00",
                       "resource_id": 632910392,
                       "resource_type": "Product",
-                      "resource_updated_at": "2023-01-03T10:21:36-07:00",
+                      "resource_updated_at": "2023-02-02T07:09:49-07:00",
                       "messages": [],
-                      "feedback_generated_at": "2023-01-03T10:45:44-07:00",
+                      "feedback_generated_at": "2023-02-02T07:27:03-07:00",
                       "state": "success"
                     }
                   }
@@ -154,82 +153,82 @@
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/resource_feedback.json",
+          "request_path": "/admin/api/2023-04/products/632910392/resource_feedback.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/products/632910392/resource_feedback.json",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"requires_action\",\"messages\":[\"Needs at least one image.\"],\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:40.928568Z\"}}"
+            "body": "{\"resource_feedback\":{\"state\":\"requires_action\",\"messages\":[\"Needs at least one image.\"],\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:02.024755Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 202 Accepted",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"created_at\":\"2023-01-03T12:45:42-05:00\",\"updated_at\":\"2023-01-03T12:45:42-05:00\",\"resource_id\":632910392,\"resource_type\":\"Product\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"messages\":[\"Needs at least one image.\"],\"feedback_generated_at\":\"2023-01-03T12:45:40-05:00\",\"state\":\"requires_action\"}}"
+            "body": "{\"resource_feedback\":{\"created_at\":\"2023-02-02T09:27:03-05:00\",\"updated_at\":\"2023-02-02T09:27:03-05:00\",\"resource_id\":632910392,\"resource_type\":\"Product\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"messages\":[\"Needs at least one image.\"],\"feedback_generated_at\":\"2023-02-02T09:27:02-05:00\",\"state\":\"requires_action\"}}"
           },
           "name": "Create a product feedback record indicating a problem specific to your app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"requires_action\",\"messages\":[\"Needs at least one image.\"],\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:40.928568Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"requires_action\",\"messages\":[\"Needs at least one image.\"],\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:02.024755Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"requires_action\"\nproduct_resource_feedback.messages = [\n  \"Needs at least one image.\"\n]\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:40.928568Z\"\nproduct_resource_feedback.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"requires_action\"\nproduct_resource_feedback.messages = [\n  \"Needs at least one image.\"\n]\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:02.024755Z\"\nproduct_resource_feedback.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"requires_action\";\nproduct_resource_feedback.messages = [\n  \"Needs at least one image.\"\n];\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:40.928568Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"requires_action\";\nproduct_resource_feedback.messages = [\n  \"Needs at least one image.\"\n];\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:02.024755Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"requires_action\";\n$product_resource_feedback->messages = [\n    \"Needs at least one image.\"\n];\n$product_resource_feedback->resource_updated_at = \"2023-01-03T12:21:36-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-01-03T17:45:40.928568Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"requires_action\";\n$product_resource_feedback->messages = [\n    \"Needs at least one image.\"\n];\n$product_resource_feedback->resource_updated_at = \"2023-02-02T09:09:49-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-02-02T14:27:02.024755Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/resource_feedback.json",
+          "request_path": "/admin/api/2023-04/products/632910392/resource_feedback.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/products/632910392/resource_feedback.json",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:44.063762Z\"}}"
+            "body": "{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:03.509419Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 202 Accepted",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"created_at\":\"2023-01-03T12:45:45-05:00\",\"updated_at\":\"2023-01-03T12:45:45-05:00\",\"resource_id\":632910392,\"resource_type\":\"Product\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"messages\":[],\"feedback_generated_at\":\"2023-01-03T12:45:44-05:00\",\"state\":\"success\"}}"
+            "body": "{\"resource_feedback\":{\"created_at\":\"2023-02-02T09:27:04-05:00\",\"updated_at\":\"2023-02-02T09:27:04-05:00\",\"resource_id\":632910392,\"resource_type\":\"Product\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"messages\":[],\"feedback_generated_at\":\"2023-02-02T09:27:03-05:00\",\"state\":\"success\"}}"
           },
           "name": "Create a product feedback record indicating the product is usable by your app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:44.063762Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:03.509419Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"success\"\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:44.063762Z\"\nproduct_resource_feedback.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"success\"\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:03.509419Z\"\nproduct_resource_feedback.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"success\";\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:44.063762Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"success\";\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:03.509419Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"success\";\n$product_resource_feedback->resource_updated_at = \"2023-01-03T12:21:36-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-01-03T17:45:44.063762Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"success\";\n$product_resource_feedback->resource_updated_at = \"2023-02-02T09:09:49-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-02-02T14:27:03.509419Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "403",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/resource_feedback.json",
+          "request_path": "/admin/api/2023-04/products/632910392/resource_feedback.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/products/632910392/resource_feedback.json",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:42.581597Z\"}}"
+            "body": "{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:06.549496Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 403 Forbidden",
@@ -240,31 +239,31 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:42.581597Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:06.549496Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"success\"\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:42.581597Z\"\nproduct_resource_feedback.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"success\"\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:06.549496Z\"\nproduct_resource_feedback.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"success\";\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:42.581597Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"success\";\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:06.549496Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"success\";\n$product_resource_feedback->resource_updated_at = \"2023-01-03T12:21:36-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-01-03T17:45:42.581597Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"success\";\n$product_resource_feedback->resource_updated_at = \"2023-02-02T09:09:49-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-02-02T14:27:06.549496Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/resource_feedback.json",
+          "request_path": "/admin/api/2023-04/products/632910392/resource_feedback.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/products/632910392/resource_feedback.json",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"foobar\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:39.389765Z\"}}"
+            "body": "{\"resource_feedback\":{\"state\":\"foobar\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:07.962668Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 422 Unprocessable Entity",
@@ -275,31 +274,31 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"foobar\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:39.389765Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"foobar\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:07.962668Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"foobar\"\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:39.389765Z\"\nproduct_resource_feedback.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"foobar\"\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:07.962668Z\"\nproduct_resource_feedback.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"foobar\";\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:39.389765Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"foobar\";\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:07.962668Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"foobar\";\n$product_resource_feedback->resource_updated_at = \"2023-01-03T12:21:36-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-01-03T17:45:39.389765Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"foobar\";\n$product_resource_feedback->resource_updated_at = \"2023-02-02T09:09:49-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-02-02T14:27:07.962668Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "409",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/resource_feedback.json",
+          "request_path": "/admin/api/2023-04/products/632910392/resource_feedback.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/products/632910392/resource_feedback.json",
             "headers": {},
-            "body": "{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:37.882776Z\"}}"
+            "body": "{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:04.972795Z\"}}"
           },
           "response": {
             "action": "HTTP/1.1 409 Conflict",
@@ -310,19 +309,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"feedback_generated_at\":\"2023-01-03T17:45:37.882776Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"resource_feedback\":{\"state\":\"success\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"feedback_generated_at\":\"2023-02-02T14:27:04.972795Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"success\"\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:37.882776Z\"\nproduct_resource_feedback.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nproduct_resource_feedback = ShopifyAPI::ProductResourceFeedback.new(session: test_session)\nproduct_resource_feedback.product_id = 632910392\nproduct_resource_feedback.state = \"success\"\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\"\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:04.972795Z\"\nproduct_resource_feedback.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"success\";\nproduct_resource_feedback.resource_updated_at = \"2023-01-03T12:21:36-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-01-03T17:45:37.882776Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst product_resource_feedback = new shopify.rest.ProductResourceFeedback({session: session});\nproduct_resource_feedback.product_id = 632910392;\nproduct_resource_feedback.state = \"success\";\nproduct_resource_feedback.resource_updated_at = \"2023-02-02T09:09:49-05:00\";\nproduct_resource_feedback.feedback_generated_at = \"2023-02-02T14:27:04.972795Z\";\nawait product_resource_feedback.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"success\";\n$product_resource_feedback->resource_updated_at = \"2023-01-03T12:21:36-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-01-03T17:45:37.882776Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_resource_feedback = new ProductResourceFeedback($this->test_session);\n$product_resource_feedback->product_id = 632910392;\n$product_resource_feedback->state = \"success\";\n$product_resource_feedback->resource_updated_at = \"2023-02-02T09:09:49-05:00\";\n$product_resource_feedback->feedback_generated_at = \"2023-02-02T14:27:04.972795Z\";\n$product_resource_feedback->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -377,15 +376,15 @@
                   "value": {
                     "resource_feedback": [
                       {
-                        "created_at": "2023-01-03T10:45:45-07:00",
-                        "updated_at": "2023-01-03T10:45:45-07:00",
+                        "created_at": "2023-02-02T07:27:00-07:00",
+                        "updated_at": "2023-02-02T07:27:00-07:00",
                         "resource_id": 632910392,
                         "resource_type": "Product",
-                        "resource_updated_at": "2023-01-03T10:21:36-07:00",
+                        "resource_updated_at": "2023-02-02T07:09:49-07:00",
                         "messages": [
                           "Needs at least one image."
                         ],
-                        "feedback_generated_at": "2023-01-03T09:45:45-07:00",
+                        "feedback_generated_at": "2023-02-02T06:27:00-07:00",
                         "state": "requires_action"
                       }
                     ]
@@ -400,7 +399,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/products/632910392/resource_feedback.json",
+          "request_path": "/admin/api/2023-04/products/632910392/resource_feedback.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/products/632910392/resource_feedback.json",
@@ -410,13 +409,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"resource_feedback\":[{\"created_at\":\"2023-01-03T12:45:45-05:00\",\"updated_at\":\"2023-01-03T12:45:45-05:00\",\"resource_id\":632910392,\"resource_type\":\"Product\",\"resource_updated_at\":\"2023-01-03T12:21:36-05:00\",\"messages\":[\"Needs at least one image.\"],\"feedback_generated_at\":\"2023-01-03T11:45:45-05:00\",\"state\":\"requires_action\"}]}"
+            "body": "{\"resource_feedback\":[{\"created_at\":\"2023-02-02T09:27:00-05:00\",\"updated_at\":\"2023-02-02T09:27:00-05:00\",\"resource_id\":632910392,\"resource_type\":\"Product\",\"resource_updated_at\":\"2023-02-02T09:09:49-05:00\",\"messages\":[\"Needs at least one image.\"],\"feedback_generated_at\":\"2023-02-02T08:27:00-05:00\",\"state\":\"requires_action\"}]}"
           },
           "name": "Get a list of resource feedback records for a specific product",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/products/632910392/resource_feedback.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -428,7 +427,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductResourceFeedback::all(\n    $this->test_session, // Session\n    [\"product_id\" => \"632910392\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductResourceFeedback;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductResourceFeedback::all(\n    $this->test_session, // Session\n    [\"product_id\" => \"632910392\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -453,13 +452,13 @@
         {
           "description": "          DateTime when the resource feedback record was stored by Shopify.\n          <strong>Type:</strong> ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.\n",
           "type": "string",
-          "example": "2023-01-03 17:05:08 UTC",
+          "example": "2023-02-02 14:09:48 UTC",
           "name": "created_at"
         },
         {
           "description": "          DateTime when the resource feedback record was last updated by Shopify.\n          <strong>Type:</strong> ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.\n",
           "type": "string",
-          "example": "2023-01-03 17:05:08 UTC",
+          "example": "2023-02-02 14:09:48 UTC",
           "name": "updated_at"
         },
         {
@@ -491,13 +490,13 @@
         {
           "description": "          <p>\n            The time at which the payload is constructed. Used to help determine whether incoming feedback is\n            outdated compared to feedback already received, and if it should be ignored upon arrival.\n            <strong>Type:</strong> ISO 8601 UTC DateTime as string\n            with year, month [or week], day, hour, minute, second, millisecond, and time zone.\n          </p>\n\n          <div class=\"note\">\n            <h4>Note</h4>\n            <p>If you queue a Feedback API payload for delivery at a later time, do not update this value\n            when the API call is actually made; ensure that the current time is set when building the payload.</p>\n          </div>\n",
           "type": "string",
-          "example": "2023-01-03T17:05:08.668525Z",
+          "example": "2023-02-02T14:09:48.959656Z",
           "name": "feedback_generated_at"
         },
         {
           "description": "          <p>\n            The forwarded <code>updated_at</code> timestamp of the product. Used only for versioned resources, where the <code>updated_at</code> timestamp changes\n            based on merchant actions.\n            When required, it is used along with <code>feedback_generated_at</code> to help determine whether incoming\n            feedback is outdated compared to feedback already received, and if it should be ignored upon arrival.\n          </p>\n\n",
           "type": "string",
-          "example": "2023-01-03 17:05:08 UTC",
+          "example": "2023-02-02 14:09:48 UTC",
           "name": "resource_updated_at"
         }
       ],
@@ -523,5 +522,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

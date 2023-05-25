@@ -5,8 +5,7 @@
     "description": "        <p>The Shop resource is a collection of general business and store management settings and information about\n        the store. The resource lets you retrieve information about the store, but it doesn't let you update any information.\n        Only the merchant can update this information from inside the Shopify admin.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/47",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -56,7 +55,7 @@
                       "primary_locale": "en",
                       "address2": "Suite 100",
                       "created_at": "2007-12-31T17:00:00-07:00",
-                      "updated_at": "2023-01-03T10:55:05-07:00",
+                      "updated_at": "2023-05-09T08:33:43-06:00",
                       "country_code": "US",
                       "country_name": "United States",
                       "currency": "USD",
@@ -85,7 +84,6 @@
                       "requires_extra_payments_agreement": false,
                       "password_enabled": false,
                       "has_storefront": true,
-                      "eligible_for_card_reader_giveaway": false,
                       "finances": true,
                       "primary_location_id": 655441491,
                       "cookie_consent_level": "implicit",
@@ -122,7 +120,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/shop.json",
+          "request_path": "/admin/api/2023-04/shop.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shop.json",
@@ -132,13 +130,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"shop\":{\"id\":548380009,\"name\":\"John Smith Test Store\",\"email\":\"j.smith@example.com\",\"domain\":\"shop.apple.com\",\"province\":\"California\",\"country\":\"US\",\"address1\":\"1 Infinite Loop\",\"zip\":\"95014\",\"city\":\"Cupertino\",\"source\":null,\"phone\":\"1231231234\",\"latitude\":45.45,\"longitude\":-75.43,\"primary_locale\":\"en\",\"address2\":\"Suite 100\",\"created_at\":\"2007-12-31T19:00:00-05:00\",\"updated_at\":\"2023-01-03T12:55:05-05:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"currency\":\"USD\",\"customer_email\":\"customers@apple.com\",\"timezone\":\"(GMT-05:00) Eastern Time (US & Canada)\",\"iana_timezone\":\"America/New_York\",\"shop_owner\":\"John Smith\",\"money_format\":\"${{amount}}\",\"money_with_currency_format\":\"${{amount}} USD\",\"weight_unit\":\"lb\",\"province_code\":\"CA\",\"taxes_included\":null,\"auto_configure_tax_inclusivity\":null,\"tax_shipping\":null,\"county_taxes\":true,\"plan_display_name\":\"Shopify Plus\",\"plan_name\":\"enterprise\",\"has_discounts\":true,\"has_gift_cards\":true,\"myshopify_domain\":\"jsmith.myshopify.com\",\"google_apps_domain\":null,\"google_apps_login_enabled\":null,\"money_in_emails_format\":\"${{amount}}\",\"money_with_currency_in_emails_format\":\"${{amount}} USD\",\"eligible_for_payments\":true,\"requires_extra_payments_agreement\":false,\"password_enabled\":false,\"has_storefront\":true,\"eligible_for_card_reader_giveaway\":false,\"finances\":true,\"primary_location_id\":655441491,\"cookie_consent_level\":\"implicit\",\"visitor_tracking_consent_preference\":\"allow_all\",\"checkout_api_supported\":true,\"multi_location_enabled\":true,\"setup_required\":false,\"pre_launch_enabled\":false,\"enabled_presentment_currencies\":[\"USD\"],\"transactional_sms_disabled\":false,\"marketing_sms_consent_enabled_at_checkout\":false}}"
+            "body": "{\"shop\":{\"id\":548380009,\"name\":\"John Smith Test Store\",\"email\":\"j.smith@example.com\",\"domain\":\"shop.apple.com\",\"province\":\"California\",\"country\":\"US\",\"address1\":\"1 Infinite Loop\",\"zip\":\"95014\",\"city\":\"Cupertino\",\"source\":null,\"phone\":\"1231231234\",\"latitude\":45.45,\"longitude\":-75.43,\"primary_locale\":\"en\",\"address2\":\"Suite 100\",\"created_at\":\"2007-12-31T19:00:00-05:00\",\"updated_at\":\"2023-05-09T10:33:43-04:00\",\"country_code\":\"US\",\"country_name\":\"United States\",\"currency\":\"USD\",\"customer_email\":\"customers@apple.com\",\"timezone\":\"(GMT-05:00) Eastern Time (US & Canada)\",\"iana_timezone\":\"America/New_York\",\"shop_owner\":\"John Smith\",\"money_format\":\"${{amount}}\",\"money_with_currency_format\":\"${{amount}} USD\",\"weight_unit\":\"lb\",\"province_code\":\"CA\",\"taxes_included\":null,\"auto_configure_tax_inclusivity\":null,\"tax_shipping\":null,\"county_taxes\":true,\"plan_display_name\":\"Shopify Plus\",\"plan_name\":\"enterprise\",\"has_discounts\":true,\"has_gift_cards\":true,\"myshopify_domain\":\"jsmith.myshopify.com\",\"google_apps_domain\":null,\"google_apps_login_enabled\":null,\"money_in_emails_format\":\"${{amount}}\",\"money_with_currency_in_emails_format\":\"${{amount}} USD\",\"eligible_for_payments\":true,\"requires_extra_payments_agreement\":false,\"password_enabled\":false,\"has_storefront\":true,\"finances\":true,\"primary_location_id\":655441491,\"cookie_consent_level\":\"implicit\",\"visitor_tracking_consent_preference\":\"allow_all\",\"checkout_api_supported\":true,\"multi_location_enabled\":true,\"setup_required\":false,\"pre_launch_enabled\":false,\"enabled_presentment_currencies\":[\"USD\"],\"transactional_sms_disabled\":false,\"marketing_sms_consent_enabled_at_checkout\":false}}"
           },
           "name": "Retrieve the shop's configuration",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shop.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/shop.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -150,14 +148,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Shop;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShop::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Shop;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShop::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "fields=address1%2Caddress2%2Ccity%2Cprovince%2Ccountry",
-          "request_path": "/admin/api/2022-10/shop.json",
+          "request_path": "/admin/api/2023-04/shop.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shop.json",
@@ -173,7 +171,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shop.json?fields=address1%2Caddress2%2Ccity%2Cprovince%2Ccountry\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/shop.json?fields=address1%2Caddress2%2Ccity%2Cprovince%2Ccountry\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -185,7 +183,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Shop;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShop::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"fields\" => \"address1,address2,city,province,country\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Shop;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShop::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"fields\" => \"address1,address2,city,province,country\"], // Params\n);"
             }
           ]
         }
@@ -220,7 +218,7 @@
           "name": "address2"
         },
         {
-          "description": "Whether the shop is capable of accepting payments directly through the <a href=\"/apps/channels/checkout-api\">Checkout API</a>.",
+          "description": "Whether the shop is capable of accepting payments directly through the <a href=\"/docs/api/admin-rest/current/resources/checkout\">Checkout API</a>.",
           "type": "string",
           "example": true,
           "name": "checkout_api_supported"
@@ -251,7 +249,7 @@
         },
         {
           "description": "Whether the shop is applying taxes on a per-county basis. Only applicable to shops based in the US. Valid values: <code>true</code> or <code>null</code>.\"",
-          "type": "string",
+          "type": "boolean",
           "example": null,
           "name": "county_taxes"
         },
@@ -577,5 +575,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

@@ -96,6 +96,9 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Updates a metafield
         /// </summary>
+        /// <remarks>
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
+        /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldRequest request, long blog_id, long metafield_id);
 
@@ -470,7 +473,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for a Shop resource
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForShopResource([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForShopResourceRequest request, long metafield_id);
@@ -498,7 +501,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for a Collection
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForCollectionRequest request, long metafield_id, long collection_id);
@@ -526,7 +529,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for a Customer
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForCustomerRequest request, long metafield_id, long customer_id);
@@ -554,7 +557,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for a Draft Order
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForDraftOrderRequest request, long metafield_id, long draft_order_id);
@@ -582,7 +585,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for a Page
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForPage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForPageRequest request, long metafield_id, long page_id);
@@ -610,7 +613,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for a Product
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForProduct([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForProductRequest request, long metafield_id, long product_id);
@@ -638,7 +641,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for a Product Image
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("product_images/{product_image_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForProductImageRequest request, long metafield_id, long product_image_id);
@@ -666,7 +669,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for a Product Variant
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForProductVariantRequest request, long metafield_id, long variant_id);
@@ -694,7 +697,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for an Article
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("articles/{article_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForArticleRequest request, long metafield_id, long article_id);
@@ -722,7 +725,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Update a metafield for an Order
         /// </summary>
         /// <remarks>
-        /// Updates a metafield.
+        /// Updates a metafield. The properties that can be updated are `value` and `type`.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafieldForOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldForOrderRequest request, long metafield_id, long order_id);
@@ -742,7 +745,7 @@ namespace OpenShopify.Admin.Builder.Models
     public partial record MetafieldOrig
     {
         /// <summary>
-        /// A description of the information that the metafield contains.
+        /// The description of the metafield.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -751,7 +754,8 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Description { get; set; } = default!;
 
         /// <summary>
-        /// The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.
+        /// The unique identifier for a metafield within its namespace.   
+        ///  Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("key")]
@@ -760,7 +764,8 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Key { get; set; } = default!;
 
         /// <summary>
-        /// A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+        /// The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   
+        ///  Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("namespace")]
@@ -787,7 +792,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? OwnerResource { get; set; } = default!;
 
         /// <summary>
-        /// The data to store in the metafield. The value is always stored as a string, regardless of the metafield's type.
+        /// The data stored in the metafield. Always stored as a string, regardless of the metafield's type.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("value")]
@@ -796,7 +801,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Value { get; set; } = default!;
 
         /// <summary>
-        /// The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).
+        /// The type of data that is stored in the metafield. Refer to the list of [supported types](/apps/metafields/types).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("type")]

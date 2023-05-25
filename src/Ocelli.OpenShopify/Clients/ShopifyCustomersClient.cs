@@ -27,66 +27,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of customers
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of customers. This endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show customers created before a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show customers created after a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="ids">Restrict results to customers specified by a comma-separated list of IDs.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to those after the specified ID.</param>
-        /// <param name="updatedAtMax">Show customers last updated before a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show customers last updated after a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerList>> ListCustomersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a customer
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> CreateCustomerAsync(CreateCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Searches for customers that match a supplied query
-        /// </summary>
-        /// <remarks>
-        /// Searches for customers that match a supplied query. This endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="order">Set the field and direction by which to order results.</param>
-        /// <param name="query">Text to search for in the shop's customer data.**Note:** Supported queries: `accepts_marketing`,`activation_date`, `address1`, `address2`, `city`,`company`, `country`, `customer_date`, `customer_first_name`,`customer_id`, `customer_last_name`, `customer_tag`, ` email`,`email_marketing_state`, `first_name`, `first_order_date`, `id`,`last_abandoned_order_date`, `last_name`, `multipass_identifier`,`orders_count`, `order_date`, `phone`, `province`,`shop_id`, `state`, `tag`, `total_spent`,`updated_at`, `verified_email`, `product_subscriber_status`. All other queriesreturns all customers.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerList>> SearchForCustomersThatMatchSuppliedQueryAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, string? query = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single customer
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> GetCustomerAsync(long customerId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a customer
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> UpdateCustomerAsync(long customerId, UpdateCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -100,53 +60,21 @@ namespace Ocelli.OpenShopify
         System.Threading.Tasks.Task<ShopifyResponse> DeleteCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates an account activation URL for a customer
-        /// </summary>
-        /// <remarks>
-        /// Generate an account activation URL for a customer whose account is not yet enabled. This is useful when you've imported a large number of customers and want to send them activation emails all at once. Using this approach, you'll need to generate and send the activation emails yourself.
-        /// <br/>
-        /// <br/>The account activation URL generated by this endpoint is for one-time use and will expire after 30 days. If you make a new POST request to this endpoint, then a new URL will be generated. The new URL will be again valid for 30 days, but the previous URL will no longer be valid.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<AccountActivationBase>> CreateAccountActivationUrlForCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Sends an account invite to a customer
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerInviteItem>> SendAccountInviteToCustomerAsync(long customerId, CreateCustomerInviteRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of customers
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of all customers.
-        /// </remarks>
-        /// <param name="createdAtMax">Count customers created before a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Count customers created after a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMax">Count customers last updated before a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Count customers last updated after a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves all orders that belong to a customer
-        /// </summary>
-        /// <remarks>
-        /// Retrieves all orders that belong to a customer. By default, only open orders are returned. The query string parameters in the [ Order](/docs/admin-api/rest/reference/orders/order#endpoints-{{ current_version }}) resource are also available at this endpoint.
-        /// </remarks>
-        /// <param name="status">The status of the orders to return.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<OrderList>> ListOrdersThatBelongToCustomerAsync(long customerId, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -186,25 +114,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of customers
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of customers. This endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show customers created before a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Show customers created after a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="ids">Restrict results to customers specified by a comma-separated list of IDs.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to those after the specified ID.</param>
-        /// <param name="updatedAtMax">Show customers last updated before a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Show customers last updated after a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerList>> ListCustomersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -309,9 +218,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a customer
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> CreateCustomerAsync(CreateCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -386,17 +292,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Searches for customers that match a supplied query
-        /// </summary>
-        /// <remarks>
-        /// Searches for customers that match a supplied query. This endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="order">Set the field and direction by which to order results.</param>
-        /// <param name="query">Text to search for in the shop's customer data.**Note:** Supported queries: `accepts_marketing`,`activation_date`, `address1`, `address2`, `city`,`company`, `country`, `customer_date`, `customer_first_name`,`customer_id`, `customer_last_name`, `customer_tag`, ` email`,`email_marketing_state`, `first_name`, `first_order_date`, `id`,`last_abandoned_order_date`, `last_name`, `multipass_identifier`,`orders_count`, `order_date`, `phone`, `province`,`shop_id`, `state`, `tag`, `total_spent`,`updated_at`, `verified_email`, `product_subscriber_status`. All other queriesreturns all customers.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerList>> SearchForCustomersThatMatchSuppliedQueryAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, string? query = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -485,10 +380,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single customer
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> GetCustomerAsync(long customerId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -565,9 +456,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a customer
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> UpdateCustomerAsync(long customerId, UpdateCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -714,14 +602,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates an account activation URL for a customer
-        /// </summary>
-        /// <remarks>
-        /// Generate an account activation URL for a customer whose account is not yet enabled. This is useful when you've imported a large number of customers and want to send them activation emails all at once. Using this approach, you'll need to generate and send the activation emails yourself.
-        /// <br/>
-        /// <br/>The account activation URL generated by this endpoint is for one-time use and will expire after 30 days. If you make a new POST request to this endpoint, then a new URL will be generated. The new URL will be again valid for 30 days, but the previous URL will no longer be valid.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<AccountActivationBase>> CreateAccountActivationUrlForCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -794,9 +674,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Sends an account invite to a customer
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerInviteItem>> SendAccountInviteToCustomerAsync(long customerId, CreateCustomerInviteRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -875,20 +752,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of customers
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of all customers.
-        /// </remarks>
-        /// <param name="createdAtMax">Count customers created before a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="createdAtMin">Count customers created after a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMax">Count customers last updated before a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
-        /// <param name="updatedAtMin">Count customers last updated after a specified date.  
-        /// <br/>            (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -973,13 +836,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves all orders that belong to a customer
-        /// </summary>
-        /// <remarks>
-        /// Retrieves all orders that belong to a customer. By default, only open orders are returned. The query string parameters in the [ Order](/docs/admin-api/rest/reference/orders/order#endpoints-{{ current_version }}) resource are also available at this endpoint.
-        /// </remarks>
-        /// <param name="status">The status of the orders to return.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderList>> ListOrdersThatBelongToCustomerAsync(long customerId, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1160,44 +1016,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of addresses for a customer
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of addresses for a customer. This endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<AddressList>> ListAddressesForCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a new address for a customer
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> CreateAddressForCustomerAsync(long customerId, CreateAddressForCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves details for a single customer address
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> GetCustomerAddressAsync(long addressId, long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing customer address
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> UpdateCustomerAddressAsync(long addressId, long customerId, UpdateCustomerAddressRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Removes an address from a customer’s address list
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteAddressFromCustomersAddressListAsync(long addressId, long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1208,9 +1046,6 @@ namespace Ocelli.OpenShopify
         System.Threading.Tasks.Task<ShopifyResponse> PerformBulkOperationsForMultipleCustomerAddressesAsync(long customerId, PerformBulkOperationsForMultipleCustomerAddressesRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Sets the default address for a customer
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> SetDefaultAddressForCustomerAsync(long addressId, long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1250,12 +1085,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of addresses for a customer
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of addresses for a customer. This endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<AddressList>> ListAddressesForCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1327,9 +1156,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a new address for a customer
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> CreateAddressForCustomerAsync(long customerId, CreateAddressForCustomerRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1408,9 +1234,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves details for a single customer address
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> GetCustomerAddressAsync(long addressId, long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1486,9 +1309,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing customer address
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> UpdateCustomerAddressAsync(long addressId, long customerId, UpdateCustomerAddressRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1571,9 +1391,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Removes an address from a customer’s address list
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteAddressFromCustomersAddressListAsync(long addressId, long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1715,9 +1532,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Sets the default address for a customer
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> SetDefaultAddressForCustomerAsync(long addressId, long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1898,70 +1712,36 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of customer saved searches
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of customer saved searches. This endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchList>> ListCustomerSavedSearchesAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a customer saved search
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> CreateCustomerSavedSearchAsync(CreateCustomerSavedSearchRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all customer saved searches
-        /// </summary>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomerSavedSearchesAsync(long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single customer saved search
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> GetCustomerSavedSearchAsync(long customerSavedSearchId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a customer saved search
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> UpdateCustomerSavedSearchAsync(long customerSavedSearchId, UpdateCustomerSavedSearchRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a customer saved search
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteCustomerSavedSearchAsync(long customerSavedSearchId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves all customers returned by a customer saved search
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="order">Set the field and direction by which to order results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CustomerList>> ListCustomersByCustomerSavedSearchAsync(long customerSavedSearchId, string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -2001,16 +1781,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of customer saved searches
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of customer saved searches. This endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchList>> ListCustomerSavedSearchesAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2095,9 +1865,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a customer saved search
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> CreateCustomerSavedSearchAsync(CreateCustomerSavedSearchRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2172,10 +1939,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all customer saved searches
-        /// </summary>
-        /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountCustomerSavedSearchesAsync(long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2248,10 +2011,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single customer saved search
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> GetCustomerSavedSearchAsync(long customerSavedSearchId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2328,9 +2087,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a customer saved search
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> UpdateCustomerSavedSearchAsync(long customerSavedSearchId, UpdateCustomerSavedSearchRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2409,9 +2165,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a customer saved search
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteCustomerSavedSearchAsync(long customerSavedSearchId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2477,13 +2230,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves all customers returned by a customer saved search
-        /// </summary>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="order">Set the field and direction by which to order results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerList>> ListCustomersByCustomerSavedSearchAsync(long customerSavedSearchId, string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3531,10 +3277,6 @@ namespace Ocelli.OpenShopify
         [System.Obsolete]
         public bool? AcceptsMarketing { get; set; } = default!;
 
-        /// <summary>
-        /// A list of the ten most recently updated addresses for the customer. Each address has the following properties: * **address1**: The customer's mailing address. * **address2**: An additional field for the customer's mailing address. * **city**: The customer's city, town, or village. * **company**: The customer's company. * **country**: The customer's country. * **country_code**: The two-letter country code corresponding to the customer's country. * **country_name**: The customer's normalized country name. * **customer_id**: A unique identifier for the customer. * **default**: Whether this address is the default address for the customer. * **first_name**: The customer's first name. * **id**: A unique identifier for the address. * **last_name**: The customer's last name. * **name**: The customer's first and last names. * **phone**: The customer's phone number at this address. * **province**: The customer's region name. Typically a province, a state, or a prefecture. * **province_code**: The code for the region of the address, such as the province, state, or district. For example QC for Quebec, Canada. * **zip**: The customer's postal code, also known as zip, postcode, Eircode, etc.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("addresses")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -3715,10 +3457,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? TaxExempt { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -3754,10 +3492,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<Metafield>? Metafields { get; set; } = default!;
-
-        /// <summary>
-        /// As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format)when the customer consented or objected to receiving marketing material by email. Set this value wheneverthe customer consents or objects to marketing materials.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing_updated_at")]
 
@@ -4459,10 +4193,6 @@ namespace Ocelli.OpenShopify
         [System.Obsolete]
         public bool? AcceptsMarketing { get; set; } = default!;
 
-        /// <summary>
-        /// A list of the ten most recently updated addresses for the customer. Each address has the following properties: * **address1**: The customer's mailing address. * **address2**: An additional field for the customer's mailing address. * **city**: The customer's city, town, or village. * **company**: The customer's company. * **country**: The customer's country. * **country_code**: The two-letter country code corresponding to the customer's country. * **country_name**: The customer's normalized country name. * **customer_id**: A unique identifier for the customer. * **default**: Whether this address is the default address for the customer. * **first_name**: The customer's first name. * **id**: A unique identifier for the address. * **last_name**: The customer's last name. * **name**: The customer's first and last names. * **phone**: The customer's phone number at this address. * **province**: The customer's region name. Typically a province, a state, or a prefecture. * **province_code**: The code for the region of the address, such as the province, state, or district. For example QC for Quebec, Canada. * **zip**: The customer's postal code, also known as zip, postcode, Eircode, etc.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("addresses")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -4643,10 +4373,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? TaxExempt { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -4682,10 +4408,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<Metafield>? Metafields { get; set; } = default!;
-
-        /// <summary>
-        /// As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format)when the customer consented or objected to receiving marketing material by email. Set this value wheneverthe customer consents or objects to marketing materials.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing_updated_at")]
 

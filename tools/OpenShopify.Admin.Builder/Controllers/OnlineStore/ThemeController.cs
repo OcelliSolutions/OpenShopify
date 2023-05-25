@@ -133,6 +133,15 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Role { get; set; } = default!;
 
         /// <summary>
+        /// Specifies a public URL where Shopify can access the theme code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Src { get; set; } = default!;
+
+        /// <summary>
         /// A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store's theme isn't made by Shopify, or if it wasn't installed from the Theme Store.
         /// </summary>
 

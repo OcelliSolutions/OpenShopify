@@ -6,7 +6,7 @@ namespace Ocelli.OpenShopify;
 
 public abstract class ShopifyService
 {
-    protected const string Version = "2022-10";
+    protected const string Version = "2023-04";
     internal static ConcurrentDictionary<string, HttpClient> ShopifyHttpClients = new();
     protected JsonSerializerOptions Options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull};
 

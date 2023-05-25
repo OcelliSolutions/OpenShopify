@@ -28,6 +28,11 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Retrieves a list of fulfillment orders for a specific order
         /// </summary>
+        /// <remarks>
+        /// Retrieves a list of fulfillment orders for a specific order. 
+        /// 
+        ///  [API access scopes](#api-access-scopes) govern which fulfillments orders are returned. An API client will only receive a subset of the fulfillment orders which belong to an order if they don't have the necessary access scopes to view all of the fulfillment orders. In the case that an API client does not have the access scopes necessary to view any of the fulfillment orders belongs to an order, an empty array will be returned.
+        /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillment_orders.json")]
         public abstract System.Threading.Tasks.Task ListFulfillmentOrdersForSpecificOrder(long order_idPath);
 
@@ -59,11 +64,37 @@ namespace OpenShopify.Admin.Builder.Models
         /// Moves a fulfillment order to a new location
         /// </summary>
         /// <remarks>
-        /// Moves a fulfillment order from one location to another location.Moving a fulfillment order will fail in the following events:
+        /// Changes the location which is assigned to fulfill a number of unfulfilled fulfillment order line items.  
+        /// Moving a fulfillment order will fail in the following events:
         /// 
         /// *   The fulfillment order is closed. 
         /// *   The new location doesn't have the necessary inventory available. 
         /// *   The API client doesn't have the correct permissions.
+        /// 
+        ///  Line items which have already been fulfilled can't be re-assigned and will always remain assigned to the original location.
+        /// 
+        ///  You can't change the assigned location while a fulfillment order has a `request_status` of `submitted`, `accepted`, `cancellation_requested`, or `cancellation_rejected`. These request statuses mean that a fulfillment order is awaiting action by a fulfillment service and can't be re-assigned without first having the fulfillment service accept a cancellation request. This behavior is intended to prevent items from being fulfilled by multiple locations or fulfillment services.
+        /// 
+        /// #### How re-assigning line items affects fulfillment orders
+        /// 
+        ///  **First scenario:** Re-assign all line items belonging to a fulfillment order to a new location.
+        /// 
+        ///  In this case, the `assigned_location_id` of the original fulfillment order will be updated to the new location.
+        /// 
+        ///  **Second scenario:** Re-assign a subset of the line items belonging to a fulfillment order to a new location. You can specify a subset of line items using the`fulfillment_order_line_items` field under the `fulfillment_order` parameter (available as of the `2023-04` API version), or specify that the original fulfillment order contains line items which have already been fulfilled.
+        /// 
+        ///  If the new location is already assigned to another active fulfillment order, on the same order, then the line items are moved to the existing fulfillment order. Otherwise, a new fulfillment order is created for the new location, and the line items are moved to the new location.
+        /// 
+        /// #### Response
+        /// 
+        /// *   `original_fulfillment_order` - The final state of the original fulfillment order.   
+        ///  As a result of the move operation, the original fulfillment order might be moved to the new location or remain in the original location. The original fulfillment order might have the same status or be closed.  
+        /// *   `moved_fulfillment_order` - The fulfillment order which now contains the moved line items and is assigned to the destination location.   
+        ///  **First scenario:** All line items belonging to the original fulfillment order are re-assigned.   
+        ///  In this case, this will be the original fulfillment order.   
+        ///  **Second scenario:** A subset of the line items belonging to the original fulfillment order are re-assigned.   
+        ///  If the new location is already assigned to fulfill line items on the order, then this will be an existing active fulfillment order. Otherwise, this will be a new fulfillment order with the moved line items assigned.  
+        /// *   `remaining_fulfillment_order` - this field is deprecated.
         /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/move.json")]
         public abstract System.Threading.Tasks.Task MoveFulfillmentOrderToNewLocation([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MoveFulfillmentOrderToNewLocationRequest request, long fulfillment_order_id);

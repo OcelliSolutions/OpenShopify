@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Store Properties
   description: Store Properties
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,18 +23,14 @@ paths:
     get:
       tags:
         - Country
-      summary: Receive a list of all Countries
-      description: Retrieves a list of countries.
       operationId: ListCountries
       parameters:
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
@@ -61,8 +57,6 @@ paths:
     post:
       tags:
         - Country
-      summary: Creates a country
-      description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-10, the tax field is deprecated.\r\n</aside>Creates a country."
       operationId: CreateCountry
       requestBody:
         content:
@@ -93,7 +87,6 @@ paths:
     get:
       tags:
         - Country
-      summary: Retrieves a count of countries
       operationId: CountCountries
       responses:
         '200':
@@ -115,7 +108,6 @@ paths:
     get:
       tags:
         - Country
-      summary: Retrieves a specific county
       operationId: GetCounty
       parameters:
         - name: country_id
@@ -126,7 +118,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -148,8 +139,6 @@ paths:
     put:
       tags:
         - Country
-      summary: Updates an existing country
-      description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-10, the tax field is deprecated.\r\n</aside>Updates an existing country."
       operationId: UpdateCountry
       parameters:
         - name: country_id
@@ -186,8 +175,6 @@ paths:
     delete:
       tags:
         - Country
-      summary: Remove an existing Country
-      description: Deletes a country.
       operationId: DeleteCountry
       parameters:
         - name: country_id
@@ -212,7 +199,6 @@ paths:
     get:
       tags:
         - Currency
-      summary: Retrieves a list of currencies enabled on a shop
       operationId: ListCurrenciesEnabledOnShop
       responses:
         '200':
@@ -238,7 +224,6 @@ paths:
     get:
       tags:
         - Policy
-      summary: Retrieves a list of the shop's policies
       operationId: ListShopsPolicies
       responses:
         '200':
@@ -264,8 +249,6 @@ paths:
     get:
       tags:
         - Province
-      summary: Retrieves a list of provinces for a country
-      description: Retrieves a list of provinces
       operationId: ListProvinces
       parameters:
         - name: country_id
@@ -276,12 +259,10 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
@@ -309,7 +290,6 @@ paths:
     get:
       tags:
         - Province
-      summary: Retrieves a count of provinces for a country
       operationId: CountProvinces
       parameters:
         - name: country_id
@@ -338,7 +318,6 @@ paths:
     get:
       tags:
         - Province
-      summary: Retrieves a single province for a country
       operationId: GetProvince
       parameters:
         - name: country_id
@@ -355,7 +334,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -377,8 +355,6 @@ paths:
     put:
       tags:
         - Province
-      summary: Updates an existing province for a country
-      description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\nAs of version 2020-10, the tax field is deprecated.\r\n</aside>Updates an existing province for a country."
       operationId: UpdateProvince
       parameters:
         - name: country_id
@@ -422,13 +398,10 @@ paths:
     get:
       tags:
         - ShippingZone
-      summary: Receive a list of all ShippingZones
-      description: Get a list of all shipping zones
       operationId: ListShippingZones
       parameters:
         - name: fields
           in: query
-          description: Show only specific fields by providing a comma-separated list of field names.
           schema:
             type: string
       responses:
@@ -455,12 +428,10 @@ paths:
     get:
       tags:
         - Shop
-      summary: Retrieves the shop's configuration
       operationId: GetShopsConfiguration
       parameters:
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -538,7 +509,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Province'
-          description: "The sub-regions of a country, such as its provinces or states. Each sub-region has the following properties:\r\n\r\n*   **code**: The two letter province or state code. \r\n*   **country_id**: The ID for the country to which this sub-region belongs. \r\n*   **id**: The ID for the particular sub-region. \r\n*   **name**: The name of the sub-region. \r\n*   **tax**: The tax value in decimal format. \r\n*   **tax_name**: The name of the tax as it is referred to in the applicable sub-region. For example, in Canada, the sales tax in the province Ontario is referred to as HST. \r\n*   **tax_type**: The tax type. Valid values: `null`, `normal`, or `harmonized`. If the value is `harmonized`, then the tax is compounded of the provincial and federal sales taxes. \r\n*   **tax_percentage**: The tax value in percent format."
           nullable: true
         tax:
           type: number
@@ -822,7 +792,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Country'
-          description: "A list of countries that belong to the shipping zone.\r\n\r\n*   **id**: The unique numeric identifier for the country. \r\n*   **code**: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop. \r\n*   **shipping_zone_id**: The unique numeric identifier for the shipping zone. \r\n*   **name**: The full name of the country, in English. \r\n*   **tax**: The tax value in decimal format. \r\n*   **tax_name**: The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST."
           nullable: true
         provinces:
           type: string
@@ -832,19 +801,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CarrierShippingRateProvider'
-          description: Information about carrier shipping providers and the rates used.
           nullable: true
         price_based_shipping_rates:
           type: array
           items:
             $ref: '#/components/schemas/PriceBasedShippingRate'
-          description: "Information about a price-based shipping rate.\r\n\r\n*   **id**: The unique numeric identifier for the shipping rate. \r\n*   **name**: The name of the shipping rate. \r\n*   **price**: The price of the shipping rate. \r\n*   **shipping_zone_id**: The unique numeric identifier for the associated shipping zone. \r\n*   **min_order_subtotal**: The minimum price of an order for it to be eligible for the shipping rate. \r\n*   **max_order_subtotal**: The maximum price of an order for it to be eligible for the shipping rate."
           nullable: true
         weight_based_shipping_rates:
           type: array
           items:
             $ref: '#/components/schemas/WeightBasedShippingRate'
-          description: "Information about a weight-based shipping rate.\r\n\r\n*   **id**: The unique numeric identifier for the shipping rate. \r\n*   **name**: The name of the shipping rate. \r\n*   **price**: The price of the shipping rate. \r\n*   **shipping_zone_id**: The unique numeric identifier for the associated shipping zone. \r\n*   **weight_low**: The minimum weight of an order for it to be eligible for the shipping rate. \r\n*   **weight_high**: The maximum weight of an order for it to be eligible for the shipping rate."
           nullable: true
         id:
           type: integer
@@ -863,6 +829,7 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
+      description: 'This is used to view shipping zones, their countries, provinces, and shipping rates.'
     ShippingZoneList:
       required:
         - shipping_zones
@@ -888,7 +855,7 @@ components:
           nullable: true
         checkout_api_supported:
           type: boolean
-          description: 'Whether the shop is capable of accepting payments directly through the [Checkout API](/apps/channels/checkout-api).'
+          description: 'Whether the shop is capable of accepting payments directly through the [Checkout API](/docs/api/admin-rest/current/resources/checkout).'
           nullable: true
         city:
           type: string
@@ -1144,7 +1111,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Province'
-          description: "The sub-regions of a country, such as its provinces or states. Each sub-region has the following properties:\r\n\r\n*   **code**: The two letter province or state code. \r\n*   **country_id**: The ID for the country to which this sub-region belongs. \r\n*   **id**: The ID for the particular sub-region. \r\n*   **name**: The name of the sub-region. \r\n*   **tax**: The tax value in decimal format. \r\n*   **tax_name**: The name of the tax as it is referred to in the applicable sub-region. For example, in Canada, the sales tax in the province Ontario is referred to as HST. \r\n*   **tax_type**: The tax type. Valid values: `null`, `normal`, or `harmonized`. If the value is `harmonized`, then the tax is compounded of the provincial and federal sales taxes. \r\n*   **tax_percentage**: The tax value in percent format."
           nullable: true
         tax:
           type: number

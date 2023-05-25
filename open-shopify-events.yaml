@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Events
   description: Events
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,52 +23,42 @@ paths:
     get:
       tags:
         - Event
-      summary: Retrieves a list of events
-      description: 'Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListEvents
       parameters:
         - name: created_at_max
           in: query
-          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: filter
           in: query
-          description: Show events specified in this filter.
           schema:
             type: string
         - name: limit
           in: query
-          description: The number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Show only results after the specified ID.
           schema:
             type: integer
             format: int64
         - name: verb
           in: query
-          description: Show events of a certain type.
           schema:
             type: string
       responses:
@@ -95,8 +85,6 @@ paths:
     get:
       tags:
         - Event
-      summary: Retrieves a single event
-      description: Retrieves a single event by its ID
       operationId: GetEvent
       parameters:
         - name: event_id
@@ -107,7 +95,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -130,18 +117,15 @@ paths:
     get:
       tags:
         - Event
-      summary: Retrieves a count of events
       operationId: CountEvents
       parameters:
         - name: created_at_max
           in: query
-          description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -165,8 +149,6 @@ paths:
     get:
       tags:
         - Event
-      summary: Retrieve an event after a specific ID using `since_id`
-      description: 'Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: GetEventAfterSpecificIDUsingSinceId
       parameters:
         - name: order_id
@@ -177,46 +159,38 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: filter
           in: query
-          description: Show events specified in this filter.
           schema:
             type: string
         - name: limit
           in: query
-          description: The number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Show only results after the specified ID.
           schema:
             type: integer
             format: int64
         - name: verb
           in: query
-          description: Show events of a certain type.
           schema:
             type: string
       responses:
@@ -239,8 +213,6 @@ paths:
     get:
       tags:
         - Event
-      summary: Retrieve all events from a specific product
-      description: 'Retrieves a list of events. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListEventsFromSpecificProduct
       parameters:
         - name: product_id
@@ -251,46 +223,38 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: filter
           in: query
-          description: Show events specified in this filter.
           schema:
             type: string
         - name: limit
           in: query
-          description: The number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Show only results after the specified ID.
           schema:
             type: integer
             format: int64
         - name: verb
           in: query
-          description: Show events of a certain type.
           schema:
             type: string
       responses:
@@ -317,62 +281,51 @@ paths:
     get:
       tags:
         - Webhook
-      summary: Retrieves a list of webhooks
       operationId: ListWebhooks
       parameters:
         - name: address
           in: query
-          description: Retrieve webhook subscriptions that send the POST request to this URI.
           schema:
             type: string
         - name: created_at_max
           in: query
-          description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
           schema:
             type: string
         - name: limit
           in: query
-          description: Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
           schema:
             type: integer
             format: int64
         - name: topic
           in: query
-          description: 'Show webhook subscriptions with a given topic.For valid values, refer to the [list of event topics](#event-topics).'
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -399,8 +352,6 @@ paths:
     post:
       tags:
         - Webhook
-      summary: Create a new Webhook
-      description: "Create a new webhook subscription by specifying both an `address` and a `topic`.\r\n\r\nAmazon EventBridge and Google Pub/Sub webhook subscriptions use this field differently.For more information, refer to the [Amazon EventBridge](/apps/webhooks/eventbridge) and [Google Cloud Pub/Sub](/apps/webhooks/google-cloud) pages."
       operationId: CreateWebhook
       requestBody:
         content:
@@ -431,18 +382,14 @@ paths:
     get:
       tags:
         - Webhook
-      summary: Receive a count of all Webhooks
-      description: Retrieves a count of existing webhook subscriptions. The results can be filtered by address or by topic.
       operationId: CountWebhooks
       parameters:
         - name: address
           in: query
-          description: Webhook subscriptions that send the POST request to this URI.
           schema:
             type: string
         - name: topic
           in: query
-          description: 'The topic of the webhook subscriptions.For valid values, refer to the [list of event topics](#event-topics).'
           schema:
             type: string
       responses:
@@ -465,8 +412,6 @@ paths:
     get:
       tags:
         - Webhook
-      summary: Receive a single Webhook
-      description: Retrieves a single webhook subscription. The properties desired in the result can be specified.
       operationId: GetWebhook
       parameters:
         - name: webhook_id
@@ -477,7 +422,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
           schema:
             type: string
       responses:
@@ -499,8 +443,6 @@ paths:
     put:
       tags:
         - Webhook
-      summary: Modify an existing Webhook
-      description: Update a webhook subscription's topic or address URIs
       operationId: UpdateWebhook
       parameters:
         - name: webhook_id
@@ -537,8 +479,6 @@ paths:
     delete:
       tags:
         - Webhook
-      summary: Remove an existing Webhook
-      description: Delete a webhook subscription
       operationId: DeleteWebhook
       parameters:
         - name: webhook_id

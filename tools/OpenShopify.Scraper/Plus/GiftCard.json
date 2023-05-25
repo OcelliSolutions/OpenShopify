@@ -5,8 +5,7 @@
     "description": "        <div class=\"note note-plus\">\n        <h4>Shopify Plus</h4>\n          <p>The Gift Card resource is available for <a href=\"/concepts/apps#private-apps\">private apps</a> installed on <strong><a href=\"https://help.shopify.com/en/manual/intro-to-shopify/pricing-plans/shopify-plus\">Shopify Plus</a></strong> stores. As of API version 2021-04, the Gift Card resource is also available for <a href=\"/concepts/apps#custom-apps\">custom apps</a> installed on Shopify Plus stores.</p>\n          <p>Your app must request the <code>write_gift_cards</code> and <code>read_gift_cards</code> <a href=\"/docs/admin-api/access-scopes\">access scopes</a>. Merchants that want to sell or issue gift cards also need to <a href=\"https://help.shopify.com/en/manual/products/gift-card-products/add-update-gift-card-products#activate-the-gift-card-feature\">activate the gift card feature</a> in the Shopify admin.</p>\n        </div>\n        <p>A gift card is an alternative payment method. Each gift card has a unique code that is entered during checkout.\n        Its balance can be redeemed over multiple checkouts. Optionally, a gift card can assigned to a specific customer.\n        Gift card codes cannot be retrieved after they're created&mdash;only the last four characters can be retrieved.</p>\n        <p>You can use the GiftCard resource to create, retrieve, and update gift cards for a store. After a gift card is\n        created, only the expiry date, note, and template suffix can be updated.</p>\n\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>You can't delete gift cards, but you can disable them. You can't enable gift cards that were previously\n           disabled.</p>\n        </div>\n\n",
     "x-owner": "https://vault.shopify.io/teams/13724",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -79,8 +78,8 @@
                       {
                         "id": 766118925,
                         "balance": "25.00",
-                        "created_at": "2023-01-03T10:21:36-07:00",
-                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-05-09T18:23:53-06:00",
+                        "updated_at": "2023-05-09T18:23:53-06:00",
                         "currency": "USD",
                         "initial_value": "50.00",
                         "disabled_at": null,
@@ -89,7 +88,7 @@
                         "user_id": null,
                         "customer_id": null,
                         "note": null,
-                        "expires_on": "2022-01-03",
+                        "expires_on": "2022-05-09",
                         "template_suffix": null,
                         "last_characters": "0e0e",
                         "order_id": null
@@ -97,8 +96,8 @@
                       {
                         "id": 10274553,
                         "balance": "0.00",
-                        "created_at": "2023-01-03T10:21:36-07:00",
-                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-05-09T18:23:53-06:00",
+                        "updated_at": "2023-05-09T18:23:53-06:00",
                         "currency": "USD",
                         "initial_value": "50.00",
                         "disabled_at": null,
@@ -121,8 +120,8 @@
                       {
                         "id": 1035197676,
                         "balance": "100.00",
-                        "created_at": "2023-01-03T10:21:36-07:00",
-                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-05-09T18:23:53-06:00",
+                        "updated_at": "2023-05-09T18:23:53-06:00",
                         "currency": "USD",
                         "initial_value": "100.00",
                         "disabled_at": null,
@@ -139,8 +138,8 @@
                       {
                         "id": 766118925,
                         "balance": "25.00",
-                        "created_at": "2023-01-03T10:21:36-07:00",
-                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-05-09T18:23:53-06:00",
+                        "updated_at": "2023-05-09T18:23:53-06:00",
                         "currency": "USD",
                         "initial_value": "50.00",
                         "disabled_at": null,
@@ -149,7 +148,7 @@
                         "user_id": null,
                         "customer_id": null,
                         "note": null,
-                        "expires_on": "2022-01-03",
+                        "expires_on": "2022-05-09",
                         "template_suffix": null,
                         "last_characters": "0e0e",
                         "order_id": null
@@ -157,8 +156,8 @@
                       {
                         "id": 10274553,
                         "balance": "0.00",
-                        "created_at": "2023-01-03T10:21:36-07:00",
-                        "updated_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-05-09T18:23:53-06:00",
+                        "updated_at": "2023-05-09T18:23:53-06:00",
                         "currency": "USD",
                         "initial_value": "50.00",
                         "disabled_at": null,
@@ -184,7 +183,7 @@
         {
           "status": "200",
           "request_query": "status=enabled",
-          "request_path": "/admin/api/2022-10/gift_cards.json",
+          "request_path": "/admin/api/2023-04/gift_cards.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/gift_cards.json",
@@ -194,13 +193,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"gift_cards\":[{\"id\":766118925,\"balance\":\"25.00\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"currency\":\"USD\",\"initial_value\":\"50.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":\"2022-01-03\",\"template_suffix\":null,\"last_characters\":\"0e0e\",\"order_id\":null},{\"id\":10274553,\"balance\":\"0.00\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"currency\":\"USD\",\"initial_value\":\"50.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"0y0y\",\"order_id\":null}]}"
+            "body": "{\"gift_cards\":[{\"id\":766118925,\"balance\":\"25.00\",\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:23:53-04:00\",\"currency\":\"USD\",\"initial_value\":\"50.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":\"2022-05-09\",\"template_suffix\":null,\"last_characters\":\"0e0e\",\"order_id\":null},{\"id\":10274553,\"balance\":\"0.00\",\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:23:53-04:00\",\"currency\":\"USD\",\"initial_value\":\"50.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"0y0y\",\"order_id\":null}]}"
           },
           "name": "Retrieve a list of all enabled gift cards",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards.json?status=enabled\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards.json?status=enabled\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -212,14 +211,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"enabled\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"enabled\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/gift_cards.json",
+          "request_path": "/admin/api/2023-04/gift_cards.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/gift_cards.json",
@@ -229,13 +228,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"gift_cards\":[{\"id\":1035197676,\"balance\":\"100.00\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"currency\":\"USD\",\"initial_value\":\"100.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"0d0d\",\"order_id\":null},{\"id\":766118925,\"balance\":\"25.00\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"currency\":\"USD\",\"initial_value\":\"50.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":\"2022-01-03\",\"template_suffix\":null,\"last_characters\":\"0e0e\",\"order_id\":null},{\"id\":10274553,\"balance\":\"0.00\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"currency\":\"USD\",\"initial_value\":\"50.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"0y0y\",\"order_id\":null}]}"
+            "body": "{\"gift_cards\":[{\"id\":1035197676,\"balance\":\"100.00\",\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:23:53-04:00\",\"currency\":\"USD\",\"initial_value\":\"100.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"0d0d\",\"order_id\":null},{\"id\":766118925,\"balance\":\"25.00\",\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:23:53-04:00\",\"currency\":\"USD\",\"initial_value\":\"50.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":\"2022-05-09\",\"template_suffix\":null,\"last_characters\":\"0e0e\",\"order_id\":null},{\"id\":10274553,\"balance\":\"0.00\",\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:23:53-04:00\",\"currency\":\"USD\",\"initial_value\":\"50.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"0y0y\",\"order_id\":null}]}"
           },
           "name": "Retrieve a list of all gift cards",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -247,7 +246,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -295,8 +294,8 @@
                     "gift_card": {
                       "id": 1035197676,
                       "balance": "100.00",
-                      "created_at": "2023-01-03T10:21:36-07:00",
-                      "updated_at": "2023-01-03T10:21:36-07:00",
+                      "created_at": "2023-05-09T18:23:53-06:00",
+                      "updated_at": "2023-05-09T18:23:53-06:00",
                       "currency": "USD",
                       "initial_value": "100.00",
                       "disabled_at": null,
@@ -321,7 +320,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/gift_cards/1035197676.json",
+          "request_path": "/admin/api/2023-04/gift_cards/1035197676.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/gift_cards/1035197676.json",
@@ -331,13 +330,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"gift_card\":{\"id\":1035197676,\"balance\":\"100.00\",\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:21:36-05:00\",\"currency\":\"USD\",\"initial_value\":\"100.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"0d0d\",\"order_id\":null}}"
+            "body": "{\"gift_card\":{\"id\":1035197676,\"balance\":\"100.00\",\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:23:53-04:00\",\"currency\":\"USD\",\"initial_value\":\"100.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"0d0d\",\"order_id\":null}}"
           },
           "name": "Retrieve a single gift card",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -349,7 +348,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::find(\n    $this->test_session, // Session\n    1035197676, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::find(\n    $this->test_session, // Session\n    1035197676, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -401,8 +400,8 @@
                       "balance": "100.00",
                       "customer_id": null,
                       "id": 1035197676,
-                      "created_at": "2023-01-03T10:21:36-07:00",
-                      "updated_at": "2023-01-03T10:30:02-07:00",
+                      "created_at": "2023-05-09T18:23:53-06:00",
+                      "updated_at": "2023-05-09T18:26:29-06:00",
                       "currency": "USD",
                       "disabled_at": null,
                       "line_item_id": null,
@@ -423,8 +422,8 @@
                       "balance": "100.00",
                       "customer_id": null,
                       "id": 1035197676,
-                      "created_at": "2023-01-03T10:21:36-07:00",
-                      "updated_at": "2023-01-03T10:30:10-07:00",
+                      "created_at": "2023-05-09T18:23:53-06:00",
+                      "updated_at": "2023-05-09T18:26:49-06:00",
                       "currency": "USD",
                       "disabled_at": null,
                       "line_item_id": null,
@@ -445,7 +444,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/gift_cards/1035197676.json",
+          "request_path": "/admin/api/2023-04/gift_cards/1035197676.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/gift_cards/1035197676.json",
@@ -455,13 +454,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"gift_card\":{\"expires_on\":\"2020-01-01\",\"template_suffix\":null,\"initial_value\":\"100.00\",\"balance\":\"100.00\",\"customer_id\":null,\"id\":1035197676,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:30:02-05:00\",\"currency\":\"USD\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"note\":null,\"last_characters\":\"0d0d\",\"order_id\":null}}"
+            "body": "{\"gift_card\":{\"expires_on\":\"2020-01-01\",\"template_suffix\":null,\"initial_value\":\"100.00\",\"balance\":\"100.00\",\"customer_id\":null,\"id\":1035197676,\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:26:29-04:00\",\"currency\":\"USD\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"note\":null,\"last_characters\":\"0d0d\",\"order_id\":null}}"
           },
           "name": "Update the expiry date of a gift card",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676,\"expires_on\":\"2020-01-01\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676,\"expires_on\":\"2020-01-01\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -473,14 +472,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->expires_on = \"2020-01-01\";\n$gift_card->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->expires_on = \"2020-01-01\";\n$gift_card->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/gift_cards/1035197676.json",
+          "request_path": "/admin/api/2023-04/gift_cards/1035197676.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/gift_cards/1035197676.json",
@@ -490,13 +489,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"gift_card\":{\"note\":\"Updating with a new note\",\"template_suffix\":null,\"initial_value\":\"100.00\",\"balance\":\"100.00\",\"customer_id\":null,\"id\":1035197676,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:30:10-05:00\",\"currency\":\"USD\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"expires_on\":null,\"last_characters\":\"0d0d\",\"order_id\":null}}"
+            "body": "{\"gift_card\":{\"note\":\"Updating with a new note\",\"template_suffix\":null,\"initial_value\":\"100.00\",\"balance\":\"100.00\",\"customer_id\":null,\"id\":1035197676,\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:26:49-04:00\",\"currency\":\"USD\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"expires_on\":null,\"last_characters\":\"0d0d\",\"order_id\":null}}"
           },
           "name": "Update the note of a gift card",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676,\"note\":\"Updating with a new note\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676,\"note\":\"Updating with a new note\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -508,7 +507,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->note = \"Updating with a new note\";\n$gift_card->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->note = \"Updating with a new note\";\n$gift_card->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -580,7 +579,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/gift_cards/count.json",
+          "request_path": "/admin/api/2023-04/gift_cards/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/gift_cards/count.json",
@@ -596,7 +595,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -608,14 +607,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "status=enabled",
-          "request_path": "/admin/api/2022-10/gift_cards/count.json",
+          "request_path": "/admin/api/2023-04/gift_cards/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/gift_cards/count.json",
@@ -631,7 +630,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards/count.json?status=enabled\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards/count.json?status=enabled\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -643,7 +642,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"enabled\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"enabled\"], // Params\n);"
             }
           ]
         }
@@ -683,8 +682,8 @@
                     "gift_card": {
                       "id": 1063936318,
                       "balance": "100.00",
-                      "created_at": "2023-01-03T10:30:11-07:00",
-                      "updated_at": "2023-01-03T10:30:11-07:00",
+                      "created_at": "2023-05-09T18:26:39-06:00",
+                      "updated_at": "2023-05-09T18:26:39-06:00",
                       "currency": "USD",
                       "initial_value": "100.00",
                       "disabled_at": null,
@@ -704,10 +703,10 @@
                 "Create a gift card with an automatically generated code": {
                   "value": {
                     "gift_card": {
-                      "id": 1063936317,
+                      "id": 1063936316,
                       "balance": "25.00",
-                      "created_at": "2023-01-03T10:30:08-07:00",
-                      "updated_at": "2023-01-03T10:30:08-07:00",
+                      "created_at": "2023-05-09T18:26:31-06:00",
+                      "updated_at": "2023-05-09T18:26:31-06:00",
                       "currency": "USD",
                       "initial_value": "25.00",
                       "disabled_at": null,
@@ -718,9 +717,9 @@
                       "note": null,
                       "expires_on": null,
                       "template_suffix": null,
-                      "last_characters": "fc53",
+                      "last_characters": "32ed",
                       "order_id": null,
-                      "code": "58he9ffdhhc4fc53"
+                      "code": "he9bdc83784g32ed"
                     }
                   }
                 }
@@ -733,70 +732,70 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/gift_cards.json",
+          "request_path": "/admin/api/2023-04/gift_cards.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/gift_cards.json",
             "headers": {},
-            "body": "{\"gift_card\":{\"note\":\"This is a note\",\"initial_value\":100.0,\"code\":\"ABCD EFGH IJKL MNOP\",\"template_suffix\":\"gift_cards.birthday.liquid\"}}"
+            "body": "{\"gift_card\":{\"note\":\"This is a note\",\"initial_value\":\"100.00\",\"code\":\"ABCD EFGH IJKL MNOP\",\"template_suffix\":\"gift_cards.birthday.liquid\"}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"gift_card\":{\"id\":1063936318,\"balance\":\"100.00\",\"created_at\":\"2023-01-03T12:30:11-05:00\",\"updated_at\":\"2023-01-03T12:30:11-05:00\",\"currency\":\"USD\",\"initial_value\":\"100.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":755357713,\"user_id\":null,\"customer_id\":null,\"note\":\"This is a note\",\"expires_on\":null,\"template_suffix\":\"gift_cards.birthday.liquid\",\"last_characters\":\"mnop\",\"order_id\":null,\"code\":\"abcdefghijklmnop\"}}"
+            "body": "{\"gift_card\":{\"id\":1063936318,\"balance\":\"100.00\",\"created_at\":\"2023-05-09T20:26:39-04:00\",\"updated_at\":\"2023-05-09T20:26:39-04:00\",\"currency\":\"USD\",\"initial_value\":\"100.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":755357713,\"user_id\":null,\"customer_id\":null,\"note\":\"This is a note\",\"expires_on\":null,\"template_suffix\":\"gift_cards.birthday.liquid\",\"last_characters\":\"mnop\",\"order_id\":null,\"code\":\"abcdefghijklmnop\"}}"
           },
           "name": "Create a gift card with a custom code",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"note\":\"This is a note\",\"initial_value\":100.0,\"code\":\"ABCD EFGH IJKL MNOP\",\"template_suffix\":\"gift_cards.birthday.liquid\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"note\":\"This is a note\",\"initial_value\":\"100.00\",\"code\":\"ABCD EFGH IJKL MNOP\",\"template_suffix\":\"gift_cards.birthday.liquid\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.note = \"This is a note\"\ngift_card.initial_value = 100.0\ngift_card.code = \"ABCD EFGH IJKL MNOP\"\ngift_card.template_suffix = \"gift_cards.birthday.liquid\"\ngift_card.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.note = \"This is a note\"\ngift_card.initial_value = \"100.00\"\ngift_card.code = \"ABCD EFGH IJKL MNOP\"\ngift_card.template_suffix = \"gift_cards.birthday.liquid\"\ngift_card.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst gift_card = new shopify.rest.GiftCard({session: session});\ngift_card.note = \"This is a note\";\ngift_card.initial_value = 100.0;\ngift_card.code = \"ABCD EFGH IJKL MNOP\";\ngift_card.template_suffix = \"gift_cards.birthday.liquid\";\nawait gift_card.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst gift_card = new shopify.rest.GiftCard({session: session});\ngift_card.note = \"This is a note\";\ngift_card.initial_value = \"100.00\";\ngift_card.code = \"ABCD EFGH IJKL MNOP\";\ngift_card.template_suffix = \"gift_cards.birthday.liquid\";\nawait gift_card.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->note = \"This is a note\";\n$gift_card->initial_value = 100.0;\n$gift_card->code = \"ABCD EFGH IJKL MNOP\";\n$gift_card->template_suffix = \"gift_cards.birthday.liquid\";\n$gift_card->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->note = \"This is a note\";\n$gift_card->initial_value = \"100.00\";\n$gift_card->code = \"ABCD EFGH IJKL MNOP\";\n$gift_card->template_suffix = \"gift_cards.birthday.liquid\";\n$gift_card->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/gift_cards.json",
+          "request_path": "/admin/api/2023-04/gift_cards.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/gift_cards.json",
             "headers": {},
-            "body": "{\"gift_card\":{\"initial_value\":25.0}}"
+            "body": "{\"gift_card\":{\"initial_value\":\"25.00\"}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"gift_card\":{\"id\":1063936317,\"balance\":\"25.00\",\"created_at\":\"2023-01-03T12:30:08-05:00\",\"updated_at\":\"2023-01-03T12:30:08-05:00\",\"currency\":\"USD\",\"initial_value\":\"25.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":755357713,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"fc53\",\"order_id\":null,\"code\":\"58he9ffdhhc4fc53\"}}"
+            "body": "{\"gift_card\":{\"id\":1063936316,\"balance\":\"25.00\",\"created_at\":\"2023-05-09T20:26:31-04:00\",\"updated_at\":\"2023-05-09T20:26:31-04:00\",\"currency\":\"USD\",\"initial_value\":\"25.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":755357713,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"32ed\",\"order_id\":null,\"code\":\"he9bdc83784g32ed\"}}"
           },
           "name": "Create a gift card with an automatically generated code",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"initial_value\":25.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"initial_value\":\"25.00\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.initial_value = 25.0\ngift_card.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.initial_value = \"25.00\"\ngift_card.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst gift_card = new shopify.rest.GiftCard({session: session});\ngift_card.initial_value = 25.0;\nawait gift_card.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst gift_card = new shopify.rest.GiftCard({session: session});\ngift_card.initial_value = \"25.00\";\nawait gift_card.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->initial_value = 25.0;\n$gift_card->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->initial_value = \"25.00\";\n$gift_card->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -842,14 +841,14 @@
                 "Disable a gift card": {
                   "value": {
                     "gift_card": {
-                      "disabled_at": "2023-01-03T10:30:07-07:00",
+                      "disabled_at": "2023-05-09T18:26:52-06:00",
                       "template_suffix": null,
                       "initial_value": "100.00",
                       "balance": "100.00",
                       "customer_id": null,
                       "id": 1035197676,
-                      "created_at": "2023-01-03T10:21:36-07:00",
-                      "updated_at": "2023-01-03T10:30:07-07:00",
+                      "created_at": "2023-05-09T18:23:53-06:00",
+                      "updated_at": "2023-05-09T18:26:52-06:00",
                       "currency": "USD",
                       "line_item_id": null,
                       "api_client_id": null,
@@ -870,7 +869,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/gift_cards/1035197676/disable.json",
+          "request_path": "/admin/api/2023-04/gift_cards/1035197676/disable.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/gift_cards/1035197676/disable.json",
@@ -880,13 +879,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"gift_card\":{\"disabled_at\":\"2023-01-03T12:30:07-05:00\",\"template_suffix\":null,\"initial_value\":\"100.00\",\"balance\":\"100.00\",\"customer_id\":null,\"id\":1035197676,\"created_at\":\"2023-01-03T12:21:36-05:00\",\"updated_at\":\"2023-01-03T12:30:07-05:00\",\"currency\":\"USD\",\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"note\":null,\"expires_on\":null,\"last_characters\":\"0d0d\",\"order_id\":null}}"
+            "body": "{\"gift_card\":{\"disabled_at\":\"2023-05-09T20:26:52-04:00\",\"template_suffix\":null,\"initial_value\":\"100.00\",\"balance\":\"100.00\",\"customer_id\":null,\"id\":1035197676,\"created_at\":\"2023-05-09T20:23:53-04:00\",\"updated_at\":\"2023-05-09T20:26:52-04:00\",\"currency\":\"USD\",\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"note\":null,\"expires_on\":null,\"last_characters\":\"0d0d\",\"order_id\":null}}"
           },
           "name": "Disable a gift card",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards/1035197676/disable.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards/1035197676/disable.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -898,7 +897,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->disable(\n    [], // Params\n    [\"gift_card\" => [\"id\" => 1035197676]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->disable(\n    [], // Params\n    [\"gift_card\" => [\"id\" => 1035197676]], // Body\n);"
             }
           ]
         }
@@ -1008,10 +1007,10 @@
                   "value": {
                     "gift_cards": [
                       {
-                        "id": 1063936316,
+                        "id": 1063936317,
                         "balance": "10.00",
-                        "created_at": "2023-01-03T10:30:02-07:00",
-                        "updated_at": "2023-01-03T10:30:02-07:00",
+                        "created_at": "2023-05-09T18:26:33-06:00",
+                        "updated_at": "2023-05-09T18:26:33-06:00",
                         "currency": "USD",
                         "initial_value": "10.00",
                         "disabled_at": null,
@@ -1037,7 +1036,7 @@
         {
           "status": "200",
           "request_query": "query=last_characters%3Amnop",
-          "request_path": "/admin/api/2022-10/gift_cards/search.json",
+          "request_path": "/admin/api/2023-04/gift_cards/search.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/gift_cards/search.json",
@@ -1047,13 +1046,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"gift_cards\":[{\"id\":1063936316,\"balance\":\"10.00\",\"created_at\":\"2023-01-03T12:30:02-05:00\",\"updated_at\":\"2023-01-03T12:30:02-05:00\",\"currency\":\"USD\",\"initial_value\":\"10.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"mnop\",\"order_id\":null}]}"
+            "body": "{\"gift_cards\":[{\"id\":1063936317,\"balance\":\"10.00\",\"created_at\":\"2023-05-09T20:26:33-04:00\",\"updated_at\":\"2023-05-09T20:26:33-04:00\",\"currency\":\"USD\",\"initial_value\":\"10.00\",\"disabled_at\":null,\"line_item_id\":null,\"api_client_id\":null,\"user_id\":null,\"customer_id\":null,\"note\":null,\"expires_on\":null,\"template_suffix\":null,\"last_characters\":\"mnop\",\"order_id\":null}]}"
           },
           "name": "Retrieve all gift cards with the last characters \"mnop\"",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/gift_cards/search.json?query=last_characters%3Amnop\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/gift_cards/search.json?query=last_characters%3Amnop\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1065,7 +1064,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::search(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"query\" => \"last_characters:mnop\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::search(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"query\" => \"last_characters:mnop\"], // Params\n);"
             }
           ]
         }
@@ -1096,7 +1095,7 @@
         {
           "description": "The balance of the gift card.",
           "type": "string",
-          "example": 80.17,
+          "example": "80.17",
           "name": "balance"
         },
         {
@@ -1146,7 +1145,7 @@
         {
           "description": "The initial value of the gift card when it was created.",
           "type": "string",
-          "example": 100.0,
+          "example": "100.00",
           "name": "initial_value"
         },
         {
@@ -1214,5 +1213,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

@@ -280,13 +280,18 @@ namespace OpenShopify.Admin.Builder.Models
         public long? OrderId { get; set; } = default!;
 
         /// <summary>
-        /// Information about the credit card used for this transaction. It has the following attributes: 
+        /// Information about the payment method used for this transaction. It has the following attributes: 
         /// 
         /// *   **credit_card_bin**: The [issuer identification number](https://en.wikipedia.org/wiki/ISO/IEC_7812) (IIN), formerly known as bank identification number (BIN) of the customer's credit card. This is made up of the first few digits of the credit card number. 
         /// *   **avs_result_code**: The response code from the [address verification system](https://en.wikipedia.org/wiki/Address_Verification_System). The code is always a single letter. Refer to [this chart](http://www.emsecommerce.net/avs_cvv2_response_codes.htm) for the codes and their definitions. 
         /// *   **cvv_result_code**: The response code from the credit card company indicating whether the customer entered the [card security code](https://en.wikipedia.org/wiki/Card_Security_Code), or card verification value, correctly. The code is a single letter or empty string; see [this chart](http://www.emsecommerce.net/avs_cvv2_response_codes.htm) for the codes and their definitions. 
         /// *   **credit_card_number**: The customer's credit card number, with most of the leading digits redacted. 
-        /// *   **credit_card_company**: The name of the company that issued the customer's credit card.
+        /// *   **credit_card_company**: The name of the company that issued the customer's credit card. 
+        /// *   **credit_card_name**: The holder of the credit card. 
+        /// *   **credit_card_wallet**: The wallet type where this credit card was retrieved from. 
+        /// *   **credit_card_expiration_month**: The month in which the credit card expires. 
+        /// *   **credit_card_expiration_year**: The year in which the credit card expires. 
+        /// *   **buyer_action_info**: Details for payment methods that require additional buyer action to complete the order transaction.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("payment_details")]
@@ -362,6 +367,15 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the available amount with currency to capture on the gateway in shop and presentment currencies. Only available when an amount is capturable or manually mark as paid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_unsettled_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? TotalUnsettledSet { get; set; } = default!;
 
         /// <summary>
         /// Whether the transaction is a test transaction.

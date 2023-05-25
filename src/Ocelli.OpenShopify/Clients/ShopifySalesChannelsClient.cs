@@ -27,44 +27,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a checkout
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CheckoutItem>> CreateCheckoutAsync(CreateCheckoutRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Completes a checkout
-        /// </summary>
         /// <returns>Accepted</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CheckoutItem>> CompleteCheckoutAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a checkout
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CheckoutItem>> GetCheckoutAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modifies an existing checkout
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CheckoutItem>> UpdateCheckoutAsync(string token, UpdateCheckoutRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of shipping rates
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of available shipping rates for the specified checkout. Implementers need to poll this endpoint until rates become available. Each shipping rate contains the checkout's new subtotal price, total tax, and total price in the event that this shipping rate is selected. This can be used to update the UI without performing further API requests.&lt;/p&gt; To apply a shipping rate, update the checkout's shipping line with the handle of the selected rate.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ShippingRateList>> ListShippingRatesAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -104,9 +86,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a checkout
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CheckoutItem>> CreateCheckoutAsync(CreateCheckoutRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -191,9 +170,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Completes a checkout
-        /// </summary>
         /// <returns>Accepted</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CheckoutItem>> CompleteCheckoutAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -266,9 +242,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a checkout
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CheckoutItem>> GetCheckoutAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -340,9 +313,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Modifies an existing checkout
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CheckoutItem>> UpdateCheckoutAsync(string token, UpdateCheckoutRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -421,12 +391,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of shipping rates
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of available shipping rates for the specified checkout. Implementers need to poll this endpoint until rates become available. Each shipping rate contains the checkout's new subtotal price, total tax, and total price in the event that this shipping rate is selected. This can be used to update the UI without performing further API requests.&lt;/p&gt; To apply a shipping rate, update the checkout's shipping line with the handle of the selected rate.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ShippingRateList>> ListShippingRatesAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -602,51 +566,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve collection listings that are published to your app
-        /// </summary>
-        /// <remarks>
-        /// Retrieve collection listings that are published to your app. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CollectionListingList>> ListCollectionListingsAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve `product_ids` that are published to a `collection_id`
-        /// </summary>
-        /// <remarks>
-        /// Retrieve `product_ids` that are published to a `collection_id`. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductList>> GetProductIdsThatArePublishedToCollectionIdAsync(long collectionListingId, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a specific collection listing that is published to your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CollectionListingItem>> GetCollectionListingAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a collection listing to publish a collection to your app
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CollectionListingItem>> CreateCollectionListingAsync(long collectionListingId, CreateCollectionListingRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a collection listing to unpublish a collection from your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteCollectionListingAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -686,14 +625,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve collection listings that are published to your app
-        /// </summary>
-        /// <remarks>
-        /// Retrieve collection listings that are published to your app. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectionListingList>> ListCollectionListingsAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -770,14 +701,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve `product_ids` that are published to a `collection_id`
-        /// </summary>
-        /// <remarks>
-        /// Retrieve `product_ids` that are published to a `collection_id`. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductList>> GetProductIdsThatArePublishedToCollectionIdAsync(long collectionListingId, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -858,9 +781,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a specific collection listing that is published to your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectionListingItem>> GetCollectionListingAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -932,9 +852,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a collection listing to publish a collection to your app
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectionListingItem>> CreateCollectionListingAsync(long collectionListingId, CreateCollectionListingRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1013,9 +930,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a collection listing to unpublish a collection from your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteCollectionListingAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1185,44 +1099,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// List all of the mobile platform applications associated with the app
-        /// </summary>
-        /// <remarks>
-        /// List the mobile platform applications
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MobilePlatformApplicationList>> ListMobilePlatformApplicationsAssociatedWithAppAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a mobile platform application
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MobilePlatformApplicationItem>> CreateMobilePlatformApplicationAsync(CreateMobilePlatformApplicationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get a mobile platform application
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MobilePlatformApplicationItem>> GetMobilePlatformApplicationAsync(long mobilePlatformApplicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a mobile platform application
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MobilePlatformApplicationItem>> UpdateMobilePlatformApplicationAsync(long mobilePlatformApplicationId, UpdateMobilePlatformApplicationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a mobile platform application
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMobilePlatformApplicationAsync(long mobilePlatformApplicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1262,12 +1158,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// List all of the mobile platform applications associated with the app
-        /// </summary>
-        /// <remarks>
-        /// List the mobile platform applications
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MobilePlatformApplicationList>> ListMobilePlatformApplicationsAssociatedWithAppAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1335,9 +1225,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a mobile platform application
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MobilePlatformApplicationItem>> CreateMobilePlatformApplicationAsync(CreateMobilePlatformApplicationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1412,9 +1299,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get a mobile platform application
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MobilePlatformApplicationItem>> GetMobilePlatformApplicationAsync(long mobilePlatformApplicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1486,9 +1370,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update a mobile platform application
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MobilePlatformApplicationItem>> UpdateMobilePlatformApplicationAsync(long mobilePlatformApplicationId, UpdateMobilePlatformApplicationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1567,9 +1448,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a mobile platform application
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMobilePlatformApplicationAsync(long mobilePlatformApplicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1739,39 +1617,21 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a new payment
-        /// </summary>
-        /// <remarks>
-        /// Creates a payment on a checkout using the session ID returned by the card vault
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PaymentItem>> CreatePaymentAsync(string token, CreatePaymentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of payments on a particular checkout
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PaymentList>> ListPaymentsOnParticularCheckoutAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single payment
-        /// </summary>
-        /// <remarks>
-        /// Retrieves the payment information for an existing payment
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<PaymentItem>> GetPaymentAsync(long paymentId, string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Counts the number of payments attempted on a checkout
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountNumberOfPaymentsAttemptedOnCheckoutAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1811,12 +1671,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a new payment
-        /// </summary>
-        /// <remarks>
-        /// Creates a payment on a checkout using the session ID returned by the card vault
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PaymentItem>> CreatePaymentAsync(string token, CreatePaymentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1895,9 +1749,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of payments on a particular checkout
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PaymentList>> ListPaymentsOnParticularCheckoutAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1969,12 +1820,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single payment
-        /// </summary>
-        /// <remarks>
-        /// Retrieves the payment information for an existing payment
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<PaymentItem>> GetPaymentAsync(long paymentId, string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2050,9 +1895,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Counts the number of payments attempted on a checkout
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountNumberOfPaymentsAttemptedOnCheckoutAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2228,63 +2070,31 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve product listings that are published to your app
-        /// </summary>
-        /// <remarks>
-        /// Retrieve product listings that are published to your app. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="collectionId">Filter by products belonging to a particular collection</param>
-        /// <param name="handle">Filter by product handle</param>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="productIds">A comma-separated list of product ids</param>
-        /// <param name="updatedAtMin">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductListingList>> ListProductListingsAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, string? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve `product_ids` that are published to your app
-        /// </summary>
-        /// <remarks>
-        /// Retrieve `product_ids` that are published to your app. Maximum 1,000 results per page.
-        /// </remarks>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductList>> GetProductIdsAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of products that are published to your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProductsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a specific product listing that is published to your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductListingItem>> GetProductListingAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a product listing to publish a product to your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductListingItem>> CreateProductListingAsync(long productListingId, CreateProductListingRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a product listing to unpublish a product from your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteProductListingAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -2324,18 +2134,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve product listings that are published to your app
-        /// </summary>
-        /// <remarks>
-        /// Retrieve product listings that are published to your app. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="collectionId">Filter by products belonging to a particular collection</param>
-        /// <param name="handle">Filter by product handle</param>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="productIds">A comma-separated list of product ids</param>
-        /// <param name="updatedAtMin">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductListingList>> ListProductListingsAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, string? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2428,14 +2226,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve `product_ids` that are published to your app
-        /// </summary>
-        /// <remarks>
-        /// Retrieve `product_ids` that are published to your app. Maximum 1,000 results per page.
-        /// </remarks>
-        /// <param name="limit">Amount of results</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductList>> GetProductIdsAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2512,9 +2302,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of products that are published to your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountProductsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2582,9 +2369,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a specific product listing that is published to your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductListingItem>> GetProductListingAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2656,9 +2440,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a product listing to publish a product to your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductListingItem>> CreateProductListingAsync(long productListingId, CreateProductListingRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2737,9 +2518,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete a product listing to unpublish a product from your app
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteProductListingAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2909,23 +2687,11 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Product ResourceFeedback
-        /// </summary>
-        /// <remarks>
-        /// Create product feedback.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductResourceFeedbackItem>> CreateProductResourceFeedbackAsync(long productId, CreateProductResourceFeedbackRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all Product ResourceFeedbacks
-        /// </summary>
-        /// <remarks>
-        /// Retrieve all product feedback from your app associated with the product.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductResourceFeedbackList>> ListProductResourceFeedbacksAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -2965,12 +2731,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Product ResourceFeedback
-        /// </summary>
-        /// <remarks>
-        /// Create product feedback.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductResourceFeedbackItem>> CreateProductResourceFeedbackAsync(long productId, CreateProductResourceFeedbackRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3049,12 +2809,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all Product ResourceFeedbacks
-        /// </summary>
-        /// <remarks>
-        /// Retrieve all product feedback from your app associated with the product.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductResourceFeedbackList>> ListProductResourceFeedbacksAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3230,28 +2984,11 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new ResourceFeedback
-        /// </summary>
-        /// <remarks>
-        /// Creates shop resource feedback.
-        /// </remarks>
         /// <returns>Accepted</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ResourceFeedbackItem>> CreateResourceFeedbackAsync(CreateResourceFeedbackRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all ResourceFeedbacks
-        /// </summary>
-        /// <remarks>
-        /// Returns a list (zero or one) of resource feedback objects. &lt;div class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Important
-        /// <br/>
-        /// <br/>Note that ids are not returned as part of this request. Records are immutable except when POST replaces them.
-        /// <br/> &lt;/div&gt;
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ResourceFeedbackList>> ListResourceFeedbacksAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -3291,12 +3028,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new ResourceFeedback
-        /// </summary>
-        /// <remarks>
-        /// Creates shop resource feedback.
-        /// </remarks>
         /// <returns>Accepted</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ResourceFeedbackItem>> CreateResourceFeedbackAsync(CreateResourceFeedbackRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3371,17 +3102,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Receive a list of all ResourceFeedbacks
-        /// </summary>
-        /// <remarks>
-        /// Returns a list (zero or one) of resource feedback objects. &lt;div class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Important
-        /// <br/>
-        /// <br/>Note that ids are not returned as part of this request. Records are immutable except when POST replaces them.
-        /// <br/> &lt;/div&gt;
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ResourceFeedbackList>> ListResourceFeedbacksAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3624,45 +3344,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Email { get; set; } = default!;
 
-        /// <summary>
-        /// A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ "checkout": { "gift_cards": [{ "code": "a gift card code" }, { "code": "another gift card code" }] } }`. Each gift card object has the following properties: 
-        /// <br/>
-        /// <br/>*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. 
-        /// <br/>*   **code**: The gift card code. 
-        /// <br/>*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. 
-        /// <br/>*   **id**: The ID for the applied gift card. 
-        /// <br/>*   **last_characters**: The last four characters of the applied gift card for display back to the user. 
-        /// <br/>
-        /// <br/> Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("gift_cards")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<CheckoutGiftCard>? GiftCards { get; set; } = default!;
-
-        /// <summary>
-        /// A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: 
-        /// <br/>
-        /// <br/>*   **applied_discounts**: A list of the discounts applied to the line item. 
-        /// <br/>*   **compare_at_price**: The original selling price of the product, if applicable. 
-        /// <br/>*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both "across" and "each" applications. A superset of `applied_discounts`. 
-        /// <br/>*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **id**: The checkout-specific ID of the line item. 
-        /// <br/>*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. 
-        /// <br/>*   **price**: The price of the item in presentment currency. 
-        /// <br/>*   **product_id**: The product of the line item. 
-        /// <br/>*   **properties**: The [customization information](/api/liquid/objects/line_item#line_item-properties) for a line item (optional). 
-        /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. 
-        /// <br/>*   **sku**: The unique identifier of the item in the fulfillment. 
-        /// <br/>*   **taxable**: Whether this product is taxable. 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **variant_id**: The variant ID of the line item. 
-        /// <br/>*   **variant_title**: The title of the product variant. 
-        /// <br/>*   **vendor**: The name of the item's supplier.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -3734,10 +3419,6 @@ namespace Ocelli.OpenShopify
         [System.Obsolete]
         public string? ReservationTime { get; set; } = default!;
 
-        /// <summary>
-        /// The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("reservation_time_left")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -3795,14 +3476,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public decimal? SubtotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in presentment currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -3852,10 +3525,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? WebUrl { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier for a particular checkout.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("token")]
 
@@ -4426,45 +4095,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Email { get; set; } = default!;
 
-        /// <summary>
-        /// A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ "checkout": { "gift_cards": [{ "code": "a gift card code" }, { "code": "another gift card code" }] } }`. Each gift card object has the following properties: 
-        /// <br/>
-        /// <br/>*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. 
-        /// <br/>*   **code**: The gift card code. 
-        /// <br/>*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. 
-        /// <br/>*   **id**: The ID for the applied gift card. 
-        /// <br/>*   **last_characters**: The last four characters of the applied gift card for display back to the user. 
-        /// <br/>
-        /// <br/> Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("gift_cards")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<CheckoutGiftCard>? GiftCards { get; set; } = default!;
-
-        /// <summary>
-        /// A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: 
-        /// <br/>
-        /// <br/>*   **applied_discounts**: A list of the discounts applied to the line item. 
-        /// <br/>*   **compare_at_price**: The original selling price of the product, if applicable. 
-        /// <br/>*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both "across" and "each" applications. A superset of `applied_discounts`. 
-        /// <br/>*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **id**: The checkout-specific ID of the line item. 
-        /// <br/>*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. 
-        /// <br/>*   **price**: The price of the item in presentment currency. 
-        /// <br/>*   **product_id**: The product of the line item. 
-        /// <br/>*   **properties**: The [customization information](/api/liquid/objects/line_item#line_item-properties) for a line item (optional). 
-        /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. 
-        /// <br/>*   **sku**: The unique identifier of the item in the fulfillment. 
-        /// <br/>*   **taxable**: Whether this product is taxable. 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **variant_id**: The variant ID of the line item. 
-        /// <br/>*   **variant_title**: The title of the product variant. 
-        /// <br/>*   **vendor**: The name of the item's supplier.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -4536,10 +4170,6 @@ namespace Ocelli.OpenShopify
         [System.Obsolete]
         public string? ReservationTime { get; set; } = default!;
 
-        /// <summary>
-        /// The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("reservation_time_left")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -4597,14 +4227,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public decimal? SubtotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in presentment currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -4654,10 +4276,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? WebUrl { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier for a particular checkout.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("token")]
 
@@ -6372,45 +5990,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? Email { get; set; } = default!;
 
-        /// <summary>
-        /// A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ "checkout": { "gift_cards": [{ "code": "a gift card code" }, { "code": "another gift card code" }] } }`. Each gift card object has the following properties: 
-        /// <br/>
-        /// <br/>*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. 
-        /// <br/>*   **code**: The gift card code. 
-        /// <br/>*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. 
-        /// <br/>*   **id**: The ID for the applied gift card. 
-        /// <br/>*   **last_characters**: The last four characters of the applied gift card for display back to the user. 
-        /// <br/>
-        /// <br/> Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("gift_cards")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.ICollection<CheckoutGiftCard>? GiftCards { get; set; } = default!;
-
-        /// <summary>
-        /// A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: 
-        /// <br/>
-        /// <br/>*   **applied_discounts**: A list of the discounts applied to the line item. 
-        /// <br/>*   **compare_at_price**: The original selling price of the product, if applicable. 
-        /// <br/>*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both "across" and "each" applications. A superset of `applied_discounts`. 
-        /// <br/>*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **id**: The checkout-specific ID of the line item. 
-        /// <br/>*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. 
-        /// <br/>*   **price**: The price of the item in presentment currency. 
-        /// <br/>*   **product_id**: The product of the line item. 
-        /// <br/>*   **properties**: The [customization information](/api/liquid/objects/line_item#line_item-properties) for a line item (optional). 
-        /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. 
-        /// <br/>*   **sku**: The unique identifier of the item in the fulfillment. 
-        /// <br/>*   **taxable**: Whether this product is taxable. 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **variant_id**: The variant ID of the line item. 
-        /// <br/>*   **variant_title**: The title of the product variant. 
-        /// <br/>*   **vendor**: The name of the item's supplier.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
@@ -6482,10 +6065,6 @@ namespace Ocelli.OpenShopify
         [System.Obsolete]
         public string? ReservationTime { get; set; } = default!;
 
-        /// <summary>
-        /// The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("reservation_time_left")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -6543,14 +6122,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public decimal? SubtotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in presentment currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -6600,10 +6171,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? WebUrl { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier for a particular checkout.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("token")]
 

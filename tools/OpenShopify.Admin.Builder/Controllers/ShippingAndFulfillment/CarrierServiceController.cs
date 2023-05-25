@@ -32,8 +32,11 @@ namespace OpenShopify.Admin.Builder.Models
         public abstract System.Threading.Tasks.Task CreateCarrierService([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCarrierServiceRequest request);
 
         /// <summary>
-        /// Receive a list of all CarrierServices
+        /// Retrieve a list of CarrierServices
         /// </summary>
+        /// <remarks>
+        /// Retrieve a list of CarrierServices. **Note:** Only services with property `active: true` are returned.
+        /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
         public abstract System.Threading.Tasks.Task ListCarrierServices();
 
@@ -64,7 +67,7 @@ namespace OpenShopify.Admin.Builder.Models
     public partial record CarrierServiceOrig
     {
         /// <summary>
-        /// Whether this carrier service is active.
+        /// Whether this carrier service is active. If `true`, then the service will be available to serve rates in checkout.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("active")]
@@ -89,6 +92,15 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? CarrierServiceType { get; set; } = default!;
+
+        /// <summary>
+        /// The format of the data returned by the URL endpoint. `json` is the only valid value.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Format { get; set; } = default!;
 
         /// <summary>
         /// The name of the shipping service as seen by merchants and their customers.

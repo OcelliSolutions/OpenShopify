@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Online Store
   description: Online Store
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,8 +23,6 @@ paths:
     get:
       tags:
         - Article
-      summary: Retrieves a list of all articles from a blog
-      description: 'Retrieves a list of all articles from a blog. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListArticlesFromBlog
       parameters:
         - name: blog_id
@@ -35,79 +33,65 @@ paths:
             format: int64
         - name: author
           in: query
-          description: Filter articles by article author.
           schema:
             type: string
         - name: created_at_max
           in: query
-          description: 'Show articles created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show articles created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: handle
           in: query
-          description: Retrieve an article with a specific handle.
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: published_at_max
           in: query
-          description: 'Show articles published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Show articles published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Retrieve results based on their published status.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: tag
           in: query
-          description: Filter articles with a specific tag.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -134,7 +118,6 @@ paths:
     post:
       tags:
         - Article
-      summary: Creates an article for a blog
       operationId: CreateArticleForBlog
       parameters:
         - name: blog_id
@@ -171,7 +154,6 @@ paths:
     get:
       tags:
         - Article
-      summary: Retrieves a count of all articles from a blog
       operationId: CountArticlesFromBlog
       parameters:
         - name: blog_id
@@ -182,42 +164,35 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Count articles created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Count articles created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_max
           in: query
-          description: 'Count articles published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Count articles published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Count articles with a given published status.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -241,8 +216,6 @@ paths:
     get:
       tags:
         - Article
-      summary: Receive a single Article
-      description: Retrieves a single article
       operationId: GetArticle
       parameters:
         - name: article_id
@@ -259,7 +232,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specifed by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -281,7 +253,6 @@ paths:
     put:
       tags:
         - Article
-      summary: Updates an article
       operationId: UpdateArticle
       parameters:
         - name: article_id
@@ -324,7 +295,6 @@ paths:
     delete:
       tags:
         - Article
-      summary: Deletes an article
       operationId: DeleteArticle
       parameters:
         - name: article_id
@@ -355,7 +325,6 @@ paths:
     get:
       tags:
         - Article
-      summary: Retrieves a list of all article authors
       operationId: ListArticleAuthors
       responses:
         '200':
@@ -381,23 +350,19 @@ paths:
     get:
       tags:
         - Article
-      summary: Retrieves a list of all article tags
       operationId: ListArticleTags
       parameters:
         - name: limit
           in: query
-          description: The maximum number of tags to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: popular
           in: query
-          description: 'A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.'
           schema:
             type: string
       responses:
@@ -424,7 +389,6 @@ paths:
     get:
       tags:
         - Article
-      summary: Retrieves a list of all article tags from a specific blog
       operationId: ListArticleTagsFromSpecificBlog
       parameters:
         - name: blog_id
@@ -435,18 +399,15 @@ paths:
             format: int64
         - name: limit
           in: query
-          description: The maximum number of tags to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: popular
           in: query
-          description: 'A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.'
           schema:
             type: string
       responses:
@@ -473,7 +434,6 @@ paths:
     put:
       tags:
         - Article
-      summary: Remove the image from an article
       operationId: DeleteImageFromArticle
       parameters:
         - name: article_id
@@ -502,8 +462,6 @@ paths:
     get:
       tags:
         - Asset
-      summary: Retrieves a list of assets for a theme
-      description: "Retrieves a list of assets for a theme.\r\n\r\n**Note:** Retrieving a list of assets returns only metadata about each asset. To retrieve an asset's content, you need to retrieve the asset individually."
       operationId: ListAssetsForTheme
       parameters:
         - name: theme_id
@@ -514,7 +472,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: Specify which fields to show using a comma-separated list of field names.
           schema:
             type: string
       responses:
@@ -540,8 +497,6 @@ paths:
     put:
       tags:
         - Asset
-      summary: Creates or updates an asset for a theme
-      description: "Creates or updates an asset for a theme.\r\n\r\nIn the PUT request, you can include the `src` or `source_key` property to create the asset from an existing file."
       operationId: CreateOrUpdatesAssetForTheme
       parameters:
         - name: theme_id
@@ -578,7 +533,6 @@ paths:
     delete:
       tags:
         - Asset
-      summary: Deletes an asset from a theme
       operationId: DeleteAssetFromTheme
       parameters:
         - name: theme_id
@@ -607,34 +561,27 @@ paths:
     get:
       tags:
         - Blog
-      summary: Retrieve a list of all blogs
-      description: 'Retrieve a list of all blogs. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListBlogs
       parameters:
         - name: fields
           in: query
-          description: comma-separated list of fields to include in the response
           schema:
             type: string
         - name: handle
           in: query
-          description: Filter by blog handle
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID
           schema:
             type: integer
             format: int64
@@ -661,7 +608,6 @@ paths:
     post:
       tags:
         - Blog
-      summary: Create a new Blog
       operationId: CreateBlog
       requestBody:
         content:
@@ -692,8 +638,6 @@ paths:
     get:
       tags:
         - Blog
-      summary: Receive a count of all Blogs
-      description: Get a count of all blogs
       operationId: CountBlogs
       responses:
         '200':
@@ -715,8 +659,6 @@ paths:
     get:
       tags:
         - Blog
-      summary: Receive a single Blog
-      description: Get a single blog by its ID
       operationId: GetBlog
       parameters:
         - name: blog_id
@@ -727,7 +669,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: comma-separated list of fields to include in the response
           schema:
             type: string
       responses:
@@ -749,8 +690,6 @@ paths:
     put:
       tags:
         - Blog
-      summary: Modify an existing Blog
-      description: Update a blog
       operationId: UpdateBlog
       parameters:
         - name: blog_id
@@ -787,8 +726,6 @@ paths:
     delete:
       tags:
         - Blog
-      summary: Remove an existing Blog
-      description: Delete a blog
       operationId: DeleteBlog
       parameters:
         - name: blog_id
@@ -813,75 +750,61 @@ paths:
     get:
       tags:
         - Comment
-      summary: Retrieves a list of comments
-      description: 'Retrieves a list of comments. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListComments
       parameters:
         - name: created_at_max
           in: query
-          description: 'Show comments created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show comments created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: published_at_max
           in: query
-          description: 'Show comments published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Show comments published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Filter results by their published status.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: status
           in: query
-          description: Filter results by their status.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -908,7 +831,6 @@ paths:
     post:
       tags:
         - Comment
-      summary: Creates a comment for an article
       operationId: CreateCommentForArticle
       requestBody:
         content:
@@ -938,52 +860,43 @@ paths:
     get:
       tags:
         - Comment
-      summary: Retrieves a count of comments
       operationId: CountComments
       parameters:
         - name: created_at_max
           in: query
-          description: 'Count comments created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Count comments created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_max
           in: query
-          description: 'Count comments published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Count comments published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Retrieve a count of comments with a given published status.
           schema:
             type: string
         - name: status
           in: query
-          description: Retrieve a count of comments with a given status.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -1007,7 +920,6 @@ paths:
     get:
       tags:
         - Comment
-      summary: Retrieves a single comment by its ID
       operationId: GetComment
       parameters:
         - name: comment_id
@@ -1018,7 +930,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -1040,7 +951,6 @@ paths:
     put:
       tags:
         - Comment
-      summary: Updates a comment of an article
       operationId: UpdateCommentOfArticle
       parameters:
         - name: comment_id
@@ -1077,7 +987,6 @@ paths:
     post:
       tags:
         - Comment
-      summary: Marks a comment as spam
       operationId: MarkCommentAsSpam
       parameters:
         - name: comment_id
@@ -1106,7 +1015,6 @@ paths:
     post:
       tags:
         - Comment
-      summary: Marks a comment as not spam
       operationId: MarkCommentAsNotSpam
       parameters:
         - name: comment_id
@@ -1135,7 +1043,6 @@ paths:
     post:
       tags:
         - Comment
-      summary: Approves a comment
       operationId: ApproveComment
       parameters:
         - name: comment_id
@@ -1164,7 +1071,6 @@ paths:
     post:
       tags:
         - Comment
-      summary: Removes a comment
       operationId: DeleteComment
       parameters:
         - name: comment_id
@@ -1189,7 +1095,6 @@ paths:
     post:
       tags:
         - Comment
-      summary: Restores a previously removed comment
       operationId: RestorePreviouslyDeletedComment
       parameters:
         - name: comment_id
@@ -1218,80 +1123,65 @@ paths:
     get:
       tags:
         - Page
-      summary: Retrieves a list of pages
-      description: 'Retrieve a list of all pages. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).'
       operationId: ListPages
       parameters:
         - name: created_at_max
           in: query
-          description: 'Show pages created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show pages created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: handle
           in: query
-          description: Retrieve a page with a given handle.
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: published_at_max
           in: query
-          description: 'Show pages published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Show pages published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: 'Restrict results to pages with a given published status:'
           schema:
             $ref: '#/components/schemas/PagePublishStatus'
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: title
           in: query
-          description: Retrieve pages with a given title.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Show pages last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -1318,7 +1208,6 @@ paths:
     post:
       tags:
         - Page
-      summary: Creates a page
       operationId: CreatePage
       requestBody:
         content:
@@ -1349,52 +1238,43 @@ paths:
     get:
       tags:
         - Page
-      summary: Retrieves a page count
       operationId: GetPageCount
       parameters:
         - name: created_at_max
           in: query
-          description: 'Count pages created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Count pages created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_max
           in: query
-          description: 'Show pages published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Show pages published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: 'Count pages with a given published status:'
           schema:
             $ref: '#/components/schemas/PagePublishStatus'
         - name: title
           in: query
-          description: Count pages with a given title.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Count pages last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -1418,7 +1298,6 @@ paths:
     get:
       tags:
         - Page
-      summary: Retrieves a single page by its ID
       operationId: GetPage
       parameters:
         - name: page_id
@@ -1429,7 +1308,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -1451,7 +1329,6 @@ paths:
     put:
       tags:
         - Page
-      summary: Updates a page
       operationId: UpdatePage
       parameters:
         - name: page_id
@@ -1488,7 +1365,6 @@ paths:
     delete:
       tags:
         - Page
-      summary: Deletes a page
       operationId: DeletePage
       parameters:
         - name: page_id
@@ -1517,40 +1393,32 @@ paths:
     get:
       tags:
         - Redirect
-      summary: Retrieves a list of URL redirects
-      description: 'Retrieves a list of URL redirects. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListUrlRedirects
       parameters:
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: path
           in: query
-          description: Show redirects with a given path.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: target
           in: query
-          description: Show redirects with a given target.
           schema:
             type: string
       responses:
@@ -1576,8 +1444,6 @@ paths:
     post:
       tags:
         - Redirect
-      summary: Creates a redirect
-      description: 'Creates a redirect. When you provide a full URL as the value of the `path` property, it will be saved as an absolute path without the domain. For example, `"path": "http://www.johns-apparel.com/springwear"` will be saved as `"path": "springwear"`.'
       operationId: CreateRedirect
       requestBody:
         content:
@@ -1608,17 +1474,14 @@ paths:
     get:
       tags:
         - Redirect
-      summary: Retrieves a count of URL redirects
       operationId: CountUrlRedirects
       parameters:
         - name: path
           in: query
-          description: Count redirects with given path.
           schema:
             type: string
         - name: target
           in: query
-          description: Count redirects with given target.
           schema:
             type: string
       responses:
@@ -1641,7 +1504,6 @@ paths:
     get:
       tags:
         - Redirect
-      summary: Retrieves a single redirect
       operationId: GetRedirect
       parameters:
         - name: redirect_id
@@ -1652,7 +1514,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -1674,8 +1535,6 @@ paths:
     put:
       tags:
         - Redirect
-      summary: Updates an existing redirect
-      description: 'Updates an existing [redirect](https://shopify.dev/api/admin-rest/latest/resources/redirect)'
       operationId: UpdateRedirect
       parameters:
         - name: redirect_id
@@ -1712,7 +1571,6 @@ paths:
     delete:
       tags:
         - Redirect
-      summary: Deletes a redirect
       operationId: DeleteRedirect
       parameters:
         - name: redirect_id
@@ -1737,58 +1595,47 @@ paths:
     get:
       tags:
         - ScriptTag
-      summary: Retrieves a list of all script tags
-      description: 'Retrieves a list of all script tags. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListScriptTags
       parameters:
         - name: created_at_max
           in: query
-          description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
         - name: limit
           in: query
-          description: The number of results to return.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: src
           in: query
-          description: Show script tags with this URL.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -1815,7 +1662,6 @@ paths:
     post:
       tags:
         - ScriptTag
-      summary: Creates a new script tag
       operationId: CreateScriptTag
       requestBody:
         content:
@@ -1846,12 +1692,10 @@ paths:
     get:
       tags:
         - ScriptTag
-      summary: Retrieves a count of all script tags
       operationId: CountScriptTags
       parameters:
         - name: src
           in: query
-          description: Count only script tags with a given URL.
           schema:
             type: string
       responses:
@@ -1874,7 +1718,6 @@ paths:
     get:
       tags:
         - ScriptTag
-      summary: Retrieves a single script tag
       operationId: GetScriptTag
       parameters:
         - name: script_tag_id
@@ -1885,7 +1728,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -1907,7 +1749,6 @@ paths:
     put:
       tags:
         - ScriptTag
-      summary: Updates a script tag
       operationId: UpdateScriptTag
       parameters:
         - name: script_tag_id
@@ -1944,7 +1785,6 @@ paths:
     delete:
       tags:
         - ScriptTag
-      summary: Deletes a script tag
       operationId: DeleteScriptTag
       parameters:
         - name: script_tag_id
@@ -1973,12 +1813,10 @@ paths:
     get:
       tags:
         - Theme
-      summary: Retrieves a list of themes
       operationId: ListThemes
       parameters:
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -2004,8 +1842,6 @@ paths:
     post:
       tags:
         - Theme
-      summary: Creates a theme
-      description: "Creates a theme by providing the public URL of a ZIP file that contains the theme. \r\n\r\nA new theme is always unpublished by default. To publish a theme when you create it, include `\"role\": \"main\"` in the POST request. The theme will be published only after all of its files have been extracted and stored by Shopify, which might take a couple of minutes."
       operationId: CreateTheme
       requestBody:
         content:
@@ -2036,7 +1872,6 @@ paths:
     get:
       tags:
         - Theme
-      summary: Retrieves a single theme by its ID
       operationId: GetTheme
       parameters:
         - name: theme_id
@@ -2047,7 +1882,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -2069,8 +1903,6 @@ paths:
     put:
       tags:
         - Theme
-      summary: Modify an existing Theme
-      description: Updates an existing theme.
       operationId: UpdateTheme
       parameters:
         - name: theme_id
@@ -2107,8 +1939,6 @@ paths:
     delete:
       tags:
         - Theme
-      summary: Remove an existing Theme
-      description: 'Deletes a theme. A theme can''t be deleted while it''s uploading, updating, or if the theme is the last published theme.'
       operationId: DeleteTheme
       parameters:
         - name: theme_id
@@ -2332,7 +2162,6 @@ components:
           description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\r\n*   **no (default)**: Readers cannot post comments to blog articles. \r\n*   **moderate**: Readers can post comments to blog articles, but comments must be moderated before they appear. \r\n*   **yes**: Readers can post comments to blog articles without moderation."
           nullable: true
         feedburner:
-          description: 'FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled.'
           nullable: true
         feedburner_location:
           type: string
@@ -2850,15 +2679,15 @@ components:
       properties:
         description:
           type: string
-          description: A description of the information that the metafield contains.
+          description: The description of the metafield.
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: "The unique identifier for a metafield within its namespace.   \r\n Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+          description: "The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   \r\n Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         owner_id:
           type: integer
@@ -2870,7 +2699,6 @@ components:
           description: The type of resource that the metafield is attached to.
           nullable: true
         value:
-          description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
@@ -3273,7 +3101,6 @@ components:
           description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\r\n*   **no (default)**: Readers cannot post comments to blog articles. \r\n*   **moderate**: Readers can post comments to blog articles, but comments must be moderated before they appear. \r\n*   **yes**: Readers can post comments to blog articles without moderation."
           nullable: true
         feedburner:
-          description: 'FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled.'
           nullable: true
         feedburner_location:
           type: string

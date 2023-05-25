@@ -5,8 +5,7 @@
     "description": "        <p>A smart collection is a grouping of products defined by rules that are set by the merchant.\n        Shopify automatically changes the contents of a smart collection based on the rules.\n        Smart collections, like other types of collections, are used to break down the catalog of products into categories\n        and make the shop easier to browse.</p>\n        <p>By default, a store can have up to 5000 smart collections.</p>\n        <p>The <a href=\"/docs/admin-api/rest/reference/products/collect\">Collect</a> resource is used to connect a product to a smart collection.\n        However, these collects can't be added or removed from the API as they're managed by the rules of the smart collection.</p> {{ '/api/reference/smart-collection.png' | image }}\n        <p>You can use the <a href=\"/docs/admin-api/rest/reference/products/customcollection\">CustomCollection</a> resource\n        to work with collections where each product in the collection is manually chosen by the merchant.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/2121",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -146,12 +145,12 @@
                   "value": {
                     "smart_collections": [
                       {
-                        "id": 1063001318,
+                        "id": 1063001345,
                         "handle": "ipods-1",
                         "title": "IPods",
-                        "updated_at": "2023-01-03T10:43:30-07:00",
+                        "updated_at": "2023-02-02T08:03:17-07:00",
                         "body_html": null,
-                        "published_at": "2023-01-03T10:43:29-07:00",
+                        "published_at": "2023-02-02T08:03:17-07:00",
                         "sort_order": "best-selling",
                         "template_suffix": null,
                         "disjunctive": false,
@@ -163,7 +162,7 @@
                           }
                         ],
                         "published_scope": "web",
-                        "admin_graphql_api_id": "gid://shopify/Collection/1063001318"
+                        "admin_graphql_api_id": "gid://shopify/Collection/1063001345"
                       }
                     ]
                   }
@@ -191,11 +190,11 @@
                         "published_scope": "web",
                         "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                         "image": {
-                          "created_at": "2023-01-03T10:21:36-07:00",
+                          "created_at": "2023-02-02T07:56:58-07:00",
                           "alt": "MP3 Player 8gb",
                           "width": 123,
                           "height": 456,
-                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496"
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818"
                         }
                       }
                     ]
@@ -224,11 +223,11 @@
                         "published_scope": "web",
                         "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                         "image": {
-                          "created_at": "2023-01-03T10:21:36-07:00",
+                          "created_at": "2023-02-02T07:56:58-07:00",
                           "alt": "MP3 Player 8gb",
                           "width": 123,
                           "height": 456,
-                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496"
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818"
                         }
                       }
                     ]
@@ -238,12 +237,12 @@
                   "value": {
                     "smart_collections": [
                       {
-                        "id": 1063001324,
+                        "id": 1063001330,
                         "handle": "macbooks",
                         "title": "Macbooks",
-                        "updated_at": "2023-01-03T10:44:05-07:00",
+                        "updated_at": "2023-02-02T08:02:14-07:00",
                         "body_html": null,
-                        "published_at": "2023-01-03T10:44:05-07:00",
+                        "published_at": "2023-02-02T08:02:14-07:00",
                         "sort_order": "best-selling",
                         "template_suffix": null,
                         "disjunctive": false,
@@ -255,7 +254,7 @@
                           }
                         ],
                         "published_scope": "web",
-                        "admin_graphql_api_id": "gid://shopify/Collection/1063001324"
+                        "admin_graphql_api_id": "gid://shopify/Collection/1063001330"
                       },
                       {
                         "id": 482865238,
@@ -277,11 +276,11 @@
                         "published_scope": "web",
                         "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                         "image": {
-                          "created_at": "2023-01-03T10:21:36-07:00",
+                          "created_at": "2023-02-02T07:56:58-07:00",
                           "alt": "MP3 Player 8gb",
                           "width": 123,
                           "height": 456,
-                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496"
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818"
                         }
                       }
                     ]
@@ -296,7 +295,7 @@
         {
           "status": "200",
           "request_query": "since_id=482865238",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/smart_collections.json",
@@ -306,13 +305,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collections\":[{\"id\":1063001318,\"handle\":\"ipods-1\",\"title\":\"IPods\",\"updated_at\":\"2023-01-03T12:43:30-05:00\",\"body_html\":null,\"published_at\":\"2023-01-03T12:43:29-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"title\",\"relation\":\"starts_with\",\"condition\":\"iPod\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001318\"}]}"
+            "body": "{\"smart_collections\":[{\"id\":1063001345,\"handle\":\"ipods-1\",\"title\":\"IPods\",\"updated_at\":\"2023-02-02T10:03:17-05:00\",\"body_html\":null,\"published_at\":\"2023-02-02T10:03:17-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"title\",\"relation\":\"starts_with\",\"condition\":\"iPod\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001345\"}]}"
           },
           "name": "Retrieve a list all smart collections after a specified ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json?since_id=482865238\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json?since_id=482865238\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -324,14 +323,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"482865238\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"482865238\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/smart_collections.json",
@@ -341,13 +340,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collections\":[{\"id\":482865238,\"handle\":\"smart-ipods\",\"title\":\"Smart iPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496\"}}]}"
+            "body": "{\"smart_collections\":[{\"id\":482865238,\"handle\":\"smart-ipods\",\"title\":\"Smart iPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-02-02T09:56:58-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818\"}}]}"
           },
           "name": "Retrieve a list of all smart collections",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -359,14 +358,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "product_id=632910392",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/smart_collections.json",
@@ -376,13 +375,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collections\":[{\"id\":482865238,\"handle\":\"smart-ipods\",\"title\":\"Smart iPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496\"}}]}"
+            "body": "{\"smart_collections\":[{\"id\":482865238,\"handle\":\"smart-ipods\",\"title\":\"Smart iPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-02-02T09:56:58-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818\"}}]}"
           },
           "name": "Retrieve a list of all smart collections for a certain product_id",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -394,14 +393,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
-          "request_query": "ids=482865238%2C1063001324",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_query": "ids=482865238%2C1063001330",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/smart_collections.json",
@@ -411,25 +410,25 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collections\":[{\"id\":1063001324,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-01-03T12:44:05-05:00\",\"body_html\":null,\"published_at\":\"2023-01-03T12:44:05-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001324\"},{\"id\":482865238,\"handle\":\"smart-ipods\",\"title\":\"Smart iPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496\"}}]}"
+            "body": "{\"smart_collections\":[{\"id\":1063001330,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-02-02T10:02:14-05:00\",\"body_html\":null,\"published_at\":\"2023-02-02T10:02:14-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001330\"},{\"id\":482865238,\"handle\":\"smart-ipods\",\"title\":\"Smart iPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-02-02T09:56:58-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818\"}}]}"
           },
           "name": "Retrieve a list of specific smart collections",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json?ids=482865238%2C1063001324\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json?ids=482865238%2C1063001330\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::SmartCollection.all(\n  session: test_session,\n  ids: \"482865238,1063001324\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::SmartCollection.all(\n  session: test_session,\n  ids: \"482865238,1063001330\",\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.SmartCollection.all({\n  session: session,\n  ids: \"482865238,1063001324\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.SmartCollection.all({\n  session: session,\n  ids: \"482865238,1063001330\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"ids\" => \"482865238,1063001324\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"ids\" => \"482865238,1063001330\"], // Params\n);"
             }
           ]
         }
@@ -554,7 +553,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/count.json",
+          "request_path": "/admin/api/2023-04/smart_collections/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/smart_collections/count.json",
@@ -570,7 +569,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -582,14 +581,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "product_id=632910392",
-          "request_path": "/admin/api/2022-10/smart_collections/count.json",
+          "request_path": "/admin/api/2023-04/smart_collections/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/smart_collections/count.json",
@@ -605,7 +604,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/count.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/count.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -617,7 +616,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
             }
           ]
         }
@@ -691,11 +690,11 @@
                       "published_scope": "web",
                       "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                       "image": {
-                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-02-02T07:56:58-07:00",
                         "alt": "MP3 Player 8gb",
                         "width": 123,
                         "height": 456,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818"
                       }
                     }
                   }
@@ -709,7 +708,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/smart_collections/482865238.json",
@@ -719,13 +718,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collection\":{\"id\":482865238,\"handle\":\"smart-ipods\",\"title\":\"Smart iPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"products_count\":2,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496\"}}}"
+            "body": "{\"smart_collection\":{\"id\":482865238,\"handle\":\"smart-ipods\",\"title\":\"Smart iPods\",\"updated_at\":\"2008-02-01T19:00:00-05:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"products_count\":2,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-02-02T09:56:58-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818\"}}}"
           },
           "name": "Retrieve a specific collection by ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -737,7 +736,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::find(\n    $this->test_session, // Session\n    482865238, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::find(\n    $this->test_session, // Session\n    482865238, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -788,7 +787,7 @@
                       "body_html": "<p>The best selling ipod ever</p>",
                       "id": 482865238,
                       "published_at": null,
-                      "updated_at": "2023-01-03T10:43:43-07:00",
+                      "updated_at": "2023-02-02T08:02:58-07:00",
                       "sort_order": "manual",
                       "template_suffix": null,
                       "disjunctive": false,
@@ -802,11 +801,11 @@
                       "published_scope": "web",
                       "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                       "image": {
-                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-02-02T07:56:58-07:00",
                         "alt": "MP3 Player 8gb",
                         "width": 123,
                         "height": 456,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818"
                       }
                     }
                   }
@@ -818,8 +817,8 @@
                       "handle": "smart-ipods",
                       "body_html": "<p>The best selling ipod ever</p>",
                       "id": 482865238,
-                      "published_at": "2023-01-03T10:43:23-07:00",
-                      "updated_at": "2023-01-03T10:43:23-07:00",
+                      "published_at": "2023-02-02T08:02:36-07:00",
+                      "updated_at": "2023-02-02T08:02:36-07:00",
                       "sort_order": "manual",
                       "template_suffix": null,
                       "disjunctive": false,
@@ -833,11 +832,11 @@
                       "published_scope": "web",
                       "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                       "image": {
-                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-02-02T07:56:58-07:00",
                         "alt": "MP3 Player 8gb",
                         "width": 123,
                         "height": 456,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818"
                       }
                     }
                   }
@@ -847,7 +846,7 @@
                     "smart_collection": {
                       "body_html": "<p>The best selling ipod ever</p>",
                       "handle": "smart-ipods",
-                      "updated_at": "2023-01-03T10:44:13-07:00",
+                      "updated_at": "2023-02-02T08:03:21-07:00",
                       "id": 482865238,
                       "sort_order": "manual",
                       "title": "Smart iPods",
@@ -869,7 +868,7 @@
                 "Update a smart collection by setting a new collection image": {
                   "value": {
                     "smart_collection": {
-                      "updated_at": "2023-01-03T10:44:35-07:00",
+                      "updated_at": "2023-02-02T08:03:07-07:00",
                       "id": 482865238,
                       "title": "Smart iPods",
                       "handle": "smart-ipods",
@@ -888,11 +887,11 @@
                       "published_scope": "web",
                       "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                       "image": {
-                        "created_at": "2023-01-03T10:44:35-07:00",
+                        "created_at": "2023-02-02T08:03:07-07:00",
                         "alt": "Rails logo",
                         "width": 110,
                         "height": 140,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/fd43f2c8883f6e9b680e3295fd990d2c.gif?v=1672767875"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/fd43f2c8883f6e9b680e3295fd990d2c.gif?v=1675350187"
                       }
                     }
                   }
@@ -900,7 +899,7 @@
                 "Update a smart collection by setting a new collection image alternative text": {
                   "value": {
                     "smart_collection": {
-                      "updated_at": "2023-01-03T10:43:34-07:00",
+                      "updated_at": "2023-02-02T08:03:25-07:00",
                       "id": 482865238,
                       "title": "Smart iPods",
                       "handle": "smart-ipods",
@@ -920,10 +919,10 @@
                       "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                       "image": {
                         "alt": "Rails logo",
-                        "created_at": "2023-01-03T10:43:32-07:00",
+                        "created_at": "2023-02-02T08:03:23-07:00",
                         "width": 110,
                         "height": 140,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/rails_logo20230103-54493-iapzkx.gif?v=1672767814"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/rails_logo20230202-30594-1zfxus.gif?v=1675350205"
                       }
                     }
                   }
@@ -935,7 +934,7 @@
                       "title": "Smart iPods",
                       "handle": "smart-ipods",
                       "id": 482865238,
-                      "updated_at": "2023-01-03T10:44:20-07:00",
+                      "updated_at": "2023-02-02T08:02:54-07:00",
                       "published_at": "2008-02-01T17:00:00-07:00",
                       "sort_order": "manual",
                       "template_suffix": null,
@@ -950,11 +949,11 @@
                       "published_scope": "web",
                       "admin_graphql_api_id": "gid://shopify/Collection/482865238",
                       "image": {
-                        "created_at": "2023-01-03T10:21:36-07:00",
+                        "created_at": "2023-02-02T07:56:58-07:00",
                         "alt": "MP3 Player 8gb",
                         "width": 123,
                         "height": 456,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818"
                       }
                     }
                   }
@@ -968,7 +967,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/smart_collections/482865238.json",
@@ -978,13 +977,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collection\":{\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"id\":482865238,\"published_at\":null,\"updated_at\":\"2023-01-03T12:43:43-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496\"}}}"
+            "body": "{\"smart_collection\":{\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"id\":482865238,\"published_at\":null,\"updated_at\":\"2023-02-02T10:02:58-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-02-02T09:56:58-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818\"}}}"
           },
           "name": "Hide a published smart collection",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"published\":false}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"published\":false}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -996,14 +995,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->published = false;\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->published = false;\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/smart_collections/482865238.json",
@@ -1013,13 +1012,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collection\":{\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"id\":482865238,\"published_at\":\"2023-01-03T12:43:23-05:00\",\"updated_at\":\"2023-01-03T12:43:23-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496\"}}}"
+            "body": "{\"smart_collection\":{\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"id\":482865238,\"published_at\":\"2023-02-02T10:02:36-05:00\",\"updated_at\":\"2023-02-02T10:02:36-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-02-02T09:56:58-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818\"}}}"
           },
           "name": "Publish a hidden collection",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"published\":true}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"published\":true}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1031,49 +1030,49 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->published = true;\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->published = true;\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/smart_collections/482865238.json",
             "headers": {},
-            "body": "{\"smart_collection\":{\"id\":482865238,\"image\":\"\",\"updated_at\":\"2023-01-03T12:44:12-05:00\",\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\"}}"
+            "body": "{\"smart_collection\":{\"id\":482865238,\"image\":\"\",\"updated_at\":\"2023-02-02T10:03:20-05:00\",\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\"}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collection\":{\"body_html\":\"<p>The best selling ipod ever</p>\",\"handle\":\"smart-ipods\",\"updated_at\":\"2023-01-03T12:44:13-05:00\",\"id\":482865238,\"sort_order\":\"manual\",\"title\":\"Smart iPods\",\"disjunctive\":false,\"template_suffix\":null,\"published_at\":\"2008-02-01T19:00:00-05:00\",\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\"}}"
+            "body": "{\"smart_collection\":{\"body_html\":\"<p>The best selling ipod ever</p>\",\"handle\":\"smart-ipods\",\"updated_at\":\"2023-02-02T10:03:21-05:00\",\"id\":482865238,\"sort_order\":\"manual\",\"title\":\"Smart iPods\",\"disjunctive\":false,\"template_suffix\":null,\"published_at\":\"2008-02-01T19:00:00-05:00\",\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\"}}"
           },
           "name": "Update a smart collection by clearing the collection image",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"image\":\"\",\"updated_at\":\"2023-01-03T12:44:12-05:00\",\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"image\":\"\",\"updated_at\":\"2023-02-02T10:03:20-05:00\",\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nsmart_collection = ShopifyAPI::SmartCollection.new(session: test_session)\nsmart_collection.id = 482865238\nsmart_collection.image = \"\"\nsmart_collection.updated_at = \"2023-01-03T12:44:12-05:00\"\nsmart_collection.title = \"Smart iPods\"\nsmart_collection.handle = \"smart-ipods\"\nsmart_collection.body_html = \"<p>The best selling ipod ever</p>\"\nsmart_collection.published_at = \"2008-02-01T19:00:00-05:00\"\nsmart_collection.sort_order = \"manual\"\nsmart_collection.template_suffix = nil\nsmart_collection.disjunctive = false\nsmart_collection.rules = [\n  {\n    \"column\" => \"type\",\n    \"relation\" => \"equals\",\n    \"condition\" => \"Cult Products\"\n  }\n]\nsmart_collection.published_scope = \"web\"\nsmart_collection.admin_graphql_api_id = \"gid://shopify/Collection/482865238\"\nsmart_collection.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nsmart_collection = ShopifyAPI::SmartCollection.new(session: test_session)\nsmart_collection.id = 482865238\nsmart_collection.image = \"\"\nsmart_collection.updated_at = \"2023-02-02T10:03:20-05:00\"\nsmart_collection.title = \"Smart iPods\"\nsmart_collection.handle = \"smart-ipods\"\nsmart_collection.body_html = \"<p>The best selling ipod ever</p>\"\nsmart_collection.published_at = \"2008-02-01T19:00:00-05:00\"\nsmart_collection.sort_order = \"manual\"\nsmart_collection.template_suffix = nil\nsmart_collection.disjunctive = false\nsmart_collection.rules = [\n  {\n    \"column\" => \"type\",\n    \"relation\" => \"equals\",\n    \"condition\" => \"Cult Products\"\n  }\n]\nsmart_collection.published_scope = \"web\"\nsmart_collection.admin_graphql_api_id = \"gid://shopify/Collection/482865238\"\nsmart_collection.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst smart_collection = new shopify.rest.SmartCollection({session: session});\nsmart_collection.id = 482865238;\nsmart_collection.image = \"\";\nsmart_collection.updated_at = \"2023-01-03T12:44:12-05:00\";\nsmart_collection.title = \"Smart iPods\";\nsmart_collection.handle = \"smart-ipods\";\nsmart_collection.body_html = \"<p>The best selling ipod ever</p>\";\nsmart_collection.published_at = \"2008-02-01T19:00:00-05:00\";\nsmart_collection.sort_order = \"manual\";\nsmart_collection.template_suffix = null;\nsmart_collection.disjunctive = false;\nsmart_collection.rules = [\n  {\n    \"column\": \"type\",\n    \"relation\": \"equals\",\n    \"condition\": \"Cult Products\"\n  }\n];\nsmart_collection.published_scope = \"web\";\nsmart_collection.admin_graphql_api_id = \"gid://shopify/Collection/482865238\";\nawait smart_collection.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst smart_collection = new shopify.rest.SmartCollection({session: session});\nsmart_collection.id = 482865238;\nsmart_collection.image = \"\";\nsmart_collection.updated_at = \"2023-02-02T10:03:20-05:00\";\nsmart_collection.title = \"Smart iPods\";\nsmart_collection.handle = \"smart-ipods\";\nsmart_collection.body_html = \"<p>The best selling ipod ever</p>\";\nsmart_collection.published_at = \"2008-02-01T19:00:00-05:00\";\nsmart_collection.sort_order = \"manual\";\nsmart_collection.template_suffix = null;\nsmart_collection.disjunctive = false;\nsmart_collection.rules = [\n  {\n    \"column\": \"type\",\n    \"relation\": \"equals\",\n    \"condition\": \"Cult Products\"\n  }\n];\nsmart_collection.published_scope = \"web\";\nsmart_collection.admin_graphql_api_id = \"gid://shopify/Collection/482865238\";\nawait smart_collection.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->image = \"\";\n$smart_collection->updated_at = \"2023-01-03T12:44:12-05:00\";\n$smart_collection->title = \"Smart iPods\";\n$smart_collection->handle = \"smart-ipods\";\n$smart_collection->body_html = \"<p>The best selling ipod ever</p>\";\n$smart_collection->published_at = \"2008-02-01T19:00:00-05:00\";\n$smart_collection->sort_order = \"manual\";\n$smart_collection->template_suffix = null;\n$smart_collection->disjunctive = false;\n$smart_collection->rules = [\n    [\n        \"column\" => \"type\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Cult Products\"\n    ]\n];\n$smart_collection->published_scope = \"web\";\n$smart_collection->admin_graphql_api_id = \"gid://shopify/Collection/482865238\";\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->image = \"\";\n$smart_collection->updated_at = \"2023-02-02T10:03:20-05:00\";\n$smart_collection->title = \"Smart iPods\";\n$smart_collection->handle = \"smart-ipods\";\n$smart_collection->body_html = \"<p>The best selling ipod ever</p>\";\n$smart_collection->published_at = \"2008-02-01T19:00:00-05:00\";\n$smart_collection->sort_order = \"manual\";\n$smart_collection->template_suffix = null;\n$smart_collection->disjunctive = false;\n$smart_collection->rules = [\n    [\n        \"column\" => \"type\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Cult Products\"\n    ]\n];\n$smart_collection->published_scope = \"web\";\n$smart_collection->admin_graphql_api_id = \"gid://shopify/Collection/482865238\";\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/smart_collections/482865238.json",
@@ -1083,13 +1082,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collection\":{\"updated_at\":\"2023-01-03T12:44:35-05:00\",\"id\":482865238,\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-01-03T12:44:35-05:00\",\"alt\":\"Rails logo\",\"width\":110,\"height\":140,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/fd43f2c8883f6e9b680e3295fd990d2c.gif?v=1672767875\"}}}"
+            "body": "{\"smart_collection\":{\"updated_at\":\"2023-02-02T10:03:07-05:00\",\"id\":482865238,\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-02-02T10:03:07-05:00\",\"alt\":\"Rails logo\",\"width\":110,\"height\":140,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/fd43f2c8883f6e9b680e3295fd990d2c.gif?v=1675350187\"}}}"
           },
           "name": "Update a smart collection by setting a new collection image",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"image\":{\"attachment\":\"R0lGODlhbgCMAPf/APbr48VySrxTO7IgKt2qmKQdJeK8lsFjROG5p/nz7Zg3\\nMNmnd7Q1MLNVS9GId71hSJMZIuzTu4UtKbeEeakhKMl8U8WYjfr18YQaIbAf\\nKKwhKdKzqpQtLebFortOOejKrOjZ1Mt7aMNpVbAqLLV7bsNqR+3WwMqEWenN\\nsZYxL/Ddy/Pm2e7ZxLlUQrIjNPXp3bU5MbhENbEtLtqhj5ZQTfHh0bMxL7Ip\\nNsNyUYkZIrZJPcqGdYIUHb5aPKkeJnoUHd2yiJkiLKYiKLRFOsyJXKVDO8up\\nosFaS+TBnK4kKti5sNaYg/z49aqYl5kqLrljUtORfMOlo/36+H4ZH8yDYq0f\\nKKFYTaU9MrY8MrZBNXwXHpgaIdGVYu/byLZNP9SaZLIyOuXCtHkpJst+Wpcm\\nLMyCa8BfP9GMb9KQdPDd1PPk1sd5VP79/L5dQZ0bI9+ymqssK9WcfIoXHdzG\\nxdWWfteib79lSr1YP86MYurQxKdcUKdMQr5ZSfPs6YEZH8uhl4oWIenMuurQ\\nttmejaqoqsqBVaAcJLlJN5kvMLlZRMNsSL5fRak0LbdQQMVvSPjw6cJnRpkf\\nKtmjhvfu5cJtT7IuOMVvWLY/M/37+o0YH9ibhtSYdObErc6HarM9NnYSGNGR\\navLi09unje3WyeO8rsVrT7tdRtK3uffu6NWeaL9pTJIjJrM4NPbx8cdyX7M7\\nPYYVHu7j4KgoNJAYIKtkV5o9MsOcldicis+RYNutfrhFOZ0hJbqinZ8bI8h5\\nUObFuOfItJsfJrJfUOfIqc+PXqQtK8RnSbA4Mcd3Tm0SGbpXQ8aqp7RLNs+s\\novHfzpVhV9iggMd1TLtbRKUdKXEQFsd4XrZRPLIgMZUeJ+jKvrAlK6AhJ65A\\nMpMpKuC3j5obIsRwS7hAN8l/YtvDvnYXHbAoLI47SIUsOMenorF4gO/m4+fH\\npo4vLZ8oKMukqp0cJbhVSMV2UuPR0bAfMLIrLrg/OcJwT8h+Vt+wn8eurLlh\\nQrIfKHQOHHQOHf///////yH5BAEAAP8ALAAAAABuAIwAAAj/AP8JHDhQXjpz\\n/PopXNiPn0OHDRMmbKhQIsOJFS1SxAhxI8SHFzVeDBnx48iNBAeeOkcxokeX\\nFRdOnAlSokaaLXNujJkxo8iYHRkKtWkzZSsaOXkAWsoUECynsHgoqEW1qtVa\\n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\\nGg4lOnRGDKRZsoS7pMPSA6YXNWLsKJLkSZOVwKhMGSTTrJf9ZNKcomXKTrQY\\nevr02cSIvKJxi6aJkaVuXaZMs1ziO5UqPawnuXK9AWEW2Jhja9pMuzMd27YW\\nLNga10fuZYUPkdZdqpTv575YbJQbkCHw1sEpb9wQMstwWLFkbfppjJPc/wTI\\nhHhJ5r0BBGbMRzfb7ez5MwwbpTMsx5pa9eob2CBM5yETpmzGtTE8hrybN29b\\nc1oBn6trc9K7nhmUy6BcOUrn0KHLcr0FQvWYMxdnb3w7t/fvwFMiFvKG0uw8\\n4kRLYjkGG0RtMPlWc+GGdyCwbwtYrOsHu7K0a+K/AEO04K0CF8InBvPOg2GE\\nKpZTrsHSUotwwgnnmW4LHGGBKbb9bMqhsSly082CW0QMkDLLSvQHFQFiOESX\\nLGzQpkUY22swA8Lko9EFLqfBEcdvMhRrwx610OLHtJ5Rc01ahHnCzTeFkXNO\\nOfWQkwQ6NNFzTz2X0GQJQAMVdJEYsBhBAyrbK/9tgBcbrCTCG7bkkstvvvwm\\nzPzI7JEcNLXDCYICQhXVkAIMMdWQd0x1Y9VdiuHGA1hjhfWQQzyg9dZDYmBg\\nyioSVfRKFwfYZ8ZIJ3XhGhe83OLSSwEZU78ea+pUO2wK8MFaUUMl9dReDOll\\n1VXbuYIZWWOl1dZDLpGhV3YZXLTR9vZhUMJijUX2mmveYRZcQDLlsCZOp21s\\nCx+uLTjbbE/11ttv3diFkSHKRReGcthtN1hgrdxH2Awk5fJefK+ZZ9lvVvXW\\n2cT+ZSwHgdHCpmCYDb4WYVNL7baXbsN9FdYYbKDA4otddBdYeffZx9iPjw35\\nmmlKNtnUfmXSNNqAW9b/6eWYY8YWYW0V7tYQhxWAwwege61y6OXkbdDoSUFe\\nWuR3wP3akKhjUtlHlqklG+YqsjaY620VNgQDMcQQouwrX3zR6KKFZfttyKtw\\n+utQnRUL2mjLYjnvtLDpu9e9/ZYZ8FK3maLwwn8OmlF3lWNc7df3gfzteaZZ\\n+NTKx5y6RxJ69/333mvBwHOLQ/fhiR2SV34HS47hmnAafJ9gh3AaDMcB7LE/\\nIoPY441dhOzDz94VN3DPNmoeM5drAyfK7lWH34baYetVCidBIT6C5UMhB4r2\\nn3FheSANRVGCwhBmObtlbgqXyYYNyuYFAMQFCtPwQf3spxAraGBRR+Af91wX\\n/zsPoCIuCCAV13yAMsWo7zIOaJHFSHEZHZABdWK4X0JoIAENLIeDCXFA2rgX\\nuwG8MC6kKGGoZuaDTEhtd/vBTBoyYLYqeAEzFpihGCagEBqIQQJVGMAOEdLD\\n2L0uHJdBAMIOhsTELHExwLnS/i6zAQlIQItWxKIccejGL/4wjPvw4kHSQApA\\nBhKQUDCiEWE2C93dTSEW2EMjaWABhbgnA3g8SAj4cElK+kMJWoyjBK6YECtw\\nUgKZ7N8ejdZHfzjgGgNY5SpnZsisJXFHikwICTLBskzUECFtxJ/FFKKETmrx\\nkwixQiclYAX+mfKUCpnBEZzpzHpkS2Yxm0ViMNcjhf+QABs5uKUuD9KoTOaP\\nQb80picxaExk8lCZfIxLNuBhrWnurZpjoiVCbAkBbnrTH2pbTjgZVAVyGnOY\\nBylmJ9P5xXWOUS6WEB3ZqgmTazLxMk40WntQub3lbIOc7OjkQP1RUI4e9CCl\\nfJ3jjCbEogDAE6KrAiKlVs+4gJF7GUDlDLLnUWCyg6Ps8GgxdyrSVK5zH/WI\\noARjZjFEQhSmRCEFg9SGSqIoQadT7alOJcAOoJJUmeFA6VBIETqk+ssPKizK\\nDorxwx9CdShSvapOqzpVoO7ApMocgAdcIb74HeSroEOqEn8w1mgVRR0KyEEw\\nKqoctTZEquzggFsVooepskP/DwqZAAfmakpGvc4HXSXF54CWVLthALASRYhB\\nFpmDd4QxsQxRQmNd61HITnWyCVHC9MTnCsY9U7dH4AM8spGQvVrsiRB4Fg/8\\ncFxsJmQDHvUHLQyhWsy01rXs2MFj2ZGC6862KKRgHGY6K9zlEPdyP8AJcteo\\n3ClsQCHq0AF0QdkN+HbjlxygL31hO13tMrW7lwkB0BiUoR3x4EfmrYlCNjAF\\nCRAoIWmwQexQqQcyxHe+9eXAfVOQAg7k16v7jQsAHGi2Bv0gUzyQQ05Ga+Cy\\n0MBEDsZgN8gQ4QnXt7oJ0QOGOZACDTeEu0aTCwC80EKhDcAHMDGHWATMsuMC\\nFsVl/9GnP0Jg0kw24MUv/qUTOGDlCj8WETfGsVx2vI+UzsATIFZUaTIRk3QY\\n+ZYlFq0Ce5QJHBXgdU+MRCSwEYlVBCHPQZhyn7vhhD9fWdAc2DKhKXxhRCc6\\n0Yi4LOPcl6hGVUFqc4gJLGaxufKO1s2VkrOj63znOkciCKMedZ+n7ARUp1rQ\\niLAyIlyNYURcONaInrWs9ci4JyJOaFYawDzP8Q+ZwAICLckbgd08i290eh9V\\nCIadQw3qO5Oa1H1GNRlSjeorO2HLruZ2rLudAm+Dm9Gxcx/GXmSIMbnjH5W2\\nzy2RbOzM+cENBRAWs0N9b3zXWdp8pra1r61tbXdb4N/2Nv8i5gzeIJd5Gjui\\nwT+AzQ9YVGrYnNO0Agm27GBkvNnNzje+921qf/+b1QEfuMDFPe5lk/lspUG3\\nWKbQCofLBBBuwNEs3C3aikcrB2TTeM81HgmOd3zf/PZ3yFPNaqSXfODF0EDK\\nE9e6liZmCvJwOLD7AQhU2efSbG6zm7VgiG1ofBc+//nGgZ7vbYw67aVux4v/\\nfXSSK53by/HVrzIwDZTBBANUrzpMeAAIWASeB4P/AQ9+cHjEJx7xWgDE5nLQ\\neMdHXvKbg/zkMZ23H/1oFRjYPOc9v3nQ58Aw0xn9LACvO7HQAOZVf/jl0ii1\\nHcXe9bPX3euftaPL5R71tIf97nsy7/o0WlP2r4/JOU7B+r5nqva7jz1EdZ97\\n4qNe+bonfvCfVXvly1762beOOdLBd+Q7PCAAOw==\\n\",\"alt\":\"Rails logo\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"image\":{\"attachment\":\"R0lGODlhbgCMAPf/APbr48VySrxTO7IgKt2qmKQdJeK8lsFjROG5p/nz7Zg3\\nMNmnd7Q1MLNVS9GId71hSJMZIuzTu4UtKbeEeakhKMl8U8WYjfr18YQaIbAf\\nKKwhKdKzqpQtLebFortOOejKrOjZ1Mt7aMNpVbAqLLV7bsNqR+3WwMqEWenN\\nsZYxL/Ddy/Pm2e7ZxLlUQrIjNPXp3bU5MbhENbEtLtqhj5ZQTfHh0bMxL7Ip\\nNsNyUYkZIrZJPcqGdYIUHb5aPKkeJnoUHd2yiJkiLKYiKLRFOsyJXKVDO8up\\nosFaS+TBnK4kKti5sNaYg/z49aqYl5kqLrljUtORfMOlo/36+H4ZH8yDYq0f\\nKKFYTaU9MrY8MrZBNXwXHpgaIdGVYu/byLZNP9SaZLIyOuXCtHkpJst+Wpcm\\nLMyCa8BfP9GMb9KQdPDd1PPk1sd5VP79/L5dQZ0bI9+ymqssK9WcfIoXHdzG\\nxdWWfteib79lSr1YP86MYurQxKdcUKdMQr5ZSfPs6YEZH8uhl4oWIenMuurQ\\nttmejaqoqsqBVaAcJLlJN5kvMLlZRMNsSL5fRak0LbdQQMVvSPjw6cJnRpkf\\nKtmjhvfu5cJtT7IuOMVvWLY/M/37+o0YH9ibhtSYdObErc6HarM9NnYSGNGR\\navLi09unje3WyeO8rsVrT7tdRtK3uffu6NWeaL9pTJIjJrM4NPbx8cdyX7M7\\nPYYVHu7j4KgoNJAYIKtkV5o9MsOcldicis+RYNutfrhFOZ0hJbqinZ8bI8h5\\nUObFuOfItJsfJrJfUOfIqc+PXqQtK8RnSbA4Mcd3Tm0SGbpXQ8aqp7RLNs+s\\novHfzpVhV9iggMd1TLtbRKUdKXEQFsd4XrZRPLIgMZUeJ+jKvrAlK6AhJ65A\\nMpMpKuC3j5obIsRwS7hAN8l/YtvDvnYXHbAoLI47SIUsOMenorF4gO/m4+fH\\npo4vLZ8oKMukqp0cJbhVSMV2UuPR0bAfMLIrLrg/OcJwT8h+Vt+wn8eurLlh\\nQrIfKHQOHHQOHf///////yH5BAEAAP8ALAAAAABuAIwAAAj/AP8JHDhQXjpz\\n/PopXNiPn0OHDRMmbKhQIsOJFS1SxAhxI8SHFzVeDBnx48iNBAeeOkcxokeX\\nFRdOnAlSokaaLXNujJkxo8iYHRkKtWkzZSsaOXkAWsoUECynsHgoqEW1qtVa\\n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\\nGg4lOnRGDKRZsoS7pMPSA6YXNWLsKJLkSZOVwKhMGSTTrJf9ZNKcomXKTrQY\\nevr02cSIvKJxi6aJkaVuXaZMs1ziO5UqPawnuXK9AWEW2Jhja9pMuzMd27YW\\nLNga10fuZYUPkdZdqpTv575YbJQbkCHw1sEpb9wQMstwWLFkbfppjJPc/wTI\\nhHhJ5r0BBGbMRzfb7ez5MwwbpTMsx5pa9eob2CBM5yETpmzGtTE8hrybN29b\\nc1oBn6trc9K7nhmUy6BcOUrn0KHLcr0FQvWYMxdnb3w7t/fvwFMiFvKG0uw8\\n4kRLYjkGG0RtMPlWc+GGdyCwbwtYrOsHu7K0a+K/AEO04K0CF8InBvPOg2GE\\nKpZTrsHSUotwwgnnmW4LHGGBKbb9bMqhsSly082CW0QMkDLLSvQHFQFiOESX\\nLGzQpkUY22swA8Lko9EFLqfBEcdvMhRrwx610OLHtJ5Rc01ahHnCzTeFkXNO\\nOfWQkwQ6NNFzTz2X0GQJQAMVdJEYsBhBAyrbK/9tgBcbrCTCG7bkkstvvvwm\\nzPzI7JEcNLXDCYICQhXVkAIMMdWQd0x1Y9VdiuHGA1hjhfWQQzyg9dZDYmBg\\nyioSVfRKFwfYZ8ZIJ3XhGhe83OLSSwEZU78ea+pUO2wK8MFaUUMl9dReDOll\\n1VXbuYIZWWOl1dZDLpGhV3YZXLTR9vZhUMJijUX2mmveYRZcQDLlsCZOp21s\\nCx+uLTjbbE/11ttv3diFkSHKRReGcthtN1hgrdxH2Awk5fJefK+ZZ9lvVvXW\\n2cT+ZSwHgdHCpmCYDb4WYVNL7baXbsN9FdYYbKDA4otddBdYeffZx9iPjw35\\nmmlKNtnUfmXSNNqAW9b/6eWYY8YWYW0V7tYQhxWAwwege61y6OXkbdDoSUFe\\nWuR3wP3akKhjUtlHlqklG+YqsjaY620VNgQDMcQQouwrX3zR6KKFZfttyKtw\\n+utQnRUL2mjLYjnvtLDpu9e9/ZYZ8FK3maLwwn8OmlF3lWNc7df3gfzteaZZ\\n+NTKx5y6RxJ69/333mvBwHOLQ/fhiR2SV34HS47hmnAafJ9gh3AaDMcB7LE/\\nIoPY441dhOzDz94VN3DPNmoeM5drAyfK7lWH34baYetVCidBIT6C5UMhB4r2\\nn3FheSANRVGCwhBmObtlbgqXyYYNyuYFAMQFCtPwQf3spxAraGBRR+Af91wX\\n/zsPoCIuCCAV13yAMsWo7zIOaJHFSHEZHZABdWK4X0JoIAENLIeDCXFA2rgX\\nuwG8MC6kKGGoZuaDTEhtd/vBTBoyYLYqeAEzFpihGCagEBqIQQJVGMAOEdLD\\n2L0uHJdBAMIOhsTELHExwLnS/i6zAQlIQItWxKIccejGL/4wjPvw4kHSQApA\\nBhKQUDCiEWE2C93dTSEW2EMjaWABhbgnA3g8SAj4cElK+kMJWoyjBK6YECtw\\nUgKZ7N8ejdZHfzjgGgNY5SpnZsisJXFHikwICTLBskzUECFtxJ/FFKKETmrx\\nkwixQiclYAX+mfKUCpnBEZzpzHpkS2Yxm0ViMNcjhf+QABs5uKUuD9KoTOaP\\nQb80picxaExk8lCZfIxLNuBhrWnurZpjoiVCbAkBbnrTH2pbTjgZVAVyGnOY\\nBylmJ9P5xXWOUS6WEB3ZqgmTazLxMk40WntQub3lbIOc7OjkQP1RUI4e9CCl\\nfJ3jjCbEogDAE6KrAiKlVs+4gJF7GUDlDLLnUWCyg6Ps8GgxdyrSVK5zH/WI\\noARjZjFEQhSmRCEFg9SGSqIoQadT7alOJcAOoJJUmeFA6VBIETqk+ssPKizK\\nDorxwx9CdShSvapOqzpVoO7ApMocgAdcIb74HeSroEOqEn8w1mgVRR0KyEEw\\nKqoctTZEquzggFsVooepskP/DwqZAAfmakpGvc4HXSXF54CWVLthALASRYhB\\nFpmDd4QxsQxRQmNd61HITnWyCVHC9MTnCsY9U7dH4AM8spGQvVrsiRB4Fg/8\\ncFxsJmQDHvUHLQyhWsy01rXs2MFj2ZGC6862KKRgHGY6K9zlEPdyP8AJcteo\\n3ClsQCHq0AF0QdkN+HbjlxygL31hO13tMrW7lwkB0BiUoR3x4EfmrYlCNjAF\\nCRAoIWmwQexQqQcyxHe+9eXAfVOQAg7k16v7jQsAHGi2Bv0gUzyQQ05Ga+Cy\\n0MBEDsZgN8gQ4QnXt7oJ0QOGOZACDTeEu0aTCwC80EKhDcAHMDGHWATMsuMC\\nFsVl/9GnP0Jg0kw24MUv/qUTOGDlCj8WETfGsVx2vI+UzsATIFZUaTIRk3QY\\n+ZYlFq0Ce5QJHBXgdU+MRCSwEYlVBCHPQZhyn7vhhD9fWdAc2DKhKXxhRCc6\\n0Yi4LOPcl6hGVUFqc4gJLGaxufKO1s2VkrOj63znOkciCKMedZ+n7ARUp1rQ\\niLAyIlyNYURcONaInrWs9ci4JyJOaFYawDzP8Q+ZwAICLckbgd08i290eh9V\\nCIadQw3qO5Oa1H1GNRlSjeorO2HLruZ2rLudAm+Dm9Gxcx/GXmSIMbnjH5W2\\nzy2RbOzM+cENBRAWs0N9b3zXWdp8pra1r61tbXdb4N/2Nv8i5gzeIJd5Gjui\\nwT+AzQ9YVGrYnNO0Agm27GBkvNnNzje+921qf/+b1QEfuMDFPe5lk/lspUG3\\nWKbQCofLBBBuwNEs3C3aikcrB2TTeM81HgmOd3zf/PZ3yFPNaqSXfODF0EDK\\nE9e6liZmCvJwOLD7AQhU2efSbG6zm7VgiG1ofBc+//nGgZ7vbYw67aVux4v/\\nfXSSK53by/HVrzIwDZTBBANUrzpMeAAIWASeB4P/AQ9+cHjEJx7xWgDE5nLQ\\neMdHXvKbg/zkMZ23H/1oFRjYPOc9v3nQ58Aw0xn9LACvO7HQAOZVf/jl0ii1\\nHcXe9bPX3euftaPL5R71tIf97nsy7/o0WlP2r4/JOU7B+r5nqva7jz1EdZ97\\n4qNe+bonfvCfVXvly1762beOOdLBd+Q7PCAAOw==\\n\",\"alt\":\"Rails logo\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1101,14 +1100,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->image = [\n    \"attachment\" => \"R0lGODlhbgCMAPf/APbr48VySrxTO7IgKt2qmKQdJeK8lsFjROG5p/nz7Zg3\\nMNmnd7Q1MLNVS9GId71hSJMZIuzTu4UtKbeEeakhKMl8U8WYjfr18YQaIbAf\\nKKwhKdKzqpQtLebFortOOejKrOjZ1Mt7aMNpVbAqLLV7bsNqR+3WwMqEWenN\\nsZYxL/Ddy/Pm2e7ZxLlUQrIjNPXp3bU5MbhENbEtLtqhj5ZQTfHh0bMxL7Ip\\nNsNyUYkZIrZJPcqGdYIUHb5aPKkeJnoUHd2yiJkiLKYiKLRFOsyJXKVDO8up\\nosFaS+TBnK4kKti5sNaYg/z49aqYl5kqLrljUtORfMOlo/36+H4ZH8yDYq0f\\nKKFYTaU9MrY8MrZBNXwXHpgaIdGVYu/byLZNP9SaZLIyOuXCtHkpJst+Wpcm\\nLMyCa8BfP9GMb9KQdPDd1PPk1sd5VP79/L5dQZ0bI9+ymqssK9WcfIoXHdzG\\nxdWWfteib79lSr1YP86MYurQxKdcUKdMQr5ZSfPs6YEZH8uhl4oWIenMuurQ\\nttmejaqoqsqBVaAcJLlJN5kvMLlZRMNsSL5fRak0LbdQQMVvSPjw6cJnRpkf\\nKtmjhvfu5cJtT7IuOMVvWLY/M/37+o0YH9ibhtSYdObErc6HarM9NnYSGNGR\\navLi09unje3WyeO8rsVrT7tdRtK3uffu6NWeaL9pTJIjJrM4NPbx8cdyX7M7\\nPYYVHu7j4KgoNJAYIKtkV5o9MsOcldicis+RYNutfrhFOZ0hJbqinZ8bI8h5\\nUObFuOfItJsfJrJfUOfIqc+PXqQtK8RnSbA4Mcd3Tm0SGbpXQ8aqp7RLNs+s\\novHfzpVhV9iggMd1TLtbRKUdKXEQFsd4XrZRPLIgMZUeJ+jKvrAlK6AhJ65A\\nMpMpKuC3j5obIsRwS7hAN8l/YtvDvnYXHbAoLI47SIUsOMenorF4gO/m4+fH\\npo4vLZ8oKMukqp0cJbhVSMV2UuPR0bAfMLIrLrg/OcJwT8h+Vt+wn8eurLlh\\nQrIfKHQOHHQOHf///////yH5BAEAAP8ALAAAAABuAIwAAAj/AP8JHDhQXjpz\\n/PopXNiPn0OHDRMmbKhQIsOJFS1SxAhxI8SHFzVeDBnx48iNBAeeOkcxokeX\\nFRdOnAlSokaaLXNujJkxo8iYHRkKtWkzZSsaOXkAWsoUECynsHgoqEW1qtVa\\n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\\nGg4lOnRGDKRZsoS7pMPSA6YXNWLsKJLkSZOVwKhMGSTTrJf9ZNKcomXKTrQY\\nevr02cSIvKJxi6aJkaVuXaZMs1ziO5UqPawnuXK9AWEW2Jhja9pMuzMd27YW\\nLNga10fuZYUPkdZdqpTv575YbJQbkCHw1sEpb9wQMstwWLFkbfppjJPc/wTI\\nhHhJ5r0BBGbMRzfb7ez5MwwbpTMsx5pa9eob2CBM5yETpmzGtTE8hrybN29b\\nc1oBn6trc9K7nhmUy6BcOUrn0KHLcr0FQvWYMxdnb3w7t/fvwFMiFvKG0uw8\\n4kRLYjkGG0RtMPlWc+GGdyCwbwtYrOsHu7K0a+K/AEO04K0CF8InBvPOg2GE\\nKpZTrsHSUotwwgnnmW4LHGGBKbb9bMqhsSly082CW0QMkDLLSvQHFQFiOESX\\nLGzQpkUY22swA8Lko9EFLqfBEcdvMhRrwx610OLHtJ5Rc01ahHnCzTeFkXNO\\nOfWQkwQ6NNFzTz2X0GQJQAMVdJEYsBhBAyrbK/9tgBcbrCTCG7bkkstvvvwm\\nzPzI7JEcNLXDCYICQhXVkAIMMdWQd0x1Y9VdiuHGA1hjhfWQQzyg9dZDYmBg\\nyioSVfRKFwfYZ8ZIJ3XhGhe83OLSSwEZU78ea+pUO2wK8MFaUUMl9dReDOll\\n1VXbuYIZWWOl1dZDLpGhV3YZXLTR9vZhUMJijUX2mmveYRZcQDLlsCZOp21s\\nCx+uLTjbbE/11ttv3diFkSHKRReGcthtN1hgrdxH2Awk5fJefK+ZZ9lvVvXW\\n2cT+ZSwHgdHCpmCYDb4WYVNL7baXbsN9FdYYbKDA4otddBdYeffZx9iPjw35\\nmmlKNtnUfmXSNNqAW9b/6eWYY8YWYW0V7tYQhxWAwwege61y6OXkbdDoSUFe\\nWuR3wP3akKhjUtlHlqklG+YqsjaY620VNgQDMcQQouwrX3zR6KKFZfttyKtw\\n+utQnRUL2mjLYjnvtLDpu9e9/ZYZ8FK3maLwwn8OmlF3lWNc7df3gfzteaZZ\\n+NTKx5y6RxJ69/333mvBwHOLQ/fhiR2SV34HS47hmnAafJ9gh3AaDMcB7LE/\\nIoPY441dhOzDz94VN3DPNmoeM5drAyfK7lWH34baYetVCidBIT6C5UMhB4r2\\nn3FheSANRVGCwhBmObtlbgqXyYYNyuYFAMQFCtPwQf3spxAraGBRR+Af91wX\\n/zsPoCIuCCAV13yAMsWo7zIOaJHFSHEZHZABdWK4X0JoIAENLIeDCXFA2rgX\\nuwG8MC6kKGGoZuaDTEhtd/vBTBoyYLYqeAEzFpihGCagEBqIQQJVGMAOEdLD\\n2L0uHJdBAMIOhsTELHExwLnS/i6zAQlIQItWxKIccejGL/4wjPvw4kHSQApA\\nBhKQUDCiEWE2C93dTSEW2EMjaWABhbgnA3g8SAj4cElK+kMJWoyjBK6YECtw\\nUgKZ7N8ejdZHfzjgGgNY5SpnZsisJXFHikwICTLBskzUECFtxJ/FFKKETmrx\\nkwixQiclYAX+mfKUCpnBEZzpzHpkS2Yxm0ViMNcjhf+QABs5uKUuD9KoTOaP\\nQb80picxaExk8lCZfIxLNuBhrWnurZpjoiVCbAkBbnrTH2pbTjgZVAVyGnOY\\nBylmJ9P5xXWOUS6WEB3ZqgmTazLxMk40WntQub3lbIOc7OjkQP1RUI4e9CCl\\nfJ3jjCbEogDAE6KrAiKlVs+4gJF7GUDlDLLnUWCyg6Ps8GgxdyrSVK5zH/WI\\noARjZjFEQhSmRCEFg9SGSqIoQadT7alOJcAOoJJUmeFA6VBIETqk+ssPKizK\\nDorxwx9CdShSvapOqzpVoO7ApMocgAdcIb74HeSroEOqEn8w1mgVRR0KyEEw\\nKqoctTZEquzggFsVooepskP/DwqZAAfmakpGvc4HXSXF54CWVLthALASRYhB\\nFpmDd4QxsQxRQmNd61HITnWyCVHC9MTnCsY9U7dH4AM8spGQvVrsiRB4Fg/8\\ncFxsJmQDHvUHLQyhWsy01rXs2MFj2ZGC6862KKRgHGY6K9zlEPdyP8AJcteo\\n3ClsQCHq0AF0QdkN+HbjlxygL31hO13tMrW7lwkB0BiUoR3x4EfmrYlCNjAF\\nCRAoIWmwQexQqQcyxHe+9eXAfVOQAg7k16v7jQsAHGi2Bv0gUzyQQ05Ga+Cy\\n0MBEDsZgN8gQ4QnXt7oJ0QOGOZACDTeEu0aTCwC80EKhDcAHMDGHWATMsuMC\\nFsVl/9GnP0Jg0kw24MUv/qUTOGDlCj8WETfGsVx2vI+UzsATIFZUaTIRk3QY\\n+ZYlFq0Ce5QJHBXgdU+MRCSwEYlVBCHPQZhyn7vhhD9fWdAc2DKhKXxhRCc6\\n0Yi4LOPcl6hGVUFqc4gJLGaxufKO1s2VkrOj63znOkciCKMedZ+n7ARUp1rQ\\niLAyIlyNYURcONaInrWs9ci4JyJOaFYawDzP8Q+ZwAICLckbgd08i290eh9V\\nCIadQw3qO5Oa1H1GNRlSjeorO2HLruZ2rLudAm+Dm9Gxcx/GXmSIMbnjH5W2\\nzy2RbOzM+cENBRAWs0N9b3zXWdp8pra1r61tbXdb4N/2Nv8i5gzeIJd5Gjui\\nwT+AzQ9YVGrYnNO0Agm27GBkvNnNzje+921qf/+b1QEfuMDFPe5lk/lspUG3\\nWKbQCofLBBBuwNEs3C3aikcrB2TTeM81HgmOd3zf/PZ3yFPNaqSXfODF0EDK\\nE9e6liZmCvJwOLD7AQhU2efSbG6zm7VgiG1ofBc+//nGgZ7vbYw67aVux4v/\\nfXSSK53by/HVrzIwDZTBBANUrzpMeAAIWASeB4P/AQ9+cHjEJx7xWgDE5nLQ\\neMdHXvKbg/zkMZ23H/1oFRjYPOc9v3nQ58Aw0xn9LACvO7HQAOZVf/jl0ii1\\nHcXe9bPX3euftaPL5R71tIf97nsy7/o0WlP2r4/JOU7B+r5nqva7jz1EdZ97\\n4qNe+bonfvCfVXvly1762beOOdLBd+Q7PCAAOw==\\n\",\n    \"alt\" => \"Rails logo\"\n];\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->image = [\n    \"attachment\" => \"R0lGODlhbgCMAPf/APbr48VySrxTO7IgKt2qmKQdJeK8lsFjROG5p/nz7Zg3\\nMNmnd7Q1MLNVS9GId71hSJMZIuzTu4UtKbeEeakhKMl8U8WYjfr18YQaIbAf\\nKKwhKdKzqpQtLebFortOOejKrOjZ1Mt7aMNpVbAqLLV7bsNqR+3WwMqEWenN\\nsZYxL/Ddy/Pm2e7ZxLlUQrIjNPXp3bU5MbhENbEtLtqhj5ZQTfHh0bMxL7Ip\\nNsNyUYkZIrZJPcqGdYIUHb5aPKkeJnoUHd2yiJkiLKYiKLRFOsyJXKVDO8up\\nosFaS+TBnK4kKti5sNaYg/z49aqYl5kqLrljUtORfMOlo/36+H4ZH8yDYq0f\\nKKFYTaU9MrY8MrZBNXwXHpgaIdGVYu/byLZNP9SaZLIyOuXCtHkpJst+Wpcm\\nLMyCa8BfP9GMb9KQdPDd1PPk1sd5VP79/L5dQZ0bI9+ymqssK9WcfIoXHdzG\\nxdWWfteib79lSr1YP86MYurQxKdcUKdMQr5ZSfPs6YEZH8uhl4oWIenMuurQ\\nttmejaqoqsqBVaAcJLlJN5kvMLlZRMNsSL5fRak0LbdQQMVvSPjw6cJnRpkf\\nKtmjhvfu5cJtT7IuOMVvWLY/M/37+o0YH9ibhtSYdObErc6HarM9NnYSGNGR\\navLi09unje3WyeO8rsVrT7tdRtK3uffu6NWeaL9pTJIjJrM4NPbx8cdyX7M7\\nPYYVHu7j4KgoNJAYIKtkV5o9MsOcldicis+RYNutfrhFOZ0hJbqinZ8bI8h5\\nUObFuOfItJsfJrJfUOfIqc+PXqQtK8RnSbA4Mcd3Tm0SGbpXQ8aqp7RLNs+s\\novHfzpVhV9iggMd1TLtbRKUdKXEQFsd4XrZRPLIgMZUeJ+jKvrAlK6AhJ65A\\nMpMpKuC3j5obIsRwS7hAN8l/YtvDvnYXHbAoLI47SIUsOMenorF4gO/m4+fH\\npo4vLZ8oKMukqp0cJbhVSMV2UuPR0bAfMLIrLrg/OcJwT8h+Vt+wn8eurLlh\\nQrIfKHQOHHQOHf///////yH5BAEAAP8ALAAAAABuAIwAAAj/AP8JHDhQXjpz\\n/PopXNiPn0OHDRMmbKhQIsOJFS1SxAhxI8SHFzVeDBnx48iNBAeeOkcxokeX\\nFRdOnAlSokaaLXNujJkxo8iYHRkKtWkzZSsaOXkAWsoUECynsHgoqEW1qtVa\\n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\\nGg4lOnRGDKRZsoS7pMPSA6YXNWLsKJLkSZOVwKhMGSTTrJf9ZNKcomXKTrQY\\nevr02cSIvKJxi6aJkaVuXaZMs1ziO5UqPawnuXK9AWEW2Jhja9pMuzMd27YW\\nLNga10fuZYUPkdZdqpTv575YbJQbkCHw1sEpb9wQMstwWLFkbfppjJPc/wTI\\nhHhJ5r0BBGbMRzfb7ez5MwwbpTMsx5pa9eob2CBM5yETpmzGtTE8hrybN29b\\nc1oBn6trc9K7nhmUy6BcOUrn0KHLcr0FQvWYMxdnb3w7t/fvwFMiFvKG0uw8\\n4kRLYjkGG0RtMPlWc+GGdyCwbwtYrOsHu7K0a+K/AEO04K0CF8InBvPOg2GE\\nKpZTrsHSUotwwgnnmW4LHGGBKbb9bMqhsSly082CW0QMkDLLSvQHFQFiOESX\\nLGzQpkUY22swA8Lko9EFLqfBEcdvMhRrwx610OLHtJ5Rc01ahHnCzTeFkXNO\\nOfWQkwQ6NNFzTz2X0GQJQAMVdJEYsBhBAyrbK/9tgBcbrCTCG7bkkstvvvwm\\nzPzI7JEcNLXDCYICQhXVkAIMMdWQd0x1Y9VdiuHGA1hjhfWQQzyg9dZDYmBg\\nyioSVfRKFwfYZ8ZIJ3XhGhe83OLSSwEZU78ea+pUO2wK8MFaUUMl9dReDOll\\n1VXbuYIZWWOl1dZDLpGhV3YZXLTR9vZhUMJijUX2mmveYRZcQDLlsCZOp21s\\nCx+uLTjbbE/11ttv3diFkSHKRReGcthtN1hgrdxH2Awk5fJefK+ZZ9lvVvXW\\n2cT+ZSwHgdHCpmCYDb4WYVNL7baXbsN9FdYYbKDA4otddBdYeffZx9iPjw35\\nmmlKNtnUfmXSNNqAW9b/6eWYY8YWYW0V7tYQhxWAwwege61y6OXkbdDoSUFe\\nWuR3wP3akKhjUtlHlqklG+YqsjaY620VNgQDMcQQouwrX3zR6KKFZfttyKtw\\n+utQnRUL2mjLYjnvtLDpu9e9/ZYZ8FK3maLwwn8OmlF3lWNc7df3gfzteaZZ\\n+NTKx5y6RxJ69/333mvBwHOLQ/fhiR2SV34HS47hmnAafJ9gh3AaDMcB7LE/\\nIoPY441dhOzDz94VN3DPNmoeM5drAyfK7lWH34baYetVCidBIT6C5UMhB4r2\\nn3FheSANRVGCwhBmObtlbgqXyYYNyuYFAMQFCtPwQf3spxAraGBRR+Af91wX\\n/zsPoCIuCCAV13yAMsWo7zIOaJHFSHEZHZABdWK4X0JoIAENLIeDCXFA2rgX\\nuwG8MC6kKGGoZuaDTEhtd/vBTBoyYLYqeAEzFpihGCagEBqIQQJVGMAOEdLD\\n2L0uHJdBAMIOhsTELHExwLnS/i6zAQlIQItWxKIccejGL/4wjPvw4kHSQApA\\nBhKQUDCiEWE2C93dTSEW2EMjaWABhbgnA3g8SAj4cElK+kMJWoyjBK6YECtw\\nUgKZ7N8ejdZHfzjgGgNY5SpnZsisJXFHikwICTLBskzUECFtxJ/FFKKETmrx\\nkwixQiclYAX+mfKUCpnBEZzpzHpkS2Yxm0ViMNcjhf+QABs5uKUuD9KoTOaP\\nQb80picxaExk8lCZfIxLNuBhrWnurZpjoiVCbAkBbnrTH2pbTjgZVAVyGnOY\\nBylmJ9P5xXWOUS6WEB3ZqgmTazLxMk40WntQub3lbIOc7OjkQP1RUI4e9CCl\\nfJ3jjCbEogDAE6KrAiKlVs+4gJF7GUDlDLLnUWCyg6Ps8GgxdyrSVK5zH/WI\\noARjZjFEQhSmRCEFg9SGSqIoQadT7alOJcAOoJJUmeFA6VBIETqk+ssPKizK\\nDorxwx9CdShSvapOqzpVoO7ApMocgAdcIb74HeSroEOqEn8w1mgVRR0KyEEw\\nKqoctTZEquzggFsVooepskP/DwqZAAfmakpGvc4HXSXF54CWVLthALASRYhB\\nFpmDd4QxsQxRQmNd61HITnWyCVHC9MTnCsY9U7dH4AM8spGQvVrsiRB4Fg/8\\ncFxsJmQDHvUHLQyhWsy01rXs2MFj2ZGC6862KKRgHGY6K9zlEPdyP8AJcteo\\n3ClsQCHq0AF0QdkN+HbjlxygL31hO13tMrW7lwkB0BiUoR3x4EfmrYlCNjAF\\nCRAoIWmwQexQqQcyxHe+9eXAfVOQAg7k16v7jQsAHGi2Bv0gUzyQQ05Ga+Cy\\n0MBEDsZgN8gQ4QnXt7oJ0QOGOZACDTeEu0aTCwC80EKhDcAHMDGHWATMsuMC\\nFsVl/9GnP0Jg0kw24MUv/qUTOGDlCj8WETfGsVx2vI+UzsATIFZUaTIRk3QY\\n+ZYlFq0Ce5QJHBXgdU+MRCSwEYlVBCHPQZhyn7vhhD9fWdAc2DKhKXxhRCc6\\n0Yi4LOPcl6hGVUFqc4gJLGaxufKO1s2VkrOj63znOkciCKMedZ+n7ARUp1rQ\\niLAyIlyNYURcONaInrWs9ci4JyJOaFYawDzP8Q+ZwAICLckbgd08i290eh9V\\nCIadQw3qO5Oa1H1GNRlSjeorO2HLruZ2rLudAm+Dm9Gxcx/GXmSIMbnjH5W2\\nzy2RbOzM+cENBRAWs0N9b3zXWdp8pra1r61tbXdb4N/2Nv8i5gzeIJd5Gjui\\nwT+AzQ9YVGrYnNO0Agm27GBkvNnNzje+921qf/+b1QEfuMDFPe5lk/lspUG3\\nWKbQCofLBBBuwNEs3C3aikcrB2TTeM81HgmOd3zf/PZ3yFPNaqSXfODF0EDK\\nE9e6liZmCvJwOLD7AQhU2efSbG6zm7VgiG1ofBc+//nGgZ7vbYw67aVux4v/\\nfXSSK53by/HVrzIwDZTBBANUrzpMeAAIWASeB4P/AQ9+cHjEJx7xWgDE5nLQ\\neMdHXvKbg/zkMZ23H/1oFRjYPOc9v3nQ58Aw0xn9LACvO7HQAOZVf/jl0ii1\\nHcXe9bPX3euftaPL5R71tIf97nsy7/o0WlP2r4/JOU7B+r5nqva7jz1EdZ97\\n4qNe+bonfvCfVXvly1762beOOdLBd+Q7PCAAOw==\\n\",\n    \"alt\" => \"Rails logo\"\n];\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/smart_collections/482865238.json",
@@ -1118,13 +1117,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collection\":{\"updated_at\":\"2023-01-03T12:43:34-05:00\",\"id\":482865238,\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"alt\":\"Rails logo\",\"created_at\":\"2023-01-03T12:43:32-05:00\",\"width\":110,\"height\":140,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/rails_logo20230103-54493-iapzkx.gif?v=1672767814\"}}}"
+            "body": "{\"smart_collection\":{\"updated_at\":\"2023-02-02T10:03:25-05:00\",\"id\":482865238,\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"alt\":\"Rails logo\",\"created_at\":\"2023-02-02T10:03:23-05:00\",\"width\":110,\"height\":140,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/rails_logo20230202-30594-1zfxus.gif?v=1675350205\"}}}"
           },
           "name": "Update a smart collection by setting a new collection image alternative text",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"image\":{\"alt\":\"Rails logo\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"image\":{\"alt\":\"Rails logo\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1136,14 +1135,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->image = [\n    \"alt\" => \"Rails logo\"\n];\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->image = [\n    \"alt\" => \"Rails logo\"\n];\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/smart_collections/482865238.json",
@@ -1153,13 +1152,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"smart_collection\":{\"body_html\":\"<p>5000 songs in your pocket</p>\",\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"id\":482865238,\"updated_at\":\"2023-01-03T12:44:20-05:00\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-01-03T12:21:36-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1672766496\"}}}"
+            "body": "{\"smart_collection\":{\"body_html\":\"<p>5000 songs in your pocket</p>\",\"title\":\"Smart iPods\",\"handle\":\"smart-ipods\",\"id\":482865238,\"updated_at\":\"2023-02-02T10:02:54-05:00\",\"published_at\":\"2008-02-01T19:00:00-05:00\",\"sort_order\":\"manual\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"type\",\"relation\":\"equals\",\"condition\":\"Cult Products\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/482865238\",\"image\":{\"created_at\":\"2023-02-02T09:56:58-05:00\",\"alt\":\"MP3 Player 8gb\",\"width\":123,\"height\":456,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1675349818\"}}}"
           },
           "name": "Update the description of a smart collection",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"body_html\":\"<p>5000 songs in your pocket</p>\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"id\":482865238,\"body_html\":\"<p>5000 songs in your pocket</p>\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1171,7 +1170,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->body_html = \"<p>5000 songs in your pocket</p>\";\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->body_html = \"<p>5000 songs in your pocket</p>\";\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -1226,7 +1225,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/smart_collections/482865238.json",
@@ -1242,7 +1241,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1254,7 +1253,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::delete(\n    $this->test_session, // Session\n    482865238, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nSmartCollection::delete(\n    $this->test_session, // Session\n    482865238, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1292,12 +1291,12 @@
                 "Create a new smart collection with a base64 encoded image": {
                   "value": {
                     "smart_collection": {
-                      "id": 1063001315,
+                      "id": 1063001343,
                       "handle": "macbooks",
                       "title": "Macbooks",
-                      "updated_at": "2023-01-03T10:43:20-07:00",
+                      "updated_at": "2023-02-02T08:03:11-07:00",
                       "body_html": null,
-                      "published_at": "2023-01-03T10:43:20-07:00",
+                      "published_at": "2023-02-02T08:03:11-07:00",
                       "sort_order": "best-selling",
                       "template_suffix": null,
                       "disjunctive": false,
@@ -1309,13 +1308,13 @@
                         }
                       ],
                       "published_scope": "web",
-                      "admin_graphql_api_id": "gid://shopify/Collection/1063001315",
+                      "admin_graphql_api_id": "gid://shopify/Collection/1063001343",
                       "image": {
-                        "created_at": "2023-01-03T10:43:20-07:00",
+                        "created_at": "2023-02-02T08:03:11-07:00",
                         "alt": "iPod",
                         "width": 1,
                         "height": 1,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/df3e567d6f16d040326c7a0ea29a4f41.gif?v=1672767800"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/df3e567d6f16d040326c7a0ea29a4f41.gif?v=1675350191"
                       }
                     }
                   }
@@ -1323,12 +1322,12 @@
                 "Create a new smart collection with an image that will be downloaded by Shopify": {
                   "value": {
                     "smart_collection": {
-                      "id": 1063001314,
+                      "id": 1063001333,
                       "handle": "macbooks",
                       "title": "Macbooks",
-                      "updated_at": "2023-01-03T10:43:18-07:00",
+                      "updated_at": "2023-02-02T08:02:29-07:00",
                       "body_html": null,
-                      "published_at": "2023-01-03T10:43:18-07:00",
+                      "published_at": "2023-02-02T08:02:28-07:00",
                       "sort_order": "best-selling",
                       "template_suffix": null,
                       "disjunctive": false,
@@ -1340,13 +1339,13 @@
                         }
                       ],
                       "published_scope": "web",
-                      "admin_graphql_api_id": "gid://shopify/Collection/1063001314",
+                      "admin_graphql_api_id": "gid://shopify/Collection/1063001333",
                       "image": {
-                        "created_at": "2023-01-03T10:43:18-07:00",
+                        "created_at": "2023-02-02T08:02:28-07:00",
                         "alt": "Rails Logo",
                         "width": 110,
                         "height": 140,
-                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/rails_logo20230103-54493-xezjfo.gif?v=1672767798"
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/rails_logo20230202-30594-ff4ey5.gif?v=1675350149"
                       }
                     }
                   }
@@ -1354,10 +1353,10 @@
                 "Create a new unpublished smart collection": {
                   "value": {
                     "smart_collection": {
-                      "id": 1063001313,
+                      "id": 1063001337,
                       "handle": "macbooks",
                       "title": "Macbooks",
-                      "updated_at": "2023-01-03T10:43:16-07:00",
+                      "updated_at": "2023-02-02T08:02:49-07:00",
                       "body_html": null,
                       "published_at": null,
                       "sort_order": "best-selling",
@@ -1371,19 +1370,19 @@
                         }
                       ],
                       "published_scope": "web",
-                      "admin_graphql_api_id": "gid://shopify/Collection/1063001313"
+                      "admin_graphql_api_id": "gid://shopify/Collection/1063001337"
                     }
                   }
                 },
                 "Create a smart collection of all products starting with the specified term": {
                   "value": {
                     "smart_collection": {
-                      "id": 1063001326,
+                      "id": 1063001347,
                       "handle": "ipods-1",
                       "title": "IPods",
-                      "updated_at": "2023-01-03T10:44:09-07:00",
+                      "updated_at": "2023-02-02T08:03:28-07:00",
                       "body_html": null,
-                      "published_at": "2023-01-03T10:44:09-07:00",
+                      "published_at": "2023-02-02T08:03:28-07:00",
                       "sort_order": "best-selling",
                       "template_suffix": null,
                       "disjunctive": false,
@@ -1395,19 +1394,19 @@
                         }
                       ],
                       "published_scope": "web",
-                      "admin_graphql_api_id": "gid://shopify/Collection/1063001326"
+                      "admin_graphql_api_id": "gid://shopify/Collection/1063001347"
                     }
                   }
                 },
                 "Create a smart collection with a specified title": {
                   "value": {
                     "smart_collection": {
-                      "id": 1063001329,
+                      "id": 1063001334,
                       "handle": "macbooks",
                       "title": "Macbooks",
-                      "updated_at": "2023-01-03T10:44:38-07:00",
+                      "updated_at": "2023-02-02T08:02:30-07:00",
                       "body_html": null,
-                      "published_at": "2023-01-03T10:44:38-07:00",
+                      "published_at": "2023-02-02T08:02:30-07:00",
                       "sort_order": "best-selling",
                       "template_suffix": null,
                       "disjunctive": false,
@@ -1419,7 +1418,7 @@
                         }
                       ],
                       "published_scope": "web",
-                      "admin_graphql_api_id": "gid://shopify/Collection/1063001329"
+                      "admin_graphql_api_id": "gid://shopify/Collection/1063001334"
                     }
                   }
                 }
@@ -1450,7 +1449,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/smart_collections.json",
@@ -1460,13 +1459,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"smart_collection\":{\"id\":1063001315,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-01-03T12:43:20-05:00\",\"body_html\":null,\"published_at\":\"2023-01-03T12:43:20-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001315\",\"image\":{\"created_at\":\"2023-01-03T12:43:20-05:00\",\"alt\":\"iPod\",\"width\":1,\"height\":1,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/df3e567d6f16d040326c7a0ea29a4f41.gif?v=1672767800\"}}}"
+            "body": "{\"smart_collection\":{\"id\":1063001343,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-02-02T10:03:11-05:00\",\"body_html\":null,\"published_at\":\"2023-02-02T10:03:11-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001343\",\"image\":{\"created_at\":\"2023-02-02T10:03:11-05:00\",\"alt\":\"iPod\",\"width\":1,\"height\":1,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/df3e567d6f16d040326c7a0ea29a4f41.gif?v=1675350191\"}}}"
           },
           "name": "Create a new smart collection with a base64 encoded image",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"Macbooks\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"image\":{\"attachment\":\"R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==\\n\",\"alt\":\"iPod\"}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"Macbooks\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"image\":{\"attachment\":\"R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==\\n\",\"alt\":\"iPod\"}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1478,14 +1477,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"Macbooks\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->image = [\n    \"attachment\" => \"R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==\\n\",\n    \"alt\" => \"iPod\"\n];\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"Macbooks\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->image = [\n    \"attachment\" => \"R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==\\n\",\n    \"alt\" => \"iPod\"\n];\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/smart_collections.json",
@@ -1495,13 +1494,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"smart_collection\":{\"id\":1063001314,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-01-03T12:43:18-05:00\",\"body_html\":null,\"published_at\":\"2023-01-03T12:43:18-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001314\",\"image\":{\"created_at\":\"2023-01-03T12:43:18-05:00\",\"alt\":\"Rails Logo\",\"width\":110,\"height\":140,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/rails_logo20230103-54493-xezjfo.gif?v=1672767798\"}}}"
+            "body": "{\"smart_collection\":{\"id\":1063001333,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-02-02T10:02:29-05:00\",\"body_html\":null,\"published_at\":\"2023-02-02T10:02:28-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001333\",\"image\":{\"created_at\":\"2023-02-02T10:02:28-05:00\",\"alt\":\"Rails Logo\",\"width\":110,\"height\":140,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/rails_logo20230202-30594-ff4ey5.gif?v=1675350149\"}}}"
           },
           "name": "Create a new smart collection with an image that will be downloaded by Shopify",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"Macbooks\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"image\":{\"src\":\"http://example.com/rails_logo.gif\",\"alt\":\"Rails Logo\"}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"Macbooks\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"image\":{\"src\":\"http://example.com/rails_logo.gif\",\"alt\":\"Rails Logo\"}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1513,14 +1512,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"Macbooks\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->image = [\n    \"src\" => \"http://example.com/rails_logo.gif\",\n    \"alt\" => \"Rails Logo\"\n];\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"Macbooks\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->image = [\n    \"src\" => \"http://example.com/rails_logo.gif\",\n    \"alt\" => \"Rails Logo\"\n];\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/smart_collections.json",
@@ -1530,13 +1529,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"smart_collection\":{\"id\":1063001313,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-01-03T12:43:16-05:00\",\"body_html\":null,\"published_at\":null,\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001313\"}}"
+            "body": "{\"smart_collection\":{\"id\":1063001337,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-02-02T10:02:49-05:00\",\"body_html\":null,\"published_at\":null,\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001337\"}}"
           },
           "name": "Create a new unpublished smart collection",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"Macbooks\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published\":false}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"Macbooks\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published\":false}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1548,14 +1547,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"Macbooks\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->published = false;\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"Macbooks\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->published = false;\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/smart_collections.json",
@@ -1565,13 +1564,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"smart_collection\":{\"id\":1063001326,\"handle\":\"ipods-1\",\"title\":\"IPods\",\"updated_at\":\"2023-01-03T12:44:09-05:00\",\"body_html\":null,\"published_at\":\"2023-01-03T12:44:09-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"title\",\"relation\":\"starts_with\",\"condition\":\"iPod\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001326\"}}"
+            "body": "{\"smart_collection\":{\"id\":1063001347,\"handle\":\"ipods-1\",\"title\":\"IPods\",\"updated_at\":\"2023-02-02T10:03:28-05:00\",\"body_html\":null,\"published_at\":\"2023-02-02T10:03:28-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"title\",\"relation\":\"starts_with\",\"condition\":\"iPod\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001347\"}}"
           },
           "name": "Create a smart collection of all products starting with the specified term",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"IPods\",\"rules\":[{\"column\":\"title\",\"relation\":\"starts_with\",\"condition\":\"iPod\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"IPods\",\"rules\":[{\"column\":\"title\",\"relation\":\"starts_with\",\"condition\":\"iPod\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1583,14 +1582,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"IPods\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"title\",\n        \"relation\" => \"starts_with\",\n        \"condition\" => \"iPod\"\n    ]\n];\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"IPods\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"title\",\n        \"relation\" => \"starts_with\",\n        \"condition\" => \"iPod\"\n    ]\n];\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/smart_collections.json",
@@ -1600,13 +1599,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"smart_collection\":{\"id\":1063001329,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-01-03T12:44:38-05:00\",\"body_html\":null,\"published_at\":\"2023-01-03T12:44:38-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001329\"}}"
+            "body": "{\"smart_collection\":{\"id\":1063001334,\"handle\":\"macbooks\",\"title\":\"Macbooks\",\"updated_at\":\"2023-02-02T10:02:30-05:00\",\"body_html\":null,\"published_at\":\"2023-02-02T10:02:30-05:00\",\"sort_order\":\"best-selling\",\"template_suffix\":null,\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid://shopify/Collection/1063001334\"}}"
           },
           "name": "Create a smart collection with a specified title",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"Macbooks\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"title\":\"Macbooks\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1618,14 +1617,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"Macbooks\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->title = \"Macbooks\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/smart_collections.json",
+          "request_path": "/admin/api/2023-04/smart_collections.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/smart_collections.json",
@@ -1641,7 +1640,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"smart_collection\":{\"body\":\"foobar\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"smart_collection\":{\"body\":\"foobar\",\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Apple\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1653,7 +1652,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->body = \"foobar\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->body = \"foobar\";\n$smart_collection->rules = [\n    [\n        \"column\" => \"vendor\",\n        \"relation\" => \"equals\",\n        \"condition\" => \"Apple\"\n    ]\n];\n$smart_collection->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -1728,7 +1727,7 @@
         {
           "status": "200",
           "request_query": "products%5B%5D=921728736&products%5B%5D=632910392",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238/order.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238/order.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/smart_collections/482865238/order.json",
@@ -1744,7 +1743,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238/order.json?products%5B%5D=921728736&products%5B%5D=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238/order.json?products%5B%5D=921728736&products%5B%5D=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1756,14 +1755,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->order(\n    [\"products\" => [\"921728736\", \"632910392\"]], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->order(\n    [\"products\" => [\"921728736\", \"632910392\"]], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "sort_order=alpha-desc",
-          "request_path": "/admin/api/2022-10/smart_collections/482865238/order.json",
+          "request_path": "/admin/api/2023-04/smart_collections/482865238/order.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/smart_collections/482865238/order.json",
@@ -1779,7 +1778,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/smart_collections/482865238/order.json?sort_order=alpha-desc\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/smart_collections/482865238/order.json?sort_order=alpha-desc\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1791,7 +1790,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->order(\n    [\"sort_order\" => \"alpha-desc\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\SmartCollection;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$smart_collection = new SmartCollection($this->test_session);\n$smart_collection->id = 482865238;\n$smart_collection->order(\n    [\"sort_order\" => \"alpha-desc\"], // Params\n);"
             }
           ]
         }
@@ -1853,7 +1852,7 @@
           "name": "published_scope"
         },
         {
-          "description": "          <p>The list of rules that define what products go into the smart collection. Each rule has the following properties:</p>\n          <ul>\n          <li><p><strong>column</strong>: The property of a product being used to populate the smart collection.</p>\n            <p>Valid values for text relations:\n            <ul>\n              <li><code>title</code>: The product title.</li>\n              <li><code>type</code>: The product type.</li>\n              <li><code>vendor</code>: The name of the product vendor.</li>\n              <li><code>variant_title</code>: The title of a product variant.</li>\n            </ul>\n            <p>Valid values for number relations:</p>\n            <ul>\n              <li><code>variant_compare_at_price</code>: The compare price.</li>\n              <li><code>variant_weight</code>: The weight of the product.</li>\n              <li><code>variant_inventory</code>: The inventory stock. Note: <code>not_equals</code> does not work with this property.</li>\n              <li><code>variant_price</code>: product price.</li>\n            </ul>\n            <p>Valid values for an <code>equals</code> relation:\n              <ul>\n                <li><code>tag</code>: A tag associated with the product.</li>\n              </ul>\n          </li>\n            <li><p><strong>relation</strong>: The relationship between the <strong>column</strong> choice, and the <strong>condition</strong>.</p>\n              <p>Valid values for number relations:</p>\n              <ul>\n                <li><code>greater_than</code> The column value is greater than the condition.</li>\n                <li><code>less_than</code> The column value is less than the condition.</li>\n                <li><code>equals</code> The column value is equal to the condition.</li>\n                <li><code>not_equals</code> The column value is not equal to the condition.</li>\n              </ul>\n              <p>Valid values for text relations:</p>\n              <ul>\n                <li><code>equals</code>: Checks if the <strong>column</strong> value is equal to the <strong>condition</strong> value.</li>\n                <li><code>not_equals</code>: Checks if the <strong>column</strong> value is not equal to the <strong>condition</strong> value.</li>\n                <li><code>starts_with</code>: Checks if the <strong>column</strong> value starts with the <strong>condition</strong> value.</li>\n                <li><code>ends_with</code>: Checks if the <strong>column</strong> value ends with the <strong>condition</strong> value.</li>\n                <li><code>contains</code>: Checks if the <strong>column</strong> value contains the <strong>condition</strong> value.</li>\n                <li><code>not_contains</code>: Checks if the <strong>column</strong> value does not contain the <strong>condition</strong> value.</li>\n              </ul>\n            </li>\n            <li><p><strong>condition</strong>: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the <strong>relation</strong> value.</p>\n            </li>\n          </ul>\n",
+          "description": "          <p>The list of rules that define what products go into the smart collection. Each rule has the following properties:</p>\n          <ul>\n            <li><p><strong>column</strong>: The property of a product being used to populate the smart collection.</p>\n              <p>Valid values for text relations:\n              <ul>\n                <li><code>title</code>: The product title.</li>\n                <li><code>type</code>: The product type.</li>\n                <li><code>vendor</code>: The name of the product vendor.</li>\n                <li><code>variant_title</code>: The title of a product variant.</li>\n              </ul>\n              <p>Valid values for number relations:</p>\n              <ul>\n                <li><code>variant_compare_at_price</code>: The compare price.</li>\n                <li><code>variant_weight</code>: The weight of the product.</li>\n                <li><code>variant_inventory</code>: The inventory stock. Note: <code>not_equals</code> does not work with this property.</li>\n                <li><code>variant_price</code>: product price.</li>\n              </ul>\n              <p>Valid values for an <code>equals</code> relation:\n                <ul>\n                  <li><code>tag</code>: A tag associated with the product.</li>\n                </ul>\n              <p>Valid values for metafield definition relations:\n                <ul>\n                  <li><code>product_metafield_definition</code>: When the metafield definition rule is powered by a product metafield definition.</li>\n                  <li><code>variant_metafield_definition</code>: When the metafield definition rule is powered by a variant metafield definition.</li>\n                </ul>\n            </li>\n            <li><p><strong>relation</strong>: The relationship between the <strong>column</strong> choice, and the <strong>condition</strong>.</p>\n              <p>Valid values for number relations:</p>\n              <ul>\n                <li><code>greater_than</code> The column value is greater than the condition.</li>\n                <li><code>less_than</code> The column value is less than the condition.</li>\n                <li><code>equals</code> The column value is equal to the condition.</li>\n                <li><code>not_equals</code> The column value is not equal to the condition.</li>\n              </ul>\n              <p>Valid values for text relations:</p>\n              <ul>\n                <li><code>equals</code>: Checks if the <strong>column</strong> value is equal to the <strong>condition</strong> value.</li>\n                <li><code>not_equals</code>: Checks if the <strong>column</strong> value is not equal to the <strong>condition</strong> value.</li>\n                <li><code>starts_with</code>: Checks if the <strong>column</strong> value starts with the <strong>condition</strong> value.</li>\n                <li><code>ends_with</code>: Checks if the <strong>column</strong> value ends with the <strong>condition</strong> value.</li>\n                <li><code>contains</code>: Checks if the <strong>column</strong> value contains the <strong>condition</strong> value.</li>\n                <li><code>not_contains</code>: Checks if the <strong>column</strong> value does not contain the <strong>condition</strong> value.</li>\n              </ul>\n              <p>Valid values for metafield relations are based on the corresponding metafield definition type. The following definition types support the listed relations</p>\n              <ul>\n                <li><code>rating</code>: <code>equals</code>, <code>greater_than</code>, <code>less_than</code></li>\n                <li><code>boolean</code>: <code>equals</code></li>\n                <li><code>number_integer</code>: <code>equals</code>, <code>greater_than</code>, <code>less_than</code></li>\n                <li><code>number_decimal</code>: <code>equals</code>, <code>greater_than</code>, <code>less_than</code></li>\n                <li><code>single_line_text_field</code>: <code>equals</code></li>\n                <li><code>list.single_line_text_field</code>: <code>equals</code></li>\n              </ul>\n            </li>\n            <li><p><strong>condition</strong>: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the <strong>relation</strong> value.</p>\n            <li><p><strong>condition_object_id</strong>: The object id that points to additional attributes for the collection rule. This is only required when using metafield definition rules.</p>\n            </li>\n          </ul>\n",
           "type": "string",
           "example": {
             "column": "variant_price",
@@ -1920,5 +1919,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

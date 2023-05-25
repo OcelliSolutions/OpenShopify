@@ -5,8 +5,7 @@
     "description": "The account's current balance. This amount is comprised of any\n<a href=\"/docs/admin-api/rest/reference/shopify_payments/transaction\">Transaction</a> not yet included in a\n<a href=\"/docs/admin-api/rest/reference/shopify_payments/payout\">Payout</a>.\n",
     "x-owner": "https://vault.shopify.io/teams/663",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -48,7 +47,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/shopify_payments/balance.json",
+          "request_path": "/admin/api/2023-04/shopify_payments/balance.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shopify_payments/balance.json",
@@ -64,7 +63,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/balance.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/shopify_payments/balance.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -76,7 +75,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Balance;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nBalance::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Balance;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nBalance::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -123,5 +122,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

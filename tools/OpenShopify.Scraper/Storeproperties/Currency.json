@@ -5,8 +5,7 @@
     "description": "<p>Merchants who use Shopify Payments can allow customers to pay in their local currency on the online store.\n  When a customer selects a currency, all prices on the online store and checkout are automatically converted\n  to that currency.\n  Merchants enable the currencies that they want to offer to customers from their Shopify Payments settings.\n</p>\n\n<p>The Currency resource represents a currency that the merchant has enabled. For each enabled currency, the Currency resource returns the currency code and the time when its conversion rate was last updated.</p>\n\n",
     "x-owner": "https://vault.shopify.io/teams/2795",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -59,7 +58,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/currencies.json",
+          "request_path": "/admin/api/2023-04/currencies.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/currencies.json",
@@ -75,7 +74,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/currencies.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/currencies.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -87,7 +86,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Currency;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCurrency::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Currency;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCurrency::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -144,5 +143,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

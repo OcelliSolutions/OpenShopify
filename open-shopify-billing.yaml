@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Billing
   description: Billing
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,7 +23,6 @@ paths:
     post:
       tags:
         - ApplicationCharge
-      summary: Creates an application charge
       operationId: CreateApplicationCharge
       requestBody:
         content:
@@ -53,17 +52,14 @@ paths:
     get:
       tags:
         - ApplicationCharge
-      summary: Retrieves a list of application charges
       operationId: ListApplicationCharges
       parameters:
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
@@ -91,7 +87,6 @@ paths:
     get:
       tags:
         - ApplicationCharge
-      summary: Retrieves an application charge
       operationId: GetApplicationCharge
       parameters:
         - name: application_charge_id
@@ -102,7 +97,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -125,7 +119,6 @@ paths:
     post:
       tags:
         - ApplicationCredit
-      summary: Creates an application credit
       operationId: CreateApplicationCredit
       requestBody:
         content:
@@ -155,12 +148,10 @@ paths:
     get:
       tags:
         - ApplicationCredit
-      summary: Retrieves all application credits
       operationId: ListApplicationCredits
       parameters:
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -187,7 +178,6 @@ paths:
     get:
       tags:
         - ApplicationCredit
-      summary: Retrieves a single application credit
       operationId: GetApplicationCredit
       parameters:
         - name: application_credit_id
@@ -198,7 +188,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -221,8 +210,6 @@ paths:
     post:
       tags:
         - RecurringApplicationCharge
-      summary: Creates a recurring application charge
-      description: Creates a recurring application charge. Make sure to include a valid `return_url` property to ensure the merchant is redirected after accepting the charge (an invalid or missing `return_url` property may lead to unstable behaviour in the charge approval flow).
       operationId: CreateRecurringApplicationCharge
       requestBody:
         content:
@@ -252,17 +239,14 @@ paths:
     get:
       tags:
         - RecurringApplicationCharge
-      summary: Retrieves a list of recurring application charges
       operationId: ListRecurringApplicationCharges
       parameters:
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
@@ -290,7 +274,6 @@ paths:
     get:
       tags:
         - RecurringApplicationCharge
-      summary: Retrieves a single charge
       operationId: GetRecurringApplicationCharge
       parameters:
         - name: recurring_application_charge_id
@@ -301,7 +284,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -323,7 +305,6 @@ paths:
     delete:
       tags:
         - RecurringApplicationCharge
-      summary: Cancels a recurring application charge
       operationId: CancelRecurringApplicationCharge
       parameters:
         - name: recurring_application_charge_id
@@ -357,8 +338,6 @@ paths:
     put:
       tags:
         - RecurringApplicationCharge
-      summary: Updates the capped amount of a recurring application charge
-      description: 'Updates the capped amount of an active recurring application charge. Note that you cannot use this endpoint to update any other proprty on a recurring application charge or the capped amount on an [Annual subscription](https://shopify.dev/apps/billing/subscriptions/annual#limitations).'
       operationId: UpdateCappedAmountOfRecurringApplicationCharge
       parameters:
         - name: recurring_application_charge_id
@@ -392,7 +371,6 @@ paths:
     post:
       tags:
         - UsageCharge
-      summary: Creates a usage charge
       operationId: CreateUsageCharge
       parameters:
         - name: recurring_application_charge_id
@@ -429,7 +407,6 @@ paths:
     get:
       tags:
         - UsageCharge
-      summary: Retrieves a list of usage charges
       operationId: ListUsageCharges
       parameters:
         - name: recurring_application_charge_id
@@ -440,7 +417,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -467,7 +443,6 @@ paths:
     get:
       tags:
         - UsageCharge
-      summary: Retrieves a single charge
       operationId: GetUsageCharge
       parameters:
         - name: recurring_application_charge_id
@@ -484,7 +459,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -532,6 +506,10 @@ components:
         test:
           type: boolean
           description: 'Whether the application charge is a test transaction. Valid values:`true`,`null`.'
+          nullable: true
+        currency:
+          type: string
+          description: The currency of the price of the application charge.
           nullable: true
         api_client_id:
           type: integer
@@ -604,6 +582,10 @@ components:
           type: boolean
           description: 'Whether the application credit is a test transaction. Valid values: `true`,`null`'
           nullable: true
+        currency:
+          type: string
+          description: The currency of the application credit amount.
+          nullable: true
         id:
           type: integer
           format: int64
@@ -668,6 +650,10 @@ components:
           type: boolean
           description: 'Whether the application charge is a test transaction. Valid values:`true`,`null`.'
           nullable: true
+        currency:
+          type: string
+          description: The currency of the price of the application charge.
+          nullable: true
         api_client_id:
           type: integer
           format: int32
@@ -701,6 +687,10 @@ components:
         test:
           type: boolean
           description: 'Whether the application credit is a test transaction. Valid values: `true`,`null`'
+          nullable: true
+        currency:
+          type: string
+          description: The currency of the application credit amount.
           nullable: true
       additionalProperties: false
     CreateApplicationCreditRequest:
@@ -771,6 +761,10 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the free trial ends.'
           format: date-time
           nullable: true
+        currency:
+          type: string
+          description: The currency of the price of the recurring application charge.
+          nullable: true
         api_client_id:
           type: integer
           format: int64
@@ -814,6 +808,10 @@ components:
           type: integer
           description: The ID of the recurring application charge that the usage charge belongs to.
           format: int64
+          nullable: true
+        currency:
+          type: string
+          description: The currency of the price of the usage charge.
           nullable: true
         billing_on:
           type: string
@@ -902,6 +900,10 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the free trial ends.'
           format: date-time
           nullable: true
+        currency:
+          type: string
+          description: The currency of the price of the recurring application charge.
+          nullable: true
         api_client_id:
           type: integer
           format: int64
@@ -987,6 +989,10 @@ components:
           type: integer
           description: The ID of the recurring application charge that the usage charge belongs to.
           format: int64
+          nullable: true
+        currency:
+          type: string
+          description: The currency of the price of the usage charge.
           nullable: true
         billing_on:
           type: string

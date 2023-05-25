@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Analytics
   description: Reporting and Analytics
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,18 +23,14 @@ paths:
     get:
       tags:
         - Report
-      summary: Retrieves a list of reports
-      description: 'Retrieves a list of reports. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListReports
       parameters:
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
         - name: ids
           in: query
-          description: A comma-separated list of report IDs.
           style: form
           explode: false
           schema:
@@ -44,30 +40,25 @@ paths:
               format: int64
         - name: limit
           in: query
-          description: The amount of results to return.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: updated_at_max
           in: query
-          description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -94,7 +85,6 @@ paths:
     post:
       tags:
         - Report
-      summary: Creates a new report
       operationId: CreateReport
       requestBody:
         content:
@@ -125,8 +115,6 @@ paths:
     get:
       tags:
         - Report
-      summary: Retrieves a single report
-      description: Retrieves a single report created by your app
       operationId: GetReport
       parameters:
         - name: report_id
@@ -137,7 +125,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -159,7 +146,6 @@ paths:
     put:
       tags:
         - Report
-      summary: Updates a report
       operationId: UpdateReport
       parameters:
         - name: report_id
@@ -196,7 +182,6 @@ paths:
     delete:
       tags:
         - Report
-      summary: Deletes a report
       operationId: DeleteReport
       parameters:
         - name: report_id

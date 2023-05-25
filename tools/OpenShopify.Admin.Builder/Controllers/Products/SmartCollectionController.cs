@@ -194,7 +194,9 @@ namespace OpenShopify.Admin.Builder.Models
         ///     *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. 
         ///     *   `variant_price`: product price. 
         /// 
-        /// Valid values for an `equals` relation: * `tag`: A tag associated with the product. * 
+        /// Valid values for an `equals` relation: * `tag`: A tag associated with the product. 
+        /// 
+        /// Valid values for metafield definition relations: * `product_metafield_definition`: When the metafield definition rule is powered by a product metafield definition. * `variant_metafield_definition`: When the metafield definition rule is powered by a variant metafield definition. * 
         /// 
         /// **relation**: The relationship between the **column** choice, and the **condition**.
         /// 
@@ -214,9 +216,22 @@ namespace OpenShopify.Admin.Builder.Models
         ///     *   `contains`: Checks if the **column** value contains the **condition** value. 
         ///     *   `not_contains`: Checks if the **column** value does not contain the **condition** value. 
         /// 
+        /// Valid values for metafield relations are based on the corresponding metafield definition type. The following definition types support the listed relations
+        /// 
+        ///     *   `rating`: `equals`, `greater_than`, `less_than` 
+        ///     *   `boolean`: `equals` 
+        ///     *   `number_integer`: `equals`, `greater_than`, `less_than` 
+        ///     *   `number_decimal`: `equals`, `greater_than`, `less_than` 
+        ///     *   `single_line_text_field`: `equals` 
+        ///     *   `list.single_line_text_field`: `equals` 
+        /// 
         /// *   
         /// 
         /// **condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value.
+        /// 
+        /// *   
+        /// 
+        /// **condition_object_id**: The object id that points to additional attributes for the collection rule. This is only required when using metafield definition rules.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("rules")]

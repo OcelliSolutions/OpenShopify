@@ -5,8 +5,7 @@
     "description": "        <p>The Refund resource has two major components:</p>\n        <ul>\n          <li>Transaction records of money returned to the customer</li>\n          <li>The line items included in the refund, along with restocking instructions</li>\n        </ul>\n        <p>Before you create a refund, use the <code>calculate</code> endpoint to generate accurate refund transactions. Specify the line items that are being refunded, their quantity and restock instructions, and whether you're refunding shipping costs. You can then use the response of the <code>calculate</code> endpoint to create the actual refund.</p>\n        <p>When you create a refund using the response from the <code>calculate</code> endpoint, you can set additional options, such as whether to notify the customer of the refund. You can refund less than the calculated amount for either shipping or the line items by setting a custom value for the <code>amount</code> property.</p>\n        <p>If a refund includes shipping costs, or if you choose to refund line items for less than their calculated amount, then an order adjustment is created automatically to account for the discrepancy in the store's financial reports.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/873",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -70,10 +69,10 @@
                       {
                         "id": 509562969,
                         "order_id": 450789469,
-                        "created_at": "2023-01-03T10:56:35-07:00",
+                        "created_at": "2023-02-02T07:53:49-07:00",
                         "note": "it broke during shipping",
                         "user_id": 548380009,
-                        "processed_at": "2023-01-03T10:56:35-07:00",
+                        "processed_at": "2023-02-02T07:53:49-07:00",
                         "restock": true,
                         "admin_graphql_api_id": "gid://shopify/Refund/509562969",
                         "refund_line_items": [
@@ -339,7 +338,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/refunds.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/refunds.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/orders/450789469/refunds.json",
@@ -349,13 +348,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"refunds\":[{\"id\":509562969,\"order_id\":450789469,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"note\":\"it broke during shipping\",\"user_id\":548380009,\"processed_at\":\"2023-01-03T12:56:35-05:00\",\"restock\":true,\"admin_graphql_api_id\":\"gid://shopify/Refund/509562969\",\"refund_line_items\":[{\"id\":104689539,\"quantity\":1,\"line_item_id\":703073504,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":703073504,\"variant_id\":457924702,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008BLACK\",\"variant_title\":\"black\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - black\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/703073504\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}},{\"id\":709875399,\"quantity\":1,\"line_item_id\":466157049,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.66,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"amount\":\"209.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"}],\"order_adjustments\":[]}]}"
+            "body": "{\"refunds\":[{\"id\":509562969,\"order_id\":450789469,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"note\":\"it broke during shipping\",\"user_id\":548380009,\"processed_at\":\"2023-02-02T09:53:49-05:00\",\"restock\":true,\"admin_graphql_api_id\":\"gid://shopify/Refund/509562969\",\"refund_line_items\":[{\"id\":104689539,\"quantity\":1,\"line_item_id\":703073504,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":703073504,\"variant_id\":457924702,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008BLACK\",\"variant_title\":\"black\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - black\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/703073504\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}},{\"id\":709875399,\"quantity\":1,\"line_item_id\":466157049,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.66,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"amount\":\"209.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"}],\"order_adjustments\":[]}]}"
           },
           "name": "Retrieve all refunds from a specific order",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -367,7 +366,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRefund::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRefund::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -513,10 +512,10 @@
                     "refund": {
                       "id": 929361465,
                       "order_id": 450789469,
-                      "created_at": "2023-01-03T11:05:55-07:00",
+                      "created_at": "2023-02-02T07:55:44-07:00",
                       "note": "wrong size",
                       "user_id": null,
-                      "processed_at": "2023-01-03T11:05:55-07:00",
+                      "processed_at": "2023-02-02T07:55:44-07:00",
                       "restock": false,
                       "duties": [],
                       "total_duties_set": {
@@ -654,19 +653,19 @@
                       ],
                       "transactions": [
                         {
-                          "id": 1068278491,
+                          "id": 1068278489,
                           "order_id": 450789469,
                           "kind": "refund",
                           "gateway": "bogus",
                           "status": "success",
                           "message": "Bogus Gateway: Forced success",
-                          "created_at": "2023-01-03T11:05:54-07:00",
+                          "created_at": "2023-02-02T07:55:44-07:00",
                           "test": true,
                           "authorization": null,
                           "location_id": null,
                           "user_id": null,
                           "parent_id": 801038806,
-                          "processed_at": "2023-01-03T11:05:54-07:00",
+                          "processed_at": "2023-02-02T07:55:44-07:00",
                           "device_id": null,
                           "error_code": null,
                           "source_name": "755357713",
@@ -674,7 +673,7 @@
                           "amount": "41.94",
                           "currency": "USD",
                           "payment_id": "c901414060.1",
-                          "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278491"
+                          "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278489"
                         }
                       ],
                       "order_adjustments": []
@@ -686,10 +685,10 @@
                     "refund": {
                       "id": 929361466,
                       "order_id": 450789469,
-                      "created_at": "2023-01-03T11:05:59-07:00",
+                      "created_at": "2023-02-02T07:55:48-07:00",
                       "note": null,
                       "user_id": null,
-                      "processed_at": "2023-01-03T11:05:59-07:00",
+                      "processed_at": "2023-02-02T07:55:48-07:00",
                       "restock": false,
                       "duties": [],
                       "total_duties_set": {
@@ -718,19 +717,19 @@
                       "refund_line_items": [],
                       "transactions": [
                         {
-                          "id": 1068278492,
+                          "id": 1068278490,
                           "order_id": 450789469,
                           "kind": "refund",
                           "gateway": "bogus",
                           "status": "success",
                           "message": "Bogus Gateway: Forced success",
-                          "created_at": "2023-01-03T11:05:59-07:00",
+                          "created_at": "2023-02-02T07:55:48-07:00",
                           "test": true,
                           "authorization": null,
                           "location_id": null,
                           "user_id": null,
                           "parent_id": 801038806,
-                          "processed_at": "2023-01-03T11:05:59-07:00",
+                          "processed_at": "2023-02-02T07:55:48-07:00",
                           "device_id": null,
                           "error_code": null,
                           "source_name": "755357713",
@@ -738,7 +737,7 @@
                           "amount": "5.00",
                           "currency": "USD",
                           "payment_id": "c901414060.1",
-                          "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278492"
+                          "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278490"
                         }
                       ],
                       "order_adjustments": [
@@ -784,7 +783,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/refunds.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/refunds.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/refunds.json",
@@ -794,13 +793,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"refund\":{\"id\":929361465,\"order_id\":450789469,\"created_at\":\"2023-01-03T13:05:55-05:00\",\"note\":\"wrong size\",\"user_id\":null,\"processed_at\":\"2023-01-03T13:05:55-05:00\",\"restock\":false,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"return\":null,\"admin_graphql_api_id\":\"gid://shopify/Refund/929361465\",\"refund_line_items\":[{\"location_id\":null,\"restock_type\":\"no_restock\",\"quantity\":1,\"id\":1058498312,\"line_item_id\":518995019,\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":518995019,\"variant_id\":49148385,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008RED\",\"variant_title\":\"red\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - red\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/518995019\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":1068278491,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-01-03T13:05:54-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2023-01-03T13:05:54-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"receipt\":{},\"amount\":\"41.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278491\"}],\"order_adjustments\":[]}}"
+            "body": "{\"refund\":{\"id\":929361465,\"order_id\":450789469,\"created_at\":\"2023-02-02T09:55:44-05:00\",\"note\":\"wrong size\",\"user_id\":null,\"processed_at\":\"2023-02-02T09:55:44-05:00\",\"restock\":false,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"return\":null,\"admin_graphql_api_id\":\"gid://shopify/Refund/929361465\",\"refund_line_items\":[{\"location_id\":null,\"restock_type\":\"no_restock\",\"quantity\":1,\"id\":1058498312,\"line_item_id\":518995019,\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":518995019,\"variant_id\":49148385,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008RED\",\"variant_title\":\"red\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - red\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/518995019\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":1068278489,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-02-02T09:55:44-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2023-02-02T09:55:44-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"receipt\":{},\"amount\":\"41.94\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278489\"}],\"order_adjustments\":[]}}"
           },
           "name": "Create a refund for an order",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"notify\":true,\"note\":\"wrong size\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"return\",\"location_id\":487838322}],\"transactions\":[{\"parent_id\":801038806,\"amount\":41.94,\"kind\":\"refund\",\"gateway\":\"bogus\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"notify\":true,\"note\":\"wrong size\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"return\",\"location_id\":487838322}],\"transactions\":[{\"parent_id\":801038806,\"amount\":41.94,\"kind\":\"refund\",\"gateway\":\"bogus\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -812,14 +811,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->currency = \"USD\";\n$refund->notify = true;\n$refund->note = \"wrong size\";\n$refund->shipping = [\n    \"full_refund\" => true\n];\n$refund->refund_line_items = [\n    [\n        \"line_item_id\" => 518995019,\n        \"quantity\" => 1,\n        \"restock_type\" => \"return\",\n        \"location_id\" => 487838322\n    ]\n];\n$refund->transactions = [\n    [\n        \"parent_id\" => 801038806,\n        \"amount\" => 41.94,\n        \"kind\" => \"refund\",\n        \"gateway\" => \"bogus\"\n    ]\n];\n$refund->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->currency = \"USD\";\n$refund->notify = true;\n$refund->note = \"wrong size\";\n$refund->shipping = [\n    \"full_refund\" => true\n];\n$refund->refund_line_items = [\n    [\n        \"line_item_id\" => 518995019,\n        \"quantity\" => 1,\n        \"restock_type\" => \"return\",\n        \"location_id\" => 487838322\n    ]\n];\n$refund->transactions = [\n    [\n        \"parent_id\" => 801038806,\n        \"amount\" => 41.94,\n        \"kind\" => \"refund\",\n        \"gateway\" => \"bogus\"\n    ]\n];\n$refund->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/refunds.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/refunds.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/refunds.json",
@@ -829,13 +828,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"refund\":{\"id\":929361466,\"order_id\":450789469,\"created_at\":\"2023-01-03T13:05:59-05:00\",\"note\":null,\"user_id\":null,\"processed_at\":\"2023-01-03T13:05:59-05:00\",\"restock\":false,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"return\":null,\"admin_graphql_api_id\":\"gid://shopify/Refund/929361466\",\"refund_line_items\":[],\"transactions\":[{\"id\":1068278492,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-01-03T13:05:59-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2023-01-03T13:05:59-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"receipt\":{},\"amount\":\"5.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278492\"}],\"order_adjustments\":[{\"id\":1030976843,\"order_id\":450789469,\"refund_id\":929361466,\"amount\":\"-5.00\",\"tax_amount\":\"0.00\",\"kind\":\"shipping_refund\",\"reason\":\"Shipping refund\",\"amount_set\":{\"shop_money\":{\"amount\":\"-5.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"-5.00\",\"currency_code\":\"USD\"}},\"tax_amount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}}}]}}"
+            "body": "{\"refund\":{\"id\":929361466,\"order_id\":450789469,\"created_at\":\"2023-02-02T09:55:48-05:00\",\"note\":null,\"user_id\":null,\"processed_at\":\"2023-02-02T09:55:48-05:00\",\"restock\":false,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"return\":null,\"admin_graphql_api_id\":\"gid://shopify/Refund/929361466\",\"refund_line_items\":[],\"transactions\":[{\"id\":1068278490,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2023-02-02T09:55:48-05:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2023-02-02T09:55:48-05:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"receipt\":{},\"amount\":\"5.00\",\"currency\":\"USD\",\"payment_id\":\"c901414060.1\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278490\"}],\"order_adjustments\":[{\"id\":1030976843,\"order_id\":450789469,\"refund_id\":929361466,\"amount\":\"-5.00\",\"tax_amount\":\"0.00\",\"kind\":\"shipping_refund\",\"reason\":\"Shipping refund\",\"amount_set\":{\"shop_money\":{\"amount\":\"-5.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"-5.00\",\"currency_code\":\"USD\"}},\"tax_amount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}}}]}}"
           },
           "name": "Refund a specific amount of shipping",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"amount\":5.0},\"transactions\":[{\"parent_id\":801038806,\"amount\":5.0,\"kind\":\"refund\",\"gateway\":\"bogus\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"amount\":5.0},\"transactions\":[{\"parent_id\":801038806,\"amount\":5.0,\"kind\":\"refund\",\"gateway\":\"bogus\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -847,7 +846,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->currency = \"USD\";\n$refund->shipping = [\n    \"amount\" => 5.0\n];\n$refund->transactions = [\n    [\n        \"parent_id\" => 801038806,\n        \"amount\" => 5.0,\n        \"kind\" => \"refund\",\n        \"gateway\" => \"bogus\"\n    ]\n];\n$refund->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->currency = \"USD\";\n$refund->shipping = [\n    \"amount\" => 5.0\n];\n$refund->transactions = [\n    [\n        \"parent_id\" => 801038806,\n        \"amount\" => 5.0,\n        \"kind\" => \"refund\",\n        \"gateway\" => \"bogus\"\n    ]\n];\n$refund->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -925,10 +924,10 @@
                     "refund": {
                       "id": 509562969,
                       "order_id": 450789469,
-                      "created_at": "2023-01-03T10:56:35-07:00",
+                      "created_at": "2023-02-02T07:53:49-07:00",
                       "note": "it broke during shipping",
                       "user_id": 548380009,
-                      "processed_at": "2023-01-03T10:56:35-07:00",
+                      "processed_at": "2023-02-02T07:53:49-07:00",
                       "restock": true,
                       "duties": [],
                       "total_duties_set": {
@@ -1219,7 +1218,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/refunds/509562969.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/refunds/509562969.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/refunds/509562969.json",
@@ -1229,13 +1228,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"refund\":{\"id\":509562969,\"order_id\":450789469,\"created_at\":\"2023-01-03T12:56:35-05:00\",\"note\":\"it broke during shipping\",\"user_id\":548380009,\"processed_at\":\"2023-01-03T12:56:35-05:00\",\"restock\":true,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"return\":null,\"admin_graphql_api_id\":\"gid://shopify/Refund/509562969\",\"refund_line_items\":[{\"id\":104689539,\"quantity\":1,\"line_item_id\":703073504,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":703073504,\"variant_id\":457924702,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008BLACK\",\"variant_title\":\"black\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - black\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/703073504\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}},{\"id\":709875399,\"quantity\":1,\"line_item_id\":466157049,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.66,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"amount\":\"209.00\",\"currency\":\"USD\",\"payment_id\":\"#1001.3\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"}],\"order_adjustments\":[]}}"
+            "body": "{\"refund\":{\"id\":509562969,\"order_id\":450789469,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"note\":\"it broke during shipping\",\"user_id\":548380009,\"processed_at\":\"2023-02-02T09:53:49-05:00\",\"restock\":true,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"return\":null,\"admin_graphql_api_id\":\"gid://shopify/Refund/509562969\",\"refund_line_items\":[{\"id\":104689539,\"quantity\":1,\"line_item_id\":703073504,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":703073504,\"variant_id\":457924702,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008BLACK\",\"variant_title\":\"black\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - black\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/703073504\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}},{\"id\":709875399,\"quantity\":1,\"line_item_id\":466157049,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.66,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"amount\":\"209.00\",\"currency\":\"USD\",\"payment_id\":\"#1001.3\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"}],\"order_adjustments\":[]}}"
           },
           "name": "Retrieve a specific refund",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/refunds/509562969.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/refunds/509562969.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1247,7 +1246,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRefund::find(\n    $this->test_session, // Session\n    509562969, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRefund::find(\n    $this->test_session, // Session\n    509562969, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1527,7 +1526,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/refunds/calculate.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/refunds/calculate.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/refunds/calculate.json",
@@ -1543,7 +1542,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"amount\":2.0}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"amount\":2.0}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1555,14 +1554,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"currency\" => \"USD\", \"shipping\" => [\"amount\" => 2.0]]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"currency\" => \"USD\", \"shipping\" => [\"amount\" => 2.0]]], // Body\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/refunds/calculate.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/refunds/calculate.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/refunds/calculate.json",
@@ -1578,7 +1577,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"no_restock\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"no_restock\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1590,14 +1589,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"currency\" => \"USD\", \"shipping\" => [\"full_refund\" => true], \"refund_line_items\" => [[\"line_item_id\" => 518995019, \"quantity\" => 1, \"restock_type\" => \"no_restock\"]]]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"currency\" => \"USD\", \"shipping\" => [\"full_refund\" => true], \"refund_line_items\" => [[\"line_item_id\" => 518995019, \"quantity\" => 1, \"restock_type\" => \"no_restock\"]]]], // Body\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/refunds/calculate.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/refunds/calculate.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/refunds/calculate.json",
@@ -1613,7 +1612,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"refund\":{\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"no_restock\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"refund\":{\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"no_restock\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1625,7 +1624,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"shipping\" => [\"full_refund\" => true], \"refund_line_items\" => [[\"line_item_id\" => 518995019, \"quantity\" => 1, \"restock_type\" => \"no_restock\"]]]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"shipping\" => [\"full_refund\" => true], \"refund_line_items\" => [[\"line_item_id\" => 518995019, \"quantity\" => 1, \"restock_type\" => \"no_restock\"]]]], // Body\n);"
             }
           ]
         }
@@ -1850,5 +1849,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

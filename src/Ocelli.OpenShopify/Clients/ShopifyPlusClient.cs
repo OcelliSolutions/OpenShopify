@@ -27,103 +27,36 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of gift cards
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of gift cards. This endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<GiftCardList>> ListGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a gift card
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> CreateGiftCardAsync(CreateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single gift card
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single gift card by its ID
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> GetGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing gift card
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing gift card.
-        /// <br/>
-        /// <br/>Only the expiry date, note, and template suffix properties of a gift card can be changed via the API.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> UpdateGiftCardAsync(long giftCardId, UpdateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of gift cards
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of gift cards with a given status.
-        /// </remarks>
-        /// <param name="status">Count gift cards with a given status. Valid values:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountGiftCardsAsync(string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Disables a gift card
-        /// </summary>
-        /// <remarks>
-        /// Disables a gift card. This action can't be undone.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> DisableGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Searches for gift cards
-        /// </summary>
-        /// <remarks>
-        /// Searches for gift cards that match a supplied query. The following fields are indexed by search:
-        /// <br/>
-        /// <br/>*   `created_at` 
-        /// <br/>*   `updated_at` 
-        /// <br/>*   `disabled_at` 
-        /// <br/>*   `balance` 
-        /// <br/>*   `initial_value` 
-        /// <br/>*   `amount_spent` 
-        /// <br/>*   `email` 
-        /// <br/>*   `last_characters` 
-        /// <br/>
-        /// <br/>This endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show gift cards created at or before date.</param>
-        /// <param name="createdAtMin">Show gift cards created at or after date.</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="order">The field and direction to order results by.</param>
-        /// <param name="query">The text to search for.</param>
-        /// <param name="updatedAtMax">Show gift cards last updated at or before date.</param>
-        /// <param name="updatedAtMin">Show gift cards last updated at or after date.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<GiftCardList>> SearchForGiftCardsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, string? query = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -163,17 +96,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of gift cards
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of gift cards. This endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="sinceId">Restrict results to after the specified ID.</param>
-        /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardList>> ListGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -262,9 +184,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a gift card
-        /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> CreateGiftCardAsync(CreateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -339,12 +258,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single gift card
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a single gift card by its ID
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> GetGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -416,14 +329,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing gift card
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing gift card.
-        /// <br/>
-        /// <br/>Only the expiry date, note, and template suffix properties of a gift card can be changed via the API.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> UpdateGiftCardAsync(long giftCardId, UpdateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -502,13 +407,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of gift cards
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a count of gift cards with a given status.
-        /// </remarks>
-        /// <param name="status">Count gift cards with a given status. Valid values:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountGiftCardsAsync(string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -581,12 +479,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Disables a gift card
-        /// </summary>
-        /// <remarks>
-        /// Disables a gift card. This action can't be undone.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> DisableGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -659,32 +551,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Searches for gift cards
-        /// </summary>
-        /// <remarks>
-        /// Searches for gift cards that match a supplied query. The following fields are indexed by search:
-        /// <br/>
-        /// <br/>*   `created_at` 
-        /// <br/>*   `updated_at` 
-        /// <br/>*   `disabled_at` 
-        /// <br/>*   `balance` 
-        /// <br/>*   `initial_value` 
-        /// <br/>*   `amount_spent` 
-        /// <br/>*   `email` 
-        /// <br/>*   `last_characters` 
-        /// <br/>
-        /// <br/>This endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="createdAtMax">Show gift cards created at or before date.</param>
-        /// <param name="createdAtMin">Show gift cards created at or after date.</param>
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="order">The field and direction to order results by.</param>
-        /// <param name="query">The text to search for.</param>
-        /// <param name="updatedAtMax">Show gift cards last updated at or before date.</param>
-        /// <param name="updatedAtMin">Show gift cards last updated at or after date.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardList>> SearchForGiftCardsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, string? query = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -893,33 +759,16 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all users
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all users. **Note:** As of version 2021-01, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<UserList>> ListUsersAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single user
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<UserItem>> GetUserAsync(long userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves the currently logged-in user
-        /// </summary>
-        /// <remarks>
-        /// Retrieves information about the user account associated with the access token used to make this API request. This request works only when the access token was created for a specific user of the shop.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<UserItem>> GetCurrentlyLoggedInUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -959,14 +808,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all users
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all users. **Note:** As of version 2021-01, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<UserList>> ListUsersAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1043,9 +884,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single user
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<UserItem>> GetUserAsync(long userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1117,12 +955,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves the currently logged-in user
-        /// </summary>
-        /// <remarks>
-        /// Retrieves information about the user account associated with the access token used to make this API request. This request works only when the access token was created for a specific user of the shop.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<UserItem>> GetCurrentlyLoggedInUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

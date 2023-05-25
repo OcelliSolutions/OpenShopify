@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Access
   description: Authentication and Authorization
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,7 +23,6 @@ paths:
     post:
       tags:
         - StorefrontAccessToken
-      summary: Creates a new StorefrontAccessToken
       operationId: CreateStorefrontAccessToken
       requestBody:
         content:
@@ -53,7 +52,6 @@ paths:
     get:
       tags:
         - StorefrontAccessToken
-      summary: Retrieves a list of storefront access tokens that have been issued
       operationId: ListStorefrontAccessTokensThatHaveBeenIssued
       responses:
         '200':
@@ -79,7 +77,6 @@ paths:
     delete:
       tags:
         - StorefrontAccessToken
-      summary: Deletes an existing storefront access token
       operationId: DeleteStorefrontAccessToken
       parameters:
         - name: storefront_access_token_id

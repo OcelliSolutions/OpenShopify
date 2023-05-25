@@ -206,7 +206,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// 
         /// #### Note
         /// 
-        /// If there are values that you’d like to use for event_type that are not in the list above, then please post your request [here](https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758). Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.
+        /// If there are values that you’d like to use for event_type that are not in the list above, then please share your request in the [Shopify Community APIs and SDKs discussion board](https://community.shopify.com/c/shopify-apis-and-sdks/bd-p/shopify-apis-and-technology) providing as much detail as possible. Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.
         ///  &lt;/div&gt;
         /// </summary>
 

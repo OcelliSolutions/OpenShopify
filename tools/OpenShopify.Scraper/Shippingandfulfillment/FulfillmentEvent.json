@@ -3,10 +3,9 @@
   "info": {
     "title": "FulfillmentEvent",
     "description": "        <p>\n          The FulfillmentEvent resource represents tracking events that belong to a\n          <a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment\">fulfillment</a> of one or\n          more items in an <a href=\"/docs/admin-api/rest/reference/orders/order\">order</a>. Fulfillment events are displayed on the\n          <a href=\"https://help.shopify.com/manual/orders/status-tracking\">order status page</a> to update customers on the status of their shipment.</p>\n",
-    "x-owner": "https://vault.shopify.io/teams/457",
+    "x-owner": "https://vault.shopify.io/teams/2678",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -65,11 +64,11 @@
                   "value": {
                     "fulfillment_events": [
                       {
-                        "id": 944956391,
+                        "id": 944956392,
                         "fulfillment_id": 255858046,
                         "status": "in_transit",
                         "message": null,
-                        "happened_at": "2023-01-03T10:58:57-07:00",
+                        "happened_at": "2023-02-02T08:00:14-07:00",
                         "city": null,
                         "province": null,
                         "country": null,
@@ -78,11 +77,11 @@
                         "latitude": null,
                         "longitude": null,
                         "shop_id": 548380009,
-                        "created_at": "2023-01-03T10:58:57-07:00",
-                        "updated_at": "2023-01-03T10:58:57-07:00",
+                        "created_at": "2023-02-02T08:00:14-07:00",
+                        "updated_at": "2023-02-02T08:00:14-07:00",
                         "estimated_delivery_at": null,
                         "order_id": 450789469,
-                        "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956391"
+                        "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956392"
                       }
                     ]
                   }
@@ -96,7 +95,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/fulfillments/255858046/events.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/fulfillments/255858046/events.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/fulfillments/255858046/events.json",
@@ -106,13 +105,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment_events\":[{\"id\":944956391,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2023-01-03T12:58:57-05:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2023-01-03T12:58:57-05:00\",\"updated_at\":\"2023-01-03T12:58:57-05:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956391\"}]}"
+            "body": "{\"fulfillment_events\":[{\"id\":944956392,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2023-02-02T10:00:14-05:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2023-02-02T10:00:14-05:00\",\"updated_at\":\"2023-02-02T10:00:14-05:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956392\"}]}"
           },
           "name": "Retrieve a list of all the fulfillment events that are associated with a specific fulfillment",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/fulfillments/255858046/events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/fulfillments/255858046/events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -124,7 +123,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -178,11 +177,11 @@
                 "Create a fulfillment event": {
                   "value": {
                     "fulfillment_event": {
-                      "id": 944956392,
+                      "id": 944956393,
                       "fulfillment_id": 255858046,
                       "status": "in_transit",
                       "message": null,
-                      "happened_at": "2023-01-03T10:59:00-07:00",
+                      "happened_at": "2023-02-02T08:00:17-07:00",
                       "city": null,
                       "province": null,
                       "country": null,
@@ -191,11 +190,11 @@
                       "latitude": null,
                       "longitude": null,
                       "shop_id": 548380009,
-                      "created_at": "2023-01-03T10:59:00-07:00",
-                      "updated_at": "2023-01-03T10:59:00-07:00",
+                      "created_at": "2023-02-02T08:00:17-07:00",
+                      "updated_at": "2023-02-02T08:00:17-07:00",
                       "estimated_delivery_at": null,
                       "order_id": 450789469,
-                      "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956392"
+                      "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956393"
                     }
                   }
                 }
@@ -208,7 +207,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/fulfillments/255858046/events.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/fulfillments/255858046/events.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/fulfillments/255858046/events.json",
@@ -218,13 +217,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"fulfillment_event\":{\"id\":944956392,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2023-01-03T12:59:00-05:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2023-01-03T12:59:00-05:00\",\"updated_at\":\"2023-01-03T12:59:00-05:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956392\"}}"
+            "body": "{\"fulfillment_event\":{\"id\":944956393,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2023-02-02T10:00:17-05:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2023-02-02T10:00:17-05:00\",\"updated_at\":\"2023-02-02T10:00:17-05:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956393\"}}"
           },
           "name": "Create a fulfillment event",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"event\":{\"status\":\"in_transit\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/fulfillments/255858046/events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"event\":{\"status\":\"in_transit\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/fulfillments/255858046/events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -236,7 +235,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_event = new FulfillmentEvent($this->test_session);\n$fulfillment_event->order_id = 450789469;\n$fulfillment_event->fulfillment_id = 255858046;\n$fulfillment_event->status = \"in_transit\";\n$fulfillment_event->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_event = new FulfillmentEvent($this->test_session);\n$fulfillment_event->order_id = 450789469;\n$fulfillment_event->fulfillment_id = 255858046;\n$fulfillment_event->status = \"in_transit\";\n$fulfillment_event->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -306,11 +305,11 @@
                 "Retrieve a specific fulfillment event": {
                   "value": {
                     "fulfillment_event": {
-                      "id": 944956393,
+                      "id": 944956394,
                       "fulfillment_id": 255858046,
                       "status": "in_transit",
                       "message": null,
-                      "happened_at": "2023-01-03T10:59:00-07:00",
+                      "happened_at": "2023-02-02T08:00:18-07:00",
                       "city": null,
                       "province": null,
                       "country": null,
@@ -319,11 +318,11 @@
                       "latitude": null,
                       "longitude": null,
                       "shop_id": 548380009,
-                      "created_at": "2023-01-03T10:59:00-07:00",
-                      "updated_at": "2023-01-03T10:59:00-07:00",
+                      "created_at": "2023-02-02T08:00:18-07:00",
+                      "updated_at": "2023-02-02T08:00:18-07:00",
                       "estimated_delivery_at": null,
                       "order_id": 450789469,
-                      "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956393"
+                      "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956394"
                     }
                   }
                 }
@@ -336,35 +335,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/fulfillments/255858046/events/944956393.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/fulfillments/255858046/events/944956394.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/unstable/orders/450789469/fulfillments/255858046/events/944956393.json",
+            "action": "GET /admin/api/unstable/orders/450789469/fulfillments/255858046/events/944956394.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"fulfillment_event\":{\"id\":944956393,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2023-01-03T12:59:00-05:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2023-01-03T12:59:00-05:00\",\"updated_at\":\"2023-01-03T12:59:00-05:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956393\"}}"
+            "body": "{\"fulfillment_event\":{\"id\":944956394,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2023-02-02T10:00:18-05:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2023-02-02T10:00:18-05:00\",\"updated_at\":\"2023-02-02T10:00:18-05:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956394\"}}"
           },
           "name": "Retrieve a specific fulfillment event",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/fulfillments/255858046/events/944956393.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/fulfillments/255858046/events/944956394.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::FulfillmentEvent.find(\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956393,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::FulfillmentEvent.find(\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956394,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.FulfillmentEvent.find({\n  session: session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956393,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.FulfillmentEvent.find({\n  session: session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956394,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::find(\n    $this->test_session, // Session\n    944956393, // Id\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::find(\n    $this->test_session, // Session\n    944956394, // Id\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -435,10 +434,10 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/orders/450789469/fulfillments/255858046/events/944956394.json",
+          "request_path": "/admin/api/2023-04/orders/450789469/fulfillments/255858046/events/944956391.json",
           "request_method": "DELETE",
           "request": {
-            "action": "DELETE /admin/api/unstable/orders/450789469/fulfillments/255858046/events/944956394.json",
+            "action": "DELETE /admin/api/unstable/orders/450789469/fulfillments/255858046/events/944956391.json",
             "headers": {},
             "body": ""
           },
@@ -451,19 +450,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/orders/450789469/fulfillments/255858046/events/944956394.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/orders/450789469/fulfillments/255858046/events/944956391.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::FulfillmentEvent.delete(\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956394,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::FulfillmentEvent.delete(\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956391,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.FulfillmentEvent.delete({\n  session: session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956394,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.FulfillmentEvent.delete({\n  session: session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956391,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::delete(\n    $this->test_session, // Session\n    944956394, // Id\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::delete(\n    $this->test_session, // Session\n    944956391, // Id\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -611,5 +610,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

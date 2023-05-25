@@ -56,7 +56,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Address2 { get; set; } = default!;
 
         /// <summary>
-        /// Whether the shop is capable of accepting payments directly through the [Checkout API](/apps/channels/checkout-api).
+        /// Whether the shop is capable of accepting payments directly through the [Checkout API](/docs/api/admin-rest/current/resources/checkout).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("checkout_api_supported")]

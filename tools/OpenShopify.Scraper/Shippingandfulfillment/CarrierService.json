@@ -2,11 +2,10 @@
   "openapi": "3.0.0",
   "info": {
     "title": "CarrierService",
-    "description": "        <p>A carrier service (also known as a carrier calculated service or shipping service) provides real-time shipping rates to Shopify. Some common carrier services include Canada Post, FedEx, UPS, and USPS. The term <strong>carrier</strong> is often used interchangeably with the terms <strong>shipping company</strong> and <strong>rate provider</strong>.</p>\n        <p>Using the CarrierService resource, you can add a carrier service to a shop and then provide a list of applicable shipping rates at checkout. You can even use the cart data to adjust shipping rates and offer shipping discounts based on what is in the customer's cart.</p>\n        <h2>Requirements for accessing the CarrierService resource</h2>\n        <p>To access the CarrierService resource, add the <code>write_shipping</code> permission to your app's requested scopes. For more information, see <a href=\"/docs/admin-api/access-scopes\"><em>API access scopes</em></a>.</p>\n        <p>Your app's request to create a carrier service will fail unless the store installing your carrier service meets one of the following requirements:\n          <ul>\n            <li>It's on the Advanced Shopify plan or higher.</li>\n            <li>It's on the Shopify plan with yearly billing, or the carrier service feature has been added to the store for a monthly fee. For more information, contact <a href=\"https://help.shopify.com/questions\">Shopify Support</a>.</li>\n            <li>It's a development store.</li>\n          </ul>\n        </p>\n        <aside class=\"note\">\n          <h4>Note</h4>\n          <p>If a store changes its Shopify plan, then the store's association with a carrier service is deactivated if the store no long meets one of the requirements above.\n          </p>\n        </aside>\n        <h2>Providing shipping rates to Shopify</h2>\n        <p>When adding a carrier service to a store, you need to provide a POST endpoint rooted in the <code>callback_url</code> property where Shopify can retrieve applicable shipping rates. The callback URL should be a public endpoint that expects these requests from Shopify.</p>\n        <p><strong>A sample Shopify request for shipping rates:</strong></p>\n        <div id=\"callback-url\" class=\"api-endpoint\">\n            <div class=\"api-endpoint-request\">\n              <pre class=\"api-endpoint-request-type\">POST</pre>\n              Your callback URL\n            </div>\n            <div class=\"api-endpoint-description\">\n             <p>Retrieves a list of applicable shipping rates</p>\n            </div>\n            <div class=\"api-endpoint-content\">\n                <div class=\"api-endpoint-queryparameters\"></div>\n                <div class=\"api-endpoint-example\">\n                  <h3 class=\"api-endpoint-example-title\">Example shipping rate request sent to a carrier service</h3>\n                    <pre>\n{\n  \"rate\": {\n    \"origin\": {\n      \"country\": \"CA\",\n      \"postal_code\": \"K2P1L4\",\n      \"province\": \"ON\",\n      \"city\": \"Ottawa\",\n      \"name\": null,\n      \"address1\": \"150 Elgin St.\",\n      \"address2\": \"\",\n      \"address3\": null,\n      \"phone\": \"16135551212\",\n      \"fax\": null,\n      \"email\": null,\n      \"address_type\": null,\n      \"company_name\": \"Jamie D's Emporium\"\n    },\n    \"destination\": {\n      \"country\": \"CA\",\n      \"postal_code\": \"K1M1M4\",\n      \"province\": \"ON\",\n      \"city\": \"Ottawa\",\n      \"name\": \"Bob Norman\",\n      \"address1\": \"24 Sussex Dr.\",\n      \"address2\": \"\",\n      \"address3\": null,\n      \"phone\": null,\n      \"fax\": null,\n      \"email\": null,\n      \"address_type\": null,\n      \"company_name\": null\n    },\n    \"items\": [{\n      \"name\": \"Short Sleeve T-Shirt\",\n      \"sku\": \"\",\n      \"quantity\": 1,\n      \"grams\": 1000,\n      \"price\": 1999,\n      \"vendor\": \"Jamie D's Emporium\",\n      \"requires_shipping\": true,\n      \"taxable\": true,\n      \"fulfillment_service\": \"manual\",\n      \"properties\": null,\n      \"product_id\": 48447225880,\n      \"variant_id\": 258644705304\n    }],\n    \"currency\": \"USD\",\n    \"locale\": \"en\"\n  }\n}\n                    </pre>\n                  <div class=\"api-endpoint-example-request\">\n                    <button type=\"button\" class=\"docs-button-small api-endpoint-example-response-button\">View Response</button>\n                  </div>\n                  <div class=\"api-endpoint-example-response\">\n                    <pre>\n{\n   \"rates\": [\n       {\n           \"service_name\": \"canadapost-overnight\",\n           \"service_code\": \"ON\",\n           \"total_price\": \"1295\",\n           \"description\": \"This is the fastest option by far\",\n           \"currency\": \"CAD\",\n           \"min_delivery_date\": \"2013-04-12 14:48:45 -0400\",\n           \"max_delivery_date\": \"2013-04-12 14:48:45 -0400\"\n       },\n       {\n           \"service_name\": \"fedex-2dayground\",\n           \"service_code\": \"2D\",\n           \"total_price\": \"2934\",\n           \"currency\": \"USD\",\n           \"min_delivery_date\": \"2013-04-12 14:48:45 -0400\",\n           \"max_delivery_date\": \"2013-04-12 14:48:45 -0400\"\n       },\n       {\n           \"service_name\": \"fedex-priorityovernight\",\n           \"service_code\": \"1D\",\n           \"total_price\": \"3587\",\n           \"currency\": \"USD\",\n           \"min_delivery_date\": \"2013-04-12 14:48:45 -0400\",\n           \"max_delivery_date\": \"2013-04-12 14:48:45 -0400\"\n       }\n   ]\n}\n                    </pre>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n          <p>The <code>address3</code>, <code>fax</code>, <code>address_type</code>, and <code>company_name</code> fields are returned by specific <a href=\"https://github.com/Shopify/active_shipping\">ActiveShipping</a> providers. For API-created carrier services, you should use only the following shipping address fields:</p>\n          <ul>\n            <li><code>address1</code></li>\n            <li><code>address2</code></li>\n            <li><code>city</code></li>\n            <li><code>zip</code></li>\n            <li><code>province</code></li>\n            <li><code>country</code></li>\n          </ul>\n          <p>Other values remain as <code>null</code> and are not sent to the callback URL.</p>\n\n  <h3>Response fields</h3>\n\n  <p>When Shopify requests shipping rates using your callback URL, the response object <code>rates</code> must be\n  a JSON array of objects with the following fields.  Required fields must be included in the response for the carrier service integration to work properly.</p>\n\n          <table border=\"1\">\n  <tr>\n  <td><strong>Field</strong></td>\n  <td><strong>Description</strong></td>\n  </tr>\n  <tr>\n  <td><code>service_name</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>The name of the rate, which customers see at checkout. For example: <code>Expedited Mail</code>.</td>\n  </tr>\n  <tr>\n  <td><code>description</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>A description of the rate, which customers see at checkout. For example: <code>Includes tracking and insurance</code>.</td>\n  </tr>\n  <tr>\n  <td><code>service_code</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>A unique code associated with the rate. For example: <code>expedited_mail<code>.</td>\n  </tr>\n  <tr>\n  <td><code>currency</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>The currency of the shipping rate.</td>\n  </tr>\n  <tr>\n  <td><code>total_price</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>The total price expressed in subunits. If the currency doesn't use subunits, then the value must be multiplied by 100. For example: `\"total_price\": 500` for 5.00 CAD, `\"total_price\": 100000` for 1000 JPY.</td>\n  </tr>\n  <tr>\n  <td><code>phone_required</code></td>\n  <td>Whether the customer must provide a phone number at checkout.</td>\n  </tr>\n  <tr>\n  <td><code>min_delivery_date</code></td>\n  <td>The earliest delivery date for the displayed rate.</td>\n  </tr>\n  <tr>\n  <td><code>max_delivery_date</code></td>\n  <td>The latest delivery date for the displayed rate to still be valid.</td>\n  </tr>\n\n  </table>\n\n  <h2>Response Timeouts</h2>\n  <p>The read timeout for rate requests are dynamic, based on the number of requests per minute (RPM). These limits are applied to each shop-app pair. The timeout values are as follows.</p>\n  <table>\n  <tr>\n  <td><strong>RPM Range</strong></td>\n  <td><strong>Timeout</strong></td>\n  </tr>\n  <tr>\n  <td>Under 1500</td>\n  <td>10s</td>\n  </tr>\n  <tr>\n  <td>1500 to 3000</td>\n  <td>5s</td>\n  </tr>\n  <tr>\n  <td>Over 3000</td>\n  <td>3s</td>\n  </tr>\n  </table>\n\n  <strong>Note: </strong>These values are upper limits and should not be interpretted as a goal to develop towards. Shopify is constantly evaluating the performance of the platform and working towards improving resilience as well as app capabilities. As such, these numbers may be adjusted outside of our normal versioning timelines.\n\n  <h2>Server-side caching of requests</h2>\n  <p>Shopify provides server-side caching to reduce the number of requests it makes. Any shipping rate request that identically matches the following fields will be retrieved from Shopify's cache of the initial response:</p>\n  <ul><li>variant IDs</li>\n  <li>default shipping box weight and dimensions</li>\n  <li>variant quantities</li>\n  <li>carrier service ID</li>\n  <li>origin address</li>\n  <li>destination address</li>\n  <li>item weights and signatures</li></ul>\n  <p>If any of these fields differ, or if the cache has expired since the original request, then new shipping rates are requested. The cache expires 15 minutes after rates are successfully returned. If an error occurs, then the cache expires after 30 seconds.</p>\n",
-    "x-owner": "https://vault.shopify.io/teams/2644",
+    "description": "        <p>A carrier service (also known as a carrier calculated service or shipping service) provides real-time shipping rates to Shopify. Some common carrier services include Canada Post, FedEx, UPS, and USPS. The term <strong>carrier</strong> is often used interchangeably with the terms <strong>shipping company</strong> and <strong>rate provider</strong>.</p>\n        <p>Using the CarrierService resource, you can add a carrier service to a shop and then provide a list of applicable shipping rates at checkout. You can even use the cart data to adjust shipping rates and offer shipping discounts based on what is in the customer's cart.</p>\n        <h2>Requirements for accessing the CarrierService resource</h2>\n        <p>To access the CarrierService resource, add the <code>write_shipping</code> permission to your app's requested scopes. For more information, see <a href=\"/docs/admin-api/access-scopes\"><em>API access scopes</em></a>.</p>\n        <p>Your app's request to create a carrier service will fail unless the store installing your carrier service meets one of the following requirements:\n          <ul>\n            <li>It's on the Advanced Shopify plan or higher.</li>\n            <li>It's on the Shopify plan with yearly billing, or the carrier service feature has been added to the store for a monthly fee. For more information, contact <a href=\"https://help.shopify.com/questions\">Shopify Support</a>.</li>\n            <li>It's a development store.</li>\n          </ul>\n        </p>\n        <aside class=\"note\">\n          <h4>Note</h4>\n          <p>If a store changes its Shopify plan, then the store's association with a carrier service is deactivated if the store no long meets one of the requirements above.\n          </p>\n        </aside>\n        <h2>Providing shipping rates to Shopify</h2>\n        <p>When adding a carrier service to a store, you need to provide a POST endpoint rooted in the <code>callback_url</code> property where Shopify can retrieve applicable shipping rates. The callback URL should be a public endpoint that expects these requests from Shopify.</p>\n        <p><strong>A sample Shopify request for shipping rates:</strong></p>\n        <div id=\"callback-url\" class=\"api-endpoint\">\n            <div class=\"api-endpoint-request\">\n              <pre class=\"api-endpoint-request-type\">POST</pre>\n              Your callback URL\n            </div>\n            <div class=\"api-endpoint-description\">\n             <p>Retrieves a list of applicable shipping rates</p>\n            </div>\n            <div class=\"api-endpoint-content\">\n                <div class=\"api-endpoint-queryparameters\"></div>\n                <div class=\"api-endpoint-example\">\n                  <h3 class=\"api-endpoint-example-title\">Example shipping rate request sent to a carrier service</h3>\n                    <pre>\n{\n  \"rate\": {\n    \"origin\": {\n      \"country\": \"CA\",\n      \"postal_code\": \"K2P1L4\",\n      \"province\": \"ON\",\n      \"city\": \"Ottawa\",\n      \"name\": null,\n      \"address1\": \"150 Elgin St.\",\n      \"address2\": \"\",\n      \"address3\": null,\n      \"phone\": null,\n      \"fax\": null,\n      \"email\": null,\n      \"address_type\": null,\n      \"company_name\": \"Jamie D's Emporium\"\n    },\n    \"destination\": {\n      \"country\": \"CA\",\n      \"postal_code\": \"K1M1M4\",\n      \"province\": \"ON\",\n      \"city\": \"Ottawa\",\n      \"name\": \"Bob Norman\",\n      \"address1\": \"24 Sussex Dr.\",\n      \"address2\": \"\",\n      \"address3\": null,\n      \"phone\": null,\n      \"fax\": null,\n      \"email\": null,\n      \"address_type\": null,\n      \"company_name\": null\n    },\n    \"items\": [{\n      \"name\": \"Short Sleeve T-Shirt\",\n      \"sku\": \"\",\n      \"quantity\": 1,\n      \"grams\": 1000,\n      \"price\": 1999,\n      \"vendor\": \"Jamie D's Emporium\",\n      \"requires_shipping\": true,\n      \"taxable\": true,\n      \"fulfillment_service\": \"manual\",\n      \"properties\": null,\n      \"product_id\": 48447225880,\n      \"variant_id\": 258644705304\n    }],\n    \"currency\": \"USD\",\n    \"locale\": \"en\"\n  }\n}\n                    </pre>\n                  <div class=\"api-endpoint-example-request\">\n                    <button type=\"button\" class=\"docs-button-small api-endpoint-example-response-button\">View Response</button>\n                  </div>\n                  <div class=\"api-endpoint-example-response\">\n                    <pre>\n{\n   \"rates\": [\n       {\n           \"service_name\": \"canadapost-overnight\",\n           \"service_code\": \"ON\",\n           \"total_price\": \"1295\",\n           \"description\": \"This is the fastest option by far\",\n           \"currency\": \"CAD\",\n           \"min_delivery_date\": \"2013-04-12 14:48:45 -0400\",\n           \"max_delivery_date\": \"2013-04-12 14:48:45 -0400\"\n       },\n       {\n           \"service_name\": \"fedex-2dayground\",\n           \"service_code\": \"2D\",\n           \"total_price\": \"2934\",\n           \"currency\": \"USD\",\n           \"min_delivery_date\": \"2013-04-12 14:48:45 -0400\",\n           \"max_delivery_date\": \"2013-04-12 14:48:45 -0400\"\n       },\n       {\n           \"service_name\": \"fedex-priorityovernight\",\n           \"service_code\": \"1D\",\n           \"total_price\": \"3587\",\n           \"currency\": \"USD\",\n           \"min_delivery_date\": \"2013-04-12 14:48:45 -0400\",\n           \"max_delivery_date\": \"2013-04-12 14:48:45 -0400\"\n       }\n   ]\n}\n                    </pre>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n          <p>The <code>address3</code>, <code>fax</code>, <code>address_type</code>, and <code>company_name</code> fields are returned by specific <a href=\"https://github.com/Shopify/active_shipping\">ActiveShipping</a> providers. For API-created carrier services, you should use only the following shipping address fields:</p>\n          <ul>\n            <li><code>address1</code></li>\n            <li><code>address2</code></li>\n            <li><code>city</code></li>\n            <li><code>zip</code></li>\n            <li><code>province</code></li>\n            <li><code>country</code></li>\n          </ul>\n          <p>Other values remain as <code>null</code> and are not sent to the callback URL.</p>\n\n  <h3>Response fields</h3>\n\n  <p>When Shopify requests shipping rates using your callback URL, the response object <code>rates</code> must be\n  a JSON array of objects with the following fields.  Required fields must be included in the response for the carrier service integration to work properly.</p>\n\n          <table border=\"1\">\n  <tr>\n  <td><strong>Field</strong></td>\n  <td><strong>Description</strong></td>\n  </tr>\n  <tr>\n  <td><code>service_name</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>The name of the rate, which customers see at checkout. For example: <code>Expedited Mail</code>.</td>\n  </tr>\n  <tr>\n  <td><code>description</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>A description of the rate, which customers see at checkout. For example: <code>Includes tracking and insurance</code>.</td>\n  </tr>\n  <tr>\n  <td><code>service_code</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>A unique code associated with the rate. For example: <code>expedited_mail<code>.</td>\n  </tr>\n  <tr>\n  <td><code>currency</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>The currency of the shipping rate.</td>\n  </tr>\n  <tr>\n  <td><code>total_price</code><br><span class=\"heading-flag api-property-flag\">required</span></td>\n  <td>The total price expressed in subunits. If the currency doesn't use subunits, then the value must be multiplied by 100. For example: `\"total_price\": 500` for 5.00 CAD, `\"total_price\": 100000` for 1000 JPY.</td>\n  </tr>\n  <tr>\n  <td><code>phone_required</code></td>\n  <td>Whether the customer must provide a phone number at checkout.</td>\n  </tr>\n  <tr>\n  <td><code>min_delivery_date</code></td>\n  <td>The earliest delivery date for the displayed rate.</td>\n  </tr>\n  <tr>\n  <td><code>max_delivery_date</code></td>\n  <td>The latest delivery date for the displayed rate to still be valid.</td>\n  </tr>\n\n  </table>\n\n  <h2>Response Timeouts</h2>\n  <p>The read timeout for rate requests are dynamic, based on the number of requests per minute (RPM). These limits are applied to each shop-app pair. The timeout values are as follows.</p>\n  <table>\n  <tr>\n  <td><strong>RPM Range</strong></td>\n  <td><strong>Timeout</strong></td>\n  </tr>\n  <tr>\n  <td>Under 1500</td>\n  <td>10s</td>\n  </tr>\n  <tr>\n  <td>1500 to 3000</td>\n  <td>5s</td>\n  </tr>\n  <tr>\n  <td>Over 3000</td>\n  <td>3s</td>\n  </tr>\n  </table>\n\n  <strong>Note: </strong>These values are upper limits and should not be interpretted as a goal to develop towards. Shopify is constantly evaluating the performance of the platform and working towards improving resilience as well as app capabilities. As such, these numbers may be adjusted outside of our normal versioning timelines.\n\n  <h2>Server-side caching of requests</h2>\n  <p>Shopify provides server-side caching to reduce the number of requests it makes. Any shipping rate request that identically matches the following fields will be retrieved from Shopify's cache of the initial response:</p>\n  <ul><li>variant IDs</li>\n  <li>default shipping box weight and dimensions</li>\n  <li>variant quantities</li>\n  <li>carrier service ID</li>\n  <li>origin address</li>\n  <li>destination address</li>\n  <li>item weights and signatures</li></ul>\n  <p>If any of these fields differ, or if the cache has expired since the original request, then new shipping rates are requested. The cache expires 15 minutes after rates are successfully returned. If an error occurs, then the cache expires after 30 seconds.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/2836-Buyer-Trust",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -32,12 +31,12 @@
                 "Create a carrier service": {
                   "value": {
                     "carrier_service": {
-                      "id": 1036894957,
+                      "id": 1036894955,
                       "name": "Shipping Rate Provider",
                       "active": true,
                       "service_discovery": true,
                       "carrier_service_type": "api",
-                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894957",
+                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894955",
                       "format": "json",
                       "callback_url": "http://shipping.example.com/"
                     }
@@ -52,7 +51,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/carrier_services.json",
+          "request_path": "/admin/api/2023-04/carrier_services.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/carrier_services.json",
@@ -62,13 +61,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"carrier_service\":{\"id\":1036894957,\"name\":\"Shipping Rate Provider\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894957\",\"format\":\"json\",\"callback_url\":\"http://shipping.example.com/\"}}"
+            "body": "{\"carrier_service\":{\"id\":1036894955,\"name\":\"Shipping Rate Provider\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894955\",\"format\":\"json\",\"callback_url\":\"http://shipping.example.com/\"}}"
           },
           "name": "Create a carrier service",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"carrier_service\":{\"name\":\"Shipping Rate Provider\",\"callback_url\":\"http://shipping.example.com\",\"service_discovery\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"carrier_service\":{\"name\":\"Shipping Rate Provider\",\"callback_url\":\"http://shipping.example.com\",\"service_discovery\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/carrier_services.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -80,7 +79,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$carrier_service = new CarrierService($this->test_session);\n$carrier_service->name = \"Shipping Rate Provider\";\n$carrier_service->callback_url = \"http://shipping.example.com\";\n$carrier_service->service_discovery = true;\n$carrier_service->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$carrier_service = new CarrierService($this->test_session);\n$carrier_service->name = \"Shipping Rate Provider\";\n$carrier_service->callback_url = \"http://shipping.example.com\";\n$carrier_service->service_discovery = true;\n$carrier_service->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -96,9 +95,9 @@
       "action": "post"
     },
     {
-      "description": null,
-      "summary": "Receive a list of all CarrierServices",
-      "operationId": "ReceivealistofallCarrierServices",
+      "description": "<p>Retrieve a list of CarrierServices. <strong>Note:</strong> Only services with property <code>active: true</code> are returned.</p>",
+      "summary": "Retrieve a list of CarrierServices",
+      "operationId": "RetrievealistofCarrierServices",
       "parameters": [
         {
           "name": "api_version",
@@ -111,7 +110,7 @@
       ],
       "responses": {
         "200": {
-          "description": "Receive a list of all CarrierServices",
+          "description": "Retrieve a list of CarrierServices",
           "content": {
             "application/json": {
               "examples": {
@@ -119,12 +118,12 @@
                   "value": {
                     "carrier_services": [
                       {
-                        "id": 1036894958,
+                        "id": 1036894957,
                         "name": "Purolator",
                         "active": true,
                         "service_discovery": true,
                         "carrier_service_type": "api",
-                        "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894958",
+                        "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894957",
                         "format": "json",
                         "callback_url": "http://example.com/"
                       },
@@ -148,7 +147,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/carrier_services.json",
+          "request_path": "/admin/api/2023-04/carrier_services.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/carrier_services.json",
@@ -158,13 +157,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"carrier_services\":[{\"id\":1036894958,\"name\":\"Purolator\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894958\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"},{\"id\":260046840,\"name\":\"ups_shipping\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"legacy\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/260046840\"}]}"
+            "body": "{\"carrier_services\":[{\"id\":1036894957,\"name\":\"Purolator\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894957\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"},{\"id\":260046840,\"name\":\"ups_shipping\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"legacy\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/260046840\"}]}"
           },
           "name": "Retrieve a list of carrier services",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/carrier_services.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -176,7 +175,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -223,11 +222,11 @@
                   "value": {
                     "carrier_service": {
                       "active": false,
-                      "id": 1036894955,
+                      "id": 1036894956,
                       "name": "Some new name",
                       "service_discovery": true,
                       "carrier_service_type": "api",
-                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894955",
+                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894956",
                       "format": "json",
                       "callback_url": "http://example.com/"
                     }
@@ -242,35 +241,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/carrier_services/1036894955.json",
+          "request_path": "/admin/api/2023-04/carrier_services/1036894956.json",
           "request_method": "PUT",
           "request": {
-            "action": "PUT /admin/api/unstable/carrier_services/1036894955.json",
+            "action": "PUT /admin/api/unstable/carrier_services/1036894956.json",
             "headers": {},
-            "body": "{\"carrier_service\":{\"id\":1036894955,\"name\":\"Some new name\",\"active\":false}}"
+            "body": "{\"carrier_service\":{\"id\":1036894956,\"name\":\"Some new name\",\"active\":false}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"carrier_service\":{\"active\":false,\"id\":1036894955,\"name\":\"Some new name\",\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894955\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"}}"
+            "body": "{\"carrier_service\":{\"active\":false,\"id\":1036894956,\"name\":\"Some new name\",\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894956\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"}}"
           },
           "name": "Update a carrier service",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"carrier_service\":{\"id\":1036894955,\"name\":\"Some new name\",\"active\":false}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1036894955.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"carrier_service\":{\"id\":1036894956,\"name\":\"Some new name\",\"active\":false}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/carrier_services/1036894956.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncarrier_service = ShopifyAPI::CarrierService.new(session: test_session)\ncarrier_service.id = 1036894955\ncarrier_service.name = \"Some new name\"\ncarrier_service.active = false\ncarrier_service.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncarrier_service = ShopifyAPI::CarrierService.new(session: test_session)\ncarrier_service.id = 1036894956\ncarrier_service.name = \"Some new name\"\ncarrier_service.active = false\ncarrier_service.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst carrier_service = new shopify.rest.CarrierService({session: session});\ncarrier_service.id = 1036894955;\ncarrier_service.name = \"Some new name\";\ncarrier_service.active = false;\nawait carrier_service.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst carrier_service = new shopify.rest.CarrierService({session: session});\ncarrier_service.id = 1036894956;\ncarrier_service.name = \"Some new name\";\ncarrier_service.active = false;\nawait carrier_service.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$carrier_service = new CarrierService($this->test_session);\n$carrier_service->id = 1036894955;\n$carrier_service->name = \"Some new name\";\n$carrier_service->active = false;\n$carrier_service->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$carrier_service = new CarrierService($this->test_session);\n$carrier_service->id = 1036894956;\n$carrier_service->name = \"Some new name\";\n$carrier_service->active = false;\n$carrier_service->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -316,12 +315,12 @@
                 "Get a single carrier service by its ID": {
                   "value": {
                     "carrier_service": {
-                      "id": 1036894954,
+                      "id": 1036894959,
                       "name": "Purolator",
                       "active": true,
                       "service_discovery": true,
                       "carrier_service_type": "api",
-                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894954",
+                      "admin_graphql_api_id": "gid://shopify/DeliveryCarrierService/1036894959",
                       "format": "json",
                       "callback_url": "http://example.com/"
                     }
@@ -336,35 +335,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/carrier_services/1036894954.json",
+          "request_path": "/admin/api/2023-04/carrier_services/1036894959.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/unstable/carrier_services/1036894954.json",
+            "action": "GET /admin/api/unstable/carrier_services/1036894959.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"carrier_service\":{\"id\":1036894954,\"name\":\"Purolator\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894954\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"}}"
+            "body": "{\"carrier_service\":{\"id\":1036894959,\"name\":\"Purolator\",\"active\":true,\"service_discovery\":true,\"carrier_service_type\":\"api\",\"admin_graphql_api_id\":\"gid://shopify/DeliveryCarrierService/1036894959\",\"format\":\"json\",\"callback_url\":\"http://example.com/\"}}"
           },
           "name": "Get a single carrier service by its ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1036894954.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/carrier_services/1036894959.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CarrierService.find(\n  session: test_session,\n  id: 1036894954,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CarrierService.find(\n  session: test_session,\n  id: 1036894959,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CarrierService.find({\n  session: session,\n  id: 1036894954,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CarrierService.find({\n  session: session,\n  id: 1036894959,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::find(\n    $this->test_session, // Session\n    1036894954, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::find(\n    $this->test_session, // Session\n    1036894959, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -419,10 +418,10 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/carrier_services/1036894959.json",
+          "request_path": "/admin/api/2023-04/carrier_services/1036894960.json",
           "request_method": "DELETE",
           "request": {
-            "action": "DELETE /admin/api/unstable/carrier_services/1036894959.json",
+            "action": "DELETE /admin/api/unstable/carrier_services/1036894960.json",
             "headers": {},
             "body": ""
           },
@@ -435,19 +434,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/carrier_services/1036894959.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/carrier_services/1036894960.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CarrierService.delete(\n  session: test_session,\n  id: 1036894959,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CarrierService.delete(\n  session: test_session,\n  id: 1036894960,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CarrierService.delete({\n  session: session,\n  id: 1036894959,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CarrierService.delete({\n  session: session,\n  id: 1036894960,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::delete(\n    $this->test_session, // Session\n    1036894959, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CarrierService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCarrierService::delete(\n    $this->test_session, // Session\n    1036894960, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -470,7 +469,7 @@
       "type": "object",
       "properties": [
         {
-          "description": "Whether this carrier service is active.",
+          "description": "Whether this carrier service is active. If <code>true</code>, then the service will be available to serve rates in checkout.\n",
           "type": "string",
           "example": true,
           "name": "active"
@@ -492,6 +491,12 @@
           "type": "string",
           "example": 14079244,
           "name": "id"
+        },
+        {
+          "description": "The format of the data returned by the URL endpoint. <code>json</code> is the only valid value.",
+          "type": "string",
+          "example": "json",
+          "name": "format"
         },
         {
           "description": "The name of the shipping service as seen by merchants and their customers.",
@@ -535,5 +540,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

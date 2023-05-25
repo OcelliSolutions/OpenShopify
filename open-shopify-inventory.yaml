@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Inventory
   description: Inventory
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,13 +23,10 @@ paths:
     get:
       tags:
         - InventoryItem
-      summary: Retrieves a detailed list for inventory items by IDs
-      description: 'Retrieves a list of inventory items. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).'
       operationId: ListInventoryItems
       parameters:
         - name: ids
           in: query
-          description: Show only inventory items specified by a comma-separated list of IDs.
           required: true
           style: form
           explode: false
@@ -40,13 +37,11 @@ paths:
               format: int64
         - name: limit
           in: query
-          description: The maximum number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
       responses:
@@ -73,7 +68,6 @@ paths:
     get:
       tags:
         - InventoryItem
-      summary: Retrieves a single inventory item by ID
       operationId: GetInventoryItem
       parameters:
         - name: inventory_item_id
@@ -101,7 +95,6 @@ paths:
     put:
       tags:
         - InventoryItem
-      summary: Updates an existing inventory item
       operationId: UpdateInventoryItem
       parameters:
         - name: inventory_item_id
@@ -139,13 +132,10 @@ paths:
     get:
       tags:
         - InventoryLevel
-      summary: Retrieves a list of inventory levels
-      description: "Retrieves a list of inventory levels.\r\n\r\nYou must include `inventory_item_ids`, `location_ids`, or both as filter parameters.\r\n\r\n**Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest)."
       operationId: ListInventoryLevels
       parameters:
         - name: inventory_item_ids
           in: query
-          description: 'A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)'
           style: form
           explode: false
           schema:
@@ -155,23 +145,19 @@ paths:
               format: int64
         - name: limit
           in: query
-          description: The maximum number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: location_ids
           in: query
-          description: 'A comma-separated list of location IDs. To find the ID of a location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           schema:
             type: string
         - name: updated_at_min
           in: query
-          description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
           schema:
             type: string
             format: date-time
@@ -198,20 +184,16 @@ paths:
     delete:
       tags:
         - InventoryLevel
-      summary: Deletes an inventory level from a location
-      description: 'Deletes an inventory level of an inventory item at a location. Deleting an inventory level for an inventory item removes that item from the specified location. Every inventory item must have at least one inventory level. To move inventory to another location, first connect the inventory item to another location, and then delete the previous inventory level.'
       operationId: DeleteInventoryLevelFromLocation
       parameters:
         - name: inventory_item_id
           in: query
-          description: The ID for the inventory item.
           required: true
           schema:
             type: integer
             format: int64
         - name: location_id
           in: query
-          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           required: true
           schema:
             type: integer
@@ -232,8 +214,6 @@ paths:
     post:
       tags:
         - InventoryLevel
-      summary: Adjusts the inventory level of an inventory item at a location
-      description: Adjusts the inventory level of an inventory item at a single location
       operationId: AdjustInventoryLevelOfInventoryItemAtLocation
       requestBody:
         content:
@@ -264,8 +244,6 @@ paths:
     post:
       tags:
         - InventoryLevel
-      summary: Connects an inventory item to a location
-      description: "Connects an inventory item to a location by creating an inventory level at that location.\r\n\r\nWhen connecting inventory items to locations, it's important to understand the rules around [fulfillment service locations](#inventory-levels-and-fulfillment-service-locations)."
       operationId: ConnectInventoryItemToLocation
       requestBody:
         content:
@@ -296,8 +274,6 @@ paths:
     post:
       tags:
         - InventoryLevel
-      summary: Sets the inventory level for an inventory item at a location
-      description: 'Sets the inventory level for an inventory item at a location. If the specified location is not connected, it will be automatically connected first. When connecting inventory items to locations, it''s important to understand the rules around [fulfillment service locations](#inventory-levels-and-fulfillment-service-locations).'
       operationId: SetInventoryLevelForInventoryItemAtLocation
       requestBody:
         content:
@@ -328,7 +304,6 @@ paths:
     get:
       tags:
         - Location
-      summary: Retrieve a list of locations
       operationId: ListLocations
       responses:
         '200':
@@ -354,7 +329,6 @@ paths:
     get:
       tags:
         - Location
-      summary: Retrieve a single location by its ID
       operationId: GetLocation
       parameters:
         - name: location_id
@@ -383,7 +357,6 @@ paths:
     get:
       tags:
         - Location
-      summary: Retrieve a count of locations
       operationId: CountLocations
       responses:
         '200':
@@ -405,8 +378,6 @@ paths:
     get:
       tags:
         - Location
-      summary: Retrieve a list of inventory levels for a location
-      description: 'Retrieve a list of inventory levels for a location. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).'
       operationId: ListInventoryLevelsForLocation
       parameters:
         - name: location_id
@@ -522,7 +493,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HsCode'
-          description: 'An array of country-specific [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.'
           nullable: true
         harmonized_system_code:
           type: string
@@ -587,12 +557,10 @@ components:
       properties:
         available:
           type: integer
-          description: The available quantity of an inventory item at the inventory level's associated location. Returns `null` if the inventory item is not tracked.
           format: int64
           nullable: true
         inventory_item_id:
           type: integer
-          description: 'The ID of the inventory item associated with the inventory level. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)'
           format: int64
         location_id:
           type: integer
@@ -775,7 +743,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HsCode'
-          description: 'An array of country-specific [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.'
           nullable: true
         harmonized_system_code:
           type: string

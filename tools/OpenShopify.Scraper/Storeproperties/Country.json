@@ -5,8 +5,7 @@
     "description": "        <p>The Country resource represents the tax rates applied to orders from the different countries where a shop sells its products.</p>\n        {{ '/api/reference/country.png' | image }}\n        <p>Merchants select the countries where they sell their products when they set up their shipping zones and rates on the <strong>Shipping</strong> page of the Shopify admin. After adding a country to a shipping zone, store owners can then verify and adjust tax rates for each country on the <strong>Taxes</strong> page.</p>\n        <p>The Country resource lets you access the countries and tax rates set up by the merchant. The countries list includes a default entry called <strong>Rest of World</strong>, which represents all non-specified countries.</p>\n        <p>You can use the Country resource to modify the sales tax rate for a country or sub-region to account for surtaxes or exemptions that apply to the store.</p>\n        <p>For more information on managing tax rates for sub-regions of a country, such as states or provinces, see the <a href=\"/docs/admin-api/rest/reference/store-properties/province\">Province</a> resource.</p>\n        <div class=\"note-caution note\">\n          <h4>Caution</h4>\n          <p>As of version 2020-10, you can no longer create or update custom tax values for the Country resource.</p>\n        </div>\n",
     "x-owner": "https://vault.shopify.io/teams/2310",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -572,7 +571,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/countries.json",
+          "request_path": "/admin/api/2023-04/countries.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/countries.json",
@@ -588,7 +587,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -600,14 +599,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=359115488",
-          "request_path": "/admin/api/2022-10/countries.json",
+          "request_path": "/admin/api/2023-04/countries.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/countries.json",
@@ -623,7 +622,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/countries.json?since_id=359115488\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/countries.json?since_id=359115488\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -635,7 +634,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"359115488\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"359115488\"], // Params\n);"
             }
           ]
         }
@@ -685,7 +684,7 @@
                 "Create a country using a custom tax rate ": {
                   "value": {
                     "country": {
-                      "id": 1070231510,
+                      "id": 1070231512,
                       "name": "France",
                       "code": "FR",
                       "tax_name": "TVA",
@@ -703,7 +702,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/countries.json",
+          "request_path": "/admin/api/2023-04/countries.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/countries.json",
@@ -719,7 +718,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"country\":{\"code\":\"FR\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"country\":{\"code\":\"FR\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -731,14 +730,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->code = \"FR\";\n$country->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->code = \"FR\";\n$country->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/countries.json",
+          "request_path": "/admin/api/2023-04/countries.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/countries.json",
@@ -748,13 +747,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"country\":{\"id\":1070231510,\"name\":\"France\",\"code\":\"FR\",\"tax_name\":\"TVA\",\"tax\":0.2,\"provinces\":[]}}"
+            "body": "{\"country\":{\"id\":1070231512,\"name\":\"France\",\"code\":\"FR\",\"tax_name\":\"TVA\",\"tax\":0.2,\"provinces\":[]}}"
           },
           "name": "Create a country using a custom tax rate ",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"country\":{\"code\":\"FR\",\"tax\":0.2}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"country\":{\"code\":\"FR\",\"tax\":0.2}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/countries.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -766,7 +765,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->code = \"FR\";\n$country->tax = 0.2;\n$country->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->code = \"FR\";\n$country->tax = 0.2;\n$country->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -815,7 +814,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/countries/count.json",
+          "request_path": "/admin/api/2023-04/countries/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/countries/count.json",
@@ -831,7 +830,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/countries/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/countries/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -843,7 +842,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1059,7 +1058,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/countries/879921427.json",
+          "request_path": "/admin/api/2023-04/countries/879921427.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/countries/879921427.json",
@@ -1075,7 +1074,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1087,7 +1086,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::find(\n    $this->test_session, // Session\n    879921427, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::find(\n    $this->test_session, // Session\n    879921427, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1295,7 +1294,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/countries/879921427.json",
+          "request_path": "/admin/api/2023-04/countries/879921427.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/countries/879921427.json",
@@ -1311,7 +1310,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"country\":{\"id\":879921427,\"tax\":0.05}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"country\":{\"id\":879921427,\"tax\":0.05}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1323,7 +1322,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->id = 879921427;\n$country->tax = 0.05;\n$country->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$country = new Country($this->test_session);\n$country->id = 879921427;\n$country->tax = 0.05;\n$country->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -1378,7 +1377,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/countries/879921427.json",
+          "request_path": "/admin/api/2023-04/countries/879921427.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/countries/879921427.json",
@@ -1394,7 +1393,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/countries/879921427.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1406,7 +1405,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::delete(\n    $this->test_session, // Session\n    879921427, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Country;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCountry::delete(\n    $this->test_session, // Session\n    879921427, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1493,5 +1492,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

@@ -27,75 +27,36 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all marketing events
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all marketing events. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">The amount of results to return.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="offset">The number of marketing events to skip.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MarketingEventList>> ListMarketingEventsAsync(int? limit = null, string? pageInfo = null, int? offset = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a marketing event
-        /// </summary>
-        /// <remarks>
-        /// Marketing events can be created to track ad campaigns that target a specific time of year. For example, a marketing event can be created to track a Facebook ad campaign for Christmas 2022. When creating the marketing event, the body of the request includes the UTM parameters that must be included in the links provided in the marketing event. Each marketing event also includes the `event_type` and `marketing_channel` properties that help Shopify to rank your app and surface it within Shopify admin.
-        /// <br/>
-        /// <br/>After a marketing event is created in Shopify, you can start to drive traffic to Shopify. Make sure that the links for the marketing event contain the same UTM parameters that were defined in the marketing event. For example, marketing activities for the Christmas 2022 ad campaign would use the following URL convention:
-        /// <br/>
-        /// <br/>`https://storename.com/product?utm_source=facebook&amp;utm_medium=cpc&amp;utm_campaign=Christmas2022-12142018`
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(CreateMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all marketing events
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single marketing event
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> GetMarketingEventAsync(long marketingEventId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a marketing event
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, UpdateMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a marketing event
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteMarketingEventAsync(long marketingEventId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates marketing engagements on a marketing event
-        /// </summary>
-        /// <remarks>
-        /// Engagements on marketing events represent customer activity taken on the marketing event before customers reach the shop’s website. Not all types of marketing events will necessarily have engagement, and most types of marketing events will only use a subset of the possible engagement types.
-        /// <br/>
-        /// <br/>Engagements are aggregated on a daily basis. However, the data can be sent more often than once a day if the information is available. If you create an engagement with the same value for `occurred_on` as an existing engagement, then the new engagement will overwrite the previous one.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, CreateMarketingEngagementsOnMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -135,15 +96,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of all marketing events
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of all marketing events. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="limit">The amount of results to return.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="offset">The number of marketing events to skip.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventList>> ListMarketingEventsAsync(int? limit = null, string? pageInfo = null, int? offset = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -224,16 +176,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates a marketing event
-        /// </summary>
-        /// <remarks>
-        /// Marketing events can be created to track ad campaigns that target a specific time of year. For example, a marketing event can be created to track a Facebook ad campaign for Christmas 2022. When creating the marketing event, the body of the request includes the UTM parameters that must be included in the links provided in the marketing event. Each marketing event also includes the `event_type` and `marketing_channel` properties that help Shopify to rank your app and surface it within Shopify admin.
-        /// <br/>
-        /// <br/>After a marketing event is created in Shopify, you can start to drive traffic to Shopify. Make sure that the links for the marketing event contain the same UTM parameters that were defined in the marketing event. For example, marketing activities for the Christmas 2022 ad campaign would use the following URL convention:
-        /// <br/>
-        /// <br/>`https://storename.com/product?utm_source=facebook&amp;utm_medium=cpc&amp;utm_campaign=Christmas2022-12142018`
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(CreateMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -308,9 +250,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a count of all marketing events
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -378,9 +317,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single marketing event
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> GetMarketingEventAsync(long marketingEventId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -452,9 +388,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates a marketing event
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, UpdateMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -533,9 +466,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes a marketing event
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMarketingEventAsync(long marketingEventId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -601,14 +531,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Creates marketing engagements on a marketing event
-        /// </summary>
-        /// <remarks>
-        /// Engagements on marketing events represent customer activity taken on the marketing event before customers reach the shop’s website. Not all types of marketing events will necessarily have engagement, and most types of marketing events will only use a subset of the possible engagement types.
-        /// <br/>
-        /// <br/>Engagements are aggregated on a daily basis. However, the data can be sent more often than once a day if the information is available. If you create an engagement with the same value for `occurred_on` as an existing engagement, then the new engagement will overwrite the previous one.
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, CreateMarketingEngagementsOnMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -923,18 +845,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? PreviewUrl { get; set; } = default!;
 
-        /// <summary>
-        /// A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: 
-        /// <br/>
-        /// <br/>*   `product` 
-        /// <br/>*   `collection` 
-        /// <br/>*   `price_rule` 
-        /// <br/>*   `discount` (Will be replaced by price_rule after April 20, 2017.) 
-        /// <br/>*   `page` 
-        /// <br/>*   `article` 
-        /// <br/>*   `homepage` (Doesn't have an `id`.)
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("marketed_resources")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -1170,18 +1080,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? PreviewUrl { get; set; } = default!;
-
-        /// <summary>
-        /// A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: 
-        /// <br/>
-        /// <br/>*   `product` 
-        /// <br/>*   `collection` 
-        /// <br/>*   `price_rule` 
-        /// <br/>*   `discount` (Will be replaced by price_rule after April 20, 2017.) 
-        /// <br/>*   `page` 
-        /// <br/>*   `article` 
-        /// <br/>*   `homepage` (Doesn't have an `id`.)
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("marketed_resources")]
 
@@ -1523,18 +1421,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? PreviewUrl { get; set; } = default!;
-
-        /// <summary>
-        /// A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: 
-        /// <br/>
-        /// <br/>*   `product` 
-        /// <br/>*   `collection` 
-        /// <br/>*   `price_rule` 
-        /// <br/>*   `discount` (Will be replaced by price_rule after April 20, 2017.) 
-        /// <br/>*   `page` 
-        /// <br/>*   `article` 
-        /// <br/>*   `homepage` (Doesn't have an `id`.)
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("marketed_resources")]
 

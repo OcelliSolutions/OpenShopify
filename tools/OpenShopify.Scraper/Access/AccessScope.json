@@ -5,8 +5,7 @@
     "description": "      <p>The AccessScope resource allows you to retrieve the permissions that a merchant has granted to an app, such as <code>read_orders</code> and <code>write_products</code>. These permissions allow apps to access data from a shop, and are granted when a merchant installs the app or updates an existing installation of the app.</p>\n      <p>The list of access scopes retrieved is based on the access token for the request. It returns only those access scopes that are associated with the token.</p>\n      <p>For more information about access scopes, see the <a href=\"https://shopify.dev/api/usage/access-scopes\">access scopes API reference</a>.</p>\n      <div class=\"note\">\n        <h4>Note</h4>\n        <p>If your app is already installed on a shop and you want the merchant to grant additional access scopes, you need to redirect the merchant to the app install page with the additional requested scopes.\n        After a merchant installs the updated app, any subsequent calls made to the AccessScope resource will return the updated list of granted access scopes.</p>\n      </div>\n",
     "x-owner": "https://vault.shopify.io/teams/844",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -72,7 +71,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\AccessScope;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAccessScope::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\AccessScope;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAccessScope::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -130,5 +129,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

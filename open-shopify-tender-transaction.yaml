@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Tender Transaction
   description: Tender Transaction
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,47 +23,38 @@ paths:
     get:
       tags:
         - TenderTransaction
-      summary: Retrieves a list of tender transactions
-      description: 'Retrieves a list of tender transactions. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListTenderTransactions
       parameters:
         - name: limit
           in: query
-          description: The maximum number of results to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: order
           in: query
-          description: Show tender transactions ordered by processed_at in ascending or descending order.
           schema:
             type: string
         - name: processed_at
           in: query
-          description: Show tender transactions processed at the specified date.
           schema:
             type: string
             format: date-time
         - name: processed_at_max
           in: query
-          description: Show tender transactions processed_at or before the specified date.
           schema:
             type: string
             format: date-time
         - name: processed_at_min
           in: query
-          description: Show tender transactions processed_at or after the specified date.
           schema:
             type: string
             format: date-time
         - name: since_id
           in: query
-          description: Retrieve only transactions after the specified ID.
           schema:
             type: integer
             format: int64

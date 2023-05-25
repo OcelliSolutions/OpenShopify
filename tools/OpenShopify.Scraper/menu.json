@@ -1,17 +1,85 @@
 {
-  "features": [],
+  "features": [
+    "blockchain",
+    "built_for_shopify_winter2023",
+    "checkout_ui_extensions_next",
+    "dev_marketing_website_phase_1",
+    "hydrogen_react",
+    "hydrogen_ref_docs",
+    "hydrogen2",
+    "mockshop_ai",
+    "mockshop_ai_disable_force_ai",
+    "pos_ui_extensions",
+    "baseline_experiments"
+  ],
   "enable_theme_mode": true,
+  "search": {
+    "selectable_versions": {
+      "default": {
+        "values": [
+          "unstable",
+          "2023-07",
+          "2023-04",
+          "2023-01",
+          "2023-04",
+          "2022-07",
+          "2022-04"
+        ],
+        "stable_version": "2023-04"
+      },
+      "API: Hydrogen React": {
+        "stable_version": "2023-04",
+        "values": [
+          "2023-04",
+          "2023-01"
+        ]
+      }
+    },
+    "categories": {
+      "API: App Bridge": {
+        "reference_name": "app-bridge",
+        "versioned": false,
+        "cookie_name": "api_version"
+      },
+      "API: Checkout Ui Extensions": {
+        "reference_name": "checkout-ui-extensions",
+        "versioned": true,
+        "cookie_name": "api_version"
+      },
+      "API: Customer Account Ui Extensions": {
+        "reference_name": "customer-account-ui-extensions",
+        "versioned": false,
+        "cookie_name": "api_version"
+      },
+      "API: Hydrogen": {
+        "reference_name": "hydrogen",
+        "versioned": true,
+        "cookie_name": "api_version"
+      },
+      "API: Hydrogen React": {
+        "reference_name": "hydrogen-react",
+        "versioned": true,
+        "cookie_name": "api_version"
+      },
+      "API: Hydrogen Ui": {
+        "reference_name": "hydrogen-ui",
+        "versioned": false,
+        "cookie_name": "api_version"
+      }
+    }
+  },
   "api": {
     "selectable_versions": [
       "unstable",
+      "2023-07",
       "2023-04",
       "2023-01",
-      "2022-10",
+      "2023-04",
       "2022-07",
       "2022-04"
     ],
-    "current_stable_version": "2023-01",
-    "base_path": "/api",
+    "current_stable_version": "2023-04",
+    "base_path": "/docs/api",
     "rest_sidenav": [
       {
         "key": "access",

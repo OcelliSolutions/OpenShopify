@@ -5,8 +5,7 @@
     "description": "\n      <p>You can use the UsageCharge resource to add variable usage fees to an existing <a href=\"/docs/admin-api/rest/reference/billing/recurringapplicationcharge\">recurring application charge</a>.\n      You can use these resources to support billing plans that vary from month to month, with or without a monthly recurring fee.\n\n      <h2>Creating usage charges</h2>\n\n      <p>To use the UsageCharge resource, first create a <a href=\"/docs/admin-api/rest/reference/billing/recurringapplicationcharge\">recurring application charge</a>.\n      This returns the ID that you'll need to create an associated usage charge.</p>\n\n      <p>To create the usage charge, send a POST request, where <code>{id}</code> represents the ID of the previously created recurring application charge.<p>\n\n      <div id=\"callback-url\" class=\"api-endpoint\">\n          <div class=\"api-endpoint-request\">\n            <pre class=\"api-endpoint-request-type api-endpoint-request-type-get\">POST</pre>\n            /admin/recurring_application_charges/{id}/usage_charges.json\n          </div>\n      </div>\n\n      <h3>Charging for usage only</h3>\n\n      <p>A common billing scenario is to charge only usage-based fees, without a flat recurring monthly fee.\n      To charge only usage-based fees without a recurring monthly fee, first create a <a href=\"/docs/admin-api/rest/reference/billing/recurringapplicationcharge/\">recurring application charge</a> with a price of $0.00 and then apply the usage charge.</p>\n\n      <p>You need to include the <code>capped_amount</code> and <code>terms</code> properties in the body of your request\n      when you create a recurring application charge with a price of $0.00.</p>\n\n      <h2>Setting capped amounts</h2>\n\n      <p>You can use the RecurringApplicationCharge resource to specify a capped amount that applies to usage-based billing.\n      This prevents the customer from being charged for any usage over and above the capped amount.\n      To implement capped amount billing, create a recurring application charge with the capped dollar amount,\n      and then create the associated usage charge.</p>\n\n      <p>\n      <div class=\"note\">\n        <h4>Note</h4>\n        <p>The capped amount setting is applicable on a per billing cycle basis (30 days), and remains in effect unless updated.</p>\n      </div>\n\n      <p>For step-by-step guidance that walks through this flow using examples, see our <a href=\"/apps/billing/models\">implementation guide</a>.</p>\n\n",
     "x-owner": "https://vault.shopify.io/teams/1750",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -40,10 +39,11 @@
                 "Create a new usage charge": {
                   "value": {
                     "usage_charge": {
-                      "id": 1034618209,
+                      "id": 1034618219,
                       "description": "Super Mega Plan 1000 emails",
                       "price": "1.00",
-                      "created_at": "2023-01-03T10:42:12-07:00",
+                      "created_at": "2023-05-09T18:28:48-06:00",
+                      "currency": "USD",
                       "billing_on": null,
                       "balance_used": 11.0,
                       "balance_remaining": 89.0,
@@ -90,42 +90,42 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json",
+          "request_path": "/admin/api/2023-04/recurring_application_charges/455696195/usage_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/recurring_application_charges/455696195/usage_charges.json",
             "headers": {},
-            "body": "{\"usage_charge\":{\"description\":\"Super Mega Plan 1000 emails\",\"price\":1.0}}"
+            "body": "{\"usage_charge\":{\"description\":\"Super Mega Plan 1000 emails\",\"price\":\"1.00\"}}"
           },
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"usage_charge\":{\"id\":1034618209,\"description\":\"Super Mega Plan 1000 emails\",\"price\":\"1.00\",\"created_at\":\"2023-01-03T12:42:12-05:00\",\"billing_on\":null,\"balance_used\":11.0,\"balance_remaining\":89.0,\"risk_level\":0}}"
+            "body": "{\"usage_charge\":{\"id\":1034618219,\"description\":\"Super Mega Plan 1000 emails\",\"price\":\"1.00\",\"created_at\":\"2023-05-09T20:28:48-04:00\",\"currency\":\"USD\",\"billing_on\":null,\"balance_used\":11.0,\"balance_remaining\":89.0,\"risk_level\":0}}"
           },
           "name": "Create a new usage charge",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"usage_charge\":{\"description\":\"Super Mega Plan 1000 emails\",\"price\":1.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"usage_charge\":{\"description\":\"Super Mega Plan 1000 emails\",\"price\":\"1.00\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nusage_charge = ShopifyAPI::UsageCharge.new(session: test_session)\nusage_charge.recurring_application_charge_id = 455696195\nusage_charge.description = \"Super Mega Plan 1000 emails\"\nusage_charge.price = 1.0\nusage_charge.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nusage_charge = ShopifyAPI::UsageCharge.new(session: test_session)\nusage_charge.recurring_application_charge_id = 455696195\nusage_charge.description = \"Super Mega Plan 1000 emails\"\nusage_charge.price = \"1.00\"\nusage_charge.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst usage_charge = new shopify.rest.UsageCharge({session: session});\nusage_charge.recurring_application_charge_id = 455696195;\nusage_charge.description = \"Super Mega Plan 1000 emails\";\nusage_charge.price = 1.0;\nawait usage_charge.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst usage_charge = new shopify.rest.UsageCharge({session: session});\nusage_charge.recurring_application_charge_id = 455696195;\nusage_charge.description = \"Super Mega Plan 1000 emails\";\nusage_charge.price = \"1.00\";\nawait usage_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"Super Mega Plan 1000 emails\";\n$usage_charge->price = 1.0;\n$usage_charge->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"Super Mega Plan 1000 emails\";\n$usage_charge->price = \"1.00\";\n$usage_charge->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json",
+          "request_path": "/admin/api/2023-04/recurring_application_charges/455696195/usage_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/recurring_application_charges/455696195/usage_charges.json",
@@ -141,7 +141,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"usage_charge\":{\"description\":\"Super Mega Plan 1000 emails\",\"price\":9999}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"usage_charge\":{\"description\":\"Super Mega Plan 1000 emails\",\"price\":9999}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -153,14 +153,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"Super Mega Plan 1000 emails\";\n$usage_charge->price = 9999;\n$usage_charge->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"Super Mega Plan 1000 emails\";\n$usage_charge->price = 9999;\n$usage_charge->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json",
+          "request_path": "/admin/api/2023-04/recurring_application_charges/455696195/usage_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/recurring_application_charges/455696195/usage_charges.json",
@@ -176,7 +176,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"usage_charge\":{\"description\":\"\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"usage_charge\":{\"description\":\"\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -188,7 +188,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"\";\n$usage_charge->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$usage_charge = new UsageCharge($this->test_session);\n$usage_charge->recurring_application_charge_id = 455696195;\n$usage_charge->description = \"\";\n$usage_charge->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -243,10 +243,11 @@
                   "value": {
                     "usage_charges": [
                       {
-                        "id": 1034618206,
+                        "id": 1034618215,
                         "description": "Super Mega Plan Add-ons",
                         "price": "10.00",
-                        "created_at": "2023-01-03T10:42:08-07:00",
+                        "created_at": "2023-05-09T18:28:43-06:00",
+                        "currency": "USD",
                         "billing_on": null,
                         "balance_used": 10.0,
                         "balance_remaining": 90.0,
@@ -264,7 +265,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json",
+          "request_path": "/admin/api/2023-04/recurring_application_charges/455696195/usage_charges.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/recurring_application_charges/455696195/usage_charges.json",
@@ -274,13 +275,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"usage_charges\":[{\"id\":1034618206,\"description\":\"Super Mega Plan Add-ons\",\"price\":\"10.00\",\"created_at\":\"2023-01-03T12:42:08-05:00\",\"billing_on\":null,\"balance_used\":10.0,\"balance_remaining\":90.0,\"risk_level\":0}]}"
+            "body": "{\"usage_charges\":[{\"id\":1034618215,\"description\":\"Super Mega Plan Add-ons\",\"price\":\"10.00\",\"created_at\":\"2023-05-09T20:28:43-04:00\",\"currency\":\"USD\",\"billing_on\":null,\"balance_used\":10.0,\"balance_remaining\":90.0,\"risk_level\":0}]}"
           },
           "name": "Retrieve all usage charges",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/recurring_application_charges/455696195/usage_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -292,7 +293,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUsageCharge::all(\n    $this->test_session, // Session\n    [\"recurring_application_charge_id\" => \"455696195\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUsageCharge::all(\n    $this->test_session, // Session\n    [\"recurring_application_charge_id\" => \"455696195\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -354,10 +355,11 @@
                 "Retrieve a single charge": {
                   "value": {
                     "usage_charge": {
-                      "id": 1034618207,
+                      "id": 1034618214,
                       "description": "Super Mega Plan Add-ons",
                       "price": "10.00",
-                      "created_at": "2023-01-03T10:42:10-07:00",
+                      "created_at": "2023-05-09T18:28:36-06:00",
+                      "currency": "USD",
                       "billing_on": null,
                       "balance_used": 10.0,
                       "balance_remaining": 90.0,
@@ -374,35 +376,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/recurring_application_charges/455696195/usage_charges/1034618207.json",
+          "request_path": "/admin/api/2023-04/recurring_application_charges/455696195/usage_charges/1034618214.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/unstable/recurring_application_charges/455696195/usage_charges/1034618207.json",
+            "action": "GET /admin/api/unstable/recurring_application_charges/455696195/usage_charges/1034618214.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"usage_charge\":{\"id\":1034618207,\"description\":\"Super Mega Plan Add-ons\",\"price\":\"10.00\",\"created_at\":\"2023-01-03T12:42:10-05:00\",\"billing_on\":null,\"balance_used\":10.0,\"balance_remaining\":90.0,\"risk_level\":0}}"
+            "body": "{\"usage_charge\":{\"id\":1034618214,\"description\":\"Super Mega Plan Add-ons\",\"price\":\"10.00\",\"created_at\":\"2023-05-09T20:28:36-04:00\",\"currency\":\"USD\",\"billing_on\":null,\"balance_used\":10.0,\"balance_remaining\":90.0,\"risk_level\":0}}"
           },
           "name": "Retrieve a single charge",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/recurring_application_charges/455696195/usage_charges/1034618207.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/recurring_application_charges/455696195/usage_charges/1034618214.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::UsageCharge.find(\n  session: test_session,\n  recurring_application_charge_id: 455696195,\n  id: 1034618207,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::UsageCharge.find(\n  session: test_session,\n  recurring_application_charge_id: 455696195,\n  id: 1034618214,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.UsageCharge.find({\n  session: session,\n  recurring_application_charge_id: 455696195,\n  id: 1034618207,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.UsageCharge.find({\n  session: session,\n  recurring_application_charge_id: 455696195,\n  id: 1034618214,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUsageCharge::find(\n    $this->test_session, // Session\n    1034618207, // Id\n    [\"recurring_application_charge_id\" => \"455696195\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\UsageCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUsageCharge::find(\n    $this->test_session, // Session\n    1034618214, // Id\n    [\"recurring_application_charge_id\" => \"455696195\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -445,7 +447,7 @@
         {
           "description": "The price of the usage charge.",
           "type": "string",
-          "example": 1,
+          "example": "1",
           "name": "price"
         },
         {
@@ -459,6 +461,12 @@
           "type": "string",
           "example": "2013-06-27T06:48:27-06:00",
           "name": "updated_at"
+        },
+        {
+          "description": "The currency of the price of the usage charge.",
+          "type": "string",
+          "example": "USD",
+          "name": "currency"
         }
       ],
       "required": null
@@ -483,5 +491,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

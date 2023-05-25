@@ -3,10 +3,9 @@
   "info": {
     "title": "LocationsForMove",
     "description": "        <p>\n          The LocationsForMove resource represents the locations that a fulfillment order can potentially move to.\n        </p>\n",
-    "x-owner": "https://vault.shopify.io/teams/457",
+    "x-owner": "https://vault.shopify.io/teams/2678",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -50,7 +49,7 @@
                     "locations_for_move": [
                       {
                         "location": {
-                          "id": 1072404544,
+                          "id": 1072404542,
                           "name": "Alpha Location"
                         },
                         "message": "Current location.",
@@ -58,7 +57,7 @@
                       },
                       {
                         "location": {
-                          "id": 1072404545,
+                          "id": 1072404543,
                           "name": "Bravo Location"
                         },
                         "message": "No items are stocked at this location.",
@@ -76,35 +75,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/fulfillment_orders/1046000829/locations_for_move.json",
+          "request_path": "/admin/api/2023-04/fulfillment_orders/1046000823/locations_for_move.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/2020-01/fulfillment_orders/1046000829/locations_for_move.json",
+            "action": "GET /admin/api/2020-01/fulfillment_orders/1046000823/locations_for_move.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"locations_for_move\":[{\"location\":{\"id\":1072404544,\"name\":\"Alpha Location\"},\"message\":\"Current location.\",\"movable\":false},{\"location\":{\"id\":1072404545,\"name\":\"Bravo Location\"},\"message\":\"No items are stocked at this location.\",\"movable\":false}]}"
+            "body": "{\"locations_for_move\":[{\"location\":{\"id\":1072404542,\"name\":\"Alpha Location\"},\"message\":\"Current location.\",\"movable\":false},{\"location\":{\"id\":1072404543,\"name\":\"Bravo Location\"},\"message\":\"No items are stocked at this location.\",\"movable\":false}]}"
           },
           "name": "Retrieve a list of locations that a fulfillment order can potentially move to.",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/fulfillment_orders/1046000829/locations_for_move.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/fulfillment_orders/1046000823/locations_for_move.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::LocationsForMove.all(\n  session: test_session,\n  fulfillment_order_id: 1046000829,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::LocationsForMove.all(\n  session: test_session,\n  fulfillment_order_id: 1046000823,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.LocationsForMove.all({\n  session: session,\n  fulfillment_order_id: 1046000829,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.LocationsForMove.all({\n  session: session,\n  fulfillment_order_id: 1046000823,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\LocationsForMove;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocationsForMove::all(\n    $this->test_session, // Session\n    [\"fulfillment_order_id\" => \"1046000829\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\LocationsForMove;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocationsForMove::all(\n    $this->test_session, // Session\n    [\"fulfillment_order_id\" => \"1046000823\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -194,5 +193,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

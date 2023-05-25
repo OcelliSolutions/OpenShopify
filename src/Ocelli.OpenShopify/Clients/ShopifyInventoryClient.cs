@@ -27,31 +27,16 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a detailed list for inventory items by IDs
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of inventory items. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="ids">Show only inventory items specified by a comma-separated list of IDs.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<InventoryItemList>> ListInventoryItemsAsync(System.Collections.Generic.IEnumerable<long> ids, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single inventory item by ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> GetInventoryItemAsync(long inventoryItemId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing inventory item
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> UpdateInventoryItemAsync(long inventoryItemId, UpdateInventoryItemRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -91,15 +76,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a detailed list for inventory items by IDs
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of inventory items. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="ids">Show only inventory items specified by a comma-separated list of IDs.</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemList>> ListInventoryItemsAsync(System.Collections.Generic.IEnumerable<long> ids, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -180,9 +156,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a single inventory item by ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> GetInventoryItemAsync(long inventoryItemId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -254,9 +227,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates an existing inventory item
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> UpdateInventoryItemAsync(long inventoryItemId, UpdateInventoryItemRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -439,69 +409,26 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of inventory levels
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of inventory levels.
-        /// <br/>
-        /// <br/>You must include `inventory_item_ids`, `location_ids`, or both as filter parameters.
-        /// <br/>
-        /// <br/>**Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="inventoryItemIds">A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="locationIds">A comma-separated list of location IDs. To find the ID of a location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
-        /// <param name="updatedAtMin">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelList>> ListInventoryLevelsAsync(System.Collections.Generic.IEnumerable<long>? inventoryItemIds = null, int? limit = null, string? pageInfo = null, string? locationIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an inventory level from a location
-        /// </summary>
-        /// <remarks>
-        /// Deletes an inventory level of an inventory item at a location. Deleting an inventory level for an inventory item removes that item from the specified location. Every inventory item must have at least one inventory level. To move inventory to another location, first connect the inventory item to another location, and then delete the previous inventory level.
-        /// </remarks>
-        /// <param name="inventoryItemId">The ID for the inventory item.</param>
-        /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteInventoryLevelFromLocationAsync(long inventoryItemId, long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Adjusts the inventory level of an inventory item at a location
-        /// </summary>
-        /// <remarks>
-        /// Adjusts the inventory level of an inventory item at a single location
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> AdjustInventoryLevelOfInventoryItemAtLocationAsync(AdjustInventoryLevelOfInventoryItemAtLocationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Connects an inventory item to a location
-        /// </summary>
-        /// <remarks>
-        /// Connects an inventory item to a location by creating an inventory level at that location.
-        /// <br/>
-        /// <br/>When connecting inventory items to locations, it's important to understand the rules around [fulfillment service locations](#inventory-levels-and-fulfillment-service-locations).
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> ConnectInventoryItemToLocationAsync(ConnectInventoryItemToLocationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Sets the inventory level for an inventory item at a location
-        /// </summary>
-        /// <remarks>
-        /// Sets the inventory level for an inventory item at a location. If the specified location is not connected, it will be automatically connected first. When connecting inventory items to locations, it's important to understand the rules around [fulfillment service locations](#inventory-levels-and-fulfillment-service-locations).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> SetInventoryLevelForInventoryItemAtLocationAsync(SetInventoryLevelForInventoryItemAtLocationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -541,21 +468,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of inventory levels
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of inventory levels.
-        /// <br/>
-        /// <br/>You must include `inventory_item_ids`, `location_ids`, or both as filter parameters.
-        /// <br/>
-        /// <br/>**Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
-        /// <param name="inventoryItemIds">A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)</param>
-        /// <param name="limit">The maximum number of results to show.</param>
-        /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
-        /// <param name="locationIds">A comma-separated list of location IDs. To find the ID of a location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
-        /// <param name="updatedAtMin">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelList>> ListInventoryLevelsAsync(System.Collections.Generic.IEnumerable<long>? inventoryItemIds = null, int? limit = null, string? pageInfo = null, string? locationIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -644,14 +556,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Deletes an inventory level from a location
-        /// </summary>
-        /// <remarks>
-        /// Deletes an inventory level of an inventory item at a location. Deleting an inventory level for an inventory item removes that item from the specified location. Every inventory item must have at least one inventory level. To move inventory to another location, first connect the inventory item to another location, and then delete the previous inventory level.
-        /// </remarks>
-        /// <param name="inventoryItemId">The ID for the inventory item.</param>
-        /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteInventoryLevelFromLocationAsync(long inventoryItemId, long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -722,12 +626,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Adjusts the inventory level of an inventory item at a location
-        /// </summary>
-        /// <remarks>
-        /// Adjusts the inventory level of an inventory item at a single location
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> AdjustInventoryLevelOfInventoryItemAtLocationAsync(AdjustInventoryLevelOfInventoryItemAtLocationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -802,14 +700,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Connects an inventory item to a location
-        /// </summary>
-        /// <remarks>
-        /// Connects an inventory item to a location by creating an inventory level at that location.
-        /// <br/>
-        /// <br/>When connecting inventory items to locations, it's important to understand the rules around [fulfillment service locations](#inventory-levels-and-fulfillment-service-locations).
-        /// </remarks>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> ConnectInventoryItemToLocationAsync(ConnectInventoryItemToLocationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -884,12 +774,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Sets the inventory level for an inventory item at a location
-        /// </summary>
-        /// <remarks>
-        /// Sets the inventory level for an inventory item at a location. If the specified location is not connected, it will be automatically connected first. When connecting inventory items to locations, it's important to understand the rules around [fulfillment service locations](#inventory-levels-and-fulfillment-service-locations).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> SetInventoryLevelForInventoryItemAtLocationAsync(SetInventoryLevelForInventoryItemAtLocationRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1068,36 +952,21 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of locations
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<LocationList>> ListLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single location by its ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<LocationItem>> GetLocationAsync(long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of locations
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of inventory levels for a location
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of inventory levels for a location. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<LocationList>> ListInventoryLevelsForLocationAsync(long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1137,9 +1006,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of locations
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<LocationList>> ListLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1207,9 +1073,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a single location by its ID
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<LocationItem>> GetLocationAsync(long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1281,9 +1144,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a count of locations
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1351,12 +1211,6 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieve a list of inventory levels for a location
-        /// </summary>
-        /// <remarks>
-        /// Retrieve a list of inventory levels for a location. **Note:** This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to [Make paginated requests to the REST Admin API](/api/usage/pagination-rest).
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<LocationList>> ListInventoryLevelsForLocationAsync(long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1658,10 +1512,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? CountryCodeOfOrigin { get; set; } = default!;
 
-        /// <summary>
-        /// An array of country-specific [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("country_harmonized_system_codes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
@@ -1796,18 +1646,11 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))")]
     public partial class InventoryLevel
     {
-        /// <summary>
-        /// The available quantity of an inventory item at the inventory level's associated location. Returns `null` if the inventory item is not tracked.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("available")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public long? Available { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the inventory item associated with the inventory level. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
 
@@ -2180,10 +2023,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public string? CountryCodeOfOrigin { get; set; } = default!;
-
-        /// <summary>
-        /// An array of country-specific [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("country_harmonized_system_codes")]
 

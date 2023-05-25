@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Products
   description: Products
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,7 +23,6 @@ paths:
     post:
       tags:
         - Collect
-      summary: Adds a product to a custom collection
       operationId: AddProductToCustomCollection
       requestBody:
         content:
@@ -52,29 +51,23 @@ paths:
     get:
       tags:
         - Collect
-      summary: Retrieves a list of collects
-      description: 'Retrieves a list of collects. **Note:** As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListCollects
       parameters:
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
@@ -102,7 +95,6 @@ paths:
     delete:
       tags:
         - Collect
-      summary: Removes a product from a collection
       operationId: DeleteProductFromCollection
       parameters:
         - name: collect_id
@@ -126,7 +118,6 @@ paths:
     get:
       tags:
         - Collect
-      summary: Retrieves a specific collect by its ID
       operationId: GetCollect
       parameters:
         - name: collect_id
@@ -137,7 +128,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -160,7 +150,6 @@ paths:
     get:
       tags:
         - Collect
-      summary: Retrieves a count of collects
       operationId: CountCollects
       responses:
         '200':
@@ -182,7 +171,6 @@ paths:
     get:
       tags:
         - Collection
-      summary: Retrieves a single collection
       operationId: GetCollection
       parameters:
         - name: collection_id
@@ -193,7 +181,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -216,8 +203,6 @@ paths:
     get:
       tags:
         - Collection
-      summary: Retrieve a list of products belonging to a collection
-      description: 'Retrieve a list of products belonging to a collection. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).. The products returned are sorted by the collection''s sort order.'
       operationId: ListProductsBelongingToCollection
       parameters:
         - name: collection_id
@@ -228,13 +213,11 @@ paths:
             format: int64
         - name: limit
           in: query
-          description: The number of products to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
       responses:
@@ -261,23 +244,18 @@ paths:
     get:
       tags:
         - CustomCollection
-      summary: Retrieves a list of custom collections
-      description: 'Retrieves a list of custom collections. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListCustomCollections
       parameters:
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: handle
           in: query
-          description: Filter by custom collection handle.
           schema:
             type: string
         - name: ids
           in: query
-          description: Show only collections specified by a comma-separated list of IDs.
           style: form
           explode: false
           schema:
@@ -287,58 +265,48 @@ paths:
               format: int64
         - name: limit
           in: query
-          description: The maximum number of results to retrieve.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: product_id
           in: query
-          description: Show custom collections that include a given product.
           schema:
             type: integer
             format: int64
         - name: published_at_max
           in: query
-          description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Show custom collectsion with a given published status.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: title
           in: query
-          description: Show custom collections with a given title.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -365,7 +333,6 @@ paths:
     post:
       tags:
         - CustomCollection
-      summary: Creates a custom collection
       operationId: CreateCustomCollection
       requestBody:
         content:
@@ -396,46 +363,38 @@ paths:
     get:
       tags:
         - CustomCollection
-      summary: Retrieves a count of custom collections
       operationId: CountCustomCollections
       parameters:
         - name: product_id
           in: query
-          description: Count custom collections that include a given product.
           schema:
             type: integer
             format: int64
         - name: published_at_max
           in: query
-          description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Count custom collections with a given published status.
           schema:
             type: string
         - name: title
           in: query
-          description: Count custom collections with given title.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -459,7 +418,6 @@ paths:
     get:
       tags:
         - CustomCollection
-      summary: Retrieves a single custom collection
       operationId: GetCustomCollection
       parameters:
         - name: custom_collection_id
@@ -470,7 +428,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -492,7 +449,6 @@ paths:
     put:
       tags:
         - CustomCollection
-      summary: Updates an existing custom collection
       operationId: UpdateCustomCollection
       parameters:
         - name: custom_collection_id
@@ -529,7 +485,6 @@ paths:
     delete:
       tags:
         - CustomCollection
-      summary: Deletes a custom collection
       operationId: DeleteCustomCollection
       parameters:
         - name: custom_collection_id
@@ -554,40 +509,33 @@ paths:
     get:
       tags:
         - Product
-      summary: Retrieve a list of products
       operationId: ListProducts
       parameters:
         - name: collection_id
           in: query
-          description: Return products by product collection ID.
           schema:
             type: integer
             format: int64
         - name: created_at_max
           in: query
-          description: 'Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: Return only certain fields specified by a comma-separated list of field names.
           schema:
             type: string
         - name: handle
           in: query
-          description: Return only products specified by a comma-separated list of product handles.
           schema:
             type: string
         - name: ids
           in: query
-          description: Return only products specified by a comma-separated list of product IDs.
           style: form
           explode: false
           schema:
@@ -597,73 +545,60 @@ paths:
               format: int64
         - name: limit
           in: query
-          description: Return up to this many results per page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: presentment_currencies
           in: query
-          description: 'Return presentment prices in only certain currencies, specified by a comma-separated list of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes.'
           schema:
             type: string
         - name: product_type
           in: query
-          description: Return products by product type.
           schema:
             type: string
         - name: published_at_max
           in: query
-          description: 'Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Return products by their published status.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Return only products after the specified ID.
           schema:
             type: integer
             format: int64
         - name: status
           in: query
-          description: Return only products specified by a comma-separated list of statuses.
           schema:
             type: string
         - name: title
           in: query
-          description: Return products by product title.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: vendor
           in: query
-          description: Return products by product vendor.
           schema:
             type: string
       responses:
@@ -689,8 +624,6 @@ paths:
     post:
       tags:
         - Product
-      summary: Create a new product
-      description: Create a new product
       operationId: CreateProduct
       requestBody:
         content:
@@ -721,64 +654,53 @@ paths:
     get:
       tags:
         - Product
-      summary: Retrieve a count of products
       operationId: CountProducts
       parameters:
         - name: collection_id
           in: query
-          description: Return products by product collection ID.
           schema:
             type: integer
             format: int64
         - name: created_at_max
           in: query
-          description: 'Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: product_type
           in: query
-          description: Return products by product type.
           schema:
             type: string
         - name: published_at_max
           in: query
-          description: 'Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Return products by their published status.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: vendor
           in: query
-          description: Return products by product vendor.
           schema:
             type: string
       responses:
@@ -801,7 +723,6 @@ paths:
     get:
       tags:
         - Product
-      summary: Retrieve a single product
       operationId: GetProduct
       parameters:
         - name: product_id
@@ -812,7 +733,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -834,8 +754,6 @@ paths:
     put:
       tags:
         - Product
-      summary: Updates a product
-      description: Update a product
       operationId: UpdateProduct
       parameters:
         - name: product_id
@@ -872,8 +790,6 @@ paths:
     delete:
       tags:
         - Product
-      summary: Delete a product
-      description: Deletes a product.
       operationId: DeleteProduct
       parameters:
         - name: product_id
@@ -898,8 +814,6 @@ paths:
     get:
       tags:
         - ProductImage
-      summary: Receive a list of all Product Images
-      description: Get all product images
       operationId: ListProductImages
       parameters:
         - name: product_id
@@ -910,12 +824,10 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: comma-separated list of fields to include in the response
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID
           schema:
             type: integer
             format: int64
@@ -942,7 +854,6 @@ paths:
     post:
       tags:
         - ProductImage
-      summary: Create a new Product Image
       operationId: CreateProductImage
       parameters:
         - name: product_id
@@ -980,8 +891,6 @@ paths:
     get:
       tags:
         - ProductImage
-      summary: Receive a count of all Product Images
-      description: Get a count of all product images
       operationId: CountProductImages
       parameters:
         - name: product_id
@@ -992,7 +901,6 @@ paths:
             format: int64
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID
           schema:
             type: integer
             format: int64
@@ -1016,8 +924,6 @@ paths:
     get:
       tags:
         - ProductImage
-      summary: Receive a single Product Image
-      description: Get a single product image by id
       operationId: GetProductImage
       parameters:
         - name: image_id
@@ -1034,7 +940,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: comma-separated list of fields to include in the response
           schema:
             type: string
       responses:
@@ -1056,7 +961,6 @@ paths:
     put:
       tags:
         - ProductImage
-      summary: Modify an existing Product Image
       operationId: UpdateProductImage
       parameters:
         - name: image_id
@@ -1099,7 +1003,6 @@ paths:
     delete:
       tags:
         - ProductImage
-      summary: Remove an existing Product Image
       operationId: DeleteProductImage
       parameters:
         - name: image_id
@@ -1130,8 +1033,6 @@ paths:
     get:
       tags:
         - ProductVariant
-      summary: Retrieves a list of product variants
-      description: 'Retrieves a list of product variants. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListProductVariants
       parameters:
         - name: product_id
@@ -1142,28 +1043,23 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response
           schema:
             type: string
         - name: limit
           in: query
-          description: Return up to this many results per page
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: presentment_currencies
           in: query
-          description: 'Return presentment prices in only certain currencies, specified by a comma-separated list of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes.'
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID
           schema:
             type: integer
             format: int64
@@ -1190,8 +1086,6 @@ paths:
     post:
       tags:
         - ProductVariant
-      summary: Create a new Product Variant
-      description: Creates a new product variant
       operationId: CreateProductVariant
       parameters:
         - name: product_id
@@ -1229,8 +1123,6 @@ paths:
     get:
       tags:
         - ProductVariant
-      summary: Receive a count of all Product Variants
-      description: Retrieves a count of product variants
       operationId: CountProductVariants
       parameters:
         - name: product_id
@@ -1259,8 +1151,6 @@ paths:
     get:
       tags:
         - ProductVariant
-      summary: Receive a single Product Variant
-      description: Retrieves a single product variant by ID
       operationId: GetProductVariant
       parameters:
         - name: variant_id
@@ -1271,7 +1161,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response
           schema:
             type: string
       responses:
@@ -1293,8 +1182,6 @@ paths:
     put:
       tags:
         - ProductVariant
-      summary: Modify an existing Product Variant
-      description: Updates an existing product variant
       operationId: UpdateProductVariant
       parameters:
         - name: variant_id
@@ -1332,7 +1219,6 @@ paths:
     delete:
       tags:
         - ProductVariant
-      summary: Remove an existing Product Variant
       operationId: DeleteProductVariant
       parameters:
         - name: product_id
@@ -1363,23 +1249,18 @@ paths:
     get:
       tags:
         - SmartCollection
-      summary: Retrieves a list of smart collections
-      description: 'Retrieves a list of smart collections. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListSmartCollections
       parameters:
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
         - name: handle
           in: query
-          description: Filter results by smart collection handle.
           schema:
             type: string
         - name: ids
           in: query
-          description: Show only the smart collections specified by a comma-separated list of IDs.
           style: form
           explode: false
           schema:
@@ -1389,58 +1270,48 @@ paths:
               format: int64
         - name: limit
           in: query
-          description: The number of results to show.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: product_id
           in: query
-          description: Show smart collections that includes the specified product.
           schema:
             type: integer
             format: int64
         - name: published_at_max
           in: query
-          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Filter results based on the published status of smart collections.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: title
           in: query
-          description: Show smart collections with the specified title.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -1467,8 +1338,6 @@ paths:
     post:
       tags:
         - SmartCollection
-      summary: Creates a smart collection
-      description: Creates a new smart collection using the specified rules.
       operationId: CreateSmartCollection
       requestBody:
         content:
@@ -1499,46 +1368,38 @@ paths:
     get:
       tags:
         - SmartCollection
-      summary: Retrieves a count of smart collections
       operationId: CountSmartCollections
       parameters:
         - name: product_id
           in: query
-          description: Show smart collections that include the specified product.
           schema:
             type: integer
             format: int64
         - name: published_at_max
           in: query
-          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: published_at_min
           in: query
-          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: published_status
           in: query
-          description: Filter results based on the published status of smart collections.
           schema:
             type: string
         - name: title
           in: query
-          description: Show smart collections with the specified title.
           schema:
             type: string
         - name: updated_at_max
           in: query
-          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -1562,7 +1423,6 @@ paths:
     get:
       tags:
         - SmartCollection
-      summary: Retrieves a single smart collection
       operationId: GetSmartCollection
       parameters:
         - name: smart_collection_id
@@ -1573,7 +1433,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
@@ -1595,7 +1454,6 @@ paths:
     put:
       tags:
         - SmartCollection
-      summary: Updates an existing smart collection
       operationId: UpdateSmartCollection
       parameters:
         - name: smart_collection_id
@@ -1632,7 +1490,6 @@ paths:
     delete:
       tags:
         - SmartCollection
-      summary: Removes a smart collection
       operationId: DeleteSmartCollection
       parameters:
         - name: smart_collection_id
@@ -1657,7 +1514,6 @@ paths:
     put:
       tags:
         - SmartCollection
-      summary: Updates the ordering type of products in a smart collection
       operationId: UpdateOrderingTypeOfProductsInSmartCollection
       parameters:
         - name: smart_collection_id
@@ -1951,13 +1807,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreateProductImage'
-          description: 'A list of [product image](/docs/admin-api/rest/reference/products/product-image) objects, each one representing an image associated with the product.'
           nullable: true
         options:
           type: array
           items:
             $ref: '#/components/schemas/ProductOption'
-          description: 'The custom product properties. For example, **Size**, **Color**, and **Material**. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.'
           nullable: true
         product_type:
           type: string
@@ -1992,7 +1846,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductVariant'
-          description: "An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.\r\n\r\nThe `position` property is read-only. The position of variants is indicated by the order in which they are listed."
           nullable: true
         vendor:
           type: string
@@ -2087,7 +1940,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.'
+          description: "The handle of a fulfillment service that stocks a product variant. \r\n\r\n This is the handle of a third-party fulfillment service if the following conditions are met: 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 3. The fulfillment service [hasn't opted into SKU sharing](/changelog/fulfillment-service-sku-sharing). If the conditions aren't met, then this is `manual`. \r\n\r\n The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. \r\n\r\n If you previously set this field, then we recommend that you instead [connect an inventory item to a location](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. \r\n\r\n If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. \r\n\r\n Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states)."
           nullable: true
         grams:
           type: number
@@ -2136,7 +1989,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PresentmentPrice'
-          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.\r\n\r\nRequires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
           nullable: true
         position:
           type: integer
@@ -2234,7 +2086,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SmartCollectionRules'
-          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price. \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition. \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. \r\n\r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
           nullable: true
         disjunctive:
           type: boolean
@@ -2399,15 +2250,15 @@ components:
       properties:
         description:
           type: string
-          description: A description of the information that the metafield contains.
+          description: The description of the metafield.
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: "The unique identifier for a metafield within its namespace.   \r\n Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+          description: "The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   \r\n Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         owner_id:
           type: integer
@@ -2419,7 +2270,6 @@ components:
           description: The type of resource that the metafield is attached to.
           nullable: true
         value:
-          description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
@@ -2499,13 +2349,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductImage'
-          description: 'A list of [product image](/docs/admin-api/rest/reference/products/product-image) objects, each one representing an image associated with the product.'
           nullable: true
         options:
           type: array
           items:
             $ref: '#/components/schemas/ProductOption'
-          description: 'The custom product properties. For example, **Size**, **Color**, and **Material**. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.'
           nullable: true
         product_type:
           type: string
@@ -2540,7 +2388,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductVariant'
-          description: "An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.\r\n\r\nThe `position` property is read-only. The position of variants is indicated by the order in which they are listed."
           nullable: true
         vendor:
           type: string
@@ -2724,7 +2571,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.'
+          description: "The handle of a fulfillment service that stocks a product variant. \r\n\r\n This is the handle of a third-party fulfillment service if the following conditions are met: 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 3. The fulfillment service [hasn't opted into SKU sharing](/changelog/fulfillment-service-sku-sharing). If the conditions aren't met, then this is `manual`. \r\n\r\n The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. \r\n\r\n If you previously set this field, then we recommend that you instead [connect an inventory item to a location](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. \r\n\r\n If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. \r\n\r\n Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states)."
           nullable: true
         grams:
           type: number
@@ -2773,7 +2620,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PresentmentPrice'
-          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.\r\n\r\nRequires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
           nullable: true
         position:
           type: integer
@@ -2924,7 +2770,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SmartCollectionRules'
-          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price. \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition. \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. \r\n\r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
           nullable: true
         disjunctive:
           type: boolean
@@ -3134,13 +2979,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductImage'
-          description: 'A list of [product image](/docs/admin-api/rest/reference/products/product-image) objects, each one representing an image associated with the product.'
           nullable: true
         options:
           type: array
           items:
             $ref: '#/components/schemas/ProductOption'
-          description: 'The custom product properties. For example, **Size**, **Color**, and **Material**. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.'
           nullable: true
         product_type:
           type: string
@@ -3175,7 +3018,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductVariant'
-          description: "An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.\r\n\r\nThe `position` property is read-only. The position of variants is indicated by the order in which they are listed."
           nullable: true
         vendor:
           type: string
@@ -3286,7 +3128,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a [breaking change](https://shopify.dev/api/release-notes/2022-07#shipping-and-fulfillment) to this field. Fulfillment services will all be opted into SKU sharing in 2023-04. This field is due to be deprecated and will no longer be supported. Please refer to [InventoryLevel](https://shopify.dev/api/admin-rest/latest/resources/inventorylevel) to see how variants are associated to multiple fulfillment services.'
+          description: "The handle of a fulfillment service that stocks a product variant. \r\n\r\n This is the handle of a third-party fulfillment service if the following conditions are met: 1. The product variant is stocked by a single fulfillment service. 2. The [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice) is a third-party fulfillment service. Third-party fulfillment services don't have a handle with the value `manual`. 3. The fulfillment service [hasn't opted into SKU sharing](/changelog/fulfillment-service-sku-sharing). If the conditions aren't met, then this is `manual`. \r\n\r\n The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-rest/latest/resources/product-variant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [InventoryLevel](/api/admin-rest/latest/resources/inventorylevel) resource if you need to determine where a product variant is stocked. \r\n\r\n If you previously set this field, then we recommend that you instead [connect an inventory item to a location](/api/admin-rest/latest/resources/inventorylevel#post-inventory-levels-connect). Each [Location](/api/admin-rest/latest/resources/location) is associated with a single [FulfillmentService](/api/admin-rest/latest/resources/fulfillmentservice). The value of this field after setting it will be as described above. \r\n\r\n If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available. \r\n\r\n Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states)."
           nullable: true
         grams:
           type: number
@@ -3335,7 +3177,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PresentmentPrice'
-          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.\r\n\r\nRequires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
           nullable: true
         position:
           type: integer
@@ -3441,7 +3282,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SmartCollectionRules'
-          description: "The list of rules that define what products go into the smart collection. Each rule has the following properties:\r\n\r\n*   \r\n\r\n**column**: The property of a product being used to populate the smart collection.\r\n\r\nValid values for text relations: * `title`: The product title. * `type`: The product type. * `vendor`: The name of the product vendor. * `variant_title`: The title of a product variant. \r\n\r\nValid values for number relations:\r\n\r\n    *   `variant_compare_at_price`: The compare price. \r\n    *   `variant_weight`: The weight of the product. \r\n    *   `variant_inventory`: The inventory stock. Note: `not_equals` does not work with this property. \r\n    *   `variant_price`: product price. \r\n\r\nValid values for an `equals` relation: * `tag`: A tag associated with the product. * \r\n\r\n**relation**: The relationship between the **column** choice, and the **condition**.\r\n\r\nValid values for number relations:\r\n\r\n    *   `greater_than` The column value is greater than the condition. \r\n    *   `less_than` The column value is less than the condition. \r\n    *   `equals` The column value is equal to the condition. \r\n    *   `not_equals` The column value is not equal to the condition. \r\n\r\nValid values for text relations:\r\n\r\n    *   `equals`: Checks if the **column** value is equal to the **condition** value. \r\n    *   `not_equals`: Checks if the **column** value is not equal to the **condition** value. \r\n    *   `starts_with`: Checks if the **column** value starts with the **condition** value. \r\n    *   `ends_with`: Checks if the **column** value ends with the **condition** value. \r\n    *   `contains`: Checks if the **column** value contains the **condition** value. \r\n    *   `not_contains`: Checks if the **column** value does not contain the **condition** value. \r\n\r\n*   \r\n\r\n**condition**: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the **relation** value."
           nullable: true
         disjunctive:
           type: boolean

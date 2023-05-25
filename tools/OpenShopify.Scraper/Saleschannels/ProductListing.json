@@ -5,8 +5,7 @@
     "description": "    <p>A ProductListing resource represents a <a href=\"/docs/admin-api/rest/reference/products/product\">Product</a> which is available\n    to your sales channel. Merchants can make products available to your sales channel directly from their Shopify\n    admin.</p>\n\n    <p>You can use this resource to retrieve products that a merchant has published and display them to customers in\n    your marketplace for sale.</p>\n\n    <p>A ProductListing resource itself is unable to have its attributes modified directly. The attributes of a\n    ProductListing are inherited from the Product resource to which it is associated. Therefore, all attributes of a\n    ProductListing should be considered <em>read-only</em>.</p>\n\n    <p>A product can have one of the following statuses: <code>active</code>, <code>draft</code>, or <code>archived</code>.\n    Draft and archived are considered non-active statuses. If you create a listing for a non-active product,\n    then the product won't be published immediately. You must change the product status to active to make the product\n    available on a sales channel.</p>\n\n    <p>If the product is sold exclusively on subscription, then you can create a listing for the product only on an online store.</p>\n\n",
     "x-owner": "https://vault.shopify.io/teams/2121",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -76,8 +75,8 @@
                     "product_listings": [
                       {
                         "product_id": 632910392,
-                        "created_at": "2023-01-03T10:05:09-07:00",
-                        "updated_at": "2023-01-03T10:05:09-07:00",
+                        "created_at": "2023-02-02T07:53:49-07:00",
+                        "updated_at": "2023-02-02T07:53:49-07:00",
                         "body_html": "<p>It's the small iPod with one very big idea: Video. Now the world's most popular music player, available in 4GB and 8GB models, lets you enjoy TV shows, movies, video podcasts, and more. The larger, brighter display means amazing picture quality. In six eye-catching colors, iPod nano is stunning all around. And with models starting at just $149, little speaks volumes.</p>",
                         "handle": "ipod-nano",
                         "product_type": "Cult Products",
@@ -114,8 +113,8 @@
                             "weight": 1.25,
                             "weight_unit": "lb",
                             "image_id": 562641783,
-                            "created_at": "2023-01-03T10:05:09-07:00",
-                            "updated_at": "2023-01-03T10:05:09-07:00"
+                            "created_at": "2023-02-02T07:53:49-07:00",
+                            "updated_at": "2023-02-02T07:53:49-07:00"
                           },
                           {
                             "id": 49148385,
@@ -144,8 +143,8 @@
                             "weight": 1.25,
                             "weight_unit": "lb",
                             "image_id": null,
-                            "created_at": "2023-01-03T10:05:09-07:00",
-                            "updated_at": "2023-01-03T10:05:09-07:00"
+                            "created_at": "2023-02-02T07:53:49-07:00",
+                            "updated_at": "2023-02-02T07:53:49-07:00"
                           },
                           {
                             "id": 39072856,
@@ -174,8 +173,8 @@
                             "weight": 1.25,
                             "weight_unit": "lb",
                             "image_id": null,
-                            "created_at": "2023-01-03T10:05:09-07:00",
-                            "updated_at": "2023-01-03T10:05:09-07:00"
+                            "created_at": "2023-02-02T07:53:49-07:00",
+                            "updated_at": "2023-02-02T07:53:49-07:00"
                           },
                           {
                             "id": 457924702,
@@ -204,29 +203,29 @@
                             "weight": 1.25,
                             "weight_unit": "lb",
                             "image_id": null,
-                            "created_at": "2023-01-03T10:05:09-07:00",
-                            "updated_at": "2023-01-03T10:05:09-07:00"
+                            "created_at": "2023-02-02T07:53:49-07:00",
+                            "updated_at": "2023-02-02T07:53:49-07:00"
                           }
                         ],
                         "images": [
                           {
                             "id": 850703190,
-                            "created_at": "2023-01-03T10:05:09-07:00",
+                            "created_at": "2023-02-02T07:53:49-07:00",
                             "position": 1,
-                            "updated_at": "2023-01-03T10:05:09-07:00",
+                            "updated_at": "2023-02-02T07:53:49-07:00",
                             "product_id": 632910392,
-                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672765509",
+                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1675349629",
                             "variant_ids": [],
                             "width": 123,
                             "height": 456
                           },
                           {
                             "id": 562641783,
-                            "created_at": "2023-01-03T10:05:09-07:00",
+                            "created_at": "2023-02-02T07:53:49-07:00",
                             "position": 2,
-                            "updated_at": "2023-01-03T10:05:09-07:00",
+                            "updated_at": "2023-02-02T07:53:49-07:00",
                             "product_id": 632910392,
-                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672765509",
+                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1675349629",
                             "variant_ids": [
                               808950810
                             ],
@@ -235,11 +234,11 @@
                           },
                           {
                             "id": 378407906,
-                            "created_at": "2023-01-03T10:05:09-07:00",
+                            "created_at": "2023-02-02T07:53:49-07:00",
                             "position": 3,
-                            "updated_at": "2023-01-03T10:05:09-07:00",
+                            "updated_at": "2023-02-02T07:53:49-07:00",
                             "product_id": 632910392,
-                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672765509",
+                            "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1675349629",
                             "variant_ids": [],
                             "width": 123,
                             "height": 456
@@ -262,8 +261,8 @@
                       },
                       {
                         "product_id": 921728736,
-                        "created_at": "2023-01-03T10:05:09-07:00",
-                        "updated_at": "2023-01-03T10:05:09-07:00",
+                        "created_at": "2023-02-02T07:53:49-07:00",
+                        "updated_at": "2023-02-02T07:53:49-07:00",
                         "body_html": "<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>",
                         "handle": "ipod-touch",
                         "product_type": "Cult Products",
@@ -300,8 +299,8 @@
                             "weight": 1.25,
                             "weight_unit": "lb",
                             "image_id": null,
-                            "created_at": "2023-01-03T10:05:09-07:00",
-                            "updated_at": "2023-01-03T10:05:09-07:00"
+                            "created_at": "2023-02-02T07:53:49-07:00",
+                            "updated_at": "2023-02-02T07:53:49-07:00"
                           }
                         ],
                         "images": [],
@@ -329,7 +328,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/product_listings.json",
+          "request_path": "/admin/api/2023-04/product_listings.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/product_listings.json",
@@ -339,13 +338,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"product_listings\":[{\"product_id\":632910392,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"body_html\":\"<p>It's the small iPod with one very big idea: Video. Now the world's most popular music player, available in 4GB and 8GB models, lets you enjoy TV shows, movies, video podcasts, and more. The larger, brighter display means amazing picture quality. In six eye-catching colors, iPod nano is stunning all around. And with models starting at just $149, little speaks volumes.</p>\",\"handle\":\"ipod-nano\",\"product_type\":\"Cult Products\",\"title\":\"IPod Nano - 8GB\",\"vendor\":\"Apple\",\"available\":true,\"tags\":\"Emotive, Flash Memory, MP3, Music\",\"published_at\":\"2017-08-31T20:00:00-04:00\",\"variants\":[{\"id\":808950810,\"title\":\"Pink\",\"option_values\":[{\"option_id\":594680422,\"name\":\"Color\",\"value\":\"Pink\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"barcode\":\"1234_pink\",\"taxable\":true,\"position\":1,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":10,\"inventory_management\":\"shopify\",\"fulfillment_service\":\"manual\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":562641783,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\"},{\"id\":49148385,\"title\":\"Red\",\"option_values\":[{\"option_id\":594680422,\"name\":\"Color\",\"value\":\"Red\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"barcode\":\"1234_red\",\"taxable\":true,\"position\":2,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":20,\"inventory_management\":\"shopify\",\"fulfillment_service\":\"manual\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\"},{\"id\":39072856,\"title\":\"Green\",\"option_values\":[{\"option_id\":594680422,\"name\":\"Color\",\"value\":\"Green\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2008GREEN\",\"barcode\":\"1234_green\",\"taxable\":true,\"position\":3,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":30,\"inventory_management\":\"shopify\",\"fulfillment_service\":\"manual\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\"},{\"id\":457924702,\"title\":\"Black\",\"option_values\":[{\"option_id\":594680422,\"name\":\"Color\",\"value\":\"Black\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2008BLACK\",\"barcode\":\"1234_black\",\"taxable\":true,\"position\":4,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":40,\"inventory_management\":\"shopify\",\"fulfillment_service\":\"manual\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\"}],\"images\":[{\"id\":850703190,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"position\":1,\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672765509\",\"variant_ids\":[],\"width\":123,\"height\":456},{\"id\":562641783,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"position\":2,\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1672765509\",\"variant_ids\":[808950810],\"width\":123,\"height\":456},{\"id\":378407906,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"position\":3,\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1672765509\",\"variant_ids\":[],\"width\":123,\"height\":456}],\"options\":[{\"id\":594680422,\"name\":\"Color\",\"product_id\":632910392,\"position\":1,\"values\":[\"Pink\",\"Red\",\"Green\",\"Black\"]}]},{\"product_id\":921728736,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"body_html\":\"<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>\",\"handle\":\"ipod-touch\",\"product_type\":\"Cult Products\",\"title\":\"IPod Touch 8GB\",\"vendor\":\"Apple\",\"available\":true,\"tags\":\"\",\"published_at\":\"2017-08-31T20:00:00-04:00\",\"variants\":[{\"id\":447654529,\"title\":\"Black\",\"option_values\":[{\"option_id\":891236591,\"name\":\"Title\",\"value\":\"Black\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2009BLACK\",\"barcode\":\"1234_black\",\"taxable\":true,\"position\":1,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":13,\"inventory_management\":\"shipwire-app\",\"fulfillment_service\":\"shipwire-app\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\"}],\"images\":[],\"options\":[{\"id\":891236591,\"name\":\"Title\",\"product_id\":921728736,\"position\":1,\"values\":[\"Black\"]}]}]}"
+            "body": "{\"product_listings\":[{\"product_id\":632910392,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\",\"body_html\":\"<p>It's the small iPod with one very big idea: Video. Now the world's most popular music player, available in 4GB and 8GB models, lets you enjoy TV shows, movies, video podcasts, and more. The larger, brighter display means amazing picture quality. In six eye-catching colors, iPod nano is stunning all around. And with models starting at just $149, little speaks volumes.</p>\",\"handle\":\"ipod-nano\",\"product_type\":\"Cult Products\",\"title\":\"IPod Nano - 8GB\",\"vendor\":\"Apple\",\"available\":true,\"tags\":\"Emotive, Flash Memory, MP3, Music\",\"published_at\":\"2017-08-31T20:00:00-04:00\",\"variants\":[{\"id\":808950810,\"title\":\"Pink\",\"option_values\":[{\"option_id\":594680422,\"name\":\"Color\",\"value\":\"Pink\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2008PINK\",\"barcode\":\"1234_pink\",\"taxable\":true,\"position\":1,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":10,\"inventory_management\":\"shopify\",\"fulfillment_service\":\"manual\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":562641783,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\"},{\"id\":49148385,\"title\":\"Red\",\"option_values\":[{\"option_id\":594680422,\"name\":\"Color\",\"value\":\"Red\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2008RED\",\"barcode\":\"1234_red\",\"taxable\":true,\"position\":2,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":20,\"inventory_management\":\"shopify\",\"fulfillment_service\":\"manual\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\"},{\"id\":39072856,\"title\":\"Green\",\"option_values\":[{\"option_id\":594680422,\"name\":\"Color\",\"value\":\"Green\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2008GREEN\",\"barcode\":\"1234_green\",\"taxable\":true,\"position\":3,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":30,\"inventory_management\":\"shopify\",\"fulfillment_service\":\"manual\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\"},{\"id\":457924702,\"title\":\"Black\",\"option_values\":[{\"option_id\":594680422,\"name\":\"Color\",\"value\":\"Black\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2008BLACK\",\"barcode\":\"1234_black\",\"taxable\":true,\"position\":4,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":40,\"inventory_management\":\"shopify\",\"fulfillment_service\":\"manual\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\"}],\"images\":[{\"id\":850703190,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"position\":1,\"updated_at\":\"2023-02-02T09:53:49-05:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1675349629\",\"variant_ids\":[],\"width\":123,\"height\":456},{\"id\":562641783,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"position\":2,\"updated_at\":\"2023-02-02T09:53:49-05:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1675349629\",\"variant_ids\":[808950810],\"width\":123,\"height\":456},{\"id\":378407906,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"position\":3,\"updated_at\":\"2023-02-02T09:53:49-05:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1675349629\",\"variant_ids\":[],\"width\":123,\"height\":456}],\"options\":[{\"id\":594680422,\"name\":\"Color\",\"product_id\":632910392,\"position\":1,\"values\":[\"Pink\",\"Red\",\"Green\",\"Black\"]}]},{\"product_id\":921728736,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\",\"body_html\":\"<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>\",\"handle\":\"ipod-touch\",\"product_type\":\"Cult Products\",\"title\":\"IPod Touch 8GB\",\"vendor\":\"Apple\",\"available\":true,\"tags\":\"\",\"published_at\":\"2017-08-31T20:00:00-04:00\",\"variants\":[{\"id\":447654529,\"title\":\"Black\",\"option_values\":[{\"option_id\":891236591,\"name\":\"Title\",\"value\":\"Black\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2009BLACK\",\"barcode\":\"1234_black\",\"taxable\":true,\"position\":1,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":13,\"inventory_management\":\"shipwire-app\",\"fulfillment_service\":\"shipwire-app\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\"}],\"images\":[],\"options\":[{\"id\":891236591,\"name\":\"Title\",\"product_id\":921728736,\"position\":1,\"values\":[\"Black\"]}]}]}"
           },
           "name": "Retrieve product listings that are published to your app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/product_listings.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/product_listings.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -357,7 +356,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -419,7 +418,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/product_listings/product_ids.json",
+          "request_path": "/admin/api/2023-04/product_listings/product_ids.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/product_listings/product_ids.json",
@@ -435,7 +434,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/product_listings/product_ids.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/product_listings/product_ids.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -447,7 +446,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::product_ids(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::product_ids(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -490,7 +489,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/product_listings/count.json",
+          "request_path": "/admin/api/2023-04/product_listings/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/product_listings/count.json",
@@ -506,7 +505,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/product_listings/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/product_listings/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -518,7 +517,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -565,8 +564,8 @@
                   "value": {
                     "product_listing": {
                       "product_id": 921728736,
-                      "created_at": "2023-01-03T10:05:09-07:00",
-                      "updated_at": "2023-01-03T10:05:09-07:00",
+                      "created_at": "2023-02-02T07:53:49-07:00",
+                      "updated_at": "2023-02-02T07:53:49-07:00",
                       "body_html": "<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>",
                       "handle": "ipod-touch",
                       "product_type": "Cult Products",
@@ -603,8 +602,8 @@
                           "weight": 1.25,
                           "weight_unit": "lb",
                           "image_id": null,
-                          "created_at": "2023-01-03T10:05:09-07:00",
-                          "updated_at": "2023-01-03T10:05:09-07:00"
+                          "created_at": "2023-02-02T07:53:49-07:00",
+                          "updated_at": "2023-02-02T07:53:49-07:00"
                         }
                       ],
                       "images": [],
@@ -631,7 +630,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/product_listings/921728736.json",
+          "request_path": "/admin/api/2023-04/product_listings/921728736.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/product_listings/921728736.json",
@@ -641,13 +640,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"product_listing\":{\"product_id\":921728736,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"body_html\":\"<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>\",\"handle\":\"ipod-touch\",\"product_type\":\"Cult Products\",\"title\":\"IPod Touch 8GB\",\"vendor\":\"Apple\",\"available\":true,\"tags\":\"\",\"published_at\":\"2017-08-31T20:00:00-04:00\",\"variants\":[{\"id\":447654529,\"title\":\"Black\",\"option_values\":[{\"option_id\":891236591,\"name\":\"Title\",\"value\":\"Black\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2009BLACK\",\"barcode\":\"1234_black\",\"taxable\":true,\"position\":1,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":13,\"inventory_management\":\"shipwire-app\",\"fulfillment_service\":\"shipwire-app\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\"}],\"images\":[],\"options\":[{\"id\":891236591,\"name\":\"Title\",\"product_id\":921728736,\"position\":1,\"values\":[\"Black\"]}]}}"
+            "body": "{\"product_listing\":{\"product_id\":921728736,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\",\"body_html\":\"<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>\",\"handle\":\"ipod-touch\",\"product_type\":\"Cult Products\",\"title\":\"IPod Touch 8GB\",\"vendor\":\"Apple\",\"available\":true,\"tags\":\"\",\"published_at\":\"2017-08-31T20:00:00-04:00\",\"variants\":[{\"id\":447654529,\"title\":\"Black\",\"option_values\":[{\"option_id\":891236591,\"name\":\"Title\",\"value\":\"Black\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2009BLACK\",\"barcode\":\"1234_black\",\"taxable\":true,\"position\":1,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":13,\"inventory_management\":\"shipwire-app\",\"fulfillment_service\":\"shipwire-app\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\"}],\"images\":[],\"options\":[{\"id\":891236591,\"name\":\"Title\",\"product_id\":921728736,\"position\":1,\"values\":[\"Black\"]}]}}"
           },
           "name": "Retrieve a specific product listing that is published to your app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/product_listings/921728736.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/product_listings/921728736.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -659,7 +658,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::find(\n    $this->test_session, // Session\n    921728736, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::find(\n    $this->test_session, // Session\n    921728736, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -706,8 +705,8 @@
                   "value": {
                     "product_listing": {
                       "product_id": 921728736,
-                      "created_at": "2023-01-03T10:05:09-07:00",
-                      "updated_at": "2023-01-03T10:05:09-07:00",
+                      "created_at": "2023-02-02T07:53:49-07:00",
+                      "updated_at": "2023-02-02T07:53:49-07:00",
                       "body_html": "<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>",
                       "handle": "ipod-touch",
                       "product_type": "Cult Products",
@@ -744,8 +743,8 @@
                           "weight": 1.25,
                           "weight_unit": "lb",
                           "image_id": null,
-                          "created_at": "2023-01-03T10:05:09-07:00",
-                          "updated_at": "2023-01-03T10:05:09-07:00"
+                          "created_at": "2023-02-02T07:53:49-07:00",
+                          "updated_at": "2023-02-02T07:53:49-07:00"
                         }
                       ],
                       "images": [],
@@ -772,7 +771,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/product_listings/921728736.json",
+          "request_path": "/admin/api/2023-04/product_listings/921728736.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/product_listings/921728736.json",
@@ -782,13 +781,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"product_listing\":{\"product_id\":921728736,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\",\"body_html\":\"<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>\",\"handle\":\"ipod-touch\",\"product_type\":\"Cult Products\",\"title\":\"IPod Touch 8GB\",\"vendor\":\"Apple\",\"available\":true,\"tags\":\"\",\"published_at\":\"2017-08-31T20:00:00-04:00\",\"variants\":[{\"id\":447654529,\"title\":\"Black\",\"option_values\":[{\"option_id\":891236591,\"name\":\"Title\",\"value\":\"Black\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2009BLACK\",\"barcode\":\"1234_black\",\"taxable\":true,\"position\":1,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":13,\"inventory_management\":\"shipwire-app\",\"fulfillment_service\":\"shipwire-app\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-01-03T12:05:09-05:00\",\"updated_at\":\"2023-01-03T12:05:09-05:00\"}],\"images\":[],\"options\":[{\"id\":891236591,\"name\":\"Title\",\"product_id\":921728736,\"position\":1,\"values\":[\"Black\"]}]}}"
+            "body": "{\"product_listing\":{\"product_id\":921728736,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\",\"body_html\":\"<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>\",\"handle\":\"ipod-touch\",\"product_type\":\"Cult Products\",\"title\":\"IPod Touch 8GB\",\"vendor\":\"Apple\",\"available\":true,\"tags\":\"\",\"published_at\":\"2017-08-31T20:00:00-04:00\",\"variants\":[{\"id\":447654529,\"title\":\"Black\",\"option_values\":[{\"option_id\":891236591,\"name\":\"Title\",\"value\":\"Black\"}],\"price\":\"199.00\",\"formatted_price\":\"$199.00\",\"compare_at_price\":null,\"grams\":567,\"requires_shipping\":true,\"sku\":\"IPOD2009BLACK\",\"barcode\":\"1234_black\",\"taxable\":true,\"position\":1,\"available\":true,\"inventory_policy\":\"continue\",\"inventory_quantity\":13,\"inventory_management\":\"shipwire-app\",\"fulfillment_service\":\"shipwire-app\",\"weight\":1.25,\"weight_unit\":\"lb\",\"image_id\":null,\"created_at\":\"2023-02-02T09:53:49-05:00\",\"updated_at\":\"2023-02-02T09:53:49-05:00\"}],\"images\":[],\"options\":[{\"id\":891236591,\"name\":\"Title\",\"product_id\":921728736,\"position\":1,\"values\":[\"Black\"]}]}}"
           },
           "name": "Create a product listing to publish a product to your app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"product_listing\":{\"product_id\":921728736}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/product_listings/921728736.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"product_listing\":{\"product_id\":921728736}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/product_listings/921728736.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -800,7 +799,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_listing = new ProductListing($this->test_session);\n$product_listing->product_id = 921728736;\n$product_listing->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$product_listing = new ProductListing($this->test_session);\n$product_listing->product_id = 921728736;\n$product_listing->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -855,7 +854,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/product_listings/921728736.json",
+          "request_path": "/admin/api/2023-04/product_listings/921728736.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/product_listings/921728736.json",
@@ -871,7 +870,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/product_listings/921728736.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/product_listings/921728736.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -883,7 +882,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::delete(\n    $this->test_session, // Session\n    921728736, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\ProductListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProductListing::delete(\n    $this->test_session, // Session\n    921728736, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1051,5 +1050,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

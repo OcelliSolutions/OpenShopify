@@ -28,6 +28,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Creates an application credit
         /// </summary>
+        /// <remarks>
+        /// &lt;aside class="note caution"&gt; 
+        /// 
+        /// #### Caution
+        /// 
+        /// As of version 2023-07, creating application credits through this resource is deprecated. App credits can continue to be created using the [appCreditCreate mutation](https://shopify.dev/docs/api/partner/unstable/mutations/appCreditCreate) in the Partner API.
+        /// &lt;/aside&gt;Creates an application credit
+        /// </remarks>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
         public abstract System.Threading.Tasks.Task CreateApplicationCredit([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateApplicationCreditRequest request);
 
@@ -76,6 +84,15 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public bool? Test { get; set; } = default!;
+
+        /// <summary>
+        /// The currency of the application credit amount.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 

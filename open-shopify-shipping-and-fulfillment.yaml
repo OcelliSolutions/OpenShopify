@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Shipping & Fulfillment
   description: Shipping & Fulfillment
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,17 +23,14 @@ paths:
     get:
       tags:
         - AssignedFulfillmentOrder
-      summary: Retrieves a list of fulfillment orders on a shop for a specific app
       operationId: ListFulfillmentOrdersOnShopForSpecificApp
       parameters:
         - name: assignment_status
           in: query
-          description: 'The assigment status of the fulfillment orders that should be returned:'
           schema:
             $ref: '#/components/schemas/FulfillmentAssignmentStatus'
         - name: location_ids
           in: query
-          description: The IDs of the assigned locations of the fulfillment orders that should be returned.
           schema:
             type: string
       responses:
@@ -60,8 +57,6 @@ paths:
     post:
       tags:
         - CancellationRequest
-      summary: Sends a cancellation request
-      description: Sends a cancellation request to the fulfillment service of a fulfillment order.
       operationId: SendCancellationRequest
       parameters:
         - name: fulfillment_order_id
@@ -99,8 +94,6 @@ paths:
     post:
       tags:
         - CancellationRequest
-      summary: Accepts a cancellation request
-      description: Accepts a cancellation request sent to a fulfillment service for a fulfillment order.
       operationId: AcceptCancellationRequest
       parameters:
         - name: fulfillment_order_id
@@ -138,8 +131,6 @@ paths:
     post:
       tags:
         - CancellationRequest
-      summary: Rejects a cancellation request
-      description: Rejects a cancellation request sent to a fulfillment service for a fulfillment order.
       operationId: RejectCancellationRequest
       parameters:
         - name: fulfillment_order_id
@@ -177,7 +168,6 @@ paths:
     post:
       tags:
         - CarrierService
-      summary: Create a new CarrierService
       operationId: CreateCarrierService
       requestBody:
         content:
@@ -207,7 +197,6 @@ paths:
     get:
       tags:
         - CarrierService
-      summary: Receive a list of all CarrierServices
       operationId: ListCarrierServices
       responses:
         '200':
@@ -233,8 +222,6 @@ paths:
     put:
       tags:
         - CarrierService
-      summary: Modify an existing CarrierService
-      description: Updates a carrier service. Only the app that creates a carrier service can update it.
       operationId: UpdateCarrierService
       parameters:
         - name: carrier_service_id
@@ -271,7 +258,6 @@ paths:
     get:
       tags:
         - CarrierService
-      summary: Receive a single CarrierService
       operationId: GetCarrierService
       parameters:
         - name: carrier_service_id
@@ -299,7 +285,6 @@ paths:
     delete:
       tags:
         - CarrierService
-      summary: Remove an existing CarrierService
       operationId: DeleteCarrierService
       parameters:
         - name: carrier_service_id
@@ -324,8 +309,6 @@ paths:
     get:
       tags:
         - Fulfillment
-      summary: Retrieves fulfillments associated with an order
-      description: 'Retrieves fulfillments associated with an order. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: GetFulfillmentsAssociatedWithOrder
       parameters:
         - name: order_id
@@ -336,47 +319,39 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: A comma-separated list of fields to include in the response.
           schema:
             type: string
         - name: limit
           in: query
-          description: Limit the amount of results.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
           in: query
-          description: Restrict results to after the specified ID.
           schema:
             type: integer
             format: int64
         - name: updated_at_max
           in: query
-          description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -400,7 +375,6 @@ paths:
     get:
       tags:
         - Fulfillment
-      summary: Retrieves fulfillments associated with a fulfillment order
       operationId: GetFulfillmentsAssociatedWithFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -429,7 +403,6 @@ paths:
     get:
       tags:
         - Fulfillment
-      summary: Retrieves a count of fulfillments associated with a specific order
       operationId: CountFulfillmentsAssociatedWithSpecificOrder
       parameters:
         - name: order_id
@@ -440,25 +413,21 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_max
           in: query
-          description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
             format: date-time
@@ -482,8 +451,6 @@ paths:
     get:
       tags:
         - Fulfillment
-      summary: Receive a single Fulfillment
-      description: Retrieve a specific fulfillment
       operationId: GetFulfillment
       parameters:
         - name: fulfillment_id
@@ -500,7 +467,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: Comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
@@ -523,8 +489,6 @@ paths:
     post:
       tags:
         - Fulfillment
-      summary: Creates a fulfillment for one or many fulfillment orders
-      description: Creates a fulfillment for one or many fulfillment orders. The fulfillment orders are associated with the same order and are assigned to the same location.
       operationId: CreateFulfillmentForOneOrManyFulfillmentOrders
       requestBody:
         content:
@@ -592,7 +556,6 @@ paths:
     post:
       tags:
         - Fulfillment
-      summary: Cancels a fulfillment
       operationId: CancelFulfillment
       parameters:
         - name: fulfillment_id
@@ -621,7 +584,6 @@ paths:
     get:
       tags:
         - FulfillmentEvent
-      summary: Retrieves a list of fulfillment events for a specific fulfillment
       operationId: ListFulfillmentEventsForSpecificFulfillment
       parameters:
         - name: fulfillment_id
@@ -659,7 +621,6 @@ paths:
     post:
       tags:
         - FulfillmentEvent
-      summary: Creates a fulfillment event
       operationId: CreateFulfillmentEvent
       parameters:
         - name: fulfillment_id
@@ -703,7 +664,6 @@ paths:
     get:
       tags:
         - FulfillmentEvent
-      summary: Retrieves a specific fulfillment event
       operationId: GetFulfillmentEvent
       parameters:
         - name: event_id
@@ -743,7 +703,6 @@ paths:
     delete:
       tags:
         - FulfillmentEvent
-      summary: Deletes a fulfillment event
       operationId: DeleteFulfillmentEvent
       parameters:
         - name: event_id
@@ -780,7 +739,6 @@ paths:
     get:
       tags:
         - FulfillmentOrder
-      summary: Retrieves a list of fulfillment orders for a specific order
       operationId: ListFulfillmentOrdersForSpecificOrder
       parameters:
         - name: order_id
@@ -813,7 +771,6 @@ paths:
     get:
       tags:
         - FulfillmentOrder
-      summary: Retrieves a specific fulfillment order
       operationId: GetFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -842,8 +799,6 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Cancel a fulfillment order
-      description: Marks a fulfillment order as cancelled.
       operationId: CancelFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -872,8 +827,6 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Marks a fulfillment order as incomplete
-      description: 'Marks an in progress fulfillment order as incomplete, indicating the fulfillment service is unable to ship any remaining items and intends to close the fulfillment order.'
       operationId: MarkFulfillmentOrderAsIncomplete
       parameters:
         - name: fulfillment_order_id
@@ -911,8 +864,6 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Moves a fulfillment order to a new location
-      description: "Moves a fulfillment order from one location to another location.Moving a fulfillment order will fail in the following events:\r\n\r\n*   The fulfillment order is closed. \r\n*   The new location doesn't have the necessary inventory available. \r\n*   The API client doesn't have the correct permissions."
       operationId: MoveFulfillmentOrderToNewLocation
       parameters:
         - name: fulfillment_order_id
@@ -950,8 +901,6 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Marks the fulfillment order as open
-      description: Marks a scheduled fulfillment order as ready for fulfillment. This endpoint allows merchants to work on a scheduled fulfillment order before its expected `fulfill_at` datetime.
       operationId: MarkFulfillmentOrderAsOpen
       parameters:
         - name: fulfillment_order_id
@@ -980,8 +929,6 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Reschedules the fulfill_at time of a scheduled fulfillment order
-      description: Updates the `fulfill_at` time of a scheduled fulfillment order. This endpoint is used to manage the time a scheduled fulfillment order will be marked as ready for fulfillment.
       operationId: RescheduleFulfillAtTimeOfScheduledFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -1019,8 +966,6 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Applies a fulfillment hold on an open fulfillment order
-      description: Halts all fulfillment work on a fulfillment order with status `OPEN` and changes the status of the fulfillment order to `ON_HOLD`.
       operationId: ApplyFulfillmentHoldOnOpenFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -1057,8 +1002,6 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Sets deadline for fulfillment orders
-      description: Sets the latest date and time by which the fulfillment orders need to be fulfilled.
       operationId: SetDeadlineForFulfillmentOrders
       requestBody:
         content:
@@ -1084,8 +1027,6 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Releases the fulfillment hold on a fulfillment order
-      description: Release the fulfillment hold on a fulfillment order and changes the status of the fulfillment order to `OPEN` or `SCHEDULED`
       operationId: ReleaseFulfillmentHoldOnFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -1114,8 +1055,6 @@ paths:
     post:
       tags:
         - FulfillmentRequest
-      summary: Sends a fulfillment request
-      description: Sends a fulfillment request to the fulfillment service of a fulfillment order.
       operationId: SendFulfillmentRequest
       parameters:
         - name: fulfillment_order_id
@@ -1153,8 +1092,6 @@ paths:
     post:
       tags:
         - FulfillmentRequest
-      summary: Accepts a fulfillment request
-      description: Accepts a fulfillment request sent to a fulfillment service for a fulfillment order.
       operationId: AcceptFulfillmentRequest
       parameters:
         - name: fulfillment_order_id
@@ -1192,8 +1129,6 @@ paths:
     post:
       tags:
         - FulfillmentRequest
-      summary: Rejects a fulfillment request
-      description: Rejects a fulfillment request sent to a fulfillment service for a fulfillment order.
       operationId: RejectFulfillmentRequest
       parameters:
         - name: fulfillment_order_id
@@ -1231,12 +1166,10 @@ paths:
     get:
       tags:
         - FulfillmentService
-      summary: Receive a list of all FulfillmentServices
       operationId: ListFulfillmentServices
       parameters:
         - name: scope
           in: query
-          description: Specify which fulfillment services to retrieve.
           schema:
             $ref: '#/components/schemas/FulfillmentServiceScope'
       responses:
@@ -1262,7 +1195,6 @@ paths:
     post:
       tags:
         - FulfillmentService
-      summary: Create a new FulfillmentService
       operationId: CreateFulfillmentService
       requestBody:
         content:
@@ -1293,7 +1225,6 @@ paths:
     get:
       tags:
         - FulfillmentService
-      summary: Receive a single FulfillmentService
       operationId: GetFulfillmentService
       parameters:
         - name: fulfillment_service_id
@@ -1321,7 +1252,6 @@ paths:
     put:
       tags:
         - FulfillmentService
-      summary: Modify an existing FulfillmentService
       operationId: UpdateFulfillmentService
       parameters:
         - name: fulfillment_service_id
@@ -1358,7 +1288,6 @@ paths:
     delete:
       tags:
         - FulfillmentService
-      summary: Remove an existing FulfillmentService
       operationId: DeleteFulfillmentService
       parameters:
         - name: fulfillment_service_id
@@ -1383,8 +1312,6 @@ paths:
     get:
       tags:
         - LocationsForMove
-      summary: Retrieves a list of locations that a fulfillment order can potentially move to.
-      description: Retrieves a list of locations that a fulfillment order can potentially move to. The resulting list is sorted alphabetically in ascending order by location name.
       operationId: ListLocationsThatFulfillmentOrderCanPotentiallyMoveTo
       parameters:
         - name: fulfillment_order_id
@@ -1589,7 +1516,7 @@ components:
       properties:
         active:
           type: boolean
-          description: Whether this carrier service is active.
+          description: 'Whether this carrier service is active. If `true`, then the service will be available to serve rates in checkout.'
           nullable: true
         callback_url:
           type: string
@@ -1599,6 +1526,8 @@ components:
           type: string
           description: Distinguishes between API or legacy carrier services.
           nullable: true
+        format:
+          $ref: '#/components/schemas/CarrierServiceFormat'
         name:
           type: string
           description: The name of the shipping service as seen by merchants and their customers.
@@ -1610,8 +1539,6 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-        format:
-          $ref: '#/components/schemas/CarrierServiceFormat'
         id:
           type: integer
           format: int64
@@ -1662,7 +1589,7 @@ components:
       properties:
         active:
           type: boolean
-          description: Whether this carrier service is active.
+          description: 'Whether this carrier service is active. If `true`, then the service will be available to serve rates in checkout.'
           nullable: true
         callback_url:
           type: string
@@ -1672,6 +1599,8 @@ components:
           type: string
           description: Distinguishes between API or legacy carrier services.
           nullable: true
+        format:
+          $ref: '#/components/schemas/CarrierServiceFormat'
         name:
           type: string
           description: The name of the shipping service as seen by merchants and their customers.
@@ -1684,8 +1613,6 @@ components:
           type: string
           description: The GraphQL GID for this carrier service.
           nullable: true
-        format:
-          $ref: '#/components/schemas/CarrierServiceFormat'
       additionalProperties: false
     CreateCarrierServiceRequest:
       required:
@@ -1780,7 +1707,6 @@ components:
             $ref: '#/components/schemas/LineItemsByFulfillmentOrder'
         notify_customer:
           type: boolean
-          description: 'Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.'
           nullable: true
         tracking_info:
           $ref: '#/components/schemas/TrackingInfo'
@@ -1806,11 +1732,10 @@ components:
           nullable: true
         fulfillment_orders_opt_in:
           type: boolean
-          description: 'Whether the fulfillment service uses the [fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.'
+          description: "Whether the fulfillment service uses the[fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.  \r\n[As of 2022-07 API version](/changelog/legacy-fulfillment-api-deprecation), the fulfillment order based workflow is the only way to manage fulfillments, and `fulfillment_orders_opt_in` must be set to `true`."
           nullable: true
         permits_sku_sharing:
           type: boolean
-          description: Whether the fulfillment service can stock inventory alongside other locations.
           nullable: true
         handle:
           type: string
@@ -1818,7 +1743,6 @@ components:
           nullable: true
         inventory_management:
           type: boolean
-          description: 'Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values: `true` and `false`.'
           nullable: true
         location_id:
           type: integer
@@ -1918,7 +1842,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-          description: "A list of the fulfillment's line items, which includes:\r\n\r\n*   **id**: The ID of the line item within the fulfillment. \r\n*   **variant_id**: The ID of the product variant being fulfilled. \r\n*   **title**: The title of the product. \r\n*   **quantity**: The number of items in the fulfillment. \r\n*   **price**: The price of the item. \r\n*   **grams**: The weight of the item in grams. \r\n*   **sku**: The unique identifier of the item in the fulfillment. \r\n*   **variant_title**: The title of the product variant being fulfilled. \r\n*   **vendor**: The name of the supplier of the item. \r\n*   **fulfillment_service**: The service provider who is doing the fulfillment. This field will be deprecated. Use the `assigned_location` property on the `FulfillmentOrder` resource instead. \r\n*   **product_id**: The unique numeric identifier for the product in the fulfillment. \r\n*   **requires_shipping**: Whether a customer needs to provide a shipping address when placing an order for this product variant. \r\n*   **taxable**: Whether the line item is taxable. \r\n*   **gift_card**: Whether the line item is a [gift card](https://help.shopify.com/manual/products/gift-card-products). \r\n*   **name**: The name of the product variant. \r\n*   **variant_inventory_management**: The name of the inventory management system. \r\n*   **properties**: Any additional properties associated with the line item. \r\n*   **product_exists**: Whether the product exists. \r\n*   **fulfillable_quantity**: The amount available to fulfill. This is the quantity - max (refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity. This field will be deprecated. Use the `fulfillable_quantity` property of the `line_item` property on the `FulfillmentOrder` resource instead. \r\n*   **total_discount**: The total of any discounts applied to the line item. \r\n*   **fulfillment_status**: The status of an order in terms of the line items being fulfilled. Valid values: `fulfilled`, `null`, or `partial`. This field will be deprecated. Use the `status` property on the `FulfillmentOrder` resource instead. \r\n*   **fulfillment_line_item_id**: A unique identifier for a quantity of items within a single fulfillment. An order can have multiple fulfillment line items. \r\n*   **tax_lines**: The `title`, `price`, and `rate` of any taxes applied to the line item. \r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
           nullable: true
         location_id:
           type: integer
@@ -1931,7 +1854,7 @@ components:
           nullable: true
         notify_customer:
           type: boolean
-          description: 'Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.'
+          description: 'Whether the customer should be notified.If set to `true`, then an email will be sent when the fulfillment is created or updated.The default value is `false`.'
           nullable: true
         order_id:
           type: integer
@@ -1952,19 +1875,19 @@ components:
           $ref: '#/components/schemas/FulfillmentStatus'
         tracking_company:
           type: string
-          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **AGS** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **An Post** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Asendia USA** \r\n*   **Australia Post** \r\n*   **Bonshaw** \r\n*   **BPost** \r\n*   **BPost International** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **CDL Last Mile** \r\n*   **China Post** \r\n*   **Chronopost** \r\n*   **Chukou1** \r\n*   **Colissimo** \r\n*   **Comingle** \r\n*   **Coordinadora** \r\n*   **Correios** \r\n*   **Correos** \r\n*   **CTT** \r\n*   **CTT Express** \r\n*   **Cyprus Post** \r\n*   **Delnext** \r\n*   **Deutsche Post** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DoorDash** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **DTD Express** \r\n*   **DX** \r\n*   **Eagle** \r\n*   **Estes** \r\n*   **Evri** \r\n*   **FedEx** \r\n*   **First Global Logistics** \r\n*   **First Line** \r\n*   **FSC** \r\n*   **Fulfilla** \r\n*   **GLS** \r\n*   **Guangdong Weisuyi Information Technology (WSE)** \r\n*   **Heppner Internationale Spedition GmbH & Co.** \r\n*   **Iceland Post** \r\n*   **IDEX** \r\n*   **Israel Post** \r\n*   **Japan Post (EN)** \r\n*   **Japan Post (JA)** \r\n*   **La Poste** \r\n*   **Lasership** \r\n*   **Latvia Post** \r\n*   **Lietuvos Paštas** \r\n*   **Logisters** \r\n*   **Lone Star Overnight** \r\n*   **M3 Logistics** \r\n*   **Meteor Space** \r\n*   **Mondial Relay** \r\n*   **New Zealand Post** \r\n*   **NinjaVan** \r\n*   **North Russia Supply Chain (Shenzhen) Co.** \r\n*   **OnTrac** \r\n*   **Packeta** \r\n*   **Pago Logistics** \r\n*   **Ping An Da Tengfei Express** \r\n*   **Pitney Bowes** \r\n*   **Portal PostNord** \r\n*   **Poste Italiane** \r\n*   **PostNL** \r\n*   **PostNord DK** \r\n*   **PostNord NO** \r\n*   **PostNord SE** \r\n*   **Purolator** \r\n*   **Qxpress** \r\n*   **Qyun Express** \r\n*   **Royal Mail** \r\n*   **Royal Shipments** \r\n*   **Sagawa (EN)** \r\n*   **Sagawa (JA)** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfillment** \r\n*   **SHREE NANDAN COURIER** \r\n*   **Singapore Post** \r\n*   **Southwest Air Cargo** \r\n*   **StarTrack** \r\n*   **Step Forward Freight** \r\n*   **Swiss Post** \r\n*   **TForce Final Mile** \r\n*   **Tinghao** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **United Delivery Service** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Venipak** \r\n*   **We Post** \r\n*   **Whistl** \r\n*   **Wizmo** \r\n*   **WMYC** \r\n*   **Xpedigo** \r\n*   **XPO Logistics** \r\n*   **Yamato (EN)** \r\n*   **Yamato (JA)** \r\n*   **YiFan Express** \r\n*   **YunExpress** \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Australia**: Australia Post, Sendle, Aramex Australia, TNT Australia, Hunter Express, Couriers Please, Bonds, Allied Express, Direct Couriers, Northline, GO Logistics \r\n*   **Austria**: Österreichische Post \r\n*   **Bulgaria**: Speedy \r\n*   **Canada**: Intelcom, BoxKnight, Loomis, GLS \r\n*   **China**: China Post, DHL eCommerce Asia, WanbExpress, YunExpress, Anjun Logistics, SFC Fulfillment, FSC \r\n*   **Czechia**: Zásilkovna \r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL, DHL Express, Swiship, Hermes, GLS \r\n*   **Spain**: SEUR \r\n*   **France**: Colissimo, Mondial Relay, Colis Privé, GLS \r\n*   **United Kingdom**: Evri, DPD UK, Parcelforce, Yodel, DHL Parcel, Tuffnells \r\n*   **Greece**: ACS Courier \r\n*   **Hong Kong SAR**: SF Express \r\n*   **Ireland**: Fastway, DPD Ireland \r\n*   **India**: DTDC, India Post, Delhivery, Gati KWE, Professional Couriers, XpressBees, Ecom Express, Ekart, Shadowfax, Bluedart \r\n*   **Italy**: BRT, GLS Italy \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **Netherlands**: DHL Parcel, DPD \r\n*   **Norway**: Bring \r\n*   **Poland**: Inpost \r\n*   **Turkey**: PTT, Yurtiçi Kargo, Aras Kargo, Sürat Kargo \r\n*   **United States**: GLS, Alliance Air Freight, Pilot Freight, LSO, Old Dominion, R+L Carriers, Southwest Air Cargo \r\n*   **South Africa**: Fastway, Skynet \r\n\r\n <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
+          description: "The name of the tracking company. \r\n\r\n For the tracking company names from the [list below](#supported-tracking-companies) Shopify automatically builds tracking URLs for all of the provided tracking numbers, which makes the tracking numbers clickable in the interface.\r\n\r\n Additionally, for the tracking companies listed on the [Shipping Carriers help page](https://help.shopify.com/en/manual/shipping/understanding-shipping/shipping-carriers#integrated-shipping-carriers) Shopify will automatically update the fulfillment's `shipment_status` field during the fulfillment process.\r\n<aside class=\"note\"> \r\n\r\n#### Note\r\n\r\n Send the tracking company name exactly as written in the list below (capitalization matters). \r\n</aside>\r\n\r\n#### Supported tracking companies\r\n\r\n The following tracking companies display for shops located in any country:\r\n\r\n*   **4PX** \r\n*   **AGS** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **An Post** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Asendia USA** \r\n*   **Australia Post** \r\n*   **Bonshaw** \r\n*   **BPost** \r\n*   **BPost International** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **CDL Last Mile** \r\n*   **China Post** \r\n*   **Chronopost** \r\n*   **Chukou1** \r\n*   **Colissimo** \r\n*   **Comingle** \r\n*   **Coordinadora** \r\n*   **Correios** \r\n*   **Correos** \r\n*   **CTT** \r\n*   **CTT Express** \r\n*   **Cyprus Post** \r\n*   **Delnext** \r\n*   **Deutsche Post** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DoorDash** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **DTD Express** \r\n*   **DX** \r\n*   **Eagle** \r\n*   **Estes** \r\n*   **Evri** \r\n*   **FedEx** \r\n*   **First Global Logistics** \r\n*   **First Line** \r\n*   **FSC** \r\n*   **Fulfilla** \r\n*   **GLS** \r\n*   **Guangdong Weisuyi Information Technology (WSE)** \r\n*   **Heppner Internationale Spedition GmbH & Co.** \r\n*   **Iceland Post** \r\n*   **IDEX** \r\n*   **Israel Post** \r\n*   **Japan Post (EN)** \r\n*   **Japan Post (JA)** \r\n*   **La Poste** \r\n*   **Lasership** \r\n*   **Latvia Post** \r\n*   **Lietuvos Paštas** \r\n*   **Logisters** \r\n*   **Lone Star Overnight** \r\n*   **M3 Logistics** \r\n*   **Meteor Space** \r\n*   **Mondial Relay** \r\n*   **New Zealand Post** \r\n*   **NinjaVan** \r\n*   **North Russia Supply Chain (Shenzhen) Co.** \r\n*   **OnTrac** \r\n*   **Packeta** \r\n*   **Pago Logistics** \r\n*   **Ping An Da Tengfei Express** \r\n*   **Pitney Bowes** \r\n*   **Portal PostNord** \r\n*   **Poste Italiane** \r\n*   **PostNL** \r\n*   **PostNord DK** \r\n*   **PostNord NO** \r\n*   **PostNord SE** \r\n*   **Purolator** \r\n*   **Qxpress** \r\n*   **Qyun Express** \r\n*   **Royal Mail** \r\n*   **Royal Shipments** \r\n*   **Sagawa (EN)** \r\n*   **Sagawa (JA)** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfillment** \r\n*   **SHREE NANDAN COURIER** \r\n*   **Singapore Post** \r\n*   **Southwest Air Cargo** \r\n*   **StarTrack** \r\n*   **Step Forward Freight** \r\n*   **Swiss Post** \r\n*   **TForce Final Mile** \r\n*   **Tinghao** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **United Delivery Service** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Venipak** \r\n*   **We Post** \r\n*   **Whistl** \r\n*   **Wizmo** \r\n*   **WMYC** \r\n*   **Xpedigo** \r\n*   **XPO Logistics** \r\n*   **Yamato (EN)** \r\n*   **Yamato (JA)** \r\n*   **YiFan Express** \r\n*   **YunExpress**\r\n\r\n The following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Australia**: Australia Post, Sendle, Aramex Australia, TNT Australia, Hunter Express, Couriers Please, Bonds, Allied Express, Direct Couriers, Northline, GO Logistics \r\n*   **Austria**: Österreichische Post \r\n*   **Bulgaria**: Speedy \r\n*   **Canada**: Intelcom, BoxKnight, Loomis, GLS \r\n*   **China**: China Post, DHL eCommerce Asia, WanbExpress, YunExpress, Anjun Logistics, SFC Fulfillment, FSC \r\n*   **Czechia**: Zásilkovna \r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL, DHL Express, Swiship, Hermes, GLS \r\n*   **Spain**: SEUR \r\n*   **France**: Colissimo, Mondial Relay, Colis Privé, GLS \r\n*   **United Kingdom**: Evri, DPD UK, Parcelforce, Yodel, DHL Parcel, Tuffnells \r\n*   **Greece**: ACS Courier \r\n*   **Hong Kong SAR**: SF Express \r\n*   **Ireland**: Fastway, DPD Ireland \r\n*   **India**: DTDC, India Post, Delhivery, Gati KWE, Professional Couriers, XpressBees, Ecom Express, Ekart, Shadowfax, Bluedart \r\n*   **Italy**: BRT, GLS Italy \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **Netherlands**: DHL Parcel, DPD \r\n*   **Norway**: Bring \r\n*   **Poland**: Inpost \r\n*   **Turkey**: PTT, Yurtiçi Kargo, Aras Kargo, Sürat Kargo \r\n*   **United States**: GLS, Alliance Air Freight, Pilot Freight, LSO, Old Dominion, R+L Carriers, Southwest Air Cargo \r\n*   **South Africa**: Fastway, Skynet"
           nullable: true
         tracking_numbers:
           type: array
           items:
             type: string
-          description: "A list of tracking numbers, provided by the shipping company. <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nIt is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.\r\n\r\nThe tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.\r\n </div>"
+          description: "A list of tracking numbers provided by the shipping company. \r\n <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\n With the REST API, you can set only one tracking number and one tracking URL per fulfillment. If you send multiple shipments with one fulfillment, you may want to specify tracking numbers and tracking URLs for all of them. You can do it with the equivalent GraphQL [FulfillmentCreateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentCreateV2) and [fulfillmentTrackingInfoUpdateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentTrackingInfoUpdateV2) mutations. \r\n</aside> \r\n\r\n The tracking numbers are clickable in the interface if one of the following applies (the highest in the list has the highest priority): \r\n\r\n*   Tracking URL provided in the `url` field.  \r\n*   [Shopify-known tracking company name](#supported-tracking-companies) specified in the `company` field. Shopify will build the tracking url automatically based on the tracking number specified.  \r\n*   The tracking number has a Shopify-known format. Shopify will guess the tracking provider and build the tracking url based on the tracking number format. Not all tracking carriers are supported, and multiple tracking carriers may use similarly formatted tracking numbers. This can result in an invalid tracking URL. It is highly recommended that you send the tracking company and the tracking URL."
           nullable: true
         tracking_urls:
           type: array
           items:
             type: string
-          description: The URLs of tracking pages for the fulfillment.
+          description: "The URLs of tracking pages for the fulfillment. \r\n\r\n The tracking URLs are displayed in the merchant's admin on the order page. The tracking URLs are displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, the tracking URLs are also displayed in the customer's order history. \r\n\r\n<aside class=\"note\"> \r\n\r\n#### Note\r\n\r\n With the REST API, you can set only one tracking number and one tracking URL per fulfillment. If you send multiple shipments with one fulfillment, you may want to specify tracking numbers and tracking URLs for all of them. You can do it with the equivalent GraphQL [FulfillmentCreateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentCreateV2) and [fulfillmentTrackingInfoUpdateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentTrackingInfoUpdateV2) mutations. \r\n</aside>"
           nullable: true
         variant_inventory_management:
           type: string
@@ -2199,7 +2122,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentHold'
-          description: "Represents the fulfillment holds applied on the fulfillment order.\r\n\r\n*   **reason**: The reason for the fulfillment hold. \r\n*   **reason_notes**: Additional information about the fulfillment hold reason."
           nullable: true
         international_duties:
           $ref: '#/components/schemas/InternationalDuties'
@@ -2227,12 +2149,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOrderActions'
-          description: The actions that can be performed on this fulfillment order.
         merchant_requests:
           type: array
           items:
             $ref: '#/components/schemas/MerchantRequest'
-          description: "A list of requests sent by the merchant to the fulfillment service for this fulfillment order.\r\n\r\n*   **message**: The message returned by the merchant, if any. \r\n*   **request_options**: The request options returned by the merchant, if any. \r\n*   **kind**: The kind of request. Valid values: *fulfillment_request*, *cancellation_request*, or *legacy_fulfill_request*."
           nullable: true
         assigned_location:
           $ref: '#/components/schemas/AssignedLocation'
@@ -2451,7 +2371,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentHold'
-          description: "Represents the fulfillment holds applied on the fulfillment order.\r\n\r\n*   **reason**: The reason for the fulfillment hold. \r\n*   **reason_notes**: Additional information about the fulfillment hold reason."
           nullable: true
         international_duties:
           $ref: '#/components/schemas/InternationalDuties'
@@ -2479,12 +2398,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOrderActions'
-          description: The actions that can be performed on this fulfillment order.
         merchant_requests:
           type: array
           items:
             $ref: '#/components/schemas/MerchantRequest'
-          description: "A list of requests sent by the merchant to the fulfillment service for this fulfillment order.\r\n\r\n*   **message**: The message returned by the merchant, if any. \r\n*   **request_options**: The request options returned by the merchant, if any. \r\n*   **kind**: The kind of request. Valid values: *fulfillment_request*, *cancellation_request*, or *legacy_fulfill_request*."
           nullable: true
         assigned_location:
           type: string
@@ -2550,11 +2467,10 @@ components:
           nullable: true
         fulfillment_orders_opt_in:
           type: boolean
-          description: 'Whether the fulfillment service uses the [fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.'
+          description: "Whether the fulfillment service uses the[fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.  \r\n[As of 2022-07 API version](/changelog/legacy-fulfillment-api-deprecation), the fulfillment order based workflow is the only way to manage fulfillments, and `fulfillment_orders_opt_in` must be set to `true`."
           nullable: true
         permits_sku_sharing:
           type: boolean
-          description: Whether the fulfillment service can stock inventory alongside other locations.
           nullable: true
         handle:
           type: string
@@ -2562,7 +2478,6 @@ components:
           nullable: true
         inventory_management:
           type: boolean
-          description: 'Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values: `true` and `false`.'
           nullable: true
         location_id:
           type: integer
@@ -3199,7 +3114,7 @@ components:
       properties:
         active:
           type: boolean
-          description: Whether this carrier service is active.
+          description: 'Whether this carrier service is active. If `true`, then the service will be available to serve rates in checkout.'
           nullable: true
         callback_url:
           type: string
@@ -3209,6 +3124,8 @@ components:
           type: string
           description: Distinguishes between API or legacy carrier services.
           nullable: true
+        format:
+          $ref: '#/components/schemas/CarrierServiceFormat'
         name:
           type: string
           description: The name of the shipping service as seen by merchants and their customers.
@@ -3220,8 +3137,6 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-        format:
-          $ref: '#/components/schemas/CarrierServiceFormat'
         id:
           type: integer
           format: int64
@@ -3248,11 +3163,10 @@ components:
           nullable: true
         fulfillment_orders_opt_in:
           type: boolean
-          description: 'Whether the fulfillment service uses the [fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.'
+          description: "Whether the fulfillment service uses the[fulfillment order based workflow](/apps/fulfillment/fulfillment-service-apps/manage-fulfillments) for managing fulfillments.  \r\n[As of 2022-07 API version](/changelog/legacy-fulfillment-api-deprecation), the fulfillment order based workflow is the only way to manage fulfillments, and `fulfillment_orders_opt_in` must be set to `true`."
           nullable: true
         permits_sku_sharing:
           type: boolean
-          description: Whether the fulfillment service can stock inventory alongside other locations.
           nullable: true
         handle:
           type: string
@@ -3260,7 +3174,6 @@ components:
           nullable: true
         inventory_management:
           type: boolean
-          description: 'Whether the fulfillment service tracks product inventory and provides updates to Shopify. Valid values: `true` and `false`.'
           nullable: true
         location_id:
           type: integer

@@ -5,9 +5,8 @@
     "description": "        <p>The Customer Address resource represents addresses that a customer has added. Each customer can have multiple addresses associated with them.</p>\n        <p>For more information about the Customer resource, see <a href=\"/docs/admin-api/rest/reference/customers/customer\"><i>Customer</i></a>.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/680",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-legend": true,
-    "show-privacy-note": true
+    "version": "2023-04",
+    "show-privacy-legend": true
   },
   "paths": [
     {
@@ -97,7 +96,7 @@
         {
           "status": "200",
           "request_query": "limit=1",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/customers/207119551/addresses.json",
@@ -113,7 +112,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses.json?limit=1\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses.json?limit=1\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -125,14 +124,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::all(\n    $this->test_session, // Session\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [\"limit\" => \"1\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::all(\n    $this->test_session, // Session\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [\"limit\" => \"1\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/customers/207119551/addresses.json",
@@ -148,7 +147,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -160,7 +159,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::all(\n    $this->test_session, // Session\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::all(\n    $this->test_session, // Session\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -182,7 +181,19 @@
           "city",
           "zip",
           "phone"
-        ]
+        ],
+        "annotations_nested": {
+          "addresses": {
+            "first_name": "name",
+            "last_name": "name",
+            "name": "name",
+            "address1": "address",
+            "address2": "address",
+            "city": "address",
+            "zip": "address",
+            "phone": "phone"
+          }
+        }
       },
       "url": "/admin/api/{api_version}/customers/{customer_id}/addresses.json?limit=1",
       "action": "get"
@@ -255,7 +266,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/207119551.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses/207119551.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/customers/207119551/addresses/207119551.json",
@@ -271,7 +282,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/207119551.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses/207119551.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -283,7 +294,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::find(\n    $this->test_session, // Session\n    207119551, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::find(\n    $this->test_session, // Session\n    207119551, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -305,7 +316,19 @@
           "city",
           "zip",
           "phone"
-        ]
+        ],
+        "annotations_nested": {
+          "customer_address": {
+            "first_name": "name",
+            "last_name": "name",
+            "name": "name",
+            "address1": "address",
+            "address2": "address",
+            "city": "address",
+            "zip": "address",
+            "phone": "phone"
+          }
+        }
       },
       "url": "/admin/api/{api_version}/customers/{customer_id}/addresses/{address_id}.json",
       "action": "get"
@@ -401,7 +424,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/207119551.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses/207119551.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/customers/207119551/addresses/207119551.json",
@@ -417,7 +440,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"address\":{\"id\":207119551,\"zip\":\"90210\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/207119551.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"address\":{\"id\":207119551,\"zip\":\"90210\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses/207119551.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -429,14 +452,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->id = 207119551;\n$customer_address->zip = \"90210\";\n$customer_address->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->id = 207119551;\n$customer_address->zip = \"90210\";\n$customer_address->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/207119551.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses/207119551.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/customers/207119551/addresses/207119551.json",
@@ -452,7 +475,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"address\":{\"id\":207119551,\"address1\":\"Apartment 23\",\"address2\":\"Chestnut Street 92\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/207119551.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"address\":{\"id\":207119551,\"address1\":\"Apartment 23\",\"address2\":\"Chestnut Street 92\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses/207119551.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -464,7 +487,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->id = 207119551;\n$customer_address->address1 = \"Apartment 23\";\n$customer_address->address2 = \"Chestnut Street 92\";\n$customer_address->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->id = 207119551;\n$customer_address->address1 = \"Apartment 23\";\n$customer_address->address2 = \"Chestnut Street 92\";\n$customer_address->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -486,7 +509,19 @@
           "city",
           "zip",
           "phone"
-        ]
+        ],
+        "annotations_nested": {
+          "customer_address": {
+            "first_name": "name",
+            "last_name": "name",
+            "name": "name",
+            "address1": "address",
+            "address2": "address",
+            "city": "address",
+            "zip": "address",
+            "phone": "phone"
+          }
+        }
       },
       "url": "/admin/api/{api_version}/customers/{customer_id}/addresses/{address_id}.json",
       "action": "put"
@@ -557,10 +592,10 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/1053317306.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses/1053317288.json",
           "request_method": "DELETE",
           "request": {
-            "action": "DELETE /admin/api/unstable/customers/207119551/addresses/1053317306.json",
+            "action": "DELETE /admin/api/unstable/customers/207119551/addresses/1053317288.json",
             "headers": {},
             "body": ""
           },
@@ -573,26 +608,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/1053317306.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses/1053317288.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerAddress.delete(\n  session: test_session,\n  customer_id: 207119551,\n  id: 1053317306,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::CustomerAddress.delete(\n  session: test_session,\n  customer_id: 207119551,\n  id: 1053317288,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerAddress.delete({\n  session: session,\n  customer_id: 207119551,\n  id: 1053317306,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.CustomerAddress.delete({\n  session: session,\n  customer_id: 207119551,\n  id: 1053317288,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::delete(\n    $this->test_session, // Session\n    1053317306, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::delete(\n    $this->test_session, // Session\n    1053317288, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/207119551.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses/207119551.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/customers/207119551/addresses/207119551.json",
@@ -608,7 +643,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/207119551.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses/207119551.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -620,7 +655,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::delete(\n    $this->test_session, // Session\n    207119551, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCustomerAddress::delete(\n    $this->test_session, // Session\n    207119551, // Id\n    [\"customer_id\" => \"207119551\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -642,7 +677,19 @@
           "city",
           "zip",
           "phone"
-        ]
+        ],
+        "annotations_nested": {
+          "customer_address": {
+            "first_name": "name",
+            "last_name": "name",
+            "name": "name",
+            "address1": "address",
+            "address2": "address",
+            "city": "address",
+            "zip": "address",
+            "phone": "phone"
+          }
+        }
       },
       "url": "/admin/api/{api_version}/customers/{customer_id}/addresses/{address_id}.json",
       "action": "delete"
@@ -678,7 +725,7 @@
                 "Create a new address for a customer": {
                   "value": {
                     "customer_address": {
-                      "id": 1053317303,
+                      "id": 1053317286,
                       "customer_id": 207119551,
                       "first_name": "Samuel",
                       "last_name": "de Champlain",
@@ -707,7 +754,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/customers/207119551/addresses.json",
@@ -717,13 +764,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"customer_address\":{\"id\":1053317303,\"customer_id\":207119551,\"first_name\":\"Samuel\",\"last_name\":\"de Champlain\",\"company\":\"Fancy Co.\",\"address1\":\"1 Rue des Carrieres\",\"address2\":\"Suite 1234\",\"city\":\"Montreal\",\"province\":\"Quebec\",\"country\":\"Canada\",\"zip\":\"G1R 4P5\",\"phone\":\"819-555-5555\",\"name\":\"Samuel de Champlain\",\"province_code\":\"QC\",\"country_code\":\"CA\",\"country_name\":\"Canada\",\"default\":false}}"
+            "body": "{\"customer_address\":{\"id\":1053317286,\"customer_id\":207119551,\"first_name\":\"Samuel\",\"last_name\":\"de Champlain\",\"company\":\"Fancy Co.\",\"address1\":\"1 Rue des Carrieres\",\"address2\":\"Suite 1234\",\"city\":\"Montreal\",\"province\":\"Quebec\",\"country\":\"Canada\",\"zip\":\"G1R 4P5\",\"phone\":\"819-555-5555\",\"name\":\"Samuel de Champlain\",\"province_code\":\"QC\",\"country_code\":\"CA\",\"country_name\":\"Canada\",\"default\":false}}"
           },
           "name": "Create a new address for a customer",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"address\":{\"address1\":\"1 Rue des Carrieres\",\"address2\":\"Suite 1234\",\"city\":\"Montreal\",\"company\":\"Fancy Co.\",\"first_name\":\"Samuel\",\"last_name\":\"de Champlain\",\"phone\":\"819-555-5555\",\"province\":\"Quebec\",\"country\":\"Canada\",\"zip\":\"G1R 4P5\",\"name\":\"Samuel de Champlain\",\"province_code\":\"QC\",\"country_code\":\"CA\",\"country_name\":\"Canada\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"address\":{\"address1\":\"1 Rue des Carrieres\",\"address2\":\"Suite 1234\",\"city\":\"Montreal\",\"company\":\"Fancy Co.\",\"first_name\":\"Samuel\",\"last_name\":\"de Champlain\",\"phone\":\"819-555-5555\",\"province\":\"Quebec\",\"country\":\"Canada\",\"zip\":\"G1R 4P5\",\"name\":\"Samuel de Champlain\",\"province_code\":\"QC\",\"country_code\":\"CA\",\"country_name\":\"Canada\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -735,7 +782,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->address1 = \"1 Rue des Carrieres\";\n$customer_address->address2 = \"Suite 1234\";\n$customer_address->city = \"Montreal\";\n$customer_address->company = \"Fancy Co.\";\n$customer_address->first_name = \"Samuel\";\n$customer_address->last_name = \"de Champlain\";\n$customer_address->phone = \"819-555-5555\";\n$customer_address->province = \"Quebec\";\n$customer_address->country = \"Canada\";\n$customer_address->zip = \"G1R 4P5\";\n$customer_address->name = \"Samuel de Champlain\";\n$customer_address->province_code = \"QC\";\n$customer_address->country_code = \"CA\";\n$customer_address->country_name = \"Canada\";\n$customer_address->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->address1 = \"1 Rue des Carrieres\";\n$customer_address->address2 = \"Suite 1234\";\n$customer_address->city = \"Montreal\";\n$customer_address->company = \"Fancy Co.\";\n$customer_address->first_name = \"Samuel\";\n$customer_address->last_name = \"de Champlain\";\n$customer_address->phone = \"819-555-5555\";\n$customer_address->province = \"Quebec\";\n$customer_address->country = \"Canada\";\n$customer_address->zip = \"G1R 4P5\";\n$customer_address->name = \"Samuel de Champlain\";\n$customer_address->province_code = \"QC\";\n$customer_address->country_code = \"CA\";\n$customer_address->country_name = \"Canada\";\n$customer_address->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -757,7 +804,19 @@
           "city",
           "zip",
           "phone"
-        ]
+        ],
+        "annotations_nested": {
+          "customer_address": {
+            "first_name": "name",
+            "last_name": "name",
+            "name": "name",
+            "address1": "address",
+            "address2": "address",
+            "city": "address",
+            "zip": "address",
+            "phone": "phone"
+          }
+        }
       },
       "url": "/admin/api/{api_version}/customers/{customer_id}/addresses.json",
       "action": "post"
@@ -769,7 +828,7 @@
       "parameters": [
         {
           "name": "address_ids[]",
-          "description": "Performs bulk operations for customer addresses specified by a comma-separated list of IDs.",
+          "description": "Performs bulk operations on a list of customer address IDs. Format: <code>address_ids[]=1&address_ids[]=2&address_ids[]=3</code>.",
           "in": "query",
           "schema": {
             "type": "string"
@@ -819,8 +878,8 @@
       "x-examples": [
         {
           "status": "200",
-          "request_query": "address_ids%5B%5D=1053317305&operation=destroy",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/set.json",
+          "request_query": "address_ids%5B%5D=1053317289&operation=destroy",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses/set.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/customers/207119551/addresses/set.json",
@@ -836,19 +895,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/set.json?address_ids%5B%5D=1053317305&operation=destroy\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses/set.json?address_ids%5B%5D=1053317289&operation=destroy\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_address = ShopifyAPI::CustomerAddress.new(session: test_session)\ncustomer_address.customer_id = 207119551\ncustomer_address.set(\n  session: test_session,\n  address_ids: [\"1053317305\"],\n  operation: \"destroy\",\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_address = ShopifyAPI::CustomerAddress.new(session: test_session)\ncustomer_address.customer_id = 207119551\ncustomer_address.set(\n  session: test_session,\n  address_ids: [\"1053317289\"],\n  operation: \"destroy\",\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\nawait customer_address.set({\n  address_ids: [\"1053317305\"],\n  operation: \"destroy\",\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\nawait customer_address.set({\n  address_ids: [\"1053317289\"],\n  operation: \"destroy\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->set(\n    [\"address_ids\" => [\"1053317305\"], \"operation\" => \"destroy\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->set(\n    [\"address_ids\" => [\"1053317289\"], \"operation\" => \"destroy\"], // Params\n);"
             }
           ]
         }
@@ -860,7 +919,7 @@
           }
         ]
       },
-      "url": "/admin/api/{api_version}/customers/{customer_id}/addresses/set.json?address_ids[]=1053317305&operation=destroy",
+      "url": "/admin/api/{api_version}/customers/{customer_id}/addresses/set.json?address_ids[]=1053317289&operation=destroy",
       "action": "put"
     },
     {
@@ -902,7 +961,7 @@
                 "Set a default address for a customer": {
                   "value": {
                     "customer_address": {
-                      "id": 1053317304,
+                      "id": 1053317287,
                       "customer_id": 207119551,
                       "first_name": "Bob",
                       "last_name": "Norman",
@@ -931,35 +990,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/customers/207119551/addresses/1053317304/default.json",
+          "request_path": "/admin/api/2023-04/customers/207119551/addresses/1053317287/default.json",
           "request_method": "PUT",
           "request": {
-            "action": "PUT /admin/api/unstable/customers/207119551/addresses/1053317304/default.json",
+            "action": "PUT /admin/api/unstable/customers/207119551/addresses/1053317287/default.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"customer_address\":{\"id\":1053317304,\"customer_id\":207119551,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"Bob Norman\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}"
+            "body": "{\"customer_address\":{\"id\":1053317287,\"customer_id\":207119551,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"country\":\"United States\",\"zip\":\"40202\",\"phone\":\"555-625-1199\",\"name\":\"Bob Norman\",\"province_code\":\"KY\",\"country_code\":\"US\",\"country_name\":\"United States\",\"default\":true}}"
           },
           "name": "Set a default address for a customer",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/customers/207119551/addresses/1053317304/default.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/customers/207119551/addresses/1053317287/default.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_address = ShopifyAPI::CustomerAddress.new(session: test_session)\ncustomer_address.customer_id = 207119551\ncustomer_address.id = 1053317304\ncustomer_address.default(\n  session: test_session,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\ncustomer_address = ShopifyAPI::CustomerAddress.new(session: test_session)\ncustomer_address.customer_id = 207119551\ncustomer_address.id = 1053317287\ncustomer_address.default(\n  session: test_session,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.id = 1053317304;\nawait customer_address.default({});"
+              "example_code": "// Session is built by the OAuth process\n\nconst customer_address = new shopify.rest.CustomerAddress({session: session});\ncustomer_address.customer_id = 207119551;\ncustomer_address.id = 1053317287;\nawait customer_address.default({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->id = 1053317304;\n$customer_address->default(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\CustomerAddress;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$customer_address = new CustomerAddress($this->test_session);\n$customer_address->customer_id = 207119551;\n$customer_address->id = 1053317287;\n$customer_address->default(\n    [], // Params\n);"
             }
           ]
         }
@@ -981,7 +1040,19 @@
           "city",
           "zip",
           "phone"
-        ]
+        ],
+        "annotations_nested": {
+          "customer_address": {
+            "first_name": "name",
+            "last_name": "name",
+            "name": "name",
+            "address1": "address",
+            "address2": "address",
+            "city": "address",
+            "zip": "address",
+            "phone": "phone"
+          }
+        }
       },
       "url": "/admin/api/{api_version}/customers/{customer_id}/addresses/{address_id}/default.json",
       "action": "put"
@@ -1120,14 +1191,26 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": [
-    "first_name",
-    "last_name",
-    "name",
-    "address1",
-    "address2",
-    "city",
-    "zip",
-    "phone"
-  ]
+  "personal_data_fields": {
+    "addresses": {
+      "first_name": "name",
+      "last_name": "name",
+      "name": "name",
+      "address1": "address",
+      "address2": "address",
+      "city": "address",
+      "zip": "address",
+      "phone": "phone"
+    },
+    "customer_address": {
+      "first_name": "name",
+      "last_name": "name",
+      "name": "name",
+      "address1": "address",
+      "address2": "address",
+      "city": "address",
+      "zip": "address",
+      "phone": "phone"
+    }
+  }
 }

@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Shopify Payments
   description: Shopify Payments
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,8 +23,6 @@ paths:
     get:
       tags:
         - Balance
-      summary: Return the current balance
-      description: Retrieves the account's current balance.
       operationId: GetCurrentBalance
       responses:
         '200':
@@ -46,30 +44,24 @@ paths:
     get:
       tags:
         - Dispute
-      summary: Return a list of all disputes
-      description: 'Retrieve all disputes ordered by `initiated_at` date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format), with the most recent being first. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListDisputes
       parameters:
         - name: initiated_at
           in: query
-          description: 'Return only disputes with the specified `initiated_at` date ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format).'
           schema:
             type: string
         - name: last_id
           in: query
-          description: Return only disputes before the specified ID.
           schema:
             type: integer
             format: int64
         - name: since_id
           in: query
-          description: Return only disputes after the specified ID.
           schema:
             type: integer
             format: int64
         - name: status
           in: query
-          description: Return only disputes with the specified status.
           schema:
             type: string
       responses:
@@ -96,8 +88,6 @@ paths:
     get:
       tags:
         - Dispute
-      summary: Return a single dispute
-      description: Retrieves a single dispute by ID.
       operationId: GetDispute
       parameters:
         - name: dispute_id
@@ -126,8 +116,6 @@ paths:
     get:
       tags:
         - DisputeEvidence
-      summary: Returns evidence associated with the dispute
-      description: Retrieves evidence associated with dispute ID.
       operationId: GetEvidenceAssociatedWithDispute
       parameters:
         - name: dispute_id
@@ -155,8 +143,6 @@ paths:
     put:
       tags:
         - DisputeEvidence
-      summary: Updates dispute evidence
-      description: Updates dispute evidence associated with the dispute ID.
       operationId: UpdateDisputeEvidence
       parameters:
         - name: dispute_id
@@ -193,8 +179,6 @@ paths:
     post:
       tags:
         - DisputeFileUpload
-      summary: Upload a file to a dispute
-      description: 'Upload a `.png`, `.jpeg`, or `.pdf` file of a category to a dispute. Maximum total files size of all files should be less than **4 MBs**'
       operationId: UploadFileToDispute
       parameters:
         - name: dispute_id
@@ -223,8 +207,6 @@ paths:
     delete:
       tags:
         - DisputeFileUpload
-      summary: Delete a dispute evidence file
-      description: Delete a dispute evidence file given an ID.
       operationId: DeleteDisputeEvidenceFile
       parameters:
         - name: dispute_file_upload_id
@@ -255,43 +237,35 @@ paths:
     get:
       tags:
         - Payouts
-      summary: Return a list of all payouts
-      description: 'Retrieves a list of all payouts ordered by payout date, with the most recent being first. **Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListPayouts
       parameters:
         - name: date
           in: query
-          description: Filter the response to payouts made on the specified date.
           schema:
             type: string
             format: date-time
         - name: date_max
           in: query
-          description: Filter the response to payouts made inclusively before the specified date.
           schema:
             type: string
             format: date-time
         - name: date_min
           in: query
-          description: Filter the response to payouts made inclusively after the specified date.
           schema:
             type: string
             format: date-time
         - name: last_id
           in: query
-          description: Filter the response to payouts made before the specified ID.
           schema:
             type: integer
             format: int64
         - name: since_id
           in: query
-          description: Filter the response to payouts made after the specified ID.
           schema:
             type: integer
             format: int64
         - name: status
           in: query
-          description: Filter the response to payouts made with the specified status.
           schema:
             type: string
       responses:
@@ -318,8 +292,6 @@ paths:
     get:
       tags:
         - Payouts
-      summary: Return a single payout
-      description: Retrieves a single payout by id.
       operationId: GetPayout
       parameters:
         - name: payout_id
@@ -348,36 +320,29 @@ paths:
     get:
       tags:
         - Transactions
-      summary: Return a list of all balance transactions
-      description: 'Retrieves a list of all balance transactions ordered by processingtime, with the most recent being first.**Note:** As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the `page` parameter will return an error. To learn more, see [*Make paginated requests to the REST Admin API*](/api/usage/pagination-rest).'
       operationId: ListBalanceTransactions
       parameters:
         - name: payout_id
           in: query
-          description: Filter response to transactions paid out in the specified payout.
           schema:
             type: integer
             format: int64
         - name: last_id
           in: query
-          description: Filter response to transactions exclusively before the specified ID
           schema:
             type: integer
             format: int64
         - name: payout_status
           in: query
-          description: Filter response to transactions with the specified payout status
           schema:
             type: string
         - name: since_id
           in: query
-          description: Filter response to transactions exclusively after the specified ID.
           schema:
             type: integer
             format: int64
         - name: test
           in: query
-          description: Filter response to transactions placed in test mode.
           schema:
             type: boolean
       responses:
@@ -677,7 +642,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentShipping'
-          description: The fulfillments associated with the dispute evidence.
           nullable: true
         submitted_by_merchant_on:
           type: string
@@ -1022,6 +986,10 @@ components:
           type: string
           description: 'The status of the transaction. Valid values: `pending`, `failure`, `success`, and `error`.'
           nullable: true
+        total_unsettled_set:
+          type: string
+          description: Specifies the available amount with currency to capture on the gateway in shop and presentment currencies. Only available when an amount is capturable or manually mark as paid.
+          nullable: true
         test:
           type: boolean
           description: Whether the transaction is a test transaction.
@@ -1158,7 +1126,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentShipping'
-          description: The fulfillments associated with the dispute evidence.
           nullable: true
         submitted_by_merchant_on:
           type: string

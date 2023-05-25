@@ -78,7 +78,7 @@ public class SharedFixture
             Scheme = "https://",
             Host = MyShopifyUrl,
             Port = 443,
-            Path = $"admin/api/2022-10/"
+            Path = $"admin/api/2023-04/"
         }.ToString();
 
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)

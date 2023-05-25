@@ -27,12 +27,6 @@ namespace Ocelli.OpenShopify
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of deprecated API calls
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of deprecated API calls made by your custom apps in the past 30 days.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<DeprecatedApiCallList>> ListDeprecatedAPICallsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -72,12 +66,6 @@ namespace Ocelli.OpenShopify
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Retrieves a list of deprecated API calls
-        /// </summary>
-        /// <remarks>
-        /// Retrieves a list of deprecated API calls made by your custom apps in the past 30 days.
-        /// </remarks>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<DeprecatedApiCallList>> ListDeprecatedAPICallsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

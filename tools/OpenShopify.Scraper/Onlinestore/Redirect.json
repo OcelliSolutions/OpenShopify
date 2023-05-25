@@ -5,8 +5,7 @@
     "description": "        A redirect causes a visitor on a specific path on the shop's site to be automatically sent to a different location, called the <strong>target</strong>. The target can be a new path on the shop's site or a full URL. The new URL can even be on a completely different domain. Redirect paths are unique, so a shop can't have more than one redirect with the same path.\n",
     "x-owner": "https://vault.shopify.io/teams/469",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -112,7 +111,7 @@
         {
           "status": "200",
           "request_query": "since_id=668809255",
-          "request_path": "/admin/api/2022-10/redirects.json",
+          "request_path": "/admin/api/2023-04/redirects.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/redirects.json",
@@ -128,7 +127,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects.json?since_id=668809255\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects.json?since_id=668809255\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -140,14 +139,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"668809255\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"668809255\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects.json",
+          "request_path": "/admin/api/2023-04/redirects.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/redirects.json",
@@ -163,7 +162,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -175,7 +174,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -240,7 +239,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects/count.json",
+          "request_path": "/admin/api/2023-04/redirects/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/redirects/count.json",
@@ -256,7 +255,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -268,7 +267,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -337,7 +336,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects/668809255.json",
+          "request_path": "/admin/api/2023-04/redirects/668809255.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/redirects/668809255.json",
@@ -353,7 +352,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -365,7 +364,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::find(\n    $this->test_session, // Session\n    668809255, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::find(\n    $this->test_session, // Session\n    668809255, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -444,7 +443,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects/950115854.json",
+          "request_path": "/admin/api/2023-04/redirects/950115854.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/redirects/950115854.json",
@@ -460,7 +459,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"redirect\":{\"id\":950115854,\"path\":\"/powermac\",\"target\":\"/pages/macpro\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects/950115854.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"redirect\":{\"id\":950115854,\"path\":\"/powermac\",\"target\":\"/pages/macpro\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects/950115854.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -472,14 +471,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 950115854;\n$redirect->path = \"/powermac\";\n$redirect->target = \"/pages/macpro\";\n$redirect->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 950115854;\n$redirect->path = \"/powermac\";\n$redirect->target = \"/pages/macpro\";\n$redirect->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects/668809255.json",
+          "request_path": "/admin/api/2023-04/redirects/668809255.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/redirects/668809255.json",
@@ -495,7 +494,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"redirect\":{\"id\":668809255,\"path\":\"/tiger\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"redirect\":{\"id\":668809255,\"path\":\"/tiger\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -507,14 +506,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 668809255;\n$redirect->path = \"/tiger\";\n$redirect->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 668809255;\n$redirect->path = \"/tiger\";\n$redirect->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects/668809255.json",
+          "request_path": "/admin/api/2023-04/redirects/668809255.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/redirects/668809255.json",
@@ -530,7 +529,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"redirect\":{\"id\":668809255,\"target\":\"/pages/macpro\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"redirect\":{\"id\":668809255,\"target\":\"/pages/macpro\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -542,7 +541,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 668809255;\n$redirect->target = \"/pages/macpro\";\n$redirect->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 668809255;\n$redirect->target = \"/pages/macpro\";\n$redirect->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -597,7 +596,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects/668809255.json",
+          "request_path": "/admin/api/2023-04/redirects/668809255.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/redirects/668809255.json",
@@ -613,7 +612,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -625,7 +624,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::delete(\n    $this->test_session, // Session\n    668809255, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::delete(\n    $this->test_session, // Session\n    668809255, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -709,7 +708,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects.json",
+          "request_path": "/admin/api/2023-04/redirects.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/redirects.json",
@@ -725,7 +724,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"redirect\":{\"path\":\"/ipod\",\"target\":\"/pages/itunes\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"redirect\":{\"path\":\"/ipod\",\"target\":\"/pages/itunes\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -737,14 +736,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->path = \"/ipod\";\n$redirect->target = \"/pages/itunes\";\n$redirect->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->path = \"/ipod\";\n$redirect->target = \"/pages/itunes\";\n$redirect->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects.json",
+          "request_path": "/admin/api/2023-04/redirects.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/redirects.json",
@@ -760,7 +759,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"redirect\":{\"path\":\"http://www.apple.com/forums\",\"target\":\"http://forums.apple.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"redirect\":{\"path\":\"http://www.apple.com/forums\",\"target\":\"http://forums.apple.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -772,14 +771,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->path = \"http://www.apple.com/forums\";\n$redirect->target = \"http://forums.apple.com\";\n$redirect->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->path = \"http://www.apple.com/forums\";\n$redirect->target = \"http://forums.apple.com\";\n$redirect->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/redirects.json",
+          "request_path": "/admin/api/2023-04/redirects.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/redirects.json",
@@ -795,7 +794,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"redirect\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"redirect\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -807,7 +806,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->body = \"foobar\";\n$redirect->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->body = \"foobar\";\n$redirect->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -872,5 +871,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

@@ -5,8 +5,7 @@
     "description": "        <p>Marketing events represent actions taken by your app, on behalf of the merchant, to market products,\n        collections, discounts, pages, blog posts, and other features. These actions target multiple\n        potential customers, rather than specific individuals. For example, you should model your marketing event at the email campaign level, rather than on a per-email basis.</p>\n\n        <p>Merchants get value from marketing events because they help them understand sales and traffic attribution.\n        Implementing marketing events for your app is beneficial because it enables Shopify to surface your app in the Shopify admin in ways that are helpful to merchants.\n        Examples of marketing events include an ad campaign that drives multiple potential customers to a product page, or an email marketing campaign advertising a discount code.</p>\n\n        <p><strong><a href=\"#post-marketing-events\">Marketing events</a></strong> can be created for email campaigns, affiliate links, advertisements, and other common marketing tactics.\n        Marketing events include the <code>event_type</code> and <code>marketing_channel</code>\n        properties that help Shopify to rank your app and surface it in the Shopify admin in ways that are useful to merchants. Traffic and\n        order attribution for your app is handled by providing UTM parameters with your marketing events.\n        The same UTM parameters are also used in the links provided in the marketing event.</p>\n\n        <p><strong><a href=\"#post-marketing-events-marketing-event-id-engagements\">Engagements</a></strong> can also be added to marketing events to give merchants\n        more insight into how potential customers interact with your marketing events. For example, engagements for ad campaigns can include clicks, shares, and comments.\n        Creating engagements is optional, and not all marketing events include engagements.</p>\n\n",
     "x-owner": "https://vault.shopify.io/teams/154",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -86,7 +85,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/marketing_events.json",
+          "request_path": "/admin/api/2023-04/marketing_events.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/marketing_events.json",
@@ -102,7 +101,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/marketing_events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -114,7 +113,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMarketingEvent::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMarketingEvent::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -152,7 +151,7 @@
                 "Create a marketing event": {
                   "value": {
                     "marketing_event": {
-                      "id": 1069063883,
+                      "id": 1069063884,
                       "event_type": "ad",
                       "remote_id": null,
                       "started_at": "2023-12-14T17:00:00-07:00",
@@ -171,8 +170,8 @@
                       "paid": true,
                       "referring_domain": "facebook.com",
                       "breadcrumb_id": null,
-                      "marketing_activity_id": 1063897333,
-                      "admin_graphql_api_id": "gid://shopify/MarketingEvent/1069063883",
+                      "marketing_activity_id": 1063897334,
+                      "admin_graphql_api_id": "gid://shopify/MarketingEvent/1069063884",
                       "marketed_resources": []
                     }
                   }
@@ -186,7 +185,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/marketing_events.json",
+          "request_path": "/admin/api/2023-04/marketing_events.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/marketing_events.json",
@@ -196,13 +195,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"marketing_event\":{\"id\":1069063883,\"event_type\":\"ad\",\"remote_id\":null,\"started_at\":\"2023-12-14T19:00:00-05:00\",\"ended_at\":null,\"scheduled_to_end_at\":null,\"budget\":null,\"currency\":null,\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"Christmas2023\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"budget_type\":null,\"description\":null,\"marketing_channel\":\"social\",\"paid\":true,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":1063897333,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/1069063883\",\"marketed_resources\":[]}}"
+            "body": "{\"marketing_event\":{\"id\":1069063884,\"event_type\":\"ad\",\"remote_id\":null,\"started_at\":\"2023-12-14T19:00:00-05:00\",\"ended_at\":null,\"scheduled_to_end_at\":null,\"budget\":null,\"currency\":null,\"manage_url\":null,\"preview_url\":null,\"utm_campaign\":\"Christmas2023\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"budget_type\":null,\"description\":null,\"marketing_channel\":\"social\",\"paid\":true,\"referring_domain\":\"facebook.com\",\"breadcrumb_id\":null,\"marketing_activity_id\":1063897334,\"admin_graphql_api_id\":\"gid://shopify/MarketingEvent/1069063884\",\"marketed_resources\":[]}}"
           },
           "name": "Create a marketing event",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"marketing_event\":{\"started_at\":\"2023-12-15\",\"utm_campaign\":\"Christmas2023\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"event_type\":\"ad\",\"referring_domain\":\"facebook.com\",\"marketing_channel\":\"social\",\"paid\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"marketing_event\":{\"started_at\":\"2023-12-15\",\"utm_campaign\":\"Christmas2023\",\"utm_source\":\"facebook\",\"utm_medium\":\"cpc\",\"event_type\":\"ad\",\"referring_domain\":\"facebook.com\",\"marketing_channel\":\"social\",\"paid\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/marketing_events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -214,7 +213,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->started_at = \"2023-12-15\";\n$marketing_event->utm_campaign = \"Christmas2023\";\n$marketing_event->utm_source = \"facebook\";\n$marketing_event->utm_medium = \"cpc\";\n$marketing_event->event_type = \"ad\";\n$marketing_event->referring_domain = \"facebook.com\";\n$marketing_event->marketing_channel = \"social\";\n$marketing_event->paid = true;\n$marketing_event->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->started_at = \"2023-12-15\";\n$marketing_event->utm_campaign = \"Christmas2023\";\n$marketing_event->utm_source = \"facebook\";\n$marketing_event->utm_medium = \"cpc\";\n$marketing_event->event_type = \"ad\";\n$marketing_event->referring_domain = \"facebook.com\";\n$marketing_event->marketing_channel = \"social\";\n$marketing_event->paid = true;\n$marketing_event->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -263,7 +262,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/marketing_events/count.json",
+          "request_path": "/admin/api/2023-04/marketing_events/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/marketing_events/count.json",
@@ -279,7 +278,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/marketing_events/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -291,7 +290,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMarketingEvent::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMarketingEvent::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -371,7 +370,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/marketing_events/998730532.json",
+          "request_path": "/admin/api/2023-04/marketing_events/998730532.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/marketing_events/998730532.json",
@@ -387,7 +386,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/998730532.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/marketing_events/998730532.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -399,7 +398,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMarketingEvent::find(\n    $this->test_session, // Session\n    998730532, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMarketingEvent::find(\n    $this->test_session, // Session\n    998730532, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -479,7 +478,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/marketing_events/998730532.json",
+          "request_path": "/admin/api/2023-04/marketing_events/998730532.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/marketing_events/998730532.json",
@@ -495,7 +494,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"marketing_event\":{\"id\":998730532,\"remote_id\":\"1000:2000\",\"started_at\":\"2023-02-02T00:00 +00:00\",\"ended_at\":\"2023-02-03T00:00 +00:00\",\"scheduled_to_end_at\":\"2023-02-04T00:00 +00:00\",\"budget\":\"11.1\",\"budget_type\":\"daily\",\"currency\":\"CAD\",\"utm_campaign\":\"other\",\"utm_source\":\"other\",\"utm_medium\":\"other\",\"event_type\":\"ad\",\"referring_domain\":\"instagram.com\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/998730532.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"marketing_event\":{\"id\":998730532,\"remote_id\":\"1000:2000\",\"started_at\":\"2023-02-02T00:00 +00:00\",\"ended_at\":\"2023-02-03T00:00 +00:00\",\"scheduled_to_end_at\":\"2023-02-04T00:00 +00:00\",\"budget\":\"11.1\",\"budget_type\":\"daily\",\"currency\":\"CAD\",\"utm_campaign\":\"other\",\"utm_source\":\"other\",\"utm_medium\":\"other\",\"event_type\":\"ad\",\"referring_domain\":\"instagram.com\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/marketing_events/998730532.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -507,7 +506,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->id = 998730532;\n$marketing_event->remote_id = \"1000:2000\";\n$marketing_event->started_at = \"2023-02-02T00:00 +00:00\";\n$marketing_event->ended_at = \"2023-02-03T00:00 +00:00\";\n$marketing_event->scheduled_to_end_at = \"2023-02-04T00:00 +00:00\";\n$marketing_event->budget = \"11.1\";\n$marketing_event->budget_type = \"daily\";\n$marketing_event->currency = \"CAD\";\n$marketing_event->utm_campaign = \"other\";\n$marketing_event->utm_source = \"other\";\n$marketing_event->utm_medium = \"other\";\n$marketing_event->event_type = \"ad\";\n$marketing_event->referring_domain = \"instagram.com\";\n$marketing_event->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->id = 998730532;\n$marketing_event->remote_id = \"1000:2000\";\n$marketing_event->started_at = \"2023-02-02T00:00 +00:00\";\n$marketing_event->ended_at = \"2023-02-03T00:00 +00:00\";\n$marketing_event->scheduled_to_end_at = \"2023-02-04T00:00 +00:00\";\n$marketing_event->budget = \"11.1\";\n$marketing_event->budget_type = \"daily\";\n$marketing_event->currency = \"CAD\";\n$marketing_event->utm_campaign = \"other\";\n$marketing_event->utm_source = \"other\";\n$marketing_event->utm_medium = \"other\";\n$marketing_event->event_type = \"ad\";\n$marketing_event->referring_domain = \"instagram.com\";\n$marketing_event->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -562,7 +561,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/marketing_events/998730532.json",
+          "request_path": "/admin/api/2023-04/marketing_events/998730532.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/marketing_events/998730532.json",
@@ -578,7 +577,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/998730532.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/marketing_events/998730532.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -590,7 +589,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMarketingEvent::delete(\n    $this->test_session, // Session\n    998730532, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMarketingEvent::delete(\n    $this->test_session, // Session\n    998730532, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -781,7 +780,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/marketing_events/998730532/engagements.json",
+          "request_path": "/admin/api/2023-04/marketing_events/998730532/engagements.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/marketing_events/998730532/engagements.json",
@@ -797,7 +796,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"engagements\":[{\"occurred_on\":\"2023-01-15\",\"views_count\":0,\"clicks_count\":0,\"favorites_count\":0,\"ad_spend\":10.0,\"is_cumulative\":true},{\"occurred_on\":\"2023-01-16\",\"views_count\":100,\"clicks_count\":50,\"is_cumulative\":true},{\"occurred_on\":\"2023-01-17\",\"views_count\":200,\"clicks_count\":100,\"is_cumulative\":true}]}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/marketing_events/998730532/engagements.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"engagements\":[{\"occurred_on\":\"2023-01-15\",\"views_count\":0,\"clicks_count\":0,\"favorites_count\":0,\"ad_spend\":10.0,\"is_cumulative\":true},{\"occurred_on\":\"2023-01-16\",\"views_count\":100,\"clicks_count\":50,\"is_cumulative\":true},{\"occurred_on\":\"2023-01-17\",\"views_count\":200,\"clicks_count\":100,\"is_cumulative\":true}]}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/marketing_events/998730532/engagements.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -809,7 +808,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->id = 998730532;\n$marketing_event->engagements(\n    [], // Params\n    [\"engagements\" => [[\"occurred_on\" => \"2023-01-15\", \"views_count\" => 0, \"clicks_count\" => 0, \"favorites_count\" => 0, \"ad_spend\" => 10.0, \"is_cumulative\" => true], [\"occurred_on\" => \"2023-01-16\", \"views_count\" => 100, \"clicks_count\" => 50, \"is_cumulative\" => true], [\"occurred_on\" => \"2023-01-17\", \"views_count\" => 200, \"clicks_count\" => 100, \"is_cumulative\" => true]]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MarketingEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$marketing_event = new MarketingEvent($this->test_session);\n$marketing_event->id = 998730532;\n$marketing_event->engagements(\n    [], // Params\n    [\"engagements\" => [[\"occurred_on\" => \"2023-01-15\", \"views_count\" => 0, \"clicks_count\" => 0, \"favorites_count\" => 0, \"ad_spend\" => 10.0, \"is_cumulative\" => true], [\"occurred_on\" => \"2023-01-16\", \"views_count\" => 100, \"clicks_count\" => 50, \"is_cumulative\" => true], [\"occurred_on\" => \"2023-01-17\", \"views_count\" => 200, \"clicks_count\" => 100, \"is_cumulative\" => true]]], // Body\n);"
             }
           ]
         }
@@ -832,7 +831,7 @@
           "name": "remote_id"
         },
         {
-          "description": "          The type of marketing event. Valid values: <code>ad</code>, <code>post</code>, <code>message</code>, <code>retargeting</code>, <code>transactional</code>, <code>affiliate</code>, <code>loyalty</code>, <code>newsletter</code>, <code>abandoned_cart</code>.\n          <div class='note'>\n          <h4>Note</h4>\n          <p>If there are values that you’d like to use for event_type that are not in the list above, then please post your request <a href=\"https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758\">here</a>. Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.</p>\n          </div>\n",
+          "description": "          The type of marketing event. Valid values: <code>ad</code>, <code>post</code>, <code>message</code>, <code>retargeting</code>, <code>transactional</code>, <code>affiliate</code>, <code>loyalty</code>, <code>newsletter</code>, <code>abandoned_cart</code>.\n          <div class='note'>\n          <h4>Note</h4>\n          <p>If there are values that you’d like to use for event_type that are not in the list above, then please share your request in the <a href=\"https://community.shopify.com/c/shopify-apis-and-sdks/bd-p/shopify-apis-and-technology\">Shopify Community APIs and SDKs discussion board</a> providing as much detail as possible. Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.</p>\n          </div>\n",
           "type": "string",
           "example": "ad",
           "name": "event_type"
@@ -960,5 +959,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

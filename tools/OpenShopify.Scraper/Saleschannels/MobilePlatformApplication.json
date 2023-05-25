@@ -5,8 +5,7 @@
     "description": "    <div class=\"note\">\n      <h4>Note</h4>\n      <p>For apps created outside of the admin, please contact Shopify Support to enable this scope for your app</p>\n    </div>\n\n    <p>You can use the <code>MobilePlatformApplication</code> resource to enable\n    <a href=\"https://developer.apple.com/documentation/security/shared_web_credentials\"> shared web credentials</a> for Shopify iOS apps, as well as to create\n    <a href=\"https://developer.apple.com/ios/universal-links/\">iOS universal link</a> or <a href=\"https://developer.android.com/training/app-links/\">Android app link</a> verification endpoints for merchant Shopify iOS or Android apps.\n    Shared web credentials let iOS users access a native app after logging into the respective website in Safari without re-entering their username and password. If a user changes their credentials in the app, then those changes are reflected in Safari. You must use a custom domain to integrate shared web credentials with Shopify.\n    With each platform's link system, users can tap a link to a shop's website and get seamlessly redirected to a merchant's installed app without going through a browser or manually selecting an app.\n    </p>\n    <p>For full configuration instructions on iOS shared web credentials, see the <a href=\"https://developer.apple.com/documentation/security/password_autofill/setting_up_an_app_s_associated_domains\">associated domains setup</a> technical documentation.\n    <p>For full configuration instructions on iOS universal links or Android App Links, see the respective <a href=\"https://developer.apple.com/documentation/uikit/core_app/allowing_apps_and_websites_to_link_to_your_content\">iOS universal link</a> or <a href=\"https://developer.android.com/training/app-links/verify-site-associations\">Android app link</a> technical documentation.\n",
     "x-owner": "https://vault.shopify.io/teams/2628",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -33,11 +32,11 @@
                   "value": {
                     "mobile_platform_applications": [
                       {
-                        "id": 1066175996,
+                        "id": 1066176000,
                         "application_id": "X1Y2.ca.domain.app",
                         "platform": "ios",
-                        "created_at": "2023-01-03T10:42:47-07:00",
-                        "updated_at": "2023-01-03T10:42:47-07:00",
+                        "created_at": "2023-02-02T07:54:36-07:00",
+                        "updated_at": "2023-02-02T07:54:36-07:00",
                         "sha256_cert_fingerprints": [],
                         "enabled_universal_or_app_links": true,
                         "enabled_shared_webcredentials": true,
@@ -45,11 +44,11 @@
                         "app_clip_application_id": null
                       },
                       {
-                        "id": 1066175997,
+                        "id": 1066176001,
                         "application_id": "com.example",
                         "platform": "android",
-                        "created_at": "2023-01-03T10:42:47-07:00",
-                        "updated_at": "2023-01-03T10:42:47-07:00",
+                        "created_at": "2023-02-02T07:54:36-07:00",
+                        "updated_at": "2023-02-02T07:54:36-07:00",
                         "sha256_cert_fingerprints": [
                           "14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5"
                         ],
@@ -70,7 +69,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/mobile_platform_applications.json",
+          "request_path": "/admin/api/2023-04/mobile_platform_applications.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/mobile_platform_applications.json",
@@ -80,13 +79,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"mobile_platform_applications\":[{\"id\":1066175996,\"application_id\":\"X1Y2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-01-03T12:42:47-05:00\",\"updated_at\":\"2023-01-03T12:42:47-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null},{\"id\":1066175997,\"application_id\":\"com.example\",\"platform\":\"android\",\"created_at\":\"2023-01-03T12:42:47-05:00\",\"updated_at\":\"2023-01-03T12:42:47-05:00\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"enabled_app_clips\":false,\"app_clip_application_id\":null}]}"
+            "body": "{\"mobile_platform_applications\":[{\"id\":1066176000,\"application_id\":\"X1Y2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-02-02T09:54:36-05:00\",\"updated_at\":\"2023-02-02T09:54:36-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null},{\"id\":1066176001,\"application_id\":\"com.example\",\"platform\":\"android\",\"created_at\":\"2023-02-02T09:54:36-05:00\",\"updated_at\":\"2023-02-02T09:54:36-05:00\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"enabled_app_clips\":false,\"app_clip_application_id\":null}]}"
           },
           "name": "List all of the mobile platform applications for the app",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/mobile_platform_applications.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/mobile_platform_applications.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -98,7 +97,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMobilePlatformApplication::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMobilePlatformApplication::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -136,11 +135,11 @@
                 "Create a mobile platform application for Android": {
                   "value": {
                     "mobile_platform_application": {
-                      "id": 1066176002,
+                      "id": 1066175998,
                       "application_id": "com.example",
                       "platform": "android",
-                      "created_at": "2023-01-03T10:42:58-07:00",
-                      "updated_at": "2023-01-03T10:42:58-07:00",
+                      "created_at": "2023-02-02T07:54:33-07:00",
+                      "updated_at": "2023-02-02T07:54:33-07:00",
                       "sha256_cert_fingerprints": [
                         "14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5"
                       ],
@@ -154,11 +153,11 @@
                 "Create mobile platform application for iOS": {
                   "value": {
                     "mobile_platform_application": {
-                      "id": 1066176000,
+                      "id": 1066175997,
                       "application_id": "X1Y2.ca.domain.app",
                       "platform": "ios",
-                      "created_at": "2023-01-03T10:42:54-07:00",
-                      "updated_at": "2023-01-03T10:42:54-07:00",
+                      "created_at": "2023-02-02T07:54:32-07:00",
+                      "updated_at": "2023-02-02T07:54:32-07:00",
                       "sha256_cert_fingerprints": [],
                       "enabled_universal_or_app_links": true,
                       "enabled_shared_webcredentials": true,
@@ -176,7 +175,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/mobile_platform_applications.json",
+          "request_path": "/admin/api/2023-04/mobile_platform_applications.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/mobile_platform_applications.json",
@@ -186,13 +185,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"mobile_platform_application\":{\"id\":1066176002,\"application_id\":\"com.example\",\"platform\":\"android\",\"created_at\":\"2023-01-03T12:42:58-05:00\",\"updated_at\":\"2023-01-03T12:42:58-05:00\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
+            "body": "{\"mobile_platform_application\":{\"id\":1066175998,\"application_id\":\"com.example\",\"platform\":\"android\",\"created_at\":\"2023-02-02T09:54:33-05:00\",\"updated_at\":\"2023-02-02T09:54:33-05:00\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
           },
           "name": "Create a mobile platform application for Android",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"mobile_platform_application\":{\"platform\":\"android\",\"application_id\":\"com.example\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/mobile_platform_applications.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"mobile_platform_application\":{\"platform\":\"android\",\"application_id\":\"com.example\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/mobile_platform_applications.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -204,14 +203,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$mobile_platform_application = new MobilePlatformApplication($this->test_session);\n$mobile_platform_application->platform = \"android\";\n$mobile_platform_application->application_id = \"com.example\";\n$mobile_platform_application->sha256_cert_fingerprints = [\n    \"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"\n];\n$mobile_platform_application->enabled_universal_or_app_links = true;\n$mobile_platform_application->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$mobile_platform_application = new MobilePlatformApplication($this->test_session);\n$mobile_platform_application->platform = \"android\";\n$mobile_platform_application->application_id = \"com.example\";\n$mobile_platform_application->sha256_cert_fingerprints = [\n    \"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"\n];\n$mobile_platform_application->enabled_universal_or_app_links = true;\n$mobile_platform_application->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/mobile_platform_applications.json",
+          "request_path": "/admin/api/2023-04/mobile_platform_applications.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/mobile_platform_applications.json",
@@ -221,13 +220,13 @@
           "response": {
             "action": "HTTP/1.1 201 Created",
             "headers": {},
-            "body": "{\"mobile_platform_application\":{\"id\":1066176000,\"application_id\":\"X1Y2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-01-03T12:42:54-05:00\",\"updated_at\":\"2023-01-03T12:42:54-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
+            "body": "{\"mobile_platform_application\":{\"id\":1066175997,\"application_id\":\"X1Y2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-02-02T09:54:32-05:00\",\"updated_at\":\"2023-02-02T09:54:32-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
           },
           "name": "Create mobile platform application for iOS",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"mobile_platform_application\":{\"platform\":\"ios\",\"application_id\":\"X1Y2.ca.domain.app\",\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-10/mobile_platform_applications.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"mobile_platform_application\":{\"platform\":\"ios\",\"application_id\":\"X1Y2.ca.domain.app\",\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2023-04/mobile_platform_applications.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -239,7 +238,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$mobile_platform_application = new MobilePlatformApplication($this->test_session);\n$mobile_platform_application->platform = \"ios\";\n$mobile_platform_application->application_id = \"X1Y2.ca.domain.app\";\n$mobile_platform_application->enabled_universal_or_app_links = true;\n$mobile_platform_application->enabled_shared_webcredentials = true;\n$mobile_platform_application->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$mobile_platform_application = new MobilePlatformApplication($this->test_session);\n$mobile_platform_application->platform = \"ios\";\n$mobile_platform_application->application_id = \"X1Y2.ca.domain.app\";\n$mobile_platform_application->enabled_universal_or_app_links = true;\n$mobile_platform_application->enabled_shared_webcredentials = true;\n$mobile_platform_application->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -285,11 +284,11 @@
                 "Get a mobile platform application": {
                   "value": {
                     "mobile_platform_application": {
-                      "id": 1066175998,
+                      "id": 1066176003,
                       "application_id": "X1Y2.ca.domain.app",
                       "platform": "ios",
-                      "created_at": "2023-01-03T10:42:49-07:00",
-                      "updated_at": "2023-01-03T10:42:49-07:00",
+                      "created_at": "2023-02-02T07:54:40-07:00",
+                      "updated_at": "2023-02-02T07:54:40-07:00",
                       "sha256_cert_fingerprints": [],
                       "enabled_universal_or_app_links": true,
                       "enabled_shared_webcredentials": true,
@@ -307,35 +306,35 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/mobile_platform_applications/1066175998.json",
+          "request_path": "/admin/api/2023-04/mobile_platform_applications/1066176003.json",
           "request_method": "GET",
           "request": {
-            "action": "GET /admin/api/unstable/mobile_platform_applications/1066175998.json",
+            "action": "GET /admin/api/unstable/mobile_platform_applications/1066176003.json",
             "headers": {},
             "body": ""
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"mobile_platform_application\":{\"id\":1066175998,\"application_id\":\"X1Y2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-01-03T12:42:49-05:00\",\"updated_at\":\"2023-01-03T12:42:49-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
+            "body": "{\"mobile_platform_application\":{\"id\":1066176003,\"application_id\":\"X1Y2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-02-02T09:54:40-05:00\",\"updated_at\":\"2023-02-02T09:54:40-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
           },
           "name": "Get a mobile platform application",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/mobile_platform_applications/1066175998.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/mobile_platform_applications/1066176003.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::MobilePlatformApplication.find(\n  session: test_session,\n  id: 1066175998,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::MobilePlatformApplication.find(\n  session: test_session,\n  id: 1066176003,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.MobilePlatformApplication.find({\n  session: session,\n  id: 1066175998,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.MobilePlatformApplication.find({\n  session: session,\n  id: 1066176003,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMobilePlatformApplication::find(\n    $this->test_session, // Session\n    1066175998, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMobilePlatformApplication::find(\n    $this->test_session, // Session\n    1066176003, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -389,8 +388,8 @@
                       "enabled_universal_or_app_links": true,
                       "enabled_shared_webcredentials": false,
                       "id": 1066175999,
-                      "created_at": "2023-01-03T10:42:50-07:00",
-                      "updated_at": "2023-01-03T10:42:52-07:00",
+                      "created_at": "2023-02-02T07:54:34-07:00",
+                      "updated_at": "2023-02-02T07:54:35-07:00",
                       "enabled_app_clips": false,
                       "app_clip_application_id": null
                     }
@@ -404,9 +403,9 @@
                       "sha256_cert_fingerprints": [],
                       "enabled_universal_or_app_links": true,
                       "enabled_shared_webcredentials": true,
-                      "id": 1066176003,
-                      "created_at": "2023-01-03T10:42:58-07:00",
-                      "updated_at": "2023-01-03T10:43:00-07:00",
+                      "id": 1066175996,
+                      "created_at": "2023-02-02T07:54:28-07:00",
+                      "updated_at": "2023-02-02T07:54:30-07:00",
                       "enabled_app_clips": false,
                       "app_clip_application_id": null
                     }
@@ -421,70 +420,70 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/mobile_platform_applications/1066175999.json",
+          "request_path": "/admin/api/2023-04/mobile_platform_applications/1066175999.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/mobile_platform_applications/1066175999.json",
             "headers": {},
-            "body": "{\"mobile_platform_application\":{\"id\":1066175999,\"application_id\":\"com.example.news.app\",\"platform\":\"android\",\"created_at\":\"2023-01-03T12:42:50-05:00\",\"updated_at\":\"2023-01-03T12:42:50-05:00\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
+            "body": "{\"mobile_platform_application\":{\"id\":1066175999,\"application_id\":\"com.example.news.app\",\"platform\":\"android\",\"created_at\":\"2023-02-02T09:54:34-05:00\",\"updated_at\":\"2023-02-02T09:54:34-05:00\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"mobile_platform_application\":{\"application_id\":\"com.example.news.app\",\"platform\":\"android\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"id\":1066175999,\"created_at\":\"2023-01-03T12:42:50-05:00\",\"updated_at\":\"2023-01-03T12:42:52-05:00\",\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
+            "body": "{\"mobile_platform_application\":{\"application_id\":\"com.example.news.app\",\"platform\":\"android\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"id\":1066175999,\"created_at\":\"2023-02-02T09:54:34-05:00\",\"updated_at\":\"2023-02-02T09:54:35-05:00\",\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
           },
           "name": "Update a Mobile Platform Application for Android",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"mobile_platform_application\":{\"id\":1066175999,\"application_id\":\"com.example.news.app\",\"platform\":\"android\",\"created_at\":\"2023-01-03T12:42:50-05:00\",\"updated_at\":\"2023-01-03T12:42:50-05:00\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/mobile_platform_applications/1066175999.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"mobile_platform_application\":{\"id\":1066175999,\"application_id\":\"com.example.news.app\",\"platform\":\"android\",\"created_at\":\"2023-02-02T09:54:34-05:00\",\"updated_at\":\"2023-02-02T09:54:34-05:00\",\"sha256_cert_fingerprints\":[\"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":false,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/mobile_platform_applications/1066175999.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmobile_platform_application = ShopifyAPI::MobilePlatformApplication.new(session: test_session)\nmobile_platform_application.id = 1066175999\nmobile_platform_application.application_id = \"com.example.news.app\"\nmobile_platform_application.platform = \"android\"\nmobile_platform_application.created_at = \"2023-01-03T12:42:50-05:00\"\nmobile_platform_application.updated_at = \"2023-01-03T12:42:50-05:00\"\nmobile_platform_application.sha256_cert_fingerprints = [\n  \"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"\n]\nmobile_platform_application.enabled_universal_or_app_links = true\nmobile_platform_application.enabled_shared_webcredentials = false\nmobile_platform_application.enabled_app_clips = false\nmobile_platform_application.app_clip_application_id = nil\nmobile_platform_application.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmobile_platform_application = ShopifyAPI::MobilePlatformApplication.new(session: test_session)\nmobile_platform_application.id = 1066175999\nmobile_platform_application.application_id = \"com.example.news.app\"\nmobile_platform_application.platform = \"android\"\nmobile_platform_application.created_at = \"2023-02-02T09:54:34-05:00\"\nmobile_platform_application.updated_at = \"2023-02-02T09:54:34-05:00\"\nmobile_platform_application.sha256_cert_fingerprints = [\n  \"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"\n]\nmobile_platform_application.enabled_universal_or_app_links = true\nmobile_platform_application.enabled_shared_webcredentials = false\nmobile_platform_application.enabled_app_clips = false\nmobile_platform_application.app_clip_application_id = nil\nmobile_platform_application.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst mobile_platform_application = new shopify.rest.MobilePlatformApplication({session: session});\nmobile_platform_application.id = 1066175999;\nmobile_platform_application.application_id = \"com.example.news.app\";\nmobile_platform_application.platform = \"android\";\nmobile_platform_application.created_at = \"2023-01-03T12:42:50-05:00\";\nmobile_platform_application.updated_at = \"2023-01-03T12:42:50-05:00\";\nmobile_platform_application.sha256_cert_fingerprints = [\n  \"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"\n];\nmobile_platform_application.enabled_universal_or_app_links = true;\nmobile_platform_application.enabled_shared_webcredentials = false;\nmobile_platform_application.enabled_app_clips = false;\nmobile_platform_application.app_clip_application_id = null;\nawait mobile_platform_application.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst mobile_platform_application = new shopify.rest.MobilePlatformApplication({session: session});\nmobile_platform_application.id = 1066175999;\nmobile_platform_application.application_id = \"com.example.news.app\";\nmobile_platform_application.platform = \"android\";\nmobile_platform_application.created_at = \"2023-02-02T09:54:34-05:00\";\nmobile_platform_application.updated_at = \"2023-02-02T09:54:34-05:00\";\nmobile_platform_application.sha256_cert_fingerprints = [\n  \"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"\n];\nmobile_platform_application.enabled_universal_or_app_links = true;\nmobile_platform_application.enabled_shared_webcredentials = false;\nmobile_platform_application.enabled_app_clips = false;\nmobile_platform_application.app_clip_application_id = null;\nawait mobile_platform_application.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$mobile_platform_application = new MobilePlatformApplication($this->test_session);\n$mobile_platform_application->id = 1066175999;\n$mobile_platform_application->application_id = \"com.example.news.app\";\n$mobile_platform_application->platform = \"android\";\n$mobile_platform_application->created_at = \"2023-01-03T12:42:50-05:00\";\n$mobile_platform_application->updated_at = \"2023-01-03T12:42:50-05:00\";\n$mobile_platform_application->sha256_cert_fingerprints = [\n    \"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"\n];\n$mobile_platform_application->enabled_universal_or_app_links = true;\n$mobile_platform_application->enabled_shared_webcredentials = false;\n$mobile_platform_application->enabled_app_clips = false;\n$mobile_platform_application->app_clip_application_id = null;\n$mobile_platform_application->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$mobile_platform_application = new MobilePlatformApplication($this->test_session);\n$mobile_platform_application->id = 1066175999;\n$mobile_platform_application->application_id = \"com.example.news.app\";\n$mobile_platform_application->platform = \"android\";\n$mobile_platform_application->created_at = \"2023-02-02T09:54:34-05:00\";\n$mobile_platform_application->updated_at = \"2023-02-02T09:54:34-05:00\";\n$mobile_platform_application->sha256_cert_fingerprints = [\n    \"14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\"\n];\n$mobile_platform_application->enabled_universal_or_app_links = true;\n$mobile_platform_application->enabled_shared_webcredentials = false;\n$mobile_platform_application->enabled_app_clips = false;\n$mobile_platform_application->app_clip_application_id = null;\n$mobile_platform_application->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/mobile_platform_applications/1066176003.json",
+          "request_path": "/admin/api/2023-04/mobile_platform_applications/1066175996.json",
           "request_method": "PUT",
           "request": {
-            "action": "PUT /admin/api/unstable/mobile_platform_applications/1066176003.json",
+            "action": "PUT /admin/api/unstable/mobile_platform_applications/1066175996.json",
             "headers": {},
-            "body": "{\"mobile_platform_application\":{\"id\":1066176003,\"application_id\":\"A1B2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-01-03T12:42:58-05:00\",\"updated_at\":\"2023-01-03T12:42:58-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
+            "body": "{\"mobile_platform_application\":{\"id\":1066175996,\"application_id\":\"A1B2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-02-02T09:54:28-05:00\",\"updated_at\":\"2023-02-02T09:54:28-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
           },
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"mobile_platform_application\":{\"application_id\":\"A1B2.ca.domain.app\",\"platform\":\"ios\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"id\":1066176003,\"created_at\":\"2023-01-03T12:42:58-05:00\",\"updated_at\":\"2023-01-03T12:43:00-05:00\",\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
+            "body": "{\"mobile_platform_application\":{\"application_id\":\"A1B2.ca.domain.app\",\"platform\":\"ios\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"id\":1066175996,\"created_at\":\"2023-02-02T09:54:28-05:00\",\"updated_at\":\"2023-02-02T09:54:30-05:00\",\"enabled_app_clips\":false,\"app_clip_application_id\":null}}"
           },
           "name": "Update a Mobile Platform Application for iOS",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"mobile_platform_application\":{\"id\":1066176003,\"application_id\":\"A1B2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-01-03T12:42:58-05:00\",\"updated_at\":\"2023-01-03T12:42:58-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-10/mobile_platform_applications/1066176003.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"mobile_platform_application\":{\"id\":1066175996,\"application_id\":\"A1B2.ca.domain.app\",\"platform\":\"ios\",\"created_at\":\"2023-02-02T09:54:28-05:00\",\"updated_at\":\"2023-02-02T09:54:28-05:00\",\"sha256_cert_fingerprints\":[],\"enabled_universal_or_app_links\":true,\"enabled_shared_webcredentials\":true,\"enabled_app_clips\":false,\"app_clip_application_id\":null}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2023-04/mobile_platform_applications/1066175996.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmobile_platform_application = ShopifyAPI::MobilePlatformApplication.new(session: test_session)\nmobile_platform_application.id = 1066176003\nmobile_platform_application.application_id = \"A1B2.ca.domain.app\"\nmobile_platform_application.platform = \"ios\"\nmobile_platform_application.created_at = \"2023-01-03T12:42:58-05:00\"\nmobile_platform_application.updated_at = \"2023-01-03T12:42:58-05:00\"\nmobile_platform_application.sha256_cert_fingerprints = []\nmobile_platform_application.enabled_universal_or_app_links = true\nmobile_platform_application.enabled_shared_webcredentials = true\nmobile_platform_application.enabled_app_clips = false\nmobile_platform_application.app_clip_application_id = nil\nmobile_platform_application.save!"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nmobile_platform_application = ShopifyAPI::MobilePlatformApplication.new(session: test_session)\nmobile_platform_application.id = 1066175996\nmobile_platform_application.application_id = \"A1B2.ca.domain.app\"\nmobile_platform_application.platform = \"ios\"\nmobile_platform_application.created_at = \"2023-02-02T09:54:28-05:00\"\nmobile_platform_application.updated_at = \"2023-02-02T09:54:28-05:00\"\nmobile_platform_application.sha256_cert_fingerprints = []\nmobile_platform_application.enabled_universal_or_app_links = true\nmobile_platform_application.enabled_shared_webcredentials = true\nmobile_platform_application.enabled_app_clips = false\nmobile_platform_application.app_clip_application_id = nil\nmobile_platform_application.save!"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nconst mobile_platform_application = new shopify.rest.MobilePlatformApplication({session: session});\nmobile_platform_application.id = 1066176003;\nmobile_platform_application.application_id = \"A1B2.ca.domain.app\";\nmobile_platform_application.platform = \"ios\";\nmobile_platform_application.created_at = \"2023-01-03T12:42:58-05:00\";\nmobile_platform_application.updated_at = \"2023-01-03T12:42:58-05:00\";\nmobile_platform_application.sha256_cert_fingerprints = [];\nmobile_platform_application.enabled_universal_or_app_links = true;\nmobile_platform_application.enabled_shared_webcredentials = true;\nmobile_platform_application.enabled_app_clips = false;\nmobile_platform_application.app_clip_application_id = null;\nawait mobile_platform_application.save({\n  update: true,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nconst mobile_platform_application = new shopify.rest.MobilePlatformApplication({session: session});\nmobile_platform_application.id = 1066175996;\nmobile_platform_application.application_id = \"A1B2.ca.domain.app\";\nmobile_platform_application.platform = \"ios\";\nmobile_platform_application.created_at = \"2023-02-02T09:54:28-05:00\";\nmobile_platform_application.updated_at = \"2023-02-02T09:54:28-05:00\";\nmobile_platform_application.sha256_cert_fingerprints = [];\nmobile_platform_application.enabled_universal_or_app_links = true;\nmobile_platform_application.enabled_shared_webcredentials = true;\nmobile_platform_application.enabled_app_clips = false;\nmobile_platform_application.app_clip_application_id = null;\nawait mobile_platform_application.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$mobile_platform_application = new MobilePlatformApplication($this->test_session);\n$mobile_platform_application->id = 1066176003;\n$mobile_platform_application->application_id = \"A1B2.ca.domain.app\";\n$mobile_platform_application->platform = \"ios\";\n$mobile_platform_application->created_at = \"2023-01-03T12:42:58-05:00\";\n$mobile_platform_application->updated_at = \"2023-01-03T12:42:58-05:00\";\n$mobile_platform_application->sha256_cert_fingerprints = [];\n$mobile_platform_application->enabled_universal_or_app_links = true;\n$mobile_platform_application->enabled_shared_webcredentials = true;\n$mobile_platform_application->enabled_app_clips = false;\n$mobile_platform_application->app_clip_application_id = null;\n$mobile_platform_application->save(\n    true, // Update Object\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$mobile_platform_application = new MobilePlatformApplication($this->test_session);\n$mobile_platform_application->id = 1066175996;\n$mobile_platform_application->application_id = \"A1B2.ca.domain.app\";\n$mobile_platform_application->platform = \"ios\";\n$mobile_platform_application->created_at = \"2023-02-02T09:54:28-05:00\";\n$mobile_platform_application->updated_at = \"2023-02-02T09:54:28-05:00\";\n$mobile_platform_application->sha256_cert_fingerprints = [];\n$mobile_platform_application->enabled_universal_or_app_links = true;\n$mobile_platform_application->enabled_shared_webcredentials = true;\n$mobile_platform_application->enabled_app_clips = false;\n$mobile_platform_application->app_clip_application_id = null;\n$mobile_platform_application->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -539,10 +538,10 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/mobile_platform_applications/1066176001.json",
+          "request_path": "/admin/api/2023-04/mobile_platform_applications/1066176002.json",
           "request_method": "DELETE",
           "request": {
-            "action": "DELETE /admin/api/unstable/mobile_platform_applications/1066176001.json",
+            "action": "DELETE /admin/api/unstable/mobile_platform_applications/1066176002.json",
             "headers": {},
             "body": ""
           },
@@ -555,19 +554,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-10/mobile_platform_applications/1066176001.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2023-04/mobile_platform_applications/1066176002.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::MobilePlatformApplication.delete(\n  session: test_session,\n  id: 1066176001,\n)"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n)\n\nShopifyAPI::MobilePlatformApplication.delete(\n  session: test_session,\n  id: 1066176002,\n)"
             },
             {
               "language": "node",
-              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.MobilePlatformApplication.delete({\n  session: session,\n  id: 1066176001,\n});"
+              "example_code": "// Session is built by the OAuth process\n\nawait shopify.rest.MobilePlatformApplication.delete({\n  session: session,\n  id: 1066176002,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMobilePlatformApplication::delete(\n    $this->test_session, // Session\n    1066176001, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\MobilePlatformApplication;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nMobilePlatformApplication::delete(\n    $this->test_session, // Session\n    1066176002, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -650,5 +649,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

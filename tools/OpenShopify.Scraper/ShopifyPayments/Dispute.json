@@ -3,10 +3,9 @@
   "info": {
     "title": "Dispute",
     "description": "Disputes occur when a buyer questions the legitimacy of a charge with their financial institution.\n",
-    "x-owner": "https://vault.shopify.io/teams/663",
+    "x-owner": "https://vault.shopify.io/teams/663-Shopify-Payments",
     "x-description-list": null,
-    "version": "2022-10",
-    "show-privacy-note": true
+    "version": "2023-04"
   },
   "paths": [
     {
@@ -63,106 +62,7 @@
               "examples": {
                 "Retrieve all disputes initiated on 2013-05-03": {
                   "value": {
-                    "disputes": [
-                      {
-                        "id": 1052608616,
-                        "order_id": null,
-                        "type": "chargeback",
-                        "amount": "100.00",
-                        "currency": "USD",
-                        "reason": "fraudulent",
-                        "network_reason_code": "4827",
-                        "status": "won",
-                        "evidence_due_by": "2013-07-03T17:00:00-06:00",
-                        "evidence_sent_on": "2013-07-04T05:00:00-06:00",
-                        "finalized_on": null,
-                        "initiated_at": "2013-05-03T18:00:00-06:00"
-                      },
-                      {
-                        "id": 815713555,
-                        "order_id": 625362839,
-                        "type": "chargeback",
-                        "amount": "11.50",
-                        "currency": "USD",
-                        "reason": "credit_not_processed",
-                        "network_reason_code": "4827",
-                        "status": "needs_response",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
-                        "evidence_sent_on": null,
-                        "finalized_on": null,
-                        "initiated_at": "2013-05-03T18:00:00-06:00"
-                      },
-                      {
-                        "id": 782360659,
-                        "order_id": 625362839,
-                        "type": "chargeback",
-                        "amount": "11.50",
-                        "currency": "USD",
-                        "reason": "fraudulent",
-                        "network_reason_code": "4827",
-                        "status": "won",
-                        "evidence_due_by": "2013-07-03T17:00:00-06:00",
-                        "evidence_sent_on": "2013-07-04T05:00:00-06:00",
-                        "finalized_on": null,
-                        "initiated_at": "2013-05-03T18:00:00-06:00"
-                      },
-                      {
-                        "id": 670893524,
-                        "order_id": 625362839,
-                        "type": "inquiry",
-                        "amount": "11.50",
-                        "currency": "USD",
-                        "reason": "fraudulent",
-                        "network_reason_code": "4827",
-                        "status": "needs_response",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
-                        "evidence_sent_on": null,
-                        "finalized_on": null,
-                        "initiated_at": "2013-05-03T18:00:00-06:00"
-                      },
-                      {
-                        "id": 598735659,
-                        "order_id": 625362839,
-                        "type": "chargeback",
-                        "amount": "11.50",
-                        "currency": "USD",
-                        "reason": "fraudulent",
-                        "network_reason_code": "4827",
-                        "status": "needs_response",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
-                        "evidence_sent_on": null,
-                        "finalized_on": null,
-                        "initiated_at": "2013-05-03T18:00:00-06:00"
-                      },
-                      {
-                        "id": 85190714,
-                        "order_id": 625362839,
-                        "type": "chargeback",
-                        "amount": "11.50",
-                        "currency": "USD",
-                        "reason": "fraudulent",
-                        "network_reason_code": "4827",
-                        "status": "under_review",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
-                        "evidence_sent_on": "2022-10-02T18:00:00-06:00",
-                        "finalized_on": null,
-                        "initiated_at": "2013-05-03T18:00:00-06:00"
-                      },
-                      {
-                        "id": 35982383,
-                        "order_id": 625362839,
-                        "type": "chargeback",
-                        "amount": "11.50",
-                        "currency": "USD",
-                        "reason": "subscription_canceled",
-                        "network_reason_code": "4827",
-                        "status": "needs_response",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
-                        "evidence_sent_on": null,
-                        "finalized_on": null,
-                        "initiated_at": "2013-05-03T18:00:00-06:00"
-                      }
-                    ]
+                    "disputes": []
                   }
                 },
                 "Retrieve all disputes ordered newest to oldest": {
@@ -191,7 +91,7 @@
                         "reason": "credit_not_processed",
                         "network_reason_code": "4827",
                         "status": "needs_response",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_due_by": "2023-05-21T18:00:00-06:00",
                         "evidence_sent_on": null,
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -219,7 +119,7 @@
                         "reason": "fraudulent",
                         "network_reason_code": "4827",
                         "status": "needs_response",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_due_by": "2023-05-21T18:00:00-06:00",
                         "evidence_sent_on": null,
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -233,7 +133,7 @@
                         "reason": "fraudulent",
                         "network_reason_code": "4827",
                         "status": "needs_response",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_due_by": "2023-05-21T18:00:00-06:00",
                         "evidence_sent_on": null,
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -247,8 +147,8 @@
                         "reason": "fraudulent",
                         "network_reason_code": "4827",
                         "status": "under_review",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
-                        "evidence_sent_on": "2022-10-02T18:00:00-06:00",
+                        "evidence_due_by": "2023-05-21T18:00:00-06:00",
+                        "evidence_sent_on": "2023-05-08T18:00:00-06:00",
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
                       },
@@ -261,7 +161,7 @@
                         "reason": "subscription_canceled",
                         "network_reason_code": "4827",
                         "status": "needs_response",
-                        "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                        "evidence_due_by": "2023-05-21T18:00:00-06:00",
                         "evidence_sent_on": null,
                         "finalized_on": null,
                         "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -312,7 +212,7 @@
         {
           "status": "200",
           "request_query": "initiated_at=2013-05-03",
-          "request_path": "/admin/api/2022-10/shopify_payments/disputes.json",
+          "request_path": "/admin/api/2023-04/shopify_payments/disputes.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/shopify_payments/disputes.json",
@@ -322,13 +222,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"disputes\":[{\"id\":1052608616,\"order_id\":null,\"type\":\"chargeback\",\"amount\":\"100.00\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":815713555,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"credit_not_processed\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":782360659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":670893524,\"order_id\":625362839,\"type\":\"inquiry\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":85190714,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"under_review\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":\"2022-10-02T20:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":35982383,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"subscription_canceled\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}]}"
+            "body": "{\"disputes\":[]}"
           },
           "name": "Retrieve all disputes initiated on 2013-05-03",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/disputes.json?initiated_at=2013-05-03\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/shopify_payments/disputes.json?initiated_at=2013-05-03\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -340,14 +240,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"initiated_at\" => \"2013-05-03\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"initiated_at\" => \"2013-05-03\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/shopify_payments/disputes.json",
+          "request_path": "/admin/api/2023-04/shopify_payments/disputes.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/shopify_payments/disputes.json",
@@ -357,13 +257,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"disputes\":[{\"id\":1052608616,\"order_id\":null,\"type\":\"chargeback\",\"amount\":\"100.00\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":815713555,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"credit_not_processed\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":782360659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":670893524,\"order_id\":625362839,\"type\":\"inquiry\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":85190714,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"under_review\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":\"2022-10-02T20:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":35982383,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"subscription_canceled\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}]}"
+            "body": "{\"disputes\":[{\"id\":1052608616,\"order_id\":null,\"type\":\"chargeback\",\"amount\":\"100.00\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":815713555,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"credit_not_processed\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2023-05-21T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":782360659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"won\",\"evidence_due_by\":\"2013-07-03T19:00:00-04:00\",\"evidence_sent_on\":\"2013-07-04T07:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":670893524,\"order_id\":625362839,\"type\":\"inquiry\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2023-05-21T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2023-05-21T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":85190714,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"under_review\",\"evidence_due_by\":\"2023-05-21T20:00:00-04:00\",\"evidence_sent_on\":\"2023-05-08T20:00:00-04:00\",\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"},{\"id\":35982383,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"subscription_canceled\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2023-05-21T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}]}"
           },
           "name": "Retrieve all disputes ordered newest to oldest",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/disputes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/shopify_payments/disputes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -375,14 +275,14 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "status=won",
-          "request_path": "/admin/api/2022-10/shopify_payments/disputes.json",
+          "request_path": "/admin/api/2023-04/shopify_payments/disputes.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/shopify_payments/disputes.json",
@@ -398,7 +298,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/disputes.json?status=won\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/shopify_payments/disputes.json?status=won\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -410,7 +310,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"won\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"won\"], // Params\n);"
             }
           ]
         }
@@ -469,7 +369,7 @@
                       "reason": "fraudulent",
                       "network_reason_code": "4827",
                       "status": "needs_response",
-                      "evidence_due_by": "2022-10-15T18:00:00-06:00",
+                      "evidence_due_by": "2023-05-21T18:00:00-06:00",
                       "evidence_sent_on": null,
                       "finalized_on": null,
                       "initiated_at": "2013-05-03T18:00:00-06:00"
@@ -485,7 +385,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-10/shopify_payments/disputes/598735659.json",
+          "request_path": "/admin/api/2023-04/shopify_payments/disputes/598735659.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shopify_payments/disputes/598735659.json",
@@ -495,13 +395,13 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"dispute\":{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2022-10-15T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}}"
+            "body": "{\"dispute\":{\"id\":598735659,\"order_id\":625362839,\"type\":\"chargeback\",\"amount\":\"11.50\",\"currency\":\"USD\",\"reason\":\"fraudulent\",\"network_reason_code\":\"4827\",\"status\":\"needs_response\",\"evidence_due_by\":\"2023-05-21T20:00:00-04:00\",\"evidence_sent_on\":null,\"finalized_on\":null,\"initiated_at\":\"2013-05-03T20:00:00-04:00\"}}"
           },
           "name": "Retrieves a single dispute by ID",
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-10/shopify_payments/disputes/598735659.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2023-04/shopify_payments/disputes/598735659.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -513,7 +413,7 @@
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_10\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::find(\n    $this->test_session, // Session\n    598735659, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2023_04\\Dispute;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDispute::find(\n    $this->test_session, // Session\n    598735659, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -591,9 +491,7 @@
         {
           "description": "The reason for the dispute provided by the cardholder's bank.",
           "type": "string",
-          "example": {
-            "network_reason_code": 4840
-          },
+          "example": "4840",
           "name": "network_reason_code"
         },
         {
@@ -649,5 +547,5 @@
     "weight": null,
     "usage-notes": null
   },
-  "personal_data_fields": []
+  "personal_data_fields": {}
 }

@@ -291,7 +291,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Name { get; set; } = default!;
 
         /// <summary>
-        /// Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.
+        /// Whether the customer should be notified.If set to `true`, then an email will be sent when the fulfillment is created or updated.The default value is `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("notify_customer")]
@@ -381,7 +381,21 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Status { get; set; } = default!;
 
         /// <summary>
-        /// The name of the tracking company. The following tracking companies display for shops located in any country: 
+        /// The name of the tracking company. 
+        /// 
+        ///  For the tracking company names from the [list below](#supported-tracking-companies) Shopify automatically builds tracking URLs for all of the provided tracking numbers, which makes the tracking numbers clickable in the interface.
+        /// 
+        ///  Additionally, for the tracking companies listed on the [Shipping Carriers help page](https://help.shopify.com/en/manual/shipping/understanding-shipping/shipping-carriers#integrated-shipping-carriers) Shopify will automatically update the fulfillment's `shipment_status` field during the fulfillment process.
+        /// &lt;aside class="note"&gt; 
+        /// 
+        /// #### Note
+        /// 
+        ///  Send the tracking company name exactly as written in the list below (capitalization matters). 
+        /// &lt;/aside&gt;
+        /// 
+        /// #### Supported tracking companies
+        /// 
+        ///  The following tracking companies display for shops located in any country:
         /// 
         /// *   **4PX** 
         /// *   **AGS** 
@@ -492,9 +506,9 @@ namespace OpenShopify.Admin.Builder.Models
         /// *   **Yamato (EN)** 
         /// *   **Yamato (JA)** 
         /// *   **YiFan Express** 
-        /// *   **YunExpress** 
+        /// *   **YunExpress**
         /// 
-        /// The following tracking companies are displayed for shops located in specific countries:
+        ///  The following tracking companies are displayed for shops located in specific countries:
         /// 
         /// *   **Australia**: Australia Post, Sendle, Aramex Australia, TNT Australia, Hunter Express, Couriers Please, Bonds, Allied Express, Direct Couriers, Northline, GO Logistics 
         /// *   **Austria**: Österreichische Post 
@@ -517,14 +531,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// *   **Poland**: Inpost 
         /// *   **Turkey**: PTT, Yurtiçi Kargo, Aras Kargo, Sürat Kargo 
         /// *   **United States**: GLS, Alliance Air Freight, Pilot Freight, LSO, Old Dominion, R+L Carriers, Southwest Air Cargo 
-        /// *   **South Africa**: Fastway, Skynet 
-        /// 
-        ///  &lt;div class="note"&gt; 
-        /// 
-        /// #### Important
-        /// 
-        /// When creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.
-        ///  &lt;/div&gt;
+        /// *   **South Africa**: Fastway, Skynet
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_company")]
@@ -533,14 +540,19 @@ namespace OpenShopify.Admin.Builder.Models
         public string? TrackingCompany { get; set; } = default!;
 
         /// <summary>
-        /// A list of tracking numbers, provided by the shipping company. &lt;div class="note"&gt; 
+        /// A list of tracking numbers provided by the shipping company. 
+        ///  &lt;aside class="note"&gt; 
         /// 
-        /// #### Important
+        /// #### Note
         /// 
-        /// It is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.
+        ///  With the REST API, you can set only one tracking number and one tracking URL per fulfillment. If you send multiple shipments with one fulfillment, you may want to specify tracking numbers and tracking URLs for all of them. You can do it with the equivalent GraphQL [FulfillmentCreateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentCreateV2) and [fulfillmentTrackingInfoUpdateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentTrackingInfoUpdateV2) mutations. 
+        /// &lt;/aside&gt; 
         /// 
-        /// The tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.
-        ///  &lt;/div&gt;
+        ///  The tracking numbers are clickable in the interface if one of the following applies (the highest in the list has the highest priority): 
+        /// 
+        /// *   Tracking URL provided in the `url` field.  
+        /// *   [Shopify-known tracking company name](#supported-tracking-companies) specified in the `company` field. Shopify will build the tracking url automatically based on the tracking number specified.  
+        /// *   The tracking number has a Shopify-known format. Shopify will guess the tracking provider and build the tracking url based on the tracking number format. Not all tracking carriers are supported, and multiple tracking carriers may use similarly formatted tracking numbers. This can result in an invalid tracking URL. It is highly recommended that you send the tracking company and the tracking URL.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_numbers")]
@@ -549,13 +561,56 @@ namespace OpenShopify.Admin.Builder.Models
         public System.Collections.Generic.List<string>? TrackingNumbers { get; set; } = default!;
 
         /// <summary>
-        /// The URLs of tracking pages for the fulfillment.
+        /// A tracking number provided by the shipping company. 
+        /// 
+        ///  If multiple tracking numbers are set on this fulfillment, only the first one will be returned in the `tracking_number` field. Use the `tracking_numbers` array field to access all tracking numbers associated with this fulfillment. 
+        ///  &lt;aside class="note"&gt; 
+        /// 
+        /// #### Note
+        /// 
+        ///  With the REST API, you can set only one tracking number and one tracking URL per fulfillment. If you send multiple shipments with one fulfillment, you may want to specify tracking numbers and tracking URLs for all of them. You can do it with the equivalent GraphQL [FulfillmentCreateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentCreateV2) and [fulfillmentTrackingInfoUpdateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentTrackingInfoUpdateV2) mutations. 
+        /// &lt;/aside&gt;
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_number")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? TrackingNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The URLs of tracking pages for the fulfillment. 
+        /// 
+        ///  The tracking URLs are displayed in the merchant's admin on the order page. The tracking URLs are displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, the tracking URLs are also displayed in the customer's order history. 
+        /// 
+        /// &lt;aside class="note"&gt; 
+        /// 
+        /// #### Note
+        /// 
+        ///  With the REST API, you can set only one tracking number and one tracking URL per fulfillment. If you send multiple shipments with one fulfillment, you may want to specify tracking numbers and tracking URLs for all of them. You can do it with the equivalent GraphQL [FulfillmentCreateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentCreateV2) and [fulfillmentTrackingInfoUpdateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentTrackingInfoUpdateV2) mutations. 
+        /// &lt;/aside&gt;
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_urls")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public System.Collections.Generic.List<string>? TrackingUrls { get; set; } = default!;
+
+        /// <summary>
+        /// The URL to track the fulfillment. 
+        /// 
+        ///  If multiple tracking urls are set on this fulfillment, only the first one will be returned in the `tracking_url` field. Use the `tracking_urls` array field for accessing all tracking URLs associated with this fulfillment. 
+        ///  &lt;aside class="note"&gt; 
+        /// 
+        /// #### Note
+        /// 
+        ///  With the REST API, you can set only one tracking number and one tracking URL per fulfillment. If you send multiple shipments with one fulfillment, you may want to specify tracking numbers and tracking URLs for all of them. You can do it with the equivalent GraphQL [FulfillmentCreateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentCreateV2) and [fulfillmentTrackingInfoUpdateV2](/docs/api/admin-graphql/2023-01/mutations/fulfillmentTrackingInfoUpdateV2) mutations. 
+        /// &lt;/aside&gt;
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
+        public string? TrackingUrl { get; set; } = default!;
 
         /// <summary>
         /// The name of the inventory management service.

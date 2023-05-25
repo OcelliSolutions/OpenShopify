@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Metafield
   description: Metafield
-  version: '2022-10'
+  version: '2023-04'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-10'
+        default: '2023-04'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -23,8 +23,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to an Article
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToArticle
       parameters:
         - name: article_id
@@ -53,8 +51,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for an article
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForArticle
       parameters:
         - name: article_id
@@ -91,8 +87,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to an Article
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToArticle
       parameters:
         - name: article_id
@@ -103,35 +97,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -140,24 +128,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -185,8 +169,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Delete a metafield by its ID for an Article
-      description: Deletes a metafield by its ID.
       operationId: DeleteMetafieldForArticle
       parameters:
         - name: article_id
@@ -216,8 +198,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to an Article
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToArticle
       parameters:
         - name: metafield_id
@@ -234,7 +214,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -256,8 +235,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for an Article
-      description: Updates a metafield.
       operationId: UpdateMetafieldForArticle
       parameters:
         - name: article_id
@@ -301,8 +278,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to the Shop resource
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToBlog
       parameters:
         - name: blog_id
@@ -331,8 +306,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForBlog
       parameters:
         - name: blog_id
@@ -369,8 +342,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a list of metafields from the resource's endpoint
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToBlog
       parameters:
         - name: blog_id
@@ -381,35 +352,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -418,24 +383,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -463,7 +424,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Deletes a metafield by its ID
       operationId: DeleteMetafieldForBlog
       parameters:
         - name: blog_id
@@ -493,8 +453,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a specific metafield
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToBlog
       parameters:
         - name: metafield_id
@@ -511,7 +469,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -533,7 +490,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Updates a metafield
       operationId: UpdateMetafieldForBlog
       parameters:
         - name: blog_id
@@ -577,8 +533,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to a Collection
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToCollection
       parameters:
         - name: collection_id
@@ -607,8 +561,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for a collection
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForCollection
       parameters:
         - name: collection_id
@@ -645,8 +597,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to a Collection
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToCollection
       parameters:
         - name: collection_id
@@ -657,35 +607,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -694,24 +638,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -739,8 +679,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Delete a metafield by its ID for a Collection
-      description: Deletes a metafield by its ID.
       operationId: DeleteMetafieldForCollection
       parameters:
         - name: collection_id
@@ -770,8 +708,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to a Collection
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToCollection
       parameters:
         - name: metafield_id
@@ -788,7 +724,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -810,8 +745,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for a Collection
-      description: Updates a metafield.
       operationId: UpdateMetafieldForCollection
       parameters:
         - name: collection_id
@@ -855,8 +788,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to a Customer
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToCustomer
       parameters:
         - name: customer_id
@@ -885,8 +816,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for a customer
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForCustomer
       parameters:
         - name: customer_id
@@ -923,8 +852,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to an Article
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToCustomer
       parameters:
         - name: customer_id
@@ -935,35 +862,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -972,24 +893,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -1017,8 +934,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Delete a metafield by its ID for a Customer
-      description: Deletes a metafield by its ID.
       operationId: DeleteMetafieldForCustomer
       parameters:
         - name: customer_id
@@ -1048,8 +963,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to a Customer
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToCustomer
       parameters:
         - name: metafield_id
@@ -1066,7 +979,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -1088,8 +1000,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for a Customer
-      description: Updates a metafield.
       operationId: UpdateMetafieldForCustomer
       parameters:
         - name: customer_id
@@ -1133,8 +1043,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to a Draft Order
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToDraftOrder
       parameters:
         - name: draft_order_id
@@ -1163,8 +1071,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for a draft order
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForDraftOrder
       parameters:
         - name: draft_order_id
@@ -1201,8 +1107,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to a Draft Order
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToDraftOrder
       parameters:
         - name: draft_order_id
@@ -1213,35 +1117,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -1250,24 +1148,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -1295,8 +1189,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Delete a metafield by its ID for a Draft Order
-      description: Deletes a metafield by its ID.
       operationId: DeleteMetafieldForDraftOrder
       parameters:
         - name: draft_order_id
@@ -1326,8 +1218,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to a Draft Order
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToDraftOrder
       parameters:
         - name: metafield_id
@@ -1344,7 +1234,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -1366,8 +1255,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for a Draft Order
-      description: Updates a metafield.
       operationId: UpdateMetafieldForDraftOrder
       parameters:
         - name: draft_order_id
@@ -1411,8 +1298,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to the Shop resource
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToShopResource
       responses:
         '200':
@@ -1434,18 +1319,14 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a list of metafields by using query parameters
-      description: Retrieves a list of metafields that belong to a resource by using query parameters.
       operationId: ListMetafieldsByUsingQueryParameters
       parameters:
         - name: 'metafield[owner_id]'
           in: query
-          description: Filter by the resource ID on which the metafield is attached to.
           schema:
             type: string
         - name: 'metafield[owner_resource]'
           in: query
-          description: Filter by the resource name on which the metafield is attached to.
           schema:
             type: string
       responses:
@@ -1472,8 +1353,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to an Order
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToOrder
       parameters:
         - name: order_id
@@ -1502,8 +1381,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for an order
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForOrder
       parameters:
         - name: order_id
@@ -1540,8 +1417,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to an Order
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToOrder
       parameters:
         - name: order_id
@@ -1552,35 +1427,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -1589,24 +1458,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -1634,8 +1499,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Delete a metafield by its ID for an Order
-      description: Deletes a metafield by its ID.
       operationId: DeleteMetafieldForOrder
       parameters:
         - name: order_id
@@ -1665,8 +1528,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to an Order
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToOrder
       parameters:
         - name: metafield_id
@@ -1683,7 +1544,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -1705,8 +1565,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for an Order
-      description: Updates a metafield.
       operationId: UpdateMetafieldForOrder
       parameters:
         - name: order_id
@@ -1778,8 +1636,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for a page
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForPage
       parameters:
         - name: page_id
@@ -1816,8 +1672,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to a Page
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToPage
       parameters:
         - name: page_id
@@ -1828,35 +1682,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -1865,24 +1713,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -1910,8 +1754,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Delete a metafield by its ID for a Page
-      description: Deletes a metafield by its ID.
       operationId: DeleteMetafieldForPage
       parameters:
         - name: page_id
@@ -1941,8 +1783,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to a Page
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToPage
       parameters:
         - name: metafield_id
@@ -1959,7 +1799,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -1981,8 +1820,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for a Page
-      description: Updates a metafield.
       operationId: UpdateMetafieldForPage
       parameters:
         - name: page_id
@@ -2026,8 +1863,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to a Product
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToProduct
       parameters:
         - name: product_id
@@ -2056,8 +1891,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for a product
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForProduct
       parameters:
         - name: product_id
@@ -2094,8 +1927,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to a Product
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToProduct
       parameters:
         - name: product_id
@@ -2106,35 +1937,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -2143,24 +1968,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -2188,8 +2009,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Delete a metafield by its ID for a Product
-      description: Deletes a metafield by its ID.
       operationId: DeleteMetafieldForProduct
       parameters:
         - name: product_id
@@ -2219,8 +2038,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to a Product
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToProduct
       parameters:
         - name: metafield_id
@@ -2237,7 +2054,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -2259,8 +2075,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for a Product
-      description: Updates a metafield.
       operationId: UpdateMetafieldForProduct
       parameters:
         - name: product_id
@@ -2304,8 +2118,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to a Product Image
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToProductImage
       parameters:
         - name: product_image_id
@@ -2334,8 +2146,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for a product image
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForProductImage
       parameters:
         - name: product_image_id
@@ -2372,8 +2182,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to a Product Image
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToProductImage
       parameters:
         - name: product_image_id
@@ -2384,35 +2192,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -2421,24 +2223,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -2466,7 +2264,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Deletes a metafield by its ID
       operationId: DeleteMetafieldForProductImage
       parameters:
         - name: product_image_id
@@ -2496,8 +2293,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to a Product Image
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToProductImage
       parameters:
         - name: metafield_id
@@ -2514,7 +2309,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -2536,8 +2330,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for a Product Image
-      description: Updates a metafield.
       operationId: UpdateMetafieldForProductImage
       parameters:
         - name: product_image_id
@@ -2581,8 +2373,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a count of metafields attached to a Product Variant
-      description: Get a count of all metafields that belong to a particular resource.
       operationId: CountMetafieldsAttachedToProductVariant
       parameters:
         - name: variant_id
@@ -2611,8 +2401,6 @@ paths:
     post:
       tags:
         - Metafield
-      summary: Create a metafield for a product variant
-      description: 'You can create any number of metafields for a resource. To create metafields, use the corresponding resource''s endpoint as listed on the examples.'
       operationId: CreateMetafieldForProductVariant
       parameters:
         - name: variant_id
@@ -2649,8 +2437,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve metafields attached to a Product Variant
-      description: Retrieves a list of metafields attached to a particular resource by using the resource's endpoint.
       operationId: ListMetafieldsAttachedToProductVariant
       parameters:
         - name: variant_id
@@ -2661,35 +2447,29 @@ paths:
             format: int64
         - name: created_at_max
           in: query
-          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: created_at_min
           in: query
-          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
         - name: key
           in: query
-          description: Show metafields with given key
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to show on a page.
           schema:
             type: integer
             format: int32
         - name: page_info
           in: query
-          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: namespace
@@ -2698,24 +2478,20 @@ paths:
             type: string
         - name: since_id
           in: query
-          description: Show metafields created after the specified ID.
           schema:
             type: integer
             format: int64
         - name: type
           in: query
-          description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
             $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
-          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
         - name: updated_at_min
           in: query
-          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
             format: date-time
@@ -2743,8 +2519,6 @@ paths:
     delete:
       tags:
         - Metafield
-      summary: Delete a metafield by its ID for a Product Variant
-      description: Deletes a metafield by its ID.
       operationId: DeleteMetafieldForProductVariant
       parameters:
         - name: variant_id
@@ -2774,8 +2548,6 @@ paths:
     get:
       tags:
         - Metafield
-      summary: Retrieve a single metafield by its ID attached to a Product Variant
-      description: Retrieve a metafield by specifying the ID. All fields of a metafield are returned unless specific fields are named.
       operationId: GetMetafieldAttachedToProductVariant
       parameters:
         - name: metafield_id
@@ -2792,7 +2564,6 @@ paths:
             format: int64
         - name: fields
           in: query
-          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
@@ -2814,8 +2585,6 @@ paths:
     put:
       tags:
         - Metafield
-      summary: Update a metafield for a Product Variant
-      description: Updates a metafield.
       operationId: UpdateMetafieldForProductVariant
       parameters:
         - name: variant_id
@@ -2869,15 +2638,15 @@ components:
       properties:
         description:
           type: string
-          description: A description of the information that the metafield contains.
+          description: The description of the metafield.
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: "The unique identifier for a metafield within its namespace.   \r\n Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+          description: "The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   \r\n Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         owner_id:
           type: integer
@@ -2889,7 +2658,6 @@ components:
           description: The type of resource that the metafield is attached to.
           nullable: true
         value:
-          description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
@@ -2989,15 +2757,15 @@ components:
       properties:
         description:
           type: string
-          description: A description of the information that the metafield contains.
+          description: The description of the metafield.
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: "The unique identifier for a metafield within its namespace.   \r\n Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+          description: "The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   \r\n Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         owner_id:
           type: integer
@@ -3009,7 +2777,6 @@ components:
           description: The type of resource that the metafield is attached to.
           nullable: true
         value:
-          description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
@@ -3076,15 +2843,15 @@ components:
       properties:
         description:
           type: string
-          description: A description of the information that the metafield contains.
+          description: The description of the metafield.
           nullable: true
         key:
           type: string
-          description: 'The key of the metafield. Keys can be up to 64 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          description: "The unique identifier for a metafield within its namespace.   \r\n Must be 3-64 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         namespace:
           type: string
-          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-255 characters.
+          description: "The container for a group of metafields that the metafield is or will be associated with. Used in tandem with `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the same `key`.   \r\n Must be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters."
           nullable: true
         owner_id:
           type: integer
@@ -3096,7 +2863,6 @@ components:
           description: The type of resource that the metafield is attached to.
           nullable: true
         value:
-          description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'

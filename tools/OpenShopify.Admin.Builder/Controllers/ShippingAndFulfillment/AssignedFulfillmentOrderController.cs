@@ -26,12 +26,20 @@ namespace OpenShopify.Admin.Builder.Models
     public abstract class AssignedFulfillmentOrderControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
         /// <summary>
-        /// Retrieves a list of fulfillment orders on a shop for a specific app
+        /// Retrieves a list of fulfillment orders assigned to the shop locations that are owned by the app
         /// </summary>
-        /// <param name="assignment_status">The assigment status of the fulfillment orders that should be returned:</param>
-        /// <param name="location_ids">The IDs of the assigned locations of the fulfillment orders that should be returned.</param>
+        /// <remarks>
+        /// Retrieves a list of fulfillment orders assigned to the shop locations that are owned by the app.
+        /// 
+        ///  The app must have the `read_assigned_fulfillment_orders` [access scope](/docs/api/usage/access-scopes) to be able to retrieve fulfillment orders assigned to its locations. 
+        /// 
+        ///  All assigned fulfillment orders (except those with the `CLOSED` status) will be returned by default. Perform filtering with the `assignment_status` query parameter to receive only fulfillment orders that have been requested to be fulfilled.
+        /// </remarks>
+        /// <param name="assignment_status">The assignment status of the fulfillment orders that should be returned. If `assignment_status` parameter isn't provided, then the query will return all assigned fulfillment orders, except those with the `CLOSED` status.</param>
+        /// <param name="location_ids">The IDs of the assigned locations of the fulfillment orders that should be returned.   
+        ///  If the `location_ids` parameter isn't provided, then all fulfillment orders assigned to the shop locations that are managed by the app will be returned.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("assigned_fulfillment_orders.json")]
-        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersOnShopForSpecificApp([Microsoft.AspNetCore.Mvc.FromQuery] string? assignment_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? location_ids = null);
+        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersAssignedToShopLocationsThatAreOwnedByApp([Microsoft.AspNetCore.Mvc.FromQuery] string? assignment_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? location_ids = null);
 
     }
 
